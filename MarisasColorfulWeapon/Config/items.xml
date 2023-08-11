@@ -1040,12 +1040,12 @@
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkGunslinger"/> <!-- random effective rng -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="130" tags="perkGunslinger"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1" tags="perkGunslinger"/>
-				<passive_effect name="MagazineSize" operation="base_set" value="1" tags="perkGunslinger"/>
+				<passive_effect name="MagazineSize" operation="base_set" value="8.8" tags="perkGunslinger"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkGunslinger"/> <!-- 2s -->
 				<passive_effect name="ModSlots" operation="base_set" value="2,3,3,4,4,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="100" tags="perkGunslinger"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkGunslinger"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkGunslinger"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkGunslinger"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkGunslinger"/> <!-- random BlockDmg -->
@@ -1070,8 +1070,12 @@
 				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="3.2" tags="perkGunslinger"/>
 				<passive_effect name="WeaponHandling" operation="base_set" value=".6" tags="perkGunslinger"/>
 
-				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6" tags="perkGunslinger"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,400" tier="1,6" tags="perkGunslinger"/>
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkGunslinger"/>
+			</effect_group>
+			<effect_group name="new Fire Proc" tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,10" operation="LT" value="7"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item>
 
@@ -1088,12 +1092,12 @@
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkGunslinger"/> <!-- random effective rng -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="130" tags="perkGunslinger"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1" tags="perkGunslinger"/>
-				<passive_effect name="MagazineSize" operation="base_set" value="1" tags="perkGunslinger"/>
+				<passive_effect name="MagazineSize" operation="base_set" value="8.8" tags="perkGunslinger"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkGunslinger"/> <!-- 2s -->
-				<passive_effect name="ModSlots" operation="base_set" value="2,3,3,4,4,5" tier="1,2,3,4,5,6"/>
-				<passive_effect name="ModPowerBonus" operation="perc_add" value=".12" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="120" tags="perkGunslinger"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="40" tags="perkGunslinger"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkGunslinger"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkGunslinger"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkGunslinger"/> <!-- random BlockDmg -->
@@ -1118,8 +1122,11 @@
 				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="3.2" tags="perkGunslinger"/>
 				<passive_effect name="WeaponHandling" operation="base_set" value=".6" tags="perkGunslinger"/>
 
-				<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6" tags="perkGunslinger"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="250,400" tier="1,6" tags="perkGunslinger"/>
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkGunslinger"/>
+			</effect_group>
+			<effect_group name="new Fire Proc" tiered="false">
+				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item>
 
