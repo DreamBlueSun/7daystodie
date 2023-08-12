@@ -1876,7 +1876,7 @@
 				<passive_effect name="ModSlots" operation="base_set" value="2,3,3,4,4,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="53" tags="perkDeadEye"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="63" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkDeadEye"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkDeadEye"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkDeadEye"/> <!-- random BlockDmg -->
@@ -1930,7 +1930,7 @@
 				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="53" tags="perkDeadEye"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="73" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkDeadEye"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkDeadEye"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkDeadEye"/> <!-- random BlockDmg -->
@@ -1978,7 +1978,7 @@
 				<passive_effect name="DamageFalloffRange" operation="base_set" value="50" tags="perkMachineGunner"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkMachineGunner"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-3" tags="perkMachineGunner"/> <!-- damage offset -->
-				<passive_effect name="EntityDamage" operation="base_add" value="-7" tags="perkMachineGunner"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="3" tags="perkMachineGunner"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkMachineGunner"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random BlockDmg -->
@@ -1989,8 +1989,8 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random WeaponHandling -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="360" tags="perkMachineGunner"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMachineGunner"/>
-				<passive_effect name="MagazineSize" operation="base_set" value="15" tags="perkMachineGunner"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1.1" tags="perkMachineGunner"/> <!-- 2.85s -->
+				<passive_effect name="MagazineSize" operation="base_set" value="30" tags="perkMachineGunner"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMachineGunner"/> <!-- 2.85s -->
 
 				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.8" tags="perkMachineGunner"/>
 				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.8" tags="perkMachineGunner"/>
@@ -2013,10 +2013,13 @@
 				<passive_effect name="ModSlots" operation="base_set" value="1,2,2,3,3,4" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				
-				<passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="15"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="5"/></passive_effect>
+
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2032,7 +2035,7 @@
 				<passive_effect name="DamageFalloffRange" operation="base_set" value="50" tags="perkMachineGunner"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkMachineGunner"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-3" tags="perkMachineGunner"/> <!-- damage offset -->
-				<passive_effect name="EntityDamage" operation="base_add" value="-7" tags="perkMachineGunner"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="13" tags="perkMachineGunner"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkMachineGunner"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random BlockDmg -->
@@ -2043,8 +2046,8 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random WeaponHandling -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="360" tags="perkMachineGunner"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMachineGunner"/>
-				<passive_effect name="MagazineSize" operation="base_set" value="20" tags="perkMachineGunner"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1.2" tags="perkMachineGunner"/> <!-- 2.85s -->
+				<passive_effect name="MagazineSize" operation="base_set" value="30" tags="perkMachineGunner"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMachineGunner"/> <!-- 2.85s -->
 
 				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.8" tags="perkMachineGunner"/>
 				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.8" tags="perkMachineGunner"/>
@@ -2067,11 +2070,13 @@
 				<passive_effect name="ModSlots" operation="base_set" value="2,2,3,3,4,4" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				
-				<passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="15"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="40" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="5"/></passive_effect>
+
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".25"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2087,7 +2092,7 @@
 				<passive_effect name="DamageFalloffRange" operation="base_set" value="50" tags="perkMachineGunner"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkMachineGunner"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-3" tags="perkMachineGunner"/> <!-- damage offset -->
-				<passive_effect name="EntityDamage" operation="base_add" value="-7" tags="perkMachineGunner"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="23" tags="perkMachineGunner"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkMachineGunner"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random BlockDmg -->
@@ -2098,8 +2103,8 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random WeaponHandling -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="360" tags="perkMachineGunner"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMachineGunner"/>
-				<passive_effect name="MagazineSize" operation="base_set" value="25" tags="perkMachineGunner"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1.3" tags="perkMachineGunner"/> <!-- 2.85s -->
+				<passive_effect name="MagazineSize" operation="base_set" value="30" tags="perkMachineGunner"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMachineGunner"/> <!-- 2.85s -->
 
 				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.8" tags="perkMachineGunner"/>
 				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.8" tags="perkMachineGunner"/>
@@ -2122,12 +2127,13 @@
 				<passive_effect name="ModSlots" operation="base_set" value="2,3,3,4,4,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				
-				<passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="25"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="45" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="15"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="60" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="75" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="5"/></passive_effect>
+
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2143,7 +2149,7 @@
 				<passive_effect name="DamageFalloffRange" operation="base_set" value="50" tags="perkMachineGunner"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkMachineGunner"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-3" tags="perkMachineGunner"/> <!-- damage offset -->
-				<passive_effect name="EntityDamage" operation="base_add" value="-7" tags="perkMachineGunner"/> <!-- damage offset -->
+				<passive_effect name="EntityDamage" operation="base_add" value="33" tags="perkMachineGunner"/> <!-- damage offset -->
 				<passive_effect name="EntityDamage" operation="perc_add" value="-.02,.02" tags="perkMachineGunner"/> <!-- random EntityDmg -->
 				<passive_effect name="EntityDamage" operation="perc_add" value=".05,.25" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
 				<passive_effect name="BlockDamage" operation="perc_add" value="-.08,.08" tags="perkMachineGunner"/> <!-- random BlockDmg -->
@@ -2155,7 +2161,7 @@
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="360" tags="perkMachineGunner"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMachineGunner"/>
 				<passive_effect name="MagazineSize" operation="base_set" value="30" tags="perkMachineGunner"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1.4" tags="perkMachineGunner"/> <!-- 2.85s -->
+				<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMachineGunner"/> <!-- 2.85s -->
 
 				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.8" tags="perkMachineGunner"/>
 				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.8" tags="perkMachineGunner"/>
@@ -2178,13 +2184,13 @@
 				<passive_effect name="ModSlots" operation="base_set" value="2,3,3,4,4,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-				
-				<passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="40" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="25"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="60" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="80" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="15"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="100" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="120" tags="perkMachineGunner"><requirement name="RoundsInMagazine" operation="LT" value="5"/></passive_effect>
+
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
 			</effect_group>
 		</item>
 
