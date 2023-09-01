@@ -84,8 +84,7 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="DamageModifier" operation="perc_add" value="-.1"/>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value=".1" tags="perkArchery,bowDrawPenalty"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.1"/>
 			</effect_group>
 			<effect_group name="sneak damage bonus">
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
@@ -180,8 +179,7 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="DamageModifier" operation="perc_add" value="-.2"/>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value=".15" tags="perkArchery,bowDrawPenalty"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.2"/>
 			</effect_group>
 			<effect_group name="sneak damage bonus">
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
@@ -268,8 +266,7 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="DamageModifier" operation="perc_add" value="-.3"/>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value=".2" tags="perkArchery,bowDrawPenalty"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.3"/>
 			</effect_group>
 			<effect_group name="sneak damage bonus">
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
@@ -357,8 +354,7 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="DamageModifier" operation="perc_add" value="-.4"/>
-				<passive_effect name="RoundsPerMinute" operation="perc_add" value=".25" tags="perkArchery,bowDrawPenalty"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.4"/>
 			</effect_group>
 			<effect_group name="sneak damage bonus">
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
@@ -976,7 +972,7 @@
 				<!-- <triggered_effect trigger="onSelfEquipStart" action="CVarLogValue" cvar="onSelfEquipStartMagnum"/> -->
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,10" operation="LT" value="5"/>
+				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="50"/>
 					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
@@ -1030,7 +1026,7 @@
 				<!-- <triggered_effect trigger="onSelfEquipStart" action="CVarLogValue" cvar="onSelfEquipStartMagnum"/> -->
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,10" operation="LT" value="7"/>
+				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="70"/>
 					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
@@ -1084,7 +1080,7 @@
 				<!-- <triggered_effect trigger="onSelfEquipStart" action="CVarLogValue" cvar="onSelfEquipStartMagnum"/> -->
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,10" operation="LT" value="9"/>
+				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="90"/>
 					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
@@ -1138,7 +1134,7 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkGunslinger"/>
 			</effect_group>
 			<effect_group name="new Fire Proc" tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,10" operation="LT" value="7"/>
+				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LT" value="70"/>
 					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item>
@@ -1535,7 +1531,7 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".6" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".6" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1578,7 +1574,7 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".8" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".8" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".6"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2531,7 +2527,7 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.25" tags="perkMachineGunner"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.4" tags="perkMachineGunner"/>
 			</effect_group>
 		</item>
 
