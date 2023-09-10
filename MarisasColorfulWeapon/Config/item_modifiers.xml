@@ -225,7 +225,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="2"/>
 			<effect_group tiered="false">
-				<passive_effect name="BlockDamage" operation="perc_add" value=".1"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".2"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="modMarisaT2BlockDamage" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
@@ -235,7 +235,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="4"/>
 			<effect_group tiered="false">
-				<passive_effect name="BlockDamage" operation="perc_add" value=".2"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".4"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="modMarisaT3BlockDamage" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
@@ -245,7 +245,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="14"/>
 			<effect_group tiered="false">
-				<passive_effect name="BlockDamage" operation="perc_add" value=".3"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".6"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="modMarisaT4BlockDamage" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
@@ -255,7 +255,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="47"/>
 			<effect_group tiered="false">
-				<passive_effect name="BlockDamage" operation="perc_add" value=".4"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".8"/>
 			</effect_group>
 		</item_modifier>
 
@@ -266,7 +266,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="4"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".2"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".4"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="modMarisaT3BlockHarvest" installable_tags="tool" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
@@ -276,7 +276,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="14"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".4"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".6"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="modMarisaT4BlockHarvest" installable_tags="tool" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
@@ -286,30 +286,30 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="47"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".6"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".8"/>
 			</effect_group>
 		</item_modifier>
 
-		<item_modifier name="modMarisaT3DrumMagazine" installable_tags="drumMagazine" modifier_tags="marisaMagazine" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modMarisaT3DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunDrumMagazineExtender"/>
 			<property name="CustomIconTint" value="#BA55D3" />
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="14"/>
 			<effect_group tiered="false">
-				<passive_effect name="MagazineSize" operation="perc_add" value=".5"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.2"/>
+				<passive_effect name="MagazineSize" operation="perc_add" value="1.5"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.45"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modMarisaT4DrumMagazine" installable_tags="drumMagazine" modifier_tags="marisaMagazine" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modMarisaT4DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunDrumMagazineExtender"/>
 			<property name="CustomIconTint" value="#FFA500" />
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="47"/>
 			<effect_group tiered="false">
-				<passive_effect name="MagazineSize" operation="perc_add" value="1"/>
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.3"/>
+				<passive_effect name="MagazineSize" operation="perc_add" value="2"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.55"/>
 			</effect_group>
 		</item_modifier>
 
@@ -413,13 +413,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="2"/>
 			<effect_group tiered="false">
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
-			</effect_group>
-			<effect_group tiered="false">
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,400" operation="LTE" value="35"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="4"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item_modifier>
@@ -430,13 +424,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="4"/>
 			<effect_group tiered="false">
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="7"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
-			</effect_group>
-			<effect_group tiered="false">
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,400" operation="LTE" value="7"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item_modifier>
@@ -458,13 +446,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="4"/>
 			<effect_group tiered="false">
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
-			</effect_group>
-			<effect_group tiered="false">
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,400" operation="LTE" value="15"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
@@ -475,13 +457,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="14"/>
 			<effect_group tiered="false">
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
-			</effect_group>
-			<effect_group tiered="false">
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,400" operation="LTE" value="20"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
@@ -492,13 +468,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="47"/>
 			<effect_group tiered="false">
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
-			</effect_group>
-			<effect_group tiered="false">
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,400" operation="LTE" value="25"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
