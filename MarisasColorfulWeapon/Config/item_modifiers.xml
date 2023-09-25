@@ -361,7 +361,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="47"/>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="health" target="self" operation="add" value="10"/>
+				<triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="health" target="self" operation="add" value="5"/>
 			</effect_group>
 		</item_modifier>
 
@@ -413,7 +413,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="2"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="4"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item_modifier>
@@ -424,7 +424,7 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="4"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="7"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item_modifier>
@@ -435,7 +435,8 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="14"/>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
+					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item_modifier>
 
@@ -470,6 +471,92 @@
 			<effect_group tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
+			</effect_group>
+		</item_modifier>
+
+		<item_modifier name="modMarisaT1Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#90EE90" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="2"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT2Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#00BFFF" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="4"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT3Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#BA55D3" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="14"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT4Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#FFA500" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="47"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="80"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
+
+		<item_modifier name="modMarisaT1ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#90EE90" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="2"/>
+			<effect_group tiered="false">
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT2ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#00BFFF" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="4"/>
+			<effect_group tiered="false">
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".25"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT3ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#BA55D3" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="14"/>
+			<effect_group tiered="false">
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".35"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="modMarisaT4ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#FFA500" />
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="47"/>
+			<effect_group tiered="false">
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".45"/>
 			</effect_group>
 		</item_modifier>
 
