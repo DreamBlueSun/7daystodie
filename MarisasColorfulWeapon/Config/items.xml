@@ -990,7 +990,7 @@
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="50"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" tags="animal,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
 
@@ -1045,7 +1045,7 @@
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="70"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" tags="animal,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
 
@@ -1100,7 +1100,7 @@
 			</effect_group>
 			<effect_group name="apply damage buff" tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="90"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" tags="animal,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item>
 
@@ -1153,11 +1153,11 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkGunslinger"/>
 
 				<passive_effect name="EntityDamage" operation="perc_add" value=".15"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value="1.2"><requirement target="other" hasBuff="buffBurningElement"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="1"><requirement target="other" hasBuff="buffBurningElement"/></passive_effect>
 			</effect_group>
 			<effect_group name="new Fire Proc" tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LT" value="15"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" tags="animal,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item>
 
@@ -1210,11 +1210,11 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkGunslinger"/>
 
 				<passive_effect name="EntityDamage" operation="perc_add" value=".25"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value="2"><requirement target="other" hasBuff="buffBurningElement"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="1.5"><requirement target="other" hasBuff="buffBurningElement"/></passive_effect>
 			</effect_group>
 			<effect_group name="new Fire Proc" tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LT" value="20"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" tags="animal,zombie" buff="buffBurningElement"/>
 			</effect_group>
 		</item>
 
@@ -1256,7 +1256,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".6" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".05"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1298,7 +1317,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value="1.2" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".05"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".06" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1340,7 +1378,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value="1.8" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".05"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1382,7 +1439,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value="2.4" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".05"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1557,7 +1633,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".75" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value="1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".03" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".05"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1600,7 +1695,26 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkBoomstick"/>
 				<display_value name="dStatStunEffect" value="4"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value="1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".95"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".9"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".8"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".7"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".6"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".4"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".3"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".05" tags="perkBoomstick"><requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".05"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1615,7 +1729,7 @@
 
 			<effect_group name="T1GunHuntingRifleS1">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="120" tags="perkDeadEye"/>
@@ -1654,7 +1768,8 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="50" tags="head"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".8" tags="perkDeadEye"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".5"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="1"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1669,7 +1784,7 @@
 
 			<effect_group name="T2GunHuntingRifleS2">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="120" tags="perkDeadEye"/>
@@ -1708,7 +1823,8 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="100" tags="head"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value="1.2" tags="perkDeadEye"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".6"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="1.5"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1723,7 +1839,7 @@
 
 			<effect_group name="T3GunHuntingRifleS3">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="120" tags="perkDeadEye"/>
@@ -1762,7 +1878,8 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="150" tags="head"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value="1.6" tags="perkDeadEye"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".7"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="2"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1777,7 +1894,7 @@
 
 			<effect_group name="T4GunHuntingRifleS4">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="120" tags="perkDeadEye"/>
@@ -1816,7 +1933,8 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="200" tags="head"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value="2" tags="perkDeadEye"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".8"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value="2.5"><requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -1831,7 +1949,7 @@
 
 			<effect_group name="T2GunLeverActionRifleS1">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="60" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="82" tags="perkDeadEye"/>
@@ -1885,7 +2003,7 @@
 
 			<effect_group name="T3GunLeverActionRifleS2">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="60" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="82" tags="perkDeadEye"/>
@@ -1939,7 +2057,7 @@
 
 			<effect_group name="T4GunLeverActionRifleS3">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="60" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="BlockDamage" operation="base_add" value="-1" tags="perkDeadEye"/> <!-- damage offset -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="82" tags="perkDeadEye"/>
@@ -1993,7 +2111,7 @@
 
 			<effect_group name="T3GunSniperRifleS1">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="140" tags="perkDeadEye"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1" tags="perkDeadEye"/>
@@ -2031,10 +2149,36 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="150" tags="head"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="TargetRange" operation="GTE" value="5"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="TargetRange" operation="GTE" value="10"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="TargetRange" operation="GTE" value="15"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".3"><requirement name="TargetRange" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="2"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="3"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="4"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="5"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="6"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="7"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="8"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="9"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="10"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="11"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="12"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="13"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="14"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="15"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="16"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="17"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="18"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="19"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="21"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="22"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="23"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="24"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="25"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="26"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="27"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="28"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="29"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".025"><requirement name="TargetRange" operation="GTE" value="30"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2049,7 +2193,7 @@
 
 			<effect_group name="T4GunSniperRifleS2">
 				<passive_effect name="MaxRange" operation="base_set" value="150" tags="perkDeadEye"/>
-				<passive_effect name="DamageFalloffRange" operation="base_set" value="70" tags="perkDeadEye"/>
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="100" tags="perkDeadEye"/>
 				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tags="perkDeadEye"/> <!-- random effective rng -->
 				<passive_effect name="RoundsPerMinute" operation="base_set" value="140" tags="perkDeadEye"/>
 				<passive_effect name="BurstRoundCount" operation="base_set" value="1" tags="perkDeadEye"/>
@@ -2087,10 +2231,36 @@
 				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeadEye"/>
 
 				<passive_effect name="DamageModifier" operation="base_add" value="200" tags="head"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".4"><requirement name="TargetRange" operation="GTE" value="5"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".4"><requirement name="TargetRange" operation="GTE" value="10"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".4"><requirement name="TargetRange" operation="GTE" value="15"/></passive_effect>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".4"><requirement name="TargetRange" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="2"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="3"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="4"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="5"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="6"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="7"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="8"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="9"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="10"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="11"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="12"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="13"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="14"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="15"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="16"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="17"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="18"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="19"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="21"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="22"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="23"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="24"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="25"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="26"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="27"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="28"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="29"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".04"><requirement name="TargetRange" operation="GTE" value="30"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2144,16 +2314,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04"><requirement name="RoundsInMagazine" operation="LTE" value="5"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2207,16 +2385,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08"><requirement name="RoundsInMagazine" operation="LTE" value="5"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2270,16 +2456,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="LTE" value="5"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2333,16 +2527,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".4"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16"><requirement name="RoundsInMagazine" operation="LTE" value="5"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2396,16 +2598,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".12"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".07"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2459,16 +2669,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".18"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -2522,16 +2740,24 @@
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"/>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".24"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="5"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="10"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="15"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="20"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="25"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="30"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="35"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="40"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="45"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="50"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="55"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="60"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="65"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="70"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="75"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="80"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="85"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".13"><requirement name="RoundsInMagazine" operation="GTE" value="90"/></passive_effect>
 			</effect_group>
 		</item>
 
@@ -4190,7 +4416,7 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaModT4RandomBundleDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="modMarisaT4BlockDamage,modMarisaT4BlockHarvest,modMarisaT4DrumMagazine,modMarisaT4EntityDamage,modMarisaT4KillRecovery,modMarisaT4KillExp,modMarisaT4AddBuffShocked,modMarisaT4Degradation,modMarisaT4ReloadSpeed"/>
+                <property name="Random_item" value="modMarisaT4BlockDamage,modMarisaT4BlockHarvest,modMarisaT4DrumMagazine,modMarisaT4EntityDamage,modMarisaT4KillRecovery,modMarisaT4KillExp,modMarisaT4AddBuffShocked,modMarisaT4Degradation,modMarisaT4ReloadSpeed,modMarisaT4BurnBloodDamage"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="true"/>
             </property>
