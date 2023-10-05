@@ -1,4 +1,5 @@
 <Marisa>
+	<remove xpath="/items/item[@name='resourceNail']/effect_group[@name='resourceNail']/passive_effect[@name='DamageModifier']"/>
 
 	<append xpath="/items">
 		<!--resource-->
@@ -12,6 +13,190 @@
 			<property name="Group" value="Special Items"/>
 			<property name="EconomicValue" value="250"/>
 			<property name="Stacknumber" value="1000"/>
+		</item>
+
+
+		<!--tool-->
+		<item name="T2ToolNailGunS1">
+			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
+			<property name="Tags" value="nailgun,repairTool,repairingSkill,melee,heavy,tool,motorTool,attStrength,perkMiner69r,perkMotherLode,miningTool,canHaveCosmetic,harvestingSkill"/>
+			<property name="CustomIcon" value="meleeToolRepairT3Nailgun"/>
+			<property name="CustomIconTint" value="#00BFFF" />
+			<property name="EconomicValue" value="2000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="4"/>
+
+			<property class="Action0">
+				<property name="Class" value="Ranged"/>
+				<property name="Hitmask_override" value="Melee"/>
+				<property name="UseMeleeCrosshair" value="true"/>
+				<property name="Single_magazine_usage" value="false"/>
+				<property name="Magazine_items" value="resourceNail"/>
+				<property name="bullet_material" value="metal"/>
+				<property name="Reload_time" value="2"/>
+				<property name="Sound_start" value="nailgun_fire"/>
+				<property name="Particles_muzzle_fire" value="nailgunfire"/>
+				<property name="Sound_loop" value="nailgun_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="nailgun_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="SupportHarvesting" value="true"/>
+			</property>
+
+			<effect_group name="T2ToolNailGunS1"> <!-- meleeToolRepairT3Nailgun -->
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="3" tags="perkMiner69r"/>
+				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tier="1,6" tags="perkMiner69r"/> <!-- random effective rng -->
+				<passive_effect name="MaxRange" operation="base_set" value="5" tags="perkMiner69r"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="1000,2000" tier="1,6" tags="perkMiner69r"/>
+				<!-- <passive_effect name="DegradationMax" operation="perc_add" value="-.08,.08" tier="1,6" tags="perkMiner69r"/> --> <!-- random DegMax -->
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkMiner69r"/>
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".4"/>
+				<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".8"/>
+				<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="1.5"/>
+				<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="2.2"/>
+				<display_value name="dBlockRepairAmount" value="1000"/>
+				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="2" tags="perkMiner69r"/>
+				<passive_effect name="WeaponHandling" operation="base_set" value=".7" tags="perkMiner69r"/> <!-- crosshair reset speed -->
+				<passive_effect name="RoundsPerMinute" operation="base_set" value="257" tags="perkMiner69r"/>
+				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMiner69r"/> <!-- for the Launcher class this instantly fires BurstRoundCount projectiles on pulling the trigger -->
+				<passive_effect name="MagazineSize" operation="base_set" value="40"/>
+				<!-- <passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMiner69r"/>  does not work at all on the nailgun -->
+
+				<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="-.7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="base_set" value=".7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.6" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".6" tags="perkMiner69r"/>
+
+				<passive_effect name="ModSlots" operation="base_set" value="2,2,3,3,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="20" tags="perkMiner69r"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.15,.15" tags="perkMiner69r"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".15,.75" tier="2,6" tags="perkMiner69r"/> <!-- tier bonus -->
+			</effect_group>
+		</item>
+
+
+		<item name="T3ToolNailGunS2">
+			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
+			<property name="Tags" value="nailgun,repairTool,repairingSkill,melee,heavy,tool,motorTool,attStrength,perkMiner69r,perkMotherLode,miningTool,canHaveCosmetic,harvestingSkill"/>
+			<property name="CustomIcon" value="meleeToolRepairT3Nailgun"/>
+			<property name="CustomIconTint" value="#BA55D3" />
+			<property name="EconomicValue" value="3000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="16"/>
+
+			<property class="Action0">
+				<property name="Class" value="Ranged"/>
+				<property name="Hitmask_override" value="Melee"/>
+				<property name="UseMeleeCrosshair" value="true"/>
+				<property name="Single_magazine_usage" value="false"/>
+				<property name="Magazine_items" value="resourceNail"/>
+				<property name="bullet_material" value="metal"/>
+				<property name="Reload_time" value="2"/>
+				<property name="Sound_start" value="nailgun_fire"/>
+				<property name="Particles_muzzle_fire" value="nailgunfire"/>
+				<property name="Sound_loop" value="nailgun_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="nailgun_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="SupportHarvesting" value="true"/>
+			</property>
+
+			<effect_group name="T3ToolNailGunS2"> <!-- meleeToolRepairT3Nailgun -->
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="3" tags="perkMiner69r"/>
+				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tier="1,6" tags="perkMiner69r"/> <!-- random effective rng -->
+				<passive_effect name="MaxRange" operation="base_set" value="5" tags="perkMiner69r"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="1000,2000" tier="1,6" tags="perkMiner69r"/>
+				<!-- <passive_effect name="DegradationMax" operation="perc_add" value="-.08,.08" tier="1,6" tags="perkMiner69r"/> --> <!-- random DegMax -->
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkMiner69r"/>
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".4"/>
+				<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".8"/>
+				<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="1.5"/>
+				<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="2.2"/>
+				<display_value name="dBlockRepairAmount" value="1000"/>
+				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="2" tags="perkMiner69r"/>
+				<passive_effect name="WeaponHandling" operation="base_set" value=".7" tags="perkMiner69r"/> <!-- crosshair reset speed -->
+				<passive_effect name="RoundsPerMinute" operation="base_set" value="257" tags="perkMiner69r"/>
+				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMiner69r"/> <!-- for the Launcher class this instantly fires BurstRoundCount projectiles on pulling the trigger -->
+				<passive_effect name="MagazineSize" operation="base_set" value="50"/>
+				<!-- <passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMiner69r"/>  does not work at all on the nailgun -->
+
+				<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="-.7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="base_set" value=".7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.6" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".6" tags="perkMiner69r"/>
+
+				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,4,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="30" tags="perkMiner69r"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.15,.15" tags="perkMiner69r"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".15,.75" tier="2,6" tags="perkMiner69r"/> <!-- tier bonus -->
+			</effect_group>
+		</item>
+
+
+		<item name="T4ToolNailGunS3">
+			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
+			<property name="Tags" value="nailgun,repairTool,repairingSkill,melee,heavy,tool,motorTool,attStrength,perkMiner69r,perkMotherLode,miningTool,canHaveCosmetic,harvestingSkill"/>
+			<property name="CustomIcon" value="meleeToolRepairT3Nailgun"/>
+			<property name="CustomIconTint" value="#FFA500" />
+			<property name="EconomicValue" value="4000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="80"/>
+
+			<property class="Action0">
+				<property name="Class" value="Ranged"/>
+				<property name="Hitmask_override" value="Melee"/>
+				<property name="UseMeleeCrosshair" value="true"/>
+				<property name="Single_magazine_usage" value="false"/>
+				<property name="Magazine_items" value="resourceNail"/>
+				<property name="bullet_material" value="metal"/>
+				<property name="Reload_time" value="2"/>
+				<property name="Sound_start" value="nailgun_fire"/>
+				<property name="Particles_muzzle_fire" value="nailgunfire"/>
+				<property name="Sound_loop" value="nailgun_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="nailgun_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="SupportHarvesting" value="true"/>
+			</property>
+
+			<effect_group name="T4ToolNailGunS3"> <!-- meleeToolRepairT3Nailgun -->
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="3" tags="perkMiner69r"/>
+				<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.2,.2" tier="1,6" tags="perkMiner69r"/> <!-- random effective rng -->
+				<passive_effect name="MaxRange" operation="base_set" value="5" tags="perkMiner69r"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="1000,2000" tier="1,6" tags="perkMiner69r"/>
+				<!-- <passive_effect name="DegradationMax" operation="perc_add" value="-.08,.08" tier="1,6" tags="perkMiner69r"/> --> <!-- random DegMax -->
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkMiner69r"/>
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".4"/>
+				<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".8"/>
+				<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="1.5"/>
+				<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="2.2"/>
+				<display_value name="dBlockRepairAmount" value="1000"/>
+				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="2" tags="perkMiner69r"/>
+				<passive_effect name="WeaponHandling" operation="base_set" value=".7" tags="perkMiner69r"/> <!-- crosshair reset speed -->
+				<passive_effect name="RoundsPerMinute" operation="base_set" value="257" tags="perkMiner69r"/>
+				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMiner69r"/> <!-- for the Launcher class this instantly fires BurstRoundCount projectiles on pulling the trigger -->
+				<passive_effect name="MagazineSize" operation="base_set" value="60"/>
+				<!-- <passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMiner69r"/>  does not work at all on the nailgun -->
+
+				<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="-.7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="base_set" value=".7" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.6" tags="perkMiner69r"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".6" tags="perkMiner69r"/>
+
+				<passive_effect name="ModSlots" operation="base_set" value="4,4,5,5,5,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="40" tags="perkMiner69r"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.15,.15" tags="perkMiner69r"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".15,.75" tier="2,6" tags="perkMiner69r"/> <!-- tier bonus -->
+			</effect_group>
 		</item>
 
 
