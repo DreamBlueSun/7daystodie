@@ -200,7 +200,260 @@
 		</item>
 
 
-		<!--wpn-->
+		<!--melee-->
+		<item name="T1CandyKnifeS1">
+			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#90EE90" />
+			<property name="EconomicValue" value="1000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="2"/>
+
+			<effect_group name="T1CandyKnifeS1">
+				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6" tags="perkDeepCuts"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+				<passive_effect name="MaxRange" operation="base_set" value="2.0" tags="perkDeepCuts"/>
+				<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+				<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,2,3" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="12" tags="perkDeepCuts,knife"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random EntityDmg -->
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="base_set" value="6.5" tags="perkDeepCuts"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="stone"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="metal"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".6" tags="organic"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+				<!--<passive_effect name="BlockDamage" operation="perc_add" value="6" tags="blockButcher"/>-->
+
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="10"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="2"/>
+			</effect_group>
+			<effect_group name="Power Attack">
+				<passive_effect name="EntityDamage" operation="base_add" value="6.7" tags="secondary"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="12.3" tags="secondary"/>
+
+				<passive_effect name="EntityDamage" operation="base_add" value="1" tags="secondary"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="5"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="5" tags="perkDeepCuts"/>
+					<display_value name="dEntityDamageSneak" value="5"/>
+			</effect_group>
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
+
+
+		<item name="T2CandyKnifeS2">
+			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#00BFFF" />
+			<property name="EconomicValue" value="2000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="4"/>
+
+			<effect_group name="T2CandyKnifeS2">
+				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6" tags="perkDeepCuts"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+				<passive_effect name="MaxRange" operation="base_set" value="2.0" tags="perkDeepCuts"/>
+				<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+				<passive_effect name="ModSlots" operation="base_set" value="2,2,3,3,3,4" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="12" tags="perkDeepCuts,knife"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random EntityDmg -->
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="base_set" value="6.5" tags="perkDeepCuts"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="stone"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="metal"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".6" tags="organic"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+				<!--<passive_effect name="BlockDamage" operation="perc_add" value="6" tags="blockButcher"/>-->
+
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="20"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="4"/>
+			</effect_group>
+			<effect_group name="Power Attack">
+				<passive_effect name="EntityDamage" operation="base_add" value="6.7" tags="secondary"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="12.3" tags="secondary"/>
+
+				<passive_effect name="EntityDamage" operation="base_add" value="2" tags="secondary"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="6"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="6" tags="perkDeepCuts"/>
+					<display_value name="dEntityDamageSneak" value="6"/>
+			</effect_group>
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
+
+
+		<item name="T3CandyKnifeS3">
+			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#BA55D3" />
+			<property name="EconomicValue" value="3000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="16"/>
+
+			<effect_group name="T3CandyKnifeS3">
+				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6" tags="perkDeepCuts"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+				<passive_effect name="MaxRange" operation="base_set" value="2.0" tags="perkDeepCuts"/>
+				<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,4,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="12" tags="perkDeepCuts,knife"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random EntityDmg -->
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="base_set" value="6.5" tags="perkDeepCuts"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="stone"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="metal"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".6" tags="organic"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+				<!--<passive_effect name="BlockDamage" operation="perc_add" value="6" tags="blockButcher"/>-->
+
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="30"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="6"/>
+			</effect_group>
+			<effect_group name="Power Attack">
+				<passive_effect name="EntityDamage" operation="base_add" value="6.7" tags="secondary"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="12.3" tags="secondary"/>
+
+				<passive_effect name="EntityDamage" operation="base_add" value="3" tags="secondary"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="7"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="7" tags="perkDeepCuts"/>
+					<display_value name="dEntityDamageSneak" value="7"/>
+			</effect_group>
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
+
+
+		<item name="T4CandyKnifeS4">
+			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#FFA500" />
+			<property name="EconomicValue" value="4000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="80"/>
+
+			<effect_group name="T4CandyKnifeS4">
+				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6" tags="perkDeepCuts"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+				<passive_effect name="MaxRange" operation="base_set" value="2.0" tags="perkDeepCuts"/>
+				<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+				<passive_effect name="ModSlots" operation="base_set" value="4,4,5,5,5,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="12" tags="perkDeepCuts,knife"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random EntityDmg -->
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="base_set" value="6.5" tags="perkDeepCuts"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="-.04,.04" tags="perkDeepCuts"/> <!-- random BlockDmg -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="stone"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="metal"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".6" tags="organic"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+				<!--<passive_effect name="BlockDamage" operation="perc_add" value="6" tags="blockButcher"/>-->
+
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="40"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="8"/>
+			</effect_group>
+			<effect_group name="Power Attack">
+				<passive_effect name="EntityDamage" operation="base_add" value="6.7" tags="secondary"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="12.3" tags="secondary"/>
+
+				<passive_effect name="EntityDamage" operation="base_add" value="4" tags="secondary"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="8"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="8" tags="perkDeepCuts"/>
+					<display_value name="dEntityDamageSneak" value="8"/>
+			</effect_group>
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="5"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
+
+
+		<!--ranged-->
 		<item name="T1BowWoodenS1">
 			<property name="Extends" value="gunBowT1WoodenBow"/>
 			<property name="CustomIcon" value="gunBowT1WoodenBow"/>
@@ -4253,8 +4506,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT1RandomBundleNormalDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1"/>
-                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3"/>
+                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1,T1CandyKnifeS1"/>
+                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4267,8 +4520,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT1RandomBundleSuperiorDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1"/>
-                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6"/>
+                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1,T1CandyKnifeS1"/>
+                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4281,8 +4534,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT1RandomBundleEpicDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1"/>
-                <property name="Random_item_count" value="6,6,6,6,6,6"/>
+                <property name="Random_item" value="T1BowWoodenS1,T1CrossbowIronS1,T1GunAk47S1,T1GunDoubleBarrelS1,T1GunHuntingRifleS1,T1GunPistolS1,T1CandyKnifeS1"/>
+                <property name="Random_item_count" value="6,6,6,6,6,6,6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4296,8 +4549,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT2RandomBundleNormalDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1"/>
-                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
+                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1,T2CandyKnifeS2"/>
+                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4310,8 +4563,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT2RandomBundleSuperiorDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1"/>
-                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
+                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1,T2CandyKnifeS2"/>
+                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4324,8 +4577,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT2RandomBundleEpicDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1"/>
-                <property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6"/>
+                <property name="Random_item" value="T2BowWoodenS2,T2CrossbowIronS2,T2GunAk47S2,T2GunDoubleBarrelS2,T2GunHuntingRifleS2,T2GunLeverActionRifleS1,T2GunMagnum44S1,T2GunPistolS2,T2GunPumpShotgunS1,T2GunTacticalARS1,T2CandyKnifeS2"/>
+                <property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6,6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4339,8 +4592,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT3RandomBundleNormalDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2"/>
-                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
+                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2,T3CandyKnifeS3"/>
+                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4353,8 +4606,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT3RandomBundleSuperiorDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2"/>
-                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
+                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2,T3CandyKnifeS3"/>
+                <property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4367,8 +4620,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT3RandomBundleEpicDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2"/>
-                <property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6"/>
+                <property name="Random_item" value="T3BowCompoundS1,T3CrossbowCompoundS1,T3GunAk47S3,T3GunAutoShotgunS1,T3GunDesertVultureS1,T3GunDoubleBarrelS3,T3GunHuntingRifleS3,T3GunLeverActionRifleS2,T3GunM60S1,T3GunMagnum44S2,T3GunPistolS3,T3GunPumpShotgunS2,T3GunRocketLauncherS1,T3GunSmg5S1,T3GunSniperRifleS1,T3GunTacticalARS2,T3CandyKnifeS3"/>
+                <property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4382,8 +4635,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT4RandomBundleNormalDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3"/>
-                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
+                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3,T4CandyKnifeS4"/>
+                <property name="Random_item_count" value="1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4396,8 +4649,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT4RandomBundleSuperiorDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3"/>
-				<property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
+                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3,T4CandyKnifeS4"/>
+				<property name="Random_item_count" value="4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6,4-6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
@@ -4410,8 +4663,8 @@
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="DescriptionKey" value="marisaWeaponT4RandomBundleEpicDesc"/>
             <property class="Action0">
-                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3"/>
-				<property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6"/>
+                <property name="Random_item" value="T4BowCompoundS2,T4CrossbowCompoundS2,T4GunAk47S4,T4GunAutoShotgunS2,T4GunDesertVultureS2,T4GunDoubleBarrelS4,T4GunHuntingRifleS4,T4GunLeverActionRifleS3,T4GunM60S2,T4GunMagnum44S3,T4GunPistolS4,T4GunPumpShotgunS3,T4GunRocketLauncherS2,T4GunSmg5S2,T4GunSniperRifleS2,T4GunTacticalARS3,T4CandyKnifeS4"/>
+				<property name="Random_item_count" value="6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6"/>
                 <property name="Random_count" value="1"/>
                 <property name="Unique_random_only" value="false"/>
             </property>
