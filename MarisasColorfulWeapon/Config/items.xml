@@ -16,6 +16,128 @@
 		</item>
 
 
+		<!--ammo-->
+		<item name="ammoRocketBiological">
+			<property name="Extends" value="ammoRocketFrag"/>
+			<property name="CustomIcon" value="ammoRocketHE"/>
+			<property name="CustomIconTint" value="#90EE90" />
+			<property name="EconomicValue" value="1000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="2"/>
+
+			<property class="Action1">
+				<property name="Explosion.RadiusBlocks" value="0"/> <!-- damage radius for blocks -->
+				<property name="Explosion.RadiusEntities" value="6"/> <!-- damage radius for entities -->
+				<property name="Explosion.DamageBonus.stone" value="0"/>
+				<property name="Explosion.DamageBonus.metal" value="0"/>
+				<property name="Explosion.DamageBonus.earth" value="0"/>
+				<property name="Explosion.DamageBonus.wood" value="0"/>
+				<property name="Explosion.DamageBonus.water" value="0"/>
+			</property>
+		
+			<effect_group name="ammoRocketFrag" tiered="false">
+				<passive_effect name="BlockDamage" operation="base_set" value="0" tags="perkDemolitionsExpert"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="500" tags="animal,zombie"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0" tags="player"/>
+				<passive_effect name="HealthGain" operation="base_set" value="500" tags="player"/>
+				<passive_effect name="ProjectileVelocity" operation="base_set" value="80" tags="perkDemolitionsExpert"/>
+				<display_value name="dExRadius" value="6"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE,player" range="6" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medicalRegHealthAmount" operation="add" value="50"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medRegHealthIncSpeed" operation="set" value="@medicRegHealthIncreaseSpeed"/>
+			</effect_group>
+		</item>
+		<item name="ammoRocketRecover">
+			<property name="Extends" value="ammoRocketFrag"/>
+			<property name="CustomIcon" value="ammoRocketHE"/>
+			<property name="CustomIconTint" value="#00BFFF" />
+			<property name="EconomicValue" value="1000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="2"/>
+
+			<property class="Action1">
+				<property name="Explosion.RadiusBlocks" value="0"/> <!-- damage radius for blocks -->
+				<property name="Explosion.RadiusEntities" value="6"/> <!-- damage radius for entities -->
+				<property name="Explosion.DamageBonus.stone" value="0"/>
+				<property name="Explosion.DamageBonus.metal" value="0"/>
+				<property name="Explosion.DamageBonus.earth" value="0"/>
+				<property name="Explosion.DamageBonus.wood" value="0"/>
+				<property name="Explosion.DamageBonus.water" value="0"/>
+			</property>
+		
+			<effect_group name="ammoRocketFrag" tiered="false">
+				<passive_effect name="BlockDamage" operation="base_set" value="0" tags="perkDemolitionsExpert"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="500" tags="animal,zombie"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0" tags="player"/>
+				<passive_effect name="ProjectileVelocity" operation="base_set" value="80" tags="perkDemolitionsExpert"/>
+				<display_value name="dExRadius" value="6"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE,player" range="6" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medicalRegHealthAmount" operation="add" value="50"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medRegHealthIncSpeed" operation="set" value="@medicRegHealthIncreaseSpeed"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryAbrasion"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryBleeding"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLaceration"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmSprained"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmBroken"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmSplinted"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmCast"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegSprained"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegBroken"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegSplinted"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegCast"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffFatiguedTrigger"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryConcussion"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="$buffInfectionAddCurePerc" operation="add" value="25"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE,player" range="6" buff="buffInfectionAddCure"/>
+			</effect_group>
+		</item>
+		<item name="ammoRocketBiologicalRecover">
+			<property name="Extends" value="ammoRocketFrag"/>
+			<property name="CustomIcon" value="ammoRocketHE"/>
+			<property name="CustomIconTint" value="#FFA500" />
+			<property name="EconomicValue" value="2000"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="4"/>
+
+			<property class="Action1">
+				<property name="Explosion.RadiusBlocks" value="0"/> <!-- damage radius for blocks -->
+				<property name="Explosion.RadiusEntities" value="6"/> <!-- damage radius for entities -->
+				<property name="Explosion.DamageBonus.stone" value="0"/>
+				<property name="Explosion.DamageBonus.metal" value="0"/>
+				<property name="Explosion.DamageBonus.earth" value="0"/>
+				<property name="Explosion.DamageBonus.wood" value="0"/>
+				<property name="Explosion.DamageBonus.water" value="0"/>
+			</property>
+		
+			<effect_group name="ammoRocketFrag" tiered="false">
+				<passive_effect name="BlockDamage" operation="base_set" value="0" tags="perkDemolitionsExpert"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="500" tags="animal,zombie"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="0" tags="player"/>
+				<passive_effect name="HealthGain" operation="base_set" value="500" tags="player"/>
+				<passive_effect name="ProjectileVelocity" operation="base_set" value="80" tags="perkDemolitionsExpert"/>
+				<display_value name="dExRadius" value="6"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE,player" range="6" buff="buffProcessConsumables"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medicalRegHealthAmount" operation="add" value="50"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="medRegHealthIncSpeed" operation="set" value="@medicRegHealthIncreaseSpeed"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryAbrasion"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryBleeding"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLaceration"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmSprained"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmBroken"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmSplinted"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffArmCast"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegSprained"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegBroken"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegSplinted"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffLegCast"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffFatiguedTrigger"/>
+				<triggered_effect trigger="onProjectileImpact" action="RemoveBuff" target="positionAOE,player" range="6" buff="buffInjuryConcussion"/>
+				<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE,player" range="6" cvar="$buffInfectionAddCurePerc" operation="add" value="25"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE,player" range="6" buff="buffInfectionAddCure"/>
+			</effect_group>
+		</item>
+
+
 		<!--tool-->
 		<item name="T2ToolNailGunS1">
 			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
@@ -3552,6 +3674,27 @@
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="16"/>
 
+			<property class="Action0">
+				<property name="Class" value="Launcher"/>
+				<property name="Delay" value=".8"/> <!-- obsolete if rounds per minute exists -->
+				<!-- <property name="Range" value="200"/> -->
+				<property name="Magazine_items" value="ammoRocketHE,ammoRocketFrag,ammoRocketBiological,ammoRocketRecover"/>
+				<!-- <property name="Reload_time" value="2"/> -->
+				<property name="Sound_start" value="m136_fire"/>
+				<property name="Sound_repeat" value=""/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="m136_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="Particles_muzzle_fire" value="rocketLauncherFire"/>
+				<property name="Particles_muzzle_smoke" value="nozzlesmoke_m136"/>
+				<property name="ScopeOffset" value="-.00062,.088,.065"/>
+				<property name="SideOffset" value="0,0,0"/>
+				<property name="BarrelOffset" value="0,0,0"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".98"/>
+					<property name="triggerEffectTriggerShootDualsense" value="PistolShoot"/>
+			</property>
+
 			<effect_group name="T3GunRocketLauncherS1">
 				<!--<passive_effect name="ProjectileVelocity" operation="base_set" value="50" tags="perkDemolitionsExpert"/>-->
 				<passive_effect name="MaxRange" operation="base_set" value="100" tags="perkDemolitionsExpert"/>
@@ -3603,6 +3746,27 @@
 			<property name="EconomicValue" value="4000"/>
 			<property name="Material" value="MIridescentCube"/>
 			<property name="Weight" value="80"/>
+
+			<property class="Action0">
+				<property name="Class" value="Launcher"/>
+				<property name="Delay" value=".8"/> <!-- obsolete if rounds per minute exists -->
+				<!-- <property name="Range" value="200"/> -->
+				<property name="Magazine_items" value="ammoRocketHE,ammoRocketFrag,ammoRocketBiological,ammoRocketRecover,ammoRocketBiologicalRecover"/>
+				<!-- <property name="Reload_time" value="2"/> -->
+				<property name="Sound_start" value="m136_fire"/>
+				<property name="Sound_repeat" value=""/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="m136_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="Particles_muzzle_fire" value="rocketLauncherFire"/>
+				<property name="Particles_muzzle_smoke" value="nozzlesmoke_m136"/>
+				<property name="ScopeOffset" value="-.00062,.088,.065"/>
+				<property name="SideOffset" value="0,0,0"/>
+				<property name="BarrelOffset" value="0,0,0"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".98"/>
+					<property name="triggerEffectTriggerShootDualsense" value="PistolShoot"/>
+			</property>
 
 			<effect_group name="T4GunRocketLauncherS2">
 				<!--<passive_effect name="ProjectileVelocity" operation="base_set" value="50" tags="perkDemolitionsExpert"/>-->
