@@ -1096,9 +1096,61 @@
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1BleedingResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR1B1LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1108,9 +1160,61 @@
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1LacerationResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR1B1StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1120,9 +1224,61 @@
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1StunnedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR1B1SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1132,9 +1288,61 @@
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1SprainedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 
@@ -1180,9 +1388,39 @@
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="3"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1CatchResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1CatchResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1CatchResist">
+						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1CatchResist">
+						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2CatchResist">
+						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2CatchResist">
+						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR2B1FatiguedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1192,9 +1430,39 @@
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="3"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1FatiguedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1FatiguedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="-1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR2B1Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
@@ -1265,9 +1533,61 @@
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2BleedingResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2BleedingResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR3B2LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1277,9 +1597,61 @@
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2LacerationResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2LacerationResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR3B2StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1289,9 +1661,61 @@
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2StunnedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2StunnedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR3B2SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1301,9 +1725,61 @@
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2SprainedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2SprainedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 
@@ -1502,9 +1978,39 @@
             <property name="EconomicValue" value="2600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2CatchResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2CatchResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1CatchResist">
+						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1CatchResist">
+						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2CatchResist">
+						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2CatchResist">
+						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR5B2FatiguedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -1514,9 +2020,39 @@
             <property name="EconomicValue" value="2600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2FatiguedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2FatiguedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="-2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR5A1HealthChangeOT" installable_tags="armor" modifier_tags="marisaHealthChangeOT" blocked_tags="noMods" type="attachment">
@@ -1997,9 +2533,61 @@
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3BleedingResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB3BleedingResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2009,9 +2597,61 @@
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3LacerationResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB3LacerationResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2021,9 +2661,61 @@
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3StunnedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB3StunnedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2033,9 +2725,61 @@
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3SprainedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB3SprainedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="3"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
@@ -2206,9 +2950,61 @@
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4BleedingResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB4BleedingResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B4LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2218,9 +3014,61 @@
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4LacerationResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB4LacerationResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B4StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2230,9 +3078,61 @@
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4StunnedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB4StunnedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B4SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
@@ -2242,9 +3142,61 @@
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa add buff">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4SprainedResist"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB4SprainedResist"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="4"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfEquipStart" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfEquipStop" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B4Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
