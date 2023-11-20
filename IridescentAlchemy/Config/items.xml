@@ -17035,6 +17035,18 @@
         </item>
 
         <!-- *** bundle special item loot quality -->
+        <item name="BundleCreateIridescentGunPipeMachine">
+			<property name="Extends" value="questRewardBundleMaster"/>
+			<property name="CreativeMode" value="Player"/>
+			<property name="CustomIcon" value="bundleSecurity"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="ItemTypeIcon" value="bundle"/>
+            <property name="DescriptionKey" value="BundleCreateIridescentGunPipeMachineDesc"/>
+            <property class="Action0">
+				<property name="Create_item" value="IridescentGunPipeMachine"/>
+				<property name="Create_item_count" value="1-6"/>
+            </property>
+        </item>
         <item name="BundleCreateIridescentMeleeCandyKnifeWater">
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
@@ -17086,13 +17098,76 @@
 
         <!-- *** special item make -->
         <!-- ** special item S1 -->
+		<item name="IridescentGunPipeMachine">
+			<property name="Extends" value="gunMGT0PipeMachineGun"/>
+			<property name="CustomIcon" value="gunMGT0PipeMachineGun"/>
+			<property name="CustomIconTint" value="#FF66B2" />
+            <property name="EconomicValue" value="500"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="3"/>
+
+            <property class="Action0">
+                <property name="Class" value="Ranged"/>
+                <property name="Delay" value=".150"/> <!-- obsolete if rounds per minute exists -->
+                <property name="Magazine_items" value="casinoCoin"/>
+                <property name="Sound_start" value="pipe_smg_fire"/>
+                <property name="Sound_loop" value="pipe_smg_fire"/>
+                <property name="Sound_empty" value="dryfire"/>
+                <property name="Sound_reload" value="ak47_reload"/>
+                <property name="Sound_end" value="ak47_fire_end"/>
+                <property name="AutoReload" value="false"/>
+                <property name="Particles_muzzle_fire" value="gunfire_pipeMachinegun"/>
+                <property name="Particles_muzzle_fire_fpv" value="gunfire_pipeMachinegun_fpv"/>
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".98"/>
+                        <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+                        <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+                        <property name="triggerEffectTriggerShootDualsense" value="MGShoot"/>
+                        <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+            </property>
+
+            <effect_group name="gunMGT0PipeMachineGun">
+                <passive_effect name="MaxRange" operation="base_set" value="90" tags="perkMachineGunner"/>
+                <passive_effect name="DamageFalloffRange" operation="base_set" value="34" tags="perkMachineGunner"/>
+                <passive_effect name="EntityDamage" operation="base_set" value="2" tags="perkMachineGunner"/> <!-- damage offset -->
+                <passive_effect name="EntityDamage" operation="base_add" value=".4,2" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
+                <passive_effect name="BlockDamage" operation="base_set" value="5" tags="perkMachineGunner"/> <!-- damage offset -->
+                <passive_effect name="BlockDamage" operation="base_add" value="1,5" tier="2,6" tags="perkMachineGunner"/> <!-- tier bonus -->
+                <passive_effect name="RoundsPerMinute" operation="base_set" value="1800" tags="perkMachineGunner"/>
+                <passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMachineGunner"/>
+                <passive_effect name="MagazineSize" operation="base_set" value="250" tags="perkMachineGunner"/>
+                <passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="1" tags="perkMachineGunner"/> <!--x.xs -->
+
+                <passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.0" tags="perkMachineGunner"/>
+                <passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.0" tags="perkMachineGunner"/>
+                <passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".11" tags="perkMachineGunner"/>
+                <passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".4" tags="perkMachineGunner"/>
+                <passive_effect name="SpreadMultiplierWalking" operation="base_set" value=".75" tags="perkMachineGunner"/>
+                <passive_effect name="SpreadMultiplierRunning" operation="base_set" value="1.1" tags="perkMachineGunner"/>
+
+                <passive_effect name="KickDegreesVerticalMin" operation="base_set" value="-.25" tags="perkMachineGunner"/>
+                <passive_effect name="KickDegreesVerticalMax" operation="base_set" value=".5" tags="perkMachineGunner"/>
+                <passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.5" tags="perkMachineGunner"/>
+                <passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".5" tags="perkMachineGunner"/>
+
+                <passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="1.9" tags="perkMachineGunner"/>
+                <passive_effect name="WeaponHandling" operation="base_set" value=".7" tags="perkMachineGunner"/> <!-- ak47 -->
+
+                <passive_effect name="DegradationMax" operation="base_set" value="500,750" tier="1,6" tags="perkMachineGunner,perkBookAutoWeapons"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkMachineGunner,perkBookAutoWeapons"/>
+
+                <passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+            </effect_group>
+		</item>
+        <!-- ** special item S2 -->
 		<item name="IridescentMeleeCandyKnifeWater">
 			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
 			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
 			<property name="CustomIconTint" value="#FF66B2" />
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="11"/>
 
 			<effect_group name="IridescentMeleeCandyKnifeWater">
 				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
@@ -17139,9 +17214,9 @@
 			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
 			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
 			<property name="CustomIconTint" value="#FF66B2" />
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="11"/>
 
 			<effect_group name="IridescentMeleeCandyKnifeFood">
 				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
@@ -17184,14 +17259,14 @@
 				<triggered_effect trigger="onSelfHarvestBlock" action="AddBuff" buff="buffProcessConsumables"/>
 			</effect_group>
 		</item>
-        <!-- ** special item S2 -->
+        <!-- ** special item S3 -->
         <item name="IridescentMeleeCandyClub">
 			<property name="Extends" value="meleeWpnClubT1CandyClub"/>
 			<property name="CustomIcon" value="meleeWpnClubT1CandyClub"/>
 			<property name="CustomIconTint" value="#FF66B2" />
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="4100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="74"/>
+            <property name="Weight" value="43"/>
 
 			<effect_group name="IridescentMeleeCandyClub">
 				<passive_effect name="AttacksPerMinute" operation="base_set" value="80" tags="perkPummelPete,perkFlurryOfStrength"/>
@@ -17224,15 +17299,15 @@
 				<triggered_effect trigger="onSelfAttackedOther" action="Ragdoll" target="otherAOE" range="2" target_tags="animal,zombie" duration=".2" force="400"/>
 			</effect_group>
 		</item>
-        <!-- ** special item S3 -->
+        <!-- ** special item S4 -->
         <item name="IridescentCigarPerception">
             <property name="Tags" value="head,clothing,noMods"/>
             <property name="DisplayType" value="ui_IridescentCigarPerception"/>
             <property name="CustomIcon" value="apparelCigar"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="171"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="TraderStageTemplate" value="armorTier2"/>
@@ -17260,9 +17335,9 @@
             <property name="DisplayType" value="ui_IridescentCigarStrength"/>
             <property name="CustomIcon" value="apparelCigar"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="171"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="TraderStageTemplate" value="armorTier2"/>
@@ -17290,9 +17365,9 @@
             <property name="DisplayType" value="ui_IridescentCigarFortitude"/>
             <property name="CustomIcon" value="apparelCigar"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="171"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="TraderStageTemplate" value="armorTier2"/>
@@ -17320,9 +17395,9 @@
             <property name="DisplayType" value="ui_IridescentCigarAgility"/>
             <property name="CustomIcon" value="apparelCigar"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="171"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="TraderStageTemplate" value="armorTier2"/>
@@ -17350,9 +17425,9 @@
             <property name="DisplayType" value="ui_IridescentCigarIntellect"/>
             <property name="CustomIcon" value="apparelCigar"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="24"/>
+            <property name="Weight" value="171"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="TraderStageTemplate" value="armorTier2"/>
@@ -17375,15 +17450,15 @@
 				<passive_effect name="LootStage" operation="base_add" value="3,7.2"/>
             </effect_group>
         </item>
-        <!-- ** special item S4 -->
+        <!-- ** special item S5 -->
         <item name="IridescentShades">
             <property name="Tags" value="head,clothing,canHaveCosmetic,noMods"/>
             <property name="DisplayType" value="ui_IridescentShades"/>
             <property name="CustomIcon" value="apparelShades"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property name="Stacknumber" value="1"/>
             <property name="DegradationBreaksAfter" value="false"/>
             <property name="Encumbrance" value="0"/>
@@ -17413,9 +17488,9 @@
             <property name="DisplayType" value="ui_IridescentStrengthGlasses"/>
             <property name="CustomIcon" value="apparelShades"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property name="Tags" value="head,clothing,canHaveCosmetic,noMods"/>
             <property class="UMA">
                 <property name="Overlay0Tint" value="250,50,50"/>
@@ -17434,9 +17509,9 @@
             <property name="DisplayType" value="ui_IridescentToughGuySunglasses"/>
             <property name="CustomIcon" value="apparelShades"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property name="Tags" value="head,clothing,canHaveCosmetic,noMods"/>
             <property class="UMA">
                 <property name="Overlay0Tint" value="30,30,30"/>
@@ -17455,9 +17530,9 @@
             <property name="DisplayType" value="ui_IridescentSkiGoggles"/>
             <property name="CustomIcon" value="apparelSkiGoggles"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property class="UMA">
                 <property name="Mesh" value="gear_goggles"/>
                 <property name="Overlay0" value="gear_goggles"/>
@@ -17476,9 +17551,9 @@
             <property name="DisplayType" value="ui_IridescentNerdGlasses"/>
             <property name="CustomIcon" value="apparelNerdGlasses"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property class="UMA">
                 <property name="Mesh" value="specs"/>
                 <property name="Overlay0" value="specs"/>
@@ -17499,9 +17574,9 @@
             <property name="DisplayType" value="ui_IridescentAviatorGoggles"/>
             <property name="CustomIcon" value="apparelAviatorGoggles"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="998"/>
-            <property name="Material" value="MIridescentCube"/>
-			<property name="Weight" value="167"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
             <property class="UMA">
                 <property name="Mesh" value="aviator_goggles"/>
                 <property name="Overlay0" value="aviator_goggles"/>
@@ -17517,16 +17592,16 @@
                 <display_value name="dPlayerExpGain" value=".15"/>
             </effect_group>
         </item>
-        <!-- ** special item S5 -->
+        <!-- ** special item S6 -->
 		<item name="IridescentToolNailGun">
 			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
             <property name="DisplayType" value="ui_IridescentToolNailGun"/>
 			<property name="Tags" value="nailgun,repairTool,repairingSkill,melee,heavy,tool,motorTool,attStrength,perkMiner69r,perkMotherLode,miningTool,canHaveCosmetic,harvestingSkill"/>
 			<property name="CustomIcon" value="meleeToolRepairT3Nailgun"/>
 			<property name="CustomIconTint" value="#FF66B2" />
-            <property name="EconomicValue" value="998"/>
+            <property name="EconomicValue" value="37100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
-			<property name="Weight" value="3"/>
+            <property name="Weight" value="86"/>
 
 			<property class="Action0">
 				<property name="Class" value="Ranged"/>
