@@ -1,5 +1,219 @@
 <Marisa>
 
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+			<!-- refresh BleedingResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1BleedingResist">
+						<requirement name="!HasBuff" buff="buffB1BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1BleedingResist,buffB3BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2BleedingResist">
+						<requirement name="!HasBuff" buff="buffB2BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB4BleedingResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3BleedingResist">
+						<requirement name="!HasBuff" buff="buffB3BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1BleedingResist,buffB2BleedingResist,buffB3BleedingResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4BleedingResist">
+						<requirement name="!HasBuff" buff="buffB4BleedingResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh LacerationResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1LacerationResist">
+						<requirement name="!HasBuff" buff="buffB1LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1LacerationResist,buffB3LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2LacerationResist">
+						<requirement name="!HasBuff" buff="buffB2LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB4LacerationResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3LacerationResist">
+						<requirement name="!HasBuff" buff="buffB3LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightLacerationResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1LacerationResist,buffB2LacerationResist,buffB3LacerationResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4LacerationResist">
+						<requirement name="!HasBuff" buff="buffB4LacerationResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh StunnedResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1StunnedResist">
+						<requirement name="!HasBuff" buff="buffB1StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1StunnedResist,buffB3StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2StunnedResist">
+						<requirement name="!HasBuff" buff="buffB2StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB4StunnedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3StunnedResist">
+						<requirement name="!HasBuff" buff="buffB3StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightStunnedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1StunnedResist,buffB2StunnedResist,buffB3StunnedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4StunnedResist">
+						<requirement name="!HasBuff" buff="buffB4StunnedResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh SprainedResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1SprainedResist">
+						<requirement name="!HasBuff" buff="buffB1SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1SprainedResist,buffB3SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2SprainedResist">
+						<requirement name="!HasBuff" buff="buffB2SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB4SprainedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3SprainedResist">
+						<requirement name="!HasBuff" buff="buffB3SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightSprainedResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1SprainedResist,buffB2SprainedResist,buffB3SprainedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4SprainedResist">
+						<requirement name="!HasBuff" buff="buffB4SprainedResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh CatchResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1CatchResist">
+						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2CatchResist">
+						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh CatchResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="GTE" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2FatiguedResist">
+						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh HealthMax -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthMax,buffB2HealthMax,buffB3HealthMax,buffB4HealthMax"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2HealthMax,buffB3HealthMax,buffB4HealthMax"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1HealthMax">
+						<requirement name="!HasBuff" buff="buffB1HealthMax"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthMax,buffB3HealthMax,buffB4HealthMax"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2HealthMax">
+						<requirement name="!HasBuff" buff="buffB2HealthMax"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthMax,buffB2HealthMax,buffB4HealthMax"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3HealthMax">
+						<requirement name="!HasBuff" buff="buffB3HealthMax"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthMax,buffB2HealthMax,buffB3HealthMax"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4HealthMax">
+						<requirement name="!HasBuff" buff="buffB4HealthMax"/>
+					</triggered_effect>
+			</effect_group>
+
+	</append>
+
 	<append xpath="/buffs">
 
 		<!-- BleedingResist -->
