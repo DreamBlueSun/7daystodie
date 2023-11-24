@@ -1185,15 +1185,22 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value=".25"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR2B1Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR2B1Adversity" installable_tags="armor" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
 			<property name="CustomIconTint" value="#CCECFF"/>
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="3"/>
-			<effect_group tiered="false">
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightAdversity" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="1">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="-1"/>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R2 armor -->
@@ -1397,15 +1404,22 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value=".5"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B2Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR4B2Adversity" installable_tags="armor" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
 			<property name="CustomIconTint" value="#67C483"/>
             <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="11"/>
-			<effect_group tiered="false">
-				<passive_effect name="EntityDamage" operation="perc_add" value=".25"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightAdversity" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="2">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="-2"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR4B1Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
@@ -1623,15 +1637,22 @@
 		</item_modifier>
 
         <!-- *** mod R6 weapon -->
-		<item_modifier name="ModR6A1PlantBiology" installable_tags="melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6A1PlantBiology" installable_tags="armor" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedHop1"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
             <property name="EconomicValue" value="4100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value="1" tags="cropHarvest,wildCropsHarvest"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="add" value="1">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="add" value="-1"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR6B2Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
@@ -2021,15 +2042,22 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value=".75"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3Adversity" installable_tags="armor" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group tiered="false">
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightAdversity" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="3">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="-3"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9A2GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -2269,26 +2297,40 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value="1"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4Adversity" installable_tags="armor" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group tiered="false">
-				<passive_effect name="EntityDamage" operation="perc_add" value=".35"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightAdversity" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="4">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightAdversity" operation="add" value="-4"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10A2PlantBiology" installable_tags="melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10A2PlantBiology" installable_tags="armor" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedHop1"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value="2" tags="cropHarvest,wildCropsHarvest"/>
+			<effect_group name="marisa reset buff weight">
+				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="marisa add buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="add" value="2">
+					<requirement name="IsFPV"/>
+					<requirement name="!IsAttachedToEntity"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightPlantBiology" operation="add" value="-2"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B3Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
