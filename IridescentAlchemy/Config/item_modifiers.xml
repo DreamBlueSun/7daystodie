@@ -1089,76 +1089,48 @@
 				<passive_effect name="HyperthermalResist" operation="base_add" value="6"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR1B1BleedingResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR1B1BleedingResist" installable_tags="armor" modifier_tags="marisaResistBleeding" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBandage"/>
 			<property name="CustomIconTint" value="#999498"/>
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".6" tags="buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR1B1LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR1B1LacerationResist" installable_tags="armor" modifier_tags="marisaResistLaceration" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceSewingKit"/>
 			<property name="CustomIconTint" value="#999498"/>
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".6" tags="buffLaceration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR1B1StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR1B1StunnedResist" installable_tags="armor" modifier_tags="marisaResistStunned" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugPainkillers"/>
 			<property name="CustomIconTint" value="#999498"/>
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".6" tags="buffInjuryStunned01,buffInjuryStunned02"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR1B1SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR1B1SprainedResist" installable_tags="armor" modifier_tags="marisaResistSprained" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalSplint"/>
 			<property name="CustomIconTint" value="#999498"/>
             <property name="EconomicValue" value="200"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".6" tags="buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffArmBroken,buffLegBroken"/>
 			</effect_group>
 		</item_modifier>
 
@@ -1187,7 +1159,7 @@
 		</item_modifier>
 		<item_modifier name="ModR2B1Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
+			<property name="CustomIcon" value="lightIndustrial"/>
 			<property name="CustomIconTint" value="#CCECFF"/>
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
@@ -1197,43 +1169,29 @@
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R2 armor -->
-		<item_modifier name="ModR2B1CatchResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR2B1CatchResist" installable_tags="armor" modifier_tags="marisaResistCatch" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugHerbalAntibiotics"/>
 			<property name="CustomIconTint" value="#CCECFF"/>
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="3"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffInfectionCatch"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR2B1FatiguedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR2B1FatiguedResist" installable_tags="armor" modifier_tags="marisaResistFatigued" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugVitamins"/>
 			<property name="CustomIconTint" value="#CCECFF"/>
             <property name="EconomicValue" value="500"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="3"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffFatiguedTrigger"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR2B1Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR2B1Impasse" installable_tags="armorChest" modifier_tags="marisaImpasse" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
 			<property name="CustomIconTint" value="#CCECFF"/>
@@ -1294,76 +1252,48 @@
 				<passive_effect name="HyperthermalResist" operation="base_add" value="8"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR3B2BleedingResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR3B2BleedingResist" installable_tags="armor" modifier_tags="marisaResistBleeding" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBandage"/>
 			<property name="CustomIconTint" value="#F5F918"/>
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR3B2LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR3B2LacerationResist" installable_tags="armor" modifier_tags="marisaResistLaceration" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceSewingKit"/>
 			<property name="CustomIconTint" value="#F5F918"/>
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffLaceration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR3B2StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR3B2StunnedResist" installable_tags="armor" modifier_tags="marisaResistStunned" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugPainkillers"/>
 			<property name="CustomIconTint" value="#F5F918"/>
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffInjuryStunned01,buffInjuryStunned02"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR3B2SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR3B2SprainedResist" installable_tags="armor" modifier_tags="marisaResistSprained" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalSplint"/>
 			<property name="CustomIconTint" value="#F5F918"/>
             <property name="EconomicValue" value="900"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".75" tags="buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffArmBroken,buffLegBroken"/>
 			</effect_group>
 		</item_modifier>
 
@@ -1392,7 +1322,7 @@
 		</item_modifier>
 		<item_modifier name="ModR4B2Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
+			<property name="CustomIcon" value="lightIndustrial"/>
 			<property name="CustomIconTint" value="#67C483"/>
             <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
@@ -1424,7 +1354,7 @@
 				<passive_effect name="HarvestCount" operation="perc_add" value=".2"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B1ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR4B1ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorBandolier"/>
 			<property name="CustomIconTint" value="#67C483"/>
@@ -1448,7 +1378,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R4 armor -->
-		<item_modifier name="ModR4B2Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR4B2Impasse" installable_tags="armorChest" modifier_tags="marisaImpasse" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
 			<property name="CustomIconTint" value="#67C483"/>
@@ -1492,6 +1422,17 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".12" tags="running"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR4B1StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaMax" operation="base_add" value="20"/>
+			</effect_group>
+		</item_modifier>
 
         <!-- *** mod R5 weapon -->
 		<item_modifier name="ModR5A1GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -1521,7 +1462,7 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value=".15"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR5A1HeadDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR5A1HeadDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHead" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoCowSkull"/>
 			<property name="CustomIconTint" value="#84E1EC"/>
@@ -1537,7 +1478,7 @@
 					<passive_effect name="DamageModifier" operation="base_add" value="5" tags="head"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR5A1StaminaDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR5A1StaminaDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageStamina" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modRoboticDroneMoraleBoosterMod"/>
 			<property name="CustomIconTint" value="#84E1EC"/>
@@ -1545,10 +1486,10 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR5A1HealthLossDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR5A1HealthLossDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthLoss" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoPumpkinJackOLantern"/>
 			<property name="CustomIconTint" value="#84E1EC"/>
@@ -1556,44 +1497,30 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R5 armor -->
-		<item_modifier name="ModR5B2CatchResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR5B2CatchResist" installable_tags="armor" modifier_tags="marisaResistCatch" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugHerbalAntibiotics"/>
 			<property name="CustomIconTint" value="#84E1EC"/>
             <property name="EconomicValue" value="2600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightCatchResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInfectionCatch"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR5B2FatiguedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR5B2FatiguedResist" installable_tags="armor" modifier_tags="marisaResistFatigued" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugVitamins"/>
 			<property name="CustomIconTint" value="#84E1EC"/>
             <property name="EconomicValue" value="2600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightFatiguedResist" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffFatiguedTrigger"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR5A1HealthChangeOT" installable_tags="armor" modifier_tags="marisaHealthChangeOT" blocked_tags="noMods" type="attachment">
@@ -1609,7 +1536,7 @@
 		</item_modifier>
 
         <!-- *** mod R6 weapon -->
-		<item_modifier name="ModR6A1PlantBiology" installable_tags="melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6A1PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedHop1"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
@@ -1643,7 +1570,7 @@
 				<passive_effect name="HarvestCount" operation="perc_add" value=".4"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR6B2ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6B2ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorBandolier"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
@@ -1700,9 +1627,20 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".16" tags="running"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR6B2StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
+			<property name="CustomIconTint" value="#7EA8FB"/>
+            <property name="EconomicValue" value="4100"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaMax" operation="base_add" value="40"/>
+			</effect_group>
+		</item_modifier>
 
         <!-- *** mod R7 weapon -->
-		<item_modifier name="ModR7S1HealthFullDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR7S1HealthFullDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthFull" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedPumpkin3Harvest"/>
 			<property name="CustomIconTint" value="#7555E1"/>
@@ -1710,7 +1648,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".05"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".08"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR7S1DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -1725,7 +1663,7 @@
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.4"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR7S1DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR7S1DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
 			<property name="CustomIconTint" value="#7555E1"/>
@@ -1733,7 +1671,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".04"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".06"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR7S1BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -1745,7 +1683,7 @@
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
 				<passive_effect name="ProjectileVelocity" operation="perc_add" value=".2"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".05"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".08"/>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R7 armor -->
@@ -1757,7 +1695,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".02"/>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".025"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR7S1MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
@@ -1772,22 +1710,15 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".035"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR7S1HealthMax" installable_tags="armor" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR7S1HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBloodBag"/>
 			<property name="CustomIconTint" value="#7555E1"/>
             <property name="EconomicValue" value="6100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="86"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="1">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="-1"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="10"/>
 			</effect_group>
 		</item_modifier>
 		<!-- *** mod R7 clothe -->
@@ -1807,7 +1738,7 @@
 		</item_modifier>
 
         <!-- *** mod R8 weapon -->
-		<item_modifier name="ModR8S2HealthFullDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR8S2HealthFullDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthFull" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedPumpkin3Harvest"/>
 			<property name="CustomIconTint" value="#FF985E"/>
@@ -1815,7 +1746,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="171"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".12"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S2DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -1830,7 +1761,7 @@
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.45"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR8S2DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR8S2DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
 			<property name="CustomIconTint" value="#FF985E"/>
@@ -1838,7 +1769,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="171"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".08"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".09"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S2BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -1850,7 +1781,7 @@
             <property name="Weight" value="171"/>
 			<effect_group tiered="false">
 				<passive_effect name="ProjectileVelocity" operation="perc_add" value=".25"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".12"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S1BurnBlood" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
@@ -1900,22 +1831,15 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".04"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR8S2HealthMax" installable_tags="armor" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR8S2HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
             <property name="CustomIcon" value="medicalBloodBag"/>
 			<property name="CustomIconTint" value="#FF985E"/>
             <property name="EconomicValue" value="9100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="171"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="2">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="-2"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="20"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S1JumpStrength" installable_tags="armorFeet" modifier_tags="marisaJumpStrength,falldamage" blocked_tags="noMods" type="attachment">
@@ -2009,7 +1933,7 @@
 		</item_modifier>
 		<item_modifier name="ModR9B3Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
+			<property name="CustomIcon" value="lightIndustrial"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
@@ -2045,7 +1969,7 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value=".2"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9A2HeadDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9A2HeadDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHead" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoCowSkull"/>
             <property name="CustomIconTint" value="#00FF00"/>
@@ -2054,14 +1978,14 @@
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
 				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="DamageModifier" operation="base_add" value="100" tags="head"/>
+					<passive_effect name="DamageModifier" operation="base_add" value="75" tags="head"/>
 			</effect_group>
 			<effect_group tiered="false">
 				<requirement name="HoldingItemHasTags" tags="shotgun"/>
 					<passive_effect name="DamageModifier" operation="base_add" value="10" tags="head"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9A2StaminaDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9A2StaminaDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageStamina" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modRoboticDroneMoraleBoosterMod"/>
             <property name="CustomIconTint" value="#00FF00"/>
@@ -2069,10 +1993,10 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".12"><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9A2HealthLossDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9A2HealthLossDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthLoss" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoPumpkinJackOLantern"/>
             <property name="CustomIconTint" value="#00FF00"/>
@@ -2080,7 +2004,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".12"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R9 armor -->
@@ -2108,79 +2032,51 @@
 				<passive_effect name="HyperthermalResist" operation="base_add" value="10"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3BleedingResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3BleedingResist" installable_tags="armor" modifier_tags="marisaResistBleeding" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBandage"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="3">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-3"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".9" tags="buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3LacerationResist" installable_tags="armor" modifier_tags="marisaResistLaceration" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceSewingKit"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="3">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-3"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".9" tags="buffLaceration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3StunnedResist" installable_tags="armor" modifier_tags="marisaResistStunned" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugPainkillers"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="3">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-3"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".9" tags="buffInjuryStunned01,buffInjuryStunned02"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3SprainedResist" installable_tags="armor" modifier_tags="marisaResistSprained" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalSplint"/>
             <property name="CustomIconTint" value="#00FF00"/>
             <property name="EconomicValue" value="13100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="3">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-3"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value=".9" tags="buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffArmBroken,buffLegBroken"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR9B3Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR9B3Impasse" installable_tags="armorChest" modifier_tags="marisaImpasse" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
             <property name="CustomIconTint" value="#00FF00"/>
@@ -2250,7 +2146,7 @@
 		</item_modifier>
 		<item_modifier name="ModR10B4Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
+			<property name="CustomIcon" value="lightIndustrial"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
@@ -2259,7 +2155,7 @@
 				<passive_effect name="EntityDamage" operation="perc_add" value=".35"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10A2PlantBiology" installable_tags="melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10A2PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedHop1"/>
             <property name="CustomIconTint" value="#00BFFF"/>
@@ -2293,7 +2189,7 @@
 				<passive_effect name="HarvestCount" operation="perc_add" value=".6"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B3ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B3ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorBandolier"/>
             <property name="CustomIconTint" value="#00BFFF"/>
@@ -2341,79 +2237,51 @@
 				<passive_effect name="HyperthermalResist" operation="base_add" value="12"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4BleedingResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4BleedingResist" installable_tags="armor" modifier_tags="marisaResistBleeding" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBandage"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="4">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightBleedingResist" operation="add" value="-4"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4LacerationResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4LacerationResist" installable_tags="armor" modifier_tags="marisaResistLaceration" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceSewingKit"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="4">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightLacerationResist" operation="add" value="-4"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffLaceration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4StunnedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4StunnedResist" installable_tags="armor" modifier_tags="marisaResistStunned" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="drugPainkillers"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="4">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightStunnedResist" operation="add" value="-4"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryStunned01,buffInjuryStunned02"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4SprainedResist" installable_tags="armor" modifier_tags="marisaResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4SprainedResist" installable_tags="armor" modifier_tags="marisaResistSprained" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalSplint"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="4">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightSprainedResist" operation="add" value="-4"/>
+			<effect_group tiered="false">
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffArmBroken,buffLegBroken"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B4Impasse" installable_tags="armor" modifier_tags="marisaPlightResist" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B4Impasse" installable_tags="armorChest" modifier_tags="marisaImpasse" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrialMountedWall"/>
             <property name="CustomIconTint" value="#00BFFF"/>
@@ -2457,6 +2325,17 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2" tags="running"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR10B3StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaMax" operation="base_add" value="60"/>
+			</effect_group>
+		</item_modifier>
 
         <!-- *** mod R11 weapon -->
 		<item_modifier name="ModR11A3GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -2486,7 +2365,7 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value=".25"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11A3HeadDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11A3HeadDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHead" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoCowSkull"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -2495,14 +2374,14 @@
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
 				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="DamageModifier" operation="base_add" value="150" tags="head"/>
+					<passive_effect name="DamageModifier" operation="base_add" value="100" tags="head"/>
 			</effect_group>
 			<effect_group tiered="false">
 				<requirement name="HoldingItemHasTags" tags="shotgun"/>
 					<passive_effect name="DamageModifier" operation="base_add" value="15" tags="head"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11A3StaminaDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11A3StaminaDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageStamina" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modRoboticDroneMoraleBoosterMod"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -2513,7 +2392,7 @@
 				<passive_effect name="DamageModifier" operation="perc_add" value=".15"><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11A3HealthLossDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11A3HealthLossDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthLoss" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="decoPumpkinJackOLantern"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -2524,7 +2403,7 @@
 				<passive_effect name="DamageModifier" operation="perc_add" value=".15"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11S3HealthFullDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11S3HealthFullDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthFull" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedPumpkin3Harvest"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -2532,7 +2411,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".16"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR11S3DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -2547,7 +2426,7 @@
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.5"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11S3DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11S3DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -2567,7 +2446,7 @@
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
 				<passive_effect name="ProjectileVelocity" operation="perc_add" value=".3"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".16"/>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R11 armor -->
@@ -2590,7 +2469,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".04"/>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".035"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR11S3MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
@@ -2605,22 +2484,15 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".045"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11S3HealthMax" installable_tags="armor" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11S3HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBloodBag"/>
             <property name="CustomIconTint" value="#BA55D3"/>
             <property name="EconomicValue" value="27100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="43"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="3">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="-3"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="30"/>
 			</effect_group>
 		</item_modifier>
 		<!-- *** mod R11 clothe -->
@@ -2663,7 +2535,7 @@
 				<passive_effect name="HarvestCount" operation="perc_add" value=".8"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12B4ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12B4ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorBandolier"/>
             <property name="CustomIconTint" value="#FFA500"/>
@@ -2686,7 +2558,7 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12S4HealthFullDamage" installable_tags="weapon,tool" modifier_tags="specialDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12S4HealthFullDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthFull" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedPumpkin3Harvest"/>
             <property name="CustomIconTint" value="#FFA500"/>
@@ -2709,7 +2581,7 @@
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.55"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12S4DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamage" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12S4DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
             <property name="CustomIconTint" value="#FFA500"/>
@@ -2717,7 +2589,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".16"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S4BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -2789,6 +2661,17 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".24" tags="running"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR12B4StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
+            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="EconomicValue" value="37100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaMax" operation="base_add" value="100"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR12S4DamageResist" installable_tags="armor" modifier_tags="marisaResistance" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorPlatingReinforced"/>
@@ -2797,7 +2680,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"/>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".04"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S4MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
@@ -2812,22 +2695,15 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".05"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12S4HealthMax" installable_tags="armor" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12S4HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalBloodBag"/>
             <property name="CustomIconTint" value="#FFA500"/>
             <property name="EconomicValue" value="37100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
-			<effect_group name="marisa reset buff weight">
-				<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="marisa add buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="4">
-					<requirement name="IsFPV"/>
-					<requirement name="!IsAttachedToEntity"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightHealthMax" operation="add" value="-4"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="50"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S2JumpStrength" installable_tags="armorFeet" modifier_tags="marisaJumpStrength,falldamage" blocked_tags="noMods" type="attachment">
