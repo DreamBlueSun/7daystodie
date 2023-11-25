@@ -178,40 +178,6 @@
 					</triggered_effect>
 			</effect_group>
 
-			<!-- refresh Impasse -->
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightImpasse" operation="LTE" value="0"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Impasse,buffB2Impasse,buffB3Impasse,buffB4Impasse"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightImpasse" operation="Equals" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2Impasse,buffB3Impasse,buffB4Impasse"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1Impasse">
-						<requirement name="!HasBuff" buff="buffB1Impasse"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightImpasse" operation="Equals" value="2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Impasse,buffB3Impasse,buffB4Impasse"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2Impasse">
-						<requirement name="!HasBuff" buff="buffB2Impasse"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightImpasse" operation="Equals" value="3"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Impasse,buffB2Impasse,buffB4Impasse"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3Impasse">
-						<requirement name="!HasBuff" buff="buffB3Impasse"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightImpasse" operation="GTE" value="4"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Impasse,buffB2Impasse,buffB3Impasse"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4Impasse">
-						<requirement name="!HasBuff" buff="buffB4Impasse"/>
-					</triggered_effect>
-			</effect_group>
-
 			<!-- refresh HealthMax -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="LTE" value="0"/>
@@ -386,7 +352,7 @@
 			</effect_group>
 		</buff>
 
-		<!-- FatiguedResist -->
+		<!-- SprainedResist -->
 		<buff name="buffB1FatiguedResist" name_key="buffB1FatiguedResistName" description_key="buffB1FatiguedResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
 			<stack_type value="replace"/>
 			<duration value="0"/>
@@ -402,41 +368,7 @@
 			</effect_group>
 		</buff>
 
-		<!-- Impasse -->
-		<buff name="buffB1Impasse" name_key="buffB1ImpasseName" description_key="buffB1ImpasseDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="GeneralDamageResist" operation="base_add" value=".2"/>
-			</effect_group>
-		</buff>
-		<buff name="buffB2Impasse" name_key="buffB2ImpasseName" description_key="buffB2ImpasseDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="GeneralDamageResist" operation="base_add" value=".25"/>
-			</effect_group>
-		</buff>
-		<buff name="buffB3Impasse" name_key="buffB3ImpasseName" description_key="buffB3ImpasseDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="GeneralDamageResist" operation="base_add" value=".3"/>
-			</effect_group>
-		</buff>
-		<buff name="buffB4Impasse" name_key="buffB4ImpasseName" description_key="buffB4ImpasseDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="GeneralDamageResist" operation="base_add" value=".35"/>
-			</effect_group>
-		</buff>
-
-		<!-- HealthMax -->
+		<!-- SprainedResist -->
 		<buff name="buffB1HealthMax" name_key="buffB1HealthMaxName" description_key="buffB1HealthMaxDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
 			<stack_type value="replace"/>
 			<duration value="0"/>
