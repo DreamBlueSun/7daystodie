@@ -2,60 +2,6 @@
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
-			<!-- refresh Adversity -->
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="LTE" value="0"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Adversity,buffB2Adversity,buffB3Adversity,buffB4Adversity"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="Equals" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2Adversity,buffB3Adversity,buffB4Adversity"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1Adversity">
-						<requirement name="!HasBuff" buff="buffB1Adversity"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="Equals" value="2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Adversity,buffB3Adversity,buffB4Adversity"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2Adversity">
-						<requirement name="!HasBuff" buff="buffB2Adversity"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="Equals" value="3"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Adversity,buffB2Adversity,buffB4Adversity"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3Adversity">
-						<requirement name="!HasBuff" buff="buffB3Adversity"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="GTE" value="4"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1Adversity,buffB2Adversity,buffB3Adversity"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4Adversity">
-						<requirement name="!HasBuff" buff="buffB4Adversity"/>
-					</triggered_effect>
-			</effect_group>
-
-			<!-- refresh PlantBiology -->
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightPlantBiology" operation="LTE" value="0"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1PlantBiology,buffB2PlantBiology"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightPlantBiology" operation="Equals" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2PlantBiology"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1PlantBiology">
-						<requirement name="!HasBuff" buff="buffB1PlantBiology"/>
-					</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffWeightPlantBiology" operation="GTE" value="2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1PlantBiology"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2PlantBiology">
-						<requirement name="!HasBuff" buff="buffB2PlantBiology"/>
-					</triggered_effect>
-			</effect_group>
-
 			<!-- refresh BleedingResist -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightBleedingResist" operation="LTE" value="0"/>
@@ -195,38 +141,38 @@
 			<!-- refresh CatchResist -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="LTE" value="0"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist,buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="Equals" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2CatchResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2CatchResist,buffB3CatchResist,buffB4CatchResist"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1CatchResist">
 						<requirement name="!HasBuff" buff="buffB1CatchResist"/>
 					</triggered_effect>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightCatchResist" operation="GTE" value="2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1CatchResist,buffB3CatchResist,buffB4CatchResist"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2CatchResist">
 						<requirement name="!HasBuff" buff="buffB2CatchResist"/>
 					</triggered_effect>
 			</effect_group>
 
-			<!-- refresh FatiguedResist -->
+			<!-- refresh CatchResist -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="LTE" value="0"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist,buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="Equals" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2FatiguedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1FatiguedResist">
 						<requirement name="!HasBuff" buff="buffB1FatiguedResist"/>
 					</triggered_effect>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightFatiguedResist" operation="GTE" value="2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1FatiguedResist,buffB3FatiguedResist,buffB4FatiguedResist"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2FatiguedResist">
 						<requirement name="!HasBuff" buff="buffB2FatiguedResist"/>
 					</triggered_effect>
@@ -303,52 +249,6 @@
 	</append>
 
 	<append xpath="/buffs">
-
-		<!-- Adversity -->
-		<buff name="buffB1Adversity" name_key="buffB1AdversityName" description_key="buffB1AdversityDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffB2Adversity" name_key="buffB2AdversityName" description_key="buffB2AdversityDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".25"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffB3Adversity" name_key="buffB3AdversityName" description_key="buffB3AdversityDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffB4Adversity" name_key="buffB4AdversityName" description_key="buffB4AdversityDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="perc_add" value=".35"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
-			</effect_group>
-		</buff>
-
-		<!-- PlantBiology -->
-		<buff name="buffB1PlantBiology" name_key="buffB1PlantBiologyName" description_key="buffB1PlantBiologyDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="HarvestCount" operation="perc_add" value="1" tags="cropHarvest,wildCropsHarvest"/>
-			</effect_group>
-		</buff>
-		<buff name="buffB2PlantBiology" name_key="buffB2PlantBiologyName" description_key="buffB2PlantBiologyDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<effect_group>
-				<passive_effect name="HarvestCount" operation="perc_add" value="2" tags="cropHarvest,wildCropsHarvest"/>
-			</effect_group>
-		</buff>
 
 		<!-- BleedingResist -->
 		<buff name="buffB1BleedingResist" name_key="buffB1BleedingResistName" description_key="buffB1BleedingResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
