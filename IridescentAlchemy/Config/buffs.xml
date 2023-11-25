@@ -2,6 +2,284 @@
 
 	<append xpath="/buffs">
 
+		<!-- buff ArmorPathFinder -->
+		<buff name="buffArmorPathFinder" name_key="buffArmorPathFinderName" description_key="buffArmorPathFinderDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HypothermalResist" operation="base_add" value="10"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="10"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".2"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="oreWoodHarvest"/>
+				<passive_effect name="LootStage" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+
+		<!-- buff ArmorRover -->
+		<buff name="buffArmorRover" name_key="buffArmorRoverName" description_key="buffArmorRoverDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="DamageModifier" operation="base_add" value="25" tags="head"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="DamageModifier" operation="base_add" value="2.5" tags="head"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
+					<display_value name="dEntityDamageSneak" value=".5"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="CrouchSpeed" operation="base_add" value=".2"/>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.15"/>
+				<passive_effect name="AttributeLevel" tags="attAgility" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- buff ArmorGuardian -->
+		<buff name="buffArmorGuardian" name_key="buffArmorGuardianName" description_key="buffArmorGuardianDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_add" value="20"/>
+				<passive_effect name="StaminaMax" operation="base_add" value="50"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="0.2" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+				<passive_effect name="AttributeLevel" tags="attFortitude" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- buff ArmorInvestigator -->
+		<buff name="buffArmorInvestigator" name_key="buffArmorInvestigatorName" description_key="buffArmorInvestigatorDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".1"/>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".1"/>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value=".1"/>
+				<passive_effect name="CraftingTime" operation="perc_add" value="-.15"/>
+				<passive_effect name="ScrappingTime" operation="perc_add" value="-.8"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="salvageHarvest"/>
+				<passive_effect name="AttributeLevel" tags="attIntellect" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- buff ArmorCombatant -->
+		<buff name="buffArmorCombatant" name_key="buffArmorCombatantName" description_key="buffArmorCombatantDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="Mobility" operation="perc_add" value=".1"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+				<passive_effect name="AttributeLevel" tags="attPerception" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- buff ArmorPredator -->
+		<buff name="buffArmorPredator" name_key="buffArmorPredatorName" description_key="buffArmorPredatorDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.1"/>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".1"/>
+				<passive_effect name="AttributeLevel" tags="attStrength" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- refresh ArmorPathFinder -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPathFinderBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorPathFinder"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorPathFinder"/>
+		</effect_group>
+
+		<!-- refresh ArmorRover -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorRover"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorRover"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorRover"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorRover"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorRover"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorRoverBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorRover"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorRover"/>
+		</effect_group>
+
+		<!-- refresh ArmorGuardian -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorGuardianBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorGuardian"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorGuardian"/>
+		</effect_group>
+
+		<!-- refresh ArmorInvestigator -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorInvestigatorBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorInvestigator"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorInvestigator"/>
+		</effect_group>
+
+		<!-- refresh ArmorCombatant -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorCombatantBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorCombatant"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorCombatant"/>
+		</effect_group>
+
+		<!-- refresh ArmorPredator -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorHead" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPredator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorChest" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPredator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorGloves" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPredator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorPants" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPredator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorBoots" operation="NotEquals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmorPredator"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorHead" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorChest" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorGloves" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorPants" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar=".buffWeightArmorPredatorBoots" operation="Equals" value="1"/>
+			<requirement name="!HasBuff" buff="buffB1ArmorPredator"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffArmorPredator"/>
+		</effect_group>
+
 	</append>
 
 </Marisa>
