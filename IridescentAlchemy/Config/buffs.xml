@@ -2,6 +2,74 @@
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
+			<!-- refresh ColdResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightColdResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1ColdResist,buffB2ColdResist,buffB3ColdResist,buffB4ColdResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightColdResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2ColdResist,buffB3ColdResist,buffB4ColdResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1ColdResist">
+						<requirement name="!HasBuff" buff="buffB1ColdResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightColdResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1ColdResist,buffB3ColdResist,buffB4ColdResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2ColdResist">
+						<requirement name="!HasBuff" buff="buffB2ColdResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightColdResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1ColdResist,buffB2ColdResist,buffB4ColdResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3ColdResist">
+						<requirement name="!HasBuff" buff="buffB3ColdResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightColdResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1ColdResist,buffB2ColdResist,buffB3ColdResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4ColdResist">
+						<requirement name="!HasBuff" buff="buffB4ColdResist"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh HotResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHotResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HotResist,buffB2HotResist,buffB3HotResist,buffB4HotResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHotResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2HotResist,buffB3HotResist,buffB4HotResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1HotResist">
+						<requirement name="!HasBuff" buff="buffB1HotResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHotResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HotResist,buffB3HotResist,buffB4HotResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2HotResist">
+						<requirement name="!HasBuff" buff="buffB2HotResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHotResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HotResist,buffB2HotResist,buffB4HotResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3HotResist">
+						<requirement name="!HasBuff" buff="buffB3HotResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHotResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HotResist,buffB2HotResist,buffB3HotResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4HotResist">
+						<requirement name="!HasBuff" buff="buffB4HotResist"/>
+					</triggered_effect>
+			</effect_group>
+
 			<!-- refresh Adversity -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightAdversity" operation="LTE" value="0"/>
@@ -415,6 +483,67 @@
 					</triggered_effect>
 			</effect_group>
 
+			<!-- refresh HealthChangeOT -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthChangeOT" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthChangeOT,buffB2HealthChangeOT,buffB3HealthChangeOT"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthChangeOT" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2HealthChangeOT,buffB3HealthChangeOT"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1HealthChangeOT">
+						<requirement name="!HasBuff" buff="buffB1HealthChangeOT"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthChangeOT" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthChangeOT,buffB3HealthChangeOT"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2HealthChangeOT">
+						<requirement name="!HasBuff" buff="buffB2HealthChangeOT"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightHealthChangeOT" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1HealthChangeOT,buffB2HealthChangeOT"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3HealthChangeOT">
+						<requirement name="!HasBuff" buff="buffB3HealthChangeOT"/>
+					</triggered_effect>
+			</effect_group>
+
+			<!-- refresh DamageResist -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightDamageResist" operation="LTE" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1DamageResist,buffB2DamageResist,buffB3DamageResist,buffB4DamageResist"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightDamageResist" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB2DamageResist,buffB3DamageResist,buffB4DamageResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB1DamageResist">
+						<requirement name="!HasBuff" buff="buffB1DamageResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightDamageResist" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1DamageResist,buffB3DamageResist,buffB4DamageResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB2DamageResist">
+						<requirement name="!HasBuff" buff="buffB2DamageResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightDamageResist" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1DamageResist,buffB2DamageResist,buffB4DamageResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB3DamageResist">
+						<requirement name="!HasBuff" buff="buffB3DamageResist"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffWeightDamageResist" operation="GTE" value="4"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffB1DamageResist,buffB2DamageResist,buffB3DamageResist"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffB4DamageResist">
+						<requirement name="!HasBuff" buff="buffB4DamageResist"/>
+					</triggered_effect>
+			</effect_group>
+
 			<!-- refresh HealthMax -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffWeightHealthMax" operation="LTE" value="0"/>
@@ -452,6 +581,66 @@
 	</append>
 
 	<append xpath="/buffs">
+
+		<!-- ColdResist -->
+		<buff name="buffB1ColdResist" name_key="buffB1ColdResistName" description_key="buffB1ColdResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HypothermalResist" operation="base_add" value="8"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB2ColdResist" name_key="buffB2ColdResistName" description_key="buffB2ColdResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HypothermalResist" operation="base_add" value="16"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB3ColdResist" name_key="buffB3ColdResistName" description_key="buffB3ColdResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HypothermalResist" operation="base_add" value="24"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB4ColdResist" name_key="buffB4ColdResistName" description_key="buffB4ColdResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HypothermalResist" operation="base_add" value="32"/>
+			</effect_group>
+		</buff>
+
+		<!-- HotResist -->
+		<buff name="buffB1HotResist" name_key="buffB1HotResistName" description_key="buffB1HotResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="8"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB2HotResist" name_key="buffB2HotResistName" description_key="buffB2HotResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="16"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB3HotResist" name_key="buffB3HotResistName" description_key="buffB3HotResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="24"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB4HotResist" name_key="buffB4HotResistName" description_key="buffB4HotResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="32"/>
+			</effect_group>
+		</buff>
 
 		<!-- Adversity -->
 		<buff name="buffB1Adversity" name_key="buffB1AdversityName" description_key="buffB1AdversityDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
@@ -826,6 +1015,60 @@
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
 					<passive_effect name="GeneralDamageResist" operation="base_add" value=".35"/>
+			</effect_group>
+		</buff>
+
+		<!-- HealthChangeOT -->
+		<buff name="buffB1HealthChangeOT" name_key="buffB1HealthChangeOTName" description_key="buffB1HealthChangeOTDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="2"/>
+<!--				<passive_effect name="HealthChangeOT" operation="base_add" value=".05"/>-->
+			</effect_group>
+		</buff>
+		<buff name="buffB2HealthChangeOT" name_key="buffB2HealthChangeOTName" description_key="buffB2HealthChangeOTDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value=".1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB3HealthChangeOT" name_key="buffB3HealthChangeOTName" description_key="buffB3HealthChangeOTDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value=".15"/>
+			</effect_group>
+		</buff>
+
+		<!-- DamageResist -->
+		<buff name="buffB1DamageResist" name_key="buffB1DamageResistName" description_key="buffB1DamageResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB2DamageResist" name_key="buffB2DamageResistName" description_key="buffB2DamageResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB3DamageResist" name_key="buffB3DamageResistName" description_key="buffB3DamageResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".15"/>
+			</effect_group>
+		</buff>
+		<buff name="buffB4DamageResist" name_key="buffB4DamageResistName" description_key="buffB4DamageResistDesc" showonhud="true" icon="ui_game_symbol_candy_health_bar" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".2"/>
 			</effect_group>
 		</buff>
 
