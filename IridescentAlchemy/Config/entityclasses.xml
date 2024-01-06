@@ -2,12 +2,871 @@
 
 	<append xpath="/entity_classes">
 
+		<!-- *** Zombie -->
+		<entity_class name="zombieArleneCrystallization" extends="zombieArleneFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZArleneFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieArleneBerserk" extends="zombieArleneRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZArleneRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieMarleneCrystallization" extends="zombieMarleneFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMarleneFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieMarleneBerserk" extends="zombieMarleneRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMarleneRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombiePartyGirlCrystallization" extends="zombiePartyGirlFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZCocktailWaitressFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombiePartyGirlBerserk" extends="zombiePartyGirlRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZCocktailWaitressRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieNurseCrystallization" extends="zombieNurseFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZNurseFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieNurseBerserk" extends="zombieNurseRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZNurseRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieJoeCrystallization" extends="zombieJoeFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZJoeFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieJoeBerserk" extends="zombieJoeRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZJoeRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieSteveCrystallization" extends="zombieSteveFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSteveFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieSteveBerserk" extends="zombieSteveRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSteveRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieSpiderCrystallization" extends="zombieSpiderFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,feral,spider,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSpiderFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieSpiderBerserk" extends="zombieSpiderRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,feral,radiated,spider,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSpiderRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieTomClarkCrystallization" extends="zombieTomClarkFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZTomClarkFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieTomClarkBerserk" extends="zombieTomClarkRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZTomClarkRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieBusinessManCrystallization" extends="zombieBusinessManFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSuitFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1300"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieBusinessManBerserk" extends="zombieBusinessManRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSuitRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2300"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="12"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieBurntCrystallization" extends="zombieBurntFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBurntFeral.prefab"/>
+			<property name="SoundSpawn" value="Ambient_Loops/a_fire_embersmoke_sm_lp"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1600"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieBurntBerserk" extends="zombieBurntRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBurntRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieBoeCrystallization" extends="zombieBoeFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBoeFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieBoeBerserk" extends="zombieBoeRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBoeRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieJanitorCrystallization" extends="zombieJanitorFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMechanicFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieJanitorBerserk" extends="zombieJanitorRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMechanicRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieMoeCrystallization" extends="zombieMoeFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMoeFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieMoeBerserk" extends="zombieMoeRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMoeRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieLabCrystallization" extends="zombieLabFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZLabFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieLabBerserk" extends="zombieLabRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZLabRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieDarleneCrystallization" extends="zombieDarleneFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZDarleneFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieDarleneBerserk" extends="zombieDarleneRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZDarleneRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieYoCrystallization" extends="zombieYoFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZYoFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieYoBerserk" extends="zombieYoRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZYoRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieUtilityWorkerCrystallization" extends="zombieUtilityWorkerFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWorkerFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1350"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieUtilityWorkerBerserk" extends="zombieUtilityWorkerRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWorkerRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2800"/>
+			<property name="LootDropProb" value=".6"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2450"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="12"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieBikerCrystallization" extends="zombieBikerFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBikerFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="20"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieBikerBerserk" extends="zombieBikerRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBikerRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3350"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieLumberjackCrystallization" extends="zombieLumberjackFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZLumberjackFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2050"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieLumberjackBerserk" extends="zombieLumberjackRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZLumberjackRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieFemaleFatCrystallization" extends="zombieFemaleFatFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBigMamaFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2050"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieFemaleFatBerserk" extends="zombieFemaleFatRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBigMamaRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieFatHawaiianCrystallization" extends="zombieFatHawaiianFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZHawaiianFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2050"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieFatHawaiianBerserk" extends="zombieFatHawaiianRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZHawaiianRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieMaleHazmatCrystallization" extends="zombieMaleHazmatFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZHazmatFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieMaleHazmatBerserk" extends="zombieMaleHazmatRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZHazmatRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieFatCopCrystallization" extends="zombieFatCopFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,zombieCop,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZCopFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2050"/>
+			</effect_group>
+
+			<property name="Explosion.BlockDamage" value="750"/>
+			<property name="Explosion.EntityDamage" value="250"/>
+		</entity_class>
+		<entity_class name="zombieFatCopBerserk" extends="zombieFatCopRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,zombieCop,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZCopRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+
+			<property name="Explosion.BlockDamage" value="900"/>
+			<property name="Explosion.EntityDamage" value="350"/>
+		</entity_class>
+
+		<entity_class name="zombieSkateboarderCrystallization" extends="zombieSkateboarderFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZThugFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieSkateboarderBerserk" extends="zombieSkateboarderRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZThugRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2800"/>
+			<property name="LootDropProb" value=".6"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="12"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieSoldierCrystallization" extends="zombieSoldierFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,zombieSoldier,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSoldierFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="LootDropProb" value=".45"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="50"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieSoldierBerserk" extends="zombieSoldierRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,zombieSoldier,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSoldierRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropProb" value=".75"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieWightCrystallization" extends="zombieWightFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="SizeScale" value="1.1"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWightFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1400"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieWightBerserk" extends="zombieWightRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWightRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2800"/>
+			<property name="LootDropProb" value=".6"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="12"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieScreamerCrystallization" extends="zombieScreamerFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZScreamerFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="750"/>
+			<property name="LootDropProb" value=".06"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="500"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieScreamerBerserk" extends="zombieScreamerRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZScreamerRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="1500"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="850"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+		<entity_class name="zombieMutatedCrystallization" extends="zombieMutatedFeral">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,crystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedFeral.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ExperienceGain" value="1800"/>
+			<property name="LootDropProb" value=".15"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="zombieMutatedBerserk" extends="zombieMutatedRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,zombie,walker,feral,radiated,berserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedRadiated.prefab"/>
+
+			<property name="SizeScale" value="0.85"/>
+			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
+			<property name="ExperienceGain" value="2200"/>
+			<property name="LootDropProb" value=".35"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1650"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+		</entity_class>
+
+
+		<!-- *** Animal -->
 		<!-- ** DireWolf -->
 		<entity_class name="EntityBossAnimalDireWolf" extends="animalDireWolf">
 			<property name="UserSpawnType" value="Menu"/>
 			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03"/>
 
-<!--			<property name="SizeScale" value="0.65"/>-->
+			<property name="SizeScale" value="0.85"/>
 
 			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
 			<property name="HandItem" value="HandEntityBossAnimalDireWolf"/>
@@ -59,7 +918,7 @@
 			<property name="UserSpawnType" value="Menu"/>
 			<property name="Tags" value="entity,animal,hostile,bear,perkAT03"/>
 
-<!--			<property name="SizeScale" value="0.45"/>-->
+			<property name="SizeScale" value="0.85"/>
 
 			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
 			<property name="HandItem" value="HandEntityBossAnimalBear"/>
@@ -98,7 +957,7 @@
 			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture"/>
 
 			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
-			<property name="SizeScale" value="4.0"/>
+			<property name="SizeScale" value="4.5"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalZombieVultureRadiated"/>
 
