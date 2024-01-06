@@ -13829,6 +13829,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPathFinderHead" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPathFinderHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPathFinderHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPathFinderHead"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPathFinderChestS1">
@@ -13852,6 +13854,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPathFinderChest" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPathFinderChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPathFinderChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPathFinderChest"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPathFinderGlovesS1">
@@ -13875,6 +13879,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPathFinderGloves" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPathFinderGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPathFinderGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPathFinderGloves"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPathFinderPantsS1">
@@ -13898,6 +13904,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPathFinderPants" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPathFinderPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPathFinderPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPathFinderPants"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPathFinderBootsS1">
@@ -13921,283 +13929,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPathFinderBoots" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPathFinderBoots" operation="set" value="0"/>
-			</effect_group>
-		</item>
-        <!-- ** item armor Rover-->
-		<item name="ArmorRoverHeadS1">
-            <property name="DescriptionKey" value="ArmorRoverHeadS1Desc"/>
-            <property name="Extends" value="armorLeatherHood"/>
-            <property name="CustomIcon" value="armorLeatherHood"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="leather armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="10,12" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="10,12" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.56"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverHead" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverHead" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorRoverChestS1">
-            <property name="DescriptionKey" value="ArmorRoverChestS1Desc"/>
-            <property name="Extends" value="armorLeatherChest"/>
-            <property name="CustomIcon" value="armorLeatherChest"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="leather armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="10,12" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="10,12" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.56"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverChest" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverChest" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorRoverGlovesS1">
-            <property name="DescriptionKey" value="ArmorRoverGlovesS1Desc"/>
-            <property name="Extends" value="armorLeatherGloves"/>
-            <property name="CustomIcon" value="armorLeatherGloves"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="leather armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="10,12" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="10,12" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.56"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverGloves" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverGloves" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorRoverPantsS1">
-            <property name="DescriptionKey" value="ArmorRoverPantsS1Desc"/>
-            <property name="Extends" value="armorLeatherPants"/>
-            <property name="CustomIcon" value="armorLeatherPants"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="leather armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="10,12" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="10,12" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.56"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverPants" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverPants" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorRoverBootsS1">
-            <property name="DescriptionKey" value="ArmorRoverBootsS1Desc"/>
-            <property name="Extends" value="armorLeatherBoots"/>
-            <property name="CustomIcon" value="armorLeatherBoots"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="leather armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="10,12" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="10,12" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.56"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverBoots" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverBoots" operation="set" value="0"/>
-			</effect_group>
-		</item>
-        <!-- ** item armor Guardian-->
-		<item name="ArmorGuardianHeadS1">
-	        <property name="DisplayType" value="ui_ArmorHeavy"/>
-            <property name="DescriptionKey" value="ArmorGuardianHeadS1Desc"/>
-            <property name="Extends" value="armorIronHelmet"/>
-            <property name="CustomIcon" value="armorIronHelmet"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="iron armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="14,16" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="14,16" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.9"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianHead" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianHead" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorGuardianChestS1">
-	        <property name="DisplayType" value="ui_ArmorHeavy"/>
-            <property name="DescriptionKey" value="ArmorGuardianChestS1Desc"/>
-            <property name="Extends" value="armorIronChest"/>
-            <property name="CustomIcon" value="armorIronChest"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="iron armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="14,16" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="14,16" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.9"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianChest" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianChest" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorGuardianGlovesS1">
-	        <property name="DisplayType" value="ui_ArmorHeavy"/>
-            <property name="DescriptionKey" value="ArmorGuardianGlovesS1Desc"/>
-            <property name="Extends" value="armorIronGloves"/>
-            <property name="CustomIcon" value="armorIronGloves"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="iron armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="14,16" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="14,16" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.9"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianGloves" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianGloves" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorGuardianPantsS1">
-	        <property name="DisplayType" value="ui_ArmorHeavy"/>
-            <property name="DescriptionKey" value="ArmorGuardianPantsS1Desc"/>
-            <property name="Extends" value="armorIronLegs"/>
-            <property name="CustomIcon" value="armorIronLegs"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="iron armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="14,16" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="14,16" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.9"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianPants" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianPants" operation="set" value="0"/>
-			</effect_group>
-		</item>
-		<item name="ArmorGuardianBootsS1">
-	        <property name="DisplayType" value="ui_ArmorHeavy"/>
-            <property name="DescriptionKey" value="ArmorGuardianBootsS1Desc"/>
-            <property name="Extends" value="armorIronBoots"/>
-            <property name="CustomIcon" value="armorIronBoots"/>
-			<property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-            <effect_group name="iron armor">
-                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
-                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="14,16" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="14,16" tier="1,6" tags="heat,electrical"/>
-                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
-                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
-                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
-                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
-                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
-                <display_value name="dStaminaChangeOT" value="-.9"/>
-                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
-            </effect_group>
-			<effect_group name="marisa set buff weight">
-				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianBoots" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPathFinderBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPathFinderBoots"/>
 			</effect_group>
 		</item>
         <!-- ** item armor Investigator-->
@@ -14214,8 +13947,8 @@
             <effect_group name="scrap armor">
                 <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
                 <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6,8" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="6,8" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7,9" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="7,9" tier="1,6" tags="heat,electrical"/>
                 <passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
                 <passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6"/>
                 <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
@@ -14228,6 +13961,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorHead" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorInvestigatorHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorInvestigatorHead"/>
 			</effect_group>
 		</item>
 		<item name="ArmorInvestigatorChestS1">
@@ -14243,8 +13978,8 @@
             <effect_group name="scrap armor">
                 <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
                 <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6,8" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="6,8" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7,9" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="7,9" tier="1,6" tags="heat,electrical"/>
                 <passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
                 <passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6"/>
                 <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
@@ -14257,6 +13992,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorChest" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorInvestigatorChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorInvestigatorChest"/>
 			</effect_group>
 		</item>
 		<item name="ArmorInvestigatorGlovesS1">
@@ -14272,8 +14009,8 @@
             <effect_group name="scrap armor">
                 <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
                 <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6,8" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="6,8" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7,9" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="7,9" tier="1,6" tags="heat,electrical"/>
                 <passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
                 <passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6"/>
                 <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
@@ -14286,6 +14023,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorGloves" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorInvestigatorGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorInvestigatorGloves"/>
 			</effect_group>
 		</item>
 		<item name="ArmorInvestigatorPantsS1">
@@ -14301,8 +14040,8 @@
             <effect_group name="scrap armor">
                 <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
                 <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6,8" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="6,8" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7,9" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="7,9" tier="1,6" tags="heat,electrical"/>
                 <passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
                 <passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6"/>
                 <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
@@ -14315,6 +14054,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorPants" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorInvestigatorPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorInvestigatorPants"/>
 			</effect_group>
 		</item>
 		<item name="ArmorInvestigatorBootsS1">
@@ -14330,8 +14071,8 @@
             <effect_group name="scrap armor">
                 <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
                 <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" value="6,8" tier="1,6"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" value="6,8" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7,9" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="7,9" tier="1,6" tags="heat,electrical"/>
                 <passive_effect name="BuffResistance" operation="base_add" value="0.041" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
                 <passive_effect name="DegradationMax" operation="base_set" value="100,200" tier="1,6"/>
                 <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
@@ -14344,6 +14085,154 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorBoots" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorInvestigatorBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorInvestigatorBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorInvestigatorBoots"/>
+			</effect_group>
+		</item>
+        <!-- ** item armor Rover-->
+		<item name="ArmorRoverHeadS1">
+            <property name="DescriptionKey" value="ArmorRoverHeadS1Desc"/>
+            <property name="Extends" value="armorLeatherHood"/>
+            <property name="CustomIcon" value="armorLeatherHood"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="leather armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="9,11" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="9,11" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.56"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverHead" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorRoverHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorRoverHead"/>
+			</effect_group>
+		</item>
+		<item name="ArmorRoverChestS1">
+            <property name="DescriptionKey" value="ArmorRoverChestS1Desc"/>
+            <property name="Extends" value="armorLeatherChest"/>
+            <property name="CustomIcon" value="armorLeatherChest"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="leather armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="9,11" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="9,11" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.56"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverChest" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorRoverChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorRoverChest"/>
+			</effect_group>
+		</item>
+		<item name="ArmorRoverGlovesS1">
+            <property name="DescriptionKey" value="ArmorRoverGlovesS1Desc"/>
+            <property name="Extends" value="armorLeatherGloves"/>
+            <property name="CustomIcon" value="armorLeatherGloves"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="leather armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="9,11" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="9,11" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.56"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverGloves" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorRoverGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorRoverGloves"/>
+			</effect_group>
+		</item>
+		<item name="ArmorRoverPantsS1">
+            <property name="DescriptionKey" value="ArmorRoverPantsS1Desc"/>
+            <property name="Extends" value="armorLeatherPants"/>
+            <property name="CustomIcon" value="armorLeatherPants"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="leather armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="9,11" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="9,11" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.56"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverPants" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorRoverPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorRoverPants"/>
+			</effect_group>
+		</item>
+		<item name="ArmorRoverBootsS1">
+            <property name="DescriptionKey" value="ArmorRoverBootsS1Desc"/>
+            <property name="Extends" value="armorLeatherBoots"/>
+            <property name="CustomIcon" value="armorLeatherBoots"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="leather armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="9,11" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="9,11" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.043,0.053" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.04"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0281" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.0562" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.56"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/><display_value name="dNoiseMultiplier" value=".1"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorRoverBoots" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorRoverBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorRoverBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorRoverBoots"/>
 			</effect_group>
 		</item>
         <!-- ** item armor Combatant-->
@@ -14372,6 +14261,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorCombatantHead" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorCombatantHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorCombatantHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorCombatantHead"/>
 			</effect_group>
 		</item>
 		<item name="ArmorCombatantChestS1">
@@ -14399,6 +14290,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorCombatantChest" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorCombatantChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorCombatantChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorCombatantChest"/>
 			</effect_group>
 		</item>
 		<item name="ArmorCombatantGlovesS1">
@@ -14426,6 +14319,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorCombatantGloves" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorCombatantGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorCombatantGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorCombatantGloves"/>
 			</effect_group>
 		</item>
 		<item name="ArmorCombatantPantsS1">
@@ -14453,6 +14348,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorCombatantPants" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorCombatantPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorCombatantPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorCombatantPants"/>
 			</effect_group>
 		</item>
 		<item name="ArmorCombatantBootsS1">
@@ -14480,6 +14377,159 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorCombatantBoots" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorCombatantBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorCombatantBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorCombatantBoots"/>
+			</effect_group>
+		</item>
+        <!-- ** item armor Guardian-->
+		<item name="ArmorGuardianHeadS1">
+	        <property name="DisplayType" value="ui_ArmorHeavy"/>
+            <property name="DescriptionKey" value="ArmorGuardianHeadS1Desc"/>
+            <property name="Extends" value="armorIronHelmet"/>
+            <property name="CustomIcon" value="armorIronHelmet"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="iron armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="13,15" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="13,15" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.9"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianHead" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorGuardianHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorGuardianHead"/>
+			</effect_group>
+		</item>
+		<item name="ArmorGuardianChestS1">
+	        <property name="DisplayType" value="ui_ArmorHeavy"/>
+            <property name="DescriptionKey" value="ArmorGuardianChestS1Desc"/>
+            <property name="Extends" value="armorIronChest"/>
+            <property name="CustomIcon" value="armorIronChest"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="iron armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="13,15" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="13,15" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.9"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianChest" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorGuardianChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorGuardianChest"/>
+			</effect_group>
+		</item>
+		<item name="ArmorGuardianGlovesS1">
+	        <property name="DisplayType" value="ui_ArmorHeavy"/>
+            <property name="DescriptionKey" value="ArmorGuardianGlovesS1Desc"/>
+            <property name="Extends" value="armorIronGloves"/>
+            <property name="CustomIcon" value="armorIronGloves"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="iron armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="13,15" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="13,15" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.9"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianGloves" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorGuardianGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorGuardianGloves"/>
+			</effect_group>
+		</item>
+		<item name="ArmorGuardianPantsS1">
+	        <property name="DisplayType" value="ui_ArmorHeavy"/>
+            <property name="DescriptionKey" value="ArmorGuardianPantsS1Desc"/>
+            <property name="Extends" value="armorIronLegs"/>
+            <property name="CustomIcon" value="armorIronLegs"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="iron armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="13,15" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="13,15" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.9"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianPants" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorGuardianPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorGuardianPants"/>
+			</effect_group>
+		</item>
+		<item name="ArmorGuardianBootsS1">
+	        <property name="DisplayType" value="ui_ArmorHeavy"/>
+            <property name="DescriptionKey" value="ArmorGuardianBootsS1Desc"/>
+            <property name="Extends" value="armorIronBoots"/>
+            <property name="CustomIcon" value="armorIronBoots"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+            <effect_group name="iron armor">
+                <passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="13,15" tier="1,6"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="13,15" tier="1,6" tags="heat,electrical"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="0.055,0.068" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire,critResistDisplay"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="300,400" tier="1,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="heavyArmorDeg"/>
+                <passive_effect name="Mobility" operation="perc_add" value="-.06"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.045" tags="walking"/>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" value="-.09" tags="running"/>
+                <display_value name="dStaminaChangeOT" value="-.9"/>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/><display_value name="dNoiseMultiplier" value=".2"/>
+            </effect_group>
+			<effect_group name="marisa set buff weight">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorGuardianBoots" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorGuardianBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorGuardianBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorGuardianBoots"/>
 			</effect_group>
 		</item>
         <!-- ** item armor Predator-->
@@ -14509,6 +14559,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPredatorHead" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPredatorHead" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPredatorHead"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPredatorHead"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPredatorChestS1">
@@ -14537,6 +14589,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPredatorChest" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPredatorChest" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPredatorChest"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPredatorChest"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPredatorGlovesS1">
@@ -14565,6 +14619,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPredatorGloves" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPredatorGloves" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPredatorGloves"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPredatorGloves"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPredatorPantsS1">
@@ -14593,6 +14649,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPredatorPants" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPredatorPants" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPredatorPants"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPredatorPants"/>
 			</effect_group>
 		</item>
 		<item name="ArmorPredatorBootsS1">
@@ -14621,6 +14679,8 @@
 			<effect_group name="marisa set buff weight">
 				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffWeightArmorPredatorBoots" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffWeightArmorPredatorBoots" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffArmorPredatorBoots"/>
+				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffArmorPredatorBoots"/>
 			</effect_group>
 		</item>
 
