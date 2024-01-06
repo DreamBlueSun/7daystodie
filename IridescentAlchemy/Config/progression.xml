@@ -1,0 +1,146 @@
+<Marisa>
+
+    <append xpath="/progression/attributes">
+
+        <attribute name="attIridescent" name_key="attIridescentName" desc_key="attIridescentDesc" icon="ui_game_symbol_tea">
+            <level_requirements level="1"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
+            <level_requirements level="2"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
+            <level_requirements level="3"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
+            <level_requirements level="4"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
+            <level_requirements level="5"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
+            <level_requirements level="6"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints02"/></level_requirements>
+            <level_requirements level="7"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints02"/></level_requirements>
+            <level_requirements level="8"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints02"/></level_requirements>
+            <level_requirements level="9"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints03"/></level_requirements>
+            <level_requirements level="10"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints03"/></level_requirements>
+
+            <effect_group>
+                <effect_description level="1"  desc_key="attIridescentRank01Desc" long_desc_key="attIridescentRank01LongDesc"/>
+                <effect_description level="2"  desc_key="attIridescentRank02Desc" long_desc_key="attIridescentRank02LongDesc"/>
+                <effect_description level="3"  desc_key="attIridescentRank03Desc" long_desc_key="attIridescentRank03LongDesc"/>
+                <effect_description level="4"  desc_key="attIridescentRank04Desc" long_desc_key="attIridescentRank04LongDesc"/>
+                <effect_description level="5"  desc_key="attIridescentRank05Desc" long_desc_key="attIridescentRank05LongDesc"/>
+                <effect_description level="6"  desc_key="attIridescentRank06Desc" long_desc_key="attIridescentRank06LongDesc"/>
+                <effect_description level="7"  desc_key="attIridescentRank07Desc" long_desc_key="attIridescentRank07LongDesc"/>
+                <effect_description level="8"  desc_key="attIridescentRank08Desc" long_desc_key="attIridescentRank08LongDesc"/>
+                <effect_description level="9"  desc_key="attIridescentRank09Desc" long_desc_key="attIridescentRank09LongDesc"/>
+                <effect_description level="10" desc_key="attIridescentRank10Desc" long_desc_key="attIridescentRank10LongDesc"/>
+            </effect_group>
+        </attribute>
+
+    </append>
+
+    <append xpath="/progression/skills">
+
+        <skill name="skillIridescentCombat" parent="attIridescent" name_key="skillIridescentCombatName" desc_key="skillIridescentCombatDesc" icon="ui_game_symbol_shotgun"><effect_group/></skill>
+        <skill name="skillIridescentDefend" parent="attIridescent" name_key="skillIridescentDefendName" desc_key="skillIridescentDefendDesc" icon="server_cheat"><effect_group/></skill>
+        <skill name="skillIridescentOther" parent="attIridescent" name_key="skillIridescentOtherName" desc_key="skillIridescentOtherDesc" icon="ui_game_symbol_fire"><effect_group/></skill>
+
+    </append>
+
+    <append xpath="/progression/perks">
+
+        <!-- skill combat -->
+        <perk name="perkEntityDamageUp" parent="skillIridescentCombat" name_key="perkEntityDamageUpName" desc_key="perkEntityDamageUpDesc" icon="ui_game_symbol_rifle">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="10" desc_key="reqIridescentLevel10"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".05,.25"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkEntityDamageUpRank1Desc" long_desc_key="perkEntityDamageUpRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkEntityDamageUpRank2Desc" long_desc_key="perkEntityDamageUpRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkEntityDamageUpRank3Desc" long_desc_key="perkEntityDamageUpRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkEntityDamageUpRank4Desc" long_desc_key="perkEntityDamageUpRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkEntityDamageUpRank5Desc" long_desc_key="perkEntityDamageUpRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <!-- skill defend -->
+        <perk name="perkHealthMaxUp" parent="skillIridescentDefend" name_key="perkHealthMaxUpName" desc_key="perkHealthMaxUpDesc" icon="ui_game_symbol_add">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="10" desc_key="reqIridescentLevel10"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="HealthMax" operation="base_add" level="1,5" value="5,25"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkHealthMaxUpRank1Desc" long_desc_key="perkHealthMaxUpRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkHealthMaxUpRank2Desc" long_desc_key="perkHealthMaxUpRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkHealthMaxUpRank3Desc" long_desc_key="perkHealthMaxUpRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkHealthMaxUpRank4Desc" long_desc_key="perkHealthMaxUpRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkHealthMaxUpRank5Desc" long_desc_key="perkHealthMaxUpRank5LongDesc"/>
+            </effect_group>
+        </perk>
+        <perk name="perkStaminaMaxUp" parent="skillIridescentDefend" name_key="perkStaminaMaxUpName" desc_key="perkStaminaMaxUpDesc" icon="ui_game_symbol_muscle">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="2" desc_key="reqIridescentLevel02"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="StaminaMax" operation="base_add" level="1,5" value="10,50"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkStaminaMaxUpRank1Desc" long_desc_key="perkStaminaMaxUpRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkStaminaMaxUpRank2Desc" long_desc_key="perkStaminaMaxUpRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkStaminaMaxUpRank3Desc" long_desc_key="perkStaminaMaxUpRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkStaminaMaxUpRank4Desc" long_desc_key="perkStaminaMaxUpRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkStaminaMaxUpRank5Desc" long_desc_key="perkStaminaMaxUpRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <!-- skill other -->
+        <perk name="perkPlayerExpGainDown" parent="skillIridescentOther" name_key="perkPlayerExpGainDownName" desc_key="perkPlayerExpGainDownDesc" icon="ui_game_symbol_block_damage">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="2" desc_key="reqIridescentLevel02"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="4" desc_key="reqIridescentLevel04"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.2,-1"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkPlayerExpGainDownRank1Desc" long_desc_key="perkPlayerExpGainDownRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkPlayerExpGainDownRank2Desc" long_desc_key="perkPlayerExpGainDownRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkPlayerExpGainDownRank3Desc" long_desc_key="perkPlayerExpGainDownRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkPlayerExpGainDownRank4Desc" long_desc_key="perkPlayerExpGainDownRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkPlayerExpGainDownRank5Desc" long_desc_key="perkPlayerExpGainDownRank5LongDesc"/>
+            </effect_group>
+        </perk>
+        <perk name="perkPlayerExpGainUp" parent="skillIridescentOther" name_key="perkPlayerExpGainUpName" desc_key="perkPlayerExpGainUpDesc" icon="ui_game_symbol_block_repair">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="2" desc_key="reqIridescentLevel02"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value=".1,.5"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkPlayerExpGainUpRank1Desc" long_desc_key="perkPlayerExpGainUpRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkPlayerExpGainUpRank2Desc" long_desc_key="perkPlayerExpGainUpRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkPlayerExpGainUpRank3Desc" long_desc_key="perkPlayerExpGainUpRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkPlayerExpGainUpRank4Desc" long_desc_key="perkPlayerExpGainUpRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkPlayerExpGainUpRank5Desc" long_desc_key="perkPlayerExpGainUpRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+    </append>
+
+</Marisa>
