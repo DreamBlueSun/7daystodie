@@ -1722,6 +1722,18 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value=".5"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR2B1Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#CCECFF"/>
+            <property name="EconomicValue" value="500"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="3"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR2B1Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrial"/>
@@ -1765,6 +1777,21 @@
             <property name="Weight" value="3"/>
 			<effect_group tiered="false">
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".2"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			</effect_group>
+		</item_modifier>
+		<!-- *** mod R2 clothe -->
+		<item_modifier name="ModR2B1ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modCarryCapacity"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
+            <property name="CustomIcon" value="backpackMedium"/>
+			<property name="CustomIconTint" value="#CCECFF"/>
+            <property name="EconomicValue" value="500"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="3"/>
+			<effect_group tiered="false">
+				<passive_effect name="CarryCapacity" operation="base_add" value="3"/>
+				<display_value name="dCarryCapacity" value="3"/>
 			</effect_group>
 		</item_modifier>
 
@@ -1896,6 +1923,18 @@
 				<passive_effect name="DegradationMax" operation="perc_add" value="1"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR4B2Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR4B2Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="lightIndustrial"/>
@@ -1907,38 +1946,48 @@
 				<passive_effect name="EntityDamage" operation="perc_add" value=".25"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B1Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR4B1PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIcon" value="plantedHop1"/>
 			<property name="CustomIconTint" value="#67C483"/>
             <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
-					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value="1" tags="cropHarvest,wildCropsHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B1Harvest" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR4B1HarvestOreWood" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeSerratedBlade"/>
+			<property name="CustomIcon" value="rock07"/>
 			<property name="CustomIconTint" value="#67C483"/>
             <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".2"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="oreWoodHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B1ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
+		<item_modifier name="ModR4B1HarvestSalvage" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIcon" value="resourceMechanicalParts"/>
 			<property name="CustomIconTint" value="#67C483"/>
             <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="salvageHarvest"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR4B1HarvestButcher" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="resourceBone"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="butcherHarvest"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR4B1BuffShocked" installable_tags="weapon,tool" modifier_tags="marisaAddBuff" blocked_tags="noMods" type="attachment">
@@ -1953,6 +2002,17 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR4B1GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="MagazineSize" operation="perc_add" value=".5"/>
+			</effect_group>
+		</item_modifier>
         <!-- *** mod R4 armor -->
 		<item_modifier name="ModR4B2Impasse" installable_tags="armorChest" modifier_tags="marisaImpasse" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
@@ -1963,6 +2023,28 @@
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".25"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR4B1ReloadSpeed" installable_tags="armorChest,armorLegs" modifier_tags="marisaReloadSpeed,ammo" blocked_tags="noMods,perkArchery" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="1"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="0"/>
+			</effect_group>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="1"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="0"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR4B1ArmorPlate" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods,heavyArmor" type="attachment">
@@ -1987,17 +2069,6 @@
 				<passive_effect name="ElementalDamageResist" operation="base_add" value="2.5"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR4B1StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
-			<property name="CustomIconTint" value="#67C483"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="11"/>
-			<effect_group tiered="false">
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".12" tags="running"/>
-			</effect_group>
-		</item_modifier>
 		<item_modifier name="ModR4B1StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
@@ -2009,19 +2080,23 @@
 				<passive_effect name="StaminaMax" operation="base_add" value="20"/>
 			</effect_group>
 		</item_modifier>
-
-        <!-- *** mod R5 weapon -->
-		<item_modifier name="ModR5A1GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
-			<property name="CustomIconTint" value="#84E1EC"/>
-            <property name="EconomicValue" value="2600"/>
+		<!-- *** mod R4 clothe -->
+		<item_modifier name="ModR4B2ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modCarryCapacity"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
+            <property name="CustomIcon" value="backpackMedium"/>
+			<property name="CustomIconTint" value="#67C483"/>
+            <property name="EconomicValue" value="1600"/>
             <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="22"/>
+            <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="MagazineSize" operation="perc_add" value=".5"/>
+				<passive_effect name="CarryCapacity" operation="base_add" value="4"/>
+				<display_value name="dCarryCapacity" value="4"/>
 			</effect_group>
 		</item_modifier>
+
+        <!-- *** mod R5 weapon -->
 		<item_modifier name="ModR5A1Grip" installable_tags="melee,bow" modifier_tags="health" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modMeleeErgonomicGrip"/>
@@ -2099,6 +2174,17 @@
 				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffFatiguedTrigger"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR5A1HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="medicalBloodBag"/>
+			<property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="2600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="15"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR5A1HealthChangeOT" installable_tags="armor" modifier_tags="marisaHealthChangeOT" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalAloeCream"/>
@@ -2110,51 +2196,62 @@
 				<passive_effect name="HealthChangeOT" operation="base_add" value=".1"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR5A1StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
+			<property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="2600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".12" tags="running"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR5A1MuffledConnectors" installable_tags="armor" modifier_tags="stealth" blocked_tags="noMods,padded" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modNoiseReduction"/>
+            <property name="CustomIcon" value="modArmorAdvancedMuffledConnectors"/>
+			<property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="2600"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.1"/><display_value name="dNoiseMultiplier" value="-.1"/>
+			</effect_group>
+		</item_modifier>
 
         <!-- *** mod R6 weapon -->
-		<item_modifier name="ModR6A1PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6B2HarvestOreWood" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="plantedHop1"/>
+			<property name="CustomIcon" value="rock07"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
             <property name="EconomicValue" value="4100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value="1" tags="cropHarvest,wildCropsHarvest"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".4" tags="oreWoodHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR6B2Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6B2HarvestSalvage" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIcon" value="resourceMechanicalParts"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
             <property name="EconomicValue" value="4100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
-					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".4" tags="salvageHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR6B2Harvest" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR6B2HarvestButcher" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeSerratedBlade"/>
+			<property name="CustomIcon" value="resourceBone"/>
 			<property name="CustomIconTint" value="#7EA8FB"/>
             <property name="EconomicValue" value="4100"/>
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".4"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR6B2ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modArmorBandolier"/>
-			<property name="CustomIconTint" value="#7EA8FB"/>
-            <property name="EconomicValue" value="4100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".2"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".4" tags="butcherHarvest"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR6B2BuffShocked" installable_tags="weapon,tool" modifier_tags="marisaAddBuff" blocked_tags="noMods" type="attachment">
@@ -2169,7 +2266,40 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR6B2GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+			<property name="CustomIconTint" value="#7EA8FB"/>
+            <property name="EconomicValue" value="4100"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="MagazineSize" operation="perc_add" value=".625"/>
+			</effect_group>
+		</item_modifier>
         <!-- *** mod R6 armor -->
+		<item_modifier name="ModR6B2ReloadSpeed" installable_tags="armorChest,armorLegs" modifier_tags="marisaReloadSpeed,ammo" blocked_tags="noMods,perkArchery" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIconTint" value="#7EA8FB"/>
+            <property name="EconomicValue" value="4100"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="2"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="0"/>
+			</effect_group>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="2"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="0"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR6B2ArmorPlate" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods,heavyArmor" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorPlatingBasic"/>
@@ -2190,17 +2320,6 @@
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
 				<passive_effect name="ElementalDamageResist" operation="base_add" value="3"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR6B2StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
-			<property name="CustomIconTint" value="#7EA8FB"/>
-            <property name="EconomicValue" value="4100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".16" tags="running"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR6B2StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
@@ -2227,6 +2346,17 @@
 				<passive_effect name="DamageModifier" operation="perc_add" value=".08"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR7S1DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
+			<property name="CustomIconTint" value="#7555E1"/>
+            <property name="EconomicValue" value="6100"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<passive_effect name="DamageModifier" operation="perc_add" value=".06"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR7S1DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunDrumMagazineExtender"/>
@@ -2237,17 +2367,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="MagazineSize" operation="perc_add" value="1.25"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.4"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR7S1DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
-			<property name="CustomIconTint" value="#7555E1"/>
-            <property name="EconomicValue" value="6100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".06"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR7S1BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -2274,7 +2393,7 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".025"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR7S1MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR7S1MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods,padded" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorCustomizedFittings"/>
 			<property name="CustomIconTint" value="#7555E1"/>
@@ -2284,32 +2403,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="Mobility" operation="perc_add" value=".035"/>
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".035"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR7S1HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="medicalBloodBag"/>
-			<property name="CustomIconTint" value="#7555E1"/>
-            <property name="EconomicValue" value="6100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="HealthMax" operation="base_add" value="10"/>
-			</effect_group>
-		</item_modifier>
-		<!-- *** mod R7 clothe -->
-		<item_modifier name="ModR7S1ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modCarryCapacity"/>
-			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
-            <property name="CustomIcon" value="backpackMedium"/>
-			<property name="CustomIconTint" value="#7555E1"/>
-            <property name="EconomicValue" value="6100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="CarryCapacity" operation="base_add" value="3"/>
-				<display_value name="dCarryCapacity" value="3"/>
 			</effect_group>
 		</item_modifier>
 
@@ -2325,6 +2418,17 @@
 				<passive_effect name="DamageModifier" operation="perc_add" value=".12"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR8S2DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
+			<property name="CustomIconTint" value="#FF985E"/>
+            <property name="EconomicValue" value="9100"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="171"/>
+			<effect_group tiered="false">
+				<passive_effect name="DamageModifier" operation="perc_add" value=".09"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR8S2DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunDrumMagazineExtender"/>
@@ -2335,17 +2439,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="MagazineSize" operation="perc_add" value="1.5"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.45"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR8S2DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
-			<property name="CustomIconTint" value="#FF985E"/>
-            <property name="EconomicValue" value="9100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="171"/>
-			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".09"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S2BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -2395,7 +2488,7 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".03"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR8S2MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR8S2MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods,padded" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorCustomizedFittings"/>
 			<property name="CustomIconTint" value="#FF985E"/>
@@ -2405,17 +2498,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="Mobility" operation="perc_add" value=".04"/>
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".04"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR8S2HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-            <property name="CustomIcon" value="medicalBloodBag"/>
-			<property name="CustomIconTint" value="#FF985E"/>
-            <property name="EconomicValue" value="9100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="171"/>
-			<effect_group tiered="false">
-				<passive_effect name="HealthMax" operation="base_add" value="20"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR8S1JumpStrength" installable_tags="armorFeet" modifier_tags="marisaJumpStrength,falldamage" blocked_tags="noMods" type="attachment">
@@ -2431,33 +2513,6 @@
 			<effect_group tiered="false">
 				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffImpactBracing"/>
 				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffImpactBracing"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR8S1MuffledConnectors" installable_tags="armor" modifier_tags="stealth" blocked_tags="noMods,padded" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modNoiseReduction"/>
-            <property name="CustomIcon" value="modArmorAdvancedMuffledConnectors"/>
-			<property name="CustomIconTint" value="#FF985E"/>
-            <property name="EconomicValue" value="9100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="171"/>
-			<effect_group tiered="false">
-				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.1"/><display_value name="dNoiseMultiplier" value="-.1"/>
-			</effect_group>
-		</item_modifier>
-		<!-- *** mod R8 clothe -->
-		<item_modifier name="ModR8S2ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modCarryCapacity"/>
-			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
-            <property name="CustomIcon" value="backpackMedium"/>
-			<property name="CustomIconTint" value="#FF985E"/>
-            <property name="EconomicValue" value="9100"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="171"/>
-			<effect_group tiered="false">
-				<passive_effect name="CarryCapacity" operation="base_add" value="4"/>
-				<display_value name="dCarryCapacity" value="4"/>
 			</effect_group>
 		</item_modifier>
 
@@ -2504,7 +2559,19 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<passive_effect name="DegradationMax" operation="perc_add" value="1.5"/>
+				<passive_effect name="DegradationMax" operation="perc_add" value="2"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR9B3Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+            <property name="CustomIconTint" value="#00FF00"/>
+            <property name="EconomicValue" value="13100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
@@ -2516,17 +2583,6 @@
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
 				<passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR9A2GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
-            <property name="CustomIconTint" value="#00FF00"/>
-            <property name="EconomicValue" value="13100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="11"/>
-			<effect_group tiered="false">
-				<passive_effect name="MagazineSize" operation="perc_add" value=".625"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9A2Grip" installable_tags="melee,bow" modifier_tags="health" blocked_tags="noMods" type="attachment">
@@ -2674,6 +2730,17 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".3"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR9A2HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+            <property name="CustomIcon" value="medicalBloodBag"/>
+            <property name="CustomIconTint" value="#00FF00"/>
+            <property name="EconomicValue" value="13100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="30"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR9A2HealthChangeOT" installable_tags="armor" modifier_tags="marisaHealthChangeOT" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalAloeCream"/>
@@ -2683,6 +2750,44 @@
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
 				<passive_effect name="HealthChangeOT" operation="base_add" value=".15"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR9A2StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
+            <property name="CustomIconTint" value="#00FF00"/>
+            <property name="EconomicValue" value="13100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".16" tags="running"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR9A2MuffledConnectors" installable_tags="armor" modifier_tags="stealth" blocked_tags="noMods,padded" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modNoiseReduction"/>
+            <property name="CustomIcon" value="modArmorAdvancedMuffledConnectors"/>
+            <property name="CustomIconTint" value="#00FF00"/>
+            <property name="EconomicValue" value="13100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.11"/><display_value name="dNoiseMultiplier" value="-.11"/>
+			</effect_group>
+		</item_modifier>
+		<!-- *** mod R9 clothe -->
+		<item_modifier name="ModR9B3ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modCarryCapacity"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
+            <property name="CustomIcon" value="backpackMedium"/>
+            <property name="CustomIconTint" value="#00FF00"/>
+            <property name="EconomicValue" value="13100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="11"/>
+			<effect_group tiered="false">
+				<passive_effect name="CarryCapacity" operation="base_add" value="5"/>
+				<display_value name="dCarryCapacity" value="5"/>
 			</effect_group>
 		</item_modifier>
 
@@ -2728,7 +2833,19 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="DegradationMax" operation="perc_add" value="2"/>
+				<passive_effect name="DegradationMax" operation="perc_add" value="3"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR10B4Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
+					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B4Adversity" installable_tags="weapon,tool" modifier_tags="marisaPlightDamage" blocked_tags="noMods" type="attachment">
@@ -2742,7 +2859,7 @@
 				<passive_effect name="EntityDamage" operation="perc_add" value=".35"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10A2PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B2PlantBiology" installable_tags="melee" modifier_tags="marisaPlantBiology" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedHop1"/>
             <property name="CustomIconTint" value="#00BFFF"/>
@@ -2753,38 +2870,37 @@
 				<passive_effect name="HarvestCount" operation="perc_add" value="2" tags="cropHarvest,wildCropsHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B3Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B3HarvestOreWood" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIcon" value="rock07"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
-					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".6" tags="oreWoodHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B3Harvest" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR10B3HarvestSalvage" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeSerratedBlade"/>
+			<property name="CustomIcon" value="resourceMechanicalParts"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".6"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".6" tags="salvageHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B3ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
+		<item_modifier name="ModR10B3HarvestButcher" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIcon" value="resourceBone"/>
             <property name="CustomIconTint" value="#00BFFF"/>
             <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".25"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".6" tags="butcherHarvest"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR10B3BuffShocked" installable_tags="weapon,tool" modifier_tags="marisaAddBuff" blocked_tags="noMods" type="attachment">
@@ -2797,6 +2913,17 @@
 			<effect_group tiered="false">
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR10B3GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<passive_effect name="MagazineSize" operation="perc_add" value=".75"/>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R10 armor -->
@@ -2890,6 +3017,28 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".35"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/></passive_effect>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR10B3ReloadSpeed" installable_tags="armorChest,armorLegs" modifier_tags="marisaReloadSpeed,ammo" blocked_tags="noMods,perkArchery" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="19100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="22"/>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="3"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="0"/>
+			</effect_group>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="3"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="0"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR10B3ArmorPlate" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods,heavyArmor" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorPlatingBasic"/>
@@ -2912,17 +3061,6 @@
 				<passive_effect name="ElementalDamageResist" operation="base_add" value="3.5"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR10B3StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
-            <property name="CustomIconTint" value="#00BFFF"/>
-            <property name="EconomicValue" value="19100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="22"/>
-			<effect_group tiered="false">
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2" tags="running"/>
-			</effect_group>
-		</item_modifier>
 		<item_modifier name="ModR10B3StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="resourceTestosteroneExtract"/>
@@ -2934,19 +3072,23 @@
 				<passive_effect name="StaminaMax" operation="base_add" value="60"/>
 			</effect_group>
 		</item_modifier>
-
-        <!-- *** mod R11 weapon -->
-		<item_modifier name="ModR11A3GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
-            <property name="CustomIconTint" value="#BA55D3"/>
-            <property name="EconomicValue" value="27100"/>
+		<!-- *** mod R10 clothe -->
+		<item_modifier name="ModR10B4ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modCarryCapacity"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
+            <property name="CustomIcon" value="backpackMedium"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="19100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="43"/>
+            <property name="Weight" value="22"/>
 			<effect_group tiered="false">
-				<passive_effect name="MagazineSize" operation="perc_add" value=".75"/>
+				<passive_effect name="CarryCapacity" operation="base_add" value="6"/>
+				<display_value name="dCarryCapacity" value="6"/>
 			</effect_group>
 		</item_modifier>
+
+        <!-- *** mod R11 weapon -->
 		<item_modifier name="ModR11A3Grip" installable_tags="melee,bow" modifier_tags="health" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modMeleeErgonomicGrip"/>
@@ -3012,6 +3154,17 @@
 				<passive_effect name="DamageModifier" operation="perc_add" value=".16"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR11S3DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
+            <property name="CustomIconTint" value="#BA55D3"/>
+            <property name="EconomicValue" value="27100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="DamageModifier" operation="perc_add" value=".12"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR11S3DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modGunDrumMagazineExtender"/>
@@ -3022,17 +3175,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="MagazineSize" operation="perc_add" value="1.75"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.5"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR11S3DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
-            <property name="CustomIconTint" value="#BA55D3"/>
-            <property name="EconomicValue" value="27100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".12"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR11S3BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -3048,6 +3190,17 @@
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R11 armor -->
+		<item_modifier name="ModR11A3HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="medicalBloodBag"/>
+            <property name="CustomIconTint" value="#BA55D3"/>
+            <property name="EconomicValue" value="27100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="HealthMax" operation="base_add" value="50"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR11A3HealthChangeOT" installable_tags="armor" modifier_tags="marisaHealthChangeOT" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="medicalAloeCream"/>
@@ -3057,6 +3210,29 @@
             <property name="Weight" value="43"/>
 			<effect_group tiered="false">
 				<passive_effect name="HealthChangeOT" operation="base_add" value=".2"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR11A3StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
+            <property name="CustomIconTint" value="#BA55D3"/>
+            <property name="EconomicValue" value="27100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2" tags="running"/>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR11A3MuffledConnectors" installable_tags="armor" modifier_tags="stealth" blocked_tags="noMods,padded" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="DisplayType" value="modNoiseReduction"/>
+            <property name="CustomIcon" value="modArmorAdvancedMuffledConnectors"/>
+            <property name="CustomIconTint" value="#BA55D3"/>
+            <property name="EconomicValue" value="27100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.12"/><display_value name="dNoiseMultiplier" value="-.12"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR11S3DamageResist" installable_tags="armor" modifier_tags="marisaResistance" blocked_tags="noMods" type="attachment">
@@ -3070,7 +3246,7 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".035"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11S3MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR11S3MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods,padded" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorCustomizedFittings"/>
             <property name="CustomIconTint" value="#BA55D3"/>
@@ -3082,66 +3258,39 @@
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".045"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR11S3HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="medicalBloodBag"/>
-            <property name="CustomIconTint" value="#BA55D3"/>
-            <property name="EconomicValue" value="27100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="HealthMax" operation="base_add" value="30"/>
-			</effect_group>
-		</item_modifier>
-		<!-- *** mod R11 clothe -->
-		<item_modifier name="ModR11S3ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modCarryCapacity"/>
-			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
-            <property name="CustomIcon" value="backpackMedium"/>
-            <property name="CustomIconTint" value="#BA55D3"/>
-            <property name="EconomicValue" value="27100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="43"/>
-			<effect_group tiered="false">
-				<passive_effect name="CarryCapacity" operation="base_add" value="5"/>
-				<display_value name="dCarryCapacity" value="5"/>
-			</effect_group>
-		</item_modifier>
 
         <!-- *** mod R12 weapon -->
-		<item_modifier name="ModR12B4Degradation" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12B4HarvestOreWood" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeStructuralBrace"/>
+			<property name="CustomIcon" value="rock07"/>
             <property name="CustomIconTint" value="#FFA500"/>
             <property name="EconomicValue" value="37100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
-					<passive_effect name="DegradationPerUse" operation="base_set" value="0"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".8" tags="oreWoodHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12B4Harvest" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12B4HarvestSalvage" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modMeleeSerratedBlade"/>
+			<property name="CustomIcon" value="resourceMechanicalParts"/>
             <property name="CustomIconTint" value="#FFA500"/>
             <property name="EconomicValue" value="37100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="HarvestCount" operation="perc_add" value=".8"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".8" tags="salvageHarvest"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12B4ReloadSpeed" installable_tags="weapon,tool" modifier_tags="marisaReloadSpeed" blocked_tags="noMods,perkArchery" type="attachment">
+		<item_modifier name="ModR12B4HarvestButcher" installable_tags="tool,melee" modifier_tags="marisaHarvest" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modArmorBandolier"/>
+			<property name="CustomIcon" value="resourceBone"/>
             <property name="CustomIconTint" value="#FFA500"/>
             <property name="EconomicValue" value="37100"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
-				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".3"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".8" tags="butcherHarvest"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12B4BuffShocked" installable_tags="weapon,tool" modifier_tags="marisaAddBuff" blocked_tags="noMods" type="attachment">
@@ -3156,6 +3305,17 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffShocked"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR12B4GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="EconomicValue" value="37100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<passive_effect name="MagazineSize" operation="perc_add" value=".875"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR12S4HealthFullDamage" installable_tags="weapon,tool" modifier_tags="marisaDamageHealthFull" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="plantedPumpkin3Harvest"/>
@@ -3165,6 +3325,17 @@
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
 				<passive_effect name="DamageModifier" operation="perc_add" value=".2"><requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/></passive_effect>
+			</effect_group>
+		</item_modifier>
+		<item_modifier name="ModR12S4DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
+            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="EconomicValue" value="37100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S4DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
@@ -3177,17 +3348,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="MagazineSize" operation="perc_add" value="2"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.55"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR12S4DamageModifier" installable_tags="weapon,tool" modifier_tags="marisaDamageModifier" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="modGunMeleeTheHunter"/>
-            <property name="CustomIconTint" value="#FFA500"/>
-            <property name="EconomicValue" value="37100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S4BowIntensify" installable_tags="perkArchery" modifier_tags="marisaDamage,velocity" blocked_tags="noMods" type="attachment">
@@ -3226,6 +3386,28 @@
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R12 armor -->
+		<item_modifier name="ModR12B4ReloadSpeed" installable_tags="armorChest,armorLegs" modifier_tags="marisaReloadSpeed,ammo" blocked_tags="noMods,perkArchery" type="attachment">
+			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+			<property name="CustomIcon" value="modArmorBandolier"/>
+            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="EconomicValue" value="37100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="4"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedChest" operation="set" value="0"/>
+			</effect_group>
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="armorLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierLegs"/>
+					<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="4"/>
+					<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffReloadSpeedLegs" operation="set" value="0"/>
+			</effect_group>
+		</item_modifier>
 		<item_modifier name="ModR12B4ArmorPlate" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods,heavyArmor" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorPlatingBasic"/>
@@ -3246,17 +3428,6 @@
             <property name="Weight" value="86"/>
 			<effect_group tiered="false">
 				<passive_effect name="ElementalDamageResist" operation="base_add" value="4"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR12B4StaminaChangeOTRun" installable_tags="armorFeet" modifier_tags="marisaStaminaChangeOT" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="apparelRunningShoesRegular"/>
-            <property name="CustomIconTint" value="#FFA500"/>
-            <property name="EconomicValue" value="37100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".24" tags="running"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12B4StaminaMax" installable_tags="armorChest" modifier_tags="marisaStaminaMax" blocked_tags="noMods" type="attachment">
@@ -3281,7 +3452,7 @@
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".04"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="ModR12S4MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods" type="attachment">
+		<item_modifier name="ModR12S4MobilityStaminaChangeOT" installable_tags="armor" modifier_tags="marisaStaminaChangeOT,movement" blocked_tags="noMods,padded" type="attachment">
 			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 			<property name="CustomIcon" value="modArmorCustomizedFittings"/>
             <property name="CustomIconTint" value="#FFA500"/>
@@ -3291,17 +3462,6 @@
 			<effect_group tiered="false">
 				<passive_effect name="Mobility" operation="perc_add" value=".05"/>
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".05"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR12S4HealthMax" installable_tags="armorChest" modifier_tags="marisaHealthMax" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
-			<property name="CustomIcon" value="medicalBloodBag"/>
-            <property name="CustomIconTint" value="#FFA500"/>
-            <property name="EconomicValue" value="37100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="HealthMax" operation="base_add" value="50"/>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR12S2JumpStrength" installable_tags="armorFeet" modifier_tags="marisaJumpStrength,falldamage" blocked_tags="noMods" type="attachment">
@@ -3317,33 +3477,6 @@
 			<effect_group tiered="false">
 				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffImpactBracing"/>
 				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffImpactBracing"/>
-			</effect_group>
-		</item_modifier>
-		<item_modifier name="ModR12S2MuffledConnectors" installable_tags="armor" modifier_tags="stealth" blocked_tags="noMods,padded" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modNoiseReduction"/>
-            <property name="CustomIcon" value="modArmorAdvancedMuffledConnectors"/>
-            <property name="CustomIconTint" value="#FFA500"/>
-            <property name="EconomicValue" value="37100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.12"/><display_value name="dNoiseMultiplier" value="-.12"/>
-			</effect_group>
-		</item_modifier>
-		<!-- *** mod R12 clothe -->
-		<item_modifier name="ModR12S4ClothingStoragePocket" installable_tags="pocketMod" modifier_tags="carryweight" blocked_tags="noMods" type="attachment">
-			<property name="Extends" value="modGeneralMaster"/>
-			<property name="DisplayType" value="modCarryCapacity"/>
-			<property name="Group" value="Mods,Tool/Weapon Mods,clothing"/>
-            <property name="CustomIcon" value="backpackMedium"/>
-            <property name="CustomIconTint" value="#FFA500"/>
-            <property name="EconomicValue" value="37100"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-			<effect_group tiered="false">
-				<passive_effect name="CarryCapacity" operation="base_add" value="6"/>
-				<display_value name="dCarryCapacity" value="6"/>
 			</effect_group>
 		</item_modifier>
 

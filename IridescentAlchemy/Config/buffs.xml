@@ -3,6 +3,46 @@
 	<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
 		<requirement name="ProgressionLevel" progression_name="perkBarBrawling7BoozedUp" operation="Equals" value="0"/>
 	</append>
+	<append xpath="/buffs/buff[@name='buffBandolierChest']">
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedChest" operation="Equals" value="1"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".05"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedChest" operation="Equals" value="2"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".10"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedChest" operation="Equals" value="3"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedChest" operation="Equals" value="4"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".2"/>
+		</effect_group>
+	</append>
+	<append xpath="/buffs/buff[@name='buffBandolierLegs']">
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBandolierChest"/>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedLegs" operation="Equals" value="1"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".05"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBandolierChest"/>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedLegs" operation="Equals" value="2"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".10"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBandolierChest"/>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedLegs" operation="Equals" value="3"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="!HasBuff" buff="buffBandolierChest"/>
+			<requirement name="CVarCompare" cvar=".buffReloadSpeedLegs" operation="Equals" value="4"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".2"/>
+		</effect_group>
+	</append>
 
 	<append xpath="/buffs">
 
