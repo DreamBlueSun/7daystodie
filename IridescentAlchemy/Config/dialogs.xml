@@ -1,0 +1,49 @@
+<Marisa>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/statement[@id='start']/response_entry[@id='jobshave6']">
+        <response_entry id="jobshave7" />
+    </insertAfter>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/statement[@id='currentjobs6']/response_entry[@id='jobsprev1']">
+        <response_entry id="jobsnext7" uniqueid="next" />
+    </insertAfter>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/statement[@id='currentjobs6']">
+		<statement id="currentjobs7" text="dialog_trader_statement_currentjobs" nextstatementid="start" >
+			<quest_entry listindex="0" tier="7" />
+			<quest_entry listindex="1" tier="7" />
+			<quest_entry listindex="2" tier="7" />
+			<quest_entry listindex="3" tier="7" />
+			<quest_entry listindex="4" tier="7" />
+
+			<response_entry id="jobsprev6" uniqueid="prev" />
+			<response_entry id="jobsprev5" uniqueid="prev" />
+			<response_entry id="jobsprev4" uniqueid="prev" />
+			<response_entry id="jobsprev3" uniqueid="prev" />
+			<response_entry id="jobsprev2" uniqueid="prev" />
+			<response_entry id="jobsprev1" uniqueid="prev" />
+
+			<response_entry id="nevermind" />
+		</statement>
+    </insertAfter>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/response[@id='jobshave6']">
+		<response id="jobshave7" text="dialog_trader_response_jobshave" nextstatementid="currentjobs7" >
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" />
+			<requirement type="QuestTierHighest" value="7" requirementtype="Hide" />
+			<action type="AddJournalEntry" id="questTip" />
+		</response>
+    </insertAfter>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/response[@id='jobsprev5']">
+		<response id="jobsprev6" text="dialog_trader_response_prevtier" nextstatementid="currentjobs6" >
+			<requirement type="QuestTier" value="6" requirementtype="Hide" />
+		</response>
+    </insertAfter>
+
+    <insertAfter xpath="/dialogs/dialog[@id='trader']/response[@id='jobsnext6']">
+		<response id="jobsnext7" text="dialog_trader_response_nexttier" nextstatementid="currentjobs7" >
+			<requirement type="QuestTier" value="7" requirementtype="Hide" />
+		</response>
+    </insertAfter>
+</Marisa>
