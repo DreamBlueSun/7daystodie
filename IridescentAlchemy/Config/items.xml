@@ -1001,17 +1001,26 @@
             <property name="Group" value="Resources"/>
         </item>
         <item name="resourceIridescentCubeSuper">
-            <property name="Extends" value="partsMaster"/>
-            <property name="Tags" value="parts"/>
-            <property name="ItemTypeIcon" value="gunsmithing"/>
+            <property name="Extends" value="resourceIridescentCube"/>
             <property name="DescriptionKey" value="resourceIridescentCubeSuperDesc"/>
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="EconomicValue" value="180"/>
-            <property name="Weight" value="1"/>
-            <property name="Stacknumber" value="10000"/>
             <property name="CustomIcon" value="glassBusinessBlock"/>
-            <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="Group" value="Resources"/>
+        </item>
+        <item name="resourceCrimsonGold">
+            <property name="Extends" value="resourceIridescentCube"/>
+            <property name="DescriptionKey" value="resourceCrimsonGoldDesc"/>
+            <property name="Material" value="MCrimsonGold"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="resourceGoldNugget"/>
+            <property name="CustomIconTint" value="#6D0F0F"/>
+        </item>
+        <item name="resourcePentagonalCube">
+            <property name="Extends" value="resourceIridescentCube"/>
+            <property name="DescriptionKey" value="resourcePentagonalCubeDesc"/>
+            <property name="Material" value="MPentagonalCube"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="shapeWedgeTipHalfCorner"/>
         </item>
 
         <!-- ** ammo se -->
@@ -21868,29 +21877,32 @@
                 <display_value name="dPlayerExpGain" value=".15"/>
             </effect_group>
         </item>
+        <!-- ** special item S5+ -->
         <item name="IridescentAviatorGoggles">
             <property name="Extends" value="apparelShades"/>
             <property name="DisplayType" value="ui_IridescentAviatorGoggles"/>
             <property name="CustomIcon" value="apparelAviatorGoggles"/>
             <property name="CustomIconTint" value="#FF66B2"/>
-            <property name="EconomicValue" value="1600"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="11"/>
+            <property name="EconomicValue" value="8000"/>
+            <property name="Material" value="MPentagonalCube"/>
+            <property name="Weight" value="2"/>
             <property class="UMA">
                 <property name="Mesh" value="aviator_goggles"/>
                 <property name="Overlay0" value="aviator_goggles"/>
             </property>
             <effect_group tiered="false">
                 <passive_effect name="ModSlots" operation="base_set" value="0"/>
+                <passive_effect name="AttributeLevel" operation="base_add" value="1,2.2"/>
                 <passive_effect name="LootStage" operation="base_add" value="7,15.2"/>
-                <passive_effect name="TreasureBlocksPerReduction" operation="base_add" value="-2"/>
+                <passive_effect name="TreasureBlocksPerReduction" operation="base_add" value="-1"/>
                 <passive_effect name="CraftingTime" operation="perc_add" value="-.25"/>
                 <passive_effect name="PlayerExpGain" operation="perc_add" value=".15"/>
-                <display_value name="dTreasureBlocksPerReduction" value="-2"/>
+                <display_value name="dTreasureBlocksPerReduction" value="-1"/>
                 <display_value name="dCraftingTime" value="-.25"/>
                 <display_value name="dPlayerExpGain" value=".15"/>
             </effect_group>
         </item>
+
         <!-- ** special item S6 -->
 		<item name="IridescentToolNailGun">
 			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
@@ -21943,7 +21955,7 @@
 				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.6" tags="perkMiner69r"/>
 				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".6" tags="perkMiner69r"/>
 
-				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModSlots" operation="base_set" value="5,5,5,5,5,5" tier="1,2,3,4,5,6"/>
 				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 				<passive_effect name="BlockDamage" operation="base_add" value="49.9" tags="perkMiner69r"/>
