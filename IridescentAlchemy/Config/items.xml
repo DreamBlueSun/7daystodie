@@ -24087,6 +24087,19 @@
 				<property name="Create_item_count" value="1-6"/>
             </property>
         </item>
+        <item name="BundleCreateIridescentToolNailGun2">
+			<property name="Extends" value="questRewardBundleMaster"/>
+			<property name="CreativeMode" value="Player"/>
+			<property name="CustomIcon" value="bundleSecurity"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="ItemTypeIcon" value="bundle"/>
+            <property name="Stacknumber" value="500"/>
+            <property name="DescriptionKey" value="BundleCreateIridescentToolNailGun2Desc"/>
+            <property class="Action0">
+				<property name="Create_item" value="IridescentToolNailGun2"/>
+				<property name="Create_item_count" value="1-6"/>
+            </property>
+        </item>
 
         <!-- *** special item make -->
         <!-- ** special item S1 -->
@@ -24687,6 +24700,70 @@
 				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
 				<passive_effect name="BlockDamage" operation="base_add" value="49.9" tags="perkMiner69r"/>
 				<passive_effect name="BlockDamage" operation="base_add" value="10,50" tier="2,6" tags="perkMiner69r"/> <!-- tier bonus -->
+			</effect_group>
+		</item>
+		<item name="IridescentToolNailGun2">
+			<property name="Extends" value="meleeToolRepairT3Nailgun"/>
+            <property name="DisplayType" value="ui_IridescentToolNailGun"/>
+			<property name="Tags" value="nailgun,repairTool,repairingSkill,melee,heavy,tool,motorTool,attStrength,perkMiner69r,perkMotherLode,miningTool,canHaveCosmetic,harvestingSkill,blunt,grunting,light,attPerception,perkSalvageOperations,salvagingSkill"/>
+			<property name="CustomIcon" value="meleeToolRepairT3Nailgun"/>
+			<property name="CustomIconTint" value="#6D0F0F"/>
+            <property name="EconomicValue" value="6400"/>
+            <property name="Material" value="MCrimsonGold"/>
+            <property name="Weight" value="2"/>
+
+			<property class="Action0">
+				<property name="Class" value="Ranged"/>
+				<property name="Hitmask_override" value="Melee"/>
+				<property name="UseMeleeCrosshair" value="true"/>
+				<property name="Single_magazine_usage" value="false"/>
+				<property name="Magazine_items" value="resourceNail"/>
+				<property name="bullet_material" value="metal"/>
+				<property name="Reload_time" value="2"/>
+				<property name="Sound_start" value="nailgun_fire"/>
+				<property name="Particles_muzzle_fire" value="nailgunfire"/>
+				<property name="Sound_loop" value="nailgun_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_empty" value="dryfire"/>
+				<property name="Sound_reload" value="nailgun_reload"/>
+				<property name="AutoReload" value="false"/>
+				<property name="SupportHarvesting" value="true"/>
+                <property name="ToolCategory.harvestingTools" value=".5" param1="1"/>
+                <property name="ToolCategory.Disassemble" value="1" param1="1"/>
+                <property name="HarvestHitEffectOn" value="false"/>
+                <property name="UseGrazingHits" value="true"/>
+            </property>
+
+			<effect_group name="IridescentToolNailGun"> <!-- meleeToolRepairT3Nailgun -->
+				<passive_effect name="DamageFalloffRange" operation="base_set" value="3" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="MaxRange" operation="base_set" value="5" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="700,1200" tier="1,6" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="1.3"/>
+				<passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".4"/>
+				<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".8"/>
+				<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="1.5"/>
+				<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="2.2"/>
+				<display_value name="dBlockRepairAmount" value="1000"/>
+				<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="2" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="WeaponHandling" operation="base_set" value=".7" tags="perkMiner69r,perkSalvageOperations"/> <!-- crosshair reset speed -->
+				<passive_effect name="RoundsPerMinute" operation="base_set" value="257" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="BurstRoundCount" operation="base_set" value="1000" tags="perkMiner69r,perkSalvageOperations"/> <!-- for the Launcher class this instantly fires BurstRoundCount projectiles on pulling the trigger -->
+				<passive_effect name="MagazineSize" operation="base_set" value="250,500" tier="1,6"/>
+
+				<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="-.7" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="KickDegreesVerticalMax" operation="base_set" value=".7" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-.6" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value=".6" tags="perkMiner69r,perkSalvageOperations"/>
+
+				<passive_effect name="ModSlots" operation="base_set" value="6,6,6,6,6,6" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="49.9" tags="perkMiner69r,perkSalvageOperations"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="10,50" tier="2,6" tags="perkMiner69r,perkSalvageOperations"/> <!-- tier bonus -->
+
+                <passive_effect name="HarvestCount" operation="base_set" value="1" tags="salvageHarvest"/>
 			</effect_group>
 		</item>
 
