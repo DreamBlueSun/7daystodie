@@ -32,16 +32,16 @@
 
     <append xpath="/progression/skills">
 
-        <skill name="skillIridescentCombat" parent="attIridescent" name_key="skillIridescentCombatName" desc_key="skillIridescentCombatDesc" icon="ui_game_symbol_shotgun"><effect_group/></skill>
+        <skill name="skillIridescentCombat" parent="attIridescent" name_key="skillIridescentCombatName" desc_key="skillIridescentCombatDesc" icon="ui_game_symbol_fire"><effect_group/></skill>
         <skill name="skillIridescentDefend" parent="attIridescent" name_key="skillIridescentDefendName" desc_key="skillIridescentDefendDesc" icon="server_cheat"><effect_group/></skill>
-        <skill name="skillIridescentOther" parent="attIridescent" name_key="skillIridescentOtherName" desc_key="skillIridescentOtherDesc" icon="ui_game_symbol_fire"><effect_group/></skill>
+        <skill name="skillIridescentOther" parent="attIridescent" name_key="skillIridescentOtherName" desc_key="skillIridescentOtherDesc" icon="ui_game_symbol_character"><effect_group/></skill>
 
     </append>
 
     <append xpath="/progression/perks">
 
         <!-- skill combat -->
-        <perk name="perkEntityDamageUp" parent="skillIridescentCombat" name_key="perkEntityDamageUpName" desc_key="perkEntityDamageUpDesc" icon="ui_game_symbol_rifle">
+        <perk name="perkEntityDamageUp" parent="skillIridescentCombat" name_key="perkEntityDamageUpName" desc_key="perkEntityDamageUpDesc" icon="ui_game_symbol_critical">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
@@ -58,6 +58,21 @@
                 <effect_description level="3" desc_key="perkEntityDamageUpRank3Desc" long_desc_key="perkEntityDamageUpRank3LongDesc"/>
                 <effect_description level="4" desc_key="perkEntityDamageUpRank4Desc" long_desc_key="perkEntityDamageUpRank4LongDesc"/>
                 <effect_description level="5" desc_key="perkEntityDamageUpRank5Desc" long_desc_key="perkEntityDamageUpRank5LongDesc"/>
+            </effect_group>
+        </perk>
+        <perk name="perkArrowAutoPick" max_level="3" parent="skillIridescentCombat" name_key="perkArrowAutoPickName" desc_key="perkArrowAutoPickDesc" icon="ui_game_symbol_hand">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="4" desc_key="reqIridescentLevel04"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="ProjectileStickChance" operation="base_set" level="1,3" value="0"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkArrowAutoPickRank1Desc" long_desc_key="perkArrowAutoPickRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkArrowAutoPickRank2Desc" long_desc_key="perkArrowAutoPickRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkArrowAutoPickRank3Desc" long_desc_key="perkArrowAutoPickRank3LongDesc"/>
             </effect_group>
         </perk>
 
@@ -140,7 +155,7 @@
                 <effect_description level="5" desc_key="perkPlayerExpGainUpRank5Desc" long_desc_key="perkPlayerExpGainUpRank5LongDesc"/>
             </effect_group>
         </perk>
-        <perk name="perkFoodLossPerDownHealthPointGained" parent="skillIridescentOther" name_key="perkFoodLossPerDownHealthPointGainedName" desc_key="perkFoodLossPerDownHealthPointGainedDesc" icon="ui_game_symbol_block_repair">
+        <perk name="perkFoodLossPerDownHealthPointGained" parent="skillIridescentOther" name_key="perkFoodLossPerDownHealthPointGainedName" desc_key="perkFoodLossPerDownHealthPointGainedDesc" icon="ui_game_symbol_spatula">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="2" desc_key="reqIridescentLevel02"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
