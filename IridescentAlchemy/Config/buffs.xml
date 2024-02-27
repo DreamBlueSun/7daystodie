@@ -375,6 +375,14 @@
 
 
 
+		<!-- buff mod -->
+		<buff name="buffModFriendlyTips" name_key="buffModFriendlyTipsName" description_key="buffModFriendlyTipsDesc" showonhud="true" icon="server_peer" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+		</buff>
+
+
+
 		<!-- buff progression skill -->
 		<buff name="buffPerkPlayerExpGainDown" hidden="true">
 			<stack_type value="replace"/>
@@ -409,6 +417,14 @@
 	</append>
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- refresh ArmorPathFinder -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".buffModFriendly" operation="GTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModFriendlyTips" target="selfOtherPlayers" target_tags="ally,party"/>
+		</effect_group>
+
+
 
 		<!-- refresh ArmorPathFinder -->
 		<effect_group>
