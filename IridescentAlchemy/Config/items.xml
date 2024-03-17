@@ -20865,7 +20865,7 @@
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
 			<property name="CustomIcon" value="bundleDartTrap"/>
-            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="CustomIconTint" value="#6D0F0F"/>
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="Stacknumber" value="500"/>
             <property name="DescriptionKey" value="BundleCreateBowCompoundS13P1Desc"/>
@@ -21481,7 +21481,7 @@
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
 			<property name="CustomIcon" value="bundleRevolver"/>
-            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="CustomIconTint" value="#6D0F0F"/>
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="Stacknumber" value="500"/>
             <property name="DescriptionKey" value="BundleCreateGunSmg5S13P1Desc"/>
@@ -21704,7 +21704,7 @@
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
 			<property name="CustomIcon" value="bundleRevolver"/>
-            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="CustomIconTint" value="#6D0F0F"/>
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="Stacknumber" value="500"/>
             <property name="DescriptionKey" value="BundleCreateGunMagnum44S13P1Desc"/>
@@ -21888,7 +21888,7 @@
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
 			<property name="CustomIcon" value="bundleRevolver"/>
-            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="CustomIconTint" value="#6D0F0F"/>
             <property name="ItemTypeIcon" value="bundle"/>
             <property name="Stacknumber" value="500"/>
             <property name="DescriptionKey" value="BundleCreateGunDesertVultureS13P1Desc"/>
@@ -25212,6 +25212,19 @@
 				<property name="Create_item_count" value="1-6"/>
             </property>
         </item>
+        <item name="BundleCreateIridescentMeleeCandyKnifeFoodWater">
+			<property name="Extends" value="questRewardBundleMaster"/>
+			<property name="CreativeMode" value="Player"/>
+			<property name="CustomIcon" value="bundleSecurity"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="ItemTypeIcon" value="bundle"/>
+            <property name="Stacknumber" value="500"/>
+            <property name="DescriptionKey" value="BundleCreateIridescentMeleeCandyKnifeFoodDesc"/>
+            <property class="Action0">
+				<property name="Create_item" value="IridescentMeleeCandyKnifeFoodWater"/>
+				<property name="Create_item_count" value="1-6"/>
+            </property>
+        </item>
         <item name="BundleCreateIridescentMeleeCandyClub">
 			<property name="Extends" value="questRewardBundleMaster"/>
 			<property name="CreativeMode" value="Player"/>
@@ -25431,6 +25444,57 @@
 			</effect_group>
 		</item>
         <!-- ** special item S3 -->
+		<item name="IridescentMeleeCandyKnifeFoodWater">
+			<property name="Extends" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="400"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="22"/>
+
+			<effect_group name="IridescentMeleeCandyKnifeFoodWater">
+				<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="8.2" tags="primary"/>
+				<passive_effect name="DegradationMax" operation="base_set" value="50,100" tier="1,6" tags="perkDeepCuts"/>
+				<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+				<passive_effect name="MaxRange" operation="base_set" value="2.0" tags="perkDeepCuts"/>
+				<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+				<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,5" tier="1,2,3,4,5,6"/>
+				<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+				<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+				<passive_effect name="EntityDamage" operation="base_set" value="13" tags="perkDeepCuts,knife"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="1,5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="BlockDamage" operation="base_set" value="6.5" tags="perkDeepCuts"/>
+				<passive_effect name="BlockDamage" operation="base_add" value=".5,2.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="stone"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="metal"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".6" tags="organic"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+			</effect_group>
+			<effect_group name="Power Attack">
+				<passive_effect name="EntityDamage" operation="base_add" value="6.7" tags="secondary"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+				<passive_effect name="StaminaLoss" operation="base_set" value="12.3" tags="secondary"/>
+			</effect_group>
+			<effect_group name="sneak damage bonus">
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+					<passive_effect name="DamageBonus" operation="base_add" value="2"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value="2" tags="perkDeepCuts"/>
+					<display_value name="dEntityDamageSneak" value="2"/>
+			</effect_group>
+			<effect_group tiered="false" name="Food Tier 0">
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfHarvestBlock" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfHarvestBlock" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+		</item>
         <item name="IridescentMeleeCandyClub">
 			<property name="Extends" value="meleeWpnClubT1CandyClub"/>
 			<property name="CustomIcon" value="meleeWpnClubT1CandyClub"/>
