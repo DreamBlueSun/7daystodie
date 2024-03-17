@@ -458,6 +458,39 @@
 			</effect_group>
 		</buff>
 
+
+
+		<!-- buff entity -->
+		<buff name="buffRabbit" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".7"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="50" target_tags="player" buff="buffRabbitOtherJumpStrength"/>
+			</effect_group>
+		</buff>
+		<buff name="buffRabbitOtherJumpStrength" name_key="buffRabbitOtherJumpStrengthName" description_key="buffRabbitOtherJumpStrengthDesc" showonhud="true" icon="server_z_always_run" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="JumpStrength" operation="perc_add" value="2.65"/>
+			</effect_group>
+		</buff>
+
+		<buff name="buffChicken" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".7"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="50" target_tags="player" buff="buffChickenOtherDash"/>
+			</effect_group>
+		</buff>
+		<buff name="buffChickenOtherDash" name_key="buffChickenOtherDashName" description_key="buffChickenOtherDashDesc" showonhud="true" icon="server_z_always_run" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".25"/>
+			</effect_group>
+		</buff>
+
 	</append>
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
