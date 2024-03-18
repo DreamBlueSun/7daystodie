@@ -385,7 +385,9 @@
 			<update_rate value=".7"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar=".buffModBuffFireAoeEffect" operation="set" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="10">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="10"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 		<buff name="buffModBuffFireAoe30" name_key="buffModBuffFireAoe30Name" description_key="buffModBuffFireAoe30Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
@@ -393,7 +395,9 @@
 			<update_rate value=".7"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar=".buffModBuffFireAoeEffect" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="30">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="30"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 		<buff name="buffModBuffFireAoe60" name_key="buffModBuffFireAoe60Name" description_key="buffModBuffFireAoe60Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
@@ -401,7 +405,9 @@
 			<update_rate value=".7"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar=".buffModBuffFireAoeEffect" operation="set" value="60"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="60">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="60"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 		<buff name="buffModBuffFireAoe100" name_key="buffModBuffFireAoe100Name" description_key="buffModBuffFireAoe100Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
@@ -409,7 +415,9 @@
 			<update_rate value=".7"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar=".buffModBuffFireAoeEffect" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="100"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 		<buff name="buffModBuffFireAoeEffect" hidden="true">
@@ -417,7 +425,7 @@
 			<update_rate value="1"/>
 			<duration value="10"/>
 			<effect_group>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@.buffModBuffFireAoeEffect"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@@buffModBuffFireAoeEffect"/>
 
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
@@ -495,9 +503,9 @@
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
-		<!-- refresh ArmorPathFinder -->
+		<!-- refresh ModFriendly -->
 		<effect_group>
-			<requirement name="CVarCompare" cvar=".buffModFriendly" operation="GTE" value="0"/>
+			<requirement name="CVarCompare" cvar=".buffModFriendly" operation="GT" value="0"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModFriendlyTips" target="selfOtherPlayers" target_tags="ally,party"/>
 		</effect_group>
 
