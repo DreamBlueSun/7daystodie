@@ -1804,8 +1804,10 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffModBuffFireAoeL1"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffModBuffFireAoeL1"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="2">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="2"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R1 armor -->
@@ -2021,8 +2023,10 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffModBuffFireAoeL2"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffModBuffFireAoeL2"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="5">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="5"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R3 armor -->
@@ -2765,8 +2769,10 @@
 					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffModBuffFireAoeL3"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffModBuffFireAoeL3"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="15">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="15"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3KillExp" installable_tags="weapon,tool" modifier_tags="marisaKillExp" blocked_tags="noMods" type="attachment">
@@ -3044,9 +3050,12 @@
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement"/>
 			</effect_group>
 			<effect_group tiered="false">
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" target="self" buff="buffModBuffFireAoeL4"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" target="self" buff="buffModBuffFireAoeL4"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="45">
+					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="45"/>
+				</triggered_effect>
 			</effect_group>
+
 		</item_modifier>
 		<item_modifier name="ModR10B4KillExp" installable_tags="weapon,tool" modifier_tags="marisaKillExp" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>

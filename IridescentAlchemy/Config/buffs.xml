@@ -380,50 +380,10 @@
 			<stack_type value="replace"/>
 			<duration value="10"/>
 		</buff>
-		<buff name="buffModBuffFireAoeL1" name_key="buffModBuffFireAoeL1Name" description_key="buffModBuffFireAoeL1Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<update_rate value=".7"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="2">
-					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="10"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffModBuffFireAoeL2" name_key="buffModBuffFireAoeL2Name" description_key="buffModBuffFireAoeL2Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<update_rate value=".7"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="5">
-					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="30"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffModBuffFireAoeL3" name_key="buffModBuffFireAoeL3Name" description_key="buffModBuffFireAoeL3Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<update_rate value=".7"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="15">
-					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="60"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffModBuffFireAoeL4" name_key="buffModBuffFireAoeL4Name" description_key="buffModBuffFireAoeL4Desc" showonhud="true" icon="ui_game_symbol_fire" icon_color="0,255,0">
-			<stack_type value="replace"/>
-			<update_rate value=".7"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="30" target_tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="30" target_tags="animal,zombie" cvar="@buffModBuffFireAoeEffect" operation="set" value="45">
-					<requirement name="CVarCompare" cvar="@buffModBuffFireAoeEffect" target="other" operation="LT" value="100"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
 		<buff name="buffModBuffFireAoeEffect" hidden="true">
 			<stack_type value="replace"/>
 			<update_rate value="1"/>
-			<duration value="10"/>
+			<duration value="60"/>
 			<effect_group>
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@@buffModBuffFireAoeEffect"/>
 
