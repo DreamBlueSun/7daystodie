@@ -1,10 +1,10 @@
 <Marisa>
 
-<!--    <set xpath="/progression/level/@exp_to_level">1000</set>-->
-<!--    <set xpath="/progression/level/@experience_multiplier">1.13</set>-->
-<!--    <set xpath="/progression/level/@clamp_exp_cost_at_level">50</set>-->
+    <set xpath="/progression/level/@exp_to_level">1000</set>
+    <set xpath="/progression/level/@experience_multiplier">1.13</set>
+    <set xpath="/progression/level/@clamp_exp_cost_at_level">50</set>
 
-    <append xpath="/progression/attributes">
+    <insertAfter xpath="/progression/attributes/attribute[@name='attIntellect']">
 
         <attribute name="attIridescent" name_key="attIridescentName" desc_key="attIridescentDesc" icon="ui_game_symbol_tea">
             <level_requirements level="1"><requirement name="PlayerLevel" operation="GTE" value="1" desc_key="reqGenericPoints01"/></level_requirements>
@@ -32,7 +32,7 @@
             </effect_group>
         </attribute>
 
-    </append>
+    </insertAfter>
 
     <append xpath="/progression/skills">
 
@@ -89,7 +89,25 @@
             <effect_group>
                 <requirement name="ItemHasTags" tags="perkFlurryOfAgility"/>
                     <passive_effect name="TargetArmor" operation="perc_add" level="1,5" value="-.2,-1"/>
-                    <passive_effect name="NoiseMultiplier" operation="perc_add" level="1,5" value="-.05,-.2"/>
+                    <passive_effect name="NoiseMultiplier" operation="perc_add" level="1,5" value="-.1,-.5"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ItemHasTags" tags="perkFlurryOfAgility"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="5">
+                        <requirement name="ProgressionLevel" progression_name="perkPowerOfAgility" operation="Equals" value="1"/>
+                    </triggered_effect>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="10">
+                        <requirement name="ProgressionLevel" progression_name="perkPowerOfAgility" operation="Equals" value="2"/>
+                    </triggered_effect>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="15">
+                        <requirement name="ProgressionLevel" progression_name="perkPowerOfAgility" operation="Equals" value="3"/>
+                    </triggered_effect>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="20">
+                        <requirement name="ProgressionLevel" progression_name="perkPowerOfAgility" operation="Equals" value="4"/>
+                    </triggered_effect>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Stamina" operation="add" value="30">
+                        <requirement name="ProgressionLevel" progression_name="perkPowerOfAgility" operation="Equals" value="5"/>
+                    </triggered_effect>
             </effect_group>
 
             <effect_group>
