@@ -925,11 +925,7 @@
 			<property name="ExperienceGain" value="1500"/>
 			<property name="LootDropProb" value=".4"/>
 
-			<property name="Explosion.RadiusBlocks" value="7"/>
-			<property name="Explosion.RadiusEntities" value="8"/>
-			<property name="Explosion.BlockDamage" value="5000"/>
-			<property name="Explosion.EntityDamage" value="1200"/>
-			<property name="ExplodeDelay" value="3"/>
+			<property name="ExplodeDelay" value="1"/>
 
 			<effect_group name="Base Effects">
 				<passive_effect name="TargetArmor" operation="perc_add" value="-.2"/>
@@ -949,11 +945,7 @@
 			<property name="ExperienceGain" value="3000"/>
 			<property name="LootDropProb" value=".5"/>
 
-			<property name="Explosion.RadiusBlocks" value="9"/>
-			<property name="Explosion.RadiusEntities" value="10"/>
-			<property name="Explosion.BlockDamage" value="5000"/>
-			<property name="Explosion.EntityDamage" value="1600"/>
-			<property name="ExplodeDelay" value="4"/>
+			<property name="ExplodeDelay" value="0.2"/>
 
 			<effect_group name="Base Effects">
 				<passive_effect name="TargetArmor" operation="perc_add" value="-.3"/>
@@ -964,6 +956,9 @@
 				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="16"/>
 				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
 			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-2"/>
+            </effect_group>
 		</entity_class>
 
 
