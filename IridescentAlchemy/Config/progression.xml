@@ -158,6 +158,25 @@
                 <effect_description level="5" desc_key="perkStaminaMaxUpRank5Desc" long_desc_key="perkStaminaMaxUpRank5LongDesc"/>
             </effect_group>
         </perk>
+        <perk name="perkConfidentNature" parent="skillIridescentDefend" name_key="perkConfidentNatureName" desc_key="perkConfidentNatureDesc" icon="ui_game_symbol_muscle">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="7" desc_key="reqIridescentLevel07"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="10" desc_key="reqIridescentLevel10"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="HealthChangeOT" operation="base_add" level="1,5" value=".04,.2"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkConfidentNatureRank1Desc" long_desc_key="perkConfidentNatureRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkConfidentNatureRank2Desc" long_desc_key="perkConfidentNatureRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkConfidentNatureRank3Desc" long_desc_key="perkConfidentNatureRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkConfidentNatureRank4Desc" long_desc_key="perkConfidentNatureRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkConfidentNatureRank5Desc" long_desc_key="perkConfidentNatureRank5LongDesc"/>
+            </effect_group>
+        </perk>
 
         <!-- skill other -->
         <perk name="perkPlayerExpGainDown" parent="skillIridescentOther" name_key="perkPlayerExpGainDownName" desc_key="perkPlayerExpGainDownDesc" icon="ui_game_symbol_block_damage">
@@ -207,7 +226,7 @@
 
             <effect_group>
                 <passive_effect name="FoodLossPerHealthPointGained" operation="perc_add" level="1,2,3,4,5" value="-.5,-1,-1,-1,-1"/>
-                <passive_effect name="HealthChangeOT" operation="base_add" level="1,5" value=".1,.5"/>
+                <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3,4,5" value="0,0,.1,.2,.3"/>
             </effect_group>
 
             <effect_group>
@@ -219,6 +238,46 @@
             </effect_group>
         </perk>
 
+    </append>
+
+    <append xpath="/progression/perks/perk[@name='perkCharismaticNature']/effect_group/triggered_effect">
+		<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="LT" value="1"/>
+    </append>
+    <append xpath="/progression/perks/perk[@name='perkCharismaticNature']/effect_group">
+		<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="1">
+			<requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="Equals" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="1"/>
+			<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="LT" value="1"/>
+		</triggered_effect>
+
+		<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="2">
+			<requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="Equals" value="2"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="2"/>
+			<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="LT" value="2"/>
+		</triggered_effect>
+
+		<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="3">
+			<requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="Equals" value="3"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="3"/>
+			<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="LT" value="3"/>
+		</triggered_effect>
+
+		<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="4">
+			<requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="GTE" value="4"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="4"/>
+			<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="LT" value="4"/>
+		</triggered_effect>
+
+		<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="5">
+			<requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="GTE" value="5"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="5"/>
+			<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="LT" value="5"/>
+		</triggered_effect>
+
+		<triggered_effect trigger="onSelfProgressionUpdate" action="AddBuff" buff="buffPerkCharismaticNature">
+            <requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="GTE" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkConfidentNature" operation="GTE" value="1"/>
+        </triggered_effect>
     </append>
 
 </Marisa>
