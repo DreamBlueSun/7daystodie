@@ -1800,12 +1800,11 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="2"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="2">
-						<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="2"/>
-					</triggered_effect>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="2">
+					<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="2"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R1 armor -->
@@ -2018,12 +2017,11 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="6"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="5">
-						<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="5"/>
-					</triggered_effect>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="5">
+					<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="5"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
         <!-- *** mod R3 armor -->
@@ -2763,12 +2761,11 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="11"/>
 			<effect_group tiered="false">
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="80"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="15">
-						<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="15"/>
-					</triggered_effect>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffBurningElement" duration="60"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,zombie" buff="buffModBuffFireAoeEffect"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" target="other" target_tags="animal,zombie" cvar="buffModBuffFireAoeEffect" operation="set" value="15">
+					<requirement name="CVarCompare" cvar="buffModBuffFireAoeEffect" target="other" operation="LT" value="15"/>
+				</triggered_effect>
 			</effect_group>
 		</item_modifier>
 		<item_modifier name="ModR9B3KillExp" installable_tags="weapon,tool" modifier_tags="marisaKillExp" blocked_tags="noMods" type="attachment">
@@ -3810,6 +3807,217 @@
 			</effect_group>
 		</item_modifier>
 
+	</append>
+
+	<!-- 燃烧模组 -->
+	<append xpath="/item_modifiers/item_modifier[@name='ModR1B1BuffFire' or @name='ModR3B2BuffFire' or @name='ModR9B3BuffFire' or @name='ModR10B4BuffFire']">
+		<item_property_overrides name="*">
+			<property name="LightValue" value=".25"/> <!-- has no effect on a mod -->
+			<property name="LightSource" value="lightSource"/>
+			<property name="ActivateObject" value="lightSource"/>
+			<property name="AlwaysActive" value="true"/>
+			<property name="FlameEffect" value="ItemModEffects/mod_flame_defaultPrefab"/>
+			<property name="MatEmission" value="1"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnClubT1BaseballBat">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeToolRepairT1ClawHammer">
+			<property name="FlameEffect" value="ItemModEffects/mod_hammer_firePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnSledgeT1IronSledgehammer">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnSledgeT0StoneSledgehammer">
+			<property name="FlameEffect" value="ItemModEffects/mod_stone_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnClubT3SteelClub">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeToolRepairT0StoneAxe">
+			<property name="FlameEffect" value="ItemModEffects/mod_stone_axe_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeToolAxeT1IronFireaxe">
+			<property name="FlameEffect" value="ItemModEffects/mod_fireaxe_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeToolAxeT2SteelAxe">
+			<property name="FlameEffect" value="ItemModEffects/mod_steel_axe_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnSpearT0StoneSpear">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnSpearT1IronSpear">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnSpearT3SteelSpear">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="gunBotT1JunkSledge">
+			<property name="FlameEffect" value="ItemModEffects/mod_junk_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="meleeWpnBladeT3Machete">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="MeleeMacheteS7">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS8">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS9">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS10">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS11">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS12">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeMacheteS13">
+			<property name="FlameEffect" value="ItemModEffects/mod_machete_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS1">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS2">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS3">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS4">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS5">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubBaseballBatS6">
+			<property name="FlameEffect" value="ItemModEffects/mod_bat_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS7">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS8">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS9">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS10">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS11">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS12">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeClubSteelS13">
+			<property name="FlameEffect" value="ItemModEffects/mod_club_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS1">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS2">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS3">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS4">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS5">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearIronS6">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_iron_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS7">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS8">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS9">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS10">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS11">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS12">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSpearSteelS13">
+			<property name="FlameEffect" value="ItemModEffects/mod_spear_steel_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS1">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS2">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS3">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS4">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS5">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerIronS6">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS7">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS8">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS9">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS10">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS11">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS12">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+		<item_property_overrides name="MeleeSledgehammerSteelS13">
+			<property name="FlameEffect" value="ItemModEffects/mod_sledge_flamePrefab"/>
+		</item_property_overrides>
+
+		<effect_group tiered="false" name="SpecialEffects">
+			<passive_effect name="LightMultiplier" operation="base_add" value=".28"/>
+			<passive_effect name="HypothermalResist" operation="base_add" value="4">
+				<requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+			</passive_effect>
+		</effect_group>
+		<effect_group name="light/douse torch always" tiered="false">
+			<triggered_effect trigger="onSelfWaterSurface" action="AddPart" part="Flames" prefab="property?FlameEffect" parentTransform="#HeldItemRoot"/>
+			<triggered_effect trigger="onSelfWaterSubmerge" action="RemovePart" part="Flames"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="Flames"/>
+			<triggered_effect trigger="onSelfDied" action="RemovePart" part="Flames"/>
+		</effect_group>
+		<effect_group name="light torch" tiered="false">
+			<requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+				<triggered_effect trigger="onSelfEquipStart" action="AddPart" part="Flames" prefab="property?FlameEffect" parentTransform="#HeldItemRoot"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="AddPart" part="Flames" prefab="property?FlameEffect" parentTransform="#HeldItemRoot"/>
+				<triggered_effect trigger="onSelfHoldingItemThrown" action="AddPart" part="Flames" prefab="property?FlameEffect" parentTransform="#HeldItemRoot"/>
+				<triggered_effect trigger="onSelfHoldingItemThrown" action="AttachPrefabToHeldItem" prefab="property?FlameEffect"/>
+				<triggered_effect trigger="onSelfSwimStop" action="AddPart" part="Flames" prefab="property?FlameEffect" parentTransform="#HeldItemRoot"/>
+		</effect_group>
 	</append>
 
 </Marisa>
