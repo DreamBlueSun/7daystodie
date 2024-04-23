@@ -47,7 +47,7 @@
     <append xpath="/progression/perks">
 
         <!-- skill combat -->
-        <perk name="perkEntityDamageUp" parent="skillIridescentCombat" name_key="perkEntityDamageUpName" desc_key="perkEntityDamageUpDesc" icon="ui_game_symbol_critical">
+        <perk name="perkEntityDamageUp" parent="skillIridescentCombat" name_key="perkEntityDamageUpName" desc_key="perkEntityDamageUpDesc" icon="ui_game_symbol_skull">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="3" desc_key="reqIridescentLevel03"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="5" desc_key="reqIridescentLevel05"/></level_requirements>
@@ -56,6 +56,15 @@
 
             <effect_group>
                 <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".3,.15"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ItemHasTags" tags="ranged"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".2,.10"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ItemHasTags" tags="melee"/>
+                <requirement name="!HasBuff" buff="buffDrugFortBites"/>
+                    <passive_effect name="GeneralDamageResist" operation="base_add" level="1,2,3,4,5" value=".05,.1,.2,.3,.4"/>
             </effect_group>
 
             <effect_group>
