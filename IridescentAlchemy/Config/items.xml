@@ -1970,6 +1970,22 @@
 	        <property name="Material" value="MEggGold"/>
         </item>
 
+        <!-- *** consumables -->
+        <item name="marisaConsumablesInjector">
+            <property name="DescriptionKey" value="marisaConsumablesInjectorDesc"/>
+            <property name="CustomIcon" value="drugSteroids"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="120"/>
+	        <property name="DisplayType" value="ui_MarisaConsumablesInjector"/>
+            <property name="Extends" value="drugPainkillers"/>
+            <property name="Group" value="Chemicals,CFChemicals,Science,Medical,TCMedical"/>
+            <effect_group tiered="false">
+                <display_value name="foodHealthAmount" value="-20"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" operation="add" value="-20"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd"  action="CallGameEvent" event="marisaConsumablesInjector" allow_client_call="true"/>
+            </effect_group>
+        </item>
+
         <!-- *** weapon ranged -->
         <!-- ** weapon ranged Bow -->
 		<item name="BowWoodenS1">
