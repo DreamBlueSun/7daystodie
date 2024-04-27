@@ -1063,7 +1063,7 @@
 			<property name="UserSpawnType" value="Menu"/>
 			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03"/>
 
-			<property name="SizeScale" value="1.2"/>
+			<property name="SizeScale" value="1.4"/>
 
 			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
 			<property name="HandItem" value="HandEntityBossAnimalDireWolf"/>
@@ -1152,7 +1152,7 @@
 
 			<property name="DeadBodyHitPoints" value="2400"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
-			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="100"/> <!-- animalBear -->
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="100"/>
 			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="50"/>
 			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="20"/>
 			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="80"/>
@@ -1176,7 +1176,7 @@
 			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture"/>
 
 			<property name="ParticleOnSpawn" value="ParticleEffects/RadiatedParticlesOnMesh" param1="SetShapeToMesh0"/>
-			<property name="SizeScale" value="4.5"/>
+			<property name="SizeScale" value="4.2"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalZombieVultureRadiated"/>
 
@@ -1214,7 +1214,7 @@
 			<property name="UserSpawnType" value="Menu"/>
 			<property name="Tags" value="entity,animal,rabbit,perkAT01,perkAT02,perkAT03"/>
 
-			<property name="SizeScale" value="7"/>
+			<property name="SizeScale" value="3.2"/>
 
 			<property name="DismemberMultiplierHead" value="0"/>
 			<property name="DismemberMultiplierArms" value="0"/>
@@ -1248,7 +1248,7 @@
 			<property name="UserSpawnType" value="Menu"/>
 			<property name="Tags" value="entity,animal,chicken,perkAT01,perkAT02,perkAT03"/>
 
-			<property name="SizeScale" value="7"/>
+			<property name="SizeScale" value="3.2"/>
 
 			<property name="DismemberMultiplierHead" value="0"/>
 			<property name="DismemberMultiplierArms" value="0"/>
@@ -1273,6 +1273,88 @@
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
 <!--				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffChicken"/>-->
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffRadiationPool"/>
+			</effect_group>
+		</entity_class>
+
+
+		<!-- *** quest -->
+		<entity_class name="QuestEntityBossAnimalDireWolf" extends="EntityBossAnimalDireWolf">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03,marisaBossQuest"/>
+		</entity_class>
+		<entity_class name="QuestEntityBossAnimalBear" extends="EntityBossAnimalBear">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,hostile,bear,perkAT03,marisaBossQuest"/>
+		</entity_class>
+		<entity_class name="QuestEntityBossAnimalZombieVulture" extends="EntityBossAnimalZombieVulture">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture,marisaBossQuest"/>
+		</entity_class>
+
+		<entity_class name="QuestT2EntityBossAnimalDireWolf" extends="EntityBossAnimalDireWolf">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03,marisaBossQuest"/>
+			<property name="SizeScale" value=".9"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="DeadBodyHitPoints" value="1600"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="25"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="40"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="25"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.2"/>
+				<passive_effect name="HealthMax" operation="base_set" value="3000"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="10"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffRadiationPool"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="QuestT2EntityBossAnimalBear" extends="EntityBossAnimalBear">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,hostile,bear,perkAT03,marisaBossQuest"/>
+			<property name="SizeScale" value=".7"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="DeadBodyHitPoints" value="1600"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="25"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="40"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceTestosteroneExtract" tag="butcherHarvest" count="2"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="25"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.2"/>
+				<passive_effect name="HealthMax" operation="base_set" value="3000"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="10"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffRadiationPool"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="QuestT2EntityBossAnimalZombieVulture" extends="EntityBossAnimalZombieVulture">
+    		<property name="NavObject" value="zombie" />
+			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture,marisaBossQuest"/>
+			<property name="SizeScale" value="2.4"/>
+			<property name="ExperienceGain" value="2500"/>
+			<property name="DeadBodyHitPoints" value="1600"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="25"/>
+			<drop event="Harvest" name="resourceFeather" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="40"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="25"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.2"/>
+				<passive_effect name="HealthMax" operation="base_set" value="3000"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="10"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
 				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffRadiationPool"/>
 			</effect_group>
 		</entity_class>
