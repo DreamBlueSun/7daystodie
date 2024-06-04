@@ -382,20 +382,31 @@
 
 		<!-- buff mod -->
 		<buff name="buffModImpasseBefore" name_key="buffModImpasseBeforeName" description_key="buffModImpasseBeforeDesc" showonhud="true" icon="ui_game_symbol_defense" icon_color="255,0,55">
-			<stack_type value="duration"/>
+			<stack_type value="replace"/>
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="twitch_good_buff_ended"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasse"/>
+				<requirement name="CVarCompare" cvar=".buffModImpasse" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="twitch_good_buff_ended" play_in_head="true"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseReady"/>
+			</effect_group>
+		</buff>
+		<buff name="buffModImpasseReady" name_key="buffModImpasseReadyName" description_key="buffModImpasseReadyDesc" showonhud="true" icon="ui_game_symbol_defense" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" sound="open_apache_artifact_chest" play_in_head="true"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffModImpasse" duration="3"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="RemoveBuff" buff="buffModImpasseReady"/>
 			</effect_group>
 		</buff>
 		<buff name="buffModImpasse" name_key="buffModImpasseName" description_key="buffModImpasseDesc" showonhud="true" icon="ui_game_symbol_defense" icon_color="0,255,0">
 			<stack_type value="replace"/>
-			<duration value="0"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_set" value="5"/>
 			</effect_group>
 			<effect_group>
-				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_jump"/>
+				<requirement name="CVarCompare" cvar=".buffModImpasse" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseBefore" duration="@.buffModImpasse"/>
+<!--				<triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" sound="twitch_jump"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_ragdoll"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_baseball_end"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_dance_off"/>-->
@@ -405,8 +416,6 @@
 <!--				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="player_blooddraw"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="open_apache_artifact_chest"/>&lt;!&ndash;打开神器箱&ndash;&gt;-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_nostealth"/>&lt;!&ndash;拉屎&ndash;&gt;-->
-				<triggered_effect trigger="onOtherAttackedSelf" action="AddBuff" buff="buffModImpasseBefore"/>
-				<triggered_effect trigger="onOtherAttackedSelf" action="RemoveBuff" buff="buffModImpasse"/>
 			</effect_group>
 		</buff>
 
