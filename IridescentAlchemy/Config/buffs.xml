@@ -46,6 +46,16 @@
 
 	<append xpath="/buffs">
 
+		<!-- buff GunRocketLauncher -->
+		<buff name="buffModGunRocketLauncher">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value="@$buffModGunRocketLauncher" tags="perkDemolitionsExpert"/>
+				<passive_effect name="BlockDamage" operation="perc_add" value="@$buffModGunRocketLauncher" tags="perkDemolitionsExpert"/>
+			</effect_group>
+		</buff>
+
 		<!-- buff buffMarisaModKnuckles -->
 		<buff name="buffMarisaModKnucklesRunSpeed" name_key="buffMarisaModKnucklesRunSpeedName" description_key="buffMarisaModKnucklesRunSpeedDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
 			<stack_type value="duration"/>
@@ -384,7 +394,7 @@
 		<buff name="buffModImpasseBefore" name_key="buffModImpasseBeforeName" description_key="buffModImpasseBeforeDesc" showonhud="true" icon="ui_game_symbol_defense" icon_color="255,0,55">
 			<stack_type value="replace"/>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffModImpasse" operation="GT" value="0"/>
+				<requirement name="CVarCompare" cvar="$buffModImpasse" operation="GT" value="0"/>
 					<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="twitch_good_buff_ended" play_in_head="true"/>
 					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseReady"/>
 			</effect_group>
@@ -404,8 +414,8 @@
 				<passive_effect name="GeneralDamageResist" operation="base_set" value="5"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffModImpasse" operation="GT" value="0"/>
-					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseBefore" duration="@.buffModImpasse"/>
+				<requirement name="CVarCompare" cvar="$buffModImpasse" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseBefore" duration="@$buffModImpasse"/>
 <!--				<triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" sound="twitch_jump"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_ragdoll"/>-->
 <!--				<triggered_effect trigger="onOtherAttackedSelf" action="PlaySound" sound="twitch_baseball_end"/>-->
@@ -506,6 +516,48 @@
 	</append>
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- refresh ModGunRocketLauncher -->
+        <effect_group>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS7"/>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS8"/>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS9"/>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS10"/>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS11"/>
+			<requirement name="!ItemHasTags" tags="GunRocketLauncherS12"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="0"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS7"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="1.5"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS8"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="1.8"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS9"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="2.1"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="2.4"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS11"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="2.7"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ItemHasTags" tags="GunRocketLauncherS12"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffModGunRocketLauncher"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffModGunRocketLauncher" operation="set" value="3"/>
+		</effect_group>
 
 		<!-- refresh ModFriendly -->
 		<effect_group>
