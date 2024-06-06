@@ -98,8 +98,15 @@
             <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="9" desc_key="reqIridescentLevel09"/></level_requirements>
             <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="10" desc_key="reqIridescentLevel10"/></level_requirements>
 
+			<effect_group>
+				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1,5" value="5,25"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="shotgun"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1,5" value=".5,2.5"/>
+			</effect_group>
             <effect_group>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,5" value="5,25"/>
                 <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5"/>
                 <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-15,-30,-50,-75"/>
                 <passive_effect name="ElementalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-15,-30,-50,-75" tags="heat,electrical"/>
