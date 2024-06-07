@@ -3765,6 +3765,20 @@
 				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffImpactBracing"/>
 			</effect_group>
 		</item_modifier>
+		<item_modifier name="ModR12S1JumpFlamethrower" installable_tags="armorFeet" modifier_tags="marisaJumpStrength,falldamage" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="CustomIcon" value="flamethrowerTrap"/>
+            <property name="CustomIconTint" value="#FFA500"/>
+            <property name="EconomicValue" value="37100"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+			<effect_group tiered="false">
+				<passive_effect name="JumpStrength" operation="perc_add" value="4.2"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.75" tags="jumping"/>
+				<triggered_effect trigger="onSelfJump" action="PlaySound" sound="m136_fire" play_in_head="false"/>
+				<triggered_effect trigger="onSelfJump" action="AddBuff" buff="buffRocketBootsAirborne"/>
+			</effect_group>
+		</item_modifier>
 		<!-- *** mod R12 make -->
 		<item_modifier name="ModR12B4CopperSmelting" installable_tags="weapon,tool" modifier_tags="marisaCopperSmelting" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
