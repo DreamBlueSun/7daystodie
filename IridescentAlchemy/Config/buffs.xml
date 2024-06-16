@@ -46,6 +46,17 @@
 
 	<append xpath="/buffs">
 
+		<!-- buff buffDeathCurse -->
+		<buff name="buffDeathCurse" name_key="buffDeathCurseName" description_key="buffDeathCurseDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<duration value="1800"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="perc_add" value="-.6"/>
+				<passive_effect name="StaminaMax" operation="perc_add" value="-.6"/>
+				<passive_effect name="LootStage" operation="perc_add" value="-.6"/>
+			</effect_group>
+		</buff>
+
 		<!-- buff GunRocketLauncher -->
 		<buff name="buffModGunRocketLauncher" hidden="true">
 			<stack_type value="replace"/>
@@ -699,7 +710,7 @@
 					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffModImpasseReady"/>
 			</effect_group>
 		</buff>
-		<buff name="buffModImpasseReady" name_key="buffModImpasseReadyName" description_key="buffModImpasseReadyDesc" showonhud="true" icon="server_cheat" icon_color="0,191,255">
+		<buff name="buffModImpasseReady" name_key="buffModImpasseReadyName" description_key="buffModImpasseReadyDesc" showonhud="true" icon="server_cheat" icon_color="0,255,0">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 			<effect_group>
@@ -708,7 +719,7 @@
 				<triggered_effect trigger="onOtherDamagedSelf" action="RemoveBuff" buff="buffModImpasseReady"/>
 			</effect_group>
 		</buff>
-		<buff name="buffModImpasse" name_key="buffModImpasseName" description_key="buffModImpasseDesc" showonhud="true" icon="server_cheat" icon_color="0,255,0">
+		<buff name="buffModImpasse" name_key="buffModImpasseName" description_key="buffModImpasseDesc" showonhud="true" icon="server_cheat" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<effect_group>
                 <passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
@@ -818,6 +829,11 @@
 	</append>
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- refresh buffDeathCurse -->
+        <effect_group>
+			<triggered_effect trigger="onSelfRespawn" action="AddBuff" buff="buffDeathCurse"/>
+		</effect_group>
 
 		<!-- refresh ModGunRocketLauncher -->
         <effect_group>
