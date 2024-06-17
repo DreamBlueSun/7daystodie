@@ -2257,6 +2257,31 @@
                 <triggered_effect trigger="onSelfPrimaryActionEnd"  action="CallGameEvent" event="marisaConsumablesInjector" allow_client_call="true"/>
             </effect_group>
         </item>
+        <item name="marisaDrugPainkillers">
+            <property name="DescriptionKey" value="marisaDrugPainkillersDesc"/>
+            <property name="CustomIcon" value="drugPainkillers"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="EconomicValue" value="80"/>
+	        <property name="DisplayType" value="ui_MarisaMedicalPainkillers"/>
+            <property name="Extends" value="drugPainkillers"/>
+            <property name="Group" value="Science,CFChemicals,Medical,TCMedical"/>
+            <property class="Action0">
+                <property name="Class" value="Eat"/>
+                <property name="Delay" value="1.0"/>
+                <property name="Sound_start" value="player_painkillers"/>
+                <requirement name="NotHasBuff" buff="buffMarisaDrugPainkillers"/>
+            </property>
+            <effect_group tiered="false">
+                <display_value name="dInstantHealth" value="80"/>
+                <display_value name="dInstantHealthCold" value="30"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="80"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffMarisaDrugPainkillers"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".buffModFriendly" operation="GTE" value="3"/>
+                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" operation="add" value="80" target="selfOtherPlayers" target_tags="ally,party" range="100"/>
+            </effect_group>
+        </item>
 
         <!-- *** weapon ranged -->
         <!-- ** weapon ranged Bow -->
