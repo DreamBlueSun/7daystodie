@@ -130,35 +130,45 @@
             <effect_group>
                 <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="1"/>
-                    <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
-                    <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="2"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
             </effect_group>
             <effect_group>
                 <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="3"/>
-                    <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="7"/>
-                    <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="4"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="2"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="10"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
             </effect_group>
             <effect_group>
                 <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="5"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="3"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="15"/>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
             </effect_group>
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add"  level="1,2,3,4,5" value="0,0,.05,.15,.3"/>
+                <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="4"/>
+                    <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="20"/>
+                    <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="NotHasBuff" buff="buffPerkMarisaStormCold"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaStorm" operation="Equals" value="5"/>
+                    <triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="25"/>
+                    <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
+            </effect_group>
+            <effect_group>
+                <passive_effect name="HealthMax" operation="perc_add" level="1,2,3,4,5" value=".4,.55,.7,.85,1"/>
+                <passive_effect name="EntityDamage" operation="perc_add"  level="1,2,3,4,5" value="0,0,.1,.2,.3"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ItemHasTags" tags="ranged"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".04,.2"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ItemHasTags" tags="melee"/>
+                <requirement name="!HasBuff" buff="buffDrugFortBites"/>
+                    <passive_effect name="GeneralDamageResist" operation="base_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.3"/>
             </effect_group>
 
             <effect_group>
