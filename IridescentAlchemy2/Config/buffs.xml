@@ -1,0 +1,279 @@
+<Marisa>
+
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+		<!-- 添加 状态检查 0.2s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa02"/>
+		</effect_group>
+
+		<!-- 添加 不屈 -->
+        <effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="Equals" value="1"/>
+				<triggered_effect trigger="onSelfRespawn" action="RemoveBuff" buff="buffPerkMarisaNirvana2"/>
+				<triggered_effect trigger="onSelfRespawn" action="AddBuff" buff="buffPerkMarisaNirvana"/>
+		</effect_group>
+        <effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="Equals" value="2"/>
+				<triggered_effect trigger="onSelfRespawn" action="RemoveBuff" buff="buffPerkMarisaNirvana"/>
+				<triggered_effect trigger="onSelfRespawn" action="AddBuff" buff="buffPerkMarisaNirvana2"/>
+		</effect_group>
+
+		<!-- 添加 力量解放 缓触发前置 -->
+        <effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffPerkMarisaLiberationPowerBefore"/>
+		</effect_group>
+	</append>
+
+
+
+	<!-- 正面BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 状态检查 0.2s -->
+		<buff name="buffStatusCheckMarisa02" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<!-- 添加 适应瘴气环境 -->
+			<effect_group>
+				<requirement name="InBiome" biome="08"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaEnvironmentMiasmatic" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEnvironmentMiasmatic"/>
+			</effect_group>
+
+			<!-- 添加 力量解放 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
+			</effect_group>
+
+		</buff>
+		<!-- 飞燕 -->
+		<buff name="buffPerkMarisaNoguri" name_key="buffPerkMarisaNoguriName" description_key="buffPerkMarisaNoguriDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="5"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 不屈 -->
+		<buff name="buffPerkMarisaNirvana" name_key="buffPerkMarisaNirvanaName" description_key="buffPerkMarisaNirvanaDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<duration value="900"/>
+			<effect_group>
+				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="EntityDamage" operation="base_add" value="5"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="EntityDamage" operation="base_add" value=".5"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="5"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaNirvana2" name_key="buffPerkMarisaNirvana2Name" description_key="buffPerkMarisaNirvana2Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<duration value="900"/>
+			<effect_group>
+				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="EntityDamage" operation="base_add" value="15"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="shotgun"/>
+					<passive_effect name="EntityDamage" operation="base_add" value="1.5"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="15"/>
+			</effect_group>
+		</buff>
+
+		<!-- 力量解放 缓触发前置 -->
+		<buff name="buffPerkMarisaLiberationPowerBefore" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="60"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
+			</effect_group>
+		</buff>
+		<!-- 力量解放 -->
+		<buff name="buffPerkMarisaLiberationPower" name_key="buffPerkMarisaLiberationPowerName" description_key="buffPerkMarisaLiberationPowerDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="125"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaLiberationPower"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="1"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".1"/>
+					<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="2"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+					<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="3"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+					<passive_effect name="StaminaChangeOT" operation="perc_add" value=".3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="4"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".4"/>
+					<passive_effect name="StaminaChangeOT" operation="perc_add" value=".4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="5"/>
+					<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
+					<passive_effect name="StaminaChangeOT" operation="perc_add" value=".5"/>
+			</effect_group>
+		</buff>
+
+		<!-- 跳跃性能 -->
+		<buff name="buffPerkMarisaJumpDef" name_key="buffPerkMarisaJumpDefName" description_key="buffPerkMarisaJumpDefDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_set" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 死里逃生 -->
+		<buff name="buffPerkMarisaNarrowEscape" name_key="buffPerkMarisaNarrowEscapeName" description_key="buffPerkMarisaNarrowEscapeDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="2"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaJumpDef"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.2"/>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 防御缓冲  remove_on_death="false" -->
+		<buff name="buffPerkMarisaDefensiveBufferBefore" name_key="buffPerkMarisaDefensiveBufferBeforeName" description_key="buffPerkMarisaDefensiveBufferBeforeDesc" showonhud="true" icon="server_cheat" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="GTE" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="twitch_good_buff_ended" play_in_head="true"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferReady"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaDefensiveBufferReady" name_key="buffPerkMarisaDefensiveBufferReadyName" description_key="buffPerkMarisaDefensiveBufferReadyDesc" showonhud="true" icon="server_cheat" icon_color="0,255,0">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="GTE" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" sound="open_apache_artifact_chest" play_in_head="true"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="RemoveBuff" buff="buffPerkMarisaDefensiveBufferReady"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffPerkMarisaDefensiveBuffer"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaDefensiveBuffer" name_key="buffPerkMarisaDefensiveBufferName" description_key="buffPerkMarisaDefensiveBufferDesc" showonhud="true" icon="server_cheat" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="5"/>
+			<effect_group>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" value="100"/>
+				<passive_effect name="GeneralDamageResist" operation="base_set" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferBefore" duration="60"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="2"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferBefore" duration="50"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferBefore" duration="40"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="4"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferBefore" duration="30"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="5"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaDefensiveBufferBefore" duration="20"/>
+			</effect_group>
+		</buff>
+
+
+
+	</append>
+
+
+
+	<!-- 负面BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 瘴气环境 -->
+		<buff name="buffEnvironmentMiasmatic" name_key="buffEnvironmentMiasmaticName" description_key="buffEnvironmentMiasmaticDesc" showonhud="true" icon="ui_game_symbol_armor_iron" icon_color="255,71,207">
+			<stack_type value="ignore"/>
+			<update_rate value="3"/>
+			<duration value="60"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 护甲下降 -->
+		<buff name="buffPerkMarisaDefDown" name_key="buffPerkMarisaDefDownName" description_key="buffPerkMarisaDefDownDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<update_rate value="1"/>
+			<duration value="60"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="LT" value="1"/>
+					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-80"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="1"/>
+					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-40"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="2"/>
+					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-20"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaDefDown"/>
+			</effect_group>
+		</buff>
+
+		<!-- 瘴气侵蚀 -->
+		<buff name="buffPerkMarisaMiasmaticErosion" name_key="buffPerkMarisaMiasmaticErosionName" description_key="buffPerkMarisaMiasmaticErosionDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<update_rate value="1"/>
+			<duration value="60"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="LT" value="1"/>
+					<passive_effect name="HealthMax" operation="perc_add" value="-.4"/>
+					<passive_effect name="StaminaMax" operation="perc_add" value="-.4"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="1"/>
+					<passive_effect name="HealthMax" operation="perc_add" value="-.2"/>
+					<passive_effect name="StaminaMax" operation="perc_add" value="-.2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="2"/>
+					<passive_effect name="HealthMax" operation="perc_add" value="-.1"/>
+					<passive_effect name="StaminaMax" operation="perc_add" value="-.1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaMiasmaticErosion"/>
+			</effect_group>
+		</buff>
+
+
+	</append>
+
+</Marisa>
