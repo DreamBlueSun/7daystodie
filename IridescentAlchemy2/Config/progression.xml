@@ -159,7 +159,7 @@
             </effect_group>
         </perk>
         <!-- ** 战魂 -->
-        <perk name="perkMarisaSpiritOfWar" parent="skillIridescentIntensify" name_key="perkMarisaSpiritOfWarName" desc_key="perkMarisaSpiritOfWarDesc" icon="ui_game_symbol_muscle" max_level="3" base_skill_point_cost="0">
+        <perk name="perkMarisaSpiritOfWar" parent="skillIridescentIntensify" name_key="perkMarisaSpiritOfWarName" desc_key="perkMarisaSpiritOfWarDesc" icon="ui_game_symbol_muscle" max_level="5" base_skill_point_cost="0">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -188,7 +188,7 @@
             </effect_group>
         </perk>
         <!-- ** 经验获取 -->
-        <perk name="perkMarisaKillExp" parent="skillIridescentIntensify" name_key="perkMarisaKillExpName" desc_key="perkMarisaKillExpDesc" icon="ui_game_symbol_muscle" max_level="3" base_skill_point_cost="0">
+        <perk name="perkMarisaKillExp" parent="skillIridescentIntensify" name_key="perkMarisaKillExpName" desc_key="perkMarisaKillExpDesc" icon="ui_game_symbol_muscle" max_level="5" base_skill_point_cost="0">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -516,7 +516,7 @@
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="1"/>
                     <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3"/>
-                    <triggered_effect trigger="onSelfRangedBurstShot" action="ModifyStats" stat="Health" target="self" operation="add" value="-3"/>
+                    <triggered_effect trigger="onSelfPrimaryActionUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-3"/>
                     <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
@@ -524,7 +524,7 @@
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="2"/>
                     <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-5"/>
-                    <triggered_effect trigger="onSelfRangedBurstShot" action="ModifyStats" stat="Health" target="self" operation="add" value="-5"/>
+                    <triggered_effect trigger="onSelfPrimaryActionUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-5"/>
                     <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-5">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
@@ -532,7 +532,7 @@
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="3"/>
                     <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-7"/>
-                    <triggered_effect trigger="onSelfRangedBurstShot" action="ModifyStats" stat="Health" target="self" operation="add" value="-7"/>
+                    <triggered_effect trigger="onSelfPrimaryActionUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-7"/>
                     <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-7">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
@@ -1205,12 +1205,42 @@
                 <effect_description level="3" desc_key="perkMarisaArrowAutoPickRank3Desc" long_desc_key="perkMarisaArrowAutoPickRank3LongDesc"/>
             </effect_group>
         </perk>
+        <!-- ** 制作达人 -->
+        <perk name="perkMarisaCraftStar" parent="skillIridescentItem" name_key="perkMarisaCraftStarName" desc_key="perkMarisaCraftStarDesc" icon="ui_game_symbol_muscle" max_level="3" base_skill_point_cost="0">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="CraftingTime" operation="perc_add" level="1,2,3" value=".1,.2,.3"/>
+			</effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaCraftStarRank1Desc" long_desc_key="perkMarisaCraftStarRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaCraftStarRank2Desc" long_desc_key="perkMarisaCraftStarRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaCraftStarRank3Desc" long_desc_key="perkMarisaCraftStarRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 分解达人 -->
+        <perk name="perkMarisaScrapeStar" parent="skillIridescentItem" name_key="perkMarisaScrapeStarName" desc_key="perkMarisaScrapeStarDesc" icon="ui_game_symbol_muscle" max_level="3" base_skill_point_cost="0">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<effect_group>
+				<passive_effect name="ScrappingTime" operation="perc_add" level="1,2,3" value=".3,.6,.9"/>
+			</effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaScrapeStarRank1Desc" long_desc_key="perkMarisaScrapeStarRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaScrapeStarRank2Desc" long_desc_key="perkMarisaScrapeStarRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaScrapeStarRank3Desc" long_desc_key="perkMarisaScrapeStarRank3LongDesc"/>
+            </effect_group>
+        </perk>
 
 
-        <!-- ** 制作速度 -->
-        <!-- ** 分解速度 -->
+
         <!-- ** 蜂蜜猎手 -->
-        <!-- ** 经验 -->
         <!-- ** 喷气 -->
         <!-- ** 换弹速度 -->
         <!-- ** 狂风骤雨 -->
