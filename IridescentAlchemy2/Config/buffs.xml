@@ -211,7 +211,6 @@
 			<duration value="10"/>
 		</buff>
 
-
 	</append>
 
 
@@ -278,6 +277,59 @@
 			</effect_group>
 		</buff>
 
+	</append>
+
+
+
+	<!-- 武器BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 烈焰净世 -->
+		<buff name="buffModBuffFireAoeEffect" hidden="true">
+			<damage_type value="heat"/>
+			<stack_type value="replace"/>
+			<update_rate value="1"/>
+			<duration value="60"/>
+			<effect_group>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@buffModBuffFireAoeEffect"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+			</effect_group>
+		</buff>
+
+		<!-- 虹彩拳套 -->
+		<buff name="buffMarisaModKnucklesRunSpeed" name_key="buffMarisaModKnucklesRunSpeedName" description_key="buffMarisaModKnucklesRunSpeedDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
+			<stack_type value="duration"/>
+			<duration value="15"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesRunSpeed" operation="set" value="0"/>
+				<passive_effect name="RunSpeed" operation="perc_add" value="@.buffMarisaModKnucklesRunSpeed">
+					<requirement name="ItemHasTags" tags="perkBrawler"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffMarisaModKnucklesAttacksPerMinute" name_key="buffMarisaModKnucklesAttacksPerMinuteName" description_key="buffMarisaModKnucklesAttacksPerMinuteDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
+			<stack_type value="duration"/>
+			<duration value="15"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesAttacksPerMinute" operation="set" value="0"/>
+				<passive_effect name="AttacksPerMinute" operation="perc_add" value="@.buffMarisaModKnucklesAttacksPerMinute">
+					<requirement name="ItemHasTags" tags="perkBrawler"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffMarisaModKnucklesTargetArmor" name_key="buffMarisaModKnucklesTargetArmorName" description_key="buffMarisaModKnucklesTargetArmorDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
+			<stack_type value="duration"/>
+			<duration value="15"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesTargetArmor" operation="set" value="0"/>
+				<passive_effect name="TargetArmor" operation="perc_subtract" value="@.buffMarisaModKnucklesTargetArmor">
+					<requirement name="ItemHasTags" tags="perkBrawler"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
 
 	</append>
 
