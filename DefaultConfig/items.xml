@@ -1919,7 +1919,7 @@
 		<property name="GrazeStart" value=".25"/>
 		<property name="GrazeEnd" value=".32"/>
 		<property name="SwingDegrees" value="65"/>
-		<property name="SwingAngle" value="180"/>
+		<property name="SwingAngle" value="90"/>
 		<property class="HitSounds">
 			<property name="Override0" value="organic" param1="metalhitorganic"/>
 		</property>
@@ -2992,8 +2992,8 @@
 	<property name="ShowQuality" value="true"/>
 	<property name="SoundUnholster" value="weapon_unholster"/>
 	<property name="SoundHolster" value="weapon_holster"/>
-	<property name="SoundPickup" value="gloves_leather_grab"/>
-	<property name="SoundPlace" value="gloves_leather_place"/>
+	<property name="SoundPickup" value="knuckles_wraps_grab"/>
+	<property name="SoundPlace" value="knuckles_wraps_place"/>
 	
 	<property class="Action0">
 		<property name="Class" value="DynamicMelee"/>
@@ -3078,8 +3078,8 @@
 	<property name="ShowQuality" value="true"/>
 	<property name="SoundUnholster" value="weapon_unholster"/>
 	<property name="SoundHolster" value="weapon_holster"/>
-	<property name="SoundPickup" value="wrench_grab"/>
-	<property name="SoundPlace" value="wrench_place"/>
+	<property name="SoundPickup" value="knuckles_iron_grab"/>
+	<property name="SoundPlace" value="knuckles_iron_place"/>
 	
 	<property class="Action0">
 		<property name="Class" value="DynamicMelee"/>
@@ -7113,14 +7113,17 @@
 	<property class="Action0">
 		<property name="Delay" value=".8"/> <!-- obsolete if rounds per minute exists -->
 		<property name="Range" value="2.2"/>
-		<property name="DamageEntity" value="22"/>
-		<property name="DamageBlock" value="28"/>
+		<property name="DamageEntity" value="40"/>
+		<property name="DamageBlock" value="40"/>
 	</property>
 	<effect_group name="meleeHandAnimalWolf" tiered="false">
 		<passive_effect name="ModSlots" operation="base_set" value="0"/>
 		<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" fireOneBuff="true"
 			buff="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"
 			weights=".11,.07,.07,.05,.29,.36,.11"/>
+		<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="infectionCounter" operation="add" value="150"><!--InfectionRegular-->
+			<requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+		<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="abrasionZombieHit" operation="set" value="1800"/><!--AbrasionRegular-->
 	</effect_group>
 </item>
 
@@ -8678,7 +8681,7 @@
 	</property>
 	<property name="ThrowableDecoy" value="true"/>
 	<effect_group tiered="false">
-		<display_value name="dExRadius" value="4"/>
+		<display_value name="dExRadius" value="1.5"/>
 		<display_value name="dExBlockDamage" value="5"/>
 		<display_value name="dExEntityDamage" value="253"/>
 		<display_value name="dFuseTime" value="4"/>
@@ -8738,7 +8741,7 @@
 	</property>
 	<property name="ThrowableDecoy" value="true"/>
 	<effect_group tiered="false">
-		<display_value name="dExRadius" value="5"/>
+		<display_value name="dExRadius" value="2.5"/>
 		<display_value name="dExBlockDamage" value="10"/>
 		<display_value name="dExEntityDamage" value="341"/>
 	</effect_group>
@@ -8756,7 +8759,7 @@
 	<property name="FuseTime" value="3"/>
 	<property name="StickPercent" value=".3"/>
 	<effect_group tiered="false">
-		<display_value name="dExRadius" value="5"/>
+		<display_value name="dExRadius" value="1.5"/>
 		<display_value name="dExBlockDamage" value="10"/>
 		<display_value name="dExEntityDamage" value="341"/>
 		<display_value name="dFuseTime" value="3"/>
@@ -8874,7 +8877,7 @@
 	</property>
 	<property name="ThrowableDecoy" value="true"/>
 	<effect_group tiered="false">
-		<display_value name="dExRadius" value="6"/>
+		<display_value name="dExRadius" value="1.5"/>
 		<display_value name="dExBlockDamage" value="3000"/>
 		<display_value name="dExEntityDamage" value="550"/>
 		<display_value name="dFuseTime" value="4"/>
@@ -9739,12 +9742,12 @@
 		<passive_effect name="HypothermalResist" operation="base_add" value="20"/>
 		<passive_effect name="HyperthermalResist" operation="base_add" value="20"/>
 		
-		<display_value name="dDamageResist" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+		<display_value name="dDamageResist" value=".02,.04,.06,.08,.1,.15" tier="1,2,3,4,5,6"/>
 	</effect_group>
 
 	<effect_group>
 		<requirement name="EntityTagCompare" target="other" tags="zombie"/>
-			<passive_effect name="PhysicalDamageResist" operation="perc_add" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
+			<passive_effect name="PhysicalDamageResist" operation="perc_add" value=".02,.04,.06,.08,.1,.15" tier="1,2,3,4,5,6"/>
 	</effect_group>
 
 	<property class="SDCS">
@@ -11554,9 +11557,9 @@
 	<effect_group name="MinerHelmet">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11600,9 +11603,9 @@
 	<effect_group name="MinerOutfit">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11645,9 +11648,9 @@
 	<effect_group name="MinerGloves">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11690,9 +11693,9 @@
 	<effect_group name="MinerBoots">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11766,9 +11769,9 @@
 	<effect_group name="NomadHelmet">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11813,9 +11816,9 @@
 	<effect_group name="NomadOutfit">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11854,9 +11857,9 @@
 	<effect_group name="NomadGloves">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11899,9 +11902,9 @@
 	<effect_group name="NomadBoots">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11943,9 +11946,9 @@
 	<effect_group name="NerdHelmet">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -11985,9 +11988,9 @@
 	<effect_group name="NerdOutfit">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12060,9 +12063,9 @@
 	<effect_group name="NerdGloves">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12105,9 +12108,9 @@
 	<effect_group name="NerdBoots">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12181,9 +12184,9 @@
 	<effect_group name="RaiderHelmet">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12224,9 +12227,9 @@
 	<effect_group name="RaiderOutfit">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12269,9 +12272,9 @@
 	<effect_group name="RaiderGloves">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12314,9 +12317,9 @@
 	<effect_group name="RaiderBoots">
 		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
 		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
-		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,22.3" tier="1,6"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_add" value="18,21" tier="1,6"/>
 		<passive_effect name="PhysicalDamageResist" operation="base_add" value="-.2,.2"/>
-		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,22.3" tier="1,6" tags="heat,electrical"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="18,21" tier="1,6" tags="heat,electrical"/>
 		<passive_effect name="ElementalDamageResist" operation="base_add" value="-.2,.2"/>
 		<passive_effect name="BuffResistance" operation="base_add" value="0.061,0.076" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
 		<passive_effect name="DegradationMax" operation="base_set" value="250,500" tier="1,6"/>
@@ -12388,6 +12391,8 @@
 	<property name="EconomicValue" value="10"/>
 	<property name="Stacknumber" value="15"/> <!-- STK medical -->
 	<property name="Group" value="Science,CFChemicals,Medical,TCMedical"/>
+	<property name="SoundPickup" value="aloe_grab"/>
+	<property name="SoundPlace" value="aloe_place"/>
 
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
@@ -12446,10 +12451,13 @@
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="Mcloth"/>
 	<property name="Stacknumber" value="10"/> <!-- STK medical -->
-	<property name="Weight" value="5"/>
+	<property name="Weight" value="10"/>
 	<property name="EconomicValue" value="5"/>
 	<property name="Group" value="Science,Medical,Basics,TCMedical"/>
 	<property name="DescriptionKey" value="medicalBandageDesc"/>
+	<property name="SoundPickup" value="bandage_grab"/>
+	<property name="SoundPlace" value="bandage_place"/>
+
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1.0"/>
@@ -12524,7 +12532,7 @@
 		<!-- <requirement name="CVarCompare" cvar="medicalRegHealthAmount" operation="LTE" value="70"/> -->
 		<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/>
 	</property>
-	<property class="Action1">    
+	<property class="Action1">
 		<!-- <requirement name="CVarCompare" cvar="medicalRegHealthAmount" target="other" operation="LTE" value="70"/> -->
 		<!-- disabled due to target=other requirements not working as expected in actions, targets are set after the requirement is evaluated so this always fails -->
 		<!-- <requirement name="StatComparePercCurrentToMax" stat="Health" target="other" operation="LT" value="1"/> -->
@@ -12621,6 +12629,8 @@
 	<property name="EconomicValue" value="200"/>
 	<property name="Stacknumber" value="5"/>
 	<property name="UnlockedBy" value="craftingMedical"/><!-- perkPhysician,medicalFirstAidKitSchematic, -->
+	<property name="SoundPickup" value="firstaidkit_grab"/>
+	<property name="SoundPlace" value="firstaidkit_place"/>
 
 	<property class="Action0">
 		<!-- <requirement name="CVarCompare" cvar="medicalRegHealthAmount" operation="LTE" value="400"/> -->
@@ -12725,10 +12735,13 @@
 	<property name="HoldType" value="64"/>
 	<property name="Meshfile" value="@:Other/Items/Health/bandage.FBX"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
-	<property name="Material" value="Mwood"/>
+	<property name="Material" value="Mcloth"/>
+	<property name="Weight" value="10"/>
 	<property name="Stacknumber" value="5"/> <!-- STK loot -->
 	<property name="EconomicValue" value="10"/>
 	<property name="Group" value="Science,Medical,TCMedical"/>
+	<property name="SoundPickup" value="splint_grab"/>
+	<property name="SoundPlace" value="splint_place"/>
 
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
@@ -12828,6 +12841,8 @@
 	<property name="Extends" value="medicalSplint"/>
 	<property name="UnlockedBy" value="craftingMedical"/><!-- perkPhysician,medicalPlasterCastSchematic, -->
 	<property name="Group" value="Science,CFMedical,Medical,TCMedical"/>
+	<property name="SoundPickup" value="cast_grab"/>
+	<property name="SoundPlace" value="cast_place"/>
 
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
@@ -12972,6 +12987,8 @@
 	<property name="EconomicValue" value="50"/>
 	<property name="EconomicBundleSize" value="1"/>
 	<property name="Group" value="Science,Medical,TCMedical"/>
+	<property name="SoundPickup" value="bloodbag_grab"/>
+	<property name="SoundPlace" value="bloodbag_place"/>
 </item>
 
 <item name="drugVitamins">
@@ -14621,6 +14638,8 @@
 	<property name="EconomicValue" value="100"/>
 	<property name="CraftingIngredientTime" value="15"/>
 	<property name="UnlockedBy" value="perkWasteTreasuresWater"/> <!-- SCHEMATIC_ONLY -->
+	<property name="SoundPickup" value="puremineralwater_grab"/>
+	<property name="SoundPlace" value="puremineralwater_place"/>
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1"/>
@@ -14805,6 +14824,8 @@
 	<property name="Extends" value="drinkJarRedTea"/>
 	<property name="DisplayType" value="waterMegaCrush"/>
 	<property name="EconomicValue" value="240"/>
+	<property name="SoundPickup" value="megacrush_grab"/>
+	<property name="SoundPlace" value="megacrush_place"/>
 	<property class="Action0">
 	</property>
 
@@ -14868,6 +14889,8 @@
 	<property name="Extends" value="drinkJarCoffee"/>
 	<property name="EconomicValue" value="200"/>
 	<property name="UnlockedBy" value="perkArtOfMiningBlackStrap"/> <!-- BOOK_PERK -->
+	<property name="SoundPickup" value="blackstrapcoffee_grab"/>
+	<property name="SoundPlace" value="blackstrapcoffee_place"/>
 
 	<effect_group tiered="false" name="Drink Tier Found">
 		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
@@ -14936,7 +14959,9 @@
 	<property name="EconomicValue" value="500"/>
 	<property name="UnlockedBy" value="craftingFood"/><!-- perkMasterChef,drinkJarGrandpasMoonshineSchematic, -->
 	<property name="DisplayType" value="waterGrandpasMoonshine"/>
-	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>]
+	<property name="SoundPickup" value="grandpas_moonshine_grab"/>
+	<property name="SoundPlace" value="grandpas_moonshine_place"/>
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1"/>
@@ -14975,6 +15000,8 @@
 	<property name="UnlockedBy" value="craftingFood"/><!-- perkMasterChef,drinkJarGrandpasAwesomeSauceSchematic, -->
 	<property name="DisplayType" value="waterGrandpasAwesomeSauce"/>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<property name="SoundPickup" value="grandpas_awesome_grab"/>
+	<property name="SoundPlace" value="grandpas_awesome_place"/>
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1"/>
@@ -15009,6 +15036,8 @@
 	<property name="UnlockedBy" value="craftingFood"/><!-- perkMasterChef,drinkJarGrandpasLearningElixirSchematic, -->
 	<property name="DisplayType" value="waterGrandpasLearningElixir"/>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<property name="SoundPickup" value="grandpas_learnin_grab"/>
+	<property name="SoundPlace" value="grandpas_learnin_place"/>
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1"/>
@@ -15041,6 +15070,8 @@
 	<property name="EconomicValue" value="2000"/>
 	<property name="SellableToTrader" value="true"/>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<property name="SoundPickup" value="grandpas_fergitn_grab"/>
+	<property name="SoundPlace" value="grandpas_fergitn_place"/>
 	<property class="Action0">
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1"/>
@@ -16663,7 +16694,7 @@
 	<property name="Stacknumber" value="250"/> <!-- STK resource -->
 	<property name="RepairAmount" value="50"/>
 	<property name="FuelValue" value="1"/>
-	<property name="Weight" value="5"/>
+	<property name="Weight" value="1"/>
 	<property name="EconomicValue" value="10"/>
 	<property name="EconomicBundleSize" value="10"/>
 	<property name="Group" value="Resources"/>
@@ -16762,7 +16793,7 @@
 	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="Mcloth"/>
-	<property name="Weight" value="5"/>
+	<property name="Weight" value="7"/>
 	<property name="EconomicValue" value="25"/>
 	<property name="Stacknumber" value="500"/> <!-- STK resource -->
 	<property name="Group" value="Resources"/>
@@ -17501,7 +17532,7 @@
 
 <item name="resourceLockPick">
 	<property name="HoldType" value="45"/>
-	<property name="Tags" value="junk,explosivesSkill,resourceLockPick"/>
+	<property name="Tags" value="junk,explosivesSkill,resourceLockPick,lockPickSkill"/>
 	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="Mmetal"/>
@@ -22086,14 +22117,17 @@
 		<passive_effect name="ModSlots" operation="base_set" value="0"/>
 		<passive_effect name="HypothermalResist" operation="base_add" value="100"/>
 		<passive_effect name="HyperthermalResist" operation="base_add" value="100"/>
+		
 		<passive_effect name="HealthMax" operation="base_add" value="19900"/>
 		<display_value name="dHealthMax" value="20000"/>
 		<passive_effect name="HealthMax" operation="base_subtract" value="@$PlayerLevelBonus"/>
+		
+		<passive_effect name="ScavengingTime" operation="base_add" value="-100"/>
+		<display_value name="dLootTime" value="-100"/>
 	</effect_group>
 
 	<effect_group>
 		<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffEntitySpawnHeal"/>
-		
 		<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
 		<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
 	</effect_group>
