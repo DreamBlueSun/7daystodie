@@ -134,6 +134,51 @@
 	<remove xpath="/lootcontainers/lootgroup[@name='groupAllArmor']/item[starts-with(@name,'armor')]"/>
 	<append xpath="/lootcontainers/lootgroup[@name='groupAllArmor']"><item group="groupArmorParts" count="1"/></append>
 
+	<!-- *** remove weapon -->
+	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaled']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaled']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>
+    <remove xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']/item"/>
+    <append xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']">
+        <item group="groupWeapons_MeleeParts" loot_prob_template="ProbT1Cap"/>
+        <item group="groupWeapons_RangedParts" loot_prob_template="ProbT1Cap"/>
+    </append>
+
+	<!-- 减少弹药掉落 -->
+	<!-- 6,8 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group9mmSmall']/item[@name='ammo9mmBulletBall']/@count">2,3</set>
+    <!-- 10,20 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group9mmMedium']/item[@name='ammo9mmBulletBall']/@count">3,6</set>
+    <!-- 25,35 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group9mmLarge']/item[@name='ammo9mmBulletBall']/@count">8,12</set>
+    <!-- 5,7 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group762mmSmall']/item[@name='ammo762mmBulletBall']/@count">1,2</set>
+    <!-- 8,15 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group762mmMedium']/item[@name='ammo762mmBulletBall']/@count">3,5</set>
+    <!-- 20,30 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group762mmLarge']/item[@name='ammo762mmBulletBall']/@count">6,10</set>
+    <!-- 4,6 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group44MagnumSmall']/item[@name='ammo44MagnumBulletBall']/@count">1,2</set>
+    <!-- 8,12 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group44MagnumMedium']/item[@name='ammo44MagnumBulletBall']/@count">3,4</set>
+    <!-- 16,26 -->
+	<set xpath="/lootcontainers/lootgroup[@name='group44MagnumLarge']/item[@name='ammo44MagnumBulletBall']/@count">5,8</set>
+    <!-- 2,4 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellSmall']/item[@name='ammoShotgunShell']/@count">1,2</set>
+    <!-- 4,6 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellMedium']/item[@name='ammoShotgunShell']/@count">1,2</set>
+    <!-- 6,10 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellLarge']/item[@name='ammoShotgunShell']/@count">2,3</set>
+    <!-- 2,4 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellSmall']/item[@name='ammoShotgunShell']/@count">1,2</set>
+    <!-- 4,6 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellMedium']/item[@name='ammoShotgunShell']/@count">1,2</set>
+    <!-- 6,10 -->
+	<set xpath="/lootcontainers/lootgroup[@name='groupShotgunShellLarge']/item[@name='ammoShotgunShell']/@count">2,3</set>
+
 
 
 	<!-- *** prob -->
@@ -420,8 +465,8 @@
 
 		<!-- 机器人子弹组 -->
 		<lootgroup name="groupMarisaAmmoLarge">
-			<item name="ammoJunkTurretRegular" count="18,36" loot_stage_count_mod="0.01"/>
-			<item name="ammoJunkTurretShell" count="18,36" loot_stage_count_mod="0.01"/>
+			<item name="ammoJunkTurretRegular" count="8,12" loot_stage_count_mod="0.01"/>
+			<item name="ammoJunkTurretShell" count="8,12" loot_stage_count_mod="0.01"/>
 		</lootgroup>
 	</insertBefore>
 
