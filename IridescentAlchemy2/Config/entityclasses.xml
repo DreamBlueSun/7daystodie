@@ -1756,97 +1756,40 @@
 
 
 
-	<!-- *** 丧尸攻击Buff 护甲下降 -->
-	<!-- ** zombieBiker -->
-	<append xpath="/entity_classes/entity_class[@name='zombieBiker']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
+	<!-- *** 丧尸攻击Buff 护甲下降 瘴气侵蚀 -->
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
+		<!-- ** 凶残 -->
+		<effect_group name="zombie add atk buffPerkMarisaDefDown">
+			<requirement name="EntityTagCompare" tags="feral"/>
+			<requirement name="!EntityTagCompare" tags="radiated"/>
+			<requirement name="!EntityTagCompare" tags="crystallization"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
 		</effect_group>
-	</append>
-	<!-- ** zombieLumberjack -->
-	<append xpath="/entity_classes/entity_class[@name='zombieLumberjack']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
+		<!-- ** 辐射 -->
+		<effect_group name="zombie add atk buffPerkMarisaDefDown">
+			<requirement name="EntityTagCompare" tags="radiated"/>
+			<requirement name="!EntityTagCompare" tags="crystallization"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
 		</effect_group>
-	</append>
-	<!-- ** zombieFemaleFat -->
-	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFat']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieFatHawaiian -->
-	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiian']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieBowler -->
-	<append xpath="/entity_classes/entity_class[@name='zombieBowler']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieFatCop -->
-	<append xpath="/entity_classes/entity_class[@name='zombieFatCop']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieSkateboarder -->
-	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarder']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieSoldier -->
-	<append xpath="/entity_classes/entity_class[@name='zombieSoldier']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieWight -->
-	<append xpath="/entity_classes/entity_class[@name='zombieWightFeral']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
-		</effect_group>
-	</append>
-
-	<!-- *** 丧尸攻击Buff 瘴气侵蚀 -->
-	<!-- ** zombieScreamer -->
-	<append xpath="/entity_classes/entity_class[@name='zombieScreamer']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
+		<effect_group name="zombie add atk buffPerkMarisaMiasmaticErosion">
+			<requirement name="EntityTagCompare" tags="radiated"/>
+			<requirement name="!EntityTagCompare" tags="crystallization"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="20"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaMiasmaticErosion"/>
 		</effect_group>
-	</append>
-	<!-- ** zombieMutated -->
-	<append xpath="/entity_classes/entity_class[@name='zombieMutated']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaMiasmaticErosion"/>
+		<!-- ** 晶化 -->
+		<effect_group name="zombie add atk buffPerkMarisaDefDown">
+			<requirement name="EntityTagCompare" tags="crystallization"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
+				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
 		</effect_group>
-	</append>
-	<!-- ** zombieDemolition -->
-	<append xpath="/entity_classes/entity_class[@name='zombieDemolition']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
-				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaMiasmaticErosion"/>
-		</effect_group>
-	</append>
-	<!-- ** zombieSteveCrawler -->
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawler']">
-		<effect_group name="zombie add atk buff">
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/>
+		<effect_group name="zombie add atk buffPerkMarisaMiasmaticErosion">
+			<requirement name="EntityTagCompare" tags="crystallization"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="20"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaMiasmaticErosion"/>
 		</effect_group>
 	</append>
