@@ -46,17 +46,6 @@
 
 	<append xpath="/buffs">
 
-		<!-- buff buffDeathCurse -->
-		<buff name="buffDeathCurse" name_key="buffDeathCurseName" description_key="buffDeathCurseDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
-			<stack_type value="replace"/>
-			<duration value="1800"/>
-			<effect_group>
-				<passive_effect name="HealthMax" operation="perc_add" value="-.6"/>
-				<passive_effect name="StaminaMax" operation="perc_add" value="-.6"/>
-				<passive_effect name="LootStage" operation="perc_add" value="-.6"/>
-			</effect_group>
-		</buff>
-
 		<!-- buff buffMarisaDrugPainkillers -->
 		<buff name="buffMarisaDrugPainkillers" name_key="buffMarisaDrugPainkillersName" description_key="buffMarisaDrugPainkillersDesc" showonhud="true" icon="ui_game_symbol_pills" icon_color="255,102,178">
 			<stack_type value="replace"/>
@@ -872,11 +861,6 @@
         <effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa02"/>
-		</effect_group>
-
-		<!-- refresh buffDeathCurse -->
-        <effect_group>
-			<triggered_effect trigger="onSelfRespawn" action="AddBuff" buff="buffDeathCurse"/>
 		</effect_group>
 
 		<!-- refresh ModGunRocketLauncher -->
