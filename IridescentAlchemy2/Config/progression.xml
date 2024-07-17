@@ -48,9 +48,9 @@
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="Tracking" operation="base_set" level="1" value="1" tags="marisaTrack"/>
-<!--                <passive_effect name="Tracking" operation="base_set" level="1" value="1" tags="zombie"/>-->
-<!--                <passive_effect name="Tracking" operation="base_set" level="1" value="1" tags="animal"/>-->
+                <requirement name="ProgressionLevel" progression_name="perkMarisaTrack" operation="GTE" value="1"/>
+		        <requirement name="CVarCompare" cvar="_notAlerted" operation="LTE" value="0" target="other"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
             </effect_group>
 
             <effect_group>
@@ -148,7 +148,7 @@
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.3" tags="jumping"/>
+                <passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.2" tags="jumping"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaNoguri" operation="GTE" value="1"/>
