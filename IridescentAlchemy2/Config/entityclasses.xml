@@ -439,7 +439,7 @@
 		<!-- ** DireWolf -->
 		<entity_class name="EntityBossAnimalDireWolf" extends="animalDireWolf">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03,boss"/>
+			<property name="Tags" value="entity,animal,hostile,wolf,perkAT02,perkAT03,crystallization,boss"/>
 
 			<property name="SizeScale" value="1.95"/>
 
@@ -494,7 +494,7 @@
 		<!-- ** Bear -->
 		<entity_class name="EntityBossAnimalBear" extends="animalBear">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="entity,animal,hostile,bear,perkAT03,boss"/>
+			<property name="Tags" value="entity,animal,hostile,bear,perkAT03,crystallization,boss"/>
 
 			<property name="SizeScale" value="1.35"/>
 
@@ -549,7 +549,7 @@
 		<!-- ** VultureRadiated -->
 		<entity_class name="EntityBossAnimalZombieVulture" extends="animalZombieVultureRadiated">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture,boss"/>
+			<property name="Tags" value="entity,animal,zombie,hostile,radiated,vulture,crystallization,boss"/>
 
 			<property name="SizeScale" value="5.2"/>
 
@@ -1121,41 +1121,17 @@
 
 	<!-- *** 丧尸 护甲穿透 -->
 	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
-		<!-- ** 普通 -->
-		<effect_group name="TargetArmor Effects 0">
-			<requirement name="!EntityTagCompare" tags="feral"/>
-			<requirement name="!EntityTagCompare" tags="radiated"/>
-			<requirement name="!EntityTagCompare" tags="crystallization"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.7"/>
-		</effect_group>
-		<!-- ** 凶残 -->
-		<effect_group name="TargetArmor Effects 1">
-			<requirement name="EntityTagCompare" tags="feral"/>
-			<requirement name="!EntityTagCompare" tags="radiated"/>
-			<requirement name="!EntityTagCompare" tags="crystallization"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.7"/>
-		</effect_group>
-		<!-- ** 辐射 -->
-		<effect_group name="TargetArmor Effects 2">
-			<requirement name="EntityTagCompare" tags="radiated"/>
-			<requirement name="!EntityTagCompare" tags="crystallization"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.7"/>
-		</effect_group>
 		<!-- ** 晶化 -->
 		<effect_group name="TargetArmor Effects 3">
 			<requirement name="EntityTagCompare" tags="crystallization"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.75"/>
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.05"/>
 		</effect_group>
 	</append>
 	<!-- *** 动物 护甲穿透 -->
 	<append xpath="/entity_classes/entity_class[@name='animalTemplateHostile']">
 		<effect_group name="TargetArmor Effects 0">
-			<requirement name="!EntityTagCompare" tags="boss"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.7"/>
-		</effect_group>
-		<effect_group name="TargetArmor Effects 0">
-			<requirement name="EntityTagCompare" tags="boss"/>
-				<passive_effect name="TargetArmor" operation="perc_add" value="-.8"/>
+			<requirement name="EntityTagCompare" tags="crystallization"/>
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.05"/>
 		</effect_group>
 	</append>
 
