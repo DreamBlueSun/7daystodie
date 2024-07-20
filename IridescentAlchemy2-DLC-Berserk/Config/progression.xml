@@ -37,7 +37,7 @@
     <insertAfter xpath="/progression/perks/perk[@name='perkMarisaTrack']/effect_group/requirement[@tags='crystallization']">
         <requirement name="!EntityTagCompare" target="other" tags="berserk"/>
     </insertAfter>
-    <append xpath="/progression/perks/perk[@name='perkMarisaTrack']">
+    <append xpath="/progression/perks/perk[@name='perkMarisaTrack']/effect_group">
 
         <!-- 狂化丧尸 通用 T3 -->
         <effect_group>
@@ -275,5 +275,521 @@
 
 
     </append>
+
+
+
+    <!-- 技能对蓝图的搜刮加成 -->
+	<set xpath="/progression/perks/perk[@name='perkArchery']/effect_group/passive_effect[@tags='bowsCSM']/@value">150</set>
+	<set xpath="/progression/perks/perk[@name='perkDeepCuts']/effect_group/passive_effect[@tags='bladesCSM']/@value">150</set>
+	<set xpath="/progression/perks/perk[@name='perkPummelPete']/effect_group/passive_effect[@tags='clubsCSM']/@value">150</set>
+	<set xpath="/progression/perks/perk[@name='perkJavelinMaster']/effect_group/passive_effect[@tags='spearsCSM']/@value">150</set>
+	<set xpath="/progression/perks/perk[@name='perkSkullCrusher']/effect_group/passive_effect[@tags='sledgehammersCSM']/@value">150</set>
+	<set xpath="/progression/perks/perk[@name='perkBrawler']/effect_group/passive_effect[@tags='knucklesCSM']/@value">150</set>
+    <!-- 蓝图技能等级 -->
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingBows']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingCrossBows']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingHandguns']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingSMG5']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingMagnum44']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingDesertVulture']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingPumpShotgun']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingAutoShotgun']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingLeverActionRifle']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingSniperRifle']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingTacticalAR']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingM60']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRocketLauncher']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingJunkTurret']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachete']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingClubs']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingStunBaton']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingSledgehammers']/@max_level">150</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingKnuckles']/@max_level">150</set>
+    <!-- 添加制作蓝图解锁 -->
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingBows']/effect_group">
+        <display_entry icon="gunBowT3CompoundBow,gunBowT3CompoundBow,gunBowT3CompoundBow,gunBowT3CompoundBow" name_key="BowCompoundRank9,BowCompoundRank10,BowCompoundRank11,BowCompoundRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="BowCompoundS9" unlock_tier="1"/>
+            <unlock_entry item="BowCompoundS10" unlock_tier="2"/>
+            <unlock_entry item="BowCompoundS11" unlock_tier="3"/>
+            <unlock_entry item="BowCompoundS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="BowCompoundS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="BowCompoundS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="BowCompoundS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="BowCompoundS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="BowCompoundS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="BowCompoundS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="BowCompoundS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="BowCompoundS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingCrossBows']/effect_group">
+        <display_entry icon="gunBowT3CompoundCrossbow,gunBowT3CompoundCrossbow,gunBowT3CompoundCrossbow,gunBowT3CompoundCrossbow" name_key="CrossbowCompoundRank9,CrossbowCompoundRank10,CrossbowCompoundRank11,CrossbowCompoundRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="CrossbowCompoundS9" unlock_tier="1"/>
+            <unlock_entry item="CrossbowCompoundS10" unlock_tier="2"/>
+            <unlock_entry item="CrossbowCompoundS11" unlock_tier="3"/>
+            <unlock_entry item="CrossbowCompoundS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="CrossbowCompoundS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="CrossbowCompoundS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="CrossbowCompoundS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="CrossbowCompoundS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="CrossbowCompoundS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="CrossbowCompoundS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="CrossbowCompoundS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="CrossbowCompoundS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingHandguns']/effect_group">
+        <display_entry icon="gunHandgunT1Pistol,gunHandgunT1Pistol,gunHandgunT1Pistol,gunHandgunT1Pistol" name_key="GunPistolRank9,GunPistolRank10,GunPistolRank11,GunPistolRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunPistolS9" unlock_tier="1"/>
+            <unlock_entry item="GunPistolS10" unlock_tier="2"/>
+            <unlock_entry item="GunPistolS11" unlock_tier="3"/>
+            <unlock_entry item="GunPistolS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPistolS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPistolS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPistolS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPistolS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPistolS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPistolS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPistolS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPistolS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingSMG5']/effect_group">
+        <display_entry icon="gunHandgunT3SMG5,gunHandgunT3SMG5,gunHandgunT3SMG5,gunHandgunT3SMG5" name_key="GunSmg5Rank9,GunSmg5Rank10,GunSmg5Rank11,GunSmg5Rank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunSmg5S9" unlock_tier="1"/>
+            <unlock_entry item="GunSmg5S10" unlock_tier="2"/>
+            <unlock_entry item="GunSmg5S11" unlock_tier="3"/>
+            <unlock_entry item="GunSmg5S12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSmg5S9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSmg5S10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSmg5S11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSmg5S12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSmg5S9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSmg5S10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSmg5S11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSmg5S12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMagnum44']/effect_group">
+        <display_entry icon="gunHandgunT2Magnum44,gunHandgunT2Magnum44,gunHandgunT2Magnum44,gunHandgunT2Magnum44" name_key="GunMagnum44Rank9,GunMagnum44Rank10,GunMagnum44Rank11,GunMagnum44Rank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunMagnum44S9" unlock_tier="1"/>
+            <unlock_entry item="GunMagnum44S10" unlock_tier="2"/>
+            <unlock_entry item="GunMagnum44S11" unlock_tier="3"/>
+            <unlock_entry item="GunMagnum44S12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunMagnum44S9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunMagnum44S10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunMagnum44S11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunMagnum44S12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunMagnum44S9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunMagnum44S10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunMagnum44S11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunMagnum44S12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingDesertVulture']/effect_group">
+        <display_entry icon="gunHandgunT3DesertVulture,gunHandgunT3DesertVulture,gunHandgunT3DesertVulture,gunHandgunT3DesertVulture" name_key="GunDesertVultureRank9,GunDesertVultureRank10,GunDesertVultureRank11,GunDesertVultureRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunDesertVultureS9" unlock_tier="1"/>
+            <unlock_entry item="GunDesertVultureS10" unlock_tier="2"/>
+            <unlock_entry item="GunDesertVultureS11" unlock_tier="3"/>
+            <unlock_entry item="GunDesertVultureS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDesertVultureS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDesertVultureS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDesertVultureS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDesertVultureS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDesertVultureS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDesertVultureS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDesertVultureS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDesertVultureS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']/effect_group">
+        <display_entry icon="gunShotgunT1DoubleBarrel,gunShotgunT1DoubleBarrel,gunShotgunT1DoubleBarrel,gunShotgunT1DoubleBarrel" name_key="GunDoubleBarrelRank9,GunDoubleBarrelRank10,GunDoubleBarrelRank11,GunDoubleBarrelRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunDoubleBarrelS9" unlock_tier="1"/>
+            <unlock_entry item="GunDoubleBarrelS10" unlock_tier="2"/>
+            <unlock_entry item="GunDoubleBarrelS11" unlock_tier="3"/>
+            <unlock_entry item="GunDoubleBarrelS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDoubleBarrelS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDoubleBarrelS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDoubleBarrelS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunDoubleBarrelS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDoubleBarrelS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDoubleBarrelS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDoubleBarrelS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunDoubleBarrelS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingPumpShotgun']/effect_group">
+        <display_entry icon="gunShotgunT2PumpShotgun,gunShotgunT2PumpShotgun,gunShotgunT2PumpShotgun,gunShotgunT2PumpShotgun" name_key="GunPumpShotgunRank9,GunPumpShotgunRank10,GunPumpShotgunRank11,GunPumpShotgunRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunPumpShotgunS9" unlock_tier="1"/>
+            <unlock_entry item="GunPumpShotgunS10" unlock_tier="2"/>
+            <unlock_entry item="GunPumpShotgunS11" unlock_tier="3"/>
+            <unlock_entry item="GunPumpShotgunS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPumpShotgunS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPumpShotgunS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPumpShotgunS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunPumpShotgunS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPumpShotgunS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPumpShotgunS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPumpShotgunS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunPumpShotgunS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingAutoShotgun']/effect_group">
+        <display_entry icon="gunShotgunT3AutoShotgun,gunShotgunT3AutoShotgun,gunShotgunT3AutoShotgun,gunShotgunT3AutoShotgun" name_key="GunAutoShotgunRank9,GunAutoShotgunRank10,GunAutoShotgunRank11,GunAutoShotgunRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunAutoShotgunS9" unlock_tier="1"/>
+            <unlock_entry item="GunAutoShotgunS10" unlock_tier="2"/>
+            <unlock_entry item="GunAutoShotgunS11" unlock_tier="3"/>
+            <unlock_entry item="GunAutoShotgunS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAutoShotgunS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAutoShotgunS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAutoShotgunS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAutoShotgunS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAutoShotgunS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAutoShotgunS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAutoShotgunS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAutoShotgunS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']/effect_group">
+        <display_entry icon="gunRifleT1HuntingRifle,gunRifleT1HuntingRifle,gunRifleT1HuntingRifle,gunRifleT1HuntingRifle" name_key="GunHuntingRifleRank9,GunHuntingRifleRank10,GunHuntingRifleRank11,GunHuntingRifleRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunHuntingRifleS9" unlock_tier="1"/>
+            <unlock_entry item="GunHuntingRifleS10" unlock_tier="2"/>
+            <unlock_entry item="GunHuntingRifleS11" unlock_tier="3"/>
+            <unlock_entry item="GunHuntingRifleS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunHuntingRifleS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunHuntingRifleS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunHuntingRifleS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunHuntingRifleS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunHuntingRifleS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunHuntingRifleS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunHuntingRifleS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunHuntingRifleS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingLeverActionRifle']/effect_group">
+        <display_entry icon="gunRifleT2LeverActionRifle,gunRifleT2LeverActionRifle,gunRifleT2LeverActionRifle,gunRifleT2LeverActionRifle" name_key="GunLeverActionRifleRank9,GunLeverActionRifleRank10,GunLeverActionRifleRank11,GunLeverActionRifleRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunLeverActionRifleS9" unlock_tier="1"/>
+            <unlock_entry item="GunLeverActionRifleS10" unlock_tier="2"/>
+            <unlock_entry item="GunLeverActionRifleS11" unlock_tier="3"/>
+            <unlock_entry item="GunLeverActionRifleS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunLeverActionRifleS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunLeverActionRifleS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunLeverActionRifleS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunLeverActionRifleS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunLeverActionRifleS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunLeverActionRifleS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunLeverActionRifleS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunLeverActionRifleS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingSniperRifle']/effect_group">
+        <display_entry icon="gunRifleT3SniperRifle,gunRifleT3SniperRifle,gunRifleT3SniperRifle,gunRifleT3SniperRifle" name_key="GunSniperRifleRank9,GunSniperRifleRank10,GunSniperRifleRank11,GunSniperRifleRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunSniperRifleS9" unlock_tier="1"/>
+            <unlock_entry item="GunSniperRifleS10" unlock_tier="2"/>
+            <unlock_entry item="GunSniperRifleS11" unlock_tier="3"/>
+            <unlock_entry item="GunSniperRifleS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSniperRifleS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSniperRifleS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSniperRifleS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunSniperRifleS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSniperRifleS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSniperRifleS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSniperRifleS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunSniperRifleS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']/effect_group">
+        <display_entry icon="gunMGT1AK47,gunMGT1AK47,gunMGT1AK47,gunMGT1AK47" name_key="GunAK47Rank9,GunAK47Rank10,GunAK47Rank11,GunAK47Rank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunAK47S9" unlock_tier="1"/>
+            <unlock_entry item="GunAK47S10" unlock_tier="2"/>
+            <unlock_entry item="GunAK47S11" unlock_tier="3"/>
+            <unlock_entry item="GunAK47S12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAK47S9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAK47S10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAK47S11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunAK47S12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAK47S9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAK47S10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAK47S11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunAK47S12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingTacticalAR']/effect_group">
+        <display_entry icon="gunMGT2TacticalAR,gunMGT2TacticalAR,gunMGT2TacticalAR,gunMGT2TacticalAR" name_key="GunTacticalARRank9,GunTacticalARRank10,GunTacticalARRank11,GunTacticalARRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunTacticalARS9" unlock_tier="1"/>
+            <unlock_entry item="GunTacticalARS10" unlock_tier="2"/>
+            <unlock_entry item="GunTacticalARS11" unlock_tier="3"/>
+            <unlock_entry item="GunTacticalARS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunTacticalARS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunTacticalARS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunTacticalARS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunTacticalARS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunTacticalARS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunTacticalARS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunTacticalARS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunTacticalARS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingM60']/effect_group">
+        <display_entry icon="gunMGT3M60,gunMGT3M60,gunMGT3M60,gunMGT3M60" name_key="GunM60Rank9,GunM60Rank10,GunM60Rank11,GunM60Rank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunM60S9" unlock_tier="1"/>
+            <unlock_entry item="GunM60S10" unlock_tier="2"/>
+            <unlock_entry item="GunM60S11" unlock_tier="3"/>
+            <unlock_entry item="GunM60S12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunM60S9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunM60S10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunM60S11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunM60S12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunM60S9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunM60S10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunM60S11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunM60S12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingRocketLauncher']/effect_group">
+        <display_entry icon="gunExplosivesT3RocketLauncher,gunExplosivesT3RocketLauncher,gunExplosivesT3RocketLauncher,gunExplosivesT3RocketLauncher" name_key="GunRocketLauncherRank9,GunRocketLauncherRank10,GunRocketLauncherRank11,GunRocketLauncherRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunRocketLauncherS9" unlock_tier="1"/>
+            <unlock_entry item="GunRocketLauncherS10" unlock_tier="2"/>
+            <unlock_entry item="GunRocketLauncherS11" unlock_tier="3"/>
+            <unlock_entry item="GunRocketLauncherS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunRocketLauncherS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunRocketLauncherS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunRocketLauncherS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunRocketLauncherS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunRocketLauncherS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunRocketLauncherS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunRocketLauncherS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunRocketLauncherS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingJunkTurret']/effect_group">
+        <display_entry icon="gunBotT2JunkTurret,gunBotT2JunkTurret,gunBotT2JunkTurret,gunBotT2JunkTurret" name_key="GunJunkTurretRank9,GunJunkTurretRank10,GunJunkTurretRank11,GunJunkTurretRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="GunJunkTurretS9" unlock_tier="1"/>
+            <unlock_entry item="GunJunkTurretS10" unlock_tier="2"/>
+            <unlock_entry item="GunJunkTurretS11" unlock_tier="3"/>
+            <unlock_entry item="GunJunkTurretS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunJunkTurretS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunJunkTurretS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunJunkTurretS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="GunJunkTurretS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunJunkTurretS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunJunkTurretS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunJunkTurretS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="GunJunkTurretS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']/effect_group">
+        <display_entry icon="meleeWpnBladeT1HuntingKnife,meleeWpnBladeT1HuntingKnife,meleeWpnBladeT1HuntingKnife,meleeWpnBladeT1HuntingKnife" name_key="MeleeHuntingKnifeRank9,MeleeHuntingKnifeRank10,MeleeHuntingKnifeRank11,MeleeHuntingKnifeRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeHuntingKnifeS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeHuntingKnifeS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeHuntingKnifeS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeHuntingKnifeS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeHuntingKnifeS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeHuntingKnifeS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeHuntingKnifeS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeHuntingKnifeS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeHuntingKnifeS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeHuntingKnifeS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeHuntingKnifeS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeHuntingKnifeS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachete']/effect_group">
+        <display_entry icon="meleeWpnBladeT3Machete,meleeWpnBladeT3Machete,meleeWpnBladeT3Machete,meleeWpnBladeT3Machete" name_key="MeleeMacheteRank9,MeleeMacheteRank10,MeleeMacheteRank11,MeleeMacheteRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeMacheteS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeMacheteS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeMacheteS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeMacheteS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeMacheteS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeMacheteS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeMacheteS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeMacheteS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeMacheteS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeMacheteS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeMacheteS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeMacheteS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingClubs']/effect_group">
+        <display_entry icon="meleeWpnClubT3SteelClub,meleeWpnClubT3SteelClub,meleeWpnClubT3SteelClub,meleeWpnClubT3SteelClub" name_key="MeleeClubSteelRank9,MeleeClubSteelRank10,MeleeClubSteelRank11,MeleeClubSteelRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeClubSteelS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeClubSteelS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeClubSteelS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeClubSteelS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeClubSteelS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeClubSteelS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeClubSteelS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeClubSteelS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeClubSteelS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeClubSteelS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeClubSteelS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeClubSteelS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingStunBaton']/effect_group">
+        <display_entry icon="meleeWpnBatonT2StunBaton,meleeWpnBatonT2StunBaton,meleeWpnBatonT2StunBaton,meleeWpnBatonT2StunBaton" name_key="MeleeStunBatonRank9,MeleeStunBatonRank10,MeleeStunBatonRank11,MeleeStunBatonRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeStunBatonS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeStunBatonS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeStunBatonS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeStunBatonS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeStunBatonS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeStunBatonS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeStunBatonS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeStunBatonS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeStunBatonS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeStunBatonS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeStunBatonS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeStunBatonS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']/effect_group">
+        <display_entry icon="meleeWpnSpearT3SteelSpear,meleeWpnSpearT3SteelSpear,meleeWpnSpearT3SteelSpear,meleeWpnSpearT3SteelSpear" name_key="MeleeSpearSteelRank9,MeleeSpearSteelRank10,MeleeSpearSteelRank11,MeleeSpearSteelRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeSpearSteelS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeSpearSteelS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeSpearSteelS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeSpearSteelS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSpearSteelS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSpearSteelS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSpearSteelS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSpearSteelS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSpearSteelS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSpearSteelS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSpearSteelS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSpearSteelS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingSledgehammers']/effect_group">
+        <display_entry icon="meleeWpnSledgeT3SteelSledgehammer,meleeWpnSledgeT3SteelSledgehammer,meleeWpnSledgeT3SteelSledgehammer,meleeWpnSledgeT3SteelSledgehammer" name_key="MeleeSledgehammerSteelRank9,MeleeSledgehammerSteelRank10,MeleeSledgehammerSteelRank11,MeleeSledgehammerSteelRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeSledgehammerSteelS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeSledgehammerSteelS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeSledgehammerSteelS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeSledgehammerSteelS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSledgehammerSteelS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSledgehammerSteelS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSledgehammerSteelS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeSledgehammerSteelS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSledgehammerSteelS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSledgehammerSteelS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSledgehammerSteelS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeSledgehammerSteelS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingKnuckles']/effect_group">
+        <display_entry icon="meleeWpnKnucklesT3SteelKnuckles,meleeWpnKnucklesT3SteelKnuckles,meleeWpnKnucklesT3SteelKnuckles,meleeWpnKnucklesT3SteelKnuckles" name_key="MeleeKnucklesSteelRank9,MeleeKnucklesSteelRank10,MeleeKnucklesSteelRank11,MeleeKnucklesSteelRank12" has_quality="false" unlock_level="102,116,128,140">
+            <unlock_entry item="MeleeKnucklesSteelS9" unlock_tier="1"/>
+            <unlock_entry item="MeleeKnucklesSteelS10" unlock_tier="2"/>
+            <unlock_entry item="MeleeKnucklesSteelS11" unlock_tier="3"/>
+            <unlock_entry item="MeleeKnucklesSteelS12" unlock_tier="4"/>
+        </display_entry>
+
+        <effect_group>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeKnucklesSteelS9" level="102,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeKnucklesSteelS10" level="116,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeKnucklesSteelS11" level="128,150" value="1"/>
+            <passive_effect name="RecipeTagUnlocked" operation="base_set" tags="MeleeKnucklesSteelS12" level="140,150" value="1"/>
+
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeKnucklesSteelS9" level="104,108,110,112,114,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeKnucklesSteelS10" level="118,120,122,124,126,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeKnucklesSteelS11" level="130,133,134,136,138,150" value="1,2,3,4,5,5"/>
+            <passive_effect name="CraftingTier" operation="base_add" tags="MeleeKnucklesSteelS12" level="142,144,146,148,150" value="1,2,3,4,5"/>
+        </effect_group>
+    </insertAfter>
 
 </Marisa>
