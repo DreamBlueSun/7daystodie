@@ -225,10 +225,10 @@
 
 
 
-	<!-- 负面BUFF -->
+	<!-- *** 负面BUFF -->
 	<append xpath="/buffs">
 
-		<!-- 瘴气环境 -->
+		<!-- ** 瘴气环境 -->
 		<buff name="buffEnvironmentMiasmatic" name_key="buffEnvironmentMiasmaticName" description_key="buffEnvironmentMiasmaticDesc" showonhud="true" icon="ui_game_symbol_infection" icon_color="255,0,55">
 			<stack_type value="ignore"/>
 			<update_rate value="3"/>
@@ -238,22 +238,22 @@
 			</effect_group>
 		</buff>
 
-		<!-- 护甲下降 -->
+		<!-- ** 护甲下降 -->
 		<buff name="buffPerkMarisaDefDown" name_key="buffPerkMarisaDefDownName" description_key="buffPerkMarisaDefDownDesc" showonhud="true" icon="server_cheat" icon_color="255,0,55">
 			<stack_type value="replace"/>
 			<update_rate value="1"/>
 			<duration value="60"/>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="LT" value="1"/>
-					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-80"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="1"/>
 					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-40"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="2"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="1"/>
 					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-20"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="2"/>
+					<passive_effect name="PhysicalDamageResist" operation="base_add" value="-10"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
@@ -261,7 +261,7 @@
 			</effect_group>
 		</buff>
 
-		<!-- 瘴气侵蚀 -->
+		<!-- ** 瘴气侵蚀 -->
 		<buff name="buffPerkMarisaMiasmaticErosion" name_key="buffPerkMarisaMiasmaticErosionName" description_key="buffPerkMarisaMiasmaticErosionDesc" showonhud="true" icon="ui_game_symbol_infection" icon_color="255,0,55">
 			<stack_type value="replace"/>
 			<update_rate value="1"/>
@@ -287,6 +287,30 @@
 			</effect_group>
 		</buff>
 
+	</append>
+	<!-- ** 热 -->
+	<append xpath="/buffs/buff[@name='buffElementHot']">
+		<effect_group>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value="-.3"/>
+		</effect_group>
+	</append>
+	<!-- ** 酷热 -->
+	<append xpath="/buffs/buff[@name='buffElementSweltering']">
+		<effect_group>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value="-.6"/>
+		</effect_group>
+	</append>
+	<!-- ** 寒冷 -->
+	<append xpath="/buffs/buff[@name='buffElementCold']">
+		<effect_group>
+			<passive_effect name="StaminaLoss" operation="perc_add" value=".3"/>
+		</effect_group>
+	</append>
+	<!-- ** 冻僵 -->
+	<append xpath="/buffs/buff[@name='buffElementFreezing']">
+		<effect_group>
+			<passive_effect name="StaminaLoss" operation="perc_add" value=".6"/>
+		</effect_group>
 	</append>
 
 
