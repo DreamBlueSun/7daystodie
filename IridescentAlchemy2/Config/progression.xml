@@ -69,7 +69,6 @@
 						<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
 					</passive_effect>
 					<passive_effect name="NoiseMultiplier" operation="perc_add" level="1,2,3" value="-.05,-.1,-.15"/>
-                    <passive_effect name="EnemySearchDuration" operation="perc_add" level="1,2,3" value="-.05,-.1,-.15"/>
 			</effect_group>
 
             <effect_group>
@@ -168,16 +167,16 @@
             <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".02,.1"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".01,.02,.03,.04,.05"/>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="ranged"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".04,.2"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".04,.08,.12,.16,.2"/>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="melee"/>
                 <requirement name="!HasBuff" buff="buffDrugFortBites"/>
-                    <passive_effect name="GeneralDamageResist" operation="base_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.3"/>
+                    <passive_effect name="GeneralDamageResist" operation="base_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.25"/>
             </effect_group>
 
             <effect_group>
@@ -346,29 +345,29 @@
 
 			<effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
-				    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3" value=".2,.4,.6"/>
+				    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3" value=".15,.3,.45"/>
 			</effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="1"/>
-                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3"/>
-                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3">
+                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-1">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="2"/>
-                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-5"/>
-                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-5">
+                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-2"/>
+                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-2">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaBurnBlood" operation="Equals" value="3"/>
-                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-7"/>
-                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-7">
+                    <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3"/>
+                    <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyStats" stat="Health" target="self" operation="add" value="-3">
                         <requirement name="ItemHasTags" tags="melee"/>
                     </triggered_effect>
             </effect_group>
@@ -538,9 +537,9 @@
                     <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5" value=".3,.7,1.2,1.8,2.5"/>
 			</effect_group>
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5"/>
-                <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-15,-30,-50,-75"/>
-                <passive_effect name="ElementalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-15,-30,-50,-75" tags="heat,electrical"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.5"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-10,-20,-30,-45"/>
+                <passive_effect name="ElementalDamageResist" operation="base_add" level="1,2,3,4,5" value="-5,-10,-20,-30,-45" tags="heat,electrical"/>
             </effect_group>
 
             <effect_group>
@@ -561,8 +560,7 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value="0,.1,.2,.2,.3"/>
-                    <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5" value="10,10,10,15,15"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.5"/>
             </effect_group>
 
             <effect_group>
@@ -897,6 +895,9 @@
             <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
+            <effect_group>
+                <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.25" tags="jumping"/>
+            </effect_group>
             <effect_group>
                 <requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="30"/>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaJumpDef" operation="Equals" value="1"/>
