@@ -50,6 +50,18 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
 			</effect_group>
 
+			<!-- 添加 抵御 护甲下降 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaDefDown"/>
+			</effect_group>
+
+			<!-- 添加 抵御 瘴气侵蚀 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaMiasmaticErosion"/>
+			</effect_group>
+
 		</buff>
 		<!-- 飞燕 -->
 		<buff name="buffPerkMarisaNoguri" name_key="buffPerkMarisaNoguriName" description_key="buffPerkMarisaNoguriDesc" showonhud="true" icon="ui_game_symbol_run" icon_color="0,191,255">
@@ -221,6 +233,18 @@
 			</effect_group>
 		</buff>
 
+
+		<!-- ** 抵御 护甲下降 -->
+		<buff name="buffUnablePerkMarisaDefDown" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+		</buff>
+
+		<!-- ** 抵御 瘴气侵蚀 -->
+		<buff name="buffUnablePerkMarisaMiasmaticErosion" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+		</buff>
 	</append>
 
 

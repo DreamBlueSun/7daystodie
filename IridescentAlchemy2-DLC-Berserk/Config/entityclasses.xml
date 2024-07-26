@@ -459,11 +459,13 @@
 		<!-- ** 狂化 -->
 		<effect_group name="zombie add atk buffPerkMarisaDefDown">
 			<requirement name="EntityTagCompare" tags="berserk"/>
+			<requirement name="!HasBuff" buff="buffUnablePerkMarisaDefDown" target="other"/>
 			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaDefDown"/>
 		</effect_group>
 		<effect_group name="zombie add atk buffPerkMarisaMiasmaticErosion">
 			<requirement name="EntityTagCompare" tags="berserk"/>
+			<requirement name="!HasBuff" buff="buffUnablePerkMarisaMiasmaticErosion" target="other"/>
 			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="20"/>
 			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="70"/>
 				<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffPerkMarisaMiasmaticErosion"/>
