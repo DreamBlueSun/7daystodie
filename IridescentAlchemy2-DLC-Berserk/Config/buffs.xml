@@ -1,5 +1,15 @@
 <Marisa>
 
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+		<!-- 添加 状态检查 极意 -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffT3PerkMarisaCheck"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3PerkMarisaCheck"/>
+		</effect_group>
+	</append>
+
+
+
 	<!-- 添加 转祸为福 触发条件 -->
 	<append xpath="/buffs/buff[@name='buffFatiguedTrigger' or @name='buffArmSprainedCHTrigger' or @name='buffLegSprainedCHTrigger' or @name='buffAbrasionCatch' or @name='buffLaceration' or @name='buffInfectionCatch' or @name='buffInjuryStunned01CHTrigger' or @name='buffInjuryBleedingTwo' or @name='buffInjuryBleedingBarbedWire']">
         <effect_group>
@@ -65,6 +75,895 @@
 		</buff>
 
 
+
+		<!-- 极意 -->
+		<buff name="buffT3PerkMarisaCheck" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+
+			<!-- ** Arlene 阿琳 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitArlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesArlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsArlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesArlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsArlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPlantBiology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesArlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsArlene" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Marlene 马琳 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaGeology">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMarlene" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** PartyGirl 派对女孩 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFavoriteMushroom">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesPartyGirl" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsPartyGirl" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Nurse 护士 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitNurse" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesNurse" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsNurse" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesNurse" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsNurse" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthIncreaseSpeedUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesNurse" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsNurse" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Joe 乔 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSneakUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJoe" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Steve 史蒂夫 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteve" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteve" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteve" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteve" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteve" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaKillExp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteve" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteve" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** TomClark 汤姆·克拉克 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaTreasureHuntStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesTomClark" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsTomClark" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** BusinessMan 商人 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCopperSmelting">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBusinessMan" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBusinessMan" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Burnt 被灼烧者 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaCrisisPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBurnt" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBurnt" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Spider 蜘蛛 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSpider" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSpider" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSpider" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSpider" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSpider" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaJumpDef">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSpider" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSpider" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Boe 布尔 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaMechanics">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBoe" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** MaleHazmat 穿着防化服的丧尸 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBuffResistance">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMaleHazmat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMaleHazmat" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Janitor 看门人 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensive">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesJanitor" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsJanitor" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Inmate 犯人 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitInmate" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesInmate" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsInmate" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesInmate" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsInmate" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStaminaChangeOTRun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesInmate" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsInmate" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Moe 莫伊 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMoe" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBurnBlood">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMoe" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMoe" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Lab 实验室工作人员 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLab" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLab" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLab" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLab" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLab" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaVitality">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLab" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLab" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Darlene 达琳 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStuffed">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDarlene" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDarlene" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Yo 幽 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitYo" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesYo" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsYo" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesYo" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsYo" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaPowerAndDown">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesYo" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsYo" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** UtilityWorker 公用事业工人 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBreakStar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesUtilityWorker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsUtilityWorker" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Biker 摩托车手 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBiker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBiker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBiker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBiker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBiker" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAttack">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBiker" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBiker" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Lumberjack 伐木工 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaStun">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesLumberjack" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsLumberjack" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** FemaleFat 大妈妈 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthMaxUp">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFemaleFat" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFemaleFat" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** FatHawaiian 游客 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHealthChangeOT">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatHawaiian" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatHawaiian" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Bowler 投球手 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBowler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBowler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBowler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBowler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBowler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaHeadDamage">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesBowler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsBowler" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** FatCop 警察 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaDefensiveBuffer">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesFatCop" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsFatCop" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Skateboarder 暴徒 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaLiberationPower">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSkateboarder" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSkateboarder" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Soldier 士兵 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaSpiritOfWar">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSoldier" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSoldier" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Wight 恶灵 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitWight" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesWight" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsWight" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesWight" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsWight" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaChallenge">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesWight" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsWight" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Screamer 尖叫丧尸 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaAutomatic">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesScreamer" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsScreamer" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Mutated 变异丧尸 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMutated" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMutated" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMutated" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMutated" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMutated" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaFullHealth">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesMutated" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsMutated" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** Demolition 爆破丧尸 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaBomberman">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesDemolition" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsDemolition" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+			<!-- ** SteveCrawler 爬行者 -->
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+				<passive_effect name="PerkLevel" operation="base_set" value="1" tags="t3PerkMarisaResentment">
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesSteveCrawler" operation="GTE" value="1"/>
+					<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsSteveCrawler" operation="GTE" value="1"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+
+	</append>
+
+
+
+	<!-- 虹彩技能 极意 力量解放 -->
+	<append xpath="/buffs/buff[@name='buffPerkMarisaLiberationPower']">
+
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="6"/>
+			<passive_effect name="EntityDamage" operation="perc_add" value=".6"/>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value=".6"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="7"/>
+			<passive_effect name="EntityDamage" operation="perc_add" value=".7"/>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value=".7"/>
+		</effect_group>
 
 	</append>
 
