@@ -1,13 +1,13 @@
 <Marisa>
 
     <set xpath="/challenges/challenge[@name='craftClothes']/objective[@type='Craft']/@item">IridescentArmorT0BonePrimitiveOutfit</set>
-    <append xpath="/challenges/challenge[@name='craftClothes']">
-        <objective type="Wear" item="IridescentArmorT0BonePrimitiveOutfit"/>
-    </append>
 
-    <remove xpath="/challenges/challenge[@name='wearClothes']/objective[@type='Wear' and @item='armorPrimitiveOutfit']"/>
-    <append xpath="/challenges/challenge[@name='wearClothes']">
-        <objective type="Craft" item="BundlePerkGrilledMeatStar"/>
-    </append>
+    <remove xpath="/challenges/challenge[@name='wearClothes']"/>
+    <insertAfter xpath="/challenges/challenge[@name='craftClothes']">
+        <challenge name="wearClothes" title_key="challengeWearClothes" icon="ui_game_symbol_challenge_basics_wear_clothing" group="Basics" hint="challengeWearClothesHint1" short_description_key="challengeWearClothesShort" description_key="challengeWearClothesDesc">
+            <objective type="Craft" item="BundlePerkGrilledMeatStar"/>
+        </challenge>
+    </insertAfter>
+
 
 </Marisa>
