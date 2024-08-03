@@ -342,14 +342,16 @@
 	<!-- 武器BUFF -->
 	<append xpath="/buffs">
 
-		<!-- 烈焰净世 -->
+		<!-- 烈炎净世 -->
 		<buff name="buffModBuffFireAoeEffect" hidden="true">
 			<damage_type value="heat"/>
 			<stack_type value="replace"/>
 			<update_rate value="1"/>
 			<duration value="30"/>
 			<effect_group>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@buffModBuffFireAoeEffect"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@buffModBuffFireAoeEffect">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@buffModBuffFireAoeEffect"/>
+				</passive_effect>
 
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
