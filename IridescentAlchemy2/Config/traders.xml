@@ -6,30 +6,108 @@
     <remove xpath="/traders/trader_item_groups/trader_item_group[@name='rareTools']/item[@name='meleeWpnSledgeT3SteelSledgehammer']"/>
 
 
-
+    <!-- 商店每天刷新 -->
     <set xpath="/traders/trader_info[@reset_interval='3']/@reset_interval">1</set>
 
 
 
-    <!-- 增加商人出售的物资 -->
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='weaponsGunParts']/item/@count">20,50</set>
+    <!-- 修改商人出售的基础物资 -->
+    <remove xpath="/traders/trader_item_groups/trader_item_group[@name='traderAlways']"/>
+    <insertAfter xpath="/traders/trader_item_groups/trader_item_group[@name='traderElectrical']">
+		<trader_item_group name="traderAlways" count="all">
+            <!-- 弹药 -->
+			<item name="ammo9mmBulletBall" count="3000,6000"/>
+			<item name="ammo762mmBulletBall" count="1500,3000"/>
+			<item name="ammo44MagnumBulletBall" count="1500,3000"/>
+			<item name="ammoShotgunShell" count="1500,3000"/>
+			<item name="ammoArrowStone" count="750,1500"/>
+			<item name="ammoCrossbowBoltStone" count="750,1500"/>
 
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoAll']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoArrowsBolts']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoBrass']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoHP']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoAP']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='thrownAmmo']/item/@count">2000,5000</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='ammoSupplies']/item/@count">2000,5000</set>
+			<item name="ammo9mmBulletHP" count="3000,6000"/>
+			<item name="ammo762mmBulletHP" count="1500,3000"/>
+			<item name="ammo44MagnumBulletHP" count="1500,3000"/>
+			<item name="ammoShotgunBreachingSlug" count="1500,3000"/>
+			<item name="ammoArrowIron" count="750,1500"/>
+			<item name="ammoArrowFlaming" count="750,1500"/>
+			<item name="ammoCrossbowBoltIron" count="750,1500"/>
+			<item name="ammoCrossbowBoltFlaming" count="750,1500"/>
 
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='generalResources']/item/@count">2000,5000</set>
+			<item name="ammo9mmBulletAP" count="3000,6000"/>
+			<item name="ammo762mmBulletAP" count="1500,3000"/>
+			<item name="ammo44MagnumBulletAP" count="1500,3000"/>
+			<item name="ammoShotgunSlug" count="1500,3000"/>
+			<item name="ammoRocketHE" count="200,400"/>
+			<item name="ammoRocketFrag" count="200,400"/>
+			<item name="ammoArrowSteelAP" count="750,1500"/>
+			<item name="ammoArrowExploding" count="750,1500"/>
+			<item name="ammoCrossbowBoltSteelAP" count="750,1500"/>
+			<item name="ammoCrossbowBoltExploding" count="750,1500"/>
 
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='traderGeneral']/item[@name='armorParts']/@count">20,50</set>
-    <set xpath="/traders/trader_item_groups/trader_item_group[@name='traderGeneral']/item[@name='resourceSewingKit']/@count">20,50</set>
+            <item name="ammoJunkTurretRegular" count="10000,20000"/>
+            <item name="ammoJunkTurretShell" count="10000,20000"/>
+            <item name="ammoJunkTurretAP" count="10000,20000"/>
 
-    <append xpath="/traders/trader_item_groups/trader_item_group[@name='ammoBrass']">
-        <item name="ammoJunkTurretRegular" count="8000,20000"/>
-        <item name="ammoJunkTurretShell" count="8000,20000"/>
-    </append>
+			<item name="thrownAmmoPipeBomb" count="200,400"/>
+			<item name="thrownGrenadeContact" count="200,400"/>
+			<item name="thrownGrenade" count="200,400"/>
+			<item name="thrownTimedCharge" count="200,400"/>
+			<item name="thrownDynamite" count="200,400"/>
+			<item name="thrownAmmoMolotovCocktail" count="200,400"/>
+
+            <!-- 食物 -->
+			<item name="foodGrilledMeat" count="100,200"/>
+			<item name="drinkJarBoiledWater" count="100,200"/>
+
+            <!-- 医疗 -->
+			<item name="medicalAloeCream" count="100,200"/>
+			<item name="medicalBandage" count="100,200"/>
+			<item name="medicalSplint" count="100,200"/>
+
+            <!-- 素材 -->
+			<item name="resourceWood" count="5000,10000"/>
+			<item name="resourceCrushedSand" count="5000,10000"/>
+			<item name="resourcePotassiumNitratePowder" count="5000,10000"/>
+			<item name="resourceCoal" count="5000,10000"/>
+			<item name="resourceScrapLead" count="5000,10000"/>
+			<item name="resourceScrapBrass" count="5000,10000"/>
+			<item name="resourceScrapIron" count="5000,10000"/>
+			<item name="resourceForgedIron" count="500,1000"/>
+			<item name="resourceForgedSteel" count="500,1000"/>
+			<item name="resourceMetalPipe" count="500,1000"/>
+			<item name="resourceOilShale" count="5000,10000"/>
+			<item name="resourceOil" count="500,1000"/>
+			<item name="resourceGlue" count="500,1000"/>
+			<item name="resourceDuctTape" count="500,1000"/>
+			<item name="resourceCloth" count="5000,10000"/>
+			<item name="resourceLeather" count="500,1000"/>
+			<item name="resourceScrapPolymers" count="500,1000"/>
+			<item name="resourceGunPowder" count="5000,10000"/>
+			<item name="resourceAcid" count="500,1000"/>
+			<item name="resourceAnimalFat" count="500,1000"/>
+			<item name="resourceHeadlight" count="500,1000"/>
+			<item name="resourceSpring" count="500,1000"/>
+			<item name="resourceElectricParts" count="500,1000"/>
+			<item name="resourceMechanicalParts" count="500,1000"/>
+
+            <!-- 零件 -->
+			<item name="gunBowT1WoodenBowParts" count="20,40"/>
+			<item name="gunHandgunT1PistolParts" count="20,40"/>
+			<item name="gunShotgunT1DoubleBarrelParts" count="20,40"/>
+			<item name="gunRifleT1HuntingRifleParts" count="20,40"/>
+			<item name="gunMGT1AK47Parts" count="20,40"/>
+			<item name="gunExplosivesT3RocketLauncherParts" count="20,40"/>
+			<item name="gunBotRoboticsParts" count="20,40"/>
+			<item name="meleeWpnBatonT2StunBatonParts" count="20,40"/>
+			<item name="meleeWpnKnucklesT3SteelKnucklesParts" count="20,40"/>
+			<item name="meleeWpnBladeT3MacheteParts" count="20,40"/>
+			<item name="meleeWpnSpearT3SteelSpearParts" count="20,40"/>
+			<item name="meleeWpnClubT3SteelClubParts" count="20,40"/>
+			<item name="meleeWpnSledgeT3SteelSledgehammerParts" count="20,40"/>
+
+            <!-- 工具 -->
+			<item name="resourceLockPick" count="100,200"/>
+			<item name="resourceRepairKit" count="100,200"/>
+		</trader_item_group>
+    </insertAfter>
 
 </Marisa>
