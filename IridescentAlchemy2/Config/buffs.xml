@@ -236,6 +236,7 @@
 		<!-- 炸弹客 -->
 		<buff name="buffPerkMarisaBombermanDef" name_key="buffPerkMarisaBombermanDefName" description_key="buffPerkMarisaBombermanDefDesc" showonhud="true" icon="ui_game_symbol_explosion" icon_color="0,191,255">
 			<stack_type value="ignore"/>
+			<duration value="1"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_set" value="1"/>
 			</effect_group>
@@ -252,6 +253,36 @@
 		<buff name="buffUnablePerkMarisaMiasmaticErosion" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="3"/>
+		</buff>
+
+		<!-- 鬼人药 -->
+		<buff name="buffIridescentPotionAttack" name_key="buffIridescentPotionAttackName" description_key="buffIridescentPotionAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="7" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value=".7" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 硬化药 -->
+		<buff name="buffIridescentPotionDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend2"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="7"/>
+			</effect_group>
+		</buff>
+		<!-- 强走药 -->
+		<buff name="IridescentPotionStamina" name_key="IridescentPotionStaminaName" description_key="IridescentPotionStaminaDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="IridescentPotionStamina2"/>
+                <passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value="2"/>
+			</effect_group>
 		</buff>
 	</append>
 
