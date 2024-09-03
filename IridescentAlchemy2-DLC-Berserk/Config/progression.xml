@@ -34,6 +34,31 @@
 <!--            </effect_group>-->
 <!--        </perk>-->
 
+        <!-- *** 耐性类技能 -->
+        <!-- ** 如醉 -->
+        <perk name="perkMarisaScreenEffectDrunk" parent="skillIridescentResistant" name_key="perkMarisaScreenEffectDrunkName" desc_key="perkMarisaScreenEffectDrunkDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="0">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<effect_group>
+                <requirement name="HoldingItemHasTags" tags="melee"/>
+                <passive_effect name="MaxRange" operation="perc_add" level="1,2" value="0,.25"/>
+                <passive_effect name="BlockRange" operation="perc_add" level="1,2" value="0,.25"/>
+			</effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaScreenEffectDrunkRank1Desc" long_desc_key="perkMarisaScreenEffectDrunkRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaScreenEffectDrunkRank2Desc" long_desc_key="perkMarisaScreenEffectDrunkRank2LongDesc"/>
+            </effect_group>
+        </perk>
+
+    </append>
+
+
+
+    <!-- 虹彩技能 极意 -->
+    <append xpath="/progression/perks">
+
         <!-- 虹彩：套装类技能 -->
         <!-- ** 极意 潜伏 -->
         <perk name="t3PerkMarisaSneakUp" parent="skillIridescentSuit" name_key="t3PerkMarisaSneakUpName" desc_key="t3PerkMarisaSneakUpDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="0">
@@ -264,7 +289,7 @@
 
 
 
-    <!-- *** 虹彩技能 极意 -->
+    <!-- *** 虹彩技能 极意 效果 -->
     <!-- ** 潜伏 -->
     <remove xpath="/progression/perks/perk[@name='perkMarisaSneakUp']"/>
     <insertAfter xpath="/progression/perks/perk[@name='perkMarisaTrack']">
