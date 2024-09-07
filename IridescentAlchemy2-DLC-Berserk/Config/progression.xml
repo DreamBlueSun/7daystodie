@@ -20,6 +20,33 @@
     <!-- 虹彩技能 -->
     <append xpath="/progression/perks">
 
+        <!-- *** 强化类技能 -->
+        <!-- ** 盛宴 -->
+        <perk name="perkMarisaKillRecovery" parent="skillIridescentIntensify" name_key="perkMarisaKillRecoveryName" desc_key="perkMarisaKillRecoveryDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="0">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="1"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
+            </effect_group>
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="2"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
+            </effect_group>
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="GTE" value="3"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="7"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaKillRecoveryRank1Desc" long_desc_key="perkMarisaKillRecoveryRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaKillRecoveryRank2Desc" long_desc_key="perkMarisaKillRecoveryRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaKillRecoveryRank3Desc" long_desc_key="perkMarisaKillRecoveryRank3LongDesc"/>
+            </effect_group>
+        </perk>
+
         <!-- *** 防御类技能 -->
         <!-- ** 转祸为福 -->
 <!--        <perk name="perkMarisaTurnBadLuckIntoABlessing" parent="skillIridescentDefend" name_key="perkMarisaTurnBadLuckIntoABlessingName" desc_key="perkMarisaTurnBadLuckIntoABlessingDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="0">-->
@@ -42,8 +69,12 @@
 
 			<effect_group>
                 <requirement name="HoldingItemHasTags" tags="melee"/>
-                <passive_effect name="MaxRange" operation="perc_add" level="1,2" value="0,.25"/>
-                <passive_effect name="BlockRange" operation="perc_add" level="1,2" value="0,.25"/>
+				<requirements compare_type="or">
+                    <requirement name="HasBuff" buff="buffBeer"/>
+                    <requirement name="HasBuff" buff="buffDrunkGrandpasMoonshine"/>
+                </requirements>
+                    <passive_effect name="MaxRange" operation="perc_add" level="1,2" value="0,.25"/>
+                    <passive_effect name="BlockRange" operation="perc_add" level="1,2" value="0,.25"/>
 			</effect_group>
 
             <effect_group>
