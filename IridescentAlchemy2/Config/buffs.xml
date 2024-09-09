@@ -14,6 +14,11 @@
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa02"/>
 		</effect_group>
+		<!-- 添加 状态检查 1s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa10"/>
+		</effect_group>
 
 		<!-- 添加 不屈 -->
         <effect_group>
@@ -32,6 +37,140 @@
 			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
 				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffPerkMarisaLiberationPowerBefore"/>
 		</effect_group>
+
+		<!-- 添加 击杀丧尸获取武器制作熟练度 -->
+		<effect_group>
+			<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="add" value="1"/>
+		</effect_group>
+        <!-- 弓 弩 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkArchery"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingBows" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingCrossBows" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 手枪 SMG5 马格南 沙漠秃鹰 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkGunslinger"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingHandguns" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSMG5" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingMagnum44" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingDesertVulture" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 双管霰弹枪 泵动式霰弹枪 自动霰弹枪 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkBoomstick"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingShotguns" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingPumpShotgun" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingAutoShotgun" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 猎枪 杠杆步枪 精准猎枪 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkDeadEye"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingRifles" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingLeverActionRifle" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSniperRifle" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- AK47 突击步枪 M60 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkMachineGunner"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingMachineGuns" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingTacticalAR" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingM60" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 火箭筒 雷 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingRocketLauncher" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 垃圾炮台 电击棒 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkTurrets"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingJunkTurret" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingStunBaton" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkElectrocutioner"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingJunkTurret" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingStunBaton" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 猎刀 砍刀 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkDeepCuts"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingBlades" level="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingMachete" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 棒球棍 钢棍 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkPummelPete"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingClubs" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 铁矛 钢矛 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkJavelinMaster"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSpears" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 大铁锤 大钢锤 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkSkullCrusher"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSledgehammers" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+        <!-- 铁指虎 钢刺拳 -->
+		<effect_group>
+			<requirement name="HoldingItemHasTags" tags="perkBrawler"/>
+			<requirement name="CVarCompare" cvar="$craftingWeaponLevelNext" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingKnuckles" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingWeaponLevelNext" operation="subtract" value="20"/>
+		</effect_group>
+
+		<!-- 添加 击杀丧尸获取护甲制作熟练度 -->
+		<effect_group>
+			<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingArrmorLevelNext" operation="add" value="1"/>
+		</effect_group>
+        <!-- 护甲 -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar="$craftingArrmorLevelNext" operation="GTE" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingArmor" level="1"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingArrmorLevelNext" operation="subtract" value="30"/>
+		</effect_group>
+
 	</append>
 
 
@@ -1166,6 +1305,31 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaMiasmaticErosion"/>
 			</effect_group>
 
+		</buff>
+
+		<!-- 状态检查 1s -->
+		<buff name="buffStatusCheckMarisa10" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+
+			<!-- 添加 驾驶载具获取载具制作熟练度 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="$craftingWeaponLevelNext"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="$craftingArrmorLevelNext"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="$craftingVehiclesLevelNext"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="EntityHasMovementTag" tags="driving"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNext" operation="add" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="EntityHasMovementTag" tags="driving"/>
+				<requirement name="CVarCompare" cvar="$craftingVehiclesLevelNext" operation="GTE" value="120"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingVehicles" level="1"/>
+
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNext" operation="subtract" value="120"/>
+			</effect_group>
 		</buff>
 
 		<!-- 飞燕 -->
