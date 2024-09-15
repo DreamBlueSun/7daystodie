@@ -405,11 +405,11 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".01,.02,.03,.04,.05,.06,.07"/>
+                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".01,.02,.03,.04,.05,.06,.07"/>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="ranged"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".04,.08,.12,.16,.2,.24,.28"/>
+                    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".04,.08,.12,.16,.2,.24,.28"/>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="melee"/>
@@ -743,7 +743,7 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".05,.15,.25,.35,.45"/>
+                    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5" value=".05,.15,.25,.35,.45"/>
             </effect_group>
 
             <effect_group>
@@ -809,7 +809,7 @@
                     <requirement name="ItemHasTags" tags="meleeIntellect"/>
                 </requirements>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffInjuryStunned01" duration="7">
-                        <requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="Equals" value="1"/>
+                        <requirement name="ProgressionLevel" progression_name="perkMarisaStun" operation="Equals" value="1"/>
                         <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
                     </triggered_effect>
             </effect_group>
@@ -820,8 +820,8 @@
                     <requirement name="ItemHasTags" tags="meleeIntellect"/>
                 </requirements>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffInjuryStunned01" duration="7">
-                        <requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="GTE" value="2"/>
-                        <requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="LT" value="4"/>
+                        <requirement name="ProgressionLevel" progression_name="perkMarisaStun" operation="GTE" value="2"/>
+                        <requirement name="ProgressionLevel" progression_name="perkMarisaStun" operation="LT" value="4"/>
                         <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
                     </triggered_effect>
             </effect_group>
@@ -832,12 +832,12 @@
                     <requirement name="ItemHasTags" tags="meleeIntellect"/>
                 </requirements>
                     <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" tags="animal,player,zombie" buff="buffInjuryStunned01" duration="7">
-                        <requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="GTE" value="4"/>
+                        <requirement name="ProgressionLevel" progression_name="perkMarisaStun" operation="GTE" value="4"/>
                     </triggered_effect>
             </effect_group>
             <effect_group>
                 <requirement name="HasBuff" buff="buffInjuryStunned01" target="other"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.1,.2,.2,.3,.4,.5"/>
+                    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".3,.3,.6,.6,1,1.25,1.5"/>
             </effect_group>
 
             <effect_group>
@@ -903,7 +903,7 @@
             <effect_group>
                 <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="3,7,12,18,25,33,42" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkDeepCuts,perkElectrocutioner"/>
                 <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".3,.7,1.2,1.8,2.5,3.3,4.2" tags="perkBoomstick,perkTurrets"/>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7"/>
+                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7"/>
                 <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5,6,7" value="-5,-10,-20,-30,-45,-65,-90"/>
                 <passive_effect name="ElementalDamageResist" operation="base_add" level="1,2,3,4,5,6,7" value="-5,-10,-20,-30,-45,-65,-90" tags="heat,electrical"/>
             </effect_group>
@@ -939,7 +939,7 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7"/>
+                    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7"/>
             </effect_group>
 
             <effect_group>
@@ -972,7 +972,7 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7" tags="perkTurrets"/>
+                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.7" tags="perkTurrets"/>
             </effect_group>
 
             <effect_group>
