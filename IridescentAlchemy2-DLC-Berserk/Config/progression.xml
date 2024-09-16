@@ -46,6 +46,25 @@
                 <effect_description level="3" desc_key="perkMarisaKillRecoveryRank3Desc" long_desc_key="perkMarisaKillRecoveryRank3LongDesc"/>
             </effect_group>
         </perk>
+        <!-- ** 治愈收割 -->
+        <perk name="perkMarisaKillHealing" parent="skillIridescentIntensify" name_key="perkMarisaKillHealingName" desc_key="perkMarisaKillHealingDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="10">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="Equals" value="1"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="add" value="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="2"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="add" value="1"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaKillHealingRank1Desc" long_desc_key="perkMarisaKillHealingRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaKillHealingRank2Desc" long_desc_key="perkMarisaKillHealingRank2LongDesc"/>
+            </effect_group>
+        </perk>
 
         <!-- *** 防御类技能 -->
         <!-- ** 转祸为福 -->
