@@ -6,6 +6,16 @@
     <!-- 移除护甲穿透技能对长矛的效果 -->
     <remove xpath="/progression/perks/perk[@name='perkPenetrator']/effect_group/passive_effect[@name='TargetArmor' and @tags='perkJavelinMaster']"/>
 
+    <!-- 修改医师5级的安乐师对电击棒的伤害增量 -->
+    <remove xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/passive_effect[@name='EntityDamage' and @tags='stunBaton']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/requirement[@name='EntityTagCompare' and @target='other']">
+		<passive_effect name="EntityDamage" operation="base_add" level="5" value="@.MeleeStunBatonPerkPhysicianEntityDamage" tags="stunBaton">
+            <requirement name="!EntityTagCompare" target="other" tags="boss"/>
+        </passive_effect>
+		<passive_effect name="EntityDamage" operation="base_add" level="5" value="@.MeleeStunBatonPerkPhysicianEntityDamageBoss" tags="stunBaton">
+            <requirement name="EntityTagCompare" target="other" tags="boss"/>
+        </passive_effect>
+    </insertAfter>
 
 
     <!-- 虹彩技能栏 -->
