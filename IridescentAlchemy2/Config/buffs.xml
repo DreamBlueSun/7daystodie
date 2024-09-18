@@ -1541,33 +1541,6 @@
 			</effect_group>
 		</buff>
 
-
-
-		<!-- 棍势 -->
-		<buff name="buffMeleeClubAttackedOtherPrimary" name_key="buffMeleeClubAttackedOtherPrimaryName" description_key="buffMeleeClubAttackedOtherPrimaryDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeClubAttackedOtherPrimary"/>
-			<display_value_key value="{0}"/>
-		</buff>
-		<!-- 枪影 -->
-		<buff name="buffMeleeSpearAttacked" name_key="buffMeleeSpearAttackedName" description_key="buffMeleeSpearAttackedDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeSpearAttacked"/>
-			<display_value_key value="{0}"/>
-		</buff>
-		<!-- 缭乱 -->
-		<buff name="buffMeleeSpearAttackedDEBuff" hidden="true">
-			<stack_type value="duration"/>
-			<duration value="7"/>
-			<effect_group>
-                <passive_effect name="AttacksPerMinute" operation="perc_add" value="-.8"/>
-				<passive_effect name="RunSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="JumpStrength" operation="perc_subtract" value=".8"/>
-			</effect_group>
-		</buff>
-
 	</append>
 
 
@@ -1690,6 +1663,33 @@
 			</effect_group>
 		</buff>
 
+		<!-- 棍势 -->
+		<buff name="buffMeleeClubAttackedOtherPrimary" name_key="buffMeleeClubAttackedOtherPrimaryName" description_key="buffMeleeClubAttackedOtherPrimaryDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeClubAttackedOtherPrimary"/>
+			<display_value_key value="{0}"/>
+		</buff>
+
+		<!-- 枪影 -->
+		<buff name="buffMeleeSpearAttacked" name_key="buffMeleeSpearAttackedName" description_key="buffMeleeSpearAttackedDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeSpearAttacked"/>
+			<display_value_key value="{0}"/>
+		</buff>
+
+		<!-- 缭乱 -->
+		<buff name="buffMeleeSpearAttackedDEBuff" hidden="true">
+			<stack_type value="duration"/>
+			<duration value="7"/>
+			<effect_group>
+                <passive_effect name="AttacksPerMinute" operation="perc_add" value="-.8"/>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".8"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".8"/>
+				<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".8"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".8"/>
+			</effect_group>
+		</buff>
+
 		<!-- 大锤 震荡 -->
 		<buff name="buffMeleeHammerAoeAttack" hidden="true">
 			<damage_type value="crushing"/>
@@ -1706,36 +1706,17 @@
 			</effect_group>
 		</buff>
 
-		<!-- 虹彩拳套 -->
-		<buff name="buffMarisaModKnucklesRunSpeed" name_key="buffMarisaModKnucklesRunSpeedName" description_key="buffMarisaModKnucklesRunSpeedDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
-			<stack_type value="duration"/>
-			<duration value="15"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesRunSpeed" operation="set" value="0"/>
-				<passive_effect name="RunSpeed" operation="perc_add" value="@.buffMarisaModKnucklesRunSpeed">
-					<requirement name="ItemHasTags" tags="perkBrawler"/>
-				</passive_effect>
-			</effect_group>
+		<!-- 拳套 欧拉欧拉 -->
+		<buff name="buffMeleeKnucklesAttacked_0" name_key="buffMeleeKnucklesAttacked_0Name" description_key="buffMeleeKnucklesAttacked_0Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeKnucklesAttacked_0"/>
+			<display_value_key value="{0}"/>
 		</buff>
-		<buff name="buffMarisaModKnucklesAttacksPerMinute" name_key="buffMarisaModKnucklesAttacksPerMinuteName" description_key="buffMarisaModKnucklesAttacksPerMinuteDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
-			<stack_type value="duration"/>
-			<duration value="15"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesAttacksPerMinute" operation="set" value="0"/>
-				<passive_effect name="AttacksPerMinute" operation="perc_add" value="@.buffMarisaModKnucklesAttacksPerMinute">
-					<requirement name="ItemHasTags" tags="perkBrawler"/>
-				</passive_effect>
-			</effect_group>
-		</buff>
-		<buff name="buffMarisaModKnucklesTargetArmor" name_key="buffMarisaModKnucklesTargetArmorName" description_key="buffMarisaModKnucklesTargetArmorDesc" showonhud="true" icon="ui_game_symbol_fire" icon_color="255,71,207">
-			<stack_type value="duration"/>
-			<duration value="15"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisaModKnucklesTargetArmor" operation="set" value="0"/>
-				<passive_effect name="TargetArmor" operation="perc_subtract" value="@.buffMarisaModKnucklesTargetArmor">
-					<requirement name="ItemHasTags" tags="perkBrawler"/>
-				</passive_effect>
-			</effect_group>
+		<!-- 拳套 木大木大 -->
+		<buff name="buffMeleeKnucklesAttacked_1" name_key="buffMeleeKnucklesAttacked_1Name" description_key="buffMeleeKnucklesAttacked_1Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeKnucklesAttacked_1"/>
+			<display_value_key value="{0}"/>
 		</buff>
 
 	</append>
