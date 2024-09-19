@@ -208,25 +208,20 @@
 				<property name="nav_object" value="rally" />
 			</objective>
 
-			<action type="SpawnEntity">
+			<action type="SpawnEnemy" value="1" phase="3">
+				<property name="id" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
 				<property name="spawn_inside" value="true"/>
 				<property name="safe_spawn" value="true"/>
 				<property name="spawn_area" value="poi_volume"/>
 				<property name="delay" value="5"/>
-				<property name="entity_names" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
-				<property name="single_choice" value="true"/>
-				<property name="spawn_count" value="1"/>
-				<property name="phase" value="3"/>
-				<property name="is_aggressive" value="true"/>
-				<property name="party_addition" value="0" param1="partyaddition"/>
-				<property name="ignore_multiplier" value="true" param1="ignoremultiplier"/>
-				<property name="add_to_group" value="quest_targets"/>
 			</action>
 
-			<action class="WaitForDead">
-				<property name="target_group" value="quest_targets"/>
-				<property name="phase" value="3" />
-			</action>
+			<objective type="EntityKill">
+				<property name="objective_name_key" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
+				<property name="target_tags" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
+				<property name="needed_count" value="1" param1="kill_count"/>
+				<property name="phase" value="3"/>
+			</objective>
 
 			<objective type="POIStayWithin">
 				<property name="phase" value="3"/>
