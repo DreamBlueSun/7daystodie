@@ -81,20 +81,6 @@
 		<!-- * 治愈收割 lv1 -->
 		<effect_group>
 			<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
-			<requirement name="HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
-            <requirement name="HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegSprained"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
             <requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
             	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
 
@@ -127,44 +113,14 @@
 			<requirement name="!HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
 			<requirement name="!HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
 			<requirement name="!HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
-			<requirement name="!HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
-			<requirement name="!HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
 		</effect_group>
 		<!-- * 治愈收割 lv2 -->
 		<effect_group>
 			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
-            <requirement name="HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryConcussion"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
-            <requirement name="HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryStunned01"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
-			<requirement name="HasBuff" buff="buffArmBroken"/><!-- 断臂 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmBroken"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
 			<requirement name="HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
             	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
-            <requirement name="HasBuff" buff="buffLegBroken"/><!-- 断腿 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegBroken"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
 		</effect_group>
@@ -205,20 +161,180 @@
 		</effect_group>
 		<effect_group>
 			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
-            <requirement name="HasBuff" buff="buffInfectionMain"/><!-- 感染 -->
-            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfectionMain"/>
+			<requirement name="!HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+			<requirement name="!HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+			<requirement name="!HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+			<requirement name="!HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+			<requirement name="!HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+			<requirement name="!HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
 		</effect_group>
+		<!-- * 治愈收割 lv3 -->
 		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryConcussion"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryStunned01"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+			<requirement name="HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLaceration"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasion"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasionTreated"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
             <requirement name="HasBuff" buff="buffFatigued"/><!-- 疲劳 -->
             	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffFatigued"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
 		</effect_group>
 		<effect_group>
-			<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+			<requirement name="!HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+			<requirement name="!HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+			<requirement name="!HasBuff" buff="buffFatigued"/><!-- 疲劳 -->
+			<requirement name="!HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+			<requirement name="!HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+			<requirement name="!HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
+			<requirement name="!HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
+			<requirement name="!HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+			<requirement name="!HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<!-- * 治愈收割 lv4 -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryConcussion"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryStunned01"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+			<requirement name="HasBuff" buff="buffArmBroken"/><!-- 断臂 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmBroken"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+			<requirement name="HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffLegBroken"/><!-- 断腿 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegBroken"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLaceration"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasion"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasionTreated"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffInfectionMain"/><!-- 感染 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfectionMain"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+            <requirement name="HasBuff" buff="buffFatigued"/><!-- 疲劳 -->
+            	<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffFatigued"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
 			<requirement name="!HasBuff" buff="buffInfectionMain"/><!-- 感染 -->
 			<requirement name="!HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
 			<requirement name="!HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
@@ -232,7 +348,7 @@
 			<requirement name="!HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
 			<requirement name="!HasBuff" buff="buffArmBroken"/><!-- 断臂 -->
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
 		</effect_group>
 
 	</append>
@@ -240,7 +356,7 @@
 
 
 	<!-- 添加 转祸为福 触发条件 -->
-	<append xpath="/buffs/buff[@name='buffFatiguedTrigger' or @name='buffArmSprainedCHTrigger' or @name='buffLegSprainedCHTrigger' or @name='buffAbrasionCatch' or @name='buffLaceration' or @name='buffInfectionCatch' or @name='buffInjuryStunned01CHTrigger' or @name='buffInjuryBleedingTwo' or @name='buffInjuryBleedingBarbedWire']">
+	<append xpath="/buffs/buff[@name='buffInfectionMain' or @name='buffInjuryAbrasion' or @name='buffInjuryAbrasionTreated' or @name='buffFatigued' or @name='buffInjuryBleeding' or @name='buffLaceration' or @name='buffInjuryStunned01' or @name='buffInjuryConcussion' or @name='buffLegSprained' or @name='buffLegBroken' or @name='buffArmSprained' or @name='buffArmBroken']">
         <effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="1"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffPerkMarisaTurnBadLuckIntoABlessing2"/>
@@ -271,36 +387,24 @@
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value="5"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value=".5"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
 		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing2" name_key="buffPerkMarisaTurnBadLuckIntoABlessing2Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing2Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value="10"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value="1"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
 		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing3" name_key="buffPerkMarisaTurnBadLuckIntoABlessing3Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing3Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
-				<requirement name="!HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value="15"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HoldingItemHasTags" tags="shotgun"/>
-					<passive_effect name="EntityDamage" operation="base_add" value="1.5"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="3" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
 
