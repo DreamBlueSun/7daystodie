@@ -268,7 +268,10 @@
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <requirement name="CVarCompare" cvar="_underwater" operation="GTE" value=".05"/>
+                <requirements compare_type="or">
+                    <requirement name="CVarCompare" cvar="_underwater" operation="GTE" value=".05"/>
+                    <requirement name="HasBuff" buff="buffElementWet"/>
+                </requirements>
                     <passive_effect name="Mobility" operation="perc_add" level="1,2,3" value=".2,.3,.4"/>
                     <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3" value=".3,.6,1"/>
             </effect_group>
