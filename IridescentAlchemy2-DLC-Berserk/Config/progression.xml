@@ -20,83 +20,6 @@
     <!-- 虹彩技能 -->
     <append xpath="/progression/perks">
 
-        <!-- *** 强化类技能 -->
-        <!-- ** 盛宴 -->
-        <perk name="perkMarisaKillRecovery" parent="skillIridescentIntensify" name_key="perkMarisaKillRecoveryName" desc_key="perkMarisaKillRecoveryDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-			<effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="1"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
-            </effect_group>
-			<effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="2"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
-            </effect_group>
-			<effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="GTE" value="3"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="7"/>
-            </effect_group>
-
-            <effect_group>
-                <effect_description level="1" desc_key="perkMarisaKillRecoveryRank1Desc" long_desc_key="perkMarisaKillRecoveryRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaKillRecoveryRank2Desc" long_desc_key="perkMarisaKillRecoveryRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaKillRecoveryRank3Desc" long_desc_key="perkMarisaKillRecoveryRank3LongDesc"/>
-            </effect_group>
-        </perk>
-        <!-- ** 治愈收割 -->
-        <perk name="perkMarisaKillHealing" parent="skillIridescentIntensify" name_key="perkMarisaKillHealingName" desc_key="perkMarisaKillHealingDesc" icon="ui_game_symbol_diamond" max_level="4" base_skill_point_cost="15">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="Equals" value="1"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="add" value="1"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="2"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="add" value="1"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="3"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="add" value="1"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="4"/>
-                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="add" value="1"/>
-            </effect_group>
-
-            <effect_group>
-                <effect_description level="1" desc_key="perkMarisaKillHealingRank1Desc" long_desc_key="perkMarisaKillHealingRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaKillHealingRank2Desc" long_desc_key="perkMarisaKillHealingRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaKillHealingRank3Desc" long_desc_key="perkMarisaKillHealingRank3LongDesc"/>
-                <effect_description level="4" desc_key="perkMarisaKillHealingRank4Desc" long_desc_key="perkMarisaKillHealingRank4LongDesc"/>
-            </effect_group>
-        </perk>
-        <!-- ** 装填扩充 -->
-        <perk name="perkMarisaLoadingExpansion" parent="skillIridescentIntensify" name_key="perkMarisaLoadingExpansionName" desc_key="perkMarisaLoadingExpansionDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <passive_effect name="MagazineSize" operation="base_add" level="1,2,3" value="1,1,2" tags="crossbow,launcher"/>
-            </effect_group>
-            <effect_group>
-                <passive_effect name="MagazineSize" operation="base_add" level="1,2,3" value="0,1,2" tags="bow"/>
-            </effect_group>
-
-            <effect_group>
-                <effect_description level="1" desc_key="perkMarisaLoadingExpansionRank1Desc" long_desc_key="perkMarisaLoadingExpansionRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaLoadingExpansionRank2Desc" long_desc_key="perkMarisaLoadingExpansionRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaLoadingExpansionRank3Desc" long_desc_key="perkMarisaLoadingExpansionRank3LongDesc"/>
-            </effect_group>
-        </perk>
-
         <!-- *** 攻击类技能 -->
         <!-- ** 转祸为福 -->
         <perk name="perkMarisaTurnBadLuckIntoABlessing" parent="skillIridescentAttack" name_key="perkMarisaTurnBadLuckIntoABlessingName" desc_key="perkMarisaTurnBadLuckIntoABlessingDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
@@ -195,6 +118,81 @@
         </perk>
 
         <!-- *** 附魔类技能 -->
+        <!-- ** 盛宴 -->
+        <perk name="perkMarisaKillRecovery" parent="skillIridescentEnhanced" name_key="perkMarisaKillRecoveryName" desc_key="perkMarisaKillRecoveryDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="1"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
+            </effect_group>
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="2"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
+            </effect_group>
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="GTE" value="3"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="7"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaKillRecoveryRank1Desc" long_desc_key="perkMarisaKillRecoveryRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaKillRecoveryRank2Desc" long_desc_key="perkMarisaKillRecoveryRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaKillRecoveryRank3Desc" long_desc_key="perkMarisaKillRecoveryRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 治愈收割 -->
+        <perk name="perkMarisaKillHealing" parent="skillIridescentEnhanced" name_key="perkMarisaKillHealingName" desc_key="perkMarisaKillHealingDesc" icon="ui_game_symbol_diamond" max_level="4" base_skill_point_cost="15">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="Equals" value="1"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="add" value="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="2"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="add" value="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="3"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="add" value="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillHealing" operation="GTE" value="4"/>
+                    <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="add" value="1"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaKillHealingRank1Desc" long_desc_key="perkMarisaKillHealingRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaKillHealingRank2Desc" long_desc_key="perkMarisaKillHealingRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaKillHealingRank3Desc" long_desc_key="perkMarisaKillHealingRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaKillHealingRank4Desc" long_desc_key="perkMarisaKillHealingRank4LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 装填扩充 -->
+        <perk name="perkMarisaLoadingExpansion" parent="skillIridescentEnhanced" name_key="perkMarisaLoadingExpansionName" desc_key="perkMarisaLoadingExpansionDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="MagazineSize" operation="base_add" level="1,2,3" value="1,1,2" tags="crossbow,launcher"/>
+            </effect_group>
+            <effect_group>
+                <passive_effect name="MagazineSize" operation="base_add" level="1,2,3" value="0,1,2" tags="bow"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaLoadingExpansionRank1Desc" long_desc_key="perkMarisaLoadingExpansionRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaLoadingExpansionRank2Desc" long_desc_key="perkMarisaLoadingExpansionRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaLoadingExpansionRank3Desc" long_desc_key="perkMarisaLoadingExpansionRank3LongDesc"/>
+            </effect_group>
+        </perk>
         <!-- ** 炮术 -->
         <perk name="perkMarisaBombard" parent="skillIridescentEnhanced" name_key="perkMarisaBombardName" desc_key="perkMarisaBombardDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -205,6 +203,34 @@
                 <effect_description level="1" desc_key="perkMarisaBombardRank1Desc" long_desc_key="perkMarisaBombardRank1LongDesc"/>
                 <effect_description level="2" desc_key="perkMarisaBombardRank2Desc" long_desc_key="perkMarisaBombardRank2LongDesc"/>
                 <effect_description level="3" desc_key="perkMarisaBombardRank3Desc" long_desc_key="perkMarisaBombardRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 弹道强化 -->
+        <perk name="perkMarisaProjectileIntensify" parent="skillIridescentEnhanced" name_key="perkMarisaProjectileIntensifyName" desc_key="perkMarisaProjectileIntensifyDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="15">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="!HoldingItemHasTags" tags="melee"/>
+				<requirement name="TargetRange" operation="LTE" value="5"/>
+				    <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3" value=".1,.2,.3"/>
+			</effect_group>
+            <effect_group>
+                <requirement name="!HoldingItemHasTags" tags="melee"/>
+                <passive_effect name="DamageFalloffRange" operation="perc_add" level="1,2,3" value="0,.25,.5"/>
+                <passive_effect name="MaxRange" operation="perc_add" level="1,2,3" value="0,.25,.5"/>
+			</effect_group>
+            <effect_group>
+                <requirement name="!HoldingItemHasTags" tags="melee"/>
+                <passive_effect name="ProjectileVelocity" operation="perc_add" level="1,2,3" value=".4,.6,.8" tags="bow,crossbow,launcher"/>
+                <passive_effect name="ProjectileGravity" operation="perc_subtract" level="1,2,3" value="0,.5,1" tags="bow,crossbow,launcher"/>
+			</effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaProjectileIntensifyRank1Desc" long_desc_key="perkMarisaProjectileIntensifyRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaProjectileIntensifyRank2Desc" long_desc_key="perkMarisaProjectileIntensifyRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaProjectileIntensifyRank3Desc" long_desc_key="perkMarisaProjectileIntensifyRank3LongDesc"/>
             </effect_group>
         </perk>
 
@@ -611,6 +637,37 @@
             </effect_group>
         </perk>
     </insertAfter>
+    <!-- ** 破坏王 -->
+    <remove xpath="/progression/perks/perk[@name='perkMarisaBreakStar']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkMarisaAdaptiveWaterField']">
+        <perk name="perkMarisaBreakStar" parent="skillIridescentIntensify" name_key="perkMarisaBreakStarName" desc_key="perkMarisaBreakStarDesc" icon="ui_game_symbol_diamond" max_level="5" base_skill_point_cost="10">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4">
+                <requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
+                <requirement name="ProgressionLevel" progression_name="t3PerkMarisaBreakStar" operation="GTE" value="1" desc_key="reqIridescentT3PerkLevel01"/>
+            </level_requirements>
+            <level_requirements level="5">
+                <requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
+                <requirement name="ProgressionLevel" progression_name="t3PerkMarisaBreakStar" operation="GTE" value="1" desc_key="reqIridescentT3PerkLevel01"/>
+            </level_requirements>
+
+            <effect_group>
+                <passive_effect name="BlockDamage" operation="perc_add" level="1,2,3,4,5" value=".25,.5,.75,1,1.25"/>
+				<passive_effect name="DismemberChance" operation="base_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.5"/>
+                <passive_effect name="DismemberChance" operation="base_add" level="1,2,3,4,5" value="-.1,-.2,-.3,-.4,-.5" tags="head"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaBreakStarRank1Desc" long_desc_key="perkMarisaBreakStarRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaBreakStarRank2Desc" long_desc_key="perkMarisaBreakStarRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaBreakStarRank3Desc" long_desc_key="perkMarisaBreakStarRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaBreakStarRank4Desc" long_desc_key="perkMarisaBreakStarRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkMarisaBreakStarRank5Desc" long_desc_key="perkMarisaBreakStarRank5LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
     <!-- ** 攻击 -->
     <remove xpath="/progression/perks/perk[@name='perkMarisaAttack']"/>
     <insertAfter xpath="/progression/perks/perk[@name='perkMarisaCrouchSpeed']">
@@ -973,40 +1030,9 @@
             </effect_group>
         </perk>
     </insertAfter>
-    <!-- ** 破坏王 -->
-    <remove xpath="/progression/perks/perk[@name='perkMarisaBreakStar']"/>
-    <insertAfter xpath="/progression/perks/perk[@name='perkMarisaStun']">
-        <perk name="perkMarisaBreakStar" parent="skillIridescentAttack" name_key="perkMarisaBreakStarName" desc_key="perkMarisaBreakStarDesc" icon="ui_game_symbol_diamond" max_level="5" base_skill_point_cost="10">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="4">
-                <requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
-                <requirement name="ProgressionLevel" progression_name="t3PerkMarisaBreakStar" operation="GTE" value="1" desc_key="reqIridescentT3PerkLevel01"/>
-            </level_requirements>
-            <level_requirements level="5">
-                <requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
-                <requirement name="ProgressionLevel" progression_name="t3PerkMarisaBreakStar" operation="GTE" value="1" desc_key="reqIridescentT3PerkLevel01"/>
-            </level_requirements>
-
-            <effect_group>
-                <passive_effect name="BlockDamage" operation="perc_add" level="1,2,3,4,5" value=".25,.5,.75,1,1.25"/>
-				<passive_effect name="DismemberChance" operation="base_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.5"/>
-                <passive_effect name="DismemberChance" operation="base_add" level="1,2,3,4,5" value="-.1,-.2,-.3,-.4,-.5" tags="head"/>
-            </effect_group>
-
-            <effect_group>
-                <effect_description level="1" desc_key="perkMarisaBreakStarRank1Desc" long_desc_key="perkMarisaBreakStarRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaBreakStarRank2Desc" long_desc_key="perkMarisaBreakStarRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaBreakStarRank3Desc" long_desc_key="perkMarisaBreakStarRank3LongDesc"/>
-                <effect_description level="4" desc_key="perkMarisaBreakStarRank4Desc" long_desc_key="perkMarisaBreakStarRank4LongDesc"/>
-                <effect_description level="5" desc_key="perkMarisaBreakStarRank5Desc" long_desc_key="perkMarisaBreakStarRank5LongDesc"/>
-            </effect_group>
-        </perk>
-    </insertAfter>
     <!-- ** 玻璃大炮 -->
     <remove xpath="/progression/perks/perk[@name='perkMarisaPowerAndDown']"/>
-    <insertAfter xpath="/progression/perks/perk[@name='perkMarisaBreakStar']">
+    <insertAfter xpath="/progression/perks/perk[@name='perkMarisaStun']">
         <perk name="perkMarisaPowerAndDown" parent="skillIridescentAttack" name_key="perkMarisaPowerAndDownName" desc_key="perkMarisaPowerAndDownDesc" icon="ui_game_symbol_diamond" max_level="7" base_skill_point_cost="15">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIridescent" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
