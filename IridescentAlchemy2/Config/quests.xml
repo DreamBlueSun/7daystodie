@@ -1,18 +1,38 @@
 <Marisa>
 
 	<set xpath="/quests/@max_quest_tier">7</set>
-<!--  	<set xpath="/quests/@quests_per_tier">1</set>-->
+  	<set xpath="/quests/@quests_per_tier">1</set>
 
-	<set xpath="/quests/quest[@id='tier2_clear_infested']/property[@name='gamestage_mod']/@value">.2</set>
-	<set xpath="/quests/quest[@id='tier3_clear_infested']/variable[@name='gamestage_mod']/@value">.3</set>
-	<set xpath="/quests/quest[@id='tier4_clear_infested']/variable[@name='gamestage_mod']/@value">.4</set>
-	<set xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='gamestage_mod']/@value">.5</set>
-	<set xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='gamestage_mod']/@value">.6</set>
-	<set xpath="/quests/quest[@id='tier2_clear_infested']/property[@name='gamestage_bonus']/@value">20</set>
-	<set xpath="/quests/quest[@id='tier3_clear_infested']/variable[@name='gamestage_bonus']/@value">30</set>
-	<set xpath="/quests/quest[@id='tier4_clear_infested']/variable[@name='gamestage_bonus']/@value">40</set>
-	<set xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='gamestage_bonus']/@value">50</set>
-	<set xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='gamestage_bonus']/@value">60</set>
+	<set xpath="/quests/quest[@id='tier2_clear_infested']/property[@name='gamestage_mod']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier3_clear_infested']/variable[@name='gamestage_mod']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier4_clear_infested']/variable[@name='gamestage_mod']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='gamestage_mod']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='gamestage_mod']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier2_clear_infested']/property[@name='gamestage_bonus']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier3_clear_infested']/variable[@name='gamestage_bonus']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier4_clear_infested']/variable[@name='gamestage_bonus']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='gamestage_bonus']/@value">0</set>
+	<set xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='gamestage_bonus']/@value">0</set>
+
+	<set xpath="/quests/quest[@id='tier5_fetch']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<set xpath="/quests/quest[@id='tier5_fetch']/variable[@name='biome_filter']/@value">pine_forest</set>
+	<set xpath="/quests/quest[@id='tier6_fetch']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<set xpath="/quests/quest[@id='tier6_fetch']/variable[@name='biome_filter']/@value">pine_forest</set>
+
+	<set xpath="/quests/quest[@id='tier5_clear']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<set xpath="/quests/quest[@id='tier5_clear']/variable[@name='biome_filter']/@value">pine_forest</set>
+	<set xpath="/quests/quest[@id='tier6_clear']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<set xpath="/quests/quest[@id='tier6_clear']/variable[@name='biome_filter']/@value">pine_forest</set>
+
+	<set xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<insertAfter xpath="/quests/quest[@id='tier5_clear_infested']/variable[@name='biome_filter_type']"><variable name="biome_filter" value="pine_forest"/></insertAfter>
+	<set xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<insertAfter xpath="/quests/quest[@id='tier6_clear_infested']/variable[@name='biome_filter_type']"><variable name="biome_filter" value="pine_forest"/></insertAfter>
+
+	<set xpath="/quests/quest[@id='tier5_fetch_clear']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<insertAfter xpath="/quests/quest[@id='tier5_fetch_clear']/variable[@name='biome_filter_type']"><variable name="biome_filter" value="pine_forest"/></insertAfter>
+	<set xpath="/quests/quest[@id='tier6_fetch_clear']/variable[@name='biome_filter_type']/@value">ExcludeBiome</set>
+	<insertAfter xpath="/quests/quest[@id='tier6_fetch_clear']/variable[@name='biome_filter_type']"><variable name="biome_filter" value="pine_forest"/></insertAfter>
 
 
 
@@ -42,8 +62,8 @@
 			<property name="extra_tags" value="infested" param1="extra_tags"/>
 			<property name="shareable" value="true"/>
 			<property name="spawn_multiplier" value="2.5" param1="spawn_multiplier"/>
-			<property name="gamestage_mod" value=".3" param1="gamestage_mod"/>
-			<property name="gamestage_bonus" value="60" param1="gamestage_bonus"/>
+			<property name="gamestage_mod" value="0" param1="gamestage_mod"/>
+			<property name="gamestage_bonus" value="0" param1="gamestage_bonus"/>
 
 			<property name="completiontype" value="TurnIn"/>
 			<property name="completion_key" value="quest_clear_completion"/>
@@ -100,8 +120,6 @@
 			<variable name="name" value="quest_tier4_super_infested_clear" />
 			<variable name="difficulty" value="4" />
 			<variable name="poi_tier" value="2" />
-			<variable name="gamestage_mod" value=".4" />
-			<variable name="gamestage_bonus" value="80" />
 
 			<reward type="Exp" value="9375"/>
 			<reward type="Item" id="casinoCoin" value="3000"/>
@@ -118,9 +136,8 @@
 			<variable name="name" value="quest_tier5_super_infested_clear" />
 			<variable name="difficulty" value="5" />
 			<variable name="poi_tier" value="3" />
-			<variable name="gamestage_mod" value=".5" />
-			<variable name="gamestage_bonus" value="100" />
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="18750"/>
 			<reward type="Item" id="casinoCoin" value="4000"/>
@@ -137,9 +154,8 @@
 			<variable name="name" value="quest_tier6_super_infested_clear" />
 			<variable name="difficulty" value="6" />
 			<variable name="poi_tier" value="4" />
-			<variable name="gamestage_mod" value=".6" />
-			<variable name="gamestage_bonus" value="120" />
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="30000"/>
 			<reward type="Item" id="casinoCoin" value="6000"/>
@@ -156,9 +172,8 @@
 			<variable name="name" value="quest_tier7_super_infested_clear" />
 			<variable name="difficulty" value="7" />
 			<variable name="poi_tier" value="5" />
-			<variable name="gamestage_mod" value=".7" />
-			<variable name="gamestage_bonus" value="140" />
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
 
 			<reward type="Exp" value="42000"/>
 			<reward type="Item" id="casinoCoin" value="8000"/>
@@ -289,7 +304,8 @@
 			<variable name="difficulty" value="5"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalDireWolf"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="18750"/>
 			<reward type="Item" id="casinoCoin" value="4000"/>
@@ -306,7 +322,8 @@
 			<variable name="difficulty" value="6"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalBear"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="30000"/>
 			<reward type="Item" id="casinoCoin" value="6000"/>
@@ -323,7 +340,8 @@
 			<variable name="difficulty" value="7"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalZombieVulture"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
 
 			<reward type="Exp" value="42000"/>
 			<reward type="Item" id="casinoCoin" value="8000"/>
@@ -467,7 +485,8 @@
 			<variable name="poi_tier" value="2"/>
 			<variable name="quest_rank" value="5"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalDireWolf"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="18750"/>
 			<reward type="Item" id="casinoCoin" value="4000"/>
@@ -485,7 +504,8 @@
 			<variable name="poi_tier" value="3"/>
 			<variable name="quest_rank" value="6"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalBear"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="30000"/>
 			<reward type="Item" id="casinoCoin" value="6000"/>
@@ -503,7 +523,8 @@
 			<variable name="poi_tier" value="3"/>
 			<variable name="quest_rank" value="7"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalZombieVulture"/>
-			<variable name="biome_filter_type" value="AnyBiome"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
 
 			<reward type="Exp" value="42000"/>
 			<reward type="Item" id="casinoCoin" value="8000"/>
