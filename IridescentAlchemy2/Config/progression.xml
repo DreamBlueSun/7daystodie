@@ -1,12 +1,12 @@
 <Marisa>
 
-    <!-- 移除医师的生命医疗回复速度提升 来兼容虹彩技能 医疗回复 -->
+    <!-- 移除 医师 的生命医疗回复速度提升 来兼容虹彩技能 医疗回复 -->
     <remove xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/triggered_effect[@trigger='onSelfProgressionUpdate']"/>
 
-    <!-- 移除护甲穿透技能对长矛的效果 -->
+    <!-- 移除 护甲穿透 对长矛的效果 -->
     <remove xpath="/progression/perks/perk[@name='perkPenetrator']/effect_group/passive_effect[@name='TargetArmor' and @tags='perkJavelinMaster']"/>
 
-    <!-- 修改医师5级的安乐师对电击棒的伤害增量 -->
+    <!-- 修改 医师 5级的安乐师对电击棒的伤害增量 -->
     <remove xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/passive_effect[@name='EntityDamage' and @tags='stunBaton']"/>
     <insertAfter xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/requirement[@name='EntityTagCompare' and @target='other']">
 		<passive_effect name="EntityDamage" operation="base_add" level="5" value="@.MeleeStunBatonPerkPhysicianEntityDamage" tags="stunBaton">
@@ -17,8 +17,13 @@
         </passive_effect>
     </insertAfter>
 
-    <!-- 修改治疗因子的回复速度 -->
+    <!-- 修改 治疗因子 的回复速度 -->
     <set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT']/@value">.1,.2,.3,.4,.5</set>
+
+    <!-- 修改 厨艺大师 对模组物品的制作速度 -->
+    <insertAfter xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@name='CraftingTime' and @tags='perkMasterChef']">
+        <passive_effect name="CraftingTime" operation="perc_add" level="0,1,2,3" value="0,-.2,-.4,-.6" tags="perkMasterChefMarisa"/>
+    </insertAfter>
 
 
 
