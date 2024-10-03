@@ -2545,30 +2545,6 @@
 
 
 
-    <!-- 武器制作覆盖 -->
-    <!-- 移除 远程 -->
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingBows']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingHandguns']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/display_entry[@icon='gunExplosivesT3RocketLauncher']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/effect_group/passive_effect[@tags='gunExplosivesT3RocketLauncher']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='meleeWpnBatonT0PipeBaton' or @item='meleeWpnBatonT2StunBaton' or @item='gunBotT2JunkTurret']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@tags='meleeWpnBatonT0PipeBaton' or @tags='meleeWpnBatonT2StunBaton' or @tags='gunBotT2JunkTurret']"/>
-    <!-- 移除 近战 -->
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingClubs']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingSledgehammers']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingKnuckles']"/>
-    <!-- 技能对蓝图的搜刮加成 -->
-	<set xpath="/progression/perks/perk[@name='perkArchery']/effect_group/passive_effect[@tags='bowsCSM']/@value">100</set>
-	<set xpath="/progression/perks/perk[@name='perkDeepCuts']/effect_group/passive_effect[@tags='bladesCSM']/@value">100</set>
-	<set xpath="/progression/perks/perk[@name='perkPummelPete']/effect_group/passive_effect[@tags='clubsCSM']/@value">100</set>
-	<set xpath="/progression/perks/perk[@name='perkJavelinMaster']/effect_group/passive_effect[@tags='spearsCSM']/@value">100</set>
-	<set xpath="/progression/perks/perk[@name='perkSkullCrusher']/effect_group/passive_effect[@tags='sledgehammersCSM']/@value">100</set>
-	<set xpath="/progression/perks/perk[@name='perkBrawler']/effect_group/passive_effect[@tags='knucklesCSM']/@value">100</set>
     <!-- 技降低熔炉和工作台的解锁等级 -->
 	<remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingWorkstations']"/>
     <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingTraps']">
@@ -2608,7 +2584,89 @@
 
         </crafting_skill>
     </insertAfter>
-    <!-- 添加制作蓝图解锁 -->
+
+
+
+    <!-- 修改技能等级对蓝图的搜刮加成 -->
+	<set xpath="/progression/attributes/attribute/effect_group/passive_effect[@name='LootProb' and @tags='armorCSM']/requirement[@name='ProgressionLevel']/@value">50</set>
+<!--	<set xpath="/progression/perks/perk[@name='perkDeadEye']/effect_group/passive_effect[@tags='riflesCSM']/@value">100</set>-->
+<!--	<set xpath="/progression/perks/perk[@name='perkDemolitionsExpert']/effect_group/passive_effect[@tags='explosivesCSM']/@value">100</set>-->
+    <set xpath="/progression/perks/perk[@name='perkJavelinMaster']/effect_group/passive_effect[@tags='spearsCSM']/@value">100</set>
+<!--    <set xpath="/progression/perks/perk[@name='perkSalvageOperations']/effect_group/passive_effect[@tags='salvageToolsCSM']/@value">75</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkBoomstick']/effect_group/passive_effect[@tags='shotgunsCSM']/@value">100</set>-->
+    <set xpath="/progression/perks/perk[@name='perkPummelPete']/effect_group/passive_effect[@tags='clubsCSM']/@value">100</set>
+    <set xpath="/progression/perks/perk[@name='perkSkullCrusher']/effect_group/passive_effect[@tags='sledgehammersCSM']/@value">100</set>
+<!--    <set xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@tags='foodCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkMiner69r']/effect_group/passive_effect[@tags='harvestingToolsCSM']/@value">100</set>-->
+    <set xpath="/progression/perks/perk[@name='perkBrawler']/effect_group/passive_effect[@tags='knucklesCSM']/@value">100</set>
+<!--    <set xpath="/progression/perks/perk[@name='perkMachineGunner']/effect_group/passive_effect[@tags='machineGunsCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkLivingOffTheLand']/effect_group/passive_effect[@tags='seedCSM']/@value">20</set>-->
+    <set xpath="/progression/perks/perk[@name='perkArchery']/effect_group/passive_effect[@tags='bowsCSM']/@value">100</set>
+<!--    <set xpath="/progression/perks/perk[@name='perkGunslinger']/effect_group/passive_effect[@tags='handgunsCSM']/@value">100</set>-->
+    <set xpath="/progression/perks/perk[@name='perkDeepCuts']/effect_group/passive_effect[@tags='bladesCSM']/@value">100</set>
+<!--    <set xpath="/progression/perks/perk[@name='perkElectrocutioner']/effect_group/passive_effect[@tags='roboticsCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkTurrets']/effect_group/passive_effect[@tags='roboticsCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkPhysician']/effect_group/passive_effect[@tags='medicalCSM']/@value">75</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkAdvancedEngineering']/effect_group/passive_effect[@tags='electricianCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkAdvancedEngineering']/effect_group/passive_effect[@tags='trapsCSM']/@value">75</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkAdvancedEngineering']/effect_group/passive_effect[@tags='workstationCSM']/@value">75</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkAdvancedEngineering']/effect_group/passive_effect[@tags='repairToolsCSM']/@value">50</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkGreaseMonkey']/effect_group/passive_effect[@tags='vehiclesCSM']/@value">100</set>-->
+<!--    <set xpath="/progression/perks/perk[@name='perkLockPicking']/effect_group/passive_effect[@tags='workstationCSM']/@value">15</set>-->
+
+
+
+
+    <!-- 护甲制作覆盖 -->
+<!--    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingArmor']"/>-->
+<!--    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingVehicles']">-->
+
+<!--        <crafting_skill name="craftingArmor" max_level="50" parent="attCrafting" name_key="craftingArmorName" desc_key="craftingArmorDesc" long_desc_key="craftingArmorLongDesc" icon="ui_game_symbol_armor_iron">-->
+
+<!--            <display_entry icon="armorPrimitiveHelmet" name_key="armorT1" has_quality="true" unlock_level="1,2,4,6,8,10">-->
+<!--                <unlock_entry item="armorPrimitiveOutfit" unlock_tier="1" recipes="armorPrimitiveMaster,armorPrimitiveHelmet,armorPrimitiveOutfit,armorPrimitiveGloves,armorPrimitiveBoots"/>-->
+<!--            </display_entry>-->
+<!--            <display_entry icon="armorLumberjackHelmet" name_key="armorT2" has_quality="true" unlock_level="11,20,40,60,80,100">-->
+<!--                <unlock_entry item="armorLumberjackOutfit,armorPreacherOutfit,armorRogueOutfit,armorAthleticOutfit,armorEnforcerOutfit" unlock_tier="1" recipes="armorLightMaster,armorLumberjackHelmet,armorLumberjackOutfit,armorLumberjackGloves,armorLumberjackBoots,armorPreacherHelmet,armorPreacherOutfit,armorPreacherGloves,armorPreacherBoots,armorRogueHelmet,armorRogueOutfit,armorRogueGloves,armorRogueBoots,armorAthleticHelmet,armorAthleticOutfit,armorAthleticGloves,armorAthleticBoots,armorEnforcerHelmet,armorEnforcerOutfit,armorEnforcerGloves,armorEnforcerBoots" />-->
+<!--            </display_entry>-->
+<!--            <display_entry icon="armorAssassinHelmet" name_key="armorT3" has_quality="true" unlock_level="11,20,40,60,80,100">-->
+<!--                <unlock_entry item="armorFarmerOutfit,armorBikerOutfit,armorScavengerOutfit,armorRangerOutfit,armorCommandoOutfit,armorAssassinOutfit" unlock_tier="1" recipes="armorMediumMaster,armorFarmerHelmet,armorFarmerOutfit,armorFarmerGloves,armorFarmerBoots,armorBikerHelmet,armorBikerOutfit,armorBikerGloves,armorBikerBoots,armorScavengerHelmet,armorScavengerOutfit,armorScavengerGloves,armorScavengerBoots,armorRangerHelmet,armorRangerOutfit,armorRangerGloves,armorRangerBoots,armorCommandoHelmet,armorCommandoOutfit,armorCommandoGloves,armorCommandoBoots,armorAssassinHelmet,armorAssassinOutfit,armorAssassinGloves,armorAssassinBoots" />-->
+<!--            </display_entry>-->
+<!--            <display_entry icon="armorRaiderHelmet" name_key="armorT4" has_quality="true" unlock_level="11,20,40,60,80,100">-->
+<!--                <unlock_entry item="armorMinerOutfit,armorNomadOutfit,armorNerdOutfit,armorRaiderOutfit" unlock_tier="1" recipes="armorHeavyMaster,armorMinerHelmet,armorMinerOutfit,armorMinerGloves,armorMinerBoots,armorNomadHelmet,armorNomadOutfit,armorNomadGloves,armorNomadBoots,armorNerdHelmet,armorNerdOutfit,armorNerdGloves,armorNerdBoots,armorRaiderHelmet,armorRaiderOutfit,armorRaiderGloves,armorRaiderBoots" />-->
+<!--            </display_entry>-->
+
+<!--            <effect_group>-->
+<!--                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="1,100" value="1" tags="armorPrimitiveMaster,armorPrimitiveHelmet,armorPrimitiveOutfit,armorPrimitiveGloves,armorPrimitiveBoots"/>-->
+<!--                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="11,100" value="1" tags="armorLightMaster,armorMediumMaster,armorHeavyMaster,armorLumberjackHelmet,armorLumberjackOutfit,armorLumberjackGloves,armorLumberjackBoots,armorPreacherHelmet,armorPreacherOutfit,armorPreacherGloves,armorPreacherBoots,armorRogueHelmet,armorRogueOutfit,armorRogueGloves,armorRogueBoots,armorAthleticHelmet,armorAthleticOutfit,armorAthleticGloves,armorAthleticBoots,armorEnforcerHelmet,armorEnforcerOutfit,armorEnforcerGloves,armorEnforcerBoots,armorFarmerHelmet,armorFarmerOutfit,armorFarmerGloves,armorFarmerBoots,armorBikerHelmet,armorBikerOutfit,armorBikerGloves,armorBikerBoots,armorScavengerHelmet,armorScavengerOutfit,armorScavengerGloves,armorScavengerBoots,armorRangerHelmet,armorRangerOutfit,armorRangerGloves,armorRangerBoots,armorCommandoHelmet,armorCommandoOutfit,armorCommandoGloves,armorCommandoBoots,armorAssassinHelmet,armorAssassinOutfit,armorAssassinGloves,armorAssassinBoots,armorMinerHelmet,armorMinerOutfit,armorMinerGloves,armorMinerBoots,armorNomadHelmet,armorNomadOutfit,armorNomadGloves,armorNomadBoots,armorNerdHelmet,armorNerdOutfit,armorNerdGloves,armorNerdBoots,armorRaiderHelmet,armorRaiderOutfit,armorRaiderGloves,armorRaiderBoots"/>-->
+
+<!--                <passive_effect name="CraftingTier" operation="base_add" level="2,4,6,8,10,100" value="1,2,3,4,5,5" tags="armorPrimitiveMaster,armorPrimitiveHelmet,armorPrimitiveOutfit,armorPrimitiveGloves,armorPrimitiveBoots"/>-->
+<!--                <passive_effect name="CraftingTier" operation="base_add" level="20,40,60,80,100" value="1,2,3,4,5" tags="armorLightMaster,armorMediumMaster,armorHeavyMaster,armorLumberjackHelmet,armorLumberjackOutfit,armorLumberjackGloves,armorLumberjackBoots,armorPreacherHelmet,armorPreacherOutfit,armorPreacherGloves,armorPreacherBoots,armorRogueHelmet,armorRogueOutfit,armorRogueGloves,armorRogueBoots,armorAthleticHelmet,armorAthleticOutfit,armorAthleticGloves,armorAthleticBoots,armorEnforcerHelmet,armorEnforcerOutfit,armorEnforcerGloves,armorEnforcerBoots,armorFarmerHelmet,armorFarmerOutfit,armorFarmerGloves,armorFarmerBoots,armorBikerHelmet,armorBikerOutfit,armorBikerGloves,armorBikerBoots,armorScavengerHelmet,armorScavengerOutfit,armorScavengerGloves,armorScavengerBoots,armorRangerHelmet,armorRangerOutfit,armorRangerGloves,armorRangerBoots,armorCommandoHelmet,armorCommandoOutfit,armorCommandoGloves,armorCommandoBoots,armorAssassinHelmet,armorAssassinOutfit,armorAssassinGloves,armorAssassinBoots,armorMinerHelmet,armorMinerOutfit,armorMinerGloves,armorMinerBoots,armorNomadHelmet,armorNomadOutfit,armorNomadGloves,armorNomadBoots,armorNerdHelmet,armorNerdOutfit,armorNerdGloves,armorNerdBoots,armorRaiderHelmet,armorRaiderOutfit,armorRaiderGloves,armorRaiderBoots"/>-->
+<!--            </effect_group>-->
+<!--        </crafting_skill>-->
+
+<!--    </insertAfter>-->
+
+
+
+    <!-- 武器制作覆盖 -->
+    <!-- 移除 远程 -->
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingBows']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingHandguns']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/display_entry[@icon='gunExplosivesT3RocketLauncher']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/effect_group/passive_effect[@tags='gunExplosivesT3RocketLauncher']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='meleeWpnBatonT0PipeBaton' or @item='meleeWpnBatonT2StunBaton' or @item='gunBotT2JunkTurret']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@tags='meleeWpnBatonT0PipeBaton' or @tags='meleeWpnBatonT2StunBaton' or @tags='gunBotT2JunkTurret']"/>
+    <!-- 移除 近战 -->
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingClubs']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingSledgehammers']"/>
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingKnuckles']"/>
+    <!-- 添加 远程 近战 -->
     <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingVehicles']">
 
         <!-- 制作 木弓 复合弓 -->
@@ -3402,5 +3460,673 @@
         </crafting_skill>
 
     </insertAfter>
+
+
+
+    <!--*** 制作技能 熟练度 每级所需要的点数 -->
+    <!--** 载具 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingVehicles']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="LT" value="5"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="60"/>
+        </effect_group>
+        <effect_group name="lv5">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="GTE" value="5"/>
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="LT" value="20"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="120"/>
+        </effect_group>
+        <effect_group name="lv15">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="GTE" value="20"/>
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="LT" value="45"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="180"/>
+        </effect_group>
+        <effect_group name="lv15">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="GTE" value="45"/>
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="LT" value="70"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="240"/>
+        </effect_group>
+        <effect_group name="lv15">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="GTE" value="70"/>
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="300"/>
+        </effect_group>
+        <effect_group name="lv50">
+            <requirement name="ProgressionLevel" progression_name="craftingVehicles" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingVehiclesLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 护甲 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingArmor']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="5"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingArmorLevelNextPoint" operation="set" value="1"/>
+        </effect_group>
+        <effect_group name="lv5">
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="GTE" value="5"/>
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="15"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingArmorLevelNextPoint" operation="set" value="5"/>
+        </effect_group>
+        <effect_group name="lv15">
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="GTE" value="15"/>
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="50"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingArmorLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv50">
+            <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="GTE" value="50"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingArmorLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 弓 弩 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingBows']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingBows" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBowsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 手枪 SMG5 马格南 沙漠秃鹰 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingHandguns']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingHandgunsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 双管霰弹枪 泵动式霰弹枪 自动霰弹枪 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingShotgunsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 猎枪 杠杆步枪 精准猎枪 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingRifles" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRiflesLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** AK47 突击步枪 M60 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingMachineGunsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 火箭筒 雷 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingExplosivesLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 垃圾炮台 电击棒 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingRoboticsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 猎刀 砍刀 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingBlades']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingBlades" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingBladesLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 棒球棍 钢棍 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingClubs']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingClubs" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 铁矛 钢矛 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingSpears']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingSpears" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 大铁锤 大钢锤 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingSledgehammers']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
+    <!--** 铁指虎 钢刺拳 -->
+    <append xpath="/progression/crafting_skills/crafting_skill[@name='craftingKnuckles']">
+        <effect_group name="lv1">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="2"/>
+        </effect_group>
+        <effect_group name="lv6">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="6"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="12"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="4"/>
+        </effect_group>
+        <effect_group name="lv12">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="12"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="24"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="6"/>
+        </effect_group>
+        <effect_group name="lv24">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="24"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="36"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="8"/>
+        </effect_group>
+        <effect_group name="lv36">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="36"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="48"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="10"/>
+        </effect_group>
+        <effect_group name="lv48">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="48"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="61"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="15"/>
+        </effect_group>
+        <effect_group name="lv61">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="61"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="74"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="20"/>
+        </effect_group>
+        <effect_group name="lv74">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="74"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="87"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="25"/>
+        </effect_group>
+        <effect_group name="lv87">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="87"/>
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="30"/>
+        </effect_group>
+        <effect_group name="lv100">
+            <requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="GTE" value="100"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$craftingKnucklesLevelNextPoint" operation="set" value="0"/>
+        </effect_group>
+    </append>
 
 </Marisa>
