@@ -28,6 +28,30 @@
 
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- 添加 潜伏 lv4-5 -->
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<passive_effect name="LightMultiplier" operation="perc_add" value="-.3">
+					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+				</passive_effect>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.5"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<passive_effect name="LightMultiplier" operation="perc_add" value="-.45">
+					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+				</passive_effect>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.55"/>
+		</effect_group>
+
+	</append>
+
+
+
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 		<!-- 添加 状态检查 极意 -->
         <effect_group>
 			<requirement name="NotHasBuff" buff="buffT3PerkMarisaCheck"/>

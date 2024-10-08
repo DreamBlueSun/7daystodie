@@ -20,6 +20,32 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa10"/>
 		</effect_group>
 
+		<!-- 添加 潜伏 lv1-3 -->
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<passive_effect name="LightMultiplier" operation="perc_add" value="-.05">
+					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+				</passive_effect>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.15"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="2"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<passive_effect name="LightMultiplier" operation="perc_add" value="-.1">
+					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+				</passive_effect>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.3"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="3"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<passive_effect name="LightMultiplier" operation="perc_add" value="-.15">
+					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+				</passive_effect>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.45"/>
+		</effect_group>
+
 		<!-- 添加 不屈 -->
         <effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="Equals" value="1"/>
