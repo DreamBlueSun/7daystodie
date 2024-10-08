@@ -9,6 +9,11 @@
 
 
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+		<!-- 添加 状态检查 0.1s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa01"/>
+		</effect_group>
 		<!-- 添加 状态检查 0.2s -->
         <effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
@@ -70,6 +75,21 @@
 
 	<!-- 正面BUFF -->
 	<append xpath="/buffs">
+
+		<!-- 状态检查 0.1s -->
+		<buff name="buffStatusCheckMarisa01" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".1"/>
+			<duration value="0"/>
+
+			<!-- 游牧民套装效果 -->
+			<effect_group>
+				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+
+		</buff>
 
 		<!-- 状态检查 0.2s -->
 		<buff name="buffStatusCheckMarisa02" hidden="true">
@@ -2285,14 +2305,9 @@
 		<!-- 游牧民 -->
 		<buff name="buffNomadSetBonus" name_key="buffNomadSetBonusName" description_key="buffNomadSetBonusDesc" tooltip_key="buffNomadSetBonusTooltip" icon="ui_game_symbol_armor_iron" icon_color="255,255,255">
 			<stack_type value="ignore"/>
-			<update_rate value=".1"/>
 			<display_value_key value="Bonus"/>
 			<display_value value="xxx"/>
 
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".2"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
-			</effect_group>
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="1"/>
@@ -2301,8 +2316,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="10"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
@@ -2313,8 +2328,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="12"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="12"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="12"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
@@ -2325,8 +2340,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="14"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="14"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="14"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
@@ -2337,8 +2352,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="16"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="16"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="16"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
@@ -2349,8 +2364,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="18"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="18"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="18"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
@@ -2361,8 +2376,8 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaStormCold"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 		</buff>
 		<buff name="buffNomadSetBonusStormCold" hidden="true">
