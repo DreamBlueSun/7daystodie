@@ -1,7 +1,11 @@
 <Marisa>
 
-    <!-- 移除 商人的获取任务 -->
-    <remove xpath="/quests/quest_list/quest[@id='tier1_fetch' or @id='tier2_fetch' or @id='tier3_fetch' or @id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']"/>
+    <!-- 移除商人任务 获取 -->
+    <remove xpath="/quests/quest_list/quest[@id='tier1_fetch' or @id='tier2_fetch' or @id='tier3_fetch']"/>
+    <!-- 移除商人任务 恢复电力 -->
+    <remove xpath="/quests/quest_list/quest[@id='tier2_restore_power' or @id='tier3_restore_power' or @id='tier4_restore_power']"/>
+    <!-- 移除商人任务 开放贸易路线 -->
+	<remove xpath="/quests/quest_list/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']"/>
 
 	<set xpath="/quests/@max_quest_tier">7</set>
   	<set xpath="/quests/@quests_per_tier">15</set>
@@ -44,6 +48,25 @@
 	<set xpath="/quests/quest[@id='intro_buried_supplies']/reward[@id='questRewardPipeRifleBundle']/@id">questRewardPipeRifleRankUpIridescentBundle</set>
 	<set xpath="/quests/quest[@id='intro_buried_supplies']/reward[@id='questRewardPipeMachineGunBundle']/@id">questRewardPipeMachineGunRankUpIridescentBundle</set>
 	<set xpath="/quests/quest[@id='intro_buried_supplies']/reward[@id='questRewardPipeBatonBundle']/@id">questRewardPipeBatonRankUpIridescentBundle</set>
+
+
+	<!-- 	埋藏补给 任务金币：	250		500		1000 -->
+	<!-- 	清理 任务金币：		400		500		800		1000	2000 -->
+	<set xpath="/quests/quest[@id='tier3_clear']/reward[@id='casinoCoin']/@value">750</set>
+	<!-- 	获取清理 任务金币：			700		1000	1500	2000 -->
+	<set xpath="/quests/quest[@id='tier5_fetch_clear']/reward[@id='casinoCoin']/@value">1250</set>
+	<set xpath="/quests/quest[@id='tier5_fetch_clear']/reward[@id='casinoCoin']/@value">2500</set>
+	<!-- 	群聚 任务金币：				1000	2000	3000	4000	6000 -->
+	<set xpath="/quests/quest[@id='tier2_clear_infested']/reward[@id='casinoCoin']/@value">900</set>
+	<set xpath="/quests/quest[@id='tier3_clear_infested']/reward[@id='casinoCoin']/@value">1250</set>
+	<set xpath="/quests/quest[@id='tier4_clear_infested']/reward[@id='casinoCoin']/@value">1750</set>
+	<set xpath="/quests/quest[@id='tier5_clear_infested']/reward[@id='casinoCoin']/@value">3000</set>
+	<set xpath="/quests/quest[@id='tier6_clear_infested']/reward[@id='casinoCoin']/@value">4500</set>
+	<!-- 	超级群聚 任务金币：					1250	1750	3000	4500	6000 -->
+	<!-- 	讨伐 任务金币：				750		1000	1500	2000	3000 	4000 -->
+
+
+
 
 
 
@@ -109,7 +132,7 @@
 			</objective>
 
 			<reward type="Exp" value="7500"/>
-			<reward type="Item" id="casinoCoin" value="2000"/>
+			<reward type="Item" id="casinoCoin" value="1250"/>
 
 			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="3"/>
 			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
@@ -125,7 +148,7 @@
 			<variable name="poi_tier" value="2" />
 
 			<reward type="Exp" value="9375"/>
-			<reward type="Item" id="casinoCoin" value="3000"/>
+			<reward type="Item" id="casinoCoin" value="1750"/>
 
 			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="4"/>
 			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
@@ -143,7 +166,7 @@
 			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="18750"/>
-			<reward type="Item" id="casinoCoin" value="4000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="5"/>
 			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
@@ -161,7 +184,7 @@
 			<variable name="biome_filter" value="pine_forest"/>
 
 			<reward type="Exp" value="30000"/>
-			<reward type="Item" id="casinoCoin" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="4500"/>
 
 			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="6"/>
 			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
@@ -179,7 +202,7 @@
 			<variable name="biome_filter" value="wasteland"/>
 
 			<reward type="Exp" value="42000"/>
-			<reward type="Item" id="casinoCoin" value="8000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="7"/>
 			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
@@ -260,8 +283,8 @@
 				<property name="nav_object" value="return_to_trader" />
 			</objective>
 
-			<reward type="Exp" value="5625"/>
-			<reward type="Item" id="casinoCoin" value="1000"/>
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
@@ -276,8 +299,8 @@
 			<variable name="poi_tier" value="1"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalBearSmall"/>
 
-			<reward type="Exp" value="7500"/>
-			<reward type="Item" id="casinoCoin" value="2000"/>
+			<reward type="Exp" value="3375"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
@@ -292,8 +315,8 @@
 			<variable name="poi_tier" value="2"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossZombieVultureSmall"/>
 
-			<reward type="Exp" value="9375"/>
-			<reward type="Item" id="casinoCoin" value="3000"/>
+			<reward type="Exp" value="4680"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
@@ -310,8 +333,8 @@
 			<variable name="biome_filter_type" value="ExcludeBiome"/>
 			<variable name="biome_filter" value="pine_forest"/>
 
-			<reward type="Exp" value="18750"/>
-			<reward type="Item" id="casinoCoin" value="4000"/>
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
@@ -328,8 +351,8 @@
 			<variable name="biome_filter_type" value="ExcludeBiome"/>
 			<variable name="biome_filter" value="pine_forest"/>
 
-			<reward type="Exp" value="30000"/>
-			<reward type="Item" id="casinoCoin" value="6000"/>
+			<reward type="Exp" value="15000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
@@ -346,8 +369,8 @@
 			<variable name="biome_filter_type" value="OnlyBiome"/>
 			<variable name="biome_filter" value="wasteland"/>
 
-			<reward type="Exp" value="42000"/>
-			<reward type="Item" id="casinoCoin" value="8000"/>
+			<reward type="Exp" value="21000"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
@@ -438,8 +461,8 @@
 				<property name="on_complete" value="true"/>
 			</action>
 
-			<reward type="Exp" value="5625"/>
-			<reward type="Item" id="casinoCoin" value="1000"/>
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
@@ -455,8 +478,8 @@
 			<variable name="quest_rank" value="3"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossAnimalBearSmall"/>
 
-			<reward type="Exp" value="7500"/>
-			<reward type="Item" id="casinoCoin" value="2000"/>
+			<reward type="Exp" value="3375"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
@@ -472,8 +495,8 @@
 			<variable name="quest_rank" value="4"/>
 			<variable name="entity_boss_spawn" value="QuestEntityBossZombieVultureSmall"/>
 
-			<reward type="Exp" value="9375"/>
-			<reward type="Item" id="casinoCoin" value="3000"/>
+			<reward type="Exp" value="4680"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
@@ -491,8 +514,8 @@
 			<variable name="biome_filter_type" value="ExcludeBiome"/>
 			<variable name="biome_filter" value="pine_forest"/>
 
-			<reward type="Exp" value="18750"/>
-			<reward type="Item" id="casinoCoin" value="4000"/>
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
@@ -510,8 +533,8 @@
 			<variable name="biome_filter_type" value="ExcludeBiome"/>
 			<variable name="biome_filter" value="pine_forest"/>
 
-			<reward type="Exp" value="30000"/>
-			<reward type="Item" id="casinoCoin" value="6000"/>
+			<reward type="Exp" value="15000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
@@ -529,8 +552,8 @@
 			<variable name="biome_filter_type" value="OnlyBiome"/>
 			<variable name="biome_filter" value="wasteland"/>
 
-			<reward type="Exp" value="42000"/>
-			<reward type="Item" id="casinoCoin" value="8000"/>
+			<reward type="Exp" value="21000"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
