@@ -5,6 +5,7 @@
     <remove xpath="/traders/trader_info/trader_items/item[@group='tools' or @group='rareTools']"/>
 	<remove xpath="/traders/trader_item_groups/trader_item_group[@name='traderGeneral']/item[@group='workstations']"/>
 
+    <!-- 自动售货机 -->
     <remove xpath="/traders/trader_info[@id='4']/trader_items/item[@group='drinkVending' or @group='drinkSpecialVending']"/>
     <append xpath="/traders/trader_info[@id='4']/trader_items">
 		<item name="drinkJarYuccaJuice" count="5"/>
@@ -43,131 +44,262 @@
 
 
 
-    <!-- 增加商人出售的基础物资 -->
-    <append xpath="/traders/trader_item_groups/trader_item_group[@name='traderAlways']">
+    <!-- 定义商人出售的物资 -->
+    <append xpath="/traders/trader_item_groups">
+
 		<!-- 弹药 -->
-		<item name="ammo9mmBulletBall" count="2000"/>
-		<item name="ammo762mmBulletBall" count="2000"/>
-		<item name="ammo44MagnumBulletBall" count="2000"/>
-		<item name="ammoShotgunShell" count="2000"/>
-		<item name="ammoArrowStone" count="500"/>
-		<item name="ammoCrossbowBoltStone" count="500"/>
+		<trader_item_group name="groupMarisaAmmoT1" count="all">
+			<item name="ammo9mmBulletBall" count="1500"/>
+			<item name="ammo762mmBulletBall" count="750"/>
+			<item name="ammo44MagnumBulletBall" count="750"/>
+			<item name="ammoShotgunShell" count="750"/>
+			<item name="ammoArrowStone" count="300"/>
+			<item name="ammoCrossbowBoltStone" count="300"/>
 
-		<item name="ammo9mmBulletHP" count="2000"/>
-		<item name="ammo762mmBulletHP" count="2000"/>
-		<item name="ammo44MagnumBulletHP" count="2000"/>
-		<item name="ammoShotgunBreachingSlug" count="2000"/>
-		<item name="ammoArrowIron" count="500"/>
-		<item name="ammoArrowFlaming" count="500"/>
-		<item name="ammoCrossbowBoltIron" count="500"/>
-		<item name="ammoCrossbowBoltFlaming" count="500"/>
+			<item name="ammoJunkTurretRegular" count="5000"/>
+			<item name="ammoJunkTurretShell" count="5000"/>
 
-		<item name="ammo9mmBulletAP" count="2000"/>
-		<item name="ammo762mmBulletAP" count="2000"/>
-		<item name="ammo44MagnumBulletAP" count="2000"/>
-		<item name="ammoShotgunSlug" count="2000"/>
-		<item name="ammoRocketHE" count="200"/>
-		<item name="ammoRocketFrag" count="200"/>
-		<item name="ammoArrowSteelAP" count="500"/>
-		<item name="ammoArrowExploding" count="500"/>
-		<item name="ammoCrossbowBoltSteelAP" count="500"/>
-		<item name="ammoCrossbowBoltExploding" count="500"/>
+			<item name="thrownAmmoPipeBomb" count="200"/>
+			<item name="thrownAmmoMolotovCocktail" count="200"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaAmmoT2" count="all">
+			<item name="ammo9mmBulletHP" count="1500"/>
+			<item name="ammo762mmBulletHP" count="750"/>
+			<item name="ammo44MagnumBulletHP" count="750"/>
+			<item name="ammoShotgunBreachingSlug" count="750"/>
+			<item name="ammoArrowIron" count="300"/>
+			<item name="ammoArrowFlaming" count="300"/>
+			<item name="ammoCrossbowBoltIron" count="300"/>
+			<item name="ammoCrossbowBoltFlaming" count="300"/>
 
-		<item name="ammoJunkTurretRegular" count="5000"/>
-		<item name="ammoJunkTurretShell" count="5000"/>
-		<item name="ammoJunkTurretAP" count="5000"/>
+			<item name="ammoJunkTurretAP" count="5000"/>
 
-		<item name="thrownAmmoPipeBomb" count="200"/>
-		<item name="thrownGrenadeContact" count="200"/>
-		<item name="thrownGrenade" count="200"/>
-		<item name="thrownTimedCharge" count="200"/>
-		<item name="thrownDynamite" count="200"/>
-		<item name="thrownAmmoMolotovCocktail" count="200"/>
+			<item name="thrownGrenade" count="200"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaAmmoT3" count="all">
+			<item name="ammo9mmBulletAP" count="1500"/>
+			<item name="ammo762mmBulletAP" count="750"/>
+			<item name="ammo44MagnumBulletAP" count="750"/>
+			<item name="ammoShotgunSlug" count="750"/>
+			<item name="ammoArrowSteelAP" count="500"/>
+			<item name="ammoCrossbowBoltSteelAP" count="500"/>
 
-		<item name="ammoBundle9mmBulletBall" count="200"/>
-		<item name="ammoBundle9mmBulletHP" count="200"/>
-		<item name="ammoBundle9mmBulletAP" count="200"/>
+			<item name="thrownTimedCharge" count="200"/>
+			<item name="thrownDynamite" count="200"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaAmmoT4" count="all">
+			<item name="thrownGrenadeContact" count="200"/>
 
-		<item name="ammoBundle44MagnumBulletBall" count="200"/>
-		<item name="ammoBundle44MagnumBulletHP" count="200"/>
-		<item name="ammoBundle44MagnumBulletAP" count="200"/>
-
-		<item name="ammoBundle762mmBulletBall" count="200"/>
-		<item name="ammoBundle762mmBulletHP" count="200"/>
-		<item name="ammoBundle762mmBulletAP" count="200"/>
-
-		<item name="ammoBundleShotgunShell" count="200"/>
-
-		<item name="ammoBundleJunkTurretRegular" count="200"/>
-		<item name="ammoBundleJunkTurretShell" count="200"/>
-		<item name="ammoBundleJunkTurretAP" count="200"/>
+			<item name="ammoRocketHE" count="20"/>
+			<item name="ammoRocketFrag" count="20"/>
+			<item name="ammoArrowExploding" count="75"/>
+			<item name="ammoCrossbowBoltExploding" count="500"/>
+		</trader_item_group>
 
 		<!-- 食物 -->
-		<item name="foodGrilledMeat" count="10"/>
-		<item name="drinkJarBoiledWater" count="10"/>
+		<trader_item_group name="groupMarisaFoodDrinkT1" count="all">
+			<item name="foodGrilledMeat" count="10"/>
+			<item name="drinkJarBoiledWater" count="10"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaFoodDrinkT2" count="all">
+			<item name="foodCanBeef" count="10"/>
+			<item name="foodCanChicken" count="10"/>
+			<item name="foodCanLamb" count="10"/>
+			<item name="foodCanCatfood" count="10"/>
+			<item name="foodCanDogfood" count="10"/>
+			<item name="foodCanChili" count="10"/>
+			<item name="foodCanTuna" count="10"/>
+			<item name="foodCanSham" count="10"/>
+			<item name="foodCanPasta" count="10"/>
+			<item name="foodCanSalmon" count="10"/>
+			<item name="foodCanMiso" count="10"/>
+			<item name="foodCanPeas" count="10"/>
+			<item name="foodCanPears" count="10"/>
+			<item name="foodCanSoup" count="10"/>
+			<item name="foodCanStock" count="10"/>
 
-		<!-- 罐头 -->
-		<item name="foodCanBeef" count="10"/>
-		<item name="foodCanChicken" count="10"/>
-		<item name="foodCanLamb" count="10"/>
-		<item name="foodCanCatfood" count="10"/>
-		<item name="foodCanDogfood" count="10"/>
-		<item name="foodCanChili" count="10"/>
-		<item name="foodCanTuna" count="10"/>
-		<item name="foodCanSham" count="10"/>
-		<item name="foodCanPasta" count="10"/>
-		<item name="foodCanSalmon" count="10"/>
-		<item name="foodCanMiso" count="10"/>
-		<item name="foodCanPeas" count="10"/>
-		<item name="foodCanPears" count="10"/>
-		<item name="foodCanSoup" count="10"/>
-		<item name="foodCanStock" count="10"/>
+			<item name="resourceAnimalFat" count="20"/>
+		</trader_item_group>
+
+		<!-- 医疗 -->
+		<trader_item_group name="groupMarisaMedicalT1" count="all">
+			<item name="medicalBloodBag" count="5"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaMedicalT2" count="all">
+			<item name="medicalFirstAidBandage" count="3"/>
+		</trader_item_group>
 
 		<!-- 素材 -->
-		<item name="resourceWood" count="6000"/>
-		<item name="resourceCrushedSand" count="6000"/>
-		<item name="resourcePotassiumNitratePowder" count="6000"/>
-		<item name="resourceCoal" count="6000"/>
-		<item name="resourceScrapLead" count="6000"/>
-		<item name="resourceScrapBrass" count="6000"/>
-		<item name="resourceScrapIron" count="6000"/>
-		<item name="resourceForgedIron" count="500"/>
-		<item name="resourceForgedSteel" count="500"/>
-		<item name="resourceMetalPipe" count="500"/>
-		<item name="resourceOilShale" count="6000"/>
-		<item name="resourceOil" count="500"/>
-		<item name="resourceGlue" count="500"/>
-		<item name="resourceDuctTape" count="500"/>
-		<item name="resourceCloth" count="6000"/>
-		<item name="resourceLeather" count="500"/>
-		<item name="resourceScrapPolymers" count="500"/>
-		<item name="resourceGunPowder" count="6000"/>
-		<item name="resourceAcid" count="500"/>
-		<item name="resourceAnimalFat" count="500"/>
-		<item name="resourceHeadlight" count="500"/>
-		<item name="resourceSpring" count="500"/>
-		<item name="resourceElectricParts" count="500"/>
-		<item name="resourceMechanicalParts" count="500"/>
+		<trader_item_group name="groupMarisaResourceT1" count="all">
+			<item name="resourceWood" count="1000"/>
+			<item name="resourceCrushedSand" count="1000"/>
+			<item name="resourcePotassiumNitratePowder" count="1000"/>
+			<item name="resourceCoal" count="1000"/>
+			<item name="resourceScrapLead" count="1000"/>
+			<item name="resourceScrapBrass" count="1000"/>
+			<item name="resourceScrapIron" count="1000"/>
+			<item name="resourceOilShale" count="1000"/>
+			<item name="resourceGunPowder" count="1000"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaResourceT2" count="all">
+			<item name="resourceCloth" count="250"/>
+			<item name="resourceScrapPolymers" count="50"/>
+			<item name="resourceMetalPipe" count="50"/>
+			<item name="resourceForgedIron" count="50"/>
 
-		<!-- 零件 -->
-		<item name="armorParts" count="20"/>
-		<item name="gunBowT1WoodenBowParts" count="20"/>
-		<item name="gunHandgunT1PistolParts" count="20"/>
-		<item name="gunShotgunT1DoubleBarrelParts" count="20"/>
-		<item name="gunRifleT1HuntingRifleParts" count="20"/>
-		<item name="gunMGT1AK47Parts" count="20"/>
-		<item name="gunExplosivesT3RocketLauncherParts" count="20"/>
-		<item name="gunBotRoboticsParts" count="20"/>
-		<item name="meleeWpnBatonT2StunBatonParts" count="20"/>
-		<item name="meleeWpnKnucklesT3SteelKnucklesParts" count="20"/>
-		<item name="meleeWpnBladeT3MacheteParts" count="20"/>
-		<item name="meleeWpnSpearT3SteelSpearParts" count="20"/>
-		<item name="meleeWpnClubT3SteelClubParts" count="20"/>
-		<item name="meleeWpnSledgeT3SteelSledgehammerParts" count="20"/>
+			<item name="resourceLeather" count="20"/>
+			<item name="resourceGlue" count="20"/>
+			<item name="resourceDuctTape" count="20"/>
+			<item name="resourceSpring" count="20"/>
+			<item name="resourceElectricParts" count="20"/>
+			<item name="resourceMechanicalParts" count="20"/>
+		</trader_item_group>
+		<trader_item_group name="groupMarisaResourceT3" count="all">
+			<item name="resourceForgedSteel" count="50"/>
+
+			<item name="resourceOil" count="5"/>
+			<item name="resourceAcid" count="5"/>
+			<item name="resourceHeadlight" count="5"/>
+		</trader_item_group>
+
+		<!-- 武器零件 -->
+		<trader_item_group name="groupMarisaPartsWeaponT1" count="all">
+			<item name="gunBowT1WoodenBowParts" count="10"/>
+			<item name="gunHandgunT1PistolParts" count="10"/>
+			<item name="gunShotgunT1DoubleBarrelParts" count="10"/>
+			<item name="gunRifleT1HuntingRifleParts" count="10"/>
+			<item name="gunMGT1AK47Parts" count="10"/>
+			<item name="gunExplosivesT3RocketLauncherParts" count="10"/>
+			<item name="gunBotRoboticsParts" count="10"/>
+			<item name="meleeWpnBatonT2StunBatonParts" count="10"/>
+			<item name="meleeWpnKnucklesT3SteelKnucklesParts" count="10"/>
+			<item name="meleeWpnBladeT3MacheteParts" count="10"/>
+			<item name="meleeWpnSpearT3SteelSpearParts" count="10"/>
+			<item name="meleeWpnClubT3SteelClubParts" count="10"/>
+			<item name="meleeWpnSledgeT3SteelSledgehammerParts" count="10"/>
+		</trader_item_group>
+
+		<!-- 护甲零件 -->
+		<trader_item_group name="groupMarisaPartsArmorT1" count="all">
+			<item name="armorParts" count="10"/>
+		</trader_item_group>
 
 		<!-- 工具 -->
-		<item name="resourceLockPick" count="20"/>
-		<item name="resourceRepairKit" count="20"/>
+		<trader_item_group name="groupMarisaToolT1" count="all">
+			<item name="resourceLockPick" count="5"/>
+			<item name="resourceRepairKit" count="5"/>
+		</trader_item_group>
+
+		<!-- 通常 Lv1 -->
+		<trader_item_group name="groupMarisaCommonT1" count="all">
+			<item group="groupMarisaToolT1"/>
+			<item group="groupMarisaResourceT1"/>
+			<item group="groupMarisaAmmoT1"/>
+		</trader_item_group>
+
+		<!-- 通常 Lv2 -->
+		<trader_item_group name="groupMarisaCommonT2" count="all">
+			<item group="groupMarisaResourceT2"/>
+			<item group="groupMarisaAmmoT2"/>
+		</trader_item_group>
+
+		<!-- 通常 Lv3 -->
+		<trader_item_group name="groupMarisaCommonT3" count="all">
+			<item group="groupMarisaResourceT3"/>
+			<item group="groupMarisaAmmoT3"/>
+		</trader_item_group>
+
+	</append>
+
+
+
+    <!--*** 修改商人出售的物资 -->
+	<!-- 食物商人 -->
+    <remove xpath="/traders/trader_info[@id='8']/trader_items"/>
+    <append xpath="/traders/trader_info[@id='8']">
+		<trader_items count="all">
+			<item group="groupMarisaCommonT1"/>
+			<item group="groupMarisaFoodDrinkT1"/>
+			<item group="groupMarisaFoodDrinkT2"/>
+		</trader_items>
+		<trader_items count="all">
+			<item group="decorativeBlocks" unique_only="true" count="6,10"/>
+			<item group="constructionSupplies" count="2,4"/>
+			<item group="seeds" unique_only="true" count="2,5" />
+			<item group="cannedfood" count="3,6"/>
+			<item group="foodSupplies" count="2,5"/>
+			<item group="groupFoodAll" count="1,3"/>
+		</trader_items>
+	</append>
+	<!-- 医疗商人 -->
+    <remove xpath="/traders/trader_info[@id='2']/trader_items"/>
+    <append xpath="/traders/trader_info[@id='2']">
+		<trader_items count="all">
+			<item group="groupMarisaCommonT1"/>
+			<item group="groupMarisaMedicalT1"/>
+			<item group="groupMarisaMedicalT2"/>
+		</trader_items>
+		<trader_items count="all">
+			<item group="decorativeBlocks" unique_only="true" count="6,10"/>
+			<item group="constructionSupplies" count="2,4"/>
+			<item name="resourceCropAloeLeaf" count="2,5"/>
+			<item name="medicalAloeCream" count="2,5"/>
+			<item group="medicine"  unique_only="true" count="4,6"/>
+			<item group="rareMedicine" count="2,4"/>
+			<item group="skillMagazines" unique_only="true" count="7"/>
+			<item group="commonBooks" unique_only="true" count="2,3"/>
+			<item group="rareBooks" count="1,2"/>
+			<item group="perkBooks" count="1,2"/>
+		</trader_items>
+	</append>
+	<!-- 机械商人 -->
+    <remove xpath="/traders/trader_info[@id='6']/trader_items"/>
+    <append xpath="/traders/trader_info[@id='6']">
+		<trader_items count="all">
+			<item group="groupMarisaCommonT1"/>
+			<item group="groupMarisaCommonT2"/>
+		</trader_items>
+		<trader_items count="all">
+			<item group="decorativeBlocks" unique_only="true" count="6,10"/>
+			<item group="constructionSupplies" count="2,4"/>
+			<item group="groupVehicles" unique_only="true" count="2"/>
+			<item group="groupMeleeMods" unique_only="true" count="1,2"/>
+			<item group="traderElectrical" unique_only="true" count="8,15"/>
+			<item group="traderSolarCells" count="2,4"/>
+		</trader_items>
+	</append>
+	<!-- 武器商人 -->
+    <remove xpath="/traders/trader_info[@id='7']/trader_items"/>
+    <append xpath="/traders/trader_info[@id='7']">
+		<trader_items count="all">
+			<item group="groupMarisaCommonT1"/>
+			<item group="groupMarisaCommonT2"/>
+			<item group="groupMarisaResourceT3"/>
+			<item group="groupMarisaAmmoT3"/>
+			<item group="groupMarisaAmmoT4"/>
+			<item group="groupMarisaPartsWeaponT1"/>
+		</trader_items>
+		<trader_items count="all">
+			<item group="decorativeBlocks" unique_only="true" count="6,10"/>
+			<item group="constructionSupplies" count="2,4"/>
+			<item group="groupRangedMods" count="1,2"/>
+		</trader_items>
+	</append>
+	<!-- 护甲商人 -->
+    <remove xpath="/traders/trader_info[@id='1']/trader_items"/>
+    <append xpath="/traders/trader_info[@id='1']">
+		<trader_items count="all">
+			<item group="groupMarisaCommonT1"/>
+			<item group="groupMarisaCommonT2"/>
+			<item group="groupMarisaCommonT3"/>
+			<item group="groupMarisaPartsArmorT1"/>
+		</trader_items>
+		<trader_items count="all">
+			<item group="decorativeBlocks" unique_only="true" count="6,10"/>
+			<item group="constructionSupplies" count="2,4"/>
+			<item group="groupArmorMods" unique_only="true" count="4,6"/>
+			<item group="groupDyeMods" count="10"/>
+		</trader_items>
 	</append>
 
 </Marisa>
