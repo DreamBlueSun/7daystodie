@@ -4,8 +4,10 @@
     <remove xpath="/quests/quest_list/quest[@id='tier1_fetch' or @id='tier2_fetch' or @id='tier3_fetch']"/>
     <!-- 移除商人任务 恢复电力 -->
     <remove xpath="/quests/quest_list/quest[@id='tier2_restore_power' or @id='tier3_restore_power' or @id='tier4_restore_power']"/>
-    <!-- 移除商人任务 开放贸易路线 -->
-	<remove xpath="/quests/quest_list/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']"/>
+
+    <!-- 移除商人任务 开放贸易路线 的物品奖励 -->
+	<set xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='Exp']/@value">10</set>
+	<remove xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='LootItem']"/>
 
 	<set xpath="/quests/@max_quest_tier">7</set>
   	<set xpath="/quests/@quests_per_tier">15</set>
