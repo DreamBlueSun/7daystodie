@@ -1,7 +1,5 @@
 <Marisa>
 
-    <!-- 移除商人任务 获取 -->
-    <remove xpath="/quests/quest_list/quest[@id='tier1_fetch' or @id='tier2_fetch' or @id='tier3_fetch']"/>
     <!-- 移除商人任务 恢复电力 -->
     <remove xpath="/quests/quest_list/quest[@id='tier2_restore_power' or @id='tier3_restore_power' or @id='tier4_restore_power']"/>
 
@@ -52,11 +50,13 @@
 	<set xpath="/quests/quest[@id='intro_buried_supplies']/reward[@id='questRewardPipeBatonBundle']/@id">questRewardPipeBatonRankUpIridescentBundle</set>
 
 
+
+	<!-- 	获取 任务金币：		100		200		300		500		1000	3000 -->
 	<!-- 	埋藏补给 任务金币：	250		500		1000 -->
-	<!-- 	清理 任务金币：		400		500		800		1000	2000 -->
+	<!-- 	清理 任务金币：		400		500		800		1000	2000 	4000 -->
 	<set xpath="/quests/quest[@id='tier3_clear']/reward[@id='casinoCoin']/@value">750</set>
-	<!-- 	获取清理 任务金币：			700		1000	1500	2000 -->
-	<set xpath="/quests/quest[@id='tier5_fetch_clear']/reward[@id='casinoCoin']/@value">1250</set>
+	<!-- 	获取/清理 任务金币：			700		1000	1500	2000	5000 -->
+	<set xpath="/quests/quest[@id='tier4_fetch_clear']/reward[@id='casinoCoin']/@value">1250</set>
 	<set xpath="/quests/quest[@id='tier5_fetch_clear']/reward[@id='casinoCoin']/@value">2500</set>
 	<!-- 	群聚 任务金币：				1000	2000	3000	4000	6000 -->
 	<set xpath="/quests/quest[@id='tier2_clear_infested']/reward[@id='casinoCoin']/@value">900</set>
@@ -69,6 +69,159 @@
 
 
 
+    <!--*** 修改任务奖励物品选项 -->
+    <!--** 获取 （食物） -->
+    <remove xpath="/quests/quest[@id='tier1_fetch' or @id='tier2_fetch' or @id='tier3_fetch']/reward[@type='LootItem']"/>
+    <append xpath="/quests/quest[@id='tier1_fetch']">
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="1"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier2_fetch']">
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="2"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier3_fetch']">
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestFood" ischosen="true" isfixed="true" value="3"/>
+	</append>
+    <!--** 埋藏 （资源） -->
+    <remove xpath="/quests/quest[@id='tier1_buried_supplies' or @id='tier2_buried_supplies' or @id='tier3_buried_supplies']/reward[@type='LootItem']"/>
+    <append xpath="/quests/quest[@id='tier1_buried_supplies']">
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT0" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT0" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT0" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT0" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT0" ischosen="true" isfixed="true" value="1"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier2_buried_supplies']">
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT1" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT1" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT1" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT1" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestResourcesT1" ischosen="true" isfixed="true" value="2"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier3_buried_supplies']">
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestGas" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestGas" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestGas" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestGas" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupQuestMedical,groupQuestSchematics,groupQuestMods,groupQuestGas" ischosen="true" isfixed="true" value="3"/>
+	</append>
+    <!--** 清理 （弹药） -->
+    <remove xpath="/quests/quest[@id='tier1_clear' or @id='tier2_clear' or @id='tier3_clear' or @id='tier4_clear' or @id='tier5_clear']/reward[@type='LootItem']"/>
+    <append xpath="/quests/quest[@id='tier1_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="1"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="1"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier2_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier3_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier4_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier5_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+	</append>
+    <!--** 获取/清理 （弹药） -->
+    <remove xpath="/quests/quest[@id='tier1_fetch_clear' or @id='tier2_fetch_clear' or @id='tier3_fetch_clear' or @id='tier4_fetch_clear' or @id='tier5_fetch_clear']/reward[@type='LootItem']"/>
+    <append xpath="/quests/quest[@id='tier2_fetch_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="2"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier3_fetch_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="3"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier4_fetch_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="4"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier5_fetch_clear']">
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestAmmo" ischosen="true" isfixed="true" value="5"/>
+	</append>
+    <!--** 群聚 （零件） -->
+    <remove xpath="/quests/quest[@id='tier2_clear_infested' or @id='tier3_clear_infested' or @id='tier4_clear_infested' or @id='tier5_clear_infested' or @id='tier6_clear_infested']/reward[@type='LootItem']"/>
+    <append xpath="/quests/quest[@id='tier2_clear_infested']">
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="2"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier3_clear_infested']">
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="3"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="3"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier4_clear_infested']">
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="4"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="4"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier5_clear_infested']">
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="5"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="5"/>
+	</append>
+    <append xpath="/quests/quest[@id='tier6_clear_infested']">
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
+		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
+	</append>
+    <!--** 超级群聚 （蛋、票） -->
+    <!--** 讨伐 （小晶体） -->
 
 
 
@@ -136,12 +289,11 @@
 			<reward type="Exp" value="7500"/>
 			<reward type="Item" id="casinoCoin" value="1250"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
 		</quest>
 
 		<quest id="tier4_clear_super_infested" template="tier3_clear_super_infested">
@@ -152,12 +304,11 @@
 			<reward type="Exp" value="9375"/>
 			<reward type="Item" id="casinoCoin" value="1750"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="4"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 
 		<quest id="tier5_clear_super_infested" template="tier3_clear_super_infested">
@@ -170,12 +321,11 @@
 			<reward type="Exp" value="18750"/>
 			<reward type="Item" id="casinoCoin" value="3000"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="5"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 
 		<quest id="tier6_clear_super_infested" template="tier3_clear_super_infested">
@@ -188,12 +338,11 @@
 			<reward type="Exp" value="30000"/>
 			<reward type="Item" id="casinoCoin" value="4500"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="6"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 
 		<quest id="tier7_clear_super_infested" template="tier3_clear_super_infested">
@@ -206,12 +355,11 @@
 			<reward type="Exp" value="42000"/>
 			<reward type="Item" id="casinoCoin" value="6000"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" isfixed="true" value="7"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupMarisaQuestTicket" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 
 
@@ -485,9 +633,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 		</quest>
 
 		<quest id="tier4_poi_kill_boss_emergency" template="tier2_poi_kill_boss_emergency">
@@ -502,9 +650,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 
 		<quest id="tier5_poi_kill_boss_emergency" template="tier2_poi_kill_boss_emergency">
@@ -521,9 +669,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 
 		<quest id="tier6_poi_kill_boss_emergency" template="tier2_poi_kill_boss_emergency">
@@ -540,9 +688,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 
 		<quest id="tier7_poi_kill_boss_emergency" template="tier2_poi_kill_boss_emergency">
@@ -559,9 +707,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 
 
