@@ -7,8 +7,8 @@
 	<set xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='Exp']/@value">10</set>
 	<remove xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='LootItem']"/>
 
-	<set xpath="/quests/@max_quest_tier">7</set>
-  	<set xpath="/quests/@quests_per_tier">15</set>
+	<set xpath="/quests/@max_quest_tier">8</set>
+  	<set xpath="/quests/@quests_per_tier">10</set>
 
 	<set xpath="/quests/quest[@id='tier2_clear_infested']/property[@name='gamestage_mod']/@value">0</set>
 	<set xpath="/quests/quest[@id='tier3_clear_infested']/variable[@name='gamestage_mod']/@value">0</set>
@@ -65,6 +65,7 @@
 	<set xpath="/quests/quest[@id='tier5_clear_infested']/reward[@id='casinoCoin']/@value">3000</set>
 	<set xpath="/quests/quest[@id='tier6_clear_infested']/reward[@id='casinoCoin']/@value">4500</set>
 	<!-- 	超级群聚 任务金币：					1250	1750	3000	4500	6000 -->
+	<!-- 	强攻据点 任务金币：							2000	4000	6000	8000	10000 -->
 	<!-- 	讨伐 任务金币：				750		1000	1500	2000	3000 	4000 -->
 
 
@@ -221,23 +222,26 @@
 		<reward type="LootItem" id="groupMarisaQuestParts" ischosen="true" isfixed="true" value="6"/>
 	</append>
     <!--** 超级群聚 （蛋、票） -->
+    <!--** 强攻据点 （蛋、票） -->
     <!--** 讨伐 （小晶体） -->
 
 
 
+	<!-- 新的任务 -->
 	<insertAfter xpath="/quests/quest[@id='tier6_clear_infested']">
 
+		<!-- 超级群聚 -->
 		<quest id="tier3_clear_super_infested">
 			<property name="name_key" value="quest_tier3_super_infested_clear" param1="name"/>
-			<property name="subtitle_key" value="quest_super_infestation_subtitle"/>
-			<property name="description_key" value="quest_tier3_super_infested_clear_desc" param1="desc"/>
+			<property name="subtitle_key" value="quest_super_infested_subtitle"/>
+			<property name="description_key" value="quest_super_infested_clear_desc" param1="desc"/>
 			<property name="icon" value="ui_game_symbol_quest"/>
 			<property name="repeatable" value="true"/>
 			<property name="category_key" value="quest"/>
-			<property name="offer_key" value="quest_tier3_super_infested_clear_offer" param1="offer"/>
+			<property name="offer_key" value="quest_super_infested_clear_offer" param1="offer"/>
 			<property name="difficulty_tier" value="3" param1="difficulty"/>
 			<property name="statement_key" value="quest_super_infestation_statement"/>
-			<property name="response_key" value="quest_super_infestation_response"/>
+			<property name="response_key" value="quest_super_infested_response"/>
 			<property name="login_rally_reset" value="true"/>
 			<property name="reward_choices_count" value="5"/>
 			<property name="extra_tags" value="infested" param1="extra_tags"/>
@@ -364,7 +368,2600 @@
 
 
 
-		<!-- 讨伐任务 -->
+		<!-- 强攻据点 -->
+		<quest id="base_defensive_point">
+			<property name="response_key" value="quest_defensive_point_response" param1="response"/>
+			<property name="name_key" value="quest_base_defensive_point" param1="name"/>
+			<property name="subtitle_key" value="quest_defensive_point_subtitle" param1="subtitle"/>
+			<property name="offer_key" value="quest_defensive_point_offer" param1="offer"/>
+			<property name="description_key" value="quest_defensive_point_desc" param1="desc"/>
+			<property name="statement_key" value="quest_defensive_point_statement"/>
+			<property name="icon" value="ui_game_symbol_quest"/>
+			<property name="repeatable" value="true"/>
+			<property name="category_key" value="quest"/>
+			<property name="difficulty_tier" value="1" param1="difficulty"/>
+			<property name="login_rally_reset" value="true"/>
+			<property name="reward_choices_count" value="5"/>
+			<property name="extra_tags" value="infested" param1="extra_tags"/>
+			<property name="shareable" value="true"/>
+			<property name="spawn_multiplier" value="2.5" param1="spawn_multiplier"/>
+			<property name="gamestage_mod" value="0" param1="gamestage_mod"/>
+			<property name="gamestage_bonus" value="0" param1="gamestage_bonus"/>
+
+			<property name="completiontype" value="TurnIn"/>
+			<property name="completion_key" value="quest_clear_completion"/>
+
+			<objective type="RandomPOIGoto">
+				<property name="phase" value="1"/>
+				<property name="biome_filter_type" value="AnyBiome" param1="biome_filter_type"/>
+				<property name="biome_filter" value="" param1="biome_filter"/>
+				<property name="nav_object" value="quest"/>
+				<property name="poi_tier" value="1" param1="poi_tier"/>
+			</objective>
+
+			<action type="SetCVar">
+				<property name="phase" value="2"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="value" value="1"/>
+			</action>
+
+			<objective type="RallyPoint">
+				<property name="phase" value="2"/>
+				<property name="nav_object" value="rally"/>
+			</objective>
+
+			<action type="GameEvent">
+				<property name="id" value="marisa_tire4_storm_point_Arlene" param1="storm_point_group"/>
+				<property name="phase" value="3"/>
+			</action>
+
+			<objective type="ClearSleepers">
+				<property name="phase" value="3"/>
+				<property name="nav_object" value="sleeper_volume"/>
+			</objective>
+
+			<objective type="POIStayWithin">
+				<property name="phase" value="3"/>
+				<property name="radius" value="25"/>
+			</objective>
+
+			<action type="SetCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="value" value="0"/>
+			</action>
+
+			<action type="UnlockPOI" >
+				<property name="phase" value="4"/>
+			</action>
+
+			<objective type="ReturnToNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<objective type="InteractWithNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="1250"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+		</quest>
+
+		<!--*** tier4 -->
+		<!-- Arlene 阿琳 -->
+		<quest id="tier4_defensive_point_Arlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Arlene"/>
+			<variable name="name" value="quest_tier4_defensive_point_Arlene"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Arlene"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Arlene"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Marlene 马琳 -->
+		<quest id="tier4_defensive_point_Marlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Marlene"/>
+			<variable name="name" value="quest_tier4_defensive_point_Marlene"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Marlene"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Marlene"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- PartyGirl 派对女孩 -->
+		<quest id="tier4_defensive_point_PartyGirl" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
+			<variable name="name" value="quest_tier4_defensive_point_PartyGirl"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_PartyGirl"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_PartyGirl"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Nurse 护士 -->
+		<quest id="tier4_defensive_point_Nurse" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Nurse"/>
+			<variable name="name" value="quest_tier4_defensive_point_Nurse"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Nurse"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Nurse"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Joe 乔 -->
+		<quest id="tier4_defensive_point_Joe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Joe"/>
+			<variable name="name" value="quest_tier4_defensive_point_Joe"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Joe"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Joe"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Steve 史蒂夫 -->
+		<quest id="tier4_defensive_point_Steve" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Steve"/>
+			<variable name="name" value="quest_tier4_defensive_point_Steve"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Steve"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Steve"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- TomClark 汤姆·克拉克 -->
+		<quest id="tier4_defensive_point_TomClark" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_TomClark"/>
+			<variable name="name" value="quest_tier4_defensive_point_TomClark"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_TomClark"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_TomClark"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- BusinessMan 商人 -->
+		<quest id="tier4_defensive_point_BusinessMan" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
+			<variable name="name" value="quest_tier4_defensive_point_BusinessMan"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_BusinessMan"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_BusinessMan"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Burnt 被灼烧者 -->
+		<quest id="tier4_defensive_point_Burnt" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Burnt"/>
+			<variable name="name" value="quest_tier4_defensive_point_Burnt"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Burnt"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Burnt"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Spider 蜘蛛 -->
+		<quest id="tier4_defensive_point_Spider" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Spider"/>
+			<variable name="name" value="quest_tier4_defensive_point_Spider"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Spider"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Spider"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Boe 布尔 -->
+		<quest id="tier4_defensive_point_Boe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Boe"/>
+			<variable name="name" value="quest_tier4_defensive_point_Boe"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Boe"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Boe"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- MaleHazmat 穿着防化服的丧尸 -->
+		<quest id="tier4_defensive_point_MaleHazmat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
+			<variable name="name" value="quest_tier4_defensive_point_MaleHazmat"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_MaleHazmat"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_MaleHazmat"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Janitor 看门人 -->
+		<quest id="tier4_defensive_point_Janitor" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Janitor"/>
+			<variable name="name" value="quest_tier4_defensive_point_Janitor"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Janitor"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Janitor"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Inmate 犯人 -->
+		<quest id="tier4_defensive_point_Inmate" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Inmate"/>
+			<variable name="name" value="quest_tier4_defensive_point_Inmate"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Inmate"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Inmate"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Moe 莫伊 -->
+		<quest id="tier4_defensive_point_Moe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Moe"/>
+			<variable name="name" value="quest_tier4_defensive_point_Moe"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Moe"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Moe"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Lab 实验室工作人员 -->
+		<quest id="tier4_defensive_point_Lab" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lab"/>
+			<variable name="name" value="quest_tier4_defensive_point_Lab"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Lab"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Lab"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Darlene 达琳 -->
+		<quest id="tier4_defensive_point_Darlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Darlene"/>
+			<variable name="name" value="quest_tier4_defensive_point_Darlene"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Darlene"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Darlene"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Yo 幽 -->
+		<quest id="tier4_defensive_point_Yo" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Yo"/>
+			<variable name="name" value="quest_tier4_defensive_point_Yo"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Yo"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Yo"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- UtilityWorker 公用事业工人 -->
+		<quest id="tier4_defensive_point_UtilityWorker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
+			<variable name="name" value="quest_tier4_defensive_point_UtilityWorker"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_UtilityWorker"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_UtilityWorker"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Biker 摩托车手 -->
+		<quest id="tier4_defensive_point_Biker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Biker"/>
+			<variable name="name" value="quest_tier4_defensive_point_Biker"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Biker"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Biker"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Lumberjack 伐木工 -->
+		<quest id="tier4_defensive_point_Lumberjack" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
+			<variable name="name" value="quest_tier4_defensive_point_Lumberjack"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Lumberjack"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Lumberjack"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- FemaleFat 大妈妈 -->
+		<quest id="tier4_defensive_point_FemaleFat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
+			<variable name="name" value="quest_tier4_defensive_point_FemaleFat"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FemaleFat"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_FemaleFat"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- FatHawaiian 游客 -->
+		<quest id="tier4_defensive_point_FatHawaiian" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
+			<variable name="name" value="quest_tier4_defensive_point_FatHawaiian"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FatHawaiian"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_FatHawaiian"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Bowler 投球手 -->
+		<quest id="tier4_defensive_point_Bowler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Bowler"/>
+			<variable name="name" value="quest_tier4_defensive_point_Bowler"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Bowler"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Bowler"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- FatCop 警察 -->
+		<quest id="tier4_defensive_point_FatCop" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatCop"/>
+			<variable name="name" value="quest_tier4_defensive_point_FatCop"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FatCop"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_FatCop"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Skateboarder 暴徒 -->
+		<quest id="tier4_defensive_point_Skateboarder" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
+			<variable name="name" value="quest_tier4_defensive_point_Skateboarder"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Skateboarder"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Skateboarder"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Soldier 士兵 -->
+		<quest id="tier4_defensive_point_Soldier" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Soldier"/>
+			<variable name="name" value="quest_tier4_defensive_point_Soldier"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Soldier"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Soldier"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Wight 怀特 -->
+		<quest id="tier4_defensive_point_Wight" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Wight"/>
+			<variable name="name" value="quest_tier4_defensive_point_Wight"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Wight"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Wight"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Screamer 尖叫丧尸 -->
+		<quest id="tier4_defensive_point_Screamer" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Screamer"/>
+			<variable name="name" value="quest_tier4_defensive_point_Screamer"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Screamer"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Screamer"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Mutated 变异丧尸 -->
+		<quest id="tier4_defensive_point_Mutated" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Mutated"/>
+			<variable name="name" value="quest_tier4_defensive_point_Mutated"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Mutated"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Mutated"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- Demolition 爆破丧尸 -->
+		<quest id="tier4_defensive_point_Demolition" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Demolition"/>
+			<variable name="name" value="quest_tier4_defensive_point_Demolition"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Demolition"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_Demolition"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+		<!-- SteveCrawler 爬行者 -->
+		<quest id="tier4_defensive_point_SteveCrawler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
+			<variable name="name" value="quest_tier4_defensive_point_SteveCrawler"/>
+			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_SteveCrawler"/>
+			<variable name="difficulty" value="4"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="storm_point_group" value="marisa_tire4_storm_point_SteveCrawler"/>
+
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+
+		<!--*** tier5 -->
+		<!-- Arlene 阿琳 -->
+		<quest id="tier5_defensive_point_Arlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Arlene"/>
+			<variable name="name" value="quest_tier5_defensive_point_Arlene"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Arlene"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Arlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Marlene 马琳 -->
+		<quest id="tier5_defensive_point_Marlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Marlene"/>
+			<variable name="name" value="quest_tier5_defensive_point_Marlene"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Marlene"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Marlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- PartyGirl 派对女孩 -->
+		<quest id="tier5_defensive_point_PartyGirl" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
+			<variable name="name" value="quest_tier5_defensive_point_PartyGirl"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_PartyGirl"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_PartyGirl"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Nurse 护士 -->
+		<quest id="tier5_defensive_point_Nurse" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Nurse"/>
+			<variable name="name" value="quest_tier5_defensive_point_Nurse"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Nurse"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Nurse"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Joe 乔 -->
+		<quest id="tier5_defensive_point_Joe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Joe"/>
+			<variable name="name" value="quest_tier5_defensive_point_Joe"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Joe"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Joe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Steve 史蒂夫 -->
+		<quest id="tier5_defensive_point_Steve" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Steve"/>
+			<variable name="name" value="quest_tier5_defensive_point_Steve"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Steve"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Steve"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- TomClark 汤姆·克拉克 -->
+		<quest id="tier5_defensive_point_TomClark" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_TomClark"/>
+			<variable name="name" value="quest_tier5_defensive_point_TomClark"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_TomClark"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_TomClark"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- BusinessMan 商人 -->
+		<quest id="tier5_defensive_point_BusinessMan" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
+			<variable name="name" value="quest_tier5_defensive_point_BusinessMan"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_BusinessMan"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_BusinessMan"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Burnt 被灼烧者 -->
+		<quest id="tier5_defensive_point_Burnt" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Burnt"/>
+			<variable name="name" value="quest_tier5_defensive_point_Burnt"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Burnt"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Burnt"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Spider 蜘蛛 -->
+		<quest id="tier5_defensive_point_Spider" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Spider"/>
+			<variable name="name" value="quest_tier5_defensive_point_Spider"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Spider"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Spider"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Boe 布尔 -->
+		<quest id="tier5_defensive_point_Boe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Boe"/>
+			<variable name="name" value="quest_tier5_defensive_point_Boe"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Boe"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Boe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- MaleHazmat 穿着防化服的丧尸 -->
+		<quest id="tier5_defensive_point_MaleHazmat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
+			<variable name="name" value="quest_tier5_defensive_point_MaleHazmat"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_MaleHazmat"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_MaleHazmat"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Janitor 看门人 -->
+		<quest id="tier5_defensive_point_Janitor" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Janitor"/>
+			<variable name="name" value="quest_tier5_defensive_point_Janitor"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Janitor"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Janitor"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Inmate 犯人 -->
+		<quest id="tier5_defensive_point_Inmate" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Inmate"/>
+			<variable name="name" value="quest_tier5_defensive_point_Inmate"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Inmate"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Inmate"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Moe 莫伊 -->
+		<quest id="tier5_defensive_point_Moe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Moe"/>
+			<variable name="name" value="quest_tier5_defensive_point_Moe"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Moe"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Moe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Lab 实验室工作人员 -->
+		<quest id="tier5_defensive_point_Lab" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lab"/>
+			<variable name="name" value="quest_tier5_defensive_point_Lab"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Lab"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Lab"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Darlene 达琳 -->
+		<quest id="tier5_defensive_point_Darlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Darlene"/>
+			<variable name="name" value="quest_tier5_defensive_point_Darlene"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Darlene"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Darlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Yo 幽 -->
+		<quest id="tier5_defensive_point_Yo" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Yo"/>
+			<variable name="name" value="quest_tier5_defensive_point_Yo"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Yo"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Yo"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- UtilityWorker 公用事业工人 -->
+		<quest id="tier5_defensive_point_UtilityWorker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
+			<variable name="name" value="quest_tier5_defensive_point_UtilityWorker"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_UtilityWorker"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_UtilityWorker"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Biker 摩托车手 -->
+		<quest id="tier5_defensive_point_Biker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Biker"/>
+			<variable name="name" value="quest_tier5_defensive_point_Biker"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Biker"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Biker"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Lumberjack 伐木工 -->
+		<quest id="tier5_defensive_point_Lumberjack" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
+			<variable name="name" value="quest_tier5_defensive_point_Lumberjack"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Lumberjack"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Lumberjack"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- FemaleFat 大妈妈 -->
+		<quest id="tier5_defensive_point_FemaleFat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
+			<variable name="name" value="quest_tier5_defensive_point_FemaleFat"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FemaleFat"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_FemaleFat"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- FatHawaiian 游客 -->
+		<quest id="tier5_defensive_point_FatHawaiian" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
+			<variable name="name" value="quest_tier5_defensive_point_FatHawaiian"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FatHawaiian"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_FatHawaiian"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Bowler 投球手 -->
+		<quest id="tier5_defensive_point_Bowler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Bowler"/>
+			<variable name="name" value="quest_tier5_defensive_point_Bowler"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Bowler"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Bowler"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- FatCop 警察 -->
+		<quest id="tier5_defensive_point_FatCop" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatCop"/>
+			<variable name="name" value="quest_tier5_defensive_point_FatCop"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FatCop"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_FatCop"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Skateboarder 暴徒 -->
+		<quest id="tier5_defensive_point_Skateboarder" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
+			<variable name="name" value="quest_tier5_defensive_point_Skateboarder"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Skateboarder"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Skateboarder"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Soldier 士兵 -->
+		<quest id="tier5_defensive_point_Soldier" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Soldier"/>
+			<variable name="name" value="quest_tier5_defensive_point_Soldier"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Soldier"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Soldier"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Wight 怀特 -->
+		<quest id="tier5_defensive_point_Wight" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Wight"/>
+			<variable name="name" value="quest_tier5_defensive_point_Wight"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Wight"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Wight"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Screamer 尖叫丧尸 -->
+		<quest id="tier5_defensive_point_Screamer" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Screamer"/>
+			<variable name="name" value="quest_tier5_defensive_point_Screamer"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Screamer"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Screamer"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Mutated 变异丧尸 -->
+		<quest id="tier5_defensive_point_Mutated" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Mutated"/>
+			<variable name="name" value="quest_tier5_defensive_point_Mutated"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Mutated"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Mutated"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- Demolition 爆破丧尸 -->
+		<quest id="tier5_defensive_point_Demolition" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Demolition"/>
+			<variable name="name" value="quest_tier5_defensive_point_Demolition"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Demolition"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_Demolition"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+		<!-- SteveCrawler 爬行者 -->
+		<quest id="tier5_defensive_point_SteveCrawler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
+			<variable name="name" value="quest_tier5_defensive_point_SteveCrawler"/>
+			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_SteveCrawler"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point_SteveCrawler"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+
+		<!--*** tier6 -->
+		<!-- Arlene 阿琳 -->
+		<quest id="tier6_defensive_point_Arlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Arlene"/>
+			<variable name="name" value="quest_tier6_defensive_point_Arlene"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Arlene"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Arlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Marlene 马琳 -->
+		<quest id="tier6_defensive_point_Marlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Marlene"/>
+			<variable name="name" value="quest_tier6_defensive_point_Marlene"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Marlene"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Marlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- PartyGirl 派对女孩 -->
+		<quest id="tier6_defensive_point_PartyGirl" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
+			<variable name="name" value="quest_tier6_defensive_point_PartyGirl"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_PartyGirl"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_PartyGirl"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Nurse 护士 -->
+		<quest id="tier6_defensive_point_Nurse" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Nurse"/>
+			<variable name="name" value="quest_tier6_defensive_point_Nurse"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Nurse"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Nurse"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Joe 乔 -->
+		<quest id="tier6_defensive_point_Joe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Joe"/>
+			<variable name="name" value="quest_tier6_defensive_point_Joe"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Joe"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Joe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Steve 史蒂夫 -->
+		<quest id="tier6_defensive_point_Steve" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Steve"/>
+			<variable name="name" value="quest_tier6_defensive_point_Steve"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Steve"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Steve"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- TomClark 汤姆·克拉克 -->
+		<quest id="tier6_defensive_point_TomClark" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_TomClark"/>
+			<variable name="name" value="quest_tier6_defensive_point_TomClark"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_TomClark"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_TomClark"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- BusinessMan 商人 -->
+		<quest id="tier6_defensive_point_BusinessMan" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
+			<variable name="name" value="quest_tier6_defensive_point_BusinessMan"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_BusinessMan"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_BusinessMan"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Burnt 被灼烧者 -->
+		<quest id="tier6_defensive_point_Burnt" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Burnt"/>
+			<variable name="name" value="quest_tier6_defensive_point_Burnt"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Burnt"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Burnt"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Spider 蜘蛛 -->
+		<quest id="tier6_defensive_point_Spider" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Spider"/>
+			<variable name="name" value="quest_tier6_defensive_point_Spider"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Spider"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Spider"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Boe 布尔 -->
+		<quest id="tier6_defensive_point_Boe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Boe"/>
+			<variable name="name" value="quest_tier6_defensive_point_Boe"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Boe"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Boe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- MaleHazmat 穿着防化服的丧尸 -->
+		<quest id="tier6_defensive_point_MaleHazmat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
+			<variable name="name" value="quest_tier6_defensive_point_MaleHazmat"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_MaleHazmat"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_MaleHazmat"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Janitor 看门人 -->
+		<quest id="tier6_defensive_point_Janitor" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Janitor"/>
+			<variable name="name" value="quest_tier6_defensive_point_Janitor"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Janitor"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Janitor"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Inmate 犯人 -->
+		<quest id="tier6_defensive_point_Inmate" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Inmate"/>
+			<variable name="name" value="quest_tier6_defensive_point_Inmate"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Inmate"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Inmate"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Moe 莫伊 -->
+		<quest id="tier6_defensive_point_Moe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Moe"/>
+			<variable name="name" value="quest_tier6_defensive_point_Moe"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Moe"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Moe"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Lab 实验室工作人员 -->
+		<quest id="tier6_defensive_point_Lab" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lab"/>
+			<variable name="name" value="quest_tier6_defensive_point_Lab"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Lab"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Lab"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Darlene 达琳 -->
+		<quest id="tier6_defensive_point_Darlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Darlene"/>
+			<variable name="name" value="quest_tier6_defensive_point_Darlene"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Darlene"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Darlene"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Yo 幽 -->
+		<quest id="tier6_defensive_point_Yo" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Yo"/>
+			<variable name="name" value="quest_tier6_defensive_point_Yo"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Yo"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Yo"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- UtilityWorker 公用事业工人 -->
+		<quest id="tier6_defensive_point_UtilityWorker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
+			<variable name="name" value="quest_tier6_defensive_point_UtilityWorker"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_UtilityWorker"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_UtilityWorker"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Biker 摩托车手 -->
+		<quest id="tier6_defensive_point_Biker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Biker"/>
+			<variable name="name" value="quest_tier6_defensive_point_Biker"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Biker"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Biker"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Lumberjack 伐木工 -->
+		<quest id="tier6_defensive_point_Lumberjack" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
+			<variable name="name" value="quest_tier6_defensive_point_Lumberjack"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Lumberjack"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Lumberjack"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- FemaleFat 大妈妈 -->
+		<quest id="tier6_defensive_point_FemaleFat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
+			<variable name="name" value="quest_tier6_defensive_point_FemaleFat"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FemaleFat"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_FemaleFat"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- FatHawaiian 游客 -->
+		<quest id="tier6_defensive_point_FatHawaiian" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
+			<variable name="name" value="quest_tier6_defensive_point_FatHawaiian"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FatHawaiian"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_FatHawaiian"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Bowler 投球手 -->
+		<quest id="tier6_defensive_point_Bowler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Bowler"/>
+			<variable name="name" value="quest_tier6_defensive_point_Bowler"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Bowler"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Bowler"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- FatCop 警察 -->
+		<quest id="tier6_defensive_point_FatCop" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatCop"/>
+			<variable name="name" value="quest_tier6_defensive_point_FatCop"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FatCop"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_FatCop"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Skateboarder 暴徒 -->
+		<quest id="tier6_defensive_point_Skateboarder" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
+			<variable name="name" value="quest_tier6_defensive_point_Skateboarder"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Skateboarder"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Skateboarder"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Soldier 士兵 -->
+		<quest id="tier6_defensive_point_Soldier" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Soldier"/>
+			<variable name="name" value="quest_tier6_defensive_point_Soldier"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Soldier"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Soldier"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Wight 怀特 -->
+		<quest id="tier6_defensive_point_Wight" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Wight"/>
+			<variable name="name" value="quest_tier6_defensive_point_Wight"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Wight"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Wight"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Screamer 尖叫丧尸 -->
+		<quest id="tier6_defensive_point_Screamer" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Screamer"/>
+			<variable name="name" value="quest_tier6_defensive_point_Screamer"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Screamer"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Screamer"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Mutated 变异丧尸 -->
+		<quest id="tier6_defensive_point_Mutated" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Mutated"/>
+			<variable name="name" value="quest_tier6_defensive_point_Mutated"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Mutated"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Mutated"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- Demolition 爆破丧尸 -->
+		<quest id="tier6_defensive_point_Demolition" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Demolition"/>
+			<variable name="name" value="quest_tier6_defensive_point_Demolition"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Demolition"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_Demolition"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+		<!-- SteveCrawler 爬行者 -->
+		<quest id="tier6_defensive_point_SteveCrawler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
+			<variable name="name" value="quest_tier6_defensive_point_SteveCrawler"/>
+			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_SteveCrawler"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point_SteveCrawler"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+
+		<!--*** tier7 -->
+		<!-- Arlene 阿琳 -->
+		<quest id="tier7_defensive_point_Arlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Arlene"/>
+			<variable name="name" value="quest_tier7_defensive_point_Arlene"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Arlene"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Arlene"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Marlene 马琳 -->
+		<quest id="tier7_defensive_point_Marlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Marlene"/>
+			<variable name="name" value="quest_tier7_defensive_point_Marlene"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Marlene"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Marlene"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- PartyGirl 派对女孩 -->
+		<quest id="tier7_defensive_point_PartyGirl" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
+			<variable name="name" value="quest_tier7_defensive_point_PartyGirl"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_PartyGirl"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_PartyGirl"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Nurse 护士 -->
+		<quest id="tier7_defensive_point_Nurse" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Nurse"/>
+			<variable name="name" value="quest_tier7_defensive_point_Nurse"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Nurse"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Nurse"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Joe 乔 -->
+		<quest id="tier7_defensive_point_Joe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Joe"/>
+			<variable name="name" value="quest_tier7_defensive_point_Joe"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Joe"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Joe"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Steve 史蒂夫 -->
+		<quest id="tier7_defensive_point_Steve" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Steve"/>
+			<variable name="name" value="quest_tier7_defensive_point_Steve"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Steve"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Steve"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- TomClark 汤姆·克拉克 -->
+		<quest id="tier7_defensive_point_TomClark" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_TomClark"/>
+			<variable name="name" value="quest_tier7_defensive_point_TomClark"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_TomClark"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_TomClark"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- BusinessMan 商人 -->
+		<quest id="tier7_defensive_point_BusinessMan" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
+			<variable name="name" value="quest_tier7_defensive_point_BusinessMan"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_BusinessMan"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_BusinessMan"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Burnt 被灼烧者 -->
+		<quest id="tier7_defensive_point_Burnt" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Burnt"/>
+			<variable name="name" value="quest_tier7_defensive_point_Burnt"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Burnt"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Burnt"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Spider 蜘蛛 -->
+		<quest id="tier7_defensive_point_Spider" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Spider"/>
+			<variable name="name" value="quest_tier7_defensive_point_Spider"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Spider"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Spider"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Boe 布尔 -->
+		<quest id="tier7_defensive_point_Boe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Boe"/>
+			<variable name="name" value="quest_tier7_defensive_point_Boe"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Boe"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Boe"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- MaleHazmat 穿着防化服的丧尸 -->
+		<quest id="tier7_defensive_point_MaleHazmat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
+			<variable name="name" value="quest_tier7_defensive_point_MaleHazmat"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_MaleHazmat"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_MaleHazmat"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Janitor 看门人 -->
+		<quest id="tier7_defensive_point_Janitor" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Janitor"/>
+			<variable name="name" value="quest_tier7_defensive_point_Janitor"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Janitor"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Janitor"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Inmate 犯人 -->
+		<quest id="tier7_defensive_point_Inmate" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Inmate"/>
+			<variable name="name" value="quest_tier7_defensive_point_Inmate"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Inmate"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Inmate"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Moe 莫伊 -->
+		<quest id="tier7_defensive_point_Moe" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Moe"/>
+			<variable name="name" value="quest_tier7_defensive_point_Moe"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Moe"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Moe"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Lab 实验室工作人员 -->
+		<quest id="tier7_defensive_point_Lab" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lab"/>
+			<variable name="name" value="quest_tier7_defensive_point_Lab"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Lab"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Lab"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Darlene 达琳 -->
+		<quest id="tier7_defensive_point_Darlene" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Darlene"/>
+			<variable name="name" value="quest_tier7_defensive_point_Darlene"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Darlene"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Darlene"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Yo 幽 -->
+		<quest id="tier7_defensive_point_Yo" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Yo"/>
+			<variable name="name" value="quest_tier7_defensive_point_Yo"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Yo"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Yo"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- UtilityWorker 公用事业工人 -->
+		<quest id="tier7_defensive_point_UtilityWorker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
+			<variable name="name" value="quest_tier7_defensive_point_UtilityWorker"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_UtilityWorker"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_UtilityWorker"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Biker 摩托车手 -->
+		<quest id="tier7_defensive_point_Biker" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Biker"/>
+			<variable name="name" value="quest_tier7_defensive_point_Biker"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Biker"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Biker"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Lumberjack 伐木工 -->
+		<quest id="tier7_defensive_point_Lumberjack" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
+			<variable name="name" value="quest_tier7_defensive_point_Lumberjack"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Lumberjack"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Lumberjack"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- FemaleFat 大妈妈 -->
+		<quest id="tier7_defensive_point_FemaleFat" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
+			<variable name="name" value="quest_tier7_defensive_point_FemaleFat"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FemaleFat"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_FemaleFat"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- FatHawaiian 游客 -->
+		<quest id="tier7_defensive_point_FatHawaiian" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
+			<variable name="name" value="quest_tier7_defensive_point_FatHawaiian"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FatHawaiian"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_FatHawaiian"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Bowler 投球手 -->
+		<quest id="tier7_defensive_point_Bowler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Bowler"/>
+			<variable name="name" value="quest_tier7_defensive_point_Bowler"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Bowler"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Bowler"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- FatCop 警察 -->
+		<quest id="tier7_defensive_point_FatCop" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_FatCop"/>
+			<variable name="name" value="quest_tier7_defensive_point_FatCop"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FatCop"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_FatCop"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Skateboarder 暴徒 -->
+		<quest id="tier7_defensive_point_Skateboarder" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
+			<variable name="name" value="quest_tier7_defensive_point_Skateboarder"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Skateboarder"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Skateboarder"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Soldier 士兵 -->
+		<quest id="tier7_defensive_point_Soldier" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Soldier"/>
+			<variable name="name" value="quest_tier7_defensive_point_Soldier"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Soldier"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Soldier"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Wight 怀特 -->
+		<quest id="tier7_defensive_point_Wight" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Wight"/>
+			<variable name="name" value="quest_tier7_defensive_point_Wight"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Wight"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Wight"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Screamer 尖叫丧尸 -->
+		<quest id="tier7_defensive_point_Screamer" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Screamer"/>
+			<variable name="name" value="quest_tier7_defensive_point_Screamer"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Screamer"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Screamer"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Mutated 变异丧尸 -->
+		<quest id="tier7_defensive_point_Mutated" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Mutated"/>
+			<variable name="name" value="quest_tier7_defensive_point_Mutated"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Mutated"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Mutated"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- Demolition 爆破丧尸 -->
+		<quest id="tier7_defensive_point_Demolition" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_Demolition"/>
+			<variable name="name" value="quest_tier7_defensive_point_Demolition"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Demolition"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_Demolition"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+		<!-- SteveCrawler 爬行者 -->
+		<quest id="tier7_defensive_point_SteveCrawler" template="base_defensive_point">
+			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
+			<variable name="name" value="quest_tier7_defensive_point_SteveCrawler"/>
+			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_SteveCrawler"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point_SteveCrawler"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+
+
+
+		<!-- 讨伐目标 -->
 		<quest id="tier2_poi_kill_boss">
 			<property name="name_key" value="quest_tier2_poi_kill_boss" param1="name"/>
 			<property name="subtitle_key" value="quest_poi_kill_boss_subtitle"/>
@@ -399,8 +2996,9 @@
 				<property name="nav_object" value="rally" />
 			</objective>
 
-			<action type="SpawnEnemy" value="1" phase="3">
+			<action type="SpawnEnemy" phase="3">
 				<property name="id" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
+				<property name="value" value="1" param1="kill_count"/>
 				<property name="spawn_inside" value="true"/>
 				<property name="safe_spawn" value="true"/>
 				<property name="spawn_area" value="poi_volume"/>
@@ -438,9 +3036,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 		</quest>
 
 		<quest id="tier3_poi_kill_boss" template="tier2_poi_kill_boss">
@@ -454,9 +3052,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 		</quest>
 
 		<quest id="tier4_poi_kill_boss" template="tier2_poi_kill_boss">
@@ -470,9 +3068,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 
 		<quest id="tier5_poi_kill_boss" template="tier2_poi_kill_boss">
@@ -488,9 +3086,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 
 		<quest id="tier6_poi_kill_boss" template="tier2_poi_kill_boss">
@@ -506,9 +3104,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 
 		<quest id="tier7_poi_kill_boss" template="tier2_poi_kill_boss">
@@ -524,9 +3122,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 
 
@@ -571,8 +3169,9 @@
 				<property name="nav_object" value="rally" />
 			</objective>
 
-			<action type="SpawnEnemy" value="1" phase="3">
+			<action type="SpawnEnemy" phase="3">
 				<property name="id" value="QuestEntityBossAnimalZombieDog" param1="entity_boss_spawn"/>
+				<property name="value" value="1" param1="kill_count"/>
 				<property name="spawn_inside" value="true"/>
 				<property name="safe_spawn" value="true"/>
 				<property name="spawn_area" value="poi_volume"/>
@@ -616,9 +3215,9 @@
 
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
-			<reward type="LootItem" id="groupQuestFood,groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="2"/>
 		</quest>
 
 		<quest id="tier3_poi_kill_boss_emergency" template="tier2_poi_kill_boss_emergency">
@@ -731,7 +3330,16 @@
 			<reward type="Item" id="resourceLegendaryParts" ischosen="true" isfixed="true" value="1"/>
 			<reward type="LootItem" id="groupQuestGyrocopterParts" ischosen="true" value="2"/>
 			<reward type="LootItem" id="groupQuestcasinoCoinT5" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestSolarBank" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestShotgunTurret" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestAutoTurret" ischosen="true" value="7"/>
 			<reward type="LootItem" id="groupQuestForgedSteel" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestLegendaryMeleeCrafting" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestLegendaryRangedCrafting" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestSteelShapes" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestT3MeleeMods" ischosen="true" value="7"/>
+			<reward type="LootItem" id="groupQuestT3RangedMods" ischosen="true" value="7"/>
 			<reward type="LootItem" id="groupQuestAmmoCraftingBundle" ischosen="true" value="7"/>
 		</quest>
 	</insertAfter>
@@ -758,6 +3366,139 @@
 		<quest id="tier5_poi_kill_boss_emergency"/>
 		<quest id="tier6_poi_kill_boss_emergency"/>
 		<quest id="tier7_poi_kill_boss_emergency"/>
+
+		<quest id="tier4_defensive_point_Arlene"/>
+		<quest id="tier4_defensive_point_Marlene"/>
+		<quest id="tier4_defensive_point_PartyGirl"/>
+		<quest id="tier4_defensive_point_Nurse"/>
+		<quest id="tier4_defensive_point_Joe"/>
+		<quest id="tier4_defensive_point_Steve"/>
+		<quest id="tier4_defensive_point_TomClark"/>
+		<quest id="tier4_defensive_point_BusinessMan"/>
+		<quest id="tier4_defensive_point_Burnt"/>
+		<quest id="tier4_defensive_point_Spider"/>
+		<quest id="tier4_defensive_point_Boe"/>
+		<quest id="tier4_defensive_point_MaleHazmat"/>
+		<quest id="tier4_defensive_point_Janitor"/>
+		<quest id="tier4_defensive_point_Inmate"/>
+		<quest id="tier4_defensive_point_Moe"/>
+		<quest id="tier4_defensive_point_Lab"/>
+		<quest id="tier4_defensive_point_Darlene"/>
+		<quest id="tier4_defensive_point_Yo"/>
+		<quest id="tier4_defensive_point_UtilityWorker"/>
+		<quest id="tier4_defensive_point_Biker"/>
+		<quest id="tier4_defensive_point_Lumberjack"/>
+		<quest id="tier4_defensive_point_FemaleFat"/>
+		<quest id="tier4_defensive_point_FatHawaiian"/>
+		<quest id="tier4_defensive_point_Bowler"/>
+		<quest id="tier4_defensive_point_FatCop"/>
+		<quest id="tier4_defensive_point_Skateboarder"/>
+		<quest id="tier4_defensive_point_Soldier"/>
+		<quest id="tier4_defensive_point_Wight"/>
+		<quest id="tier4_defensive_point_Screamer"/>
+		<quest id="tier4_defensive_point_Mutated"/>
+		<quest id="tier4_defensive_point_Demolition"/>
+		<quest id="tier4_defensive_point_SteveCrawler"/>
+
+		<quest id="tier5_defensive_point_Arlene"/>
+		<quest id="tier5_defensive_point_Marlene"/>
+		<quest id="tier5_defensive_point_PartyGirl"/>
+		<quest id="tier5_defensive_point_Nurse"/>
+		<quest id="tier5_defensive_point_Joe"/>
+		<quest id="tier5_defensive_point_Steve"/>
+		<quest id="tier5_defensive_point_TomClark"/>
+		<quest id="tier5_defensive_point_BusinessMan"/>
+		<quest id="tier5_defensive_point_Burnt"/>
+		<quest id="tier5_defensive_point_Spider"/>
+		<quest id="tier5_defensive_point_Boe"/>
+		<quest id="tier5_defensive_point_MaleHazmat"/>
+		<quest id="tier5_defensive_point_Janitor"/>
+		<quest id="tier5_defensive_point_Inmate"/>
+		<quest id="tier5_defensive_point_Moe"/>
+		<quest id="tier5_defensive_point_Lab"/>
+		<quest id="tier5_defensive_point_Darlene"/>
+		<quest id="tier5_defensive_point_Yo"/>
+		<quest id="tier5_defensive_point_UtilityWorker"/>
+		<quest id="tier5_defensive_point_Biker"/>
+		<quest id="tier5_defensive_point_Lumberjack"/>
+		<quest id="tier5_defensive_point_FemaleFat"/>
+		<quest id="tier5_defensive_point_FatHawaiian"/>
+		<quest id="tier5_defensive_point_Bowler"/>
+		<quest id="tier5_defensive_point_FatCop"/>
+		<quest id="tier5_defensive_point_Skateboarder"/>
+		<quest id="tier5_defensive_point_Soldier"/>
+		<quest id="tier5_defensive_point_Wight"/>
+		<quest id="tier5_defensive_point_Screamer"/>
+		<quest id="tier5_defensive_point_Mutated"/>
+		<quest id="tier5_defensive_point_Demolition"/>
+		<quest id="tier5_defensive_point_SteveCrawler"/>
+
+		<quest id="tier6_defensive_point_Arlene"/>
+		<quest id="tier6_defensive_point_Marlene"/>
+		<quest id="tier6_defensive_point_PartyGirl"/>
+		<quest id="tier6_defensive_point_Nurse"/>
+		<quest id="tier6_defensive_point_Joe"/>
+		<quest id="tier6_defensive_point_Steve"/>
+		<quest id="tier6_defensive_point_TomClark"/>
+		<quest id="tier6_defensive_point_BusinessMan"/>
+		<quest id="tier6_defensive_point_Burnt"/>
+		<quest id="tier6_defensive_point_Spider"/>
+		<quest id="tier6_defensive_point_Boe"/>
+		<quest id="tier6_defensive_point_MaleHazmat"/>
+		<quest id="tier6_defensive_point_Janitor"/>
+		<quest id="tier6_defensive_point_Inmate"/>
+		<quest id="tier6_defensive_point_Moe"/>
+		<quest id="tier6_defensive_point_Lab"/>
+		<quest id="tier6_defensive_point_Darlene"/>
+		<quest id="tier6_defensive_point_Yo"/>
+		<quest id="tier6_defensive_point_UtilityWorker"/>
+		<quest id="tier6_defensive_point_Biker"/>
+		<quest id="tier6_defensive_point_Lumberjack"/>
+		<quest id="tier6_defensive_point_FemaleFat"/>
+		<quest id="tier6_defensive_point_FatHawaiian"/>
+		<quest id="tier6_defensive_point_Bowler"/>
+		<quest id="tier6_defensive_point_FatCop"/>
+		<quest id="tier6_defensive_point_Skateboarder"/>
+		<quest id="tier6_defensive_point_Soldier"/>
+		<quest id="tier6_defensive_point_Wight"/>
+		<quest id="tier6_defensive_point_Screamer"/>
+		<quest id="tier6_defensive_point_Mutated"/>
+		<quest id="tier6_defensive_point_Demolition"/>
+		<quest id="tier6_defensive_point_SteveCrawler"/>
+
+		<quest id="tier7_defensive_point_Arlene"/>
+		<quest id="tier7_defensive_point_Marlene"/>
+		<quest id="tier7_defensive_point_PartyGirl"/>
+		<quest id="tier7_defensive_point_Nurse"/>
+		<quest id="tier7_defensive_point_Joe"/>
+		<quest id="tier7_defensive_point_Steve"/>
+		<quest id="tier7_defensive_point_TomClark"/>
+		<quest id="tier7_defensive_point_BusinessMan"/>
+		<quest id="tier7_defensive_point_Burnt"/>
+		<quest id="tier7_defensive_point_Spider"/>
+		<quest id="tier7_defensive_point_Boe"/>
+		<quest id="tier7_defensive_point_MaleHazmat"/>
+		<quest id="tier7_defensive_point_Janitor"/>
+		<quest id="tier7_defensive_point_Inmate"/>
+		<quest id="tier7_defensive_point_Moe"/>
+		<quest id="tier7_defensive_point_Lab"/>
+		<quest id="tier7_defensive_point_Darlene"/>
+		<quest id="tier7_defensive_point_Yo"/>
+		<quest id="tier7_defensive_point_UtilityWorker"/>
+		<quest id="tier7_defensive_point_Biker"/>
+		<quest id="tier7_defensive_point_Lumberjack"/>
+		<quest id="tier7_defensive_point_FemaleFat"/>
+		<quest id="tier7_defensive_point_FatHawaiian"/>
+		<quest id="tier7_defensive_point_Bowler"/>
+		<quest id="tier7_defensive_point_FatCop"/>
+		<quest id="tier7_defensive_point_Skateboarder"/>
+		<quest id="tier7_defensive_point_Soldier"/>
+		<quest id="tier7_defensive_point_Wight"/>
+		<quest id="tier7_defensive_point_Screamer"/>
+		<quest id="tier7_defensive_point_Mutated"/>
+		<quest id="tier7_defensive_point_Demolition"/>
+		<quest id="tier7_defensive_point_SteveCrawler"/>
+
 	</append>
 
 
