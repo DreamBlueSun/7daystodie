@@ -1,7 +1,7 @@
 <Marisa>
 
 	<set xpath="/quests/@max_quest_tier">8</set>
-  	<set xpath="/quests/@quests_per_tier">10</set>
+  	<set xpath="/quests/@quests_per_tier">1</set>
 
     <!-- 移除商人任务 恢复电力 -->
     <remove xpath="/quests/quest_list/quest[@id='tier2_restore_power' or @id='tier3_restore_power' or @id='tier4_restore_power']"/>
@@ -369,9 +369,9 @@
 
 
 		<!-- 强攻据点 -->
-		<quest id="base_defensive_point">
+		<quest id="tier4_defensive_point">
 			<property name="response_key" value="quest_defensive_point_response" param1="response"/>
-			<property name="name_key" value="quest_base_defensive_point" param1="name"/>
+			<property name="name_key" value="quest_tier4_defensive_point" param1="name"/>
 			<property name="subtitle_key" value="quest_defensive_point_subtitle" param1="subtitle"/>
 			<property name="offer_key" value="quest_defensive_point_offer" param1="offer"/>
 			<property name="description_key" value="quest_defensive_point_desc" param1="desc"/>
@@ -379,7 +379,7 @@
 			<property name="icon" value="ui_game_symbol_quest"/>
 			<property name="repeatable" value="true"/>
 			<property name="category_key" value="quest"/>
-			<property name="difficulty_tier" value="1" param1="difficulty"/>
+			<property name="difficulty_tier" value="4" param1="difficulty"/>
 			<property name="login_rally_reset" value="true"/>
 			<property name="reward_choices_count" value="5"/>
 			<property name="extra_tags" value="infested" param1="extra_tags"/>
@@ -411,7 +411,7 @@
 			</objective>
 
 			<action type="GameEvent">
-				<property name="id" value="marisa_tire4_storm_point_Arlene" param1="storm_point_group"/>
+				<property name="id" value="marisa_tire4_storm_point" param1="storm_point_group"/>
 				<property name="phase" value="3"/>
 			</action>
 
@@ -445,19 +445,91 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
-			<reward type="Exp" value="7500"/>
-			<reward type="Item" id="casinoCoin" value="1250"/>
+			<reward type="Exp" value="9375"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
 
-			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
-			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="3"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
+		</quest>
+
+		<quest id="tier5_defensive_point" template="tier4_defensive_point">
+			<variable name="name" value="quest_tier5_defensive_point_Arlene"/>
+			<variable name="difficulty" value="5"/>
+			<variable name="poi_tier" value="2"/>
+			<variable name="storm_point_group" value="marisa_tire5_storm_point"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="18750"/>
+			<reward type="Item" id="casinoCoin" value="4000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
+		</quest>
+
+		<quest id="tier6_defensive_point" template="tier4_defensive_point">
+			<variable name="name" value="quest_tier6_defensive_point_Arlene"/>
+			<variable name="difficulty" value="6"/>
+			<variable name="poi_tier" value="3"/>
+			<variable name="storm_point_group" value="marisa_tire6_storm_point"/>
+			<variable name="biome_filter_type" value="ExcludeBiome"/>
+			<variable name="biome_filter" value="pine_forest"/>
+
+			<reward type="Exp" value="30000"/>
+			<reward type="Item" id="casinoCoin" value="6000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
+		</quest>
+
+		<quest id="tier7_defensive_point" template="tier4_defensive_point">
+			<variable name="name" value="quest_tier7_defensive_point_Arlene"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="4"/>
+			<variable name="storm_point_group" value="marisa_tire7_storm_point"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="42000"/>
+			<reward type="Item" id="casinoCoin" value="8000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
+		</quest>
+
+		<quest id="tier8_defensive_point" template="tier4_defensive_point">
+			<variable name="name" value="quest_tier8_defensive_point_Arlene"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="poi_tier" value="5"/>
+			<variable name="storm_point_group" value="marisa_tire8_storm_point"/>
+			<variable name="biome_filter_type" value="OnlyBiome"/>
+			<variable name="biome_filter" value="wasteland"/>
+
+			<reward type="Exp" value="70000"/>
+			<reward type="Item" id="casinoCoin" value="10000"/>
+
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
+			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 
 		<!--*** tier4 -->
 		<!-- Arlene 阿琳 -->
-		<quest id="tier4_defensive_point_Arlene" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Arlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Arlene"/>
 			<variable name="name" value="quest_tier4_defensive_point_Arlene"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Arlene"/>
@@ -475,7 +547,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Marlene 马琳 -->
-		<quest id="tier4_defensive_point_Marlene" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Marlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Marlene"/>
 			<variable name="name" value="quest_tier4_defensive_point_Marlene"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Marlene"/>
@@ -493,7 +565,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- PartyGirl 派对女孩 -->
-		<quest id="tier4_defensive_point_PartyGirl" template="base_defensive_point">
+		<quest id="tier4_defensive_point_PartyGirl" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
 			<variable name="name" value="quest_tier4_defensive_point_PartyGirl"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_PartyGirl"/>
@@ -511,7 +583,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Nurse 护士 -->
-		<quest id="tier4_defensive_point_Nurse" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Nurse" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Nurse"/>
 			<variable name="name" value="quest_tier4_defensive_point_Nurse"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Nurse"/>
@@ -529,7 +601,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Joe 乔 -->
-		<quest id="tier4_defensive_point_Joe" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Joe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Joe"/>
 			<variable name="name" value="quest_tier4_defensive_point_Joe"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Joe"/>
@@ -547,7 +619,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Steve 史蒂夫 -->
-		<quest id="tier4_defensive_point_Steve" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Steve" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Steve"/>
 			<variable name="name" value="quest_tier4_defensive_point_Steve"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Steve"/>
@@ -565,7 +637,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- TomClark 汤姆·克拉克 -->
-		<quest id="tier4_defensive_point_TomClark" template="base_defensive_point">
+		<quest id="tier4_defensive_point_TomClark" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_TomClark"/>
 			<variable name="name" value="quest_tier4_defensive_point_TomClark"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_TomClark"/>
@@ -583,7 +655,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- BusinessMan 商人 -->
-		<quest id="tier4_defensive_point_BusinessMan" template="base_defensive_point">
+		<quest id="tier4_defensive_point_BusinessMan" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
 			<variable name="name" value="quest_tier4_defensive_point_BusinessMan"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_BusinessMan"/>
@@ -601,7 +673,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Burnt 被灼烧者 -->
-		<quest id="tier4_defensive_point_Burnt" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Burnt" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Burnt"/>
 			<variable name="name" value="quest_tier4_defensive_point_Burnt"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Burnt"/>
@@ -619,7 +691,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Spider 蜘蛛 -->
-		<quest id="tier4_defensive_point_Spider" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Spider" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Spider"/>
 			<variable name="name" value="quest_tier4_defensive_point_Spider"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Spider"/>
@@ -637,7 +709,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Boe 布尔 -->
-		<quest id="tier4_defensive_point_Boe" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Boe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Boe"/>
 			<variable name="name" value="quest_tier4_defensive_point_Boe"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Boe"/>
@@ -655,7 +727,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- MaleHazmat 穿着防化服的丧尸 -->
-		<quest id="tier4_defensive_point_MaleHazmat" template="base_defensive_point">
+		<quest id="tier4_defensive_point_MaleHazmat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
 			<variable name="name" value="quest_tier4_defensive_point_MaleHazmat"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_MaleHazmat"/>
@@ -673,7 +745,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Janitor 看门人 -->
-		<quest id="tier4_defensive_point_Janitor" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Janitor" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Janitor"/>
 			<variable name="name" value="quest_tier4_defensive_point_Janitor"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Janitor"/>
@@ -691,7 +763,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Inmate 犯人 -->
-		<quest id="tier4_defensive_point_Inmate" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Inmate" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Inmate"/>
 			<variable name="name" value="quest_tier4_defensive_point_Inmate"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Inmate"/>
@@ -709,7 +781,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Moe 莫伊 -->
-		<quest id="tier4_defensive_point_Moe" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Moe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Moe"/>
 			<variable name="name" value="quest_tier4_defensive_point_Moe"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Moe"/>
@@ -727,7 +799,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Lab 实验室工作人员 -->
-		<quest id="tier4_defensive_point_Lab" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Lab" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lab"/>
 			<variable name="name" value="quest_tier4_defensive_point_Lab"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Lab"/>
@@ -745,7 +817,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Darlene 达琳 -->
-		<quest id="tier4_defensive_point_Darlene" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Darlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Darlene"/>
 			<variable name="name" value="quest_tier4_defensive_point_Darlene"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Darlene"/>
@@ -763,7 +835,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Yo 幽 -->
-		<quest id="tier4_defensive_point_Yo" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Yo" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Yo"/>
 			<variable name="name" value="quest_tier4_defensive_point_Yo"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Yo"/>
@@ -781,7 +853,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- UtilityWorker 公用事业工人 -->
-		<quest id="tier4_defensive_point_UtilityWorker" template="base_defensive_point">
+		<quest id="tier4_defensive_point_UtilityWorker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
 			<variable name="name" value="quest_tier4_defensive_point_UtilityWorker"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_UtilityWorker"/>
@@ -799,7 +871,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Biker 摩托车手 -->
-		<quest id="tier4_defensive_point_Biker" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Biker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Biker"/>
 			<variable name="name" value="quest_tier4_defensive_point_Biker"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Biker"/>
@@ -817,7 +889,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Lumberjack 伐木工 -->
-		<quest id="tier4_defensive_point_Lumberjack" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Lumberjack" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
 			<variable name="name" value="quest_tier4_defensive_point_Lumberjack"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Lumberjack"/>
@@ -835,7 +907,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- FemaleFat 大妈妈 -->
-		<quest id="tier4_defensive_point_FemaleFat" template="base_defensive_point">
+		<quest id="tier4_defensive_point_FemaleFat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
 			<variable name="name" value="quest_tier4_defensive_point_FemaleFat"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FemaleFat"/>
@@ -853,7 +925,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- FatHawaiian 游客 -->
-		<quest id="tier4_defensive_point_FatHawaiian" template="base_defensive_point">
+		<quest id="tier4_defensive_point_FatHawaiian" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
 			<variable name="name" value="quest_tier4_defensive_point_FatHawaiian"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FatHawaiian"/>
@@ -871,7 +943,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Bowler 投球手 -->
-		<quest id="tier4_defensive_point_Bowler" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Bowler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Bowler"/>
 			<variable name="name" value="quest_tier4_defensive_point_Bowler"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Bowler"/>
@@ -889,7 +961,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- FatCop 警察 -->
-		<quest id="tier4_defensive_point_FatCop" template="base_defensive_point">
+		<quest id="tier4_defensive_point_FatCop" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatCop"/>
 			<variable name="name" value="quest_tier4_defensive_point_FatCop"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_FatCop"/>
@@ -907,7 +979,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Skateboarder 暴徒 -->
-		<quest id="tier4_defensive_point_Skateboarder" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Skateboarder" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
 			<variable name="name" value="quest_tier4_defensive_point_Skateboarder"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Skateboarder"/>
@@ -925,7 +997,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Soldier 士兵 -->
-		<quest id="tier4_defensive_point_Soldier" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Soldier" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Soldier"/>
 			<variable name="name" value="quest_tier4_defensive_point_Soldier"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Soldier"/>
@@ -943,7 +1015,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Wight 怀特 -->
-		<quest id="tier4_defensive_point_Wight" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Wight" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Wight"/>
 			<variable name="name" value="quest_tier4_defensive_point_Wight"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Wight"/>
@@ -961,7 +1033,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Screamer 尖叫丧尸 -->
-		<quest id="tier4_defensive_point_Screamer" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Screamer" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Screamer"/>
 			<variable name="name" value="quest_tier4_defensive_point_Screamer"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Screamer"/>
@@ -979,7 +1051,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Mutated 变异丧尸 -->
-		<quest id="tier4_defensive_point_Mutated" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Mutated" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Mutated"/>
 			<variable name="name" value="quest_tier4_defensive_point_Mutated"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Mutated"/>
@@ -997,7 +1069,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- Demolition 爆破丧尸 -->
-		<quest id="tier4_defensive_point_Demolition" template="base_defensive_point">
+		<quest id="tier4_defensive_point_Demolition" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Demolition"/>
 			<variable name="name" value="quest_tier4_defensive_point_Demolition"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_Demolition"/>
@@ -1015,7 +1087,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="4"/>
 		</quest>
 		<!-- SteveCrawler 爬行者 -->
-		<quest id="tier4_defensive_point_SteveCrawler" template="base_defensive_point">
+		<quest id="tier4_defensive_point_SteveCrawler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
 			<variable name="name" value="quest_tier4_defensive_point_SteveCrawler"/>
 			<variable name="subtitle" value="quest_tier4_defensive_point_subtitle_SteveCrawler"/>
@@ -1035,7 +1107,7 @@
 
 		<!--*** tier5 -->
 		<!-- Arlene 阿琳 -->
-		<quest id="tier5_defensive_point_Arlene" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Arlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Arlene"/>
 			<variable name="name" value="quest_tier5_defensive_point_Arlene"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Arlene"/>
@@ -1055,7 +1127,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Marlene 马琳 -->
-		<quest id="tier5_defensive_point_Marlene" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Marlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Marlene"/>
 			<variable name="name" value="quest_tier5_defensive_point_Marlene"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Marlene"/>
@@ -1075,7 +1147,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- PartyGirl 派对女孩 -->
-		<quest id="tier5_defensive_point_PartyGirl" template="base_defensive_point">
+		<quest id="tier5_defensive_point_PartyGirl" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
 			<variable name="name" value="quest_tier5_defensive_point_PartyGirl"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_PartyGirl"/>
@@ -1095,7 +1167,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Nurse 护士 -->
-		<quest id="tier5_defensive_point_Nurse" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Nurse" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Nurse"/>
 			<variable name="name" value="quest_tier5_defensive_point_Nurse"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Nurse"/>
@@ -1115,7 +1187,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Joe 乔 -->
-		<quest id="tier5_defensive_point_Joe" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Joe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Joe"/>
 			<variable name="name" value="quest_tier5_defensive_point_Joe"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Joe"/>
@@ -1135,7 +1207,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Steve 史蒂夫 -->
-		<quest id="tier5_defensive_point_Steve" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Steve" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Steve"/>
 			<variable name="name" value="quest_tier5_defensive_point_Steve"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Steve"/>
@@ -1155,7 +1227,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- TomClark 汤姆·克拉克 -->
-		<quest id="tier5_defensive_point_TomClark" template="base_defensive_point">
+		<quest id="tier5_defensive_point_TomClark" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_TomClark"/>
 			<variable name="name" value="quest_tier5_defensive_point_TomClark"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_TomClark"/>
@@ -1175,7 +1247,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- BusinessMan 商人 -->
-		<quest id="tier5_defensive_point_BusinessMan" template="base_defensive_point">
+		<quest id="tier5_defensive_point_BusinessMan" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
 			<variable name="name" value="quest_tier5_defensive_point_BusinessMan"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_BusinessMan"/>
@@ -1195,7 +1267,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Burnt 被灼烧者 -->
-		<quest id="tier5_defensive_point_Burnt" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Burnt" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Burnt"/>
 			<variable name="name" value="quest_tier5_defensive_point_Burnt"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Burnt"/>
@@ -1215,7 +1287,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Spider 蜘蛛 -->
-		<quest id="tier5_defensive_point_Spider" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Spider" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Spider"/>
 			<variable name="name" value="quest_tier5_defensive_point_Spider"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Spider"/>
@@ -1235,7 +1307,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Boe 布尔 -->
-		<quest id="tier5_defensive_point_Boe" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Boe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Boe"/>
 			<variable name="name" value="quest_tier5_defensive_point_Boe"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Boe"/>
@@ -1255,7 +1327,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- MaleHazmat 穿着防化服的丧尸 -->
-		<quest id="tier5_defensive_point_MaleHazmat" template="base_defensive_point">
+		<quest id="tier5_defensive_point_MaleHazmat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
 			<variable name="name" value="quest_tier5_defensive_point_MaleHazmat"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_MaleHazmat"/>
@@ -1275,7 +1347,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Janitor 看门人 -->
-		<quest id="tier5_defensive_point_Janitor" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Janitor" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Janitor"/>
 			<variable name="name" value="quest_tier5_defensive_point_Janitor"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Janitor"/>
@@ -1295,7 +1367,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Inmate 犯人 -->
-		<quest id="tier5_defensive_point_Inmate" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Inmate" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Inmate"/>
 			<variable name="name" value="quest_tier5_defensive_point_Inmate"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Inmate"/>
@@ -1315,7 +1387,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Moe 莫伊 -->
-		<quest id="tier5_defensive_point_Moe" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Moe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Moe"/>
 			<variable name="name" value="quest_tier5_defensive_point_Moe"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Moe"/>
@@ -1335,7 +1407,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Lab 实验室工作人员 -->
-		<quest id="tier5_defensive_point_Lab" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Lab" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lab"/>
 			<variable name="name" value="quest_tier5_defensive_point_Lab"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Lab"/>
@@ -1355,7 +1427,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Darlene 达琳 -->
-		<quest id="tier5_defensive_point_Darlene" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Darlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Darlene"/>
 			<variable name="name" value="quest_tier5_defensive_point_Darlene"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Darlene"/>
@@ -1375,7 +1447,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Yo 幽 -->
-		<quest id="tier5_defensive_point_Yo" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Yo" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Yo"/>
 			<variable name="name" value="quest_tier5_defensive_point_Yo"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Yo"/>
@@ -1395,7 +1467,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- UtilityWorker 公用事业工人 -->
-		<quest id="tier5_defensive_point_UtilityWorker" template="base_defensive_point">
+		<quest id="tier5_defensive_point_UtilityWorker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
 			<variable name="name" value="quest_tier5_defensive_point_UtilityWorker"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_UtilityWorker"/>
@@ -1415,7 +1487,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Biker 摩托车手 -->
-		<quest id="tier5_defensive_point_Biker" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Biker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Biker"/>
 			<variable name="name" value="quest_tier5_defensive_point_Biker"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Biker"/>
@@ -1435,7 +1507,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Lumberjack 伐木工 -->
-		<quest id="tier5_defensive_point_Lumberjack" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Lumberjack" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
 			<variable name="name" value="quest_tier5_defensive_point_Lumberjack"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Lumberjack"/>
@@ -1455,7 +1527,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- FemaleFat 大妈妈 -->
-		<quest id="tier5_defensive_point_FemaleFat" template="base_defensive_point">
+		<quest id="tier5_defensive_point_FemaleFat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
 			<variable name="name" value="quest_tier5_defensive_point_FemaleFat"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FemaleFat"/>
@@ -1475,7 +1547,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- FatHawaiian 游客 -->
-		<quest id="tier5_defensive_point_FatHawaiian" template="base_defensive_point">
+		<quest id="tier5_defensive_point_FatHawaiian" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
 			<variable name="name" value="quest_tier5_defensive_point_FatHawaiian"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FatHawaiian"/>
@@ -1495,7 +1567,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Bowler 投球手 -->
-		<quest id="tier5_defensive_point_Bowler" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Bowler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Bowler"/>
 			<variable name="name" value="quest_tier5_defensive_point_Bowler"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Bowler"/>
@@ -1515,7 +1587,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- FatCop 警察 -->
-		<quest id="tier5_defensive_point_FatCop" template="base_defensive_point">
+		<quest id="tier5_defensive_point_FatCop" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatCop"/>
 			<variable name="name" value="quest_tier5_defensive_point_FatCop"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_FatCop"/>
@@ -1535,7 +1607,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Skateboarder 暴徒 -->
-		<quest id="tier5_defensive_point_Skateboarder" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Skateboarder" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
 			<variable name="name" value="quest_tier5_defensive_point_Skateboarder"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Skateboarder"/>
@@ -1555,7 +1627,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Soldier 士兵 -->
-		<quest id="tier5_defensive_point_Soldier" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Soldier" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Soldier"/>
 			<variable name="name" value="quest_tier5_defensive_point_Soldier"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Soldier"/>
@@ -1575,7 +1647,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Wight 怀特 -->
-		<quest id="tier5_defensive_point_Wight" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Wight" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Wight"/>
 			<variable name="name" value="quest_tier5_defensive_point_Wight"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Wight"/>
@@ -1595,7 +1667,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Screamer 尖叫丧尸 -->
-		<quest id="tier5_defensive_point_Screamer" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Screamer" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Screamer"/>
 			<variable name="name" value="quest_tier5_defensive_point_Screamer"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Screamer"/>
@@ -1615,7 +1687,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Mutated 变异丧尸 -->
-		<quest id="tier5_defensive_point_Mutated" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Mutated" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Mutated"/>
 			<variable name="name" value="quest_tier5_defensive_point_Mutated"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Mutated"/>
@@ -1635,7 +1707,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- Demolition 爆破丧尸 -->
-		<quest id="tier5_defensive_point_Demolition" template="base_defensive_point">
+		<quest id="tier5_defensive_point_Demolition" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Demolition"/>
 			<variable name="name" value="quest_tier5_defensive_point_Demolition"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_Demolition"/>
@@ -1655,7 +1727,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="5"/>
 		</quest>
 		<!-- SteveCrawler 爬行者 -->
-		<quest id="tier5_defensive_point_SteveCrawler" template="base_defensive_point">
+		<quest id="tier5_defensive_point_SteveCrawler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
 			<variable name="name" value="quest_tier5_defensive_point_SteveCrawler"/>
 			<variable name="subtitle" value="quest_tier5_defensive_point_subtitle_SteveCrawler"/>
@@ -1677,7 +1749,7 @@
 
 		<!--*** tier6 -->
 		<!-- Arlene 阿琳 -->
-		<quest id="tier6_defensive_point_Arlene" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Arlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Arlene"/>
 			<variable name="name" value="quest_tier6_defensive_point_Arlene"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Arlene"/>
@@ -1697,7 +1769,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Marlene 马琳 -->
-		<quest id="tier6_defensive_point_Marlene" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Marlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Marlene"/>
 			<variable name="name" value="quest_tier6_defensive_point_Marlene"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Marlene"/>
@@ -1717,7 +1789,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- PartyGirl 派对女孩 -->
-		<quest id="tier6_defensive_point_PartyGirl" template="base_defensive_point">
+		<quest id="tier6_defensive_point_PartyGirl" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
 			<variable name="name" value="quest_tier6_defensive_point_PartyGirl"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_PartyGirl"/>
@@ -1737,7 +1809,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Nurse 护士 -->
-		<quest id="tier6_defensive_point_Nurse" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Nurse" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Nurse"/>
 			<variable name="name" value="quest_tier6_defensive_point_Nurse"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Nurse"/>
@@ -1757,7 +1829,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Joe 乔 -->
-		<quest id="tier6_defensive_point_Joe" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Joe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Joe"/>
 			<variable name="name" value="quest_tier6_defensive_point_Joe"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Joe"/>
@@ -1777,7 +1849,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Steve 史蒂夫 -->
-		<quest id="tier6_defensive_point_Steve" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Steve" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Steve"/>
 			<variable name="name" value="quest_tier6_defensive_point_Steve"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Steve"/>
@@ -1797,7 +1869,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- TomClark 汤姆·克拉克 -->
-		<quest id="tier6_defensive_point_TomClark" template="base_defensive_point">
+		<quest id="tier6_defensive_point_TomClark" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_TomClark"/>
 			<variable name="name" value="quest_tier6_defensive_point_TomClark"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_TomClark"/>
@@ -1817,7 +1889,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- BusinessMan 商人 -->
-		<quest id="tier6_defensive_point_BusinessMan" template="base_defensive_point">
+		<quest id="tier6_defensive_point_BusinessMan" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
 			<variable name="name" value="quest_tier6_defensive_point_BusinessMan"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_BusinessMan"/>
@@ -1837,7 +1909,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Burnt 被灼烧者 -->
-		<quest id="tier6_defensive_point_Burnt" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Burnt" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Burnt"/>
 			<variable name="name" value="quest_tier6_defensive_point_Burnt"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Burnt"/>
@@ -1857,7 +1929,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Spider 蜘蛛 -->
-		<quest id="tier6_defensive_point_Spider" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Spider" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Spider"/>
 			<variable name="name" value="quest_tier6_defensive_point_Spider"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Spider"/>
@@ -1877,7 +1949,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Boe 布尔 -->
-		<quest id="tier6_defensive_point_Boe" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Boe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Boe"/>
 			<variable name="name" value="quest_tier6_defensive_point_Boe"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Boe"/>
@@ -1897,7 +1969,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- MaleHazmat 穿着防化服的丧尸 -->
-		<quest id="tier6_defensive_point_MaleHazmat" template="base_defensive_point">
+		<quest id="tier6_defensive_point_MaleHazmat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
 			<variable name="name" value="quest_tier6_defensive_point_MaleHazmat"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_MaleHazmat"/>
@@ -1917,7 +1989,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Janitor 看门人 -->
-		<quest id="tier6_defensive_point_Janitor" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Janitor" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Janitor"/>
 			<variable name="name" value="quest_tier6_defensive_point_Janitor"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Janitor"/>
@@ -1937,7 +2009,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Inmate 犯人 -->
-		<quest id="tier6_defensive_point_Inmate" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Inmate" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Inmate"/>
 			<variable name="name" value="quest_tier6_defensive_point_Inmate"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Inmate"/>
@@ -1957,7 +2029,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Moe 莫伊 -->
-		<quest id="tier6_defensive_point_Moe" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Moe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Moe"/>
 			<variable name="name" value="quest_tier6_defensive_point_Moe"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Moe"/>
@@ -1977,7 +2049,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Lab 实验室工作人员 -->
-		<quest id="tier6_defensive_point_Lab" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Lab" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lab"/>
 			<variable name="name" value="quest_tier6_defensive_point_Lab"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Lab"/>
@@ -1997,7 +2069,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Darlene 达琳 -->
-		<quest id="tier6_defensive_point_Darlene" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Darlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Darlene"/>
 			<variable name="name" value="quest_tier6_defensive_point_Darlene"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Darlene"/>
@@ -2017,7 +2089,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Yo 幽 -->
-		<quest id="tier6_defensive_point_Yo" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Yo" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Yo"/>
 			<variable name="name" value="quest_tier6_defensive_point_Yo"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Yo"/>
@@ -2037,7 +2109,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- UtilityWorker 公用事业工人 -->
-		<quest id="tier6_defensive_point_UtilityWorker" template="base_defensive_point">
+		<quest id="tier6_defensive_point_UtilityWorker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
 			<variable name="name" value="quest_tier6_defensive_point_UtilityWorker"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_UtilityWorker"/>
@@ -2057,7 +2129,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Biker 摩托车手 -->
-		<quest id="tier6_defensive_point_Biker" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Biker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Biker"/>
 			<variable name="name" value="quest_tier6_defensive_point_Biker"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Biker"/>
@@ -2077,7 +2149,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Lumberjack 伐木工 -->
-		<quest id="tier6_defensive_point_Lumberjack" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Lumberjack" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
 			<variable name="name" value="quest_tier6_defensive_point_Lumberjack"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Lumberjack"/>
@@ -2097,7 +2169,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- FemaleFat 大妈妈 -->
-		<quest id="tier6_defensive_point_FemaleFat" template="base_defensive_point">
+		<quest id="tier6_defensive_point_FemaleFat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
 			<variable name="name" value="quest_tier6_defensive_point_FemaleFat"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FemaleFat"/>
@@ -2117,7 +2189,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- FatHawaiian 游客 -->
-		<quest id="tier6_defensive_point_FatHawaiian" template="base_defensive_point">
+		<quest id="tier6_defensive_point_FatHawaiian" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
 			<variable name="name" value="quest_tier6_defensive_point_FatHawaiian"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FatHawaiian"/>
@@ -2137,7 +2209,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Bowler 投球手 -->
-		<quest id="tier6_defensive_point_Bowler" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Bowler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Bowler"/>
 			<variable name="name" value="quest_tier6_defensive_point_Bowler"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Bowler"/>
@@ -2157,7 +2229,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- FatCop 警察 -->
-		<quest id="tier6_defensive_point_FatCop" template="base_defensive_point">
+		<quest id="tier6_defensive_point_FatCop" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatCop"/>
 			<variable name="name" value="quest_tier6_defensive_point_FatCop"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_FatCop"/>
@@ -2177,7 +2249,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Skateboarder 暴徒 -->
-		<quest id="tier6_defensive_point_Skateboarder" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Skateboarder" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
 			<variable name="name" value="quest_tier6_defensive_point_Skateboarder"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Skateboarder"/>
@@ -2197,7 +2269,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Soldier 士兵 -->
-		<quest id="tier6_defensive_point_Soldier" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Soldier" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Soldier"/>
 			<variable name="name" value="quest_tier6_defensive_point_Soldier"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Soldier"/>
@@ -2217,7 +2289,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Wight 怀特 -->
-		<quest id="tier6_defensive_point_Wight" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Wight" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Wight"/>
 			<variable name="name" value="quest_tier6_defensive_point_Wight"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Wight"/>
@@ -2237,7 +2309,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Screamer 尖叫丧尸 -->
-		<quest id="tier6_defensive_point_Screamer" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Screamer" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Screamer"/>
 			<variable name="name" value="quest_tier6_defensive_point_Screamer"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Screamer"/>
@@ -2257,7 +2329,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Mutated 变异丧尸 -->
-		<quest id="tier6_defensive_point_Mutated" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Mutated" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Mutated"/>
 			<variable name="name" value="quest_tier6_defensive_point_Mutated"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Mutated"/>
@@ -2277,7 +2349,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- Demolition 爆破丧尸 -->
-		<quest id="tier6_defensive_point_Demolition" template="base_defensive_point">
+		<quest id="tier6_defensive_point_Demolition" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Demolition"/>
 			<variable name="name" value="quest_tier6_defensive_point_Demolition"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_Demolition"/>
@@ -2297,7 +2369,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 		<!-- SteveCrawler 爬行者 -->
-		<quest id="tier6_defensive_point_SteveCrawler" template="base_defensive_point">
+		<quest id="tier6_defensive_point_SteveCrawler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
 			<variable name="name" value="quest_tier6_defensive_point_SteveCrawler"/>
 			<variable name="subtitle" value="quest_tier6_defensive_point_subtitle_SteveCrawler"/>
@@ -2319,7 +2391,7 @@
 
 		<!--*** tier7 -->
 		<!-- Arlene 阿琳 -->
-		<quest id="tier7_defensive_point_Arlene" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Arlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Arlene"/>
 			<variable name="name" value="quest_tier7_defensive_point_Arlene"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Arlene"/>
@@ -2339,7 +2411,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Marlene 马琳 -->
-		<quest id="tier7_defensive_point_Marlene" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Marlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Marlene"/>
 			<variable name="name" value="quest_tier7_defensive_point_Marlene"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Marlene"/>
@@ -2359,7 +2431,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- PartyGirl 派对女孩 -->
-		<quest id="tier7_defensive_point_PartyGirl" template="base_defensive_point">
+		<quest id="tier7_defensive_point_PartyGirl" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
 			<variable name="name" value="quest_tier7_defensive_point_PartyGirl"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_PartyGirl"/>
@@ -2379,7 +2451,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Nurse 护士 -->
-		<quest id="tier7_defensive_point_Nurse" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Nurse" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Nurse"/>
 			<variable name="name" value="quest_tier7_defensive_point_Nurse"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Nurse"/>
@@ -2399,7 +2471,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Joe 乔 -->
-		<quest id="tier7_defensive_point_Joe" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Joe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Joe"/>
 			<variable name="name" value="quest_tier7_defensive_point_Joe"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Joe"/>
@@ -2419,7 +2491,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Steve 史蒂夫 -->
-		<quest id="tier7_defensive_point_Steve" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Steve" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Steve"/>
 			<variable name="name" value="quest_tier7_defensive_point_Steve"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Steve"/>
@@ -2439,7 +2511,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- TomClark 汤姆·克拉克 -->
-		<quest id="tier7_defensive_point_TomClark" template="base_defensive_point">
+		<quest id="tier7_defensive_point_TomClark" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_TomClark"/>
 			<variable name="name" value="quest_tier7_defensive_point_TomClark"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_TomClark"/>
@@ -2459,7 +2531,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- BusinessMan 商人 -->
-		<quest id="tier7_defensive_point_BusinessMan" template="base_defensive_point">
+		<quest id="tier7_defensive_point_BusinessMan" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
 			<variable name="name" value="quest_tier7_defensive_point_BusinessMan"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_BusinessMan"/>
@@ -2479,7 +2551,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Burnt 被灼烧者 -->
-		<quest id="tier7_defensive_point_Burnt" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Burnt" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Burnt"/>
 			<variable name="name" value="quest_tier7_defensive_point_Burnt"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Burnt"/>
@@ -2499,7 +2571,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Spider 蜘蛛 -->
-		<quest id="tier7_defensive_point_Spider" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Spider" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Spider"/>
 			<variable name="name" value="quest_tier7_defensive_point_Spider"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Spider"/>
@@ -2519,7 +2591,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Boe 布尔 -->
-		<quest id="tier7_defensive_point_Boe" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Boe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Boe"/>
 			<variable name="name" value="quest_tier7_defensive_point_Boe"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Boe"/>
@@ -2539,7 +2611,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- MaleHazmat 穿着防化服的丧尸 -->
-		<quest id="tier7_defensive_point_MaleHazmat" template="base_defensive_point">
+		<quest id="tier7_defensive_point_MaleHazmat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
 			<variable name="name" value="quest_tier7_defensive_point_MaleHazmat"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_MaleHazmat"/>
@@ -2559,7 +2631,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Janitor 看门人 -->
-		<quest id="tier7_defensive_point_Janitor" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Janitor" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Janitor"/>
 			<variable name="name" value="quest_tier7_defensive_point_Janitor"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Janitor"/>
@@ -2579,7 +2651,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Inmate 犯人 -->
-		<quest id="tier7_defensive_point_Inmate" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Inmate" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Inmate"/>
 			<variable name="name" value="quest_tier7_defensive_point_Inmate"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Inmate"/>
@@ -2599,7 +2671,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Moe 莫伊 -->
-		<quest id="tier7_defensive_point_Moe" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Moe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Moe"/>
 			<variable name="name" value="quest_tier7_defensive_point_Moe"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Moe"/>
@@ -2619,7 +2691,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Lab 实验室工作人员 -->
-		<quest id="tier7_defensive_point_Lab" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Lab" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lab"/>
 			<variable name="name" value="quest_tier7_defensive_point_Lab"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Lab"/>
@@ -2639,7 +2711,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Darlene 达琳 -->
-		<quest id="tier7_defensive_point_Darlene" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Darlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Darlene"/>
 			<variable name="name" value="quest_tier7_defensive_point_Darlene"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Darlene"/>
@@ -2659,7 +2731,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Yo 幽 -->
-		<quest id="tier7_defensive_point_Yo" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Yo" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Yo"/>
 			<variable name="name" value="quest_tier7_defensive_point_Yo"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Yo"/>
@@ -2679,7 +2751,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- UtilityWorker 公用事业工人 -->
-		<quest id="tier7_defensive_point_UtilityWorker" template="base_defensive_point">
+		<quest id="tier7_defensive_point_UtilityWorker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
 			<variable name="name" value="quest_tier7_defensive_point_UtilityWorker"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_UtilityWorker"/>
@@ -2699,7 +2771,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Biker 摩托车手 -->
-		<quest id="tier7_defensive_point_Biker" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Biker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Biker"/>
 			<variable name="name" value="quest_tier7_defensive_point_Biker"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Biker"/>
@@ -2719,7 +2791,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Lumberjack 伐木工 -->
-		<quest id="tier7_defensive_point_Lumberjack" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Lumberjack" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
 			<variable name="name" value="quest_tier7_defensive_point_Lumberjack"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Lumberjack"/>
@@ -2739,7 +2811,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- FemaleFat 大妈妈 -->
-		<quest id="tier7_defensive_point_FemaleFat" template="base_defensive_point">
+		<quest id="tier7_defensive_point_FemaleFat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
 			<variable name="name" value="quest_tier7_defensive_point_FemaleFat"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FemaleFat"/>
@@ -2759,7 +2831,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- FatHawaiian 游客 -->
-		<quest id="tier7_defensive_point_FatHawaiian" template="base_defensive_point">
+		<quest id="tier7_defensive_point_FatHawaiian" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
 			<variable name="name" value="quest_tier7_defensive_point_FatHawaiian"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FatHawaiian"/>
@@ -2779,7 +2851,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Bowler 投球手 -->
-		<quest id="tier7_defensive_point_Bowler" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Bowler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Bowler"/>
 			<variable name="name" value="quest_tier7_defensive_point_Bowler"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Bowler"/>
@@ -2799,7 +2871,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- FatCop 警察 -->
-		<quest id="tier7_defensive_point_FatCop" template="base_defensive_point">
+		<quest id="tier7_defensive_point_FatCop" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatCop"/>
 			<variable name="name" value="quest_tier7_defensive_point_FatCop"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_FatCop"/>
@@ -2819,7 +2891,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Skateboarder 暴徒 -->
-		<quest id="tier7_defensive_point_Skateboarder" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Skateboarder" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
 			<variable name="name" value="quest_tier7_defensive_point_Skateboarder"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Skateboarder"/>
@@ -2839,7 +2911,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Soldier 士兵 -->
-		<quest id="tier7_defensive_point_Soldier" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Soldier" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Soldier"/>
 			<variable name="name" value="quest_tier7_defensive_point_Soldier"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Soldier"/>
@@ -2859,7 +2931,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Wight 怀特 -->
-		<quest id="tier7_defensive_point_Wight" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Wight" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Wight"/>
 			<variable name="name" value="quest_tier7_defensive_point_Wight"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Wight"/>
@@ -2879,7 +2951,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Screamer 尖叫丧尸 -->
-		<quest id="tier7_defensive_point_Screamer" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Screamer" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Screamer"/>
 			<variable name="name" value="quest_tier7_defensive_point_Screamer"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Screamer"/>
@@ -2899,7 +2971,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Mutated 变异丧尸 -->
-		<quest id="tier7_defensive_point_Mutated" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Mutated" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Mutated"/>
 			<variable name="name" value="quest_tier7_defensive_point_Mutated"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Mutated"/>
@@ -2919,7 +2991,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- Demolition 爆破丧尸 -->
-		<quest id="tier7_defensive_point_Demolition" template="base_defensive_point">
+		<quest id="tier7_defensive_point_Demolition" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Demolition"/>
 			<variable name="name" value="quest_tier7_defensive_point_Demolition"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_Demolition"/>
@@ -2939,7 +3011,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="7"/>
 		</quest>
 		<!-- SteveCrawler 爬行者 -->
-		<quest id="tier7_defensive_point_SteveCrawler" template="base_defensive_point">
+		<quest id="tier7_defensive_point_SteveCrawler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
 			<variable name="name" value="quest_tier7_defensive_point_SteveCrawler"/>
 			<variable name="subtitle" value="quest_tier7_defensive_point_subtitle_SteveCrawler"/>
@@ -2961,7 +3033,7 @@
 
 		<!--*** tier8 -->
 		<!-- Arlene 阿琳 -->
-		<quest id="tier8_defensive_point_Arlene" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Arlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Arlene"/>
 			<variable name="name" value="quest_tier8_defensive_point_Arlene"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Arlene"/>
@@ -2981,7 +3053,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Marlene 马琳 -->
-		<quest id="tier8_defensive_point_Marlene" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Marlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Marlene"/>
 			<variable name="name" value="quest_tier8_defensive_point_Marlene"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Marlene"/>
@@ -3001,7 +3073,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- PartyGirl 派对女孩 -->
-		<quest id="tier8_defensive_point_PartyGirl" template="base_defensive_point">
+		<quest id="tier8_defensive_point_PartyGirl" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_PartyGirl"/>
 			<variable name="name" value="quest_tier8_defensive_point_PartyGirl"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_PartyGirl"/>
@@ -3021,7 +3093,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Nurse 护士 -->
-		<quest id="tier8_defensive_point_Nurse" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Nurse" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Nurse"/>
 			<variable name="name" value="quest_tier8_defensive_point_Nurse"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Nurse"/>
@@ -3041,7 +3113,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Joe 乔 -->
-		<quest id="tier8_defensive_point_Joe" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Joe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Joe"/>
 			<variable name="name" value="quest_tier8_defensive_point_Joe"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Joe"/>
@@ -3061,7 +3133,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Steve 史蒂夫 -->
-		<quest id="tier8_defensive_point_Steve" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Steve" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Steve"/>
 			<variable name="name" value="quest_tier8_defensive_point_Steve"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Steve"/>
@@ -3081,7 +3153,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- TomClark 汤姆·克拉克 -->
-		<quest id="tier8_defensive_point_TomClark" template="base_defensive_point">
+		<quest id="tier8_defensive_point_TomClark" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_TomClark"/>
 			<variable name="name" value="quest_tier8_defensive_point_TomClark"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_TomClark"/>
@@ -3101,7 +3173,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- BusinessMan 商人 -->
-		<quest id="tier8_defensive_point_BusinessMan" template="base_defensive_point">
+		<quest id="tier8_defensive_point_BusinessMan" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_BusinessMan"/>
 			<variable name="name" value="quest_tier8_defensive_point_BusinessMan"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_BusinessMan"/>
@@ -3121,7 +3193,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Burnt 被灼烧者 -->
-		<quest id="tier8_defensive_point_Burnt" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Burnt" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Burnt"/>
 			<variable name="name" value="quest_tier8_defensive_point_Burnt"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Burnt"/>
@@ -3141,7 +3213,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Spider 蜘蛛 -->
-		<quest id="tier8_defensive_point_Spider" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Spider" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Spider"/>
 			<variable name="name" value="quest_tier8_defensive_point_Spider"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Spider"/>
@@ -3161,7 +3233,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Boe 布尔 -->
-		<quest id="tier8_defensive_point_Boe" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Boe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Boe"/>
 			<variable name="name" value="quest_tier8_defensive_point_Boe"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Boe"/>
@@ -3181,7 +3253,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- MaleHazmat 穿着防化服的丧尸 -->
-		<quest id="tier8_defensive_point_MaleHazmat" template="base_defensive_point">
+		<quest id="tier8_defensive_point_MaleHazmat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_MaleHazmat"/>
 			<variable name="name" value="quest_tier8_defensive_point_MaleHazmat"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_MaleHazmat"/>
@@ -3201,7 +3273,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Janitor 看门人 -->
-		<quest id="tier8_defensive_point_Janitor" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Janitor" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Janitor"/>
 			<variable name="name" value="quest_tier8_defensive_point_Janitor"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Janitor"/>
@@ -3221,7 +3293,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Inmate 犯人 -->
-		<quest id="tier8_defensive_point_Inmate" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Inmate" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Inmate"/>
 			<variable name="name" value="quest_tier8_defensive_point_Inmate"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Inmate"/>
@@ -3241,7 +3313,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Moe 莫伊 -->
-		<quest id="tier8_defensive_point_Moe" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Moe" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Moe"/>
 			<variable name="name" value="quest_tier8_defensive_point_Moe"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Moe"/>
@@ -3261,7 +3333,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Lab 实验室工作人员 -->
-		<quest id="tier8_defensive_point_Lab" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Lab" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lab"/>
 			<variable name="name" value="quest_tier8_defensive_point_Lab"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Lab"/>
@@ -3281,7 +3353,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Darlene 达琳 -->
-		<quest id="tier8_defensive_point_Darlene" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Darlene" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Darlene"/>
 			<variable name="name" value="quest_tier8_defensive_point_Darlene"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Darlene"/>
@@ -3301,7 +3373,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Yo 幽 -->
-		<quest id="tier8_defensive_point_Yo" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Yo" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Yo"/>
 			<variable name="name" value="quest_tier8_defensive_point_Yo"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Yo"/>
@@ -3321,7 +3393,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- UtilityWorker 公用事业工人 -->
-		<quest id="tier8_defensive_point_UtilityWorker" template="base_defensive_point">
+		<quest id="tier8_defensive_point_UtilityWorker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_UtilityWorker"/>
 			<variable name="name" value="quest_tier8_defensive_point_UtilityWorker"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_UtilityWorker"/>
@@ -3341,7 +3413,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Biker 摩托车手 -->
-		<quest id="tier8_defensive_point_Biker" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Biker" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Biker"/>
 			<variable name="name" value="quest_tier8_defensive_point_Biker"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Biker"/>
@@ -3361,7 +3433,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Lumberjack 伐木工 -->
-		<quest id="tier8_defensive_point_Lumberjack" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Lumberjack" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Lumberjack"/>
 			<variable name="name" value="quest_tier8_defensive_point_Lumberjack"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Lumberjack"/>
@@ -3381,7 +3453,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- FemaleFat 大妈妈 -->
-		<quest id="tier8_defensive_point_FemaleFat" template="base_defensive_point">
+		<quest id="tier8_defensive_point_FemaleFat" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FemaleFat"/>
 			<variable name="name" value="quest_tier8_defensive_point_FemaleFat"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_FemaleFat"/>
@@ -3401,7 +3473,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- FatHawaiian 游客 -->
-		<quest id="tier8_defensive_point_FatHawaiian" template="base_defensive_point">
+		<quest id="tier8_defensive_point_FatHawaiian" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatHawaiian"/>
 			<variable name="name" value="quest_tier8_defensive_point_FatHawaiian"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_FatHawaiian"/>
@@ -3421,7 +3493,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Bowler 投球手 -->
-		<quest id="tier8_defensive_point_Bowler" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Bowler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Bowler"/>
 			<variable name="name" value="quest_tier8_defensive_point_Bowler"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Bowler"/>
@@ -3441,7 +3513,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- FatCop 警察 -->
-		<quest id="tier8_defensive_point_FatCop" template="base_defensive_point">
+		<quest id="tier8_defensive_point_FatCop" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_FatCop"/>
 			<variable name="name" value="quest_tier8_defensive_point_FatCop"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_FatCop"/>
@@ -3461,7 +3533,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Skateboarder 暴徒 -->
-		<quest id="tier8_defensive_point_Skateboarder" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Skateboarder" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Skateboarder"/>
 			<variable name="name" value="quest_tier8_defensive_point_Skateboarder"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Skateboarder"/>
@@ -3481,7 +3553,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Soldier 士兵 -->
-		<quest id="tier8_defensive_point_Soldier" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Soldier" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Soldier"/>
 			<variable name="name" value="quest_tier8_defensive_point_Soldier"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Soldier"/>
@@ -3501,7 +3573,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Wight 怀特 -->
-		<quest id="tier8_defensive_point_Wight" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Wight" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Wight"/>
 			<variable name="name" value="quest_tier8_defensive_point_Wight"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Wight"/>
@@ -3521,7 +3593,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Screamer 尖叫丧尸 -->
-		<quest id="tier8_defensive_point_Screamer" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Screamer" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Screamer"/>
 			<variable name="name" value="quest_tier8_defensive_point_Screamer"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Screamer"/>
@@ -3541,7 +3613,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Mutated 变异丧尸 -->
-		<quest id="tier8_defensive_point_Mutated" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Mutated" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Mutated"/>
 			<variable name="name" value="quest_tier8_defensive_point_Mutated"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Mutated"/>
@@ -3561,7 +3633,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- Demolition 爆破丧尸 -->
-		<quest id="tier8_defensive_point_Demolition" template="base_defensive_point">
+		<quest id="tier8_defensive_point_Demolition" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_Demolition"/>
 			<variable name="name" value="quest_tier8_defensive_point_Demolition"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_Demolition"/>
@@ -3581,7 +3653,7 @@
 			<reward type="LootItem" id="groupMarisaQuestEgg,groupMarisaQuestTicket" ischosen="true" isfixed="true" value="8"/>
 		</quest>
 		<!-- SteveCrawler 爬行者 -->
-		<quest id="tier8_defensive_point_SteveCrawler" template="base_defensive_point">
+		<quest id="tier8_defensive_point_SteveCrawler" template="tier4_defensive_point">
 			<variable name="response" value="quest_defensive_point_response_SteveCrawler"/>
 			<variable name="name" value="quest_tier8_defensive_point_SteveCrawler"/>
 			<variable name="subtitle" value="quest_tier8_defensive_point_subtitle_SteveCrawler"/>
@@ -4081,170 +4153,11 @@
 		<quest id="tier7_poi_kill_boss_emergency"/>
 		<quest id="tier8_poi_kill_boss_emergency"/>
 
-		<quest id="tier4_defensive_point_Arlene"/>
-		<quest id="tier4_defensive_point_Marlene"/>
-		<quest id="tier4_defensive_point_PartyGirl"/>
-		<quest id="tier4_defensive_point_Nurse"/>
-		<quest id="tier4_defensive_point_Joe"/>
-		<quest id="tier4_defensive_point_Steve"/>
-		<quest id="tier4_defensive_point_TomClark"/>
-		<quest id="tier4_defensive_point_BusinessMan"/>
-		<quest id="tier4_defensive_point_Burnt"/>
-		<quest id="tier4_defensive_point_Spider"/>
-		<quest id="tier4_defensive_point_Boe"/>
-		<quest id="tier4_defensive_point_MaleHazmat"/>
-		<quest id="tier4_defensive_point_Janitor"/>
-		<quest id="tier4_defensive_point_Inmate"/>
-		<quest id="tier4_defensive_point_Moe"/>
-		<quest id="tier4_defensive_point_Lab"/>
-		<quest id="tier4_defensive_point_Darlene"/>
-		<quest id="tier4_defensive_point_Yo"/>
-		<quest id="tier4_defensive_point_UtilityWorker"/>
-		<quest id="tier4_defensive_point_Biker"/>
-		<quest id="tier4_defensive_point_Lumberjack"/>
-		<quest id="tier4_defensive_point_FemaleFat"/>
-		<quest id="tier4_defensive_point_FatHawaiian"/>
-		<quest id="tier4_defensive_point_Bowler"/>
-		<quest id="tier4_defensive_point_FatCop"/>
-		<quest id="tier4_defensive_point_Skateboarder"/>
-		<quest id="tier4_defensive_point_Soldier"/>
-		<quest id="tier4_defensive_point_Wight"/>
-		<quest id="tier4_defensive_point_Screamer"/>
-		<quest id="tier4_defensive_point_Mutated"/>
-		<quest id="tier4_defensive_point_Demolition"/>
-		<quest id="tier4_defensive_point_SteveCrawler"/>
-
-		<quest id="tier5_defensive_point_Arlene"/>
-		<quest id="tier5_defensive_point_Marlene"/>
-		<quest id="tier5_defensive_point_PartyGirl"/>
-		<quest id="tier5_defensive_point_Nurse"/>
-		<quest id="tier5_defensive_point_Joe"/>
-		<quest id="tier5_defensive_point_Steve"/>
-		<quest id="tier5_defensive_point_TomClark"/>
-		<quest id="tier5_defensive_point_BusinessMan"/>
-		<quest id="tier5_defensive_point_Burnt"/>
-		<quest id="tier5_defensive_point_Spider"/>
-		<quest id="tier5_defensive_point_Boe"/>
-		<quest id="tier5_defensive_point_MaleHazmat"/>
-		<quest id="tier5_defensive_point_Janitor"/>
-		<quest id="tier5_defensive_point_Inmate"/>
-		<quest id="tier5_defensive_point_Moe"/>
-		<quest id="tier5_defensive_point_Lab"/>
-		<quest id="tier5_defensive_point_Darlene"/>
-		<quest id="tier5_defensive_point_Yo"/>
-		<quest id="tier5_defensive_point_UtilityWorker"/>
-		<quest id="tier5_defensive_point_Biker"/>
-		<quest id="tier5_defensive_point_Lumberjack"/>
-		<quest id="tier5_defensive_point_FemaleFat"/>
-		<quest id="tier5_defensive_point_FatHawaiian"/>
-		<quest id="tier5_defensive_point_Bowler"/>
-		<quest id="tier5_defensive_point_FatCop"/>
-		<quest id="tier5_defensive_point_Skateboarder"/>
-		<quest id="tier5_defensive_point_Soldier"/>
-		<quest id="tier5_defensive_point_Wight"/>
-		<quest id="tier5_defensive_point_Screamer"/>
-		<quest id="tier5_defensive_point_Mutated"/>
-		<quest id="tier5_defensive_point_Demolition"/>
-		<quest id="tier5_defensive_point_SteveCrawler"/>
-
-		<quest id="tier6_defensive_point_Arlene"/>
-		<quest id="tier6_defensive_point_Marlene"/>
-		<quest id="tier6_defensive_point_PartyGirl"/>
-		<quest id="tier6_defensive_point_Nurse"/>
-		<quest id="tier6_defensive_point_Joe"/>
-		<quest id="tier6_defensive_point_Steve"/>
-		<quest id="tier6_defensive_point_TomClark"/>
-		<quest id="tier6_defensive_point_BusinessMan"/>
-		<quest id="tier6_defensive_point_Burnt"/>
-		<quest id="tier6_defensive_point_Spider"/>
-		<quest id="tier6_defensive_point_Boe"/>
-		<quest id="tier6_defensive_point_MaleHazmat"/>
-		<quest id="tier6_defensive_point_Janitor"/>
-		<quest id="tier6_defensive_point_Inmate"/>
-		<quest id="tier6_defensive_point_Moe"/>
-		<quest id="tier6_defensive_point_Lab"/>
-		<quest id="tier6_defensive_point_Darlene"/>
-		<quest id="tier6_defensive_point_Yo"/>
-		<quest id="tier6_defensive_point_UtilityWorker"/>
-		<quest id="tier6_defensive_point_Biker"/>
-		<quest id="tier6_defensive_point_Lumberjack"/>
-		<quest id="tier6_defensive_point_FemaleFat"/>
-		<quest id="tier6_defensive_point_FatHawaiian"/>
-		<quest id="tier6_defensive_point_Bowler"/>
-		<quest id="tier6_defensive_point_FatCop"/>
-		<quest id="tier6_defensive_point_Skateboarder"/>
-		<quest id="tier6_defensive_point_Soldier"/>
-		<quest id="tier6_defensive_point_Wight"/>
-		<quest id="tier6_defensive_point_Screamer"/>
-		<quest id="tier6_defensive_point_Mutated"/>
-		<quest id="tier6_defensive_point_Demolition"/>
-		<quest id="tier6_defensive_point_SteveCrawler"/>
-
-		<quest id="tier7_defensive_point_Arlene"/>
-		<quest id="tier7_defensive_point_Marlene"/>
-		<quest id="tier7_defensive_point_PartyGirl"/>
-		<quest id="tier7_defensive_point_Nurse"/>
-		<quest id="tier7_defensive_point_Joe"/>
-		<quest id="tier7_defensive_point_Steve"/>
-		<quest id="tier7_defensive_point_TomClark"/>
-		<quest id="tier7_defensive_point_BusinessMan"/>
-		<quest id="tier7_defensive_point_Burnt"/>
-		<quest id="tier7_defensive_point_Spider"/>
-		<quest id="tier7_defensive_point_Boe"/>
-		<quest id="tier7_defensive_point_MaleHazmat"/>
-		<quest id="tier7_defensive_point_Janitor"/>
-		<quest id="tier7_defensive_point_Inmate"/>
-		<quest id="tier7_defensive_point_Moe"/>
-		<quest id="tier7_defensive_point_Lab"/>
-		<quest id="tier7_defensive_point_Darlene"/>
-		<quest id="tier7_defensive_point_Yo"/>
-		<quest id="tier7_defensive_point_UtilityWorker"/>
-		<quest id="tier7_defensive_point_Biker"/>
-		<quest id="tier7_defensive_point_Lumberjack"/>
-		<quest id="tier7_defensive_point_FemaleFat"/>
-		<quest id="tier7_defensive_point_FatHawaiian"/>
-		<quest id="tier7_defensive_point_Bowler"/>
-		<quest id="tier7_defensive_point_FatCop"/>
-		<quest id="tier7_defensive_point_Skateboarder"/>
-		<quest id="tier7_defensive_point_Soldier"/>
-		<quest id="tier7_defensive_point_Wight"/>
-		<quest id="tier7_defensive_point_Screamer"/>
-		<quest id="tier7_defensive_point_Mutated"/>
-		<quest id="tier7_defensive_point_Demolition"/>
-		<quest id="tier7_defensive_point_SteveCrawler"/>
-
-		<quest id="tier8_defensive_point_Arlene"/>
-		<quest id="tier8_defensive_point_Marlene"/>
-		<quest id="tier8_defensive_point_PartyGirl"/>
-		<quest id="tier8_defensive_point_Nurse"/>
-		<quest id="tier8_defensive_point_Joe"/>
-		<quest id="tier8_defensive_point_Steve"/>
-		<quest id="tier8_defensive_point_TomClark"/>
-		<quest id="tier8_defensive_point_BusinessMan"/>
-		<quest id="tier8_defensive_point_Burnt"/>
-		<quest id="tier8_defensive_point_Spider"/>
-		<quest id="tier8_defensive_point_Boe"/>
-		<quest id="tier8_defensive_point_MaleHazmat"/>
-		<quest id="tier8_defensive_point_Janitor"/>
-		<quest id="tier8_defensive_point_Inmate"/>
-		<quest id="tier8_defensive_point_Moe"/>
-		<quest id="tier8_defensive_point_Lab"/>
-		<quest id="tier8_defensive_point_Darlene"/>
-		<quest id="tier8_defensive_point_Yo"/>
-		<quest id="tier8_defensive_point_UtilityWorker"/>
-		<quest id="tier8_defensive_point_Biker"/>
-		<quest id="tier8_defensive_point_Lumberjack"/>
-		<quest id="tier8_defensive_point_FemaleFat"/>
-		<quest id="tier8_defensive_point_FatHawaiian"/>
-		<quest id="tier8_defensive_point_Bowler"/>
-		<quest id="tier8_defensive_point_FatCop"/>
-		<quest id="tier8_defensive_point_Skateboarder"/>
-		<quest id="tier8_defensive_point_Soldier"/>
-		<quest id="tier8_defensive_point_Wight"/>
-		<quest id="tier8_defensive_point_Screamer"/>
-		<quest id="tier8_defensive_point_Mutated"/>
-		<quest id="tier8_defensive_point_Demolition"/>
-		<quest id="tier8_defensive_point_SteveCrawler"/>
+		<quest id="tier4_defensive_point"/>
+		<quest id="tier5_defensive_point"/>
+		<quest id="tier6_defensive_point"/>
+		<quest id="tier7_defensive_point"/>
+		<quest id="tier8_defensive_point"/>
 
 	</append>
 
