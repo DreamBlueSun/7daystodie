@@ -1328,7 +1328,8 @@
 			</effect_group>
 			<!-- 火箭筒 雷 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfExplosionDamagedOther" action="ModifyCVar" cvar="$craftingExplosivesLevelNext" operation="add" value="1"/>
+				<requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingExplosivesLevelNext" operation="add" value="1"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingExplosives" operation="LT" value="100"/>
@@ -1337,23 +1338,10 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingExplosives" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingRocketLauncher" level="1"/>
 			</effect_group>
-			<!-- 电击棒 -->
+			<!-- 电击棒 垃圾炮台 -->
 			<effect_group>
-				<requirement name="HoldingItemHasTags" tags="perkElectrocutioner"/>
-<!--					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1">-->
-<!--						<requirement name="IsAlive" target="other"/>-->
-<!--					</triggered_effect>-->
-					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1">
-						<requirement name="IsAlive" target="other"/>
-					</triggered_effect>
-					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="25"/>
-			</effect_group>
-			<effect_group>
-				<requirements compare_type="or">
-					<requirement name="HoldingItemHasTags" tags="perkElectrocutioner"/>
-					<requirement name="HoldingItemHasTags" tags="perkTurrets"/>
-				</requirements>
-					<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1"/>
+				<requirement name="HoldingItemHasTags" tags="perkElectrocutioner,perkTurrets"/>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="100"/>
@@ -1363,7 +1351,6 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingJunkTurret" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingStunBaton" level="1"/>
 			</effect_group>
-			<!-- 垃圾炮台 -->
 			<!-- 猎刀 砍刀 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDeepCuts"/>
