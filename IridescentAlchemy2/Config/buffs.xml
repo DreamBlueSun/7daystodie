@@ -1251,12 +1251,13 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingArmor" level="1"/>
 			</effect_group>
 
-			<!-- 弓 弩 -->
+			<!-- 弓 弩 3 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkArchery"/>
 					<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" cvar="$craftingBowsLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingBowsLevelNext" operation="add" value="3"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingBows" operation="LT" value="100"/>
@@ -1265,12 +1266,13 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingBows" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingCrossBows" level="1"/>
 			</effect_group>
-			<!-- 手枪 SMG5 马格南 沙漠秃鹰 -->
+			<!-- 手枪 SMG5 马格南 沙漠秃鹰 5 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkGunslinger"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingHandgunsLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingHandgunsLevelNext" operation="add" value="5"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingHandguns" operation="LT" value="100"/>
@@ -1281,12 +1283,13 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingMagnum44" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingDesertVulture" level="1"/>
 			</effect_group>
-			<!-- 双管霰弹枪 泵动式霰弹枪 自动霰弹枪 -->
+			<!-- 双管霰弹枪 泵动式霰弹枪 自动霰弹枪 25 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkBoomstick"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingShotgunsLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingShotgunsLevelNext" operation="add" value="25"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingShotguns" operation="LT" value="100"/>
@@ -1296,12 +1299,13 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingPumpShotgun" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingAutoShotgun" level="1"/>
 			</effect_group>
-			<!-- 猎枪 杠杆步枪 精准猎枪 -->
+			<!-- 猎枪 杠杆步枪 精准猎枪 3 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDeadEye"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingRiflesLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingRiflesLevelNext" operation="add" value="3"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingRifles" operation="LT" value="100"/>
@@ -1311,12 +1315,13 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingLeverActionRifle" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSniperRifle" level="1"/>
 			</effect_group>
-			<!-- AK47 突击步枪 M60 -->
+			<!-- AK47 突击步枪 M60 10 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkMachineGunner"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingMachineGunsLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingMachineGunsLevelNext" operation="add" value="10"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingMachineGuns" operation="LT" value="100"/>
@@ -1326,7 +1331,7 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingTacticalAR" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingM60" level="1"/>
 			</effect_group>
-			<!-- 火箭筒 雷 -->
+			<!-- 火箭筒 雷 1 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
 					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingExplosivesLevelNext" operation="add" value="1"/>
@@ -1338,10 +1343,16 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingExplosives" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingRocketLauncher" level="1"/>
 			</effect_group>
-			<!-- 电击棒 垃圾炮台 -->
+			<!-- 电击棒 垃圾炮台 5 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkElectrocutioner,perkTurrets"/>
-					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="1">
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="2">
+						<requirement name="IsAlive" target="other"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingRoboticsLevelNext" operation="add" value="5"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingRobotics" operation="LT" value="100"/>
@@ -1351,7 +1362,7 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingJunkTurret" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingStunBaton" level="1"/>
 			</effect_group>
-			<!-- 猎刀 砍刀 -->
+			<!-- 猎刀 砍刀 7 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkDeepCuts"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingBladesLevelNext" operation="add" value="1">
@@ -1360,6 +1371,7 @@
 					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingBladesLevelNext" operation="add" value="2">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingBladesLevelNext" operation="add" value="7"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingBlades" operation="LT" value="100"/>
@@ -1368,15 +1380,16 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingBlades" level="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingMachete" level="1"/>
 			</effect_group>
-			<!-- 棒球棍 钢棍 -->
+			<!-- 棒球棍 钢棍 3 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkPummelPete"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingClubsLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
-					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingClubsLevelNext" operation="add" value="3">
+					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingClubsLevelNext" operation="add" value="2">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingClubsLevelNext" operation="add" value="3"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingClubs" operation="LT" value="100"/>
@@ -1384,7 +1397,7 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingClubsLevelNext" operation="subtract" value="@$craftingClubsLevelNextPoint"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingClubs" level="1"/>
 			</effect_group>
-			<!-- 铁矛 钢矛 -->
+			<!-- 铁矛 钢矛 3 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkJavelinMaster"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingSpearsLevelNext" operation="add" value="1">
@@ -1393,6 +1406,7 @@
 					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingSpearsLevelNext" operation="add" value="2">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingSpearsLevelNext" operation="add" value="3"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingSpears" operation="LT" value="100"/>
@@ -1400,7 +1414,7 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingSpearsLevelNext" operation="subtract" value="@$craftingSpearsLevelNextPoint"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSpears" level="1"/>
 			</effect_group>
-			<!-- 大铁锤 大钢锤 -->
+			<!-- 大铁锤 大钢锤 5 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkSkullCrusher"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingSledgehammersLevelNext" operation="add" value="1">
@@ -1409,6 +1423,7 @@
 					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingSledgehammersLevelNext" operation="add" value="2">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingSledgehammersLevelNext" operation="add" value="5"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingSledgehammers" operation="LT" value="100"/>
@@ -1416,7 +1431,7 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$craftingSledgehammersLevelNext" operation="subtract" value="@$craftingSledgehammersLevelNextPoint"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingSledgehammers" level="1"/>
 			</effect_group>
-			<!-- 铁指虎 钢刺拳 -->
+			<!-- 铁指虎 钢刺拳 3 -->
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="perkBrawler"/>
 					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" cvar="$craftingKnucklesLevelNext" operation="add" value="1">
@@ -1425,6 +1440,7 @@
 					<triggered_effect trigger="onSelfSecondaryActionRayHit" action="ModifyCVar" cvar="$craftingKnucklesLevelNext" operation="add" value="1">
 						<requirement name="IsAlive" target="other"/>
 					</triggered_effect>
+					<triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$craftingKnucklesLevelNext" operation="add" value="3"/>
 			</effect_group>
 			<effect_group name="MarisaCheckLevelNextPoint">
 				<requirement name="ProgressionLevel" progression_name="craftingKnuckles" operation="LT" value="100"/>
@@ -2510,7 +2526,7 @@
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group>
-				<passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>
+<!--				<passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>-->
             </effect_group>
 		</buff>
 
