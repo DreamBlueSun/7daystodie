@@ -396,6 +396,33 @@
 
 
 
+	<!-- 状态检查 1s -->
+	<append xpath="/buffs/buff[@name='buffStatusCheckMarisa10']">
+
+		<!-- * 手枪 属性解放 伤害补正 -->
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="set" value="0">
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="Equals" value="0"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="set" value=".003">
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="Equals" value="1"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="set" value=".006">
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="Equals" value="2"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="set" value=".01">
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="Equals" value="3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="multiply" value="@$PlayerLevelBonus"/>
+
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".PlayerLevelDamageModifierGunPistolView" operation="set" value="100"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".PlayerLevelDamageModifierGunPistolView" operation="multiply" value="@$PlayerLevelDamageModifierGunPistol"/>
+		</effect_group>
+
+	</append>
+
+
+
 	<!-- 添加 转祸为福 触发条件 -->
 	<append xpath="/buffs/buff[@name='buffInfectionMain' or @name='buffInjuryAbrasion' or @name='buffInjuryAbrasionTreated' or @name='buffFatigued' or @name='buffInjuryBleeding' or @name='buffLaceration' or @name='buffInjuryStunned01' or @name='buffInjuryConcussion' or @name='buffLegSprained' or @name='buffLegBroken' or @name='buffArmSprained' or @name='buffArmBroken']">
         <effect_group>
