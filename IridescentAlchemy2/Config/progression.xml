@@ -33,6 +33,72 @@
         <passive_effect name="CraftingTime" operation="perc_add" level="0,1,2,3" value="0,-.2,-.4,-.6" tags="perkMasterChefMarisa"/>
     </insertAfter>
 
+    <!-- 潜伏3级 改为蹲下就能触发潜行伤害 -->
+    <insertAfter xpath="/progression/perks/perk[@name='perkHiddenStrike']/effect_group[@name='regular weapons, sledgehammer']/requirement[@name='!ItemHasTags' and @tags='perkSkullCrusher']">
+        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    </insertAfter>
+    <append xpath="/progression/perks/perk[@name='perkHiddenStrike']">
+		<effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+			<requirement name="!ItemHasTags" tags="perkSkullCrusher"/>
+				<passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3,4,5" value="1.5,2,2.5,3,3.5,4"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3,4,5" value=".5,1,1.5,2,2.5,3"/>
+		</effect_group>
+    </append>
+
+    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
+        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    </insertAfter>
+    <append xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']">
+		<effect_group>
+			<requirement name="IsNight"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+		</effect_group>
+	</append>
+
+    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
+        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    </insertAfter>
+    <append xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']">
+		<effect_group>
+			<requirement name="IsNight"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="IsSleeping" target="other"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+				<passive_effect name="DamageBonus" operation="base_add" level="1" value=".5"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5"/>
+		</effect_group>
+	</append>
+
+    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerComplete']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
+        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    </insertAfter>
+    <append xpath="/progression/perks/book[@name='perkNightStalkerComplete']">
+		<effect_group>
+			<requirement name="IsNight"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+				<passive_effect name="EntityDamage" operation="perc_add" level="1" value="2" tags="knife"/>
+		</effect_group>
+	</append>
+
+    <insertAfter xpath="/progression/perks/book[@name='perkRangersKnockdown']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
+        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    </insertAfter>
+    <append xpath="/progression/perks/book[@name='perkRangersKnockdown']">
+		<effect_group>
+			<requirement name="ItemHasTags" tags="perkArchery"/>
+			<requirement name="ProgressionLevel" progression_name="perkRangersKnockdown" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
+				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffInjuryKnockdown01"/>
+		</effect_group>
+	</append>
+
     <!-- 学霸护甲 对垃圾炮台增加激活距离 -->
     <insertAfter xpath="/progression/perks/perk[@name='perkTurrets']/effect_group/passive_effect[@name='JunkTurretActiveRange']">
         <passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>
