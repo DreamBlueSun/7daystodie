@@ -33,18 +33,32 @@
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
 			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-				<passive_effect name="LightMultiplier" operation="perc_add" value="-.3">
-					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
-				</passive_effect>
-				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.5"/>
+			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
 		</effect_group>
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
 			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-				<passive_effect name="LightMultiplier" operation="perc_add" value="-.45">
-					<requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
-				</passive_effect>
-				<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.55"/>
+			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<passive_effect name="DamageBonus" operation="base_add" value="1"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<passive_effect name="DamageBonus" operation="base_add" value="1"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="1"/>
 		</effect_group>
 
 	</append>

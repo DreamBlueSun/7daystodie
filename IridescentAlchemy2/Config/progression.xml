@@ -34,29 +34,83 @@
     </insertAfter>
 
     <!-- 潜伏3级 改为蹲下就能触发潜行伤害 弓弩、步枪、刀 -->
-    <remove xpath="/progression/perks/perk[@name='perkHiddenStrike']/effect_group[@name='regular weapons, sledgehammer']/requirement[@name='!ItemHasTags' and @tags='perkSkullCrusher']"/>
-    <insertAfter xpath="/progression/perks/perk[@name='perkHiddenStrike']/effect_group[@name='regular weapons, sledgehammer']/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
-        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+    <remove xpath="/progression/perks/perk[@name='perkHiddenStrike']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkParkour']">
+        <perk name="perkHiddenStrike" parent="skillAgilityStealth" name_key="perkHiddenStrikeName" desc_key="perkHiddenStrikeDesc" icon="ui_game_symbol_sneak_attack" max_level="3">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+
+            <effect_group name="regular weapons, sledgehammer">
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
+
+                <effect_description level="1" desc_key="perkHiddenStrikeRank1Desc" long_desc_key="perkHiddenStrikeRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkHiddenStrikeRank2Desc" long_desc_key="perkHiddenStrikeRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkHiddenStrikeRank3Desc" long_desc_key="perkHiddenStrikeRank3LongDesc"/>
+            </effect_group>
+            <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
+            </effect_group>
+            <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
+            </effect_group>
+
+            <effect_group>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="urbanProb">
+                    <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="LT" value="1"/>
+                </passive_effect>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="urbanProb">
+                    <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="Equals" value="1"/>
+                </passive_effect>
+            </effect_group>
+        </perk>
     </insertAfter>
-    <append xpath="/progression/perks/perk[@name='perkHiddenStrike']">
-		<effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3,4,5" value="1.5,2,2.5,3,3.5,4"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3,4,5" value=".5,1,1.5,2,2.5,3"/>
-		</effect_group>
-    </append>
-    <append xpath="/progression/perks/perk[@name='perkHiddenStrike']">
-		<effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-            <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3,4,5" value="1.5,2,2.5,3,3.5,4"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3,4,5" value=".5,1,1.5,2,2.5,3"/>
-		</effect_group>
-    </append>
+    <remove xpath="/progression/perks/perk[@name='perkFromTheShadows']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkHiddenStrike']">
+        <perk name="perkFromTheShadows" parent="skillAgilityStealth" name_key="perkFromTheShadowsName" desc_key="perkFromTheShadowsDesc" icon="ui_game_symbol_bat" max_level="3">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+
+            <effect_group>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <passive_effect name="LightMultiplier" operation="perc_add" level="0,1,2,3" value="0,-.2,-.4,-.6">
+                    <requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+                </passive_effect>
+                <passive_effect name="NoiseMultiplier" operation="perc_add" level="0,1,2,3" value="0,-.1,-.3,-.5"/>
+                <passive_effect name="CrouchSpeed" operation="perc_add" level="0,1,2,3" value="0,.1,.3,.5"/>
+                <passive_effect name="EnemySearchDuration" operation="perc_add" level="0,1,2,3" value="0,.5,1,2"/>
+
+                <effect_description level="1" desc_key="perkFromTheShadowsRank1Desc" long_desc_key="perkFromTheShadowsRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkFromTheShadowsRank2Desc" long_desc_key="perkFromTheShadowsRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkFromTheShadowsRank3Desc" long_desc_key="perkFromTheShadowsRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkFromTheShadowsRank4Desc" long_desc_key="perkFromTheShadowsRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkFromTheShadowsRank5Desc" long_desc_key="perkFromTheShadowsRank5LongDesc"/>
+            </effect_group>
+
+            <effect_group>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="nightStalkerProb">
+                    <requirement name="ProgressionLevel" progression_name="perkNightStalkerComplete" operation="LT" value="1"/>
+                </passive_effect>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="nightStalkerProb">
+                    <requirement name="ProgressionLevel" progression_name="perkNightStalkerComplete" operation="Equals" value="1"/>
+                </passive_effect>
+            </effect_group>
+        </perk>
+    </insertAfter>
 
     <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
@@ -417,7 +471,7 @@
 
             <effect_group>
                 <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-                    <passive_effect name="Mobility" operation="perc_add" level="1" value=".2"/>
+                    <passive_effect name="Mobility" operation="perc_add" level="1" value=".5"/>
             </effect_group>
 
             <effect_group>
