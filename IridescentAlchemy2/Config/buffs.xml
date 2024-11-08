@@ -6,7 +6,7 @@
 	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
 	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
 
-	<!-- 潜伏3级 改为蹲下就能触发潜行伤害 -->
+	<!-- 潜伏3级 改为蹲下就能触发潜行伤害 弓弩、步枪、刀 -->
     <insertAfter xpath="/buffs/buff[@name='buffDrugCovertCats']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
     </insertAfter>
@@ -14,6 +14,17 @@
 		<effect_group>
 			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
+		</effect_group>
+	</append>
+    <append xpath="/buffs/buff[@name='buffDrugCovertCats']">
+		<effect_group>
+			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+			<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
 				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
 		</effect_group>
