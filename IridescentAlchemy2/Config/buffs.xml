@@ -1707,8 +1707,13 @@
 		<!-- ** 瘴气环境 -->
 		<buff name="buffEnvironmentMiasmatic" name_key="buffEnvironmentMiasmaticName" description_key="buffEnvironmentMiasmaticDesc" showonhud="true" icon="ui_game_symbol_infection" icon_color="255,0,55">
 			<stack_type value="ignore"/>
-			<update_rate value="3"/>
+			<update_rate value="1"/>
 			<duration value="60"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Radiation" intensity=".6" fade="2"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="2"/>
+			</effect_group>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
 			</effect_group>
