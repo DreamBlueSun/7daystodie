@@ -18808,6 +18808,27 @@
 				<passive_effect name="BlockDamage" operation="perc_set" value="0"/>
 			</effect_group>
 		</item_modifier>
+        <!-- ** 气吞山河 森海 -->
+		<item_modifier name="IridescentModSpecialCandyKnifeFoodWater" installable_tags="weapon,tool" modifier_tags="candyKnifeFoodWater" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="meleeWpnBladeT1CandyKnife"/>
+			<property name="CustomIconTint" value="#84E1EC"/>
+			<property name="EconomicValue" value="430"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="43"/>
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="1"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="1"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="1"/>
+                <triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="1"/>
+                <triggered_effect trigger="onSelfDamagedBlock" action="AddBuff" buff="buffProcessConsumables"/>
+			</effect_group>
+			<effect_group tiered="false">
+				<passive_effect name="DegradationPerUse" operation="perc_add" value="1"/>
+			</effect_group>
+		</item_modifier>
 
 	</append>
 
