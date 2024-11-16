@@ -1913,6 +1913,8 @@
 			</effect_group>
 		</item_modifier>
 
+
+
         <!-- *** 武器工具模组 -->
         <!-- ** 匠心 L1 -->
 		<item_modifier name="IridescentModWeaponL1DegradationMax" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
@@ -2005,6 +2007,105 @@
 			<effect_group tiered="false">
 				<passive_effect name="MagazineSize" operation="perc_add" value="1.5"/>
 				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.3"/>
+			</effect_group>
+		</item_modifier>
+
+
+
+        <!-- *** 特殊功能模组 -->
+        <!-- ** 变声器 消声手枪 -->
+		<item_modifier name="IridescentModWeaponSoundPistols" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="modGunSoundSuppressorSilencer"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+			<property name="EconomicValue" value="110"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="11"/>
+			<item_property_overrides name="*">
+				<property name="Sound_start" value="pistol_s_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_loop" value="pistol_s_fire"/>
+			</item_property_overrides>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
+			</effect_group>
+		</item_modifier>
+        <!-- ** 变声器 消声SMG -->
+		<item_modifier name="IridescentModWeaponSoundSmgs" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="modGunSoundSuppressorSilencer"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+			<property name="EconomicValue" value="110"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="11"/>
+			<item_property_overrides name="*">
+				<property name="Sound_start" value="smg_s_fire"/>
+				<property name="Sound_end" value="silencefiller"/>
+				<property name="Sound_loop" value="smg_s_fire"/>
+			</item_property_overrides>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
+			</effect_group>
+		</item_modifier>
+        <!-- ** 变声器 消声霰弹枪 -->
+		<item_modifier name="IridescentModWeaponSoundPumpShotguns" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="modGunSoundSuppressorSilencer"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+			<property name="EconomicValue" value="110"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="11"/>
+			<item_property_overrides name="*">
+				<property name="Sound_start" value="pump_shotgun_s_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_loop" value="pump_shotgun_s_fire"/>
+			</item_property_overrides>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
+			</effect_group>
+		</item_modifier>
+        <!-- ** 变声器 消声猎枪 -->
+		<item_modifier name="IridescentModWeaponSoundHuntingRifles" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="modGunSoundSuppressorSilencer"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+			<property name="EconomicValue" value="110"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="11"/>
+			<item_property_overrides name="*">
+				<property name="Sound_start" value="hunting_rifle_s_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_loop" value="hunting_rifle_s_fire"/>
+			</item_property_overrides>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
+			</effect_group>
+		</item_modifier>
+        <!-- ** 变声器 消声狙击枪 -->
+		<item_modifier name="IridescentModWeaponSoundSniperrifles" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+			<property name="CustomIcon" value="modGunSoundSuppressorSilencer"/>
+			<property name="CustomIconTint" value="#FF66B2"/>
+			<property name="EconomicValue" value="110"/>
+			<property name="Material" value="MIridescentCube"/>
+			<property name="Weight" value="11"/>
+			<item_property_overrides name="*">
+				<property name="Sound_start" value="sniperrifle_s_fire"/>
+				<property name="Sound_end" value=""/>
+				<property name="Sound_loop" value="sniperrifle_s_fire"/>
+			</item_property_overrides>
+			<effect_group tiered="false" name="internal attachment prefab (A19)">
+				<requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
+				<triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
 			</effect_group>
 		</item_modifier>
 
