@@ -166,4 +166,96 @@
 
     </append>
 
+
+
+    <!--*** 添加 旗帜 -->
+    <append xpath="/blocks">
+
+        <!-- 旗帜 生命回复 -->
+        <block name="BannerStation">
+            <property name="DescriptionKey" value="BannerStationDesc"/>
+	        <property name="TintColor" value="00FF00"/>
+			<property name="CustomIconTint" value="#00FF00"/>
+	        <property name="CustomIcon" value="flagPoleTrader"/>
+            <!-- Class -->
+            <property name="Class" value="Campfire"/>
+            <property class="Workstation">
+                <property name="Modules" value="output,fuel,input"/>
+            </property>
+            <!-- UI_Info -->
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="WorkstationIcon" value="ui_game_symbol_adventure"/>
+            <property name="CraftIcon" value="ui_game_symbol_adventure"/>
+            <property name="CraftActionName" value="lblContextActionMix"/>
+            <property name="Stacknumber" value="20"/>
+            <!-- Visual -->
+            <property name="Material" value="Miron_scrap"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Decor/flag_poleTraderPrefab"/>
+            <property name="MultiBlockDim" value="1,20,1"/>
+            <property name="ImposterDontBlock" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="ParticleName" value="hotembersZombie"/>
+            <property name="ParticleOffset" value="0.5,0.5,0.5"/>
+            <!-- Placement -->
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="OnlySimpleRotations" value="true"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Path" value="solid"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <!-- Value -->
+            <property name="Weight" value="0"/>
+            <property name="EconomicValue" value="500"/>
+            <property name="EconomicBundleSize" value="1"/>
+            <property name="TraderStageTemplate" value="midTier2"/>
+            <!-- Interaction -->
+            <property name="MaxDamage" value="2000"/>
+            <property name="HeatMapStrength" value="5"/>
+            <property name="HeatMapTime" value="5000"/>
+            <property name="HeatMapFrequency" value="1000"/>
+            <property name="ActiveRadiusEffects" value="buffBannerStationAOE(50)"/>
+            <property name="OpenSound" value="chem_station_open"/>
+            <property name="CloseSound" value="chem_station_close"/>
+            <property name="CraftSound" value="chem_station_mix_click"/>
+            <property name="CraftCompleteSound" value="chem_station_complete_item"/>
+            <property name="TakeDelay" value="20"/>
+            <property class="RepairItems">
+                <property name="resourceCloth" value="25"/>
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceIridescentCube" value="50"/>
+            </property>
+            <drop event="Harvest" name="resourceScrapIron" count="125" tag="allHarvest"/>
+            <drop event="Destroy" count="0"/>
+            <drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
+            <!-- Sorting -->
+            <property name="SortOrder1" value="B281"/>
+            <property name="SortOrder2" value="0500"/>
+            <property name="Group" value="Building,Science,TCScience,advBuilding"/>
+            <property name="Tags" value="workstationSkill,twitch_workstation"/>
+            <property name="FilterTags" value="MC_playerBlocks,SC_decor"/>
+            <property name="SoundPickup" value="chemistrystation_grab"/>
+            <property name="SoundPlace" value="chemistrystation_place"/>
+        </block>
+        <!-- 旗帜 伤害减免 -->
+        <block name="BannerStationDef">
+	        <property name="Extends" value="BannerStation"/>
+            <property name="DescriptionKey" value="BannerStationDesc"/>
+	        <property name="TintColor" value="00BFFF"/>
+			<property name="CustomIconTint" value="#00BFFF"/>
+	        <property name="CustomIcon" value="flagPoleTrader"/>
+            <property name="ActiveRadiusEffects" value="buffBannerStationDefAOE(50)"/>
+        </block>
+        <!-- 旗帜 伤害减免 -->
+        <block name="BannerStationAtk">
+	        <property name="Extends" value="BannerStation"/>
+            <property name="DescriptionKey" value="BannerStationDesc"/>
+	        <property name="TintColor" value="BA55D3"/>
+			<property name="CustomIconTint" value="#BA55D3"/>
+	        <property name="CustomIcon" value="flagPoleTrader"/>
+            <property name="ActiveRadiusEffects" value="buffBannerStationAtkAOE(50)"/>
+        </block>
+
+    </append>
+
 </Marisa>

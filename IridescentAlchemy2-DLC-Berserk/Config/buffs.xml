@@ -533,6 +533,87 @@
 		</buff>
 
 
+
+		<!-- 旗帜 生命回复 -->
+		<buff name="buffBannerStationAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStation"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationAOEEffect" name_key="buffBannerStationAOEEffectName" description_key="buffBannerStationAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="HealthChangeOT" operation="base_add" value="1"/>
+				<passive_effect name="FoodLossPerHealthPointGained" operation="base_set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 伤害减免 -->
+		<buff name="buffBannerStationDefAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStationDef"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationDefAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationDefAOEEffect" name_key="buffBannerStationDefAOEEffectName" description_key="buffBannerStationDefAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.1"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 伤害提升 -->
+		<buff name="buffBannerStationAtkAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAtkAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationAtkAOEEffect" name_key="buffBannerStationAtkAOEEffectName" description_key="buffBannerStationAtkAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="10"/>
+			</effect_group>
+		</buff>
+
+		<!-- 一次性旗帜 生命回复 -->
+		<buff name="buffYcxBannerStation" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAOEEffect" duration="1202"/>
+			</effect_group>
+		</buff>
+		<!-- 一次性旗帜 伤害减免 -->
+		<buff name="buffYcxBannerStationDef" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationDefAOEEffect" duration="1202"/>
+			</effect_group>
+		</buff>
+		<!-- 一次性旗帜 伤害提升 -->
+		<buff name="buffYcxBannerStationAtk" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAtkAOEEffect" duration="1202"/>
+			</effect_group>
+		</buff>
+
+
+
 		<!-- 极意 -->
 		<buff name="buffT3PerkMarisaCheck" hidden="true">
 			<stack_type value="replace"/>
