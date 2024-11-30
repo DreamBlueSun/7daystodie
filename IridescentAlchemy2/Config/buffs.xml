@@ -115,20 +115,6 @@
 			<update_rate value=".2"/>
 			<duration value="0"/>
 
-			<!-- 游牧民套装效果 -->
-			<effect_group>
-				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
-			</effect_group>
-
-			<!-- 添加 瘴气环境 -->
-			<effect_group>
-				<requirement name="InBiome" biome="08"/>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaEnvironmentMiasmatic" operation="LT" value="1"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEnvironmentMiasmatic"/>
-			</effect_group>
-
 			<!-- *** 添加 广域化 触发前置 -->
 			<!-- * 广域化lv1 罐头 -->
 			<!-- ** 广域化 foodCanBeef -->
@@ -1224,6 +1210,20 @@
 
 
 
+			<!-- 游牧民套装效果 -->
+			<effect_group>
+				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+
+			<!-- 添加 瘴气环境 -->
+			<effect_group>
+				<requirement name="InBiome" biome="08"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaEnvironmentMiasmatic" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEnvironmentMiasmatic"/>
+			</effect_group>
+
 			<!-- 添加 力量解放 -->
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
@@ -1241,6 +1241,13 @@
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaMiasmaticErosion"/>
+			</effect_group>
+
+			<!-- 添加 寒气 -->
+			<effect_group>
+				<requirement name="HasBuff" buff="buffMeleeHuntingKnifeAtk"/>
+				<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="20"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1"/>
 			</effect_group>
 
 		</buff>
@@ -1826,6 +1833,13 @@
             <effect_group>
                 <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MarisaCanAction0Rocket" operation="set" value="1"/>
             </effect_group>
+		</buff>
+
+		<!-- 寒气 -->
+		<buff name="buffMeleeHuntingKnifeAtk" name_key="buffMeleeHuntingKnifeAtkName" description_key="buffMeleeHuntingKnifeAtkDesc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeHuntingKnifeAtk"/>
+			<display_value_key value="{0}"/>
 		</buff>
 
 		<!-- 棍势 -->
