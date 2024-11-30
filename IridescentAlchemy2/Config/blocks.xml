@@ -4,6 +4,9 @@
     <set xpath="/blocks/block[@name='treeGrassMaster']/drop[@name='resourceYuccaFibers']/@count">20</set>
     <!--*** 蜂蜜的获取概率修改 -->
     <set xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']/drop[@name='foodHoney']/@prob">1</set>
+    <append xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']">
+        <drop event="Harvest" name="foodHoney" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
+    </append>
     <remove xpath="/blocks/block[@name='treeMaster']/drop[@name='foodHoney']"/>
     <append xpath="/blocks/block[@name='treeMaster']">
         <drop event="Destroy" name="foodHoney" count="1" prob="1"/>
