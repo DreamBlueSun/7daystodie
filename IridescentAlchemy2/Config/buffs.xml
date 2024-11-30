@@ -39,11 +39,6 @@
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="questStormPoint"/>-->
 <!--		</effect_group>-->
 
-		<!-- 添加 状态检查 0.1s -->
-        <effect_group>
-			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa01"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa01"/>
-		</effect_group>
 		<!-- 添加 状态检查 0.2s -->
         <effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
@@ -112,13 +107,6 @@
 			<update_rate value=".1"/>
 			<duration value="0"/>
 
-			<!-- 游牧民套装效果 -->
-			<effect_group>
-				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
-			</effect_group>
-
 		</buff>
 
 		<!-- 状态检查 0.2s -->
@@ -126,6 +114,13 @@
 			<stack_type value="ignore"/>
 			<update_rate value=".2"/>
 			<duration value="0"/>
+
+			<!-- 游牧民套装效果 -->
+			<effect_group>
+				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
 
 			<!-- 添加 瘴气环境 -->
 			<effect_group>
