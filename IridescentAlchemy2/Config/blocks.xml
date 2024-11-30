@@ -2,6 +2,13 @@
 
     <!--*** 割草的获取数量修改 -->
     <set xpath="/blocks/block[@name='treeGrassMaster']/drop[@name='resourceYuccaFibers']/@count">20</set>
+    <!--*** 蜂蜜的获取概率修改 -->
+    <set xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']/drop[@name='foodHoney']/@prob">1</set>
+    <remove xpath="/blocks/block[@name='treeMaster']/drop[@name='foodHoney']"/>
+    <append xpath="/blocks/block[@name='treeMaster']">
+        <drop event="Destroy" name="foodHoney" count="1" prob="1"/>
+        <drop event="Harvest" name="foodHoney" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
+    </append>
 
     <!--*** 修改 双开木门 双开铁门 可旋转角度 -->
     <remove xpath="/blocks/block[@name='oldWoodDoorDouble']/property[@name='AllowAllRotations']"/>
