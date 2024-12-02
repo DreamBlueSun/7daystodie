@@ -2398,78 +2398,70 @@
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="1"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="10"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="2"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="12"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="12"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="12"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="3"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="14"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="14"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="14"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="4"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="16"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="16"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="16"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="5"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="18"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="18"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="18"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 
 			<effect_group>
 				<requirements>
 					<requirement name="ArmorGroupLowestQuality" group_name="groupNomad" operation="Equals" value="6"/>
-                	<requirement name="NotHasBuff" buff="buffNomadSetBonusStormCold"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorNomadFSBDisplay" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorNomadFSBDisplay"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyStats" stat="Health" target="self" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffNomadSetBonusStormCold"/>
 			</effect_group>
 		</buff>
 		<buff name="buffNomadSetBonusStormCold" hidden="true">
-			<stack_type value="replace"/>
+			<stack_type value="ignore"/>
 			<duration value="1"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="@.armorNomadFSBDisplay"/>
+			</effect_group>
 		</buff>
 
 		<!-- 学霸 -->
