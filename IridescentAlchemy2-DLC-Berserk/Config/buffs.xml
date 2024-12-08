@@ -550,6 +550,48 @@
 	<!-- 正面BUFF -->
 	<append xpath="/buffs">
 
+		<!-- 魔理沙的饭 -->
+		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_add" value="30"/>
+				<passive_effect name="StaminaMax" operation="base_add" value="60"/>
+				<!-- 实体伤害 -->
+				<passive_effect name="EntityDamage" operation="base_add" value="2"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="base_add" value="3"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="base_add" value="5"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="3"/></passive_effect>
+				<!-- 伤害减免 -->
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="3"/></passive_effect>
+				<!-- 移动速度 -->
+				<passive_effect name="Mobility" operation="perc_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="Mobility" operation="perc_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="Mobility" operation="perc_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="3"/></passive_effect>
+				<!-- 生命回复 -->
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="3"/></passive_effect>
+				<!-- 耐力回复 -->
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="3"/></passive_effect>
+				<!-- 物块伤害 -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".08"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".12"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".2"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="3"/></passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEntityDamage" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastGeneralDamageResist" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastMobility" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasHealthChangeOT" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastStaminaChangeOT" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastBlockDamage" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+
 		<!-- 力量的代价 -->
 		<buff name="buffPerkPlayerExpGainDown" hidden="true">
 			<stack_type value="replace"/>
@@ -582,7 +624,7 @@
 		</buff>
 
 		<!-- 转祸为福 -->
-		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing" name_key="buffPerkMarisaTurnBadLuckIntoABlessingName" description_key="buffPerkMarisaTurnBadLuckIntoABlessingDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing" name_key="buffPerkMarisaTurnBadLuckIntoABlessingName" description_key="buffPerkMarisaTurnBadLuckIntoABlessingDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
@@ -590,7 +632,7 @@
                 <passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
-		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing2" name_key="buffPerkMarisaTurnBadLuckIntoABlessing2Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing2Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing2" name_key="buffPerkMarisaTurnBadLuckIntoABlessing2Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing2Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
@@ -598,7 +640,7 @@
                 <passive_effect name="EntityDamage" operation="base_add" value="2" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
-		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing3" name_key="buffPerkMarisaTurnBadLuckIntoABlessing3Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing3Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="255,0,55">
+		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing3" name_key="buffPerkMarisaTurnBadLuckIntoABlessing3Name" description_key="buffPerkMarisaTurnBadLuckIntoABlessing3Desc" showonhud="true" icon="ui_game_symbol_death" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="60"/>
 			<effect_group>
