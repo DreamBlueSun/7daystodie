@@ -868,10 +868,10 @@
 
 		<!-- ** zombieBossArsonist -->
 		<entity_class name="zombieBossArsonist" extends="zombieBurnt">
-			<property name="Tags" value="entity,zombie,walker,boss,QuestZombieBossArsonist"/>
+			<property name="Tags" value="entity,zombie,walker,boss"/>
 			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBurnt.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
-			<property name="SizeScale" value="1.4"/>
+			<property name="SizeScale" value="1.6"/>
 			<property name="Mass" value="300"/>
 
 			<property name="AITask" value="
@@ -894,7 +894,7 @@
 			<property name="PainResistPerHit" value="1"/>
 
 			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="1.1, 1.7"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
 			<property name="JumpMaxDistance" value="1, 2"/>
 			<property name="MaxTurnSpeed" value="180"/>
 
@@ -913,7 +913,7 @@
 		</entity_class>
 		<!-- ** zombieBossSteveCrawler -->
 		<entity_class name="zombieBossSteveCrawler" extends="zombieSteveCrawler">
-			<property name="Tags" value="entity,zombie,walker,boss,QuestZombieBossArsonist"/>
+			<property name="Tags" value="entity,zombie,crawler,boss"/>
 			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZCrawlerFeral.prefab"/>
 			<property name="SizeScale" value="2.4"/>
 			<property name="Mass" value="300"/>
@@ -953,6 +953,51 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 			</effect_group>
 		</entity_class>
+		<!-- ** zombieBossArsonist -->
+		<entity_class name="zombieBossSoldier" extends="zombieSoldier">
+			<property name="Tags" value="entity,zombie,walker,zombieSoldier"/>
+			<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZSoldierFeral.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.6"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=5|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossSoldier"/>
+
+			<property name="ExperienceGain" value="8000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="16000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaElectricShock"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaTwitchZombieShock"/>
+			</effect_group>
+		</entity_class>
 
 		<!-- *** 任务 BOSS -->
 		<!-- ** zombieBossArsonist -->
@@ -968,7 +1013,7 @@
 		</entity_class>
 		<!-- ** questZombieBossSteveCrawler -->
 		<entity_class name="questZombieBossSteveCrawler" extends="zombieBossSteveCrawler">
-			<property name="Tags" value="entity,zombie,walker,boss,questZombieBossSteveCrawler"/>
+			<property name="Tags" value="entity,zombie,crawler,boss,questZombieBossSteveCrawler"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="7200"/>
