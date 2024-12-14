@@ -2577,7 +2577,7 @@
 
 
 
-	<!-- 特效BUFF -->
+	<!-- 粒子BUFF -->
 	<append xpath="/buffs">
 
 		<!-- 白色烟雾团 -->
@@ -2587,6 +2587,15 @@
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="Smoke_Unlit" local_offset="0,1.25,0"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="Smoke_Unlit"/>
+			</effect_group>
+		</buff>
+		<!-- 明亮大火焰 -->
+		<buff name="buffMarisaBurning_barrel" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_burning_barrel" local_offset="0,0.75,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_burning_barrel"/>
 			</effect_group>
 		</buff>
 		<!-- 耀斑 -->
@@ -2623,6 +2632,21 @@
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_snowstorm1" local_offset="0,1,0"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_snowstorm1"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- 模型BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 白色烟雾团 -->
+		<buff name="zombieBossArsonistDeco" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="Entities/Industrial/barrelOilPrefab" local_offset=".45,.25,-.15" local_rotation="0,0,0" parent_transform="Spine"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="Entities/Industrial/barrelGasPrefab" local_offset="-.15,.25,-.15" local_rotation="0,0,0" parent_transform="Spine"/>
 			</effect_group>
 		</buff>
 
