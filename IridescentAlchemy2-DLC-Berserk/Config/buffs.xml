@@ -189,33 +189,44 @@
 
 		<!-- * 力量的代价 -->
 		<effect_group>
-			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown"/>
-		</effect_group>
-		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="Equals" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="1"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown2"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown3"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown4"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown1"/>
 		</effect_group>
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="Equals" value="2"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="2"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown3"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown4"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown2"/>
 		</effect_group>
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="Equals" value="3"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="3"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown4"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown3"/>
 		</effect_group>
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="Equals" value="4"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="4"/>
+			<requirement name="NotHasBuff" buff="buffPerkPlayerExpGainDown5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown4"/>
 		</effect_group>
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="Equals" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="5"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="ProgressionLevel" progression_name="perkPlayerExpGainDown" operation="LT" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffPerkPlayerExpGainDown" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown5"/>
 		</effect_group>
 
 
@@ -594,31 +605,97 @@
 		</buff>
 
 		<!-- 力量的代价 -->
-		<buff name="buffPerkPlayerExpGainDown" hidden="true">
+		<buff name="buffPerkPlayerExpGainDown1" name_key="buffPerkPlayerExpGainDown1Name" description_key="buffPerkPlayerExpGainDown1Desc" showonhud="true" icon="ui_game_symbol_twitch_leech" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="0"/>
+			<duration value="1202"/>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffPerkPlayerExpGainDown" operation="GTE" value="1"/>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value="-.2"/>
+            </effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="100"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkPlayerExpGainDown2" name_key="buffPerkPlayerExpGainDown2Name" description_key="buffPerkPlayerExpGainDown2Desc" showonhud="true" icon="ui_game_symbol_twitch_leech" icon_color="109,15,15">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value="-.4"/>
+            </effect_group>
+			<effect_group>
 				<requirement name="PlayerLevel" operation="LTE" value="100"/>
 					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffPerkPlayerExpGainDown" operation="GTE" value="2"/>
+				<requirement name="PlayerLevel" operation="LTE" value="90"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkPlayerExpGainDown3" name_key="buffPerkPlayerExpGainDown3Name" description_key="buffPerkPlayerExpGainDown3Desc" showonhud="true" icon="ui_game_symbol_twitch_leech" icon_color="109,15,15">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value="-.6"/>
+            </effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="100"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
 				<requirement name="PlayerLevel" operation="LTE" value="90"/>
 					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffPerkPlayerExpGainDown" operation="GTE" value="3"/>
+				<requirement name="PlayerLevel" operation="LTE" value="80"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkPlayerExpGainDown4" name_key="buffPerkPlayerExpGainDown4Name" description_key="buffPerkPlayerExpGainDown4Desc" showonhud="true" icon="ui_game_symbol_twitch_leech" icon_color="109,15,15">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value="-.8"/>
+            </effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="100"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="90"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
 				<requirement name="PlayerLevel" operation="LTE" value="80"/>
 					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffPerkPlayerExpGainDown" operation="GTE" value="4"/>
+				<requirement name="PlayerLevel" operation="LTE" value="70"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkPlayerExpGainDown5" name_key="buffPerkPlayerExpGainDown5Name" description_key="buffPerkPlayerExpGainDown5Desc" showonhud="true" icon="ui_game_symbol_twitch_leech" icon_color="109,15,15">
+			<stack_type value="replace"/>
+			<duration value="1202"/>
+			<effect_group>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value="-1"/>
+            </effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="100"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="90"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="PlayerLevel" operation="LTE" value="80"/>
+					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+			<effect_group>
 				<requirement name="PlayerLevel" operation="LTE" value="70"/>
 					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffPerkPlayerExpGainDown" operation="GTE" value="5"/>
 				<requirement name="PlayerLevel" operation="LTE" value="60"/>
 					<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
 			</effect_group>
