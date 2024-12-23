@@ -38,10 +38,10 @@
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
 		<!-- 测试打印 cvar -->
-<!--        <effect_group>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="questStormPoint"/>-->
+        <effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="MarisaItemHasTagsMelee"/>
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
-<!--		</effect_group>-->
+		</effect_group>
 
 		<!-- 添加 状态检查 0.1s -->
         <effect_group>
@@ -121,6 +121,19 @@
 				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+
+			<!-- 丧尸 动物 对近战玩家 伤害减少 -->
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="melee"/>
+				<requirement name="NotHasBuff" buff="buffMarisaItemHasTagsMelee"/>
+				<requirement name="CVarCompare" cvar="MarisaItemHasTagsMelee" operation="Equals" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaItemHasTagsMelee"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!HoldingItemHasTags" tags="melee"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffMarisaItemHasTagsMelee"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaItemHasTagsMelee" operation="set" value="0"/>
 			</effect_group>
 
 		</buff>
@@ -1490,6 +1503,17 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingKnuckles" level="1"/>
 			</effect_group>
 
+		</buff>
+
+		<!-- 丧尸 动物 对近战玩家 伤害减少 -->
+		<buff name="buffMarisaItemHasTagsMelee">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3"/>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="melee"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="MarisaItemHasTagsMelee" operation="set" value="1"/>
+			</effect_group>
 		</buff>
 
 		<!-- 飞燕 -->

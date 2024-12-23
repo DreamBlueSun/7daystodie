@@ -1890,6 +1890,16 @@
 
 
 
+	<!-- *** 丧尸 动物 对近战玩家 伤害减少 -->
+	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale' or @name='animalTemplateHostile']">
+		<effect_group name="DamageModifier For MarisaItemHasTagsMelee">
+			<requirement name="CVarCompare" cvar="MarisaItemHasTagsMelee" operation="Equals" value="1" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.55"/>
+		</effect_group>
+	</append>
+
+
+
 	<!-- *** 丧尸攻击Buff 护甲下降 瘴气侵蚀 -->
 	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']">
 		<!-- ** 凶残 -->
