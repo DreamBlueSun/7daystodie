@@ -2623,7 +2623,7 @@
 			<update_rate value="1"/>
 			<duration value="3600"/>
 			<effect_group>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
 			</effect_group>
 		</buff>
@@ -2632,8 +2632,51 @@
 			<update_rate value="1"/>
 			<duration value="3600"/>
 			<effect_group>
-				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+			</effect_group>
+		</buff>
+
+		<!-- BOSS 狂暴 -->
+		<buff name="buffZombieBossAngerCount">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="1">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="30"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieBossAnger">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="30"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="buffZombieBossAngerDown"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZombieBossAnger">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LTE" value="5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossAnger">
+			<stack_type value="replace"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_set" value=".95"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02,buffShocked"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossAngerDown">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="0">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="15"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="-15">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="15"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 
@@ -2652,6 +2695,25 @@
 	<!-- 粒子BUFF -->
 	<append xpath="/buffs">
 
+		<!-- 蓝色电火花（只有一瞬） -->
+		<buff name="buffMarisaElectricFenceSparks" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_fence_sparks" local_offset="0,0.75,0" parent_transform="Head"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_fence_sparks"/>
+			</effect_group>
+		</buff>
+		<!-- 黄绿色闪烁烟花团 -->
+		<buff name="buffMarisaRadiatedParticlesOnMesh" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="RadiatedParticlesOnMesh" local_offset="0,-.5,-.25" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="RadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="RadiatedParticlesOnMesh"/>
+			</effect_group>
+		</buff>
 		<!-- 白色烟雾团 -->
 		<buff name="buffMarisaSmoke_Unlit" hidden="true">
 			<stack_type value="replace"/>
