@@ -2656,15 +2656,21 @@
 			<update_rate value="1"/>
 			<duration value="3600"/>
 			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="45"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="1">
-					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="30"/>
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="60"/>
 				</triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieBossAnger">
-					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="30"/>
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="60"/>
 				</triggered_effect>
 			</effect_group>
 			<effect_group>
-				<triggered_effect trigger="onSelfRangedBurstShotStart" action="AddBuff" buff="buffZombieBossAngerDown"/>
+				<triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="0">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="-20">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="20"/>
+				</triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZombieBossAnger">
 					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LTE" value="5"/>
 				</triggered_effect>
@@ -2678,18 +2684,6 @@
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
-			</effect_group>
-		</buff>
-		<buff name="buffZombieBossAngerDown">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="0">
-					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="15"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="-15">
-					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="15"/>
-				</triggered_effect>
 			</effect_group>
 		</buff>
 
