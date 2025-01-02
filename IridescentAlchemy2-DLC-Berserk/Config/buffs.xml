@@ -1750,6 +1750,34 @@
 
 
 
+	<!-- 敌对BUFF -->
+	<append xpath="/buffs">
+
+		<!-- BOSS每秒随机移除自身控制 -->
+		<buff name="buffZombieBossRandomRollRemoveDeBuff3">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+			</effect_group>
+		</buff>
+
+		<!-- 院长 -->
+		<buff name="buffZombieBossResearchInstituteLeaderBerserk">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" target="self" event="EventZombieBossResearchInstituteLeaderBerserk"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+
+
 	<!-- 特效BUFF -->
 	<append xpath="/buffs">
 
