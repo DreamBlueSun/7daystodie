@@ -43,11 +43,6 @@
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
 <!--		</effect_group>-->
 
-		<!-- 添加 状态检查 0.1s -->
-        <effect_group>
-			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa01"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa01"/>
-		</effect_group>
 		<!-- 添加 状态检查 0.2s -->
         <effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
@@ -110,10 +105,10 @@
 	<!-- 正面BUFF -->
 	<append xpath="/buffs">
 
-		<!-- 状态检查 0.1s -->
-		<buff name="buffStatusCheckMarisa01" hidden="true">
+		<!-- 状态检查 0.2s -->
+		<buff name="buffStatusCheckMarisa02" hidden="true">
 			<stack_type value="ignore"/>
-			<update_rate value=".1"/>
+			<update_rate value=".2"/>
 			<duration value="0"/>
 
 			<!-- 死里逃生 -->
@@ -128,7 +123,7 @@
 			<effect_group>
 				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-2"/>
 			</effect_group>
 
 			<!-- 丧尸 动物 对近战玩家 伤害减少 -->
@@ -143,14 +138,6 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffMarisaItemHasTagsMelee"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaItemHasTagsMelee" operation="set" value="0"/>
 			</effect_group>
-
-		</buff>
-
-		<!-- 状态检查 0.2s -->
-		<buff name="buffStatusCheckMarisa02" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value=".2"/>
-			<duration value="0"/>
 
 			<!-- *** 添加 广域化 触发前置 -->
 			<!-- * 广域化lv1 罐头 -->
