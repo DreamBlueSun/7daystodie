@@ -159,6 +159,15 @@
 
 		<!-- * 广域化 虹彩消耗品 -->
 		<effect_group>
+			<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="80"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="subtract" value="1"/>
+		</effect_group>
+		<effect_group>
 			<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionHealth2" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="40"/>
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="40"/>
