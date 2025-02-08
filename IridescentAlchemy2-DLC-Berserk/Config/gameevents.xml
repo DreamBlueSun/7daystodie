@@ -8947,7 +8947,7 @@
 
 	</append>
 
-	<!-- *** 骨粉催熟 -->
+	<!-- *** 下雨 -->
 	<append xpath="/gameevents">
 
 		<action_sequence name="marisa_weather_rain">
@@ -8964,6 +8964,110 @@
 			<action class="PlaySound">
 				<property name="phase" value="1" />
 				<property name="sound" value="twitch_weather_rain" />
+			</action>
+
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 传送 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="marisa_teleport_bedroll">
+			<property name="category" value="admin" />
+			<property name="single_instance" value="true" />
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="0" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="1" />
+				<property name="fade_time" value="0.05" />
+			</action>
+
+			<action class="Delay">
+				<property name="time" value=".5" />
+				<property name="phase" value="2" />
+			</action>
+
+			<action class="TeleportToSpecial">
+				<property name="special_type" value="Bedroll" param1="special_type" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="3" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="0" />
+				<property name="fade_time" value="0.1" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
+			</action>
+
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_landclaim" template="action_teleport_bedroll">
+			<variable name="special_type" value="Landclaim" />
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_up">
+			<property name="category" value="twitch_actions" />
+
+			<requirement class="InVehicle">
+				<property name="invert" value="true" />
+			</requirement>
+
+			<action class="Teleport">
+				<property name="target_position" value="0, 40, 0" />
+				<property name="offset_type" value="Relative" />
+				<property name="teleport_delay" value="0.1" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
+			</action>
+
+			<action class="AddBuff">
+				<property name="phase" value="1" />
+				<property name="buff_name" value="buffTwitchDontBreakLeg" />
+			</action>
+
+			<action class="AddBuff">
+				<property name="phase" value="1" />
+				<property name="buff_name" value="buffMarisaTeleportUpCold" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="1" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="1" />
+				<property name="fade_time" value="0.05" />
+			</action>
+
+			<action class="Delay">
+				<property name="time" value="1" param1="delay_time"/>
+				<property name="phase" value="2" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="3" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="0" />
+				<property name="fade_time" value="0.1" />
+			</action>
+
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_near">
+			<property name="category" value="twitch_actions" />
+
+			<action class="RandomTeleport">
+				<property name="min_distance" value="4" />
+				<property name="max_distance" value="8" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
 			</action>
 
 		</action_sequence>
