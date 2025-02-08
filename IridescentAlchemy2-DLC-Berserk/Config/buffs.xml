@@ -717,7 +717,7 @@
 			<stack_type value="replace"/>
 			<duration value="1202"/>
 			<effect_group>
-				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="lumberjackHarvest"/>
+				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="farmerBonusHarvest"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的财运 -->
@@ -751,20 +751,15 @@
 			<stack_type value="replace"/>
 			<duration value="1202"/>
 			<effect_group>
-				<requirement name="HasBuff" buff="buffMarisasFeastEffect13On"/>
-					<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
-			</effect_group>
-			<effect_group>
 				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffMarisasFeastEffect13On"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HasBuff" buff="buffMarisasFeastEffect13On"/>
-					<triggered_effect trigger="onSelfDamagedOther" action="RemoveBuff" buff="buffMarisasFeastEffect13On"/>
 			</effect_group>
 		</buff>
 		<buff name="buffMarisasFeastEffect13On" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="1"/>
+			<effect_group>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+			</effect_group>
 		</buff>
 		<!-- 魔理沙的着地术 -->
 		<buff name="buffMarisasFeastEffect14" name_key="buffMarisasFeastEffect14Name" description_key="buffMarisasFeastEffect14Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
@@ -780,6 +775,7 @@
 			<stack_type value="replace"/>
 			<duration value="1202"/>
 			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="marisa_weather_rain" allow_client_call="true"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的吸引仇恨好手 -->
@@ -822,6 +818,17 @@
 			<stack_type value="replace"/>
 			<duration value="1202"/>
 			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect20" operation="GTE" value="4"/>
+					<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+			</effect_group>
+			<effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+                <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="add" value="1">
+					<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect15" operation="LT" value="4"/>
+				</triggered_effect>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的短期催眠术 -->
