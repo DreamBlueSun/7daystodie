@@ -2055,6 +2055,25 @@
 
 
 
+	<!-- *** 修改BUFF -->
+	<!-- ** 本垒打德比 -->
+	<remove xpath="/buffs/buff[@name='twitch_buffHomeRun']"/>
+	<append xpath="/buffs">
+		<buff name="twitch_buffHomeRun" name_key="TwitchBuff_HomerunDerby" description_key="TwitchBuff_HomerunDerbyDesc" icon="ui_game_symbol_twitch_homerun_derby" icon_color="175,175,255" remove_on_death="true">
+			<stack_type value="ignore"/>
+			<effect_group>
+				<!-- Blinks the display -->
+				<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="twitch_buffHomeRun"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="RemoveBuff" buff="twitch_buffHomeRun"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="ttTwitchHomerunStart" />
+			</effect_group>
+		</buff>
+	</append>
+
+
+
 	<!-- 特效BUFF -->
 	<append xpath="/buffs">
 
