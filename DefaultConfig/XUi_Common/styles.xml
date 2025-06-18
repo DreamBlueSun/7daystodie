@@ -22,6 +22,7 @@
 		<style_entry name="red" 					value="255,0,0"/>
 		<style_entry name="green" 					value="0,255,0"/>
 		<style_entry name="gold"					value="255,216,0"/>
+		<style_entry name="yellow"					value="255,255,0"/>
 		<style_entry name="transparent" 	value="0,0,0,0"/>
 		
 		<style_entry name="white_half_alpha" 				value="255,255,255,128"/>
@@ -44,16 +45,16 @@
 		<style_entry name="default_sprite" value="menu_empty"/>
 		
 		<!--NAMED SOUNDS-->
-		<style_entry name="default_click" 	value="Sounds/UI/ui_menu_click"/>
-		<style_entry name="default_hover" 	value="Sounds/UI/ui_hover"/>
-		<style_entry name="start" 				value="Sounds/UI/ui_menu_start"/>
-		<style_entry name="back" 				value="Sounds/UI/ui_menu_back"/>
-		<style_entry name="craft_click" 		value="Sounds/Crafting/craft_click_craft"/>
-		<style_entry name="paging_click"		value="Sounds/UI/ui_tab" />
-		<style_entry name="recipe_click" 	value="Sounds/Crafting/craft_click_recipe"/>
-		<style_entry name="pickup_click" 	value="Sounds/Crafting/craft_take_item"/>
-		<style_entry name="place_click" 	value="Sounds/Crafting/craft_place_item"/>
-		<style_entry name="remove_waypoint" 	value="Sounds/UI/ui_waypoint_delete"/>
+		<style_entry name="default_click" 	value="@:Sounds/UI/ui_menu_click.wav"/>
+		<style_entry name="default_hover" 	value="@:Sounds/UI/ui_hover.wav"/>
+		<style_entry name="start" 				value="@:Sounds/UI/ui_menu_start.wav"/>
+		<style_entry name="back" 				value="@:Sounds/UI/ui_menu_back.wav"/>
+		<style_entry name="craft_click" 		value="@:Sounds/Crafting/craft_click_craft.wav"/>
+		<style_entry name="paging_click"		value="@:Sounds/UI/ui_tab.wav" />
+		<style_entry name="recipe_click" 	value="@:Sounds/Crafting/craft_click_recipe.wav"/>
+		<style_entry name="pickup_click" 	value="@:Sounds/Crafting/craft_take_item.wav"/>
+		<style_entry name="place_click" 	value="@:Sounds/Crafting/craft_place_item.wav"/>
+		<style_entry name="remove_waypoint" 	value="@:Sounds/UI/ui_waypoint_delete.wav"/>
 	</global>
 	
 	<!--LABELS-->
@@ -66,6 +67,12 @@
 		<style_entry name="pivot" value="topleft"/>
 		<style_entry name="text" value=""/>
 		<style_entry name="upper_case" value="false" />
+	</style>
+	
+	<style type="label" name="outline">
+		<style_entry name="effect" value="outline" />
+		<style_entry name="effect_color" value="[black]" />
+		<style_entry name="effect_distance" value="1,1" />
 	</style>
 	
 	<style type="textlist">
@@ -93,7 +100,7 @@
 	<style type="label" name="subtitle">
 		<style_entry name="font_size" value="36"/>
 		<style_entry name="effect" value="shadow"/>
-		<style_entry name="overflow" value="ResizeHeight"/>
+		<style_entry name="overflow" value="resizeheight"/>
 	</style>
 	
 	<!--SPRITES-->
@@ -262,10 +269,34 @@
 	<style name="header.name" type="label">
 		<style_entry name="name" value="windowName"/>
 		<style_entry name="depth" value="2"/>
-		<style_entry name="pos" value="42,-6"/>
+		<style_entry name="pos" value="45,-6"/>
 		<style_entry name="size" value="250,32"/>
 		<style_entry name="font_size" value="32"/>
 		<style_entry name="upper_case" value="false"/>
+		<style_entry name="justify" value="left"/>
+	</style>
+
+	<style name="header.name.shrink" type="label">
+		<style_entry name="name" value="windowName"/>
+		<style_entry name="depth" value="2"/>
+		<style_entry name="pos" value="130,-22"/>
+		<style_entry name="size" value="180,32"/>
+		<style_entry name="font_size" value="32"/>
+		<style_entry name="upper_case" value="false"/>
+		<style_entry name="justify" value="left"/>
+		<style_entry name="pivot" value="center"/>
+		<style_entry name="overflow" value="shrinkcontent"/>
+	</style>	
+	
+	<!--Shrink content for when an icon or timer is to the right of the label-->
+	<style name="header.name.iconright" type="label">
+		<style_entry name="name" value="windowName"/>
+		<style_entry name="depth" value="2"/>
+		<style_entry name="pos" value="42,-6"/>
+		<style_entry name="size" value="120,32"/>
+		<style_entry name="font_size" value="32"/>
+		<style_entry name="upper_case" value="false"/>
+		<style_entry name="overflow" value="shrinkcontent"/>
 	</style>
 	
 	<style name="header.timer" type="label">
@@ -275,10 +306,8 @@
 		<style_entry name="text" value="00:00"/>
 		<style_entry name="font_size" value="26"/>
 		<style_entry name="justify" value="right"/>
-		<style_entry name="anchor_side" value="right"/>
 		<style_entry name="pivot" value="right"/>
-		<style_entry name="anchor_run_once" value="false"/>
-		<style_entry name="anchor_offset" value="-68,0"/>
+		<style_entry name="pos" value="220,-23" />
 	</style>
 	
 	<!--PAGING WINDOW-->

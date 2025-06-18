@@ -6,6 +6,7 @@
 		<property name="border_step_distance" value="128"/>
 
 		<!-- clusters params: stamp count, offset from center in random direction (after the first), stamp strength -->
+		<!-- count decimal is chance for +1 to count, so 1.3 is a 30% chance for 2 -->
 
 		<property class="plains">
 			<property name="scale" value=".5, 1.5"/>
@@ -117,9 +118,22 @@
 		<property class="roadside">
 			<property name="count" value="3, 5, 7"/>
 		</property>
-
+<!--
 		<property class="wilderness">
-			<property name="count" value="40, 80, 120"/>
+			<property name="count" value="8, 16, 24"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="6, 12, 18"/>
+		</property>
+-->
+		<property class="wilderness">
+			<property name="count" value="12, 24, 36"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="12, 24, 36"/>
+		</property>
+		<property class="wasteland_wilderness">
+			<property name="count" value="16, 32, 48"/>
 		</property>
 	</world>
 	
@@ -237,9 +251,22 @@
 		<property class="roadside">
 			<property name="count" value="5, 8, 12"/>
 		</property>
-
+<!--
 		<property class="wilderness">
-			<property name="count" value="90, 180, 270"/>
+			<property name="count" value="18, 36, 54"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="13, 27, 40"/>
+		</property>
+-->
+		<property class="wilderness">
+			<property name="count" value="27, 54, 81"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="27, 54, 81"/>
+		</property>
+		<property class="wasteland_wilderness">
+			<property name="count" value="36, 72, 108"/>
 		</property>
 	</world>
 
@@ -357,9 +384,22 @@
 		<property class="roadside">
 			<property name="count" value="8, 13, 17"/>
 		</property>
-
+<!--
 		<property class="wilderness">
-			<property name="count" value="150, 300, 450"/>
+			<property name="count" value="30, 60, 90"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="22, 45, 67"/>
+		</property>
+-->		
+		<property class="wilderness">
+			<property name="count" value="45, 90, 135"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="45, 90, 135"/>
+		</property>	
+		<property class="wasteland_wilderness">
+			<property name="count" value="60, 120, 180"/>
 		</property>
 	</world>
 
@@ -474,12 +514,28 @@
 		<property class="roadside">
 			<property name="count" value="9, 15, 19"/>
 		</property>
-
+<!--
 		<property class="wilderness">
-			<property name="count" value="250, 500, 750"/>
+			<property name="count" value="50, 100, 150"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="37, 75, 112"/>
+		</property>
+-->	
+		<property class="wilderness">
+			<property name="count" value="75, 150, 225"/>
+		</property>
+		<property class="forest_wilderness">
+			<property name="count" value="75, 150, 225"/>
+		</property>	
+		<property class="wasteland_wilderness">
+			<property name="count" value="100, 200, 300"/>
 		</property>
 	</world>
 
+
+	<township name="wilderness">
+	</township>
 
 	<township name="oldwest">
 		<property name="spawn_trader" value="false"/>
@@ -530,7 +586,7 @@
 	<township name="roadside">
 		<property name="spawn_trader" value="false"/>
 	</township>
-	
+
 	<district name="wilderness">
 		<property name="required_township" value="wilderness"/>
 		<property name="preview_color" value="0.25,0.25,0.25"/>
@@ -547,7 +603,7 @@
 		<property name="required_township" value="countrytown,forest_countrytown,bforest_countrytown"/>
 		<property name="preview_color" value="0,1,0"/>
 	</district>
-
+	
 	<district name="commercial">
 		<property name="spawn_weight" value="0.4"/>
 		<property name="required_township" value="citybig,wasteland_city,city,town,bforest_town"/>
@@ -627,6 +683,33 @@
 		<property name="mintiles" value="0"/>
 		<property name="maxtiles" value="1"/>
 	</streettile>
+
+<!-- limit rural "unique feature" tiles -->
+
+	<streettile name="rwg_tile_rural_corner_02">
+		<property name="mintiles" value="0"/>
+		<property name="maxtiles" value="3"/>
+	</streettile>
+
+	<streettile name="rwg_tile_rural_corner_03">
+		<property name="mintiles" value="0"/>
+		<property name="maxtiles" value="3"/>
+	</streettile>
+
+	<streettile name="rwg_tile_rural_corner_04">
+		<property name="mintiles" value="0"/>
+		<property name="maxtiles" value="3"/>
+	</streettile>
+
+	<streettile name="rwg_tile_rural_t_04">
+		<property name="mintiles" value="0"/>
+		<property name="maxtiles" value="3"/>
+	</streettile>
+
+	<streettile name="rwg_tile_rural_t_05">
+		<property name="mintiles" value="0"/>
+		<property name="maxtiles" value="3"/>
+	</streettile>
 	
 	<!-- prefab spawn weight info:
 	base score for a prefab is always 1, 
@@ -636,22 +719,127 @@
 	<!-- weight default 1; bias default 0 -->
 	<!-- biomeTags: only spawn in these biomes -->
 
+	<prefab_spawn_adjust partial_name="crater_deco_01" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="crater_deco_02" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="crater_deco_03" biomeTags="wasteland" />
+
+	<prefab_spawn_adjust partial_name="gas_station" min_count="5"/> 
+	<prefab_spawn_adjust partial_name="lot_rural_filler" bias="5"/>
+
+	<prefab_spawn_adjust partial_name="quarry_02" biomeTags="forest,burntforest,snow, wasteland" />
+	
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_01" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_02" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_03" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_04" biomeTags="wasteland" />	
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_05" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_06" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_07" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_08" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_09" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_10" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_11" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_12" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_13" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_14" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_15" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_16" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_17" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_18" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_19" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_20" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_21" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_22" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_23" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_24" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_25" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_26" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_27" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_28" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_29" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_filler_30" biomeTags="wasteland" />
+	
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_01" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_02" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_03" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_04" biomeTags="wasteland" />	
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_05" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_06" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_07" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_08" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_09" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_10" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_11" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_12" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_13" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_14" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_15" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_16" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_17" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_18" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_19" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_downtown_strip_20" biomeTags="wasteland" />
+	
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_01" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_02" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_03" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_04" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_05" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_06" biomeTags="wasteland" />	
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_07" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_08" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_09" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_10" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_11" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_12" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_13" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_14" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_15" biomeTags="wasteland" />	
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_16" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_17" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_18" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_19" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_20" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_21" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_22" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_23" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_24" biomeTags="wasteland" />
+	<prefab_spawn_adjust partial_name="rubble_wasteland_filler_25" biomeTags="wasteland" />
+
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_01" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_02" biomeTags="burntforest" />	
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_03" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_04" biomeTags="burntforest" />	
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_05" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_06" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_07" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_08" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_09" biomeTags="burntforest" />	
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_10" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_11" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_12" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_13" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_14" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_15" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_16" biomeTags="burntforest" />	
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_17" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_18" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_19" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_20" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_21" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_22" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_23" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_24" biomeTags="burntforest" />
+	<prefab_spawn_adjust partial_name="rubble_burnt_filler_25" biomeTags="burntforest" />
+
+	<prefab_spawn_adjust partial_name="rural_outdoor_wedding_01" biomeTags="forest,burntforest,snow" />
+	<prefab_spawn_adjust partial_name="rural_outdoor_wedding_01" min_count="1" max_count="1" bias="10"/>
+	
+	<prefab_spawn_adjust partial_name="sawmill_01" biomeTags="forest,snow,burntforest" />
+	
 	<prefab_spawn_adjust partial_name="trader_rekt" biomeTags="forest" bias="20" min_count="2" max_count="4"/>
 	<prefab_spawn_adjust partial_name="trader_jen" biomeTags="burntforest" bias="20" min_count="2" max_count="4"/>
 	<prefab_spawn_adjust partial_name="trader_bob" biomeTags="desert" bias="20" min_count="2" max_count="4"/>
 	<prefab_spawn_adjust partial_name="trader_hugh" biomeTags="snow" bias="20" min_count="2" max_count="4"/>
 	<prefab_spawn_adjust partial_name="trader_joel" biomeTags="wasteland" bias="20" min_count="2" max_count="4"/>
-	<prefab_spawn_adjust partial_name="sawmill_01" biomeTags="forest,snow,burntforest" />
-	<prefab_spawn_adjust partial_name="rural_outdoor_wedding_01" biomeTags="forest,burntforest,snow" />
-
-	<!-- 
-	<prefab_spawn_adjust partial_name="remnant_downtown_filler" bias="1"/>
-	<prefab_spawn_adjust partial_name="downtown_filler_park" bias="1"/>
-	<prefab_spawn_adjust partial_name="downtown_filler_plaza" bias="1"/>
-	<prefab_spawn_adjust partial_name="rubble_downtown_filler" bias="1"/> 
-	-->
-	
-	<prefab_spawn_adjust partial_name="lot_rural_filler" bias="5"/>
-	<prefab_spawn_adjust partial_name="gas_station" min_count="5"/> 
-	<prefab_spawn_adjust partial_name="rural_outdoor_wedding_01" min_count="1" max_count="1" bias="10"/>
 </rwgmixer>

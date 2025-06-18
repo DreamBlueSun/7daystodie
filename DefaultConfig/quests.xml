@@ -74,7 +74,6 @@
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_white_river_completion"/>
 
-		
 		<action type="ShowMessageWindow">
 			<property name="message" value="quest_WhiteRiverCitizen1_description"/>
 			<property name="title" value="quest_WhiteRiverCitizen1_description_title"/>
@@ -104,7 +103,8 @@
 		<reward type="Item" id="meleeToolShovelT0StoneShovel" ischosen="true" value="1"/>
 	</quest>
 	
-<!-- *** CHALLENGES_PAGE_01 -->
+<!-- *** PAGE_01_BASIC_CHALLENGE_REWARDS -->
+
 	<quest id="challengegroup_reward_homesteading">
 		<property name="name_key" value="homesteading_name" param1="name"/>
 		<property name="subtitle_key" value="homesteading_subtitle" param1="subtitle"/>
@@ -199,7 +199,8 @@
 		<reward type="LootItem" id="perkBooks" ischosen="true" value="1"/>
 	</quest>
 
-<!-- *** CHALLENGES_PAGE_02 -->
+<!-- *** PAGE_02_ADVANCED_CHALLENGE_REWARDS -->
+
 	<quest id="challengegroup_reward_gatherer" template="challengegroup_reward_homesteading">
 		<variable name="name" value="gatherer_name"/>
 		<variable name="subtitle" value="gatherer_subtitle"/>
@@ -592,9 +593,70 @@
 		<reward type="Item" id="questRewardLegendaryRoboticsCraftingBundle" ischosen="true" isfixed="true" value="1"/>
 	</quest>
 
-<!-- *** CHALLENGES_PAGE_03 -->
+<!-- *** PAGE_03_BIOMES_CHALLENGE_REWARDS -->
 
-		<!-- TWITCH_CHALLENGES_HERE -->
+	<quest id="challengegroup_reward_burnt" template="challengegroup_reward_homesteading">
+		<variable name="name" value="xuiBurntForest"/>
+		<variable name="subtitle" value="xuiBurntForest"/>
+		<variable name="description" value="burnt_desc"/>
+		<variable name="completion" value="burnt_completion"/>
+
+		<reward type="Exp" value="10000"/>
+		<reward type="Item" id="biomeBadge1" ischosen="true" value="1"/>
+
+		<reward type="ShowMessageWindow">
+			<property name="title" value="reward_biome_badge_01_title"/>
+			<property name="message" value="reward_biome_badge_01_description"/>
+		</reward>
+	</quest>
+
+	<quest id="challengegroup_reward_desert" template="challengegroup_reward_homesteading">
+		<variable name="name" value="xuiDesert"/>
+		<variable name="subtitle" value="xuiDesert"/>
+		<variable name="description" value="desert_desc"/>
+		<variable name="completion" value="desert_completion"/>
+
+		<reward type="Exp" value="25000"/>
+		<reward type="Item" id="biomeBadge2" ischosen="true" value="1"/>
+
+		<reward type="ShowMessageWindow">
+			<property name="title" value="reward_biome_badge_02_title"/>
+			<property name="message" value="reward_biome_badge_02_description"/>
+		</reward>
+	</quest>
+
+	<quest id="challengegroup_reward_snow" template="challengegroup_reward_homesteading">
+		<variable name="name" value="xuiSnow"/>
+		<variable name="subtitle" value="xuiSnow"/>
+		<variable name="description" value="snow_desc"/>
+		<variable name="completion" value="snow_completion"/>
+
+		<reward type="Exp" value="50000"/>
+		<reward type="Item" id="biomeBadge3" ischosen="true" value="1"/>
+
+		<reward type="ShowMessageWindow">
+			<property name="title" value="reward_biome_badge_03_title"/>
+			<property name="message" value="reward_biome_badge_03_description"/>
+		</reward>
+	</quest>
+
+	<quest id="challengegroup_reward_wasteland" template="challengegroup_reward_homesteading">
+		<variable name="name" value="xuiWasteland"/>
+		<variable name="subtitle" value="xuiWasteland"/>
+		<variable name="description" value="wasteland_desc"/>
+		<variable name="completion" value="wasteland_completion"/>
+
+		<reward type="Exp" value="100000"/>
+		<reward type="Item" id="biomeBadge4" ischosen="true" value="1"/>
+
+		<reward type="ShowMessageWindow">
+			<property name="title" value="reward_biome_badge_04_title"/>
+			<property name="message" value="reward_biome_badge_04_description"/>
+		</reward>
+	</quest>
+
+
+<!-- PAGE_04_TWITCH_CHALLENGE_REWARDS_ -->
 
 
 
@@ -685,6 +747,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerFetch" />
 		</objective>
 
 		<objective type="FetchFromContainer">
@@ -771,7 +834,7 @@
 		<variable name="offer" value="quest_tier4_fetch_offer"/>
 		<variable name="difficulty" value="4"/>
 		<variable name="extra_tags" value=""/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		<variable name="biome_filter" value=""/>
 		
 		<reward type="Exp" value="6250"/>
@@ -857,6 +920,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerClear" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -940,7 +1004,7 @@
 		<variable name="offer" value="quest_tier4_clear_offer"/>
 		<variable name="difficulty" value="4"/>
 		<variable name="extra_tags" value=""/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		<variable name="biome_filter" value=""/>
 		
 		<reward type="Exp" value="7500"/>
@@ -1029,6 +1093,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerInfestation" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1098,7 +1163,7 @@
 		<variable name="spawn_multiplier" value="1.5"/>
 		<variable name="gamestage_mod" value=".6"/>
 		<variable name="gamestage_bonus" value="30"/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		
 		<reward type="Exp" value="9375"/>
 		<reward type="Item" id="casinoCoin" value="3000"/>
@@ -1191,6 +1256,7 @@
 			<property name="nav_object" value="rally"/>
 			<property name="allowed_start_hour" value="22"/>
 			<property name="allowed_end_hour" value="1"/>
+			<property name="rally_marker_type" value="questRallyMarkerRestorePower" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1260,7 +1326,7 @@
 		<variable name="offer" value="quest_tier4_restore_power_offer"/>
 		<variable name="difficulty" value="4"/>
 		<variable name="extra_tags" value=""/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		
 		<reward type="Exp" value="8400"/>
 		<reward type="Item" id="casinoCoin" value="2000"/>
@@ -1304,6 +1370,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerFetchClear" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1355,7 +1422,7 @@
 		<variable name="offer" value="quest_tier3_fetch_clear_offer"/>
 		<variable name="difficulty" value="3"/>
 		<variable name="extra_tags" value=""/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		
 		<reward type="Exp" value="6750"/>
 		<reward type="Item" id="casinoCoin" value="1000"/>
@@ -1374,7 +1441,7 @@
 		<variable name="offer" value="quest_tier4_fetch_clear_offer"/>
 		<variable name="difficulty" value="4"/>
 		<variable name="extra_tags" value=""/>
-		<variable name="biome_filter_type" value="AnyBiome"/>
+		<variable name="biome_filter_type" value="SameBiome"/>
 		
 		<reward type="Exp" value="8400"/>
 		<reward type="Item" id="casinoCoin" value="1500"/>
@@ -1458,6 +1525,7 @@
 			<property name="start_mode" value="Create"/>
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies" />
 			
 			<property name="activate_event" value="quest_treasure_replace_road"/>
 		</objective>
@@ -1551,6 +1619,7 @@
 			<property name="start_mode" value="Create"/>
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies" />
 			
 			<property name="activate_event" value="quest_treasure_replace_road"/>
 		</objective>
@@ -1687,6 +1756,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerClear" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1754,6 +1824,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerInfestation" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1817,6 +1888,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerFetch" />
 		</objective>
 
 		<objective type="FetchFromContainer">
@@ -1883,6 +1955,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerFetchClear" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -1958,6 +2031,7 @@
 		<objective type="RallyPoint">
 			<property name="phase" value="2"/>
 			<property name="nav_object" value="rally"/>
+			<property name="rally_marker_type" value="questRallyMarkerInfestation" />
 		</objective>
 
 		<objective type="ClearSleepers">
@@ -2097,6 +2171,7 @@
 			<property name="nav_object" value="rally"/>
 			<property name="allowed_start_hour" value="22"/>
 			<property name="allowed_end_hour" value="1"/>
+			<property name="rally_marker_type" value="questRallyMarkerRestorePower" />
 
 			<property name="complete_event" value="quest_poi_lights_off"/>
 		</objective>
@@ -2216,9 +2291,10 @@
 
 		<property name="unique_key" value="traderquest"/>
 
-		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="offer_key" value="quest_next_trader_burnt"/>
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
+		<property name="quest_hints" value="quest_next_trader_hint1"/>
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2265,9 +2341,10 @@
 
 		<property name="unique_key" value="traderquest"/>
 
-		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="offer_key" value="quest_next_trader_desert"/>
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
+		<property name="quest_hints" value="quest_next_trader_hint1"/>
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2314,9 +2391,10 @@
 
 		<property name="unique_key" value="traderquest"/>
 
-		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="offer_key" value="quest_next_trader_snow"/>
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
+		<property name="quest_hints" value="quest_next_trader_hint1"/>
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2363,9 +2441,10 @@
 
 		<property name="unique_key" value="traderquest"/>
 
-		<property name="offer_key" value="quest_next_trader_offer"/>
+		<property name="offer_key" value="quest_next_trader_wasteland"/>
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
+		<property name="quest_hints" value="quest_next_trader_hint1"/>
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2415,6 +2494,7 @@
 		<property name="offer_key" value="quest_next_trader_offer"/>
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
+		<property name="quest_hints" value="quest_next_trader_hint1"/>
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="return_to_quest_giver" value="false"/>

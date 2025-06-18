@@ -1,41 +1,42 @@
 <controls>
 
 	<mainmenubutton depth="3" pos="0,0" width="200" height="32" enabled_font_color="[labelColor]" disabled_font_color="[disabledLabelColor]"
-		visible="true" enabled="true" pivot="left" tooltip_key="" disabled_tooltip_key="" sound="[default_click]" caption="" caption_key="" >
+		visible="true" enabled="true" pivot="left" tooltip_key="" disabled_tooltip_key="" sound="[default_click]" caption="" caption_key="" align_right="false" sprite_color_default="0,0,0,180" sprite_color_hover="0,0,0,255" 
+		nav_up="" nav_down="" nav_left="" nav_right="">
 		<rect name="${name}" depth="${depth}" pos="${pos}" width="${width}" height="${height}" enabled_font_color="${enabled_font_color}" disabled_font_color="${disabled_font_color}" controller="SimpleButton" visible="${visible}" button_enabled="${enabled}" font_size_default="${height-16}" font_size_hover="${height-12}">
-			<button name="clickable" sprite="ui_game_popup" flip="horizontally" pos="0,${Round(-height/2,0)}" defaultcolor="255,255,255,180" hovercolor="[white]" type="sliced" hoverscale="1.0" pivot="${pivot}" tooltip_key="${tooltip_key}" disabled_tooltip_key="${disabled_tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}" use_selection_box="true"/>
-			<label depth="2" name="btnLabel" width="${width-20}" pos="10,${Round(-height/2,0)}" justify="left" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
+			<button name="clickable" sprite="ui_game_popup_white" flip="${align_right ? 'nothing' : 'horizontally'}" pos="0,${Round(-height/2,0)}" defaultcolor="${sprite_color_default}" hovercolor="${sprite_color_hover}" type="sliced" hoverscale="1.0" pivot="${pivot}" tooltip_key="${tooltip_key}" disabled_tooltip_key="${disabled_tooltip_key}" sound_play_on_hover="[default_hover]" sound="${sound}" use_selection_box="true" nav_up="${nav_up}" nav_down="${nav_down}" nav_left="${nav_left}" nav_right="${nav_right}"/>
+			<label depth="2" name="btnLabel" width="${width-20}" pos="${align_right ? -10 : 10},${Round(-height/2,0)}" justify="${align_right ? 'right' : 'left'}" text="${caption}" text_key="${caption_key}" effect="outline" pivot="${pivot}" font_size="${height-16}" upper_case="true" />
 		</rect>
 	</mainmenubutton>
 	
-	<generaloption pos="0,0" visible="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655" tooltip_key="">
+	<generaloption pos="0,0" visible="true" enabled="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655" tooltip_key="">
 		<rect pos="${pos}" width="${width}" height="32">
 			<label depth="4" pos="0,0" width="350" height="30" style="hover" tooltip_key="${tooltip_key == '' ? 'xuiOptionsGeneral' + name + 'Tooltip' : tooltip_key}" text_key="xuiOptionsGeneral${name}" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible}" />
-			<combobox name="${name}" type="${type}" tooltip_key="${tooltip_key == '' ? 'xuiOptionsGeneral' + name + 'Tooltip' : tooltip_key}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" />
+			<combobox name="${name}" type="${type}" tooltip_key="${tooltip_key == '' ? 'xuiOptionsGeneral' + name + 'Tooltip' : tooltip_key}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" enabled="${enabled}" />
 		</rect>
 	</generaloption>
 
 	<videooption pos="0,0" 
-			visible="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655">
+			visible="true" enabled="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655">
 		<rect pos="${pos}" width="${width}" height="32">
 			<label depth="4" pos="0,0" width="350" height="30" style="hover" tooltip_key="xuiOptionsVideo${name}Tooltip" text_key="xuiOptionsVideo${name}" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible}" />
-			<combobox name="${name}" type="${type}" tooltip_key="xuiOptionsVideo${name}Tooltip" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" />
+			<combobox name="${name}" type="${type}" tooltip_key="xuiOptionsVideo${name}Tooltip" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" enabled="${enabled}" index_markers="true" />
 		</rect>
 	</videooption>
 
 	<audiooption pos="0,0"
-			visible="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="1380">
+			visible="true" enabled="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="1320">
 		<rect pos="${pos}" width="${width}" height="32">
 			<label depth="4" pos="0,0" width="350" height="30" style="hover" tooltip_key="xuiOptionsAudio${name}Tooltip" text_key="xuiOptionsAudio${name}" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible}" />
-			<combobox name="${name}" tooltip_key="xuiOptionsAudio${name}Tooltip" type="${type}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" />
+			<combobox name="${name}" tooltip_key="xuiOptionsAudio${name}Tooltip" type="${type}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" enabled="${enabled}" />
 		</rect>
 	</audiooption>
 
 	<controloption pos="0,0"
-			visible="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655">
+			visible="true" enabled="true" value_min="@DEF" value_max="@DEF" value_wrap="@DEF" value_increment="@DEF" values="@DEF" reverse_list="@DEF" localization_prefix="" format_string="" width="655">
 		<rect pos="${pos}" width="${width}" height="32">
 			<label depth="4" pos="0,0" width="350" height="30" style="hover" tooltip_key="xuiOptionsControls${name}Tooltip" text_key="xuiOptionsControls${name}" font_size="28" color="[white]" justify="right" pivot="topleft" visible="${visible}" />
-			<combobox name="${name}" type="${type}" tooltip_key="xuiOptionsControls${name}Tooltip" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" />
+			<combobox name="${name}" type="${type}" tooltip_key="xuiOptionsControls${name}Tooltip" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="355,0" width="${width-355}" height="32" visible="${visible}" enabled="${enabled}" />
 		</rect>
 	</controloption>
 
@@ -54,7 +55,7 @@
 			values="${values}" values_enforced="${values_enforced}" display_names="${display_names}" value_localization_prefix="${value_localization_prefix}" visible="${visible}">
 			<label name="ControlLabel" depth="4" pos="0,0" width="262" height="30" style="hover" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
 			<combobox name="ControlCombo" type="ComboBoxList`1[XUiC_GamePrefSelector+GameOptionValue]" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="269,0" width="${width-270}" height="32" />
-			<textfield name="ControlText" depth="5" pos="303,0" width="${password_field ? 570-338+32+10 : width-338}" height="32" pivot="topLeft" password_field="${password_field}" character_limit="${character_limit}"/>
+			<textfield name="ControlText" depth="5" pos="303,0" width="${password_field ? 570-338+32+10 : width-338}" height="32" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" pivot="topLeft" password_field="${password_field}" character_limit="${character_limit}"/>
 		</rect>
 	</gameoption>
 	
@@ -64,24 +65,24 @@
 		<rect name="${name}" pos="${pos}" width="${width}" height="32" controller="ServerBrowserGamePrefSelectorCombo"
 			values="${values}" display_names="${display_names}" value_localization_prefix="${value_localization_prefix}" allow_any="${allow_any}" allow_custom="${allow_custom}" force_custom="${force_custom}" default="${default}" default_min="${default_min}" default_max="${default_max}" default_string="${default_string}" visible="${visible}">
 			<label depth="4" pos="0,0" width="220" height="30" style="hover" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
-			<combobox name="ControlCombo" type="ComboBoxList`1[XUiC_ServerBrowserGamePrefSelectorCombo+GameOptionValue]"  tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="225,0" width="${width-230}" height="32" visible="{useCombo}"/>
+			<combobox name="ControlCombo" type="ComboBoxList`1[XUiC_ServerBrowserGamePrefSelectorCombo+GameOptionValue]" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" value_min="${value_min}" value_max="${value_max}" value_wrap="${value_wrap}" value_increment="${value_increment}" values="${values}" reverse_list="${reverse_list}" localization_prefix="${localization_prefix}" format_string="${format_string}" pos="225,0" width="${width-230}" height="32" visible="{useCombo}"/>
 			<panel createuipanel="true" disableautobackground="true" depth="10" visible="{iscustomrange}">
-				<textfield name="valuemin" depth="5" pos="259,0" width="${Round((width-298-32)/2, 0)}" height="32" pivot="topLeft" validation="integer" character_limit="9" on_scroll="true" clear_button="false" />
+				<textfield name="valuemin" depth="5" pos="259,0" width="${Round((width-298-32)/2, 0)}" height="32" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" pivot="topLeft" validation="integer" character_limit="9" on_scroll="true" clear_button="false" />
 				<sprite depth="3" name="background" pos="259,1" width="${width-298}" height="35" color="[mediumGrey]" type="sliced" pivot="topleft" globalopacity="false" />
 				<label name="comparison" depth="4" pos="${259+1+Round((width-298-32)/2, 0)},0" width="30" height="32" text="-" font_size="32" color="[white]" justify="center" pivot="topleft" />
-				<textfield name="valuemax" depth="5" pos="${259+1+32+Round((width-298-32)/2, 0)},0" width="${Round((width-298-32)/2, 0)}" height="32" pivot="topLeft" validation="integer" character_limit="9" on_scroll="true" clear_button="false" />
+				<textfield name="valuemax" depth="5" pos="${259+1+32+Round((width-298-32)/2, 0)},0" width="${Round((width-298-32)/2, 0)}" height="32" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" pivot="topLeft" validation="integer" character_limit="9" on_scroll="true" clear_button="false" />
 			</panel>
 			<panel createuipanel="true" disableautobackground="true" depth="10" visible="{iscustomstring}">
-				<textfield name="valuestring" depth="5" pos="259,0" width="${width-298}" height="32" pivot="topLeft" on_scroll="true" />
+				<textfield name="valuestring" depth="5" pos="259,0" width="${width-298}" height="32" pivot="topLeft" on_scroll="true" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" />
 				<sprite depth="3" name="background" pos="259,1" width="${width-298}" height="35" color="[mediumGrey]" type="sliced" pivot="topleft" globalopacity="false" />
 			</panel>
 		</rect>
 	</browsergameoptioncombined>
 	
-	<browsergameoptionstring pos="0,0" width="710" visible="true">
+	<browsergameoptionstring pos="0,0" width="710" visible="true" tooltip_key="">
 		<rect name="${name}" pos="${pos}" width="${width}" height="32" controller="ServerBrowserGamePrefString" visible="${visible}">
-			<label depth="4" pos="0,0" width="220" height="30" style="hover" tooltip_key="${title}Desc" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
-			<textfield name="value" depth="5" pos="259,0" width="${width-298}" height="32" pivot="topLeft" />
+			<label depth="4" pos="0,0" width="220" height="30" style="hover"  tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
+			<textfield name="value" depth="5" pos="259,0" width="${width-298}" height="32" pivot="topLeft" tooltip_key="${tooltip_key == '' ? title + 'Desc' : tooltip_key}" />
 		</rect>
 	</browsergameoptionstring>
 
@@ -242,6 +243,18 @@
 		</rect>
 	</profiles_list_entry>
 	
+	<spawnnearfriends_list_entry width="250" height="30">
+		<rect height="${height}" width="${width-40}" style="press, hover, scroll" on_doubleclick="true" disabled_font_color="[disabledLabelColor]" enabled_font_color="[labelColor]" sound="[recipe_click]" controller="XUiC_SpawnNearFriendsList+SpawnNearFriendsListEntryController">
+			<sprite depth="3" name="backgroundMain" sprite="menu_empty2px" height="${1+height}" pos="0,0" width="${width-40}" color="[black]" type="sliced" fillcenter="false" />
+			<sprite depth="2" name="background" color="[darkGrey]" pos="0,0" width="${width-40}" type="sliced" />
+			<sprite depth="4" name="iconCrossplay" pos="4,${Round(-height/2,0)}" width="${height-6}" height="${height-6}" pivot="left" visible="{showIconCrossplay}" atlas="SymbolAtlas" sprite="{iconCrossplaySprite}" />		
+			<label depth="4" name="Name" pos="${height-6+8},${Round(-height/2,0)}" width="${width-3*8-175}" height="${height-6}" text="{name}" color="{# validSpawn ? '255,255,255,255' : '192,192,192,255' }" font_size="${height-6}" justify="left" pivot="left" support_bb_code="false" visible="{hasentry}" />
+			<label depth="4" name="NotValidReason" pos="${width-8-40},${Round(-height/2,0)}" width="175" height="${height-6}" text="{invalidSpawnReason}" color="[red]" font_size="${height-6}" justify="right" pivot="right" support_bb_code="false" visible="{hasentry}" />
+			
+			<button depth="4" name="btnViewProfile" sprite="ui_game_symbol_info_notice" pos="${width-20},${-height/2}" width="${height-6}"  height="${height-6}" tooltip_key="ttViewProfile" pivot="center" visible="{canShowProfile}" />
+		</rect>
+	</spawnnearfriends_list_entry>
+	
 	<savegames_list_entry width="254" height="30" simplified="false">
 		<rect height="${height}" style="press, doubleclick, hover, scroll" disabled_font_color="[disabledLabelColor]" enabled_font_color="[labelColor]" sound="[recipe_click]" controller="ListEntry`1[XUiC_SavegamesList+ListEntry]">
 			<sprite depth="3" name="backgroundMain" sprite="menu_empty2px" height="${1+height}" pos="2,0" width="${width-4}" color="[black]" type="sliced" fillcenter="false" />
@@ -315,6 +328,30 @@
 		</rect>
 	</controller_binding_entry>
 
+	<news_box name="news" pos="0,0" depth="1" header_key="" sources="" auto_cycle_time_per_entry="0" max_entries="7">
+		<rect pos="${pos}" depth="${depth}" name="${name}" controller="NewsWindow" sources="${sources}" auto_cycle_time_per_entry="${auto_cycle_time_per_entry}" max_entries="${max_entries}" createuiwidget="true" width="450" height="780">
+			<sprite depth="0" name="background" sprite="menu_empty" type="sliced" color="[black]" globalopacity="false" width="450" height="634" />
+			<label depth="1" name="header" spacing_x="2" font_size="28" text_key="${header_key}" color="[white]" upper_case="true" pivot="left" anchor_left="background,0,10" anchor_right="background,1,-10" anchor_bottom="background,1,-40" anchor_top="background,1,0" />
+			<button depth="10" name="btnLink" style="hover,scroll,press" sprite="menu_empty" hoverscale="1" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" anchor_left="background,0,0" anchor_right="background,1,0" anchor_bottom="background,0,0" anchor_top="background,1,0" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" />
+
+			<rect name="imageOnlyNews" depth="1" visible="{# !has_text }">
+				<texture depth="1" name="newsImage" color="[white]" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" anchor_left="background,0,0" anchor_right="background,1,0" anchor_bottom="background,0,0" anchor_top="background,1,-40" />
+			</rect>
+			<rect name="imageAndTextNews" depth="2" visible="{has_text}">
+				<texture depth="2" name="newsImage" pos="0,-40" color="[white]" height="253" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" anchor_left="background,0,0" anchor_right="background,1,0" /> <!-- keep_aspect_ratio="BasedOnWidth" aspect_ratio="1.779" -->
+				<label depth="1" name="headline1" spacing_x="2" font_size="42" text="{headline}" color="[red]" upper_case="true" pivot="left" anchor_left="newsImage,0,15" anchor_right="newsImage,1,-15" anchor_bottom="newsImage,0,-60" anchor_top="newsImage,0,-15" />
+				<label depth="1" name="headline2" spacing_x="2" font_size="28" text="{headline2}" color="[white]" upper_case="true" pivot="left" anchor_left="headline1,0,0" anchor_right="headline1,1,0" anchor_bottom="headline1,0,-30" anchor_top="headline1,0,-0" />
+				<label depth="1" name="date" spacing_x="1" font_size="20" text="{date} - {age}" color="[lightestGrey]" pivot="left" anchor_left="headline2,0,0" anchor_right="headline2,1,0" anchor_bottom="headline2,0,-30" anchor_top="headline2,0,-10" />
+				<label depth="1" name="text" spacing_x="1" font_size="20" text="{text}" color="[lightestGrey]" pivot="topleft" anchor_left="date,0,0" anchor_right="date,1,0" anchor_bottom="date,0,-170" anchor_top="date,0,-10" />
+				<label depth="1" name="readmore" spacing_x="2" font_size="28" text_key="xuiNewsReadMore" color="[lightestGrey]" pivot="left" anchor_left="text,0,0" anchor_right="text,1,0" anchor_bottom="text,0,-40" anchor_top="text,0,-10" visible="{has_link}" />
+			</rect>
+
+			<rect name="selectionButtons" createuiwidget="true" pos="0,-644" width="450" height="40">
+				<combobox name="entrySelection" type="ComboBoxFloat" value_min="0.001" value_max="{news_count}" value_wrap="true" value_increment="1" scroll_by_increment="true" format_string=" " width="450" height="32" index_markers="false" segmented_fill="true" segment_count="{news_count}" bg_color="35,31,31" enabled_fill_color="[red]" gamepad_selectable="false" gamepad_decrease="GUI Page Down" gamepad_increase="GUI Page Up" gamepad_callout_size_increase="8" />
+			</rect>
+		</rect>
+	</news_box>
+
 	<rwg_biome>
 		<rect>
 			<label depth="4" width="150" height="30" style="hover" font_size="28" color="[white]" justify="right" pivot="topleft" />
@@ -338,5 +375,30 @@
 			</grid>
 		</rect>
 	</bugreport_saves_list_entry>
+	
+	<dlc_pager width="1600" per_page="1" spacing="10" pos="0,0">
+		<rect name="pager" pos="${pos}" height="20" repeat_content="true" repeat_count="20" visible="{# int(dlc_count) &gt; 4}" controller="Paging" hotkeys_enabled="false">
+			<sprite depth="4" pivot="topleft" type="sliced" foregroundlayer="true" name="${1+repeat_i}"
+				visible="{# int(dlc_count) &gt; ${repeat_i*4} }"
+				pos="{# ceiling(${repeat_i} * (${spacing} + (${width} - (ceiling(dlc_count / ${per_page}) - 1) * ${spacing}) / ceiling(max(dlc_count,1) / ${per_page}) ) ) },0"
+				width="{# ceiling( (${width} - (ceiling(dlc_count / ${per_page}) - 1) * ${spacing}) / ceiling(dlc_count / ${per_page}) ) }"
+				color="{# (pagenumber-1) = ${repeat_i} ? '255,0,0,255' : '160,160,160,255' }" />
+		</rect>
+	</dlc_pager>
+
+	<dlc_list_entry width="300" height="500" caption_size="50" art_size="700">
+		<rect width="${width}" height="${height}" style="press,hover,scroll" controller="XUiC_DlcList+DlcListEntryController" visible="{hasentry}">
+			<sprite name="dlcNameBg" depth="1" pos="0,${-Round(caption_size/2,0)}" height="${caption_size}" sprite="ui_game_popup_white" flip="horizontally" color="0,0,0,220" type="sliced" pivot="left" />
+			<label name="dlcName" depth="2" pos="10,${-Round(caption_size/2,0)}" width="${width-20}" height="${caption_size}" text="{name}" font_size="${caption_size-16}" justify="left" pivot="left" effect="outline" upper_case="true" color="{#(hovered or owned) ? '255,255,255,255' : '160,160,160,255' }" />
+			
+			<panel name="clip" depth="-2" createuipanel="true" pos="0,${-height+art_size}" height="${art_size}" clipping="softclip" clippingsoftness="0,0" disableautobackground="true">
+				<texture name="dlcImage" depth="2" pos="${Round(width/2,0)},${-Round(art_size/2,0)}" height="${art_size}" width="${width}" pivot="center" texture="{texture_uri}" color="{#(owned or hovered) ? '255,255,255,255' : '100,100,100,255' }" original_aspect_ratio="true" />
+				<sprite depth="4" name="lockIcon" sprite="ui_game_symbol_lock" size="48,48" pos="20,-20" visible="{#owned ? 'False' : 'True'}" color="{#(hovered or owned) ? '255,255,255,255' : '160,160,160,255' }" foregroundlayer="true" />
+			</panel>
+			<sprite name="imageBorder" depth="4" pos="${Round(width/2,0)},${-height+Round(art_size/2,0)}" height="${art_size}" sprite="{#(hovered or owned) ? 'menu_empty3px' : 'menu_empty2px' }" color="{# hovered ? '255,255,255,255' : '160,160,160,255' }" type="sliced" fillcenter="false" pivot="center" />
+			<sprite name="messageBox" depth="2" pos="0,${-height+60}" height="60" sprite="menu_empty" color="128,128,128,200" type="sliced" fillcenter="true" globalopacity="false" visible="{#hovered}"/>
+			<label name="message" depth="3" pos="${width/2},${-height+30}" height="60" width="${width-20}" text_key="{#owned ? 'xuiDlcOwned' : 'xuiDlcViewInStore'}" font_size="${caption_size-16}" justify="center" pivot="center" effect="outline" upper_case="true" color="{# hovered ? '255,255,255,255' : '160,160,160,255' }" visible="{#hovered}"/>
+		</rect>
+	</dlc_list_entry>
 
 </controls>

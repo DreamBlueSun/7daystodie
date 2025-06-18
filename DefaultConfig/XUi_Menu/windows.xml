@@ -1,14 +1,5 @@
 ﻿<windows>
-	
-	<window name="popupMenu" depth="20" pos="200,-200" width="200" height="436" controller="PopupMenu" gamepad_selectable="false">
-		<rect name="content" depth="0" pos="0,0" borderthickness="3" visible="false" gamepad_selectable="false">
-			<sprite depth="0" name="sprBackgroundBorder" sprite="ui_game_header_fill" type="sliced" color="[black]" />
-			<sprite depth="1" name="sprBackground" sprite="ui_game_header_fill" type="sliced" pos="3,-3" color="[darkGrey]"/>
-			<grid name="list" rows="10" cols="1" pos="3,-3" width="200" cell_width="390" cell_height="43" repeat_content="true" arrangement="vertical" >
-				<popup_menu_item name="0" use_selection_box="false"/>
-			</grid>	
-		</rect>
-	</window>
+	<popupMenu name="popupMenu" />
 	
 	<window name="toolTip" width="100" height="25" depth="25001" controller="ToolTip" >
 		<rect>
@@ -34,12 +25,6 @@
 		</panel>
 	</window>
 	
-	<window name="mainMenuPlayerName" pos="0,50" width="210" height="100" depth="301" anchor="LeftBottom" pivot="bottomleft" controller="MainMenuPlayerName">
-		<rect>
-			<label style="header.name" name="mainMenuPlayerNameLabel" text="PLAYER NAME: EMPTY STR" font_size="32" width="210" justify="left"  />
-		</rect>
-	</window>
-
 	<window name="windowCharacterPreview" controller="CustomCharacterWindow" anchor="CenterCenter" pos="-720,475" width="1440" height="780" cursor_area="true" locked_sprite="ui_game_symbol_lock" unlocked_sprite="ui_game_symbol_unlock" locked_color="[selectedColor]" unlocked_color="[disabledLabelColor]">
 		<panel name="header" pos="0,0" height="43" width="1440" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3">
 			<label style="header.name" text="Character Profile" text_key="xuiCharacter" />
@@ -129,7 +114,7 @@
 					<grid rows="14" cols="2" cell_width="380" cell_height="40" repeat_content="false" arrangement="vertical">
 						<rect>
 							<label text="Seed" depth="4" width="150" height="30" style="hover" tooltip_key="xuiWorldSeed" text_key="xuiWorldSeed" font_size="28" color="[white]" justify="right" pivot="topleft" />
-							<textfield name="seedInput" depth="5" pos="189,0" width="132" height="32" pivot="topLeft" on_hover="true" character_limit="20"/>
+							<textfield name="seedInput" depth="5" pos="189,0" width="132" height="32" pivot="topLeft" character_limit="20"/>
 						</rect>
 						<rect>
 							<label text="World Size" depth="4" width="150" height="30" style="hover" tooltip_key="xuiWorldSize" text_key="xuiWorldSize" font_size="28" color="[white]" justify="right" pivot="topleft" />
@@ -355,8 +340,8 @@
 				</rect>
 			</rect>
 
-			<simplebutton name="btnDeleteWorld" depth="3" pos="10, -680" width="200" height="48" font_size="32" caption_key="btnDeleteWorld" upper_case="true" enabled="{worlddeletable}" />
-			<simplebutton name="btnStart" depth="3" pos="640, -680" width="200" height="48" font_size="32" caption_key="xuiStart" upper_case="true" enabled="{startable}" />
+			<simplebutton name="btnDeleteWorld" depth="3" pos="10, -670" width="200" height="48" font_size="32" caption_key="btnDeleteWorld" upper_case="true" enabled="{worlddeletable}" />
+			<simplebutton name="btnStart" depth="3" pos="640, -670" width="200" height="48" font_size="32" caption_key="xuiStart" upper_case="true" enabled="{startable}" />
 		</panel>
 		<panel name="saveDetails" pos="850,-46" depth="1" height="725" width="550" backgroundcolor="[darkGrey]" bordercolor="[black]" borderthickness="3" pivot="center">
 			<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
@@ -588,6 +573,12 @@
 		</rect>
 	</window>
 	
+	<window name="loginProgress" anchor="CenterCenter" pos="-350,50" width="700" height="200" controller="LoginProgress" >
+		<panel name="content" pos="0,-50" height="100" depth="1" backgroundcolor="[mediumGrey]" bordercolor="[black]" borderthickness="3" pivot="topleft">
+			<label name="lblText" depth="1" pos="350,-50" font_size="30" justify="center" pivot="center" text="Signing in..." />
+		</panel>
+	</window>
+	
 	<!-- Login window for Standalone Platforms -->
 	<window name="loginWindow" anchor="CenterCenter" pos="-350,50" width="700" height="200" controller="LoginStandalone" cursor_area="true" platform="STANDALONE">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
@@ -647,12 +638,10 @@
 	</window>
 
 	<window name="newsScreen" anchor="CenterCenter" pos="0,0" width="1050" height="780" depth="5" controller="NewsScreen">
-		<!--<texture depth="20" color="81,255,255,200" texture="Textures/UI/news_concept" name="conceptTexture" anchor_left="#cam,0,-5" anchor_right="#cam,1,5" anchor_bottom="#cam,0,-5" anchor_top="#cam,1,5" />-->
-
-		<texture depth="1" color="[white]" texture="Textures/UI/news_background" name="bgTexture" anchor_left="#cam,0,-5" anchor_right="#cam,1,5" anchor_bottom="#cam,0,-5" anchor_top="#cam,1,5" />
+		<texture depth="1" color="[white]" texture="@:Textures/UI/news_background.jpg" name="bgTexture" anchor_left="#cam,0,-5" anchor_right="#cam,1,5" anchor_bottom="#cam,0,-5" anchor_top="#cam,1,5" />
 
 		<rect depth="3" name="logo" createuiwidget="true" anchor_left="#cam,0.5,0" anchor_right="#cam,0.5,0" anchor_bottom="#cam,0.5,0" anchor_top="#cam,0.5,0">
-			<texture pos="20,-60" height="1010" color="[white]" texture="Textures/UI/news_logo" name="gameLogo" pivot="center" keep_aspect_ratio="BasedOnHeight" aspect_ratio="0.608" />
+			<texture pos="20,-60" height="1010" color="[white]" texture="@:Textures/UI/news_logo.png" name="gameLogo" pivot="center" keep_aspect_ratio="BasedOnHeight" aspect_ratio="0.608" />
 		</rect>
 		
 		<rect depth="4" name="continue" createuiwidget="true" anchor_left="#cam,0.5,0" anchor_right="#cam,0.5,0" anchor_bottom="#cam,0.5,-350" anchor_top="#cam,0.5,-350">
@@ -662,68 +651,49 @@
 			<button depth="10" name="btnContinue" style="hover,press" sprite="menu_empty" hoverscale="1" defaultcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" anchor_left="background,0,0" anchor_right="background,1,0" anchor_bottom="background,0,0" anchor_top="background,1,0" />
 		</rect>
 
-		<label depth="4" name="copyrightNotice" spacing_x="4" font_size="14" text_key="xuiNewsCopyrightNotice" color="255,255,255,150" upper_case="true" pivot="bottom" justify="center" anchor_left="#cam,0,50" anchor_right="#cam,1,-50" anchor_bottom="#cam,0,20" anchor_top="#cam,0,200" />
+		<label depth="4" name="copyrightNotice" spacing_x="4" font_size="14" text_key="xuiNewsCopyrightNotice" color="255,255,255,150" upper_case="true" pivot="bottom" justify="center" anchor_left="#cam,0,300" anchor_right="#cam,1,-300" anchor_bottom="#cam,0,20" anchor_top="#cam,0,100" />
 		
-		<rect pos="0,420" width="1" depth="5" name="featuredNews" controller="NewsWindow" sources="rfs://NewsFeatured.xml" auto_cycle_time_per_entry="3">
-			<sprite depth="0" name="backgroundFeatured" sprite="menu_empty" type="sliced" color="[black]" globalopacity="false" anchor_left="gameLogo,0,-510" anchor_right="gameLogo,0,-60" anchor_bottom="backgroundGame,0,0" anchor_top="backgroundGame,1,0" />
-			<label depth="1" name="header" spacing_x="2" font_size="28" text_key="xuiNewsHeaderFeatured" color="[white]" upper_case="true" pivot="left" anchor_left="backgroundFeatured,0,10" anchor_right="backgroundFeatured,1,-10" anchor_bottom="backgroundFeatured,1,-40" anchor_top="backgroundFeatured,1,0" />
-			<texture depth="2" name="newsImage" color="[white]" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" anchor_left="backgroundFeatured,0,0" anchor_right="backgroundFeatured,1,0" anchor_bottom="backgroundFeatured,0,0" anchor_top="backgroundFeatured,1,-40" />
-			<button depth="10" name="btnLink" style="hover,scroll,press" sprite="menu_empty" hoverscale="1" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" anchor_left="backgroundFeatured,0,0" anchor_right="backgroundFeatured,1,0" anchor_bottom="backgroundFeatured,0,0" anchor_top="backgroundFeatured,1,0" enabled="{has_news}" gamepad_selectable="{has_news}" nav_right="btnContinue" />
-
-			<rect name="selectionButtons" createuiwidget="true" anchor_left="backgroundFeatured,0,0" anchor_right="backgroundFeatured,1,0" anchor_bottom="backgroundFeatured,0,-50" anchor_top="backgroundFeatured,0,-10">
-				<combobox name="entrySelection" type="ComboBoxFloat" value_min="0.001" value_max="3" value_wrap="true" value_increment="1" scroll_by_increment="true" format_string=" " width="450" height="32" index_markers="false" segmented_fill="true" segment_count="3" bg_color="35,31,31" enabled_fill_color="[red]" gamepad_selectable="false" gamepad_decrease="GUI Page Down" gamepad_increase="GUI Page Up" gamepad_callout_size_increase="8" />
-			</rect>
-		</rect>
-
-		<rect pos="0,420" width="1" depth="5" name="gameNews" controller="NewsWindow" sources="rfs://News.xml">
-			<sprite depth="0" name="backgroundGame" sprite="menu_empty" type="sliced" color="[black]" globalopacity="false" anchor_left="newsImage,0,0" anchor_right="newsImage,1,0" anchor_bottom="readmore,0,-10" anchor_top="newsImage,1,40" />
-			<label depth="1" name="header" spacing_x="2" font_size="28" text_key="xuiNewsHeaderGame" color="[white]" upper_case="true" pivot="left" anchor_left="newsImage,0,10" anchor_right="newsImage,1,-10" anchor_bottom="newsImage,1,0" anchor_top="newsImage,1,40" />
-			<texture depth="2" name="newsImage" pos="0,-97" color="[white]" height="253" original_aspect_ratio="true" rect_size="0.996,0.996" rect_offset="0.002,0.002" anchor_left="gameLogo,1,20" anchor_right="gameLogo,1,470" /> <!-- keep_aspect_ratio="BasedOnWidth" aspect_ratio="1.779" -->
-			<label depth="1" name="headline1" spacing_x="2" font_size="42" text="{headline}" color="[red]" upper_case="true" pivot="left" anchor_left="newsImage,0,15" anchor_right="newsImage,1,-15" anchor_bottom="newsImage,0,-60" anchor_top="newsImage,0,-15" />
-			<label depth="1" name="headline2" spacing_x="2" font_size="28" text="{headline2}" color="[white]" upper_case="true" pivot="left" anchor_left="headline1,0,0" anchor_right="headline1,1,0" anchor_bottom="headline1,0,-30" anchor_top="headline1,0,-0" />
-			<label depth="1" name="date" spacing_x="1" font_size="20" text="{date} - {age}" color="[lightestGrey]" pivot="left" anchor_left="headline2,0,0" anchor_right="headline2,1,0" anchor_bottom="headline2,0,-30" anchor_top="headline2,0,-10" />
-			<label depth="1" name="text" spacing_x="1" font_size="20" text="{text}" color="[lightestGrey]" pivot="topleft" anchor_left="date,0,0" anchor_right="date,1,0" anchor_bottom="date,0,-170" anchor_top="date,0,-10" />
-			<label depth="1" name="readmore" spacing_x="2" font_size="28" text_key="xuiNewsReadMore" color="[lightestGrey]" pivot="left" anchor_left="text,0,0" anchor_right="text,1,0" anchor_bottom="text,0,-40" anchor_top="text,0,-10" visible="{has_link}" />
-<!--
-			<rect name="guides">
-				<sprite depth="2" name="debugGrid" sprite="menu_empty" type="sliced" color="[white]" fillcenter="false" anchor_left="headline1,0,0" anchor_right="headline1,1,0" anchor_bottom="headline1,0,0" anchor_top="headline1,1,0" />
-				<sprite depth="2" name="debugGrid" sprite="menu_empty" type="sliced" color="[white]" fillcenter="false" anchor_left="headline2,0,0" anchor_right="headline2,1,0" anchor_bottom="headline2,0,0" anchor_top="headline2,1,0" />
-				<sprite depth="2" name="debugGrid" sprite="menu_empty" type="sliced" color="[white]" fillcenter="false" anchor_left="date,0,0" anchor_right="date,1,0" anchor_bottom="date,0,0" anchor_top="date,1,0" />
-				<sprite depth="2" name="debugGrid" sprite="menu_empty" type="sliced" color="[white]" fillcenter="false" anchor_left="text,0,0" anchor_right="text,1,0" anchor_bottom="text,0,0" anchor_top="text,1,0" />
-				<sprite depth="2" name="debugGrid" sprite="menu_empty" type="sliced" color="[white]" fillcenter="false" anchor_left="readmore,0,0" anchor_right="readmore,1,0" anchor_bottom="readmore,0,0" anchor_top="readmore,1,0" />
-			</rect>
--->
-			<button depth="10" name="btnLink" style="hover,scroll,press" sprite="menu_empty" hoverscale="1" defaultcolor="0,0,0,1" disabledcolor="0,0,0,1" hovercolor="100,100,100,100" type="sliced" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,0" anchor_top="backgroundGame,1,0" enabled="{has_link}" gamepad_selectable="{has_news}" nav_left="btnContinue" />
-
-			<rect name="selectionButtons" createuiwidget="true" anchor_left="backgroundGame,0,0" anchor_right="backgroundGame,1,0" anchor_bottom="backgroundGame,0,-50" anchor_top="backgroundGame,0,-10">
-				<combobox name="entrySelection" type="ComboBoxFloat" value_min="0.001" value_max="3" value_wrap="true" value_increment="1" scroll_by_increment="true" format_string=" " width="450" height="32" index_markers="false" segmented_fill="true" segment_count="3" bg_color="35,31,31" enabled_fill_color="[red]" gamepad_selectable="false" gamepad_decrease="GUI Window Paging Up" gamepad_increase="GUI Window Paging Down" gamepad_callout_size_increase="8" />
-			</rect>
-		</rect>
+		<news_box pos="-800,363" depth="5" name="featured" header_key="xuiNewsHeaderFeatured" sources="rfs://NewsFeatured.xml" auto_cycle_time_per_entry="3" max_entries="7" />
+		<news_box pos="350,363" depth="5" name="game" header_key="xuiNewsHeaderGame" sources="rfs://News.xml" auto_cycle_time_per_entry="0" max_entries="7" />
 	</window>
 	
 	<window name="menuBackground" anchor="CenterCenter" pos="0,0" width="1050" height="780" depth="-3">
-		<texture depth="1" color="[white]" texture="Textures/UI/background" name="bgTexture" anchor_left="#cam,0,-5" anchor_bottom="#cam,0,-5" anchor_right="#cam,1,5" anchor_top="#cam,1,5" />
+		<texture depth="1" color="[white]" texture="@:Textures/UI/background.jpg" name="bgTexture" anchor_left="#cam,0,-5" anchor_bottom="#cam,0,-5" anchor_right="#cam,1,5" anchor_top="#cam,1,5" />
 	</window>
 	
 	<window name="mainMenuLogo" anchor="CenterCenter" pos="0,0" width="1050" height="780" depth="-2">
-		<texture depth="3" color="[white]" texture="Textures/UI/7DTD_logo" name="gameLogo" anchor_left="#cam,0.5,-20" anchor_bottom="#cam,0.5,20" anchor_right="#cam,0.5,-20" anchor_top="#cam,0.5,490" pivot="center" keep_aspect_ratio="BasedOnHeight" aspect_ratio="2.3" />
+		<texture depth="3" color="[white]" texture="@:Textures/UI/7DTD_logo.tga" name="gameLogo" anchor_left="#cam,0.5,-20" anchor_bottom="#cam,0.5,20" anchor_right="#cam,0.5,-20" anchor_top="#cam,0.5,490" pivot="center" keep_aspect_ratio="BasedOnHeight" aspect_ratio="2.3" />
 	</window>
 	
-	<window name="mainMenu" anchor="CenterCenter" pos="0,0" width="1050" height="780" controller="MainMenu" cursor_area="true">
-		<grid pos="50,110" rows="13" cell_width="400" cell_height="70" repeat_content="false" arrangement="vertical" >
-			<mainmenubutton name="btnNewGame" pivot="center" width="400" height="50" caption_key="xuiNewGame" />
+	<window name="mainMenu" anchor="CenterCenter" pos="0,0" width="1050" height="780" controller="MainMenu" cursor_area="true" windows_to_open_globally="menuBackground,mainMenuDiscordButton,-discordInteractions">
+		<grid pos="50,110" rows="13" cell_width="400" cell_height="70" repeat_content="false" arrangement="vertical" controller="MainMenuButtons">
+
+			<mainmenubutton name="btnNewGame" pivot="center" width="400" height="50" caption_key="xuiNewGame" nav_up="btnQuit" platform="!CONSOLE" />
+			<mainmenubutton name="btnNewGame" pivot="center" width="400" height="50" caption_key="xuiNewGame" platform="CONSOLE" />
+
 			<mainmenubutton name="btnContinueGame" pivot="center" width="400" height="50" caption_key="xuiContinueGame" enabled="{has_saved_game}"/>
-			<mainmenubutton name="btnConnectToServer" pivot="center" width="400" height="50" caption_key="xuiConnectToServer" />
+			<mainmenubutton name="btnConnectToServer" pivot="center" width="400" height="50" caption_key="xuiConnectToServer" enabled="{online_mode}" />
 			<mainmenubutton name="btnEditingTools" pivot="center" width="400" height="50" caption_key="xuiEditingTools" platform="!CONSOLE" />
 			<mainmenubutton name="btnOptions" pivot="center" width="400" height="50" caption_key="xuiOptions" />
 			<mainmenubutton name="btnCredits" pivot="center" width="400" height="50" caption_key="xuiCredits" />
 			<mainmenubutton name="btnNews" pivot="center" width="400" height="50" caption_key="xuiMMNews" />
-			<rect />
-			<mainmenubutton name="btnQuit" pivot="center" width="400" height="50" caption_key="xuiQuit" platform="!CONSOLE"/>
+
+			<mainmenubutton name="btnDlc" pivot="center" width="400" height="50" caption_key="xuiMMDlc" sprite_color_default="110,0,0,180" sprite_color_hover="110,0,0,255" nav_down="btnQuit" platform="!CONSOLE"/>
+			<mainmenubutton name="btnDlc" pivot="center" width="400" height="50" caption_key="xuiMMDlc" sprite_color_default="110,0,0,180" sprite_color_hover="110,0,0,255" platform="CONSOLE" />
 		</grid>
 	</window>
 	
-	<window name="newsWindow" anchor="RightCenter" pos="-650,120" width="500" height="600" controller="NewsWindow" cursor_area="true" browse_sound="Sounds/Crafting/craft_click_recipe" on_scroll="true" sources="rfs://News.xml" button_younger="GUI Window Paging Up" button_older="GUI Window Paging Down">
+	<window name="mainMenuPlayerName" pos="50,75" width="210" height="100" depth="301" anchor="LeftBottom" controller="MainMenuPlayerName">
+		<rect>
+			<label depth="2" name="mainMenuPlayerNameLabel" text="{name}" font_size="34" pos="0,-25" width="210" height="50" justify="left" pivot="left" effect="outline" upper_case="true" support_bb_code="false" />
+		</rect>
+	</window>
+
+	<window name="mainMenuQuit" pos="-240,75" width="210" height="100" anchor="RightBottom" controller="MainMenuButtons">
+		<mainmenubutton name="btnQuit" pivot="center" width="400" height="50" caption_key="xuiQuit" platform="!CONSOLE" align_right="true" nav_up="btnDlc" nav_down="btnNewGame"/>
+	</window>
+
+	<window name="newsWindow" anchor="RightCenter" pos="-650,120" width="500" height="600" controller="NewsWindow" cursor_area="true" browse_sound="@:Sounds/Crafting/craft_click_recipe.wav" on_scroll="true" sources="rfs://News.xml" button_younger="GUI Window Paging Up" button_older="GUI Window Paging Down">
 		<panel name="header" pos="0,0" height="110" depth="1" backgroundcolor="96,96,96,180" bordercolor="[black]" borderthickness="3" pivot="topleft" visible="{has_news_provider}">
 			<rect visible="{has_news}">
 				<label name="lblLeft" depth="1" pos="-8,-40" width="55" height="35" font_size="30" color="[white]" pivot="right" justify="right" parse_actions="true" max_line_count="1" text=" [action:gui:GUI Window Paging Up]" />
@@ -804,7 +774,7 @@
 						</rect>
 						<rect>
 							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiRwgWorldSeedDesc" text="Seed" text_key="xuiRwgWorldSeed" font_size="28" color="[white]" justify="right" pivot="topleft" />
-							<textfield name="seedInput" depth="5" pos="289,0" width="232" height="32" pivot="topLeft" on_hover="true" />
+							<textfield name="seedInput" depth="5" pos="289,0" width="232" height="32" pivot="topLeft" />
 						</rect>
 						<rect>
 							<label depth="4" width="250" height="30" style="hover" tooltip_key="xuiRwgWorldSizeDesc" text="World Size" text_key="xuiRwgWorldSize" font_size="28" color="[white]" justify="right" pivot="topleft" />
@@ -843,115 +813,115 @@
 						<savegames_list_entry width="590" height="61" />
 					</grid>
 
-					<simplebutton name="btnDeleteSave" pos="290,-610" width="200" height="30" font_size="26" caption_key="btnDelete" pivot="center" upper_case="true" />
+					<simplebutton name="btnDeleteSave" pos="290,-620" width="200" height="32" font_size="26" caption_key="btnDelete" pivot="center" upper_case="true" />
 				</rect>
 			</rect>
 		</rect>
 		
-		<rect name="tabs" controller="TabSelector" pos="595,-50" width="590" height="680" select_tab_contents_on_open="false">			
+		<rect name="rightPanel" pos="595,-50" width="590" height="680">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 
-			<rect name="tabsHeader" height="39" depth="0">
-				<!--<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />-->
+			<rect name="tabs" controller="TabSelector" select_tab_contents_on_open="false">			
+				<rect name="tabsHeader" height="39" depth="0">
+					<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="144" cell_height="36" repeat_content="true" arrangement="horizontal">
+						<rect controller="TabSelectorButton">
+							<simplebutton name="tabButton" depth="2" pos="-1,0" width="143" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
+							<sprite depth="8" sprite="menu_empty2px" pos="141,0" width="2" height="36" color="[black]" />
+						</rect>
+					</grid>
+				</rect>
 				
-				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="144" cell_height="36" repeat_content="true" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="143" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
-						<sprite depth="8" sprite="menu_empty2px" pos="142,0" width="2" height="35" color="[black]" visible="{tabsenabled}" />
+				<rect name="tabsContents" depth="2">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="ServerEnabled" title="goServerEnabled" value_wrap="false" value_type="bool" values="" display_names="goServerEnabledOff,goServerEnabledOn" value_localization_prefix="" />
+							<gameoption name="Region" title="goRegion" value_wrap="true" value_type="string" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" has_default="false" always_show="true" />
+							<gameoption name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix="" />
+							<gameoption name="ServerEACPeerToPeer" title="goEacEnabled" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" has_default="true" enabled="{servereacpeertopeer}"/>
+							<gameoption name="ServerAllowCrossplay" title="goServerAllowCrossplay" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""  tooltip_key="{crossplayTooltip}"/>
+							<gameoption name="ServerPassword" title="goPassword" value_wrap="false" value_type="string" values="" display_names="" value_localization_prefix="" is_textinput="true" password_field="true" character_limit="30" />
+							
+							<!--ServerMaxPlayerCount gameoptions, some are for console platforms.-->
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 4, 6, 8, 16" display_names="" value_localization_prefix="goPlayer" platform="!PS5,!XBOX_S,!XBOX_X"/>
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 3, 4" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="PS5,XBOX_X"/>
+							<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="XBOX_S"/>
+							<rect/>
+							
+							<gameoption name="GameDifficulty" title="goDifficulty" value_wrap="false" value_type="int" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" />
+							<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goXPMultiplierValue" />
+							<gameoption name="DayNightLength" title="goDayLength" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goMinute" />
+							<gameoption name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goDayLightLengthValue" />
+						</grid>
 					</rect>
-				</grid>
-			</rect>
-			
-			<rect name="tabsContents" depth="2">
-				<sprite depth="0" pos="2,0" width="586" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 
-				<rect tab_key="xuiGameSettingsGeneral">
-					<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-						<gameoption name="ServerEnabled" title="goServerEnabled" value_wrap="false" value_type="bool" values="" display_names="goServerEnabledOff,goServerEnabledOn" value_localization_prefix="" />
-						<gameoption name="Region" title="goRegion" value_wrap="true" value_type="string" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" has_default="false" always_show="true" />
-						<gameoption name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix="" />
-						<gameoption name="ServerEACPeerToPeer" title="goEacEnabled" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" has_default="true" enabled="{servereacpeertopeer}"/>
-						<gameoption name="ServerAllowCrossplay" title="goServerAllowCrossplay" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix=""  tooltip_key="{crossplayTooltip}"/>
-						<gameoption name="ServerPassword" title="goPassword" value_wrap="false" value_type="string" values="" display_names="" value_localization_prefix="" is_textinput="true" password_field="true" character_limit="30" />
-						
-						<!--ServerMaxPlayerCount gameoptions, some are for console platforms.-->
-						<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 4, 6, 8, 16" display_names="" value_localization_prefix="goPlayer" platform="!PS5,!XBOX_S,!XBOX_X"/>
-						<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2, 3, 4" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="PS5,XBOX_X"/>
-						<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="2" values_enforced="true" display_names="" value_localization_prefix="goPlayer" platform="XBOX_S"/>
-						<rect/>
-						
-						<gameoption name="GameDifficulty" title="goDifficulty" value_wrap="false" value_type="int" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" />
-						<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-						<gameoption name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goXPMultiplierValue" />
-						<gameoption name="DayNightLength" title="goDayLength" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goMinute" />
-						<gameoption name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goDayLightLengthValue" />
-					</grid>
-				</rect>
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsBasic">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" values_from_gameserverconfig="true" value_type="int" values="" display_names="goDisabled" value_localization_prefix="goDay" />
+							<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goDay" />
+							<gameoption name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
+							<gameoption name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goEnemie" />
+							<gameoption name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
+							<gameoption name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" />
+							<!--
+							<gameoption name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" value_type="int" values="0, 10, 30, 60" display_names="" value_localization_prefix="" />
+							<gameoption name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" value_type="int" values="0, 10, 30, 50" display_names="" value_localization_prefix="" />
+							-->
+							<gameoption name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goAirDropValue" />
+							<gameoption name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="BiomeProgression" title="goBiomeProgression" value_wrap="false" value_type="bool" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="StormFreq" title="goStormFreq" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
+						</grid>
+					</rect>
 
-				<rect tab_key="xuiGameSettingsBasic">
-					<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-						<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" values_from_gameserverconfig="true" value_type="int" values="" display_names="goDisabled" value_localization_prefix="goDay" />
-						<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goDay" />
-						<gameoption name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
-						<gameoption name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goEnemie" />
-						<gameoption name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
-						<gameoption name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
-						<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
-						<gameoption name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
-						<gameoption name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" />
-						<rect/>
-						<!--
-						<gameoption name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" value_type="int" values="0, 10, 30, 60" display_names="" value_localization_prefix="" />
-						<gameoption name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" value_type="int" values="0, 10, 30, 50" display_names="" value_localization_prefix="" />
-						-->
-						<gameoption name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goAirDropValue" />
-						<gameoption name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-					</grid>
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsAdvanced">
+						<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<!--<gameoption name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />-->
+							<gameoption name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<gameoption name="LootAbundance" title="goLootAbundance" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLootAbundanceValue" />
+							<gameoption name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
+							<gameoption name="MaxChunkAge" title="goMaxChunkAge" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goDay" />
+							<gameoption name="DeathPenalty" title="goDeathPenalty" value_wrap="false" value_type="int" values="" display_names="goNone,goXPOnly,goInjured,goPermaDeath" value_localization_prefix="" />
+							<gameoption name="DropOnDeath" title="goDropOnDeath" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" />
+							<gameoption name="DropOnQuit" title="goDropOnQuit" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix="" />
+							<gameoption name="EnemySpawnMode" title="goEnemySpawn" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<!--BuildCreate gameoptions, some are for console platforms.-->
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" platform="!PS5,!XBOX"/>
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescPS5" platform="PS5" />
+							<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescXBOX" platform="XBOX" />
+							<gameoption name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goUnlimited"/>
+						</grid>
+					</rect>
+					
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsMultiplayer">
+						<grid pos="6,-77" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+							<gameoption name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" />
+							<gameoption name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimSizeValue" />
+							<gameoption name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
+							<gameoption name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
+							<gameoption name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" value_type="int" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" />
+							<gameoption name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
+							<gameoption name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
+							<gameoption name="LandClaimOfflineDelay" title="goLandClaimOfflineDelay" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goMinute" />
+							<gameoption name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
+							<gameoption name="BedrollExpiryTime" title="goBedrollExpiryTime" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
+							<gameoption name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />
+							<gameoption name="ServerPort" title="goPort" value_wrap="false" value_type="int" values="" display_names="" value_localization_prefix="" is_textinput="true" character_limit="5"/>						
+							<gameoption name="DayCount" title="goDayCount" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 9" display_names="goUnlimited" value_localization_prefix="goDay" />
+							<gameoption name="FragLimit" title="goFragLimit" value_wrap="false" value_type="int" values="0, 1, 5, 10, 15, 20, 25, 50" display_names="goUnlimited" value_localization_prefix="goFrag" />
+							<gameoption name="MatchLength" title="goMatchLength" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 60" display_names="goUnlimited" value_localization_prefix="goMinute" />
+							<gameoption name="RebuildMap" title="goRebuildMap" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+							<gameoption name="ZombiePlayers" title="goZombiePlayers" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+						</grid>
+					</rect>
+					
 				</rect>
-
-				<rect tab_key="xuiGameSettingsAdvanced">
-					<grid pos="6,-77" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-						<!--<gameoption name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />-->
-						<gameoption name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
-						<gameoption name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
-						<gameoption name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goBlockDamageValue" />
-						<gameoption name="LootAbundance" title="goLootAbundance" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLootAbundanceValue" />
-						<gameoption name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
-						<gameoption name="MaxChunkAge" title="goMaxChunkAge" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goDay" />
-						<gameoption name="DeathPenalty" title="goDeathPenalty" value_wrap="false" value_type="int" values="" display_names="goNone,goXPOnly,goInjured,goPermaDeath" value_localization_prefix="" />
-						<gameoption name="DropOnDeath" title="goDropOnDeath" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" />
-						<gameoption name="DropOnQuit" title="goDropOnQuit" value_wrap="false" value_type="int" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix="" />
-						<gameoption name="EnemySpawnMode" title="goEnemySpawn" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-						<!--BuildCreate gameoptions, some are for console platforms.-->
-						<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" platform="!PS5,!XBOX"/>
-						<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescPS5" platform="PS5" />
-						<gameoption name="BuildCreate" title="goBuildCreate" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" tooltip_key="goBuildCreateDescXBOX" platform="XBOX" />
-						<gameoption name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goUnlimited"/>
-					</grid>
-				</rect>
-				
-				<rect tab_key="xuiGameSettingsMultiplayer">
-					<grid pos="6,-77" rows="14" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-						<gameoption name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" />
-						<gameoption name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimSizeValue" />
-						<gameoption name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
-						<gameoption name="LandClaimExpiryTime" title="goLandClaimExpiryTime" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
-						<gameoption name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" value_type="int" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" />
-						<gameoption name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
-						<gameoption name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
-						<gameoption name="LandClaimOfflineDelay" title="goLandClaimOfflineDelay" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goMinute" />
-						<gameoption name="BedrollDeadZoneSize" title="goBedrollDeadZoneSize" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
-						<gameoption name="BedrollExpiryTime" title="goBedrollExpiryTime" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="" value_localization_prefix="goLandClaimExpiryTimeValue" />
-						<gameoption name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values_from_gameserverconfig="true" values="" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />
-						<gameoption name="ServerPort" title="goPort" value_wrap="false" value_type="int" values="" display_names="" value_localization_prefix="" is_textinput="true" character_limit="5"/>						
-						<gameoption name="DayCount" title="goDayCount" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 9" display_names="goUnlimited" value_localization_prefix="goDay" />
-						<gameoption name="FragLimit" title="goFragLimit" value_wrap="false" value_type="int" values="0, 1, 5, 10, 15, 20, 25, 50" display_names="goUnlimited" value_localization_prefix="goFrag" />
-						<gameoption name="MatchLength" title="goMatchLength" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 60" display_names="goUnlimited" value_localization_prefix="goMinute" />
-						<gameoption name="RebuildMap" title="goRebuildMap" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-						<gameoption name="ZombiePlayers" title="goZombiePlayers" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-					</grid>
-				</rect>
-				
 			</rect>
 		</rect>
 
@@ -1021,24 +991,24 @@
 				<sprite depth="8" name="border" sprite="menu_empty" color="[black]" type="sliced" fillcenter="false" />
 				
 				<grid pos="5,-2" rows="1" cols="5" depth="3" cell_width="140" cell_height="36" repeat_content="false" arrangement="horizontal" >
-					<rect name="typeDedicated" platform="!CONSOLE">
-						<button name="button" pos="22,-22" width="36" height="36" sprite="server_stock" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeDedicatedTooltip" selected="{typededicatedselected}" />
+					<rect name="typeDedicated">
+						<button name="button" pos="22,-22" width="36" height="36" sprite="server_stock" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeDedicatedTooltip" selected="{typededicatedselected}" />
 						<label name="label" pos="42,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typededicatedcount}" />
 					</rect>
 					<rect name="typePeer">
-						<button name="button" pos="22,-22" width="36" height="36" sprite="server_peer" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypePeerTooltip" selected="{typepeerselected}" />
+						<button name="button" pos="22,-22" width="36" height="36" sprite="server_peer" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypePeerTooltip" selected="{typepeerselected}" />
 						<label name="label" pos="42,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typepeercount}" />
 					</rect>
 					<rect name="typeFriends">
-						<button name="button" pos="22,-22" width="36" height="36" sprite="server_friends" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeFriendsTooltip" selected="{typefriendsselected}" />
+						<button name="button" pos="22,-22" width="36" height="36" sprite="server_friends" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeFriendsTooltip" selected="{typefriendsselected}" />
 						<label name="label" pos="42,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typefriendscount}" />
 					</rect>
 					<rect name="typeHistory">
-						<button name="button" pos="22,-22" width="36" height="36" sprite="server_history" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeHistoryTooltip" selected="{typehistoryselected}" />
+						<button name="button" pos="22,-22" width="36" height="36" sprite="server_history" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeHistoryTooltip" selected="{typehistoryselected}" />
 						<label name="label" pos="42,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typehistorycount}" />
 					</rect>
-					<rect name="typeLAN" platform="!CONSOLE">
-						<button name="button" pos="22,-22" width="36" height="36" sprite="server_lan" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeLANTooltip" selected="{typelanselected}" />
+					<rect name="typeLAN">
+						<button name="button" pos="22,-22" width="36" height="36" sprite="server_lan" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="center" tooltip_key="xuiServerBrowserTypeLANTooltip" selected="{typelanselected}" />
 						<label name="label" pos="42,-22" width="100" height="32" font_size="30" justify="left" pivot="left" text="{typelancount}" />
 					</rect>
 				</grid>
@@ -1047,7 +1017,7 @@
 					<sprite depth="4" name="searchIcon" style="icon30px" pos="5,-66" sprite="ui_game_symbol_search" pivot="Left"/>
 					<textfield name="searchInput" depth="5" pos="40,-51" width="250" height="30" search_field="true" />
 					
-					<button name="btnShowFilters" pos="340,-66" width="30" height="30" sprite="server_filter" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="left" tooltip_key="xuiServerBrowserShowFiltersTooltip" selected="{filtersbuttonselected}" />
+					<button name="btnShowFilters" pos="340,-66" width="30" height="30" sprite="server_filter" style="press" defaultcolor="180,180,180" hovercolor="[white]" selectedcolor="[selectedColor]" foregroundlayer="true" type="simple" hoverscale="1.1" pivot="left" tooltip_key="xuiServerBrowserShowFiltersTooltip" selected="{filtersbuttonselected}" />
 				</rect>
 				
 				<rect depth="4" name="maxResultsRect" pos="10,-66" width="550" height="40" visible="{# isprefilteredsearch}">
@@ -1072,8 +1042,8 @@
 						<!--<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0" type="sliced" fillcenter="true" globalopacity="false" />-->
 						
 						<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="144" cell_height="36" repeat_content="true" arrangement="horizontal">
-							<rect>
-								<simplebutton name="tabButton" depth="2" pos="-1,0" width="143" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="true" />
+							<rect controller="TabSelectorButton">
+								<simplebutton name="tabButton" depth="2" pos="-1,0" width="143" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="true" caption="{tab_name_localized}" />
 								<sprite depth="8" sprite="menu_empty2px" pos="142,0" width="2" height="35" color="[black]" />
 							</rect>
 						</grid>
@@ -1082,7 +1052,7 @@
 					<rect name="tabsContents" depth="2" pos="0,-37" height="711" is_serverbrowser="true">
 						<sprite depth="0" pos="2,0" width="576" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" globalopacity="false" />
 
-						<rect tab_key="xuiGameSettingsGeneral">
+						<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
 							<table pos="8,-10" columns="1" padding="0,6" always_reposition="true">
 
 								<rect name="" width="560" height="232">
@@ -1118,7 +1088,7 @@
 							</table>
 						</rect>
 
-						<rect tab_key="xuiGameSettingsBasic">
+						<rect controller="TabSelectorTab" tab_key="xuiGameSettingsBasic">
 							<grid pos="8,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 								<browsergameoptioninfo name="GameDifficulty" title="goDifficulty" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" />
 								<browsergameoptioninfo name="DayNightLength" title="goDayLength" value_localization_prefix="goMinute" />
@@ -1138,7 +1108,7 @@
 							</grid>
 						</rect>
 
-						<rect tab_key="xuiGameSettingsAdvanced">
+						<rect controller="TabSelectorTab" tab_key="xuiGameSettingsAdvanced">
 							<grid pos="8,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 								<browsergameoptioninfo name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 								<browsergameoptioninfo name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
@@ -1155,7 +1125,7 @@
 							</grid>
 						</rect>
 						
-						<rect tab_key="xuiGameSettingsMultiplayer">
+						<rect controller="TabSelectorTab" tab_key="xuiGameSettingsMultiplayer">
 							<grid pos="8,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 								<browsergameoptioninfo name="PlayerKillingMode" title="goPlayerKillingMode" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" />
 								<browsergameoptioninfo name="LandClaimSize" title="goLandClaimSize" value_localization_prefix="goLandClaimSizeValue" />
@@ -1225,8 +1195,8 @@
 					<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0" type="sliced" fillcenter="true" globalopacity="false" />
 					
 					<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="5" cell_width="130" cell_height="36" repeat_content="true" arrangement="horizontal">
-						<rect>
-							<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="true" />
+						<rect controller="TabSelectorButton">
+							<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="true" caption="{tab_name_localized}" />
 							<sprite depth="8" sprite="menu_empty2px" pos="128,0" width="2" height="35" color="[black]" />
 						</rect>
 					</grid>
@@ -1235,7 +1205,7 @@
 				<rect name="tabsContents" depth="2" pos="0,-37" height="711" is_serverbrowser="true">
 					<sprite depth="0" pos="2,0" width="726" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" globalopacity="false" />
 
-					<rect tab_key="xuiGameSettingsServer">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsServer">
 						<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<browsergameoptionstring name="GameHost" title="goGameHost" visible="{isprefilteredsearch}" />
 							<browsergameoptioncombined name="Region" title="goRegion" value_wrap="false" values="NorthAmericaEast,NorthAmericaWest,CentralAmerica,SouthAmerica,Europe,Russia,Asia,MiddleEast,Africa,Oceania" display_names="" value_localization_prefix="goRegionName" allow_custom="false" allow_any="{# !isprefilteredsearch}" />
@@ -1254,7 +1224,7 @@
 						</grid>
 					</rect>
 
-					<rect tab_key="xuiGameSettingsGeneral">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
 						<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<browsergameoptionstring name="LevelName" title="goGameWorld" />
 							<browsergameoptioncombined name="WorldSize" title="goGameWorldSize" value_wrap="false" values="4096,6144,8192,10240" display_names="" value_localization_prefix="" allow_custom="true" />
@@ -1266,7 +1236,7 @@
 						</grid>
 					</rect>
 
-					<rect tab_key="xuiGameSettingsBasic">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsBasic">
 						<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<browsergameoptioncombined name="GameDifficulty" title="goDifficulty" value_wrap="false" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" allow_custom="false" />
 							<browsergameoptioncombined name="DayNightLength" title="goDayLength" value_wrap="false" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute" />
@@ -1286,7 +1256,7 @@
 						</grid>
 					</rect>
 
-					<rect tab_key="xuiGameSettingsAdvanced">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsAdvanced">
 						<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<browsergameoptioncombined name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 							<browsergameoptioncombined name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
@@ -1308,7 +1278,7 @@
 						</grid>
 					</rect>
 					
-					<rect tab_key="xuiGameSettingsMultiplayer">
+					<rect controller="TabSelectorTab" tab_key="xuiGameSettingsMultiplayer">
 						<grid pos="8,-40" rows="14" cell_width="725" cell_height="45" repeat_content="false" arrangement="vertical" >
 							<browsergameoptioncombined name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" allow_custom="false" />
 							<browsergameoptioncombined name="LandClaimSize" title="goLandClaimSize" value_wrap="false" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue" />
@@ -1413,8 +1383,8 @@
 		</panel>
 	</window>
 
-	<window name="optionsMenu" anchor="CenterCenter" pos="0,0" width="1050" height="780" controller="OptionsMenu" cursor_area="true">
-		<grid name="optionsButtons" pos="0,80" rows="13" cell_width="400" cell_height="70" repeat_content="false" arrangement="vertical" >
+	<window name="optionsMenu" anchor="CenterCenter" pos="0,160" width="1050" height="780" controller="OptionsMenu" cursor_area="true">
+		<grid name="optionsButtons" pos="0,0" rows="13" cell_width="400" cell_height="70" repeat_content="false" arrangement="vertical" >
 			<mainmenubutton name="btnGeneral" pivot="center" width="400" height="50" caption_key="xuiBtnOptionsGeneral" />
 			<mainmenubutton name="btnVideo" pivot="center" width="400" height="50" caption_key="xuiBtnOptionsVideo" />
 			<mainmenubutton name="btnAudio" pivot="center" width="400" height="50" caption_key="xuiBtnOptionsAudio" />
@@ -1433,12 +1403,12 @@
 		</widget>
 	</window>
 
-	<window name="optionsGeneral" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsGeneral" cursor_area="true">
+	<window name="optionsGeneral" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsGeneral" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsGeneral" />
 		</panel>
 		
-		<panel name="content" pos="0,-35" height="650" depth="1" backgroundcolor="[mediumGrey]" bordercolor="[black]" borderthickness="3" pivot="topleft">
+		<panel name="content" pos="0,-50" height="700" depth="1" backgroundcolor="[mediumGrey]" bordercolor="[black]" borderthickness="3" pivot="topleft">
 
 			<grid pos="8,-20" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 				<generaloption name="Language" type="ComboBoxList`1[XUiC_OptionsGeneral+LanguageInfo]" value_wrap="false" width="900" />
@@ -1454,53 +1424,61 @@
 
 				<generaloption name="LnlMtuWorkaround" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 				
-
+				<generaloption name="AutoParty" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 				<generaloption name="ChatComms" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 				<generaloption name="Crossplay" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" tooltip_key="{crossplayTooltip}"/>
 				<generaloption name="ShowConsoleButton" type="ComboBoxBool" localization_prefix="xuiComboOnOff" width="900" />
 			</grid>
-			<simplebutton name="btnEula" pos="397, -460" width="477" height="48" font_size="32" caption_key="xuiEula"/>
-			<simplebutton name="btnBugReport" pos="397, -520" width="477" height="48" font_size="32" caption_key="xuiBugReportHeader" visible="{bug_reporting}"/>
+			<simplebutton name="btnEula" pos="397, -505" width="477" height="48" font_size="32" caption_key="xuiEula"/>
+			<simplebutton name="btnBugReport" pos="397, -565" width="477" height="48" font_size="32" caption_key="xuiBugReportHeader" visible="{bug_reporting}"/>
 		</panel>
 
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true"/>
 		</rect>
 	</window>
 	
-	<window name="optionsVideo" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsVideo" cursor_area="true">
+	<window name="optionsVideo" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsVideo" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsVideo" />
 		</panel>
 		
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="650" select_tab_contents_on_open="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
 			<rect name="tabsHeader" height="39" depth="0">
 				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
 				
 				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="200" cell_height="36" repeat_content="true" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 				</grid>
 			</rect>
 			
-			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
 				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
-				<rect tab_key="xuiOptionsVideoDisplay">
-					<grid pos="8,-40" rows="13" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsVideoDisplay">
+					<grid pos="8,-40" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<videooption name="Resolution" type="ComboBoxList`1[XUiC_OptionsVideo+ResolutionInfo]" value_wrap="false" />
 
 						<videooption name="Fullscreen" type="ComboBoxList`1[System.String]" values="Off,On,Exclusive" localization_prefix="xuiOptionsVideoFullscreen" value_wrap="false" />
 
-						<videooption name="DyMode" type="ComboBoxList`1[System.String]" values="Off,Auto,Scale" localization_prefix="xuiOptionsVideoDyMode" value_wrap="false" />
-						<videooption name="DyMinFPS" type="ComboBoxInt" value_increment="5" value_wrap="false" />
-						<videooption name="DyScale" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
+						<videooption name="Upscaler" type="ComboBoxList`1[System.String]" values="Off,Dynamic,Scale,FSR3,DLSS" localization_prefix="xuiOptionsVideoUpscaler" value_wrap="false" />
+						
+						<rect visible="{upscaler_mode_dynamic}">
+							<videooption name="DyMinFPS" type="ComboBoxInt" value_increment="5" value_wrap="false" />
+						</rect>
+						<rect visible="{upscaler_mode_scale}">
+							<videooption name="DyScale" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
+						</rect>
+						<rect visible="{upscaler_mode_fsr}">
+							<videooption name="FSRPreset" type="ComboBoxList`1[System.String]" values="UltraPerformance,Performance,Balanced,Quality,UltraQuality,NativeAA" localization_prefix="xuiOptionsVideoFSRPreset" value_wrap="false" format_string="0%" />
+						</rect>
 
 						<videooption name="VSync" type="ComboBoxList`1[System.String]" values="Off,On,Half" localization_prefix="xuiOptionsVideoVsync" value_wrap="false" />
 
@@ -1517,11 +1495,11 @@
 					</grid>
 				</rect>
 
-				<rect tab_key="xuiOptionsVideoQuality">
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsVideoQuality">
 					<videooption pos="8,-40" name="QualityPreset" type="ComboBoxList`1[System.String]" values="Lowest,Low,Medium,High,Ultra,Custom" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
 
 					<grid pos="8,-98" rows="13" cell_width="700" cell_height="40" repeat_content="false" arrangement="vertical" >
-						<videooption name="AntiAliasing" type="ComboBoxList`1[System.String]" values="Off,Low,Medium,High,Temporal,FSRUltraPerformance,FSRPerformance,FSRLow,FSRMedium,FSRHigh,FSRUltra" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
+						<videooption name="AntiAliasing" type="ComboBoxList`1[System.String]" values="Off,Low,Medium,High,Temporal" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
 						<videooption name="AntiAliasingSharp" type="ComboBoxFloat" value_increment="0.10" value_wrap="false" format_string="0%" />
 
 						<rect>
@@ -1567,8 +1545,8 @@
 					</grid>
 				</rect>
 				
-				<rect tab_key="xuiOptionsVideoUI">
-					<grid pos="8,-40" rows="13" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsVideoUI">
+					<grid pos="8,-40" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<videooption name="UIBackgroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 
 						<videooption name="UIForegroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
@@ -1584,8 +1562,8 @@
 					</grid>
 				</rect>
 
-				<rect tab_key="xuiOptionsDynamicMesh">
-					<grid pos="8,-104" rows="12" cell_width="700" cell_height="40" repeat_content="false" arrangement="vertical" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsDynamicMesh">
+					<grid pos="8,-40" rows="14" cell_width="700" cell_height="40" repeat_content="false" arrangement="vertical" >
 						<videooption name="DynamicMeshEnabled" type="ComboBoxBool" value_wrap="false" value_type="bool" values="" value_localization_prefix="" />
 						<videooption name="DynamicMeshDistance" type="ComboBoxList`1[System.Int32]" value_wrap="false" value_type="int" values="100,500,1000,1500,2000" value_localization_prefix="" />
 						<videooption name="DynamicMeshHighQualityMesh" type="ComboBoxBool" value_wrap="false" value_type="bool" values="" value_localization_prefix="" />
@@ -1598,37 +1576,37 @@
 			</rect>
 		</rect>
 
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" visible="{isTabUi}" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true" />
 		</rect>
 	</window>
 	
-	<window name="optionsVideoSimplified" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsVideoSimplified" cursor_area="true">
+	<window name="optionsVideoSimplified" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsVideoSimplified" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsVideo" />
 		</panel>
 		
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="650" select_tab_contents_on_open="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
 			<rect name="tabsHeader" height="39" depth="0">
 				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true"/>
 				
 				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="2" cell_width="200" cell_height="36" repeat_content="true" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 				</grid>
 			</rect>
 			
-			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
 				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
-				<rect tab_key="xuiOptionsVideoDisplay">
-					<grid pos="8,-40" rows="13" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsVideoDisplay">
+					<grid pos="8,-40" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<rect>
 							<videooption name="Brightness" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 							<simplebutton name="btnDefaultBrightness" depth="3" pos="675, 0" pivot="left" width="150" height="32" font_size="28" caption_key="xuiDefault" />
@@ -1640,13 +1618,14 @@
 						</rect>
 						
 						<videooption name="MotionBlurToggle" type="ComboBoxBool" values="Off,On" localization_prefix="xuiComboOnOff" />
-						<videooption name="GraphicsMode" type="ComboBoxList`1[System.String]" values="ConsolePerformance, ConsolePerformanceFSR, ConsoleQuality, ConsoleQualityFSR, Custom" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
+						<videooption name="GraphicsMode" type="ComboBoxList`1[System.String]" values="ConsolePerformance, ConsoleQuality, Custom" localization_prefix="xuiOptionsVideoPresets" value_wrap="false" />
+						<videooption name="ConsoleUpscaler" type="ComboBoxList`1[System.String]" values="FSR3,Scale" localization_prefix="xuiOptionsVideoUpscaler" value_wrap="false" />
 						<!-- For use with FRAME_LIMIT_WIP: <videooption name="FramerateLimit" type="ComboBoxList`1[System.String]" values="Off, Half, Third, Quarter" value_wrap="false" /> -->
 					</grid>
 				</rect>			
 				
-				<rect tab_key="xuiOptionsVideoUI">
-					<grid pos="8,-40" rows="13" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsVideoUI">
+					<grid pos="8,-40" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<videooption name="UIBackgroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 
 						<videooption name="UIForegroundOpacity" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
@@ -1662,100 +1641,167 @@
 			</rect>
 		</rect>
 
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" visible="{isTabUi}" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true" />
 		</rect>
 	</window>
 	
-	<window name="optionsAudio" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsAudio" cursor_area="true">
+	<window name="optionsAudio" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsAudio" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsAudio" />
 		</panel>
 		
-		<panel name="content" pos="0,-35" height="695" depth="1" backgroundcolor="[mediumGrey]" bordercolor="[black]" borderthickness="3" pivot="topleft">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
+			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
-			<grid pos="8,-20" rows="15" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
-				<audiooption name="OverallAudioVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
-
-				<audiooption name="AmbientVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
-
-				<audiooption name="InGameMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
-
-				<audiooption name="MenuMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{notingame}" />
-
-				<audiooption name="DynamicMusicEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" />
-
-				<audiooption name="DynamicMusicDailyTimeAllotted" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
-
-				<rect />
-
-				<!-- <audiooption name="SubtitlesEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" /> -->
-
-				<audiooption name="ProfanityFilter" type="ComboBoxBool" localization_prefix="xuiComboYesNo"/>
-				<rect />
+			<rect name="tabsHeader" height="39" depth="0">
+				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
 				
-				<audiooption name="MumblePositionalAudioSupportEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" platform="!CONSOLE" />
-				<audiooption name="VoiceChatEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" visible="{# commsallowed and voiceavailable}" />
-				<audiooption name="VoiceOutputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{# commsallowed and voiceavailable}" platform="!PS5" />
-				<audiooption name="VoiceInputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{# commsallowed and voiceavailable}" platform="!PS5" />
-				<audiooption name="VoiceVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{# commsallowed and voiceavailable}" />
+				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="4" cell_width="200" cell_height="36" repeat_content="true" arrangement="horizontal">
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
+						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
+					</rect>
+				</grid>
+			</rect>
+			
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
+				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+			
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsAudioGame">
+					<grid pos="8,-20" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<audiooption name="OverallAudioVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 
-				<!-- <audiooption name="MicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{commsallowed}" /> -->
-			</grid>
-		</panel>
+						<audiooption name="AmbientVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 
-		<rect pos="0, -765">
+						<audiooption name="InGameMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
+						<audiooption name="MenuMusicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{notingame}" />
+
+						<audiooption name="DynamicMusicEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" />
+						<audiooption name="DynamicMusicDailyTimeAllotted" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
+
+						<rect />
+
+						<audiooption name="SubtitlesEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" />
+						<audiooption name="ProfanityFilter" type="ComboBoxBool" localization_prefix="xuiComboYesNo"/>
+
+						<rect />
+					</grid>
+				</rect>
+
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsAudioGameVoice" tab_visible="{# (commsallowed and voiceavailable) or !is_console }">
+					<grid pos="8,-20" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<audiooption name="MumblePositionalAudioSupportEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" platform="!CONSOLE" />
+						<rect />
+						<audiooption name="VoiceChatEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" visible="{# commsallowed and voiceavailable}" />
+						<audiooption name="VoiceOutputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{# commsallowed and voiceavailable}" platform="!PS5" />
+						<audiooption name="VoiceInputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{# commsallowed and voiceavailable}" platform="!PS5" />
+						<audiooption name="VoiceVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_max="2" value_wrap="false" format_string="0%" visible="{# commsallowed and voiceavailable}" />
+
+						<!-- <audiooption name="MicVolumeLevel" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" visible="{commsallowed}" /> -->
+					</grid>
+				</rect>
+				
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsAudioDiscord" tab_visible="{# is_online and commsallowed and multiplayerallowed }">
+					<grid pos="8,-20" rows="14" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<audiooption name="DiscordEnabled" type="ComboBoxBool" localization_prefix="xuiComboYesNo" />
+						
+						<panel width="1384" height="120" backgroundcolor="[transparent]" borderspritename="menu_empty2px" bordercolor="[black]" borderthickness="0" borderinset="0,80" padding="10,90" visible="{# discord_enabled and !discord_is_ready }">
+							<label height="40" text_key="xuiOptionsAudioDiscordFurtherOptionsWhenInitialized" />
+							<simplebutton name="btnDiscordInitialize" pos="0,-60" width="300" height="40" caption_key="xuiOptionsAudioDiscordInitializeNow" />
+						</panel>
+						
+						<rect visible="{# discordinitialized and discord_supports_full_accounts and discord_supports_provisional_accounts}">
+							<discord_button name="btnDiscordLinkAccount" pos="389,-10" width="350" height="44" caption_key="xuiOptionsAudioDiscordLinkAccount" visible="{# discord_is_ready and !discordaccountlinked}" />
+							<discord_button name="btnDiscordUnlinkAccount" pos="389,-10" width="350" height="44" caption_key="xuiOptionsAudioDiscordUnlinkAccount" visible="{# discord_is_ready and discordaccountlinked}" gradient_start="135,135,135" gradient_end="116,116,116" />
+						</rect>
+						<rect visible="{# discordinitialized and discord_supports_full_accounts and discord_supports_provisional_accounts}">
+							<!-- just reserving a second grid entry so that the above buttons properly fit in the space -->
+						</rect>
+						
+						<audiooption name="DiscordDmPrivacyMode" type="ComboBoxBool" localization_prefix="xuiComboOnOff" visible="{discord_is_ready}" />
+						<audiooption name="DiscordAutoJoinVoice" type="ComboBoxEnum`1[DiscordManager+EAutoJoinVoiceMode]" value_wrap="false" localization_prefix="xuiOptionsAudioDiscordAutoJoinVoice" visible="{discord_is_ready}" />
+						<audiooption name="DiscordOutputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{discord_is_ready}" />
+						<audiooption name="DiscordOutputVolume" type="ComboBoxFloat" value_increment="0.05" value_max="2" value_wrap="false" format_string="0%" visible="{discord_is_ready}" />
+						<audiooption name="DiscordInputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{discord_is_ready}" />
+						<audiooption name="DiscordInputVolume" type="ComboBoxFloat" value_increment="0.05" value_max="2" value_wrap="false" format_string="0%" visible="{discord_is_ready}" />
+						<audiooption name="DiscordVoiceButtonMode" type="ComboBoxBool" localization_prefix="xuiComboPttVa" visible="{discord_is_ready}" />
+						<audiooption name="DiscordVADThresholdAuto" type="ComboBoxBool" localization_prefix="xuiComboVADThresholdAuto" visible="{discord_is_ready}" enabled="{# !discord_ptt}" />
+						<rect name="VadThreshold">
+							<audiooption name="DiscordVADThreshold" type="ComboBoxInt" value_increment="5" value_min="-100" value_max="0" value_wrap="false" format_string="0 'dB'" visible="{discord_is_ready}" enabled="{# !discord_ptt and discord_vad_threshold_manual}" />
+							<sprite name="vadTest" pos="1350,-16" width="36" height="36" depth="2" pivot="center" on_hover="true" visible="{discord_is_ready}"
+								sprite="{# discord_in_call ? 'ui_game_symbol_mic' : 'ui_game_symbol_twitch_deafen' }"
+								tooltip_key="{# discord_in_call ? '' : 'xuiOptionsAudioDiscordNotInCall' }"
+								color="{# discord_is_speaking ? '255,255,255,255' : '160,160,160,255' }" />
+						</rect>
+
+						<rect visible="{# discord_is_ready and discordaccountlinked }">
+							<label pos="0,-20" width="350" height="40" pivot="left" justify="right" text_key="xuiOptionsAudioDiscordManageSocialLabel" tooltip_key="xuiOptionsAudioDiscordManageSocialLabelTooltip" />
+							<simplebutton name="btnDiscordManageSocialSettings" pos="389,0" width="897" height="40" caption_key="xuiOptionsAudioDiscordManageSocialButton" />
+						</rect>
+
+						<rect visible="{discord_is_ready}">
+							<label pos="0,-20" width="350" height="40" pivot="left" justify="right" text_key="xuiOptionsAudioDiscordManageBlockedUsers" tooltip_key="xuiOptionsAudioDiscordManageBlockedUsersTooltip" />
+							<simplebutton name="btnDiscordManageBlockedUsers" pos="389,0" width="897" height="40" caption_key="xuiOptionsAudioDiscordManageBlockedUsersButton" />
+						</rect>
+					</grid>
+				</rect>
+
+			</rect>
+		</rect>
+
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply"  parse_actions="true" />
 		</rect>
 	</window>
 	
-	<window name="optionsTwitch" anchor="CenterCenter" pos="-600,425" width="1200" height="780" controller="OptionsTwitch" cursor_area="true">
+	<window name="optionsTwitch" anchor="CenterCenter" pos="-600,425" width="1200" height="820" controller="OptionsTwitch" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="550" text="TWITCH SETTINGS" text_key="xuiTwitchSettings" />
 		</panel>
 		
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="650" select_tab_contents_on_open="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
 			<rect name="tabsHeader" height="39" depth="0">
 				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
 				
 				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="5" cell_width="200" cell_height="36" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 					
-					<rect visible="{allowactions}">
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton" visible="{allowactions}">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 					
-					<rect visible="{allowvotes}">
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton" visible="{allowvotes}">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 					
-					<rect visible="{allowevents}">
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton" visible="{allowevents}">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 					
-					<rect visible="{onlyconnected}">
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton" visible="{onlyconnected}">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="200" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="198,0" width="2" height="35" color="[black]" />
 					</rect>
 				</grid>
 			</rect>
 			
-			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
 				<sprite depth="0" pos="2,0" width="1196" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
-				<rect tab_key="xuiGameSettingsGeneral">
+				<rect controller="TabSelectorTab" tab_key="xuiGameSettingsGeneral">
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 			
 						<rect width="560" height="32">
@@ -1834,7 +1880,7 @@
 					</rect>
 				</rect>
 				
-				<rect tab_key="xuiOptionsTwitchActions" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsTwitchActions" >
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						
 						<rect width="560" height="32">
@@ -1901,7 +1947,7 @@
 					<!-- <label depth="3" pos="593,-43" width="540" height="535" text_key="xuiOptionsTwitchInfo" /> -->
 				</rect>
 				
-				<rect tab_key="TwitchInfo_Votes" >
+				<rect controller="TabSelectorTab" tab_key="TwitchInfo_Votes" >
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						
 						<rect width="560" height="32" >
@@ -1960,7 +2006,7 @@
 					<!-- <label depth="3" pos="593,-43" width="540" height="535" text_key="xuiOptionsTwitchInfo" /> -->
 				</rect>
 				
-				<rect tab_key="xuiOptionsTwitchEvents" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsTwitchEvents" >
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						
 						<rect width="560" height="32" visible="{hasbitevents}" >
@@ -2015,7 +2061,7 @@
 					<!-- <label depth="3" pos="593,-43" width="540" height="535" text_key="xuiOptionsTwitchInfo" /> -->
 				</rect>
 				
-				<rect tab_key="xuiOptionsTwitchPoints" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsTwitchPoints" >
 					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 			
 						<rect width="560" height="32">
@@ -2090,36 +2136,36 @@
 		
 		<label depth="4" pos="640,-663" width="550" height="30" text="{twitchstatus}" font_size="32" color="255,180,0,255" justify="right" pivot="topleft" />
 		
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="960, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1200, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true" />
 		</rect>
 	</window>
 	
-	<window name="optionsControls" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsControls" cursor_area="true">
+	<window name="optionsControls" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsControls" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsKeyboard" />
 		</panel>
 		
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="650" select_tab_contents_on_open="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
 			<rect name="tabsHeader" height="39" depth="0">
 				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
 				
-				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="11" cell_width="130" cell_height="36" repeat_content="true" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="12" cell_width="130" cell_height="36" repeat_content="true" arrangement="horizontal">
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="128,0" width="2" height="35" color="[black]" />
 					</rect>
 				</grid>
 			</rect>
 
-			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
 				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
-				<rect tab_key="xuiOptionsControlsGeneric">
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsControlsGeneric">
 					<grid pos="8,-40" rows="10" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<controloption name="LookSensitivity" type="ComboBoxFloat" value_increment="0.01" value_wrap="false" format_string="0.00" />
 
@@ -2137,49 +2183,49 @@
 					</grid>
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>	
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>					
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>				
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>					
 				</rect>
 				
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>	
 				</rect>
 
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>	
 				</rect>
 
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" rows="12" cell_width="700" cell_height="45" repeat_content="true" arrangement="horizontal" >
 						<keyboard_binding_entry name="bindingEntry"/>
 					</grid>	
@@ -2187,7 +2233,7 @@
 			</rect>
 		</rect>
 
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true" />
@@ -2218,29 +2264,29 @@
 		</panel>
 	</window>
 
-	<window name="optionsController" anchor="CenterCenter" pos="-700,425" width="1400" height="780" controller="OptionsController" cursor_area="true">
+	<window name="optionsController" anchor="CenterCenter" pos="-700,425" width="1400" height="820" controller="OptionsController" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="750" text_key="xuiOptionsController" />
 		</panel>
 		
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="650" select_tab_contents_on_open="true">
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="700" select_tab_contents_on_open="true">
 			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 
 			<rect name="tabsHeader" height="39" depth="0">
 				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" globalopacity="true" />
 				
 				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="11" cell_width="130" cell_height="36" repeat_content="true" arrangement="horizontal">
-					<rect>
-						<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" caption_key="xuiBack" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" />
+					<rect controller="TabSelectorButton">
+						<simplebutton name="tabButton" depth="2" pos="-1,0" width="130" height="36" font_size="34" bordercolor="[transparent]" defaultcolor="[darkGrey]" selectedsprite="menu_empty" selectedcolor="[mediumGrey]" foregroundlayer="false" caption="{tab_name_localized}" />
 						<sprite depth="8" sprite="menu_empty2px" pos="128,0" width="2" height="35" color="[black]" />
 					</rect>
 				</grid>
 			</rect>
 			
-			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
+			<rect name="tabsContents" depth="2" pos="0,-37" height="661">
 				<sprite depth="0" pos="2,0" width="1396" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 			
-				<rect tab_key="xuiOptionsControlsGeneric">
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsControlsGeneric">
 					<grid pos="8,-40" rows="10" cell_width="700" cell_height="45" repeat_content="false" arrangement="vertical" >
 
 						<controloption name="AllowController" type="ComboBoxBool" localization_prefix="xuiComboYesNo" platform="STANDALONE"/>
@@ -2284,26 +2330,26 @@
 					</grid>
 				</rect>
 
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="600" cell_height="66" rows="8" repeat_content="true" arrangement="vertical" >
 						<controller_binding_entry/>
 					</grid>
 				</rect>
 
-				<rect>
+				<rect controller="TabSelectorTab">
 					<grid name="controlsGrid" pos="8,-40" cols="2" cell_width="600" cell_height="66" rows="8" repeat_content="true" arrangement="vertical" >
 						<controller_binding_entry/>
 					</grid>
 				</rect>
 
-				<rect tab_key="xuiOptionsControllerLayoutTab" >
+				<rect controller="TabSelectorTab" tab_key="xuiOptionsControllerLayoutTab" >
 					<grid name="controlsGrid" pos="8,-25" cols="2" cell_width="555" cell_height="45" repeat_content="false" arrangement="horizontal" platform="STANDALONE">
 						<controloption name="ShowDS4" type="ComboBoxBool" localization_prefix="xuiBoolDualShock4"/>
 						<controloption name="ShowBindingsFor" type="ComboBoxList`1[System.String]" values="Player, Vehicles, UI" localization_prefix="xuiControlBindingsFor" />
 					</grid>
 					<controloption pos="20,-20" height="45" width="720" name="ShowBindingsFor" type="ComboBoxList`1[System.String]" values="Player, Vehicles, UI" localization_prefix="xuiControlBindingsFor" platform="CONSOLE"/>
 					
-					<rect name="controllerlayout">
+					<rect name="controllerlayout" pos="0,-30">
 						<sprite name="controllerArt" pos="700,-340" width="900" height="700" depth="2" pivot="center" atlas="ControllerArtAtlas" sprite="{controller_art}" color="[white]" />						
 						<sprite name="controllerLines" pos="700,-340" width="900" height="700" depth="3" pivot="center" atlas="ControllerArtAtlas" sprite="{controller_lines}" color="100,100,250"/>
 						
@@ -2343,14 +2389,14 @@
 			</rect>
 		</rect>
 
-		<rect pos="0, -720">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 			<simplebutton name="btnDefaults" depth="3" pos="1160, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiDefaults" upper_case="true" />
 			<simplebutton name="btnApply" depth="3" pos="1400, 0" pivot="right" width="200" height="48" font_size="32" caption_key="xuiApply" parse_actions="true"/>
 		</rect>
 	</window>
 
-	<window name="optionsProfiles" anchor="CenterCenter" pos="-450,425" width="950" height="800" controller="OptionsProfiles" cursor_area="true">
+	<window name="optionsProfiles" anchor="CenterCenter" pos="-450,425" width="950" height="820" controller="OptionsProfiles" cursor_area="true">
 		<panel name="header" pos="0,0" width="600" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" pos="6,-6" width="550" text_key="xuiOptionsProfiles" />
 		</panel>
@@ -2385,7 +2431,7 @@
 			<texture depth="100" name="playerPreview" material="Materials/Transparent Colored" size="320,702" globalopacity="false"/>
 		</rect>
 		
-		<rect pos="0, -755">
+		<rect pos="0, -770">
 			<simplebutton name="btnOk" depth="3" pos="400, 0" width="200" height="48" font_size="32" caption_key="xuiOk" upper_case="true" />
 		</rect>
 
@@ -2454,9 +2500,9 @@
 		</rect>
 	</window>
 	
-	<window name="optionsBlockedPlayers" width="1320" height="860" panel="Center" controller="OptionsBlockedPlayersList" cursor_area="true">
+	<window name="optionsBlockedPlayers" width="1320" height="820" panel="Center" controller="OptionsBlockedPlayersList" cursor_area="true">
 		<blocked_players_list name="blockedPlayers"/>
-		<rect pos="0, -760">
+		<rect pos="0, -770">
 			<simplebutton name="btnBack" depth="3" pos="0, 0" width="200" height="48" font_size="32" caption_key="xuiBack" upper_case="true" />
 		</rect>
 	</window>
@@ -2522,6 +2568,27 @@
 			<mainmenubutton name="btnBack" pivot="left" width="200" height="50" caption_key="xuiBack" />
 		</widget>
 	</window>
+
+	<window name="dlcWindow" anchor="CenterCenter" pos="-800,400" width="1600" height="800" controller="DlcWindow" cursor_area="true">
+		<rect name="dlcs" depth="2" pos="0,0" on_scroll="true" controller="DlcList">
+			<label name="noEntries" depth="2" pos="800,-400" width="500" height="50" text_key="xuiDlcsNoEntries" font_size="34" justify="center" pivot="center" effect="outline" color="[white]" visible="{# entrycountfiltered == 0 }" />
+			
+			<grid name="list" pos="0,0" rows="1" cols="4" arrangement="horizontal" cell_width="410" cell_height="500" repeat_content="true">
+				<dlc_list_entry width="370" height="720" caption_size="50" art_size="640" />
+			</grid>
+			
+			<dlc_pager pos="0,-780" width="1600" per_page="4" spacing="60" />
+			
+			<gamepad_icon depth="1" name="LB_Icon" size="64,64" pos="-20,-790" pivot="Right" action="GUI Window Paging Up" />
+			<gamepad_icon depth="1" name="RB_Icon" size="64,64" pos="1620,-790" pivot="Left" action="GUI Window Paging Down" />
+		</rect>
+
+		
+		<widget anchor_left="#bottomleft,0,40" anchor_bottom="#bottomleft,0,80" anchor_right="#bottomleft,0,50" anchor_top="#bottomleft,0,90" pivot="bottomleft">
+			<mainmenubutton name="btnBack" pivot="left" width="200" height="50" caption_key="xuiBack" />
+		</widget>
+	</window>
+
 	
 	<window name="eacWarning" depth="200" pos="-220,-40" width="440" height="200" anchor="CenterTop">
 		<panel name="noclick" depth="2" createuipanel="true" pos="-20,20" width="480" height="240" clipping="softclip" clippingsoftness="20,20" disableautobackground="true" gamepad_selectable="false">
@@ -2535,10 +2602,6 @@
 	</window>
 	
 	<window name="crossplayWarning" depth="200" pos="-600,-150" width="1200" height="400" anchor="CenterCenter">
-		<panel name="noclick" depth="2" createuipanel="true" pos="-20,20" width="1200" height="400" clipping="softclip" clippingsoftness="20,20" disableautobackground="true" gamepad_selectable="false">
-			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,190" type="sliced" fillcenter="true" />
-		</panel>
-
 		<panel depth="10" createuipanel="true" disableautobackground="true">
 			<label pos="10,-70" width="1200" height="400" font_size="32" text_key="xuiServerConfirmCrossplay" upper_case="false" justify="center" />
 		</panel>
@@ -2558,7 +2621,7 @@
 		</panel>
 	</window>
 
-	<window name="loadingScreen" depth="200" pos="0,0" width="400" height="100" anchor="CenterCenter" controller="LoadingScreen" browse_sound="Sounds/Crafting/craft_click_recipe">
+	<window name="loadingScreen" depth="200" pos="0,0" width="400" height="100" anchor="CenterCenter" controller="LoadingScreen" browse_sound="@:Sounds/Crafting/craft_click_recipe.wav">
 		<panel name="pnlBlack" pos="-3000,3000" width="10000" height="10000" depth="1" createuipanel="true" on_press="true" disableautobackground="true" gamepad_selectable="false">
 			<sprite depth="0" name="blackback" sprite="menu_empty3px" color="0,0,0,255" type="sliced" fillcenter="true" globalopacity="false"  gamepad_selectable="false"/>
 		</panel>
@@ -2570,39 +2633,65 @@
 		<rect name="tips_enabled" visible="{show_tips}">
 			<label name="lblTitle"    depth="6" anchor_left="#cam,0,20"   anchor_right="#cam,1,-280" anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="50" color="230,26,22" justify="left" parse_actions="true" text="{title}" upper_case="true" />
 		
-			<label name="lblLeft"     depth="6" anchor_left="#cam,1,-200" anchor_right="#cam,1,-150"  anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="30" color="[white]" pivot="center" justify="right" parse_actions="true" max_line_count="1" text=" [action:local:Secondary]" />
+			<label name="lblLeft"     depth="6" anchor_left="#cam,1,-200" anchor_right="#cam,1,-150"  anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="30" color="[white]" pivot="center" justify="right" parse_actions="true" max_line_count="1" text=" [action:permanent:PageTipsBack]" />
 			<label name="lblIndex"    depth="6" anchor_left="#cam,1,-150" anchor_right="#cam,1,-70"   anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="30" color="[white]" pivot="center" justify="center" parse_actions="true" max_line_count="1" text="{index}/{count}" />
-			<label name="lblRight"    depth="6" anchor_left="#cam,1,-70"  anchor_right="#cam,1,-20"   anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="30" color="[white]" pivot="center" justify="left" parse_actions="true" max_line_count="1" text="[action:local:Primary] " />
+			<label name="lblRight"    depth="6" anchor_left="#cam,1,-70"  anchor_right="#cam,1,-20"   anchor_bottom="#cam,0,180" anchor_top="#cam,0,240" font_size="30" color="[white]" pivot="center" justify="left" parse_actions="true" max_line_count="1" text="[action:permanent:PageTipsForward] " />
 
 			<label name="lblText"     depth="6" anchor_left="#cam,0,20"   anchor_right="#cam,1,-20"   anchor_bottom="#cam,0,20"  anchor_top="#cam,0,170" font_size="32" justify="left" parse_actions="true" actions_default_format="( [e61a16]###[-] )" spacing_y="5" text="{text}" />
 		</rect>
 	</window>
 
-	<window name="spawnselection" depth="250" pos="-200,50" width="400" height="100" anchor="CenterCenter" controller="SpawnSelectionWindow" cursor_area="true">
+	<window name="spawnselection" depth="250" pos="-250,50" width="500" height="100" anchor="CenterCenter" controller="SpawnSelectionWindow" spawn_sound="@:Sounds/UI/ui_spawn.wav" cursor_area="true">
 		<rect visible="{progressVisible}" >
-			<panel name="noclick" depth="2" createuipanel="true" pos="-20,20" width="440" height="140" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
+			<panel name="noclick" depth="2" createuipanel="true" pos="-20,20" width="540" height="140" clipping="softclip" clippingsoftness="20,20" disableautobackground="true">
 				<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,190" type="sliced" fillcenter="true" />
 			</panel>
 
 			<panel depth="10" createuipanel="true" disableautobackground="true" >
-				<label name="lblProgress" pos="200,-50" width="380" height="80" font_size="32" justify="center" pivot="center" />
+				<label name="lblProgress" pos="250,-50" width="480" height="80" font_size="32" justify="center" pivot="center" />
 			</panel>
 		</rect>
 
-		<rect visible="{buttonsVisible}" pos="0,40" >
-			<panel name="header" pos="0,0" height="43" depth="2" createuipanel="true" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
-				<label style="header.name" pos="6,-6" width="550" text_key="respawnTitleMessage" />
+		<rect name="buttons" visible="{buttonsVisible}" pos="0,130" >
+			<panel name="header" pos="0,0" height="43" depth="2" createuipanel="true" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="0" >
+				<label style="header.name" pos="6,-6" width="490" text_key="respawnTitleMessage" justify="center" />
 			</panel>
-			
-			<simplebutton name="btnOption1" depth="3" pos="200,-70" pivot="center" width="400" height="42" font_size="36" caption_key="lblSpawnOnBedroll" />
-			<simplebutton name="btnOption2" depth="3" pos="200,-130" pivot="center" width="400" height="42" font_size="36" caption_key="lblSpawnNearBedroll" />
-			<simplebutton name="btnOption3" depth="3" pos="200,-190" pivot="center" width="400" height="42" font_size="36" caption_key="lblSpawnNearBackpack" />
+
+			<table pos="0,-61" columns="1" padding="0,9" always_reposition="true" name="content">
+				<panel name="boxSpawnNearFriend" width="500" height="250" depth="3" pivot="center" padding="4" bordercolor="[black]" borderthickness="0" borderinset="0" borderspritename="menu_empty3px" backgroundcolor="[darkGrey]" controller="SpawnNearFriendsList" cursor_controllable="true" visible="{showNearFriends}">
+					<label name="lblCaption" depth="4" pos="2,-18" width="370" height="35" font_size="28" color="[beige]" pivot="left" justify="left" parse_actions="true" max_line_count="1" text_key="lblSpawnNearFriend" overflow="shrinkcontent" />
+
+					<rect name="friends" pos="0,0" height="200" width="480" visible="{# entrycounttotal &gt; 0 }">
+						<pager name="pager" pos="390,0" />
+						
+						<grid name="list" depth="2" rows="5" cols="1" pos="0,-40" height="160" cell_width="196" cell_height="32" repeat_content="true" arrangement="vertical" >
+							<spawnnearfriends_list_entry width="492" height="30" />
+						</grid>
+					
+						<simplebutton name="btnSpawnNearFriend" pos="0,-200" width="492" height="42" font_size="36" caption_key="lblSpawnNearFriendButton" enabled="{selectionValid}" tooltip_key="xuiPromptViewPlayerProfile" />
+					</rect>
+					
+					<label pos="250,-80" width="400" height="60" font_size="28" color="[red]" pivot="center" justify="center" overflow="shrinkcontent" text_key="lblSpawnNoAvailableFriends" visible="{# entrycounttotal == 0 }" ignoreparentpadding="true" />
+				</panel>
+				
+				<simplebutton name="btnSpawnFirstTime" width="500" height="42" font_size="36" caption_key="lblSpawnRandom" visible="{# enteringGame and firstTimeSpawn}" />
+				<simplebutton name="btnSpawn" width="500" height="42" font_size="36" caption_key="lblSpawn" visible="{# enteringGame and !firstTimeSpawn}" />
+				<rect width="500" height="42" createuiwidget="true" />
+				<simplebutton name="btnLeave" width="500" height="42" font_size="36" caption_key="xuiSpawnLeaveGame" visible="{# enteringGame and !is_server}" />
+				
+				<simplebutton name="btnRespawn" width="500" height="42" font_size="36" caption_key="lblRespawn" visible="{# !enteringGame and !hasBackpack and !hasBedroll }" />
+				<simplebutton name="btnNearBackpack" width="500" height="42" font_size="36" caption_key="lblSpawnNearBackpack" visible="{# !enteringGame and hasBackpack}" />
+				<simplebutton name="btnOnBedroll" width="500" height="42" font_size="36" caption_key="lblSpawnOnBedroll" visible="{# !enteringGame and hasBedroll}" />
+				<simplebutton name="btnNearBedroll" width="500" height="42" font_size="36" caption_key="lblSpawnNearBedroll" visible="{# !enteringGame and hasBedroll}" />
+			</table>
 		</rect>
 	</window>
 	
-	<window name="subtitlesDisplay" anchor="CenterBottom" pos="-600,200" width="1200" height="400" cursor_area="false" controller="SubtitlesDisplay" actionSet="false" depth="950" globalopacity="false">
-		<panel name="bgPanel" pos="0,0" height="90" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black_threequarters_alpha]" backgroundcolor="[black_threequarters_alpha]" borderthickness="0" anchor="CenterBottom" globalopacity="false" >
-			<label name="lblSubtitle" pos="24,-45" width="1152" text_key="SubtitleContent" justify="left" pivot="left" font_size="36" depth="975"/>
+	<window name="subtitlesDisplay" anchor="CenterBottom" pos="-376,155" width="753" height="100" cursor_area="false" controller="SubtitlesDisplay" actionSet="false" depth="950" globalopacity="false">
+		<panel name="bgPanel" pos="0,0" height="60" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[transparent]" 
+		backgroundcolor="[black_threequarters_alpha]" borderthickness="0" anchor="CenterBottom" globalopacity="false" >
+			<label name="lblSpeaker" pos="6,-28" width="136" height="54" text_key="SubtitleSpeaker" justify="left" pivot="left" font_size="28" depth="975"/>
+			<label name="lblSubtitle" pos="143,-28" width="610" height="54" text_key="SubtitleContent" justify="left" pivot="left" font_size="28" depth="975"/>
 		</panel>
 	</window>
 
@@ -2681,8 +2770,7 @@
 			<label depth="3" name="lblAttachSave" pos="25,-250" width="425" height="32" justify="right" text_key="xuiAttachSave" font_size="28" upper_case="false" visible="{# attach_saves_enabled}" />
 			<combobox pos="475,-250" width="300" height="32" name="comboAttachSave" type="ComboBoxBool" localization_prefix="xuiComboYesNo" visible="{# attach_saves_enabled}"/>
 
-			<textfield name="txtDescription" depth="5" pos="25,-300" width="750" height="400" pivot="topLeft" 
-			on_hover="true" on_return="NewLine" justify="left" font_size="24" character_limit="2048"/>
+			<textfield name="txtDescription" depth="5" pos="25,-300" width="750" height="400" pivot="topLeft" on_return="NewLine" justify="left" font_size="24" character_limit="2048"/>
 
 			<simplebutton name="btnSubmit" depth="3" pos="50, -725" width="200" height="48" font_size="32" caption_key="xuiSubmit" upper_case="true" />
 			<simplebutton name="btnCancel" depth="3" pos="550, -725" width="200" height="48" font_size="32" caption_key="xuiCancel" upper_case="true" />	
@@ -2709,5 +2797,140 @@
 
 		</panel>
 	</window>
+
+	<window name="discord" anchor="RightTop" pos="-420,-30" width="412" height="800" controller="DiscordWindow" cursor_area="true" depth="100">
+		<panel name="boxButtons" depth="3" pivot="center" padding="30,6,6" bordercolor="[black]" borderthickness="0" borderinset="14,1,1" borderspritename="menu_empty3px" backgroundcolor="[darkGrey]">
+			<label name="lblCaption" depth="4" pos="14,-16" height="30" font_size="24" color="[beige]" pivot="left" justify="left" parse_actions="true" max_line_count="1" text_key="Discord" overflow="resizefreely" overflow_width="260" ignoreparentpadding="true" />
+			<sprite name="lblBg" depth="3" anchor_left="lblCaption,0,-5" anchor_right="lblCaption,1,5" anchor_bottom="lblCaption,0,0" anchor_top="lblCaption,1,0" type="sliced" sprite="menu_empty3px" color="[darkGrey]" />
+
+			<table name="layoutTable" columns="1" padding="0,2" reposition_twice="true">
+				<rect>
+					<label pos="100,-12" width="100" height="20" pivot="right" justify="right" overflow="shrinkcontent" text="Status:" />
+					<label pos="110,-12" width="290" height="20" pivot="left" justify="left" overflow="shrinkcontent" text="{status}" />
+				</rect>
+
+				<rect name="statusButtons">
+					<rect name="loginButtons" visible="{# status == 'Disconnected'}">
+						<simplebutton name="btnLoginAccount" depth="3" pos="120,0" width="110" height="28" caption="Account" tooltip_key="Login with your real Discord account" visible="{supports_full_accounts}" />
+						<simplebutton name="btnLoginProvisional" depth="3" pos="280,0" width="110" height="28" caption="Provisional" tooltip_key="Login with a provisional Discord account based on your EOS ID" visible="{supports_provisional_accounts}" />
+					</rect>
+					<simplebutton name="btnDisconnect" depth="3" width="400" height="28" caption="Disconnect" visible="{# status == 'Ready'}" />
+				</rect>
+
+				<table name="readyOnly" columns="2" padding="4,4" reposition_twice="true" visible="{is_ready}">
+						<label width="160" height="20" justify="right" overflow="shrinkcontent" text="Display name:" />
+						<label width="230" height="20" justify="left" overflow="shrinkcontent" text="{displayname}" />
+						<label width="160" height="20" justify="right" overflow="shrinkcontent" text="Discord display name:" />
+						<label width="230" height="20" justify="left" overflow="shrinkcontent" text="{discorddisplayname}" />
+						<label width="160" height="20" justify="right" overflow="shrinkcontent" text="Discord username:" />
+						<label width="230" height="20" justify="left" overflow="shrinkcontent" text="{discordusername}" />
+						<label width="160" height="20" justify="right" overflow="shrinkcontent" text="Discord ID:" />
+						<label width="230" height="20" justify="left" overflow="shrinkcontent" text="{userid}" />
+				</table>
+
+			</table>
+		</panel>
+	</window>
+
+	<window name="discordInfo" anchor="CenterCenter" pos="-550,300" width="1100" height="700" cursor_area="true" depth="1001" controller="DiscordInfo">
+		<panel name="noclick" depth="0" createuipanel="true" on_press="true" pos="-4000,4000" width="8000" height="8000" disableautobackground="true" gamepad_selectable="false">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,200" type="sliced" fillcenter="true" />
+		</panel>
+
+		<panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="0" padding="6">
+			<label font_size="32" text_key="xuiDiscordEnableIntegrationTitle" />
+		</panel>
+		
+		<panel name="content" pos="0,-46" height="500" depth="1" backgroundcolor="[darkGrey]" borderspritename="menu_empty3px" bordercolor="[black]" borderthickness="0" padding="10">
+			<label depth="3" name="descriptionText" spacing_y="6" text_key="xuiDiscordEnableIntegrationTextFull" font_size="28" overflow="shrinkcontent" upper_case="false" visible="{supports_full_accounts}" />
+
+			<label depth="3" name="descriptionText" spacing_y="6" text_key="xuiDiscordEnableIntegrationTextProvisionalOnly" font_size="28" overflow="shrinkcontent" upper_case="false" visible="{# !supports_full_accounts}" />
+		</panel>
+		
+		<rect name="buttons" pos="0,-570">
+			<simplebutton name="btnOk" depth="10" pos="000,0" width="320" height="40" caption_key="xuiOk" visible="{# !supports_full_accounts}" />
+
+			<discord_button name="btnFullAccount" depth="10" pos="0,0" width="320" height="42" caption_key="xuiDiscordEnableIntegrationLinkAccount" visible="{supports_full_accounts}" />
+			<simplebutton name="btnNotNow" depth="10" pos="400,0" width="320" height="40" caption_key="xuiDiscordLoginNotNow" visible="{supports_full_accounts}" />
+
+			<simplebutton name="btnSettings" depth="10" pos="780,0" width="320" height="40" caption_key="xuiDiscordOpenSettings" />
+		</rect>
+	</window>
+
+	<window name="discordLogin" anchor="CenterCenter" pos="-350,200" width="700" height="400" cursor_area="true" depth="1001" controller="DiscordLogin">
+		<panel name="noclick" depth="0" createuipanel="true" on_press="true" pos="-4000,4000" width="8000" height="8000" disableautobackground="true" gamepad_selectable="false">
+			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,200" type="sliced" fillcenter="true" />
+		</panel>
+
+		<panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="0" padding="6">
+			<label font_size="32" text_key="xuiDiscordLogin" />
+		</panel>
+		
+		<panel name="content" pos="0,-46" height="200" depth="1" backgroundcolor="[darkGrey]" borderspritename="menu_empty3px" bordercolor="[black]" borderthickness="0" padding="10">
+			<label depth="3" name="loginText" text="{status_text}" />
+		</panel>
+		
+		<rect name="buttons" pos="0,-270">
+			<simplebutton name="btnOk" depth="10" pos="000,0" width="200" height="40" caption_key="xuiOk" enabled="{done}" />
+
+			<simplebutton name="btnCancel" depth="10" pos="225,0" width="200" height="40" caption_key="xuiCancel" visible="{cancellable}" />
+
+			<simplebutton name="btnSettings" depth="10" pos="450,0" width="250" height="40" caption_key="xuiDiscordOpenSettings" visible="{show_settings_button}" enabled="{done}" />
+		</rect>
+	</window>
 	
+	<window name="discordInteractions" anchor="LeftBottom" pos="50,840" width="400" height="800" depth="10" cursor_area="true" controller="DiscordMainMenuFriends">
+		<rect name="pendingActions" pos="350,0" width="350" visible="{has_pending_actions}">
+			<panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header">
+				<sprite depth="1" name="windowIcon" style="icon32px" pos="4,-5" sprite="ui_game_symbol_players"/>
+				<label style="header.name" text_key="xuiDiscordInvites" />
+			</panel>
+
+			<rect pos="0,-43" height="687">
+				<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
+				<sprite depth="1" name="backgroundMain" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+				
+				<discord_pending_list name="pendingActions" depth="0" pos="0,0" width="350" height="687" count="11" />
+			</rect>
+		</rect>
+
+		<rect name="friends" pos="000,0" width="350">
+			<panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header">
+				<sprite depth="1" name="windowIcon" style="icon32px" pos="4,-5" sprite="ui_game_symbol_players"/>
+				<label style="header.name" text_key="xuiFriends" />
+			</panel>
+
+			<rect pos="0,-43" height="687">
+				<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
+				<sprite depth="1" name="backgroundMain" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+				
+				<discord_friends_list name="discord" depth="0" pos="0,0" width="350" height="687" count="10" />
+			</rect>
+		</rect>
+	</window>
+	
+	<window name="discordBlockedUsers" anchor="CenterCenter" pos="-175,400" width="350" height="800" depth="10" cursor_area="true" controller="DiscordBlockedUsers">
+		<panel name="header" height="43" depth="1" backgroundspritename="ui_game_panel_header">
+			<sprite depth="1" name="windowIcon" style="icon32px" pos="4,-5" sprite="ui_game_symbol_modded"/>
+			<label style="header.name" text_key="xuiDiscordBlockedUsers" />
+		</panel>
+
+		<rect pos="0,-43" height="687">
+			<sprite depth="2" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
+			<sprite depth="1" name="backgroundMain" sprite="menu_empty3px" color="[darkGrey]" type="sliced" fillcenter="true" />
+			
+			<discord_blockedusers_list name="blockedUsersList" depth="0" pos="0,0" width="350" height="687" count="16" />
+		</rect>
+
+		<rect name="buttons" pos="0,-750">
+			<simplebutton name="btnBack" depth="10" pos="000,0" width="350" height="40" caption_key="xuiBack" />
+		</rect>
+	</window>
+	
+	<window name="mainMenuDiscordButton" anchor="LeftBottom" pos="70,90" width="40" height="40" depth="10" controller="DiscordMainMenuButton">
+		<button name="button" pos="0,0" width="40" height="30" depth="2" pivot="center" sprite="discord-mark-white_scaled" defaultcolor="[white]" hovercolor="" selectedcolor="88,101,242" selected="{discord_open}" hoverscale="1.25" use_selection_box="false" sound_play_on_hover="[default_hover]" sound="[default_click]" visible="{discord_ready}" />
+		<label name="lblActionCount" depth="4" pos="19,15" height="30" font_size="20" color="[white]" pivot="center" justify="center" max_line_count="1" text="{pending_actions}" overflow="resizefreely" overflow_width="260" visible="{# pending_actions &gt; 0}" />
+		<sprite name="lblBg" depth="3" anchor_left="lblActionCount,0,-4" anchor_right="lblActionCount,1,4" anchor_bottom="lblActionCount,0,-3" anchor_top="lblActionCount,1,2" type="sliced" sprite="Button" color="[red]" visible="{# pending_actions &gt; 0}" />
+	</window>
+
 </windows>
