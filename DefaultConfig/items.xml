@@ -7742,7 +7742,7 @@
 	<property name="HoldType" value="35"/>
 	<property class="Action0">
 		<property name="Delay" value=".6"/> <!-- obsolete if rounds per minute exists -->
-		<property name="Range" value=".8"/>
+		<property name="Range" value="1"/>
 		<property name="Sphere" value=".05"/>
 		<property name="DamageEntity" value="3"/>
 		<property name="DamageBlock" value="1"/>
@@ -8293,7 +8293,7 @@
 	<property name="SoundPickup" value="shotgunshells_grab"/>
 	<property name="SoundPlace" value="shotgunshells_place"/>
 	<effect_group name="ammoShotgunSlug" tiered="false">
-		<passive_effect name="EntityDamage" operation="base_set" value="102" tags="perkBoomstick"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="175" tags="perkBoomstick"/>
 		<passive_effect name="BlockDamage" operation="base_set" value="80" tags="perkBoomstick"/>
 		<passive_effect name="RoundRayCount" operation="base_set" value="1" tags="perkBoomstick"/>
 		<passive_effect name="MaxRange" operation="base_set" value="18" tags="perkBoomstick"/>
@@ -14411,7 +14411,7 @@
 		<property name="Class" value="Eat"/>
 		<property name="Delay" value="1.0"/>
 		<property name="Sound_start" value="player_painkillers"/>
-		<requirement name="NotHasBuff" buff="buffDrugPainkillers"/>
+		<requirement name="!HasBuff" buff="buffDrugPainkillers"/>
 	</property>
 	<effect_group tiered="false">
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="RemoveBuff" buff="buffInjuryConcussion"/>
@@ -14574,8 +14574,12 @@
 		<property name="Sound_start" value="player_drinking"/>
 	</property>
 
+	<effect_group tiered="false">
+		<display_value name="dRunSpeed" value=".1"/>
+	</effect_group>
+
 	<effect_group tiered="false" name="Hazard Reducer">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="10"/>
@@ -14592,6 +14596,16 @@
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffBurnt_Hazard_Over">
 				<requirement name="CVarCompare" cvar="$BiomeProgressionOn" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="$BiomeBadgeLevel" operation="LT" value="1"/></triggered_effect>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<!-- Setup run speed boost if not using buffBurnt_Hazard_Over -->
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffBurnt_Hazard_Over"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffBurntSmoothieRunDuration" operation="add" value="303"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffBurntSmoothieRunDuration" operation="set" value="909">
+				<requirement name="CVarCompare" cvar="$buffBurntSmoothieRunDuration" operation="GT" value="909"/></triggered_effect>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffBurntSmoothieRun"/>
 	</effect_group>
 
 	<effect_group tiered="false">
@@ -14619,8 +14633,12 @@
 		<property name="Sound_start" value="player_drinking"/>
 	</property>
 
+	<effect_group tiered="false">
+		<display_value name="dRunSpeed" value=".1"/>
+	</effect_group>
+
 	<effect_group tiered="false" name="Hazard Reducer">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="10"/>
@@ -14637,6 +14655,16 @@
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDesert_Hazard_Over">
 				<requirement name="CVarCompare" cvar="$BiomeProgressionOn" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="$BiomeBadgeLevel" operation="LT" value="2"/></triggered_effect>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<!-- Setup run speed boost if not using buffDesert_Hazard_Over -->
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffDesert_Hazard_Over"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffOasisSmoothieRunDuration" operation="add" value="303"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffOasisSmoothieRunDuration" operation="set" value="909">
+				<requirement name="CVarCompare" cvar="$buffOasisSmoothieRunDuration" operation="GT" value="909"/></triggered_effect>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffOasisSmoothieRun"/>
 	</effect_group>
 
 	<effect_group tiered="false">
@@ -14664,8 +14692,12 @@
 		<property name="Sound_start" value="player_drinking"/>
 	</property>
 
+	<effect_group tiered="false">
+		<display_value name="dRunSpeed" value=".1"/>
+	</effect_group>
+
 	<effect_group tiered="false" name="Hazard Reducer">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="10"/>
@@ -14682,6 +14714,16 @@
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffSnow_Hazard_Over">
 				<requirement name="CVarCompare" cvar="$BiomeProgressionOn" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="$BiomeBadgeLevel" operation="LT" value="3"/></triggered_effect>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<!-- Setup run speed boost if not using buffSnow_Hazard_Over -->
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffSnow_Hazard_Over"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffFrostbiteSmoothieRunDuration" operation="add" value="303"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffFrostbiteSmoothieRunDuration" operation="set" value="909">
+				<requirement name="CVarCompare" cvar="$buffFrostbiteSmoothieRunDuration" operation="GT" value="909"/></triggered_effect>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffFrostbiteSmoothieRun"/>
 	</effect_group>
 
 	<effect_group tiered="false">
@@ -14709,8 +14751,12 @@
 		<property name="Sound_start" value="player_drinking"/>
 	</property>
 
+	<effect_group tiered="false">
+		<display_value name="dRunSpeed" value=".1"/>
+	</effect_group>
+
 	<effect_group tiered="false" name="Hazard Reducer">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="10"/>
@@ -14727,6 +14773,16 @@
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffWasteland_Hazard_Over">
 				<requirement name="CVarCompare" cvar="$BiomeProgressionOn" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="$BiomeBadgeLevel" operation="LT" value="4"/></triggered_effect>
+	</effect_group>
+
+	<effect_group tiered="false">
+		<!-- Setup run speed boost if not using buffWasteland_Hazard_Over -->
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffWasteland_Hazard_Over"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffAtomicSmoothieRunDuration" operation="add" value="303"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffAtomicSmoothieRunDuration" operation="set" value="909">
+				<requirement name="CVarCompare" cvar="$buffAtomicSmoothieRunDuration" operation="GT" value="909"/></triggered_effect>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffAtomicSmoothieRun"/>
 	</effect_group>
 
 	<effect_group tiered="false">
@@ -14956,9 +15012,9 @@
 
 <item name="foodHoney">
 	<property name="Tags" value="food,medical,medicalSkill,fitness,farmerFoodBonus"/>
-	<property name="HoldType" value="31"/>
+	<property name="HoldType" value="3"/>
 	<property name="DisplayType" value="foodCureInfection"/>
-	<property name="Meshfile" value="@:Other/Items/Food/parcelGenericPrefab.prefab"/>
+	<property name="Meshfile" value="@:Other/Items/Food/masonJarBeerPrefab.prefab"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="Morganic"/>
 	<property name="EconomicValue" value="80"/>
@@ -16391,7 +16447,7 @@
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 
 	<effect_group tiered="false" name="Drink Tier 0">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="10"/>
 		<display_value name="dStaminaRegen" value=".15"/>
@@ -16440,7 +16496,7 @@
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 
 	<effect_group tiered="false" name="Drink Tier 0/1">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 		<display_value name="dStaminaRegen" value=".15"/>
@@ -16476,7 +16532,7 @@
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 
 	<effect_group tiered="false" name="Drink Tier Found">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="60"/>
 			<display_value name="dStaminaRegen" value=".15"/>
 			<display_value name="dEfficientDigestion" value=".15"/>
@@ -16518,7 +16574,7 @@
 	</property>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 	<effect_group tiered="false" name="Drink Tier 0/1">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="34"/>
 			<display_value name="dStaminaRegen" value=".15"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
@@ -16552,7 +16608,7 @@
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 
 	<effect_group tiered="false" name="Drink Tier 1">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="24"/>
 			<display_value name="dStaminaRegen" value=".15"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
@@ -16590,7 +16646,7 @@
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 
 	<effect_group tiered="false" name="Drink Tier 1">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="24"/>
 			<display_value name="dStaminaRegen" value=".15"/>
 			<display_value name="dEfficientDigestion" value=".15"/>
@@ -16628,7 +16684,7 @@
 	</property>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 	<effect_group tiered="false" name="Drink Tier 3">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="22"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="11"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="11">
@@ -16660,7 +16716,7 @@
 	</property>
 
 	<effect_group tiered="false" name="Drink Tier Found">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="60"/>
 			<display_value name="dStaminaRegen" value=".15"/>
 			<display_value name="dRunSpeed" value=".5"/>
@@ -16698,7 +16754,7 @@
 	</property>
 	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
 	<effect_group tiered="false" name="Drink Tier 1">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="24"/>
 		<display_value name="dStaminaRegen" value=".2"/>
 		<!-- <display_value name="dHypothermalResist" value="5"/> -->
@@ -16723,7 +16779,7 @@
 	<property name="SoundPlace" value="blackstrapcoffee_place"/>
 
 	<effect_group tiered="false" name="Drink Tier Found">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="24"/>
 			<display_value name="dStaminaRegen" value=".25"/>
 			<!-- <display_value name="dHypothermalResist" value="10"/> -->
@@ -16761,7 +16817,7 @@
 		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
 	</property>
 	<effect_group tiered="false" name="Drink Tier 3">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<display_value name="dStaminaRegen" value=".4"/>
 			<display_value name="dEntityDamageBrawling" value="3"/>
 			<display_value name="dStunResist" value="1"/>
@@ -16799,7 +16855,7 @@
 		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
 	</property>
 	<effect_group tiered="false" name="Drink Tier 5">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<display_value name="dEntityDamage" value="4"/>
 			<display_value name="dStunResist" value="1"/>
 			<!-- <display_value name="dHealthLoss" value=".5"/> -->
@@ -16839,7 +16895,7 @@
 		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
 	</property>
 	<effect_group tiered="false" name="Drink Tier 5">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<display_value name="dBartering" value=".1"/>
 			<display_value name="dDuration" value="180"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffGrandpasAwesomeSauceDuration" operation="add" value="183"/>
@@ -16875,7 +16931,7 @@
 		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
 	</property>
 	<effect_group tiered="false" name="Drink Tier 5">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<display_value name="dPlayerExpGain" value=".2"/>
 			<display_value name="dDuration" value="360"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffGrandpasLearningElixirDuration" operation="add" value="363"/>
@@ -16911,7 +16967,7 @@
 		<property name="PromptDescription" value="drinkJarGrandpasForgettingElixirPromptDesc"/>
 	</property>
 	<effect_group tiered="false" name="Drink Tier Trader">
-		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+		<requirement name="!HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ResetProgression" reset_skills="true"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyStats" stat="Health" operation="subtract" value="1"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="RefreshPerks"/>
@@ -24082,6 +24138,10 @@
 	<property name="SoundPlace" value="headwear_cloth_place"/>
 
 	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+	</effect_group>
+
+	<effect_group>
 		<requirement name="CVarCompare" cvar="_equipReload" operation="LT" value="1"/>
 
 			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$BurntHazardTimerMax" operation="set" value="-1"/>
@@ -24106,9 +24166,7 @@
 			<!-- BiomeBadgeLevel CVar is referenced in code. Do not change. -->
 			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$BiomeBadgeLevel" operation="set" value="1"/>
 			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$BiomeBadgeLevel"/>
-		
-			<passive_effect name="ModSlots" operation="base_set" value="0"/>
-			
+
 			<passive_effect name="LootStageMax" operation="base_add" value="30"> <!-- 40 + 30 = 70 -->
 				<requirement name="InBiome" biome="3"/><!-- pine_forest -->
 			</passive_effect>
@@ -24121,6 +24179,10 @@
 	<property name="DescriptionKey" value="biomeBadge2Desc"/>
 	<property name="Tags" value="CanReplace1,biomeBadge2"/>
 	<property name="ReplaceByTag" value="CanReplace2"/>
+
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+	</effect_group>
 
 	<effect_group>
 		<requirement name="CVarCompare" cvar="_equipReload" operation="LT" value="1"/>
@@ -24147,9 +24209,7 @@
 			<!-- BiomeBadgeLevel CVar is referenced in code. Do not change. -->
 			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$BiomeBadgeLevel" operation="set" value="2"/>
 			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$BiomeBadgeLevel"/>
-			
-			<passive_effect name="ModSlots" operation="base_set" value="0"/>
-			
+
 			<passive_effect name="LootStageMax" operation="base_add" value="50">
 				<requirement name="InBiome" biome="3"/></passive_effect><!-- pine_forest -->
 			<passive_effect name="LootStageMax" operation="base_add" value="10">
@@ -24163,6 +24223,10 @@
 	<property name="DescriptionKey" value="biomeBadge3Desc"/>
 	<property name="Tags" value="CanReplace1,CanReplace2,biomeBadge3"/>
 	<property name="ReplaceByTag" value="CanReplace3"/>
+
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+	</effect_group>
 
 	<effect_group>
 		<requirement name="CVarCompare" cvar="_equipReload" operation="LT" value="1"/>
@@ -24189,9 +24253,7 @@
 			<!-- BiomeBadgeLevel CVar is referenced in code. Do not change. -->
 			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$BiomeBadgeLevel" operation="set" value="3"/>
 			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$BiomeBadgeLevel"/>
-			
-			<passive_effect name="ModSlots" operation="base_set" value="0"/>
-			
+
 			<passive_effect name="LootStageMax" operation="base_add" value="60">
 				<requirement name="InBiome" biome="3"/></passive_effect><!-- pine_forest -->
 			<passive_effect name="LootStageMax" operation="base_add" value="40">
@@ -24207,6 +24269,10 @@
 	<property name="DescriptionKey" value="biomeBadge4Desc"/>
 	<property name="Tags" value="CanReplace1,CanReplace2,CanReplace3,biomeBadge4"/>
 	<property name="ReplaceByTag" value="None"/>
+
+	<effect_group>
+		<passive_effect name="ModSlots" operation="base_set" value="0"/>
+	</effect_group>
 
 	<effect_group>
 		<requirement name="CVarCompare" cvar="_equipReload" operation="LT" value="1"/>
@@ -24233,9 +24299,7 @@
 			<!-- BiomeBadgeLevel CVar is referenced in code. Do not change. -->
 			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$BiomeBadgeLevel" operation="set" value="4"/>
 			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$BiomeBadgeLevel"/>
-			
-			<passive_effect name="ModSlots" operation="base_set" value="0"/>
-			
+
 			<passive_effect name="LootStageMax" operation="base_add" value="100">
 				<requirement name="InBiome" biome="3"/></passive_effect><!-- pine_forest -->
 			<passive_effect name="LootStageMax" operation="base_add" value="50">

@@ -231,19 +231,21 @@
 		</rect>
 	</window>
 	
-	<window name="messageBox" anchor="CenterCenter" pos="-280,140" width="560" height="279" cursor_area="true" depth="1001">
+	<window name="messageBox" anchor="CenterCenter" pos="-400,190" width="800" height="450" cursor_area="true" depth="1001">
 		<panel name="noclick" depth="0" createuipanel="true" on_press="true" pos="-4000,4000" width="8000" height="8000" disableautobackground="true" visible="{# !is_modal}" gamepad_selectable="false">
 			<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,200" type="sliced" fillcenter="true" />
 		</panel>
 
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
-			<label style="header.name" pos="6,-6" width="550" text="{msgTitle}" />
+			<label style="header.name" pos="8,-6" width="550" text="{msgTitle}" />
 		</panel>
-		<panel name="content" pos="0,-46" height="194" depth="1" backgroundcolor="[darkGrey]" bordercolor="[black]" borderthickness="3" pivot="center">
-			<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" pos="0,0" height="194" color="[black]" type="sliced" fillcenter="false" />	
-			<label depth="3" name="descriptionText" pos="8,-6" width="544" height="182" text="{msgText}" font_size="28" overflow="shrinkcontent" upper_case="false" />
 
-			<rect name="btnLeft" depth="3" pos="0, -243" width="200" height="36" disableautobackground="true" visible="{showleftbutton}">
+		<panel name="content" pos="0,-46" height="350" depth="1" backgroundcolor="[darkGrey]" bordercolor="[black]" borderthickness="3" pivot="center" padding="6">
+			<label depth="3" name="descriptionText" text="{msgText}" font_size="28" overflow="shrinkcontent" upper_case="false" support_urls="HTTP" />
+		</panel>
+		
+		<rect name="buttons" pos="0,-400">
+			<rect name="btnLeft" depth="3" pos="0,0" width="200" height="36" disableautobackground="true" visible="{showleftbutton}">
 				<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />	
 				<rect depth="3" pos="0,-3" height="31">
 					<button name="clickable2" sprite="menu_empty" defaultcolor="[mediumGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" type="sliced" hoverscale="1.0"/>
@@ -252,7 +254,7 @@
 				</rect>
 			</rect>
 
-			<rect name="btnRight" depth="3" pos="360, -243" width="200" height="36" disableautobackground="true">
+			<rect name="btnRight" depth="3" pos="600,0" width="200" height="36" disableautobackground="true">
 				<sprite depth="8" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />	
 				<rect depth="3" pos="0,-3" height="31">
 					<button name="clickable" sprite="menu_empty" defaultcolor="[mediumGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" type="sliced" hoverscale="1.0"/>
@@ -260,7 +262,7 @@
 					<label depth="2" name="btnLabel" pos="0,-2" justify="center" text_key="{rightbuttontext}" effect="outline" upper_case="true" />
 				</rect>
 			</rect>		
-		</panel>
+		</rect>
 	</window>
 	
 	<window name="editingTools" anchor="CenterCenter" pos="0,0" width="600" height="600" controller="EditingTools" cursor_area="true">
@@ -653,8 +655,8 @@
 
 		<label depth="4" name="copyrightNotice" spacing_x="4" font_size="14" text_key="xuiNewsCopyrightNotice" color="255,255,255,150" upper_case="true" pivot="bottom" justify="center" anchor_left="#cam,0,300" anchor_right="#cam,1,-300" anchor_bottom="#cam,0,20" anchor_top="#cam,0,100" />
 		
-		<news_box pos="-800,363" depth="5" name="featured" header_key="xuiNewsHeaderFeatured" sources="rfs://NewsFeatured.xml" auto_cycle_time_per_entry="3" max_entries="7" />
-		<news_box pos="350,363" depth="5" name="game" header_key="xuiNewsHeaderGame" sources="rfs://News.xml" auto_cycle_time_per_entry="0" max_entries="7" />
+		<news_box pos="-800,363" depth="5" name="featured" header_key="xuiNewsHeaderFeatured" sources="rfs://NewsFeatured.xml" auto_cycle_time_per_entry="3" max_entries="7" gamepad_decrease="GUI Page Down" gamepad_increase="GUI Page Up" />
+		<news_box pos="350,363" depth="5" name="game" header_key="xuiNewsHeaderGame" sources="rfs://News.xml" auto_cycle_time_per_entry="0" max_entries="7" gamepad_decrease="GUI Window Paging Up" gamepad_increase="GUI Window Paging Down" />
 	</window>
 	
 	<window name="menuBackground" anchor="CenterCenter" pos="0,0" width="1050" height="780" depth="-3">
