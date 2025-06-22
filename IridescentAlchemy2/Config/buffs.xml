@@ -1266,9 +1266,28 @@
 
 
 
+			<!-- 添加 炎热 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffElementSweltering">
+					<requirement name="InBiome" biome="05"/>
+					<requirement name="!HasBuff" buff="buffElementSweltering"/>
+					<requirement name="ProgressionLevel" progression_name="perkMarisaHotResist" operation="LT" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+			<!-- 添加 寒冷 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffElementFreezing">
+					<requirement name="InBiome" biome="01"/>
+					<requirement name="!HasBuff" buff="buffElementFreezing"/>
+					<requirement name="ProgressionLevel" progression_name="perkMarisaColdResist" operation="LT" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
 			<!-- 添加 瘴气环境 -->
 			<effect_group>
 				<requirement name="InBiome" biome="08"/>
+				<requirement name="!HasBuff" buff="buffEnvironmentMiasmatic"/>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaEnvironmentMiasmatic" operation="LT" value="1"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEnvironmentMiasmatic"/>
 			</effect_group>
@@ -2583,8 +2602,31 @@
 	<!-- *** 负面BUFF -->
 	<append xpath="/buffs">
 
+		<!-- ** 炎热 -->
+		<buff name="buffElementSweltering" name_key="buffElementSwelteringName" description_key="buffElementSwelteringDesc" showonhud="true" icon="ui_game_symbol_hot" icon_color="255,0,55" icon_blink="true">
+			<stack_type value="ignore"/>
+			<effect_group>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value="-.8"/>
+				<passive_effect name="WaterLossPerStaminaPointGained" operation="perc_add" value="6"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot2"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Hot2"/>
+			</effect_group>
+		</buff>
+
+		<!-- ** 寒冷 -->
+		<buff name="buffElementFreezing" name_key="buffElementFreezingName" description_key="buffElementFreezingDesc" showonhud="true" icon="ui_game_symbol_cold" icon_color="255,0,55" icon_blink="true">
+			<stack_type value="ignore"/>
+			<effect_group>
+				<passive_effect name="StaminaLoss" operation="perc_add" value=".8"/>
+				<passive_effect name="FoodChangeOT" operation="perc_add" value=".6"/>
+				<passive_effect name="FoodLossPerStaminaPointGained" operation="perc_add" value="2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold2"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="3" effect_name="Cold2"/>
+			</effect_group>
+		</buff>
+
 		<!-- ** 瘴气环境 -->
-		<buff name="buffEnvironmentMiasmatic" name_key="buffEnvironmentMiasmaticName" description_key="buffEnvironmentMiasmaticDesc" showonhud="true" icon="ui_game_symbol_infection" icon_color="255,0,55">
+		<buff name="buffEnvironmentMiasmatic" name_key="buffEnvironmentMiasmaticName" description_key="buffEnvironmentMiasmaticDesc" showonhud="true" icon="ui_game_symbol_infection" icon_color="255,0,55" icon_blink="true">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
 			<duration value="60"/>
@@ -2655,30 +2697,6 @@
 			</effect_group>
 		</buff>
 
-	</append>
-	<!-- ** 热 -->
-	<append xpath="/buffs/buff[@name='buffElementHot']">
-		<effect_group>
-			<passive_effect name="StaminaChangeOT" operation="perc_add" value="-.4"/>
-		</effect_group>
-	</append>
-	<!-- ** 酷热 -->
-	<append xpath="/buffs/buff[@name='buffElementSweltering']">
-		<effect_group>
-			<passive_effect name="StaminaChangeOT" operation="perc_add" value="-.8"/>
-		</effect_group>
-	</append>
-	<!-- ** 寒冷 -->
-	<append xpath="/buffs/buff[@name='buffElementCold']">
-		<effect_group>
-			<passive_effect name="StaminaLoss" operation="perc_add" value=".4"/>
-		</effect_group>
-	</append>
-	<!-- ** 冻僵 -->
-	<append xpath="/buffs/buff[@name='buffElementFreezing']">
-		<effect_group>
-			<passive_effect name="StaminaLoss" operation="perc_add" value=".8"/>
-		</effect_group>
 	</append>
 
 
