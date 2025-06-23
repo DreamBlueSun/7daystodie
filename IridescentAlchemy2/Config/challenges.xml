@@ -1,22 +1,34 @@
 <Marisa>
 
     <!-- 杰恩和雷克特挑战任务互换 -->
-	<set xpath="/challenges/challenge[@name='meetRekt']/@reward_text_key">challenge_reward_1000xp</set>
-	<set xpath="/challenges/challenge[@name='meetRekt']/@reward_event">challenge_reward_1000</set>
-	<set xpath="/challenges/challenge[@name='meetJen']/@reward_text_key">challenge_reward_500xp</set>
-	<set xpath="/challenges/challenge[@name='meetJen']/@reward_event">challenge_reward_500</set>
+    <remove xpath="/challenges/challenge[@name='meetJen']"/>
+    <insertAfter xpath="/challenges/challenge[@name='meetRekt']">
+        <challenge name="meetJen" title_key="challengeMeetJen" icon="ui_game_symbol_map_trader" group="Traders"
+            short_description_key="challengeMeetJenShort" description_key="challengeMeetJenDesc"
+            reward_text_key="challenge_reward_500xp" reward_event="challenge_reward_500">
+            <objective type="MeetTrader" trader_name="npcTraderJen"/>
+        </challenge>
+    </insertAfter>
+    <remove xpath="/challenges/challenge[@name='meetRekt']"/>
+    <insertAfter xpath="/challenges/challenge[@name='meetJen']">
+        <challenge name="meetRekt" title_key="challengeMeetRekt" icon="ui_game_symbol_map_trader" group="Traders"
+            short_description_key="challengeMeetRektShort" description_key="challengeMeetRektDesc"
+            reward_text_key="challenge_reward_1000xp" reward_event="challenge_reward_1000">
+            <objective type="MeetTrader" trader_name="npcTraderRekt"/>
+        </challenge>
+    </insertAfter>
 
 
 
     <set xpath="/challenges/challenge[@name='craftClothes']/objective[@type='Craft']/@item">IridescentArmorT0LeatherPrimitiveOutfit</set>
 
-    <set xpath="/challenges/challenge[@name='killLumberjack']/objective[@type='Kill']/@entity_names">zombieLumberjack,zombieLumberjackFeral,zombieLumberjackRadiated,zombieLumberjackCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killSpider']/objective[@type='Kill']/@entity_names">zombieSpider,zombieSpiderFeral,zombieSpiderRadiated,zombieSpiderCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killBigMama']/objective[@type='Kill']/@entity_names">zombieFemaleFat,zombieFemaleFatFeral,zombieFemaleFatRadiated,zombieFemaleFatCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killTourist']/objective[@type='Kill']/@entity_names">zombieFatHawaiian,zombieFatHawaiianFeral,zombieFatHawaiianRadiated,zombieFatHawaiianCrystallization,zombieBowler,zombieBowlerFeral,zombieBowlerRadiated,zombieBowlerCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killMutated']/objective[@type='Kill']/@entity_names">zombieMutated,zombieMutatedFeral,zombieMutatedRadiated,zombieMutatedCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killCop']/objective[@type='Kill']/@entity_names">zombieFatCop,zombieFatCopFeral,zombieFatCopRadiated,zombieFatCopCrystallization</set>
-    <set xpath="/challenges/challenge[@name='killWights']/objective[@type='Kill']/@entity_names">zombieWightFeral,zombieWightRadiated,zombieWightCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killLumberjack']/objective[@type='Kill']/@entity_names">zombieLumberjack,zombieLumberjackFeral,zombieLumberjackRadiated,zombieLumberjackInfernal,zombieLumberjackCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killSpider']/objective[@type='Kill']/@entity_names">zombieSpider,zombieSpiderFeral,zombieSpiderRadiated,zombieSpiderCharged,zombieSpiderInfernal,zombieSpiderCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killBigMama']/objective[@type='Kill']/@entity_names">zombieFemaleFat,zombieFemaleFatFeral,zombieFemaleFatRadiated,zombieFemaleFatInfernal,zombieFemaleFatCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killTourist']/objective[@type='Kill']/@entity_names">zombieFatHawaiian,zombieFatHawaiianFeral,zombieFatHawaiianRadiated,zombieFatHawaiianInfernal,zombieBowler,zombieBowlerFeral,zombieBowlerRadiated,zombieBowlerInfernal,zombieFatHawaiianCrystallization,zombieBowlerCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killMutated']/objective[@type='Kill']/@entity_names">zombieMutated,zombieMutatedFeral,zombieMutatedRadiated,zombieMutatedCharged,zombieMutatedInfernal,zombieMutatedCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killCop']/objective[@type='Kill']/@entity_names">zombieFatCop,zombieFatCopFeral,zombieFatCopRadiated,zombieFatCopInfernal,zombieFatCopCrystallization</set>
+    <set xpath="/challenges/challenge[@name='killWights']/objective[@type='Kill']/@entity_names">zombieWightFeral,zombieWightRadiated,zombieWightCharged,zombieWightInfernal,zombieWightCrystallization</set>
     <set xpath="/challenges/challenge[@name='killDemolitions']/objective[@type='Kill']/@entity_names">zombieDemolition,zombieDemolitionCrystallization</set>
 
     <remove xpath="/challenges/challenge[@name='wearClothes']"/>
