@@ -194,6 +194,51 @@
         <passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>
     </insertAfter>
 
+    <!-- 虹吸打击 削弱 -->
+    <remove xpath="/progression/perks/perk[@name='perkSiphoningStrikes']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkFortitudeMastery']">
+        <perk name="perkSiphoningStrikes" parent="skillFortitudeRecovery" name_key="perkSiphoningStrikesName" desc_key="perkSiphoningStrikesDesc" icon="ui_game_symbol_siphoning_strikes">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="6" desc_key="reqFortitudeLevel06"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="8" desc_key="reqFortitudeLevel08"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="9" desc_key="reqFortitudeLevel09"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ItemHasTags" tags="melee"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="1">
+                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="1"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="2">
+                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="2"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="3">
+                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="3"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="4">
+                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="4"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="5">
+                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="5"/>
+                </triggered_effect>
+
+                <effect_description level="1" desc_key="perkSiphoningStrikesRank1Desc" long_desc_key="perkSiphoningStrikesRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkSiphoningStrikesRank2Desc" long_desc_key="perkSiphoningStrikesRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkSiphoningStrikesRank3Desc" long_desc_key="perkSiphoningStrikesRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkSiphoningStrikesRank4Desc" long_desc_key="perkSiphoningStrikesRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkSiphoningStrikesRank5Desc" long_desc_key="perkSiphoningStrikesRank5LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
+
+    <!-- 智慧专精5 改为电棍攻击距离 -->
+    <append xpath="/progression/perks/perk[@name='perkIntellectMastery']">
+        <effect_group>
+            <requirement name="HoldingItemHasTags" tags="stunBaton"/>
+            <passive_effect name="MaxRange" operation="perc_add" level="5" value=".1"/>
+            <passive_effect name="BlockRange" operation="perc_add" level="5" value="0,.15"/>
+        </effect_group>
+    </append>
 
 
     <!-- 虹彩技能栏 -->
