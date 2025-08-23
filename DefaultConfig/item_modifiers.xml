@@ -1482,23 +1482,59 @@
 
 	<!-- *** Armor_Mods -->
 
-	<!--Clothing Attachments-->
-	<item_modifier name="modArmorBandolier" installable_tags="armorChest,armorLegs" modifier_tags="ammo" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorInsulatedLinerT1" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
+		<property name="TraderStageTemplate" value="modsTier1"/>
+		<property name="Material" value="Mcloth"/>
+
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="2"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorInsulatedLinerT2" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
+		<property name="TraderStageTemplate" value="modsTier2"/>
+		<property name="Material" value="Mcloth"/>
+
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="3"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorInsulatedLinerT3" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
+		<property name="TraderStageTemplate" value="modsTier3"/>
+		<property name="Material" value="Mcloth"/>
+
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="4"/>
+			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
+			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+		</effect_group>
+	</item_modifier>
+
+	<item_modifier name="modArmorBandolier" installable_tags="armorChest" modifier_tags="ammo" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="UnlockedBy" value="modArmorBandolierSchematic"/>
 		<property name="TraderStageTemplate" value="modsTier3"/>
 		<property name="Material" value="Mcloth"/>
 
-		<!-- Reload Guns X% faster;  would like to add it to "legs" but buffs dont stack like that -->
+		<!-- Reload Guns X% faster -->
 		<effect_group tiered="false">
 			<requirement name="ItemHasTags" tags="armorChest"/>
 				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierChest"/>
 				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierChest"/>
-		</effect_group>
-		<effect_group tiered="false">
-			<requirement name="ItemHasTags" tags="armorLegs"/>
-				<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffBandolierLegs"/>
-				<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffBandolierLegs"/>
 		</effect_group>
 	</item_modifier>
 
@@ -1654,7 +1690,7 @@
 		<property name="Material" value="Msteel"/>
 
 		<effect_group tiered="false">
-			<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.04"/>
+			<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.05"/>
 			<display_value name="dNoiseMultiplier" value="-.05"/>
 		</effect_group>
 	</item_modifier>
@@ -1667,7 +1703,7 @@
 		<property name="Material" value="Msteel"/>
 
 		<effect_group tiered="false">
-			<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.08"/>
+			<passive_effect name="NoiseMultiplier" operation="perc_add" value="-.1"/>
 			<display_value name="dNoiseMultiplier" value="-.1"/>
 		</effect_group>
 	</item_modifier>
@@ -1855,7 +1891,7 @@
 
 	<!-- When done, one dye is picked from the list. -->
 
-	<item_modifier name="modDyeWhite" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye" type="attachment" cosmetic_install_chance="0">
+	<item_modifier name="modDyeWhite" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye" type="attachment" cosmetic_install_chance="0">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CreativeMode" value="None"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
@@ -1866,7 +1902,7 @@
 		<property name="SoundPlace" value="dye_place"/>
 	</item_modifier>
 
-	<item_modifier name="modDyeBrown" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBrown" type="attachment" cosmetic_install_chance=".16">
+	<item_modifier name="modDyeBrown" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBrown" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -1883,7 +1919,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeRed" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeRed" type="attachment" cosmetic_install_chance=".13">
+	<item_modifier name="modDyeRed" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeRed" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -1900,7 +1936,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeOrange" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeOrange" type="attachment" cosmetic_install_chance=".1">
+	<item_modifier name="modDyeOrange" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeOrange" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -1917,7 +1953,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeYellow" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeYellow" type="attachment" cosmetic_install_chance=".1">
+	<item_modifier name="modDyeYellow" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeYellow" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/> <property name="CustomIconTint" value="218,200,135"/>
@@ -1933,7 +1969,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeGreen" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeGreen" type="attachment" cosmetic_install_chance=".13">
+	<item_modifier name="modDyeGreen" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeGreen" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -1950,7 +1986,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeBlue" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBlue" type="attachment" cosmetic_install_chance=".13">
+	<item_modifier name="modDyeBlue" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBlue" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -1967,7 +2003,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyePurple" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyePurple" type="attachment" cosmetic_install_chance=".1">
+	<item_modifier name="modDyePurple" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyePurple" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/> <property name="CustomIconTint" value="113,97,129"/>
@@ -1983,7 +2019,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyeBlack" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBlack" type="attachment" cosmetic_install_chance=".05">
+	<item_modifier name="modDyeBlack" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyeBlack" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/>
@@ -2000,7 +2036,7 @@
 		</item_property_overrides>
 	</item_modifier>
 
-	<item_modifier name="modDyePink" installable_tags="clothing,armor,weapon,tool,vehicle,drone" modifier_tags="dye,modDyePink" type="attachment" cosmetic_install_chance=".08">
+	<item_modifier name="modDyePink" installable_tags="weapon,tool,vehicle,drone" modifier_tags="dye,modDyePink" type="attachment" cosmetic_install_chance=".1">
 		<property name="Extends" value="modGeneralMaster"/>
 		<property name="DescriptionKey" value="modDyeGroupDesc"/>
 		<property name="CustomIcon" value="modDyeWhite"/> <property name="CustomIconTint" value="240,162,251"/>

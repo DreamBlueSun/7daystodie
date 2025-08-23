@@ -13442,6 +13442,8 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="CreativeMode" value="Dev"/>
 	<property name="Model" value="@:Entities/Lighting/trackLightPrefab.prefab"/>
 	<property name="MultiBlockDim" value="1,1,3"/>
+	<property name="OnlySimpleRotations" value="false"/>
+	<property name="AllowedRotations" value="No45"/>
 	<property name="SortOrder2" value="0700"/>
 </block>
 
@@ -22258,6 +22260,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="SortOrder2" value="0007"/>
 </block>
 
+	<!-- *** HANGING_CORPSE_LOG -->
 <!-- White -->
 <block name="corpseHangingLog1White">
 	<property name="Extends" value="woodNoUpgradeMaster" param1="RepairItems"/>
@@ -22268,18 +22271,19 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Shape" value="ModelEntity"/>
 	<property name="Model" value="@:Entities/Gore/corpseHangingLog1Prefab.prefab"/>
 	<property name="ModelOffset" value="0,0,0"/>
-	<property name="MultiBlockDim" value="1,5,1"/>
+	<property name="MultiBlockDim" value="1,4,1"/>
 	<property name="LODCullScale" value="0.5"/>
 	<property name="WaterFlow" value="permitted"/>
 	<property name="Place" value="TowardsPlacerInverted"/>
 	<property name="PlacementDistance" value="10"/>
 	<property name="IsTerrainDecoration" value="false"/>
 	<property name="MaxDamage" value="100"/>
-	<drop event="Harvest" name="resourceWood" count="5,10" tag="oreWoodHarvest,lumberjackHarvest"/>
+	<dropextendsoff/>
 	<drop event="Harvest" name="foodRottingFlesh" count="1" tag="allHarvest" tool_category="Butcher"/>
 	<drop event="Harvest" name="foodRottingFlesh" count="1,2" tag="butcherHarvest"/>
 	<drop event="Harvest" name="resourcePotassiumNitratePowder" count="4,8" tag="butcherHarvest"/>
 	<drop event="Destroy" name="resourceBone" count="5,9" tag="butcherHarvest"/>
+	<property name="DowngradeBlock" value="noCorpseHangingLog1"/>
 	<property name="SortOrder1" value="B265"/>
 	<property name="SortOrder2" value="1000"/>
 </block>
@@ -22334,6 +22338,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="corpseHangingLog1White"/>
 	<property name="Model" value="@:Entities/Gore/corpseHangingLog2Prefab.prefab"/>
 	<property name="MultiBlockDim" value="1,4,1"/>
+	<property name="DowngradeBlock" value="noCorpseHangingLog2"/>
 	<property name="SortOrder2" value="2000"/>
 </block>
 
@@ -22387,6 +22392,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="corpseHangingLog1White"/>
 	<property name="Model" value="@:Entities/Gore/corpseHangingLog3Prefab.prefab"/>
 	<property name="MultiBlockDim" value="1,4,1"/>
+	<property name="DowngradeBlock" value="noCorpseHangingLog2"/>
 	<property name="SortOrder2" value="3000"/>
 </block>
 
@@ -22435,9 +22441,36 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="SortOrder2" value="3008"/>
 </block>
 
+	<!-- *** HANGING_CORPSE_LOGS_ONLY -->
+<block name="noCorpseHangingLog1">
+	<property name="Extends" value="woodNoUpgradeMaster" param1="RepairItems"/>
+	<property name="DisplayType" value="blockMulti"/>
+	<property name="Material" value="Mwood"/>
+	<property name="Shape" value="ModelEntity"/>
+	<property name="Model" value="@:Entities/Gore/noCorpseHangingLog1Prefab.prefab"/>
+	<property name="ModelOffset" value="0,0,0"/>
+	<property name="MultiBlockDim" value="1,4,1"/>
+	<property name="LODCullScale" value="0.5"/>
+	<property name="WaterFlow" value="permitted"/>
+	<property name="Place" value="TowardsPlacerInverted"/>
+	<property name="PlacementDistance" value="10"/>
+	<property name="IsTerrainDecoration" value="false"/>
+	<property name="MaxDamage" value="500"/>
+	<drop event="Harvest" name="resourceWood" count="5,10" tag="oreWoodHarvest,lumberjackHarvest"/>
+	<property name="SortOrder1" value="B265"/>
+	<property name="SortOrder2" value="3050"/>
+</block>
+
+<block name="noCorpseHangingLog2">
+	<property name="Extends" value="noCorpseHangingLog1"/>
+	<property name="Model" value="@:Entities/Gore/noCorpseHangingLog2Prefab.prefab"/>
+	<property name="SortOrder2" value="3051"/>
+</block>
+
+	<!-- *** HANGING_CORPSE_ROPE -->
 <!-- White -->
 <block name="corpseHangingRope1White">
-	<property name="Extends" value="corpseHangingLog1White"/>
+	<property name="Extends" value="corpseHangingLog1White" param1="DowngradeBlock"/>
 	<property name="Model" value="@:Entities/Gore/corpseHangingRope1Prefab.prefab"/>
 	<property name="MultiBlockDim" value="1,3,1"/>
 	<property name="ModelOffset" value="0,3,0"/>
@@ -26390,7 +26423,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="EconomicBundleSize" value="1"/>
 	<property name="SellableToTrader" value="false"/>
 	<property name="MaxDamage" value="200"/>
-	<property name="HeatMapStrength" value="2"/>
+	<property name="HeatMapStrength" value=".8"/>
 	<property name="HeatMapTime" value="5000"/>
 	<property name="HeatMapFrequency" value="1000"/>
 	<property class="RepairItems">
@@ -26947,9 +26980,6 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property class="RepairItems">
 		<property name="resourceForgedSteel" value="9"/>
 	</property>
-	<property class="RepairItemsMeshDamage">
-		<property name="resourceForgedSteel" value="2"/>
-	</property>
 	<drop event="Harvest" name="resourceScrapIron" count="4,10" tag="allHarvest,perkJunkMiner"/>
 	<drop event="Destroy" name="resourceScrapIron" count="10" tag="allHarvest,perkJunkMiner"/>
 	<drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
@@ -27046,9 +27076,6 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 		"/>
 	<property class="RepairItems">
 		<property name="resourceForgedSteel" value="9"/>
-	</property>
-	<property class="RepairItemsMeshDamage">
-		<property name="resourceForgedSteel" value="2"/>
 	</property>
 	<drop event="Harvest" name="resourceScrapIron" count="4,10" tag="allHarvest,perkJunkMiner"/>
 	<drop event="Destroy" name="resourceScrapIron" count="10" tag="allHarvest,perkJunkMiner"/>
@@ -49406,7 +49433,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="cntStoreShelfSingleBottomEmpty"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="shamwayShelves"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/Commercial/storeShelfBottomGoodsPrefab.prefab"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourceScrapIron" count="3,6"/>
@@ -49528,7 +49555,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="cntStoreShelfSingleBottomEmpty"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="toolBox"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/Commercial/storeShelfBottomHardwareGoods01Prefab.prefab"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourceScrapPolymers" count="3,6"/>
@@ -49685,7 +49712,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="cntStoreShelfSingleBottomEmpty"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="popnpillsShelves"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/Commercial/ShelfPharmaGoods01Prefab.prefab"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourceScrapPolymers" count="3,6"/>
@@ -49760,7 +49787,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="cntStoreShelfSingleBottomEmpty"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="trashShelves"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/Commercial/storeShelfBottomTrash01Prefab.prefab"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourceCloth" count="3,6"/>
@@ -50540,7 +50567,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="cntStoreShelfSingleBottomEmpty"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="mopowerShelves"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/Commercial/electronicsShelfPCPrefab.prefab"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourcePaper" count="3,6"/>
@@ -50872,7 +50899,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="decoEntityClothMaster" param1="CustomIcon"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="clothesRacks"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/LootContainers/clothsRackWallJeansPrefab.prefab"/>
 	<property name="WaterFlow" value="permitted"/>
 	<drop event="Destroy" name="resourceCloth" count="3,6"/>
@@ -50885,7 +50912,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Extends" value="decoEntityClothMaster" param1="CustomIcon"/>
 	<property name="Class" value="Loot"/>
 	<property name="LootList" value="clothesRacks"/>
-	<property name="Material" value="Mmetal"/>
+	<property name="Material" value="Mmetal_cloth"/>
 	<property name="Model" value="@:Entities/LootContainers/clothsRackWallLongSleevePrefab.prefab"/>
 	<property name="WaterFlow" value="permitted"/>
 	<drop event="Destroy" name="resourceCloth" count="3,6"/>
@@ -53959,6 +53986,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="CustomIcon" value="cntFileCabinetShortClosed"/>
 	<property name="Material" value="Mmetal_weak"/>
 	<property name="Model" value="@:Entities/LootContainers/filecabinet_short_closedPrefab.prefab"/>
+	<property name="ModelOffset" value="0,0,0"/>
 	<dropextendsoff/>
 	<drop event="Destroy" name="resourceScrapIron" count="3,6"/>
 	<property name="DowngradeFX" value="impact_organic_on_metal,silencefiller"/>
@@ -54107,6 +54135,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="DisplayType" value="blockMulti"/>
 	<property name="CustomIcon" value="cntFileCabinetTallOpen"/>
 	<property name="Model" value="@:Entities/LootContainers/filecabinet_tall_emptyPrefab.prefab"/>
+	<property name="ModelOffset" value="0,0,0"/>
 	<property name="MultiBlockDim" value="1,2,1"/>
 	<property name="SortOrder2" value="0604"/>
 </block>
@@ -69863,7 +69892,7 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 <block name="treeOakMed02">
 	<property name="Extends" value="treeMaster"/>
 	<property name="Material" value="MtreeWoodLarge"/>
-	<property name="Model" value="#Entities/Trees?StudioGimbal/OakLrg02/OakMed03GimbalPrefab.prefab"/>
+	<property name="Model" value="#Entities/Trees?StudioGimbal/OakLrg02/OakMed02GimbalPrefab.prefab"/>
 	<property name="ModelOffset" value="0,-0.3,0"/>
 	<property name="MultiBlockDim" value="1,20,1"/> <!-- MultiBlockDim needs to stay under 32 on the Y -->
 	<property name="ParticleOnDeath" value="treeGib_dead_01"/>
@@ -70473,8 +70502,8 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="BigDecorationRadius" value="3"/>
 	<property name="IsTerrainDecoration" value="true"/>
 	<property name="StabilitySupport" value="false"/>
-	<drop event="Harvest" name="resourceWood" count="20,30" tag="oreWoodHarvest,lumberjackHarvest"/>
-	<drop event="Destroy" name="foodHoney" count="1" prob=".2"/>
+	<drop event="Harvest" name="resourceWood" count="10,15" tag="oreWoodHarvest,lumberjackHarvest"/>
+	<drop event="Destroy" name="resourceWood" count="10,15"/>
 	<property name="SortOrder1" value="B907"/>
 	<property name="SortOrder2" value="0000"/>
 	<property name="Tags" value="wood,challenge_stump"/>
@@ -70497,8 +70526,8 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="Path" value="solid"/>
 	<property name="BigDecorationRadius" value="3"/>
 	<property name="IsTerrainDecoration" value="true"/>
-	<drop event="Harvest" name="resourceWood" count="20,30" tag="oreWoodHarvest,lumberjackHarvest"/>
-	<drop event="Destroy" name="foodHoney" count="1" prob=".2"/>
+	<drop event="Harvest" name="resourceWood" count="10,15" tag="oreWoodHarvest,lumberjackHarvest"/>
+	<drop event="Destroy" name="resourceWood" count="10,15"/>
 	<property name="SortOrder1" value="B907"/>
 	<property name="SortOrder2" value="0001"/>
 	<property name="Tags" value="wood,challenge_stump"/>
@@ -74706,6 +74735,20 @@ MC_playerBlocks - SC_electrical,SC_traps,SC_decor,SC_playerHelpers
 	<property name="ItemTypeIcon" value="all_blocks"/>
 	<property name="SelectAlternates" value="true"/>
 	<property name="PlaceAltBlockValue" value="flagWallHungThick44Black,flagWallHungThick44Purple,flagTopWallHungThick44Black,flagTopWallHungThick44Purple"/>
+	<property name="SortOrder1" value="U200"/>
+	<property name="SortOrder2" value="0000"/>
+	<property name="FilterTags" value="MC_playerBlocks,SC_playerHelpers"/>
+	<property name="SoundPickup" value="cloth_grab"/>
+	<property name="SoundPlace" value="cloth_place"/>
+</block>
+
+<block name="curtainVariantHelper">
+	<property name="Extends" value="curtainDrapesFullTopWhite"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="curtainDrapesFullTopWhite"/>
+	<property name="ItemTypeIcon" value="all_blocks"/>
+	<property name="SelectAlternates" value="true"/>
+	<property name="PlaceAltBlockValue" value="curtainDrapesFullTopWhite,curtainDrapesFullTopBrown,curtainDrapesFullTopRed,curtainDrapesFullTopOrange,curtainDrapesFullTopYellow,curtainDrapesFullTopGreen,curtainDrapesFullTopBlue,curtainDrapesFullTopPurple,curtainDrapesFullTopGrey,curtainDrapesFullTopBlack,curtainDrapesFullTopPink,curtainDrapesFullTileWhite,curtainDrapesFullTileBrown,curtainDrapesFullTileRed,curtainDrapesFullTileOrange,curtainDrapesFullTileYellow,curtainDrapesFullTileGreen,curtainDrapesFullTileBlue,curtainDrapesFullTilePurple,curtainDrapesFullTileGrey,curtainDrapesFullTileBlack,curtainDrapesFullTilePink,curtainDrapesFullBottomWhite,curtainDrapesFullBottomBrown,curtainDrapesFullBottomRed,curtainDrapesFullBottomOrange,curtainDrapesFullBottomYellow,curtainDrapesFullBottomGreen,curtainDrapesFullBottomBlue,curtainDrapesFullBottomPurple,curtainDrapesFullBottomGrey,curtainDrapesFullBottomBlack,curtainDrapesFullBottomPink,curtainDrapesLeftHalfTopWhite,curtainDrapesLeftHalfTopBrown,curtainDrapesLeftHalfTopRed,curtainDrapesLeftHalfTopOrange,curtainDrapesLeftHalfTopYellow,curtainDrapesLeftHalfTopGreen,curtainDrapesLeftHalfTopBlue,curtainDrapesLeftHalfTopPurple,curtainDrapesLeftHalfTopGrey,curtainDrapesLeftHalfTopBlack,curtainDrapesLeftHalfTopPink,curtainDrapesLeftHalfTileWhite,curtainDrapesLeftHalfTileBrown,curtainDrapesLeftHalfTileRed,curtainDrapesLeftHalfTileOrange,curtainDrapesLeftHalfTileYellow,curtainDrapesLeftHalfTileGreen,curtainDrapesLeftHalfTileBlue,curtainDrapesLeftHalfTilePurple,curtainDrapesLeftHalfTileGrey,curtainDrapesLeftHalfTileBlack,curtainDrapesLeftHalfTilePink,curtainDrapesLeftHalfBottomWhite,curtainDrapesLeftHalfBottomBrown,curtainDrapesLeftHalfBottomRed,curtainDrapesLeftHalfBottomOrange,curtainDrapesLeftHalfBottomYellow,curtainDrapesLeftHalfBottomGreen,curtainDrapesLeftHalfBottomBlue,curtainDrapesLeftHalfBottomPurple,curtainDrapesLeftHalfBottomGrey,curtainDrapesLeftHalfBottomBlack,curtainDrapesLeftHalfBottomPink,curtainDrapesRightHalfTopWhite,curtainDrapesRightHalfTopBrown,curtainDrapesRightHalfTopRed,curtainDrapesRightHalfTopOrange,curtainDrapesRightHalfTopYellow,curtainDrapesRightHalfTopGreen,curtainDrapesRightHalfTopBlue,curtainDrapesRightHalfTopPurple,curtainDrapesRightHalfTopGrey,curtainDrapesRightHalfTopBlack,curtainDrapesRightHalfTopPink,curtainDrapesRightHalfTileWhite,curtainDrapesRightHalfTileBrown,curtainDrapesRightHalfTileRed,curtainDrapesRightHalfTileOrange,curtainDrapesRightHalfTileYellow,curtainDrapesRightHalfTileGreen,curtainDrapesRightHalfTileBlue,curtainDrapesRightHalfTilePurple,curtainDrapesRightHalfTileGrey,curtainDrapesRightHalfTileBlack,curtainDrapesRightHalfTilePink,curtainDrapesRightHalfBottomWhite,curtainDrapesRightHalfBottomBrown,curtainDrapesRightHalfBottomRed,curtainDrapesRightHalfBottomOrange,curtainDrapesRightHalfBottomYellow,curtainDrapesRightHalfBottomGreen,curtainDrapesRightHalfBottomBlue,curtainDrapesRightHalfBottomPurple,curtainDrapesRightHalfBottomGrey,curtainDrapesRightHalfBottomBlack,curtainDrapesRightHalfBottomPink,curtainDrapesRod1m"/>
 	<property name="SortOrder1" value="U200"/>
 	<property name="SortOrder2" value="0000"/>
 	<property name="FilterTags" value="MC_playerBlocks,SC_playerHelpers"/>
