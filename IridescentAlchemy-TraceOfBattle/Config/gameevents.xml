@@ -1,0 +1,3063 @@
+<Marisa>
+
+	<!-- *** 敌对事件 -->
+	<append xpath="/gameevents">
+
+		<!-- ** 院长 -->
+		<action_sequence name="EventZombieBossResearchInstituteLeaderBerserk">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="Delay">
+				<property name="time" value="3"/>
+				<property name="phase" value="0"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="1"/>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="researchInstituteAnimals"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="7"/>
+					</requirement>
+					<action class="SpawnEntity">
+						<property name="entity_names" value="researchInstituteAnimalRabbit2,researchInstituteAnimalChickenHostile2"/>
+						<property name="add_to_group" value="researchInstituteAnimals"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+				<action class="Delay">
+					<property name="time" value="3-6"/>
+				</action>
+			</loop>
+			<action class="RemoveEntities">
+				<property name="phase" value="2"/>
+				<property name="target_group" value="researchInstituteAnimals"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 任务事件 storm point -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="marisa_tire2_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While">
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier2_defensive_point" param1="questname"/>
+				</requirement>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="4" param1="spawncount"/>
+					</requirement>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="3"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire3_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier3_defensive_point"/>
+			<variable name="spawncount" value="8"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire4_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier4_defensive_point"/>
+			<variable name="spawncount" value="12"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire5_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier5_defensive_point"/>
+			<variable name="spawncount" value="16"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire6_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier6_defensive_point"/>
+			<variable name="spawncount" value="20"/>
+		</action_sequence>
+
+		<action_sequence name="marisa_tire8_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier8_defensive_point"/>
+			<variable name="spawncount" value="4"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire9_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier9_defensive_point"/>
+			<variable name="spawncount" value="8"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire10_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier10_defensive_point"/>
+			<variable name="spawncount" value="12"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire11_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier11_defensive_point"/>
+			<variable name="spawncount" value="16"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire12_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier12_defensive_point"/>
+			<variable name="spawncount" value="20"/>
+		</action_sequence>
+
+		<action_sequence name="marisa_tire14_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier14_defensive_point"/>
+			<variable name="spawncount" value="4"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire15_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier15_defensive_point"/>
+			<variable name="spawncount" value="8"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire16_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier16_defensive_point"/>
+			<variable name="spawncount" value="12"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire17_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier17_defensive_point"/>
+			<variable name="spawncount" value="16"/>
+		</action_sequence>
+		<action_sequence name="marisa_tire18_storm_point" template="marisa_tire2_storm_point">
+			<variable name="questname" value="marisa_tier18_defensive_point"/>
+			<variable name="spawncount" value="20"/>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** marisa home run -->
+	<append xpath="/gameevents">
+
+        <!-- ** HomeRun Arlene 阿琳 -->
+		<action_sequence name="marisa_home_run_Arlene">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieArleneStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Marlene 马琳 -->
+		<action_sequence name="marisa_home_run_Marlene">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieMarleneStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun PartyGirl 派对女孩 -->
+		<action_sequence name="marisa_home_run_PartyGirl">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombiePartyGirlStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Nurse 护士 -->
+		<action_sequence name="marisa_home_run_Nurse">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieNurseStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Joe 乔 -->
+		<action_sequence name="marisa_home_run_Joe">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieJoeStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Steve 史蒂夫 -->
+		<action_sequence name="marisa_home_run_Steve">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieSteveStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun TomClark 汤姆·克拉克 -->
+		<action_sequence name="marisa_home_run_TomClark">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieTomClarkStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun BusinessMan 商人 -->
+		<action_sequence name="marisa_home_run_BusinessMan">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieBusinessManStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Burnt 被灼烧者 -->
+		<action_sequence name="marisa_home_run_Burnt">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieBurntStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Spider 蜘蛛 -->
+		<action_sequence name="marisa_home_run_Spider">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieSpiderStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Boe 布尔 -->
+		<action_sequence name="marisa_home_run_Boe">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieBoeStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun MaleHazmat 穿着防化服的丧尸 -->
+		<action_sequence name="marisa_home_run_MaleHazmat">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieMaleHazmatStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Janitor 看门人 -->
+		<action_sequence name="marisa_home_run_Janitor">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieJanitorStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Inmate 犯人 -->
+		<action_sequence name="marisa_home_run_Inmate">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieInmateStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Moe 莫伊 -->
+		<action_sequence name="marisa_home_run_Moe">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieMoeStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Lab 实验室工作人员 -->
+		<action_sequence name="marisa_home_run_Lab">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieLabStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Darlene 达琳 -->
+		<action_sequence name="marisa_home_run_Darlene">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieDarleneStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Yo 幽 -->
+		<action_sequence name="marisa_home_run_Yo">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieYoStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun UtilityWorker 公用事业工人 -->
+		<action_sequence name="marisa_home_run_UtilityWorker">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieUtilityWorkerStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Biker 摩托车手 -->
+		<action_sequence name="marisa_home_run_Biker">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieBikerStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Lumberjack 伐木工 -->
+		<action_sequence name="marisa_home_run_Lumberjack">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieLumberjackStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun FemaleFat 大妈妈 -->
+		<action_sequence name="marisa_home_run_FemaleFat">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieFemaleFatStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun FatHawaiian 游客 -->
+		<action_sequence name="marisa_home_run_FatHawaiian">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieFatHawaiianStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Bowler 投球手 -->
+		<action_sequence name="marisa_home_run_Bowler">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieBowlerStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun FatCop 警察 -->
+		<action_sequence name="marisa_home_run_FatCop">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieFatCopStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Skateboarder 暴徒 -->
+		<action_sequence name="marisa_home_run_Skateboarder">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieSkateboarderStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Soldier 士兵 -->
+		<action_sequence name="marisa_home_run_Soldier">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieSoldierStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Wight 怀特 -->
+		<action_sequence name="marisa_home_run_Wight">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieWightStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Screamer 尖叫丧尸 -->
+		<action_sequence name="marisa_home_run_Screamer">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieScreamerStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Mutated 变异丧尸 -->
+		<action_sequence name="marisa_home_run_Mutated">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieMutatedStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun Demolition 爆破丧尸 -->
+		<action_sequence name="marisa_home_run_Demolition">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieDemolitionStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+        <!-- ** HomeRun SteveCrawler 爬行者 -->
+		<action_sequence name="marisa_home_run_SteveCrawler">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_actions"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_baseball_start"/>
+				<property name="phase" value="1"/>
+				<property name="inside_head" value="true"/>
+				<property name="target_group" value="party"/>
+				<property name="can_disable" value="false"/>
+			</action>
+
+			<action class="StartHomerun">
+				<property name="phase" value="2"/>
+				<property name="duration" value="180"/>
+				<property name="reward_level_1" value="10"/>
+				<property name="reward_level_2" value="20"/>
+				<property name="reward_level_3" value="30"/>
+				<property name="reward_level_4" value="40"/>
+				<property name="reward_level_5" value="50"/>
+
+				<property name="reward_event_1" value="spawn_homerun_reward1"/>
+				<property name="reward_event_2" value="spawn_homerun_reward2"/>
+				<property name="reward_event_3" value="spawn_homerun_reward3"/>
+				<property name="reward_event_4" value="spawn_homerun_reward4"/>
+				<property name="reward_event_5" value="spawn_homerun_reward5"/>
+			</action>
+
+			<loop class="While" >
+				<property name="phase" value="3"/>
+
+				<requirement class="IsHomerunActive"/>
+
+				<decision class="If">
+
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="5"/>
+					</requirement>
+
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieSteveCrawlerStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+
+					<action class="PlaySound">
+						<property name="sound" value="zombiemalealert" param1="alertsound"/>
+						<property name="phase" value="1"/>
+					</action>
+				</decision>
+
+			</loop>
+
+			<action class="RemoveEntities">
+				<property name="phase" value="4"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 丧尸掉落 -->
+	<append xpath="/gameevents">
+
+		<!-- ** 通用 T3 -->
+		<action_sequence name="EventDropIridescentResourceZombieT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieRottingFleshT3,resourceZombieBoneT3,resourceZombieLeatherT3,resourceZombieScaleT3"/>
+				<property name="added_item_counts" value="0-1,0-1,0-1,0-1"/>
+			</action>
+		</action_sequence>
+
+		<!-- ** 提取素 T3 zombieArlene 阿琳 -->
+		<action_sequence name="EventDropIridescentResourceZombieArleneExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieArleneExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieMarlene 马琳 -->
+		<action_sequence name="EventDropIridescentResourceZombieMarleneExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieMarleneExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombiePartyGirl 派对女孩 -->
+		<action_sequence name="EventDropIridescentResourceZombiePartyGirlExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombiePartyGirlExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieNurse 护士 -->
+		<action_sequence name="EventDropIridescentResourceZombieNurseExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieNurseExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieJoe 乔 -->
+		<action_sequence name="EventDropIridescentResourceZombieJoeExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieJoeExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieSteve 史蒂夫 -->
+		<action_sequence name="EventDropIridescentResourceZombieSteveExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieSteveExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieTomClark 汤姆·克拉克 -->
+		<action_sequence name="EventDropIridescentResourceZombieTomClarkExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieTomClarkExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieBusinessMan 商人 -->
+		<action_sequence name="EventDropIridescentResourceZombieBusinessManExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieBusinessManExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieBurnt 被灼烧者 -->
+		<action_sequence name="EventDropIridescentResourceZombieBurntExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieBurntExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieSpider 蜘蛛 -->
+		<action_sequence name="EventDropIridescentResourceZombieSpiderExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieSpiderExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieBoe 布尔 -->
+		<action_sequence name="EventDropIridescentResourceZombieBoeExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieBoeExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieMaleHazmat 穿着防化服的丧尸 -->
+		<action_sequence name="EventDropIridescentResourceZombieMaleHazmatExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieMaleHazmatExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieJanitor 看门人 -->
+		<action_sequence name="EventDropIridescentResourceZombieJanitorExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieJanitorExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieInmate 犯人 -->
+		<action_sequence name="EventDropIridescentResourceZombieInmateExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieInmateExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieMoe 莫伊 -->
+		<action_sequence name="EventDropIridescentResourceZombieMoeExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieMoeExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieLab 实验室工作人员 -->
+		<action_sequence name="EventDropIridescentResourceZombieLabExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieLabExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieDarlene 达琳 -->
+		<action_sequence name="EventDropIridescentResourceZombieDarleneExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieDarleneExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieYo 幽 -->
+		<action_sequence name="EventDropIridescentResourceZombieYoExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieYoExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieUtilityWorker 公用事业工人 -->
+		<action_sequence name="EventDropIridescentResourceZombieUtilityWorkerExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieUtilityWorkerExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieBiker 摩托车手 -->
+		<action_sequence name="EventDropIridescentResourceZombieBikerExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieBikerExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieLumberjack 伐木工 -->
+		<action_sequence name="EventDropIridescentResourceZombieLumberjackExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieLumberjackExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieFemaleFat 大妈妈 -->
+		<action_sequence name="EventDropIridescentResourceZombieFemaleFatExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieFemaleFatExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieFatHawaiian 游客 -->
+		<action_sequence name="EventDropIridescentResourceZombieFatHawaiianExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieFatHawaiianExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieBowler 投球手 -->
+		<action_sequence name="EventDropIridescentResourceZombieBowlerExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieBowlerExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieFatCop 警察 -->
+		<action_sequence name="EventDropIridescentResourceZombieFatCopExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieFatCopExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieSkateboarder 暴徒 -->
+		<action_sequence name="EventDropIridescentResourceZombieSkateboarderExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieSkateboarderExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieSoldier 士兵 -->
+		<action_sequence name="EventDropIridescentResourceZombieSoldierExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieSoldierExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieWight 怀特 -->
+		<action_sequence name="EventDropIridescentResourceZombieWightExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieWightExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieScreamer 尖叫丧尸 -->
+		<action_sequence name="EventDropIridescentResourceZombieScreamerExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieScreamerExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieMutated 变异丧尸 -->
+		<action_sequence name="EventDropIridescentResourceZombieMutatedExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieMutatedExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieDemolition 爆破丧尸 -->
+		<action_sequence name="EventDropIridescentResourceZombieDemolitionExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieDemolitionExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<!-- ** 提取素 T3 zombieSteveCrawler 爬行者 -->
+		<action_sequence name="EventDropIridescentResourceZombieSteveCrawlerExtractT3">
+			<action class="AddItems">
+				<property name="added_items" value="resourceZombieSteveCrawlerExtractT3"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 满足感 物品回收 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="EventStuffedIridescentFoodGrilledMeat">
+			<action class="AddItems">
+				<property name="added_items" value="IridescentFoodGrilledMeat"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventStuffedIridescentPotionHealth2">
+			<action class="AddItems">
+				<property name="added_items" value="IridescentPotionHealth2"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventStuffedIridescentPotionAttack2">
+			<action class="AddItems">
+				<property name="added_items" value="IridescentPotionAttack2"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventStuffedIridescentPotionDefend2">
+			<action class="AddItems">
+				<property name="added_items" value="IridescentPotionDefend2"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventStuffedIridescentPotionStamina2">
+			<action class="AddItems">
+				<property name="added_items" value="IridescentPotionStamina2"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 炼铜 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="EventPerkMarisaCopperSmeltingRank5">
+			<action class="AddItems">
+				<property name="added_items" value="casinoCoin"/>
+				<property name="added_item_counts" value="50"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventPerkMarisaCopperSmeltingRank6">
+			<action class="AddItems">
+				<property name="added_items" value="casinoCoin"/>
+				<property name="added_item_counts" value="60"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 箭矢回收 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="EventArrowAutoPickArrowSteelSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammoArrowSteelSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventArrowAutoPickArrowExplodingSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammoArrowExplodingSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+
+		<action_sequence name="EventArrowAutoPickCrossbowBoltSteelSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammoCrossbowBoltSteelSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventArrowAutoPickCrossbowBoltExplodingSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammoCrossbowBoltExplodingSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 弹药节约 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="EventAmmoSavingAmmo9mmBulletBall">
+			<action class="AddItems">
+				<property name="added_items" value="ammo9mmBulletBall"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo9mmBulletHP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo9mmBulletHP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo9mmBulletAP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo9mmBulletAP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo44MagnumBulletBall">
+			<action class="AddItems">
+				<property name="added_items" value="ammo44MagnumBulletBall"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo44MagnumBulletHP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo44MagnumBulletHP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo44MagnumBulletAP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo44MagnumBulletAP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo762mmBulletBall">
+			<action class="AddItems">
+				<property name="added_items" value="ammo762mmBulletBall"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo762mmBulletHP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo762mmBulletHP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo762mmBulletAP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo762mmBulletAP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmoShotgunShell">
+			<action class="AddItems">
+				<property name="added_items" value="ammoShotgunShell"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmoShotgunSlug">
+			<action class="AddItems">
+				<property name="added_items" value="ammoShotgunSlug"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmoShotgunBreachingSlug">
+			<action class="AddItems">
+				<property name="added_items" value="ammoShotgunBreachingSlug"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo9mmBulletSE">
+			<action class="AddItems">
+				<property name="added_items" value="ammo9mmBulletSE"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo44MagnumBulletSE">
+			<action class="AddItems">
+				<property name="added_items" value="ammo44MagnumBulletSE"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo762mmBulletSE">
+			<action class="AddItems">
+				<property name="added_items" value="ammo762mmBulletSE"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmoShotgunSE">
+			<action class="AddItems">
+				<property name="added_items" value="ammoShotgunSE"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo9mmBulletSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo9mmBulletSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo44MagnumBulletSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo44MagnumBulletSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmo762mmBulletSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammo762mmBulletSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventAmmoSavingAmmoShotgunSP">
+			<action class="AddItems">
+				<property name="added_items" value="ammoShotgunSP"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 骨粉催熟 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="marisa_tree_grow">
+			<property name="category" value="twitch_actions"/>
+			<action class="BlockGrowCrops">
+				<property name="exclude_tags" value="tree"/>
+				<property name="min_offset" value="-2,0,-2"/>
+				<property name="max_offset" value="2,3,2"/>
+			</action>
+			<action class="PlaySound">
+				<property name="phase" value="1"/>
+				<property name="sound" value="twitch_grow_plants"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 下雨 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="marisa_weather_rain">
+
+			<requirement class="IsWeatherGracePeriod">
+				<property name="invert" value="true" />
+			</requirement>
+
+			<action class="SetWeather">
+				<property name="weather_group" value="twitch_rain" />
+				<property name="time" value="2400" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="phase" value="1" />
+				<property name="sound" value="twitch_weather_rain" />
+			</action>
+
+		</action_sequence>
+
+	</append>
+
+	<!-- *** 传送 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="marisa_teleport_bedroll">
+			<property name="category" value="admin" />
+			<property name="single_instance" value="true" />
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="0" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="1" />
+				<property name="fade_time" value="0.05" />
+			</action>
+
+			<action class="Delay">
+				<property name="time" value=".5" />
+				<property name="phase" value="2" />
+			</action>
+
+			<action class="TeleportToSpecial">
+				<property name="special_type" value="Bedroll" param1="special_type" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="3" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="0" />
+				<property name="fade_time" value="0.1" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
+			</action>
+
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_landclaim" template="action_teleport_bedroll">
+			<variable name="special_type" value="Landclaim" />
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_up">
+			<property name="category" value="twitch_actions" />
+
+			<requirement class="InVehicle">
+				<property name="invert" value="true" />
+			</requirement>
+
+			<action class="Teleport">
+				<property name="target_position" value="0, 40, 0" />
+				<property name="offset_type" value="Relative" />
+				<property name="teleport_delay" value="0.1" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
+			</action>
+
+			<action class="AddBuff">
+				<property name="phase" value="1" />
+				<property name="buff_name" value="buffTwitchDontBreakLeg" />
+			</action>
+
+			<action class="AddBuff">
+				<property name="phase" value="1" />
+				<property name="buff_name" value="buffMarisaTeleportUpCold" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="1" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="1" />
+				<property name="fade_time" value="0.05" />
+			</action>
+
+			<action class="Delay">
+				<property name="time" value="1" param1="delay_time"/>
+				<property name="phase" value="2" />
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="3" />
+				<property name="screen_effect" value="FadeToBlack" />
+				<property name="intensity" value="0" />
+				<property name="fade_time" value="0.1" />
+			</action>
+
+		</action_sequence>
+
+		<action_sequence name="marisa_teleport_near">
+			<property name="category" value="twitch_actions" />
+
+			<action class="RandomTeleport">
+				<property name="min_distance" value="4" />
+				<property name="max_distance" value="8" />
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_pull" />
+			</action>
+
+		</action_sequence>
+
+	</append>
+
+</Marisa>
