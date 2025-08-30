@@ -1,13 +1,15 @@
 <Marisa>
 
-  	<set xpath="/quests/@quests_per_tier">999999</set>
+  	<set xpath="/quests/@quests_per_tier">1</set>
 	<set xpath="/quests/@max_quest_tier">18</set>
 
     <!-- 移除商人任务 开放贸易路线 的物品奖励 -->
 	<set xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='Exp']/@value">100</set>
 	<remove xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='LootItem']"/>
+	<remove xpath="/quests/quest_tier_rewards"/>
 
 	<!-- 新的任务 -->
+	<set xpath="/quests/quest[@id='intro_buried_supplies']/action[@type='SetCVar']/property[@name='value']/@value">2</set>
 	<insertAfter xpath="/quests/quest[@id='tier3_buried_supplies']">
 
 		<!-- 紧急任务 -->
@@ -29,7 +31,7 @@
 			<property name="single_quest" value="true"/>
 			<property name="always_allow" value="true"/>
 			<property name="unique_key" value="MarisaRankQuest"/>
-			<property name="quest_type" value="special"/>
+			<property name="quest_type" value="emergency"/>
 			<property name="extra_tags" value="" param1="extra_tags"/>
 			<property name="shareable" value="flase"/>
 			<property name="spawn_multiplier" value="0" param1="spawn_multiplier"/>
@@ -88,7 +90,7 @@
 
 			<action type="SetCVar">
 				<property name="cvar" value="IntroComplete"/>
-				<property name="value" value="3" param1="quest_rank"/>
+				<property name="value" value="3" param1="difficulty"/>
 				<property name="on_complete" value="true"/>
 			</action>
 
@@ -209,6 +211,72 @@
 		</quest>
 
 		<!-- 资源采集 -->
+		<quest id="marisa_tier1_fetch_keep_resource">
+			<property name="name_key" value="quest_tier1_fetch_keep_resource" param1="name"/>
+			<property name="subtitle_key" value="quest_fetch_keep_resource_subtitle"/>
+			<property name="description_key" value="quest_fetch_keep_resource_desc"/>
+			<property name="icon" value="ui_game_symbol_quest"/>
+			<property name="repeatable" value="true"/>
+			<property name="category_key" value="quest"/>
+			<property name="difficulty_tier" value="1" param1="difficulty"/>
+			<property name="offer_key" value="quest_tier1_fetch_keep_resource_offer" param1="offer"/>
+			<property name="statement_key" value="quest_fetch_statement"/>
+			<property name="response_key" value="quest_fetch_keep_resource_response"/>
+			<property name="login_rally_reset" value="true"/>
+			<property name="reward_choices_count" value="5"/>
+			<property name="extra_tags" value="" param1="extra_tags"/>
+			<property name="shareable" value="false"/>
+			<property name="completiontype" value="TurnIn"/>
+			<property name="completion_key" value="quest_fetch_completion"/>
+
+			<objective type="RandomGotoNPC" phase="1">
+				<property name="completion_distance" value="20"/>
+				<property name="distance" value="100-150"/>
+				<property name="nav_object" value="quest"/>
+			</objective>
+
+			<objective type="RallyPoint">
+				<property name="start_mode" value="Create"/>
+				<property name="phase" value="2"/>
+				<property name="nav_object" value="rally"/>
+				<property name="rally_marker_type" value="questRallyMarkerBuriedSupplies"/>
+
+				<property name="activate_event" value="quest_treasure_replace_road"/>
+			</objective>
+
+			<objective type="FetchKeep" id="resourceYuccaFibers" value="5" phase="3" param1="resource"/>
+
+			<objective type="ReturnToNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<objective type="InteractWithNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<reward type="Exp" value="300"/>
+			<reward type="Item" id="casinoCoin" value="100"/>
+		</quest>
+		<quest id="marisa_tier7_fetch_keep_resource" template="marisa_tier1_fetch_keep_resource">
+			<variable name="name" value="quest_tier7_fetch_keep_resource"/>
+			<variable name="offer" value="quest_tier7_fetch_keep_resource_offer"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="resource" value="resourceYuccaFibers"/>
+
+			<reward type="Exp" value="600"/>
+			<reward type="Item" id="casinoCoin" value="200"/>
+		</quest>
+		<quest id="marisa_tier13_fetch_keep_resource" template="marisa_tier1_fetch_keep_resource">
+			<variable name="name" value="quest_tier13_fetch_keep_resource"/>
+			<variable name="offer" value="quest_tier13_fetch_keep_resource_offer"/>
+			<variable name="difficulty" value="13"/>
+			<variable name="resource" value="resourceYuccaFibers"/>
+
+			<reward type="Exp" value="1200"/>
+			<reward type="Item" id="casinoCoin" value="400"/>
+		</quest>
 
 		<!-- 埋藏补给 -->
 		<quest id="marisa_tier1_buried_supplies">
@@ -304,12 +372,11 @@
 		</quest>
 		<quest id="marisa_tier2_buried_supplies" template="marisa_tier1_buried_supplies">
 			<variable name="name" value="quest_tier2_buried_supplies"/>
-			<variable name="offer" value="quest_tier1_buried_supplies_offer"/>
 			<variable name="difficulty" value="2"/>
 			<variable name="radius" value="7"/>
 			<variable name="spawn_chance" value="0.5"/>
 			<variable name="spawn_count" value="2-4"/>
-			<variable name="finish_spawn_count" value="5-7"/>
+			<variable name="finish_spawn_count" value="4-6"/>
 			<variable name="container" value="cntBuriedWeaponChest"/>
 
 			<reward type="Exp" value="1500"/>
@@ -325,7 +392,6 @@
 		</quest>
 		<quest id="marisa_tier3_buried_supplies" template="marisa_tier1_buried_supplies">
 			<variable name="name" value="quest_tier3_buried_supplies"/>
-			<variable name="offer" value="quest_tier1_buried_supplies_offer"/>
 			<variable name="difficulty" value="3"/>
 			<variable name="radius" value="9"/>
 			<variable name="spawn_chance" value="0.75"/>
@@ -343,6 +409,80 @@
 			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
 			<reward type="LootItem" id="groupQuestResourcesT0" ischosen="true" value="1"/>
 			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="3"/>
+		</quest>
+
+		<quest id="marisa_tier7_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier7_buried_supplies"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="radius" value="10"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="4-6"/>
+			<variable name="finish_spawn_count" value="6-8"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
+		</quest>
+		<quest id="marisa_tier8_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier8_buried_supplies"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="radius" value="11"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="5-7"/>
+			<variable name="finish_spawn_count" value="7-9"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
+		</quest>
+		<quest id="marisa_tier9_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier9_buried_supplies"/>
+			<variable name="difficulty" value="9"/>
+			<variable name="radius" value="12"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="6-8"/>
+			<variable name="finish_spawn_count" value="8-10"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
+		</quest>
+
+		<quest id="marisa_tier13_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier13_buried_supplies"/>
+			<variable name="difficulty" value="13"/>
+			<variable name="radius" value="13"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="7-10"/>
+			<variable name="finish_spawn_count" value="9-12"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
+		</quest>
+		<quest id="marisa_tier14_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier14_buried_supplies"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="radius" value="14"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="8-11"/>
+			<variable name="finish_spawn_count" value="10-13"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
+		</quest>
+		<quest id="marisa_tier15_buried_supplies" template="marisa_tier1_buried_supplies">
+			<variable name="name" value="quest_tier15_buried_supplies"/>
+			<variable name="difficulty" value="15"/>
+			<variable name="radius" value="15"/>
+			<variable name="spawn_chance" value="1"/>
+			<variable name="spawn_count" value="9-12"/>
+			<variable name="finish_spawn_count" value="11-14"/>
+			<variable name="container" value="cntBuriedWeaponChest"/>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="500"/>
 		</quest>
 
 		<!-- 获取 -->
@@ -370,6 +510,7 @@
 				<property name="biome_filter_type" value="SameBiome" param1="biome_filter_type"/>
 				<property name="biome_filter" value="" param1="biome_filter"/>
 				<property name="nav_object" value="quest"/>
+				<property name="poi_tier" value="1" param1="poi_tier"/>
 			</objective>
 
 			<objective type="RallyPoint">
@@ -418,11 +559,8 @@
 		</quest>
 		<quest id="marisa_tier2_fetch" template="marisa_tier1_fetch">
 			<variable name="name" value="quest_tier2_fetch"/>
-			<variable name="offer" value="quest_tier2_fetch_offer"/>
 			<variable name="difficulty" value="2"/>
-			<variable name="extra_tags" value=""/>
-			<variable name="biome_filter_type" value="SameBiome"/>
-			<variable name="biome_filter" value=""/>
+			<variable name="poi_tier" value="2"/>
 
 			<reward type="Exp" value="1500"/>
 			<reward type="Item" id="casinoCoin" value="500"/>
@@ -437,11 +575,106 @@
 		</quest>
 		<quest id="marisa_tier3_fetch" template="marisa_tier1_fetch">
 			<variable name="name" value="quest_tier3_fetch"/>
-			<variable name="offer" value="quest_tier3_fetch_offer"/>
 			<variable name="difficulty" value="3"/>
-			<variable name="extra_tags" value=""/>
-			<variable name="biome_filter_type" value="SameBiome"/>
-			<variable name="biome_filter" value=""/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+
+		<quest id="marisa_tier7_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier7_fetch"/>
+			<variable name="difficulty" value="7"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier8_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier8_fetch"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier9_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier9_fetch"/>
+			<variable name="difficulty" value="9"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+
+		<quest id="marisa_tier13_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier13_fetch"/>
+			<variable name="difficulty" value="13"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier14_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier14_fetch"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="2250"/>
+			<reward type="Item" id="casinoCoin" value="750"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier15_fetch" template="marisa_tier1_fetch">
+			<variable name="name" value="quest_tier15_fetch"/>
+			<variable name="difficulty" value="15"/>
+			<variable name="poi_tier" value="3"/>
 
 			<reward type="Exp" value="2250"/>
 			<reward type="Item" id="casinoCoin" value="750"/>
@@ -513,6 +746,12 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompleteClearWill"/>
+				<property name="value" value="2" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
 			<reward type="Exp" value="1500"/>
 			<reward type="Item" id="casinoCoin" value="500"/>
 
@@ -528,6 +767,7 @@
 			<variable name="name" value="quest_tier3_clear"/>
 			<variable name="offer" value="quest_tier3_clear_offer"/>
 			<variable name="difficulty" value="3"/>
+			<variable name="quest_rank" value="3"/>
 			<variable name="poi_tier" value="2"/>
 
 			<reward type="Exp" value="3000"/>
@@ -545,6 +785,7 @@
 			<variable name="name" value="quest_tier4_clear"/>
 			<variable name="offer" value="quest_tier4_clear_offer"/>
 			<variable name="difficulty" value="4"/>
+			<variable name="quest_rank" value="4"/>
 			<variable name="poi_tier" value="3"/>
 
 			<reward type="Exp" value="4500"/>
@@ -562,6 +803,7 @@
 			<variable name="name" value="quest_tier5_clear"/>
 			<variable name="offer" value="quest_tier5_clear_offer"/>
 			<variable name="difficulty" value="5"/>
+			<variable name="quest_rank" value="5"/>
 			<variable name="poi_tier" value="4"/>
 
 			<reward type="Exp" value="6000"/>
@@ -579,6 +821,189 @@
 			<variable name="name" value="quest_tier6_clear"/>
 			<variable name="offer" value="quest_tier6_clear_offer"/>
 			<variable name="difficulty" value="6"/>
+			<variable name="quest_rank" value="6"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+
+			<reward type="LootItem" id="groupQuestArmorResources" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestGas,groupQuestSteel02" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+
+		<quest id="marisa_tier8_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier8_clear"/>
+			<variable name="offer" value="quest_tier8_clear_offer"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="quest_rank" value="8"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="3000"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier9_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier9_clear"/>
+			<variable name="offer" value="quest_tier9_clear_offer"/>
+			<variable name="difficulty" value="9"/>
+			<variable name="quest_rank" value="9"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="3000"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier10_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier10_clear"/>
+			<variable name="offer" value="quest_tier10_clear_offer"/>
+			<variable name="difficulty" value="10"/>
+			<variable name="quest_rank" value="10"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier11_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier11_clear"/>
+			<variable name="offer" value="quest_tier11_clear_offer"/>
+			<variable name="difficulty" value="11"/>
+			<variable name="quest_rank" value="11"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier12_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier12_clear"/>
+			<variable name="offer" value="quest_tier12_clear_offer"/>
+			<variable name="difficulty" value="12"/>
+			<variable name="quest_rank" value="12"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+
+			<reward type="LootItem" id="groupQuestArmorResources" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestGas,groupQuestSteel02" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+
+		<quest id="marisa_tier14_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier14_clear"/>
+			<variable name="offer" value="quest_tier14_clear_offer"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="quest_rank" value="14"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="3000"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier15_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier15_clear"/>
+			<variable name="offer" value="quest_tier15_clear_offer"/>
+			<variable name="difficulty" value="15"/>
+			<variable name="quest_rank" value="15"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="3000"/>
+			<reward type="Item" id="casinoCoin" value="1000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier16_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier16_clear"/>
+			<variable name="offer" value="quest_tier16_clear_offer"/>
+			<variable name="difficulty" value="16"/>
+			<variable name="quest_rank" value="16"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,seedsNoFlowers,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier17_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier17_clear"/>
+			<variable name="offer" value="quest_tier17_clear_offer"/>
+			<variable name="difficulty" value="17"/>
+			<variable name="quest_rank" value="17"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics,groupQuestMods" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestSteel01" ischosen="true"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true"/>
+		</quest>
+		<quest id="marisa_tier18_clear" template="marisa_tier2_clear">
+			<variable name="name" value="quest_tier18_clear"/>
+			<variable name="offer" value="quest_tier18_clear_offer"/>
+			<variable name="difficulty" value="18"/>
+			<variable name="quest_rank" value="18"/>
 			<variable name="poi_tier" value="5"/>
 
 			<reward type="Exp" value="7500"/>
@@ -654,6 +1079,12 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompleteClearInfestedWill"/>
+				<property name="value" value="2" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
 			<reward type="Exp" value="3000"/>
 			<reward type="Item" id="casinoCoin" value="1000"/>
 
@@ -667,9 +1098,8 @@
 		</quest>
 		<quest id="marisa_tier3_clear_infested" template="marisa_tier2_clear_infested">
 			<variable name="name" value="quest_tier3_infested_clear"/>
-			<variable name="offer" value="quest_tier3_infested_clear_offer"/>
 			<variable name="difficulty" value="3"/>
-			<variable name="extra_tags" value="infested"/>
+			<variable name="quest_rank" value="3"/>
 			<variable name="poi_tier" value="2"/>
 
 			<reward type="Exp" value="4500"/>
@@ -685,9 +1115,8 @@
 		</quest>
 		<quest id="marisa_tier4_clear_infested" template="marisa_tier2_clear_infested">
 			<variable name="name" value="quest_tier4_infested_clear"/>
-			<variable name="offer" value="quest_tier4_infested_clear_offer"/>
 			<variable name="difficulty" value="4"/>
-			<variable name="extra_tags" value="infested"/>
+			<variable name="quest_rank" value="4"/>
 			<variable name="poi_tier" value="3"/>
 
 			<reward type="Exp" value="6000"/>
@@ -703,9 +1132,8 @@
 		</quest>
 		<quest id="marisa_tier5_clear_infested" template="marisa_tier2_clear_infested">
 			<variable name="name" value="quest_tier5_infested_clear"/>
-			<variable name="offer" value="quest_tier5_infested_clear_offer"/>
 			<variable name="difficulty" value="5"/>
-			<variable name="extra_tags" value="infested"/>
+			<variable name="quest_rank" value="5"/>
 			<variable name="poi_tier" value="4"/>
 
 			<reward type="Exp" value="7500"/>
@@ -721,9 +1149,180 @@
 		</quest>
 		<quest id="marisa_tier6_clear_infested" template="marisa_tier2_clear_infested">
 			<variable name="name" value="quest_tier6_infested_clear"/>
-			<variable name="offer" value="quest_tier5_infested_clear_offer"/>
 			<variable name="difficulty" value="6"/>
-			<variable name="extra_tags" value="infested"/>
+			<variable name="quest_rank" value="6"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="9000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
+
+			<reward type="Item" id="resourceLegendaryParts" ischosen="true" isfixed="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestGas" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="6"/>
+		</quest>
+
+		<quest id="marisa_tier8_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier8_infested_clear"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="quest_rank" value="8"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="3"/>
+		</quest>
+		<quest id="marisa_tier9_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier9_infested_clear"/>
+			<variable name="difficulty" value="9"/>
+			<variable name="quest_rank" value="9"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="3"/>
+		</quest>
+		<quest id="marisa_tier10_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier10_infested_clear"/>
+			<variable name="difficulty" value="10"/>
+			<variable name="quest_rank" value="10"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="4"/>
+		</quest>
+		<quest id="marisa_tier11_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier11_infested_clear"/>
+			<variable name="difficulty" value="11"/>
+			<variable name="quest_rank" value="11"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+
+			<reward type="LootItem" id="groupQuestArmorResources" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestGas" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="5"/>
+		</quest>
+		<quest id="marisa_tier12_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier12_infested_clear"/>
+			<variable name="difficulty" value="12"/>
+			<variable name="quest_rank" value="12"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="9000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
+
+			<reward type="Item" id="resourceLegendaryParts" ischosen="true" isfixed="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="6"/>
+			<reward type="LootItem" id="groupQuestGas" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="6"/>
+		</quest>
+
+		<quest id="marisa_tier14_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier14_infested_clear"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="quest_rank" value="14"/>
+			<variable name="poi_tier" value="1"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="3"/>
+		</quest>
+		<quest id="marisa_tier15_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier15_infested_clear"/>
+			<variable name="difficulty" value="15"/>
+			<variable name="quest_rank" value="15"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="4500"/>
+			<reward type="Item" id="casinoCoin" value="1500"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="3"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="3"/>
+		</quest>
+		<quest id="marisa_tier16_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier16_infested_clear"/>
+			<variable name="difficulty" value="16"/>
+			<variable name="quest_rank" value="16"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="4"/>
+			<reward type="LootItem" id="groupQuestResourcesT1" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="4"/>
+		</quest>
+		<quest id="marisa_tier17_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier17_infested_clear"/>
+			<variable name="difficulty" value="17"/>
+			<variable name="quest_rank" value="17"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+
+			<reward type="LootItem" id="groupQuestArmorResources" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="5"/>
+			<reward type="LootItem" id="groupQuestGas" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT1,groupQuestT1SkillMagazineBundle" ischosen="true" value="5"/>
+		</quest>
+		<quest id="marisa_tier18_clear_infested" template="marisa_tier2_clear_infested">
+			<variable name="name" value="quest_tier18_infested_clear"/>
+			<variable name="difficulty" value="18"/>
+			<variable name="quest_rank" value="18"/>
 			<variable name="poi_tier" value="5"/>
 
 			<reward type="Exp" value="9000"/>
@@ -799,13 +1398,19 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompleteClearSuperInfestedWill"/>
+				<property name="value" value="2" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
 			<reward type="Exp" value="4500"/>
 			<reward type="Item" id="casinoCoin" value="1500"/>
 		</quest>
 		<quest id="marisa_tier3_clear_super_infested" template="marisa_tier2_clear_super_infested">
 			<variable name="name" value="quest_tier3_super_infested_clear"/>
-			<variable name="extra_tags" value="infested"/>
 			<variable name="difficulty" value="3"/>
+			<variable name="quest_rank" value="3"/>
 			<variable name="poi_tier" value="2"/>
 
 			<reward type="Exp" value="6000"/>
@@ -813,8 +1418,8 @@
 		</quest>
 		<quest id="marisa_tier4_clear_super_infested" template="marisa_tier2_clear_super_infested">
 			<variable name="name" value="quest_tier4_super_infested_clear"/>
-			<variable name="extra_tags" value="infested"/>
 			<variable name="difficulty" value="4"/>
+			<variable name="quest_rank" value="4"/>
 			<variable name="poi_tier" value="3"/>
 
 			<reward type="Exp" value="7500"/>
@@ -822,8 +1427,8 @@
 		</quest>
 		<quest id="marisa_tier5_clear_super_infested" template="marisa_tier2_clear_super_infested">
 			<variable name="name" value="quest_tier5_super_infested_clear"/>
-			<variable name="extra_tags" value="infested"/>
 			<variable name="difficulty" value="5"/>
+			<variable name="quest_rank" value="5"/>
 			<variable name="poi_tier" value="4"/>
 
 			<reward type="Exp" value="9000"/>
@@ -831,8 +1436,100 @@
 		</quest>
 		<quest id="marisa_tier6_clear_super_infested" template="marisa_tier2_clear_super_infested">
 			<variable name="name" value="quest_tier6_super_infested_clear"/>
-			<variable name="extra_tags" value="infested"/>
 			<variable name="difficulty" value="6"/>
+			<variable name="quest_rank" value="6"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="10500"/>
+			<reward type="Item" id="casinoCoin" value="3500"/>
+		</quest>
+
+		<quest id="marisa_tier8_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier8_super_infested_clear"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="quest_rank" value="8"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+		</quest>
+		<quest id="marisa_tier9_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier9_super_infested_clear"/>
+			<variable name="difficulty" value="9"/>
+			<variable name="quest_rank" value="9"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+		</quest>
+		<quest id="marisa_tier10_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier10_super_infested_clear"/>
+			<variable name="difficulty" value="10"/>
+			<variable name="quest_rank" value="10"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+		</quest>
+		<quest id="marisa_tier11_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier11_super_infested_clear"/>
+			<variable name="difficulty" value="11"/>
+			<variable name="quest_rank" value="11"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="9000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
+		</quest>
+		<quest id="marisa_tier12_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier12_super_infested_clear"/>
+			<variable name="difficulty" value="12"/>
+			<variable name="quest_rank" value="12"/>
+			<variable name="poi_tier" value="5"/>
+
+			<reward type="Exp" value="10500"/>
+			<reward type="Item" id="casinoCoin" value="3500"/>
+		</quest>
+
+		<quest id="marisa_tier14_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier14_super_infested_clear"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="quest_rank" value="14"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+		</quest>
+		<quest id="marisa_tier15_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier15_super_infested_clear"/>
+			<variable name="difficulty" value="15"/>
+			<variable name="quest_rank" value="15"/>
+			<variable name="poi_tier" value="2"/>
+
+			<reward type="Exp" value="6000"/>
+			<reward type="Item" id="casinoCoin" value="2000"/>
+		</quest>
+		<quest id="marisa_tier16_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier16_super_infested_clear"/>
+			<variable name="difficulty" value="16"/>
+			<variable name="quest_rank" value="16"/>
+			<variable name="poi_tier" value="3"/>
+
+			<reward type="Exp" value="7500"/>
+			<reward type="Item" id="casinoCoin" value="2500"/>
+		</quest>
+		<quest id="marisa_tier17_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier17_super_infested_clear"/>
+			<variable name="difficulty" value="17"/>
+			<variable name="quest_rank" value="17"/>
+			<variable name="poi_tier" value="4"/>
+
+			<reward type="Exp" value="9000"/>
+			<reward type="Item" id="casinoCoin" value="3000"/>
+		</quest>
+		<quest id="marisa_tier18_clear_super_infested" template="marisa_tier2_clear_super_infested">
+			<variable name="name" value="quest_tier18_super_infested_clear"/>
+			<variable name="difficulty" value="18"/>
+			<variable name="quest_rank" value="18"/>
 			<variable name="poi_tier" value="5"/>
 
 			<reward type="Exp" value="10500"/>
@@ -917,12 +1614,19 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompleteDefensivePointWill"/>
+				<property name="value" value="2" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
 			<reward type="Exp" value="6000"/>
 			<reward type="Item" id="casinoCoin" value="2000"/>
 		</quest>
 		<quest id="marisa_tier3_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier3_defensive_point"/>
 			<variable name="difficulty" value="3"/>
+			<variable name="quest_rank" value="3"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="storm_point_group" value="marisa_tire3_storm_point"/>
 
@@ -932,6 +1636,7 @@
 		<quest id="marisa_tier4_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier4_defensive_point"/>
 			<variable name="difficulty" value="4"/>
+			<variable name="quest_rank" value="4"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="storm_point_group" value="marisa_tire4_storm_point"/>
 
@@ -941,6 +1646,7 @@
 		<quest id="marisa_tier5_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier5_defensive_point"/>
 			<variable name="difficulty" value="5"/>
+			<variable name="quest_rank" value="5"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="storm_point_group" value="marisa_tire5_storm_point"/>
 
@@ -950,6 +1656,7 @@
 		<quest id="marisa_tier6_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier6_defensive_point"/>
 			<variable name="difficulty" value="6"/>
+			<variable name="quest_rank" value="6"/>
 			<variable name="poi_tier" value="5"/>
 			<variable name="storm_point_group" value="marisa_tire6_storm_point"/>
 
@@ -960,6 +1667,7 @@
 		<quest id="marisa_tier8_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier8_defensive_point"/>
 			<variable name="difficulty" value="8"/>
+			<variable name="quest_rank" value="8"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="storm_point_group" value="marisa_tire8_storm_point"/>
 
@@ -969,6 +1677,7 @@
 		<quest id="marisa_tier9_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier9_defensive_point"/>
 			<variable name="difficulty" value="9"/>
+			<variable name="quest_rank" value="9"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="storm_point_group" value="marisa_tire9_storm_point"/>
 
@@ -978,6 +1687,7 @@
 		<quest id="marisa_tier10_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier10_defensive_point"/>
 			<variable name="difficulty" value="10"/>
+			<variable name="quest_rank" value="10"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="storm_point_group" value="marisa_tire10_storm_point"/>
 
@@ -987,6 +1697,7 @@
 		<quest id="marisa_tier11_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier11_defensive_point"/>
 			<variable name="difficulty" value="11"/>
+			<variable name="quest_rank" value="11"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="storm_point_group" value="marisa_tire11_storm_point"/>
 
@@ -996,6 +1707,7 @@
 		<quest id="marisa_tier12_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier12_defensive_point"/>
 			<variable name="difficulty" value="12"/>
+			<variable name="quest_rank" value="12"/>
 			<variable name="poi_tier" value="5"/>
 			<variable name="storm_point_group" value="marisa_tire12_storm_point"/>
 
@@ -1006,6 +1718,7 @@
 		<quest id="marisa_tier14_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier14_defensive_point"/>
 			<variable name="difficulty" value="14"/>
+			<variable name="quest_rank" value="14"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="storm_point_group" value="marisa_tire14_storm_point"/>
 
@@ -1015,6 +1728,7 @@
 		<quest id="marisa_tier15_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier15_defensive_point"/>
 			<variable name="difficulty" value="15"/>
+			<variable name="quest_rank" value="15"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="storm_point_group" value="marisa_tire15_storm_point"/>
 
@@ -1024,6 +1738,7 @@
 		<quest id="marisa_tier16_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier16_defensive_point"/>
 			<variable name="difficulty" value="16"/>
+			<variable name="quest_rank" value="16"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="storm_point_group" value="marisa_tire16_storm_point"/>
 
@@ -1033,6 +1748,7 @@
 		<quest id="marisa_tier17_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier17_defensive_point"/>
 			<variable name="difficulty" value="17"/>
+			<variable name="quest_rank" value="17"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="storm_point_group" value="marisa_tire17_storm_point"/>
 
@@ -1042,6 +1758,7 @@
 		<quest id="marisa_tier18_defensive_point" template="marisa_tier2_defensive_point">
 			<variable name="name" value="quest_tier18_defensive_point"/>
 			<variable name="difficulty" value="18"/>
+			<variable name="quest_rank" value="18"/>
 			<variable name="poi_tier" value="5"/>
 			<variable name="storm_point_group" value="marisa_tire18_storm_point"/>
 
@@ -1119,12 +1836,19 @@
 				<property name="nav_object" value="return_to_trader"/>
 			</objective>
 
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompletePoiKillBossWill"/>
+				<property name="value" value="3" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
 			<reward type="Exp" value="3000"/>
 			<reward type="Item" id="casinoCoin" value="750"/>
 		</quest>
 		<quest id="marisa_tier4_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier4_poi_kill_boss"/>
 			<variable name="difficulty" value="4"/>
+			<variable name="quest_rank" value="4"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1134,6 +1858,7 @@
 		<quest id="marisa_tier5_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier5_poi_kill_boss"/>
 			<variable name="difficulty" value="5"/>
+			<variable name="quest_rank" value="5"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1143,6 +1868,7 @@
 		<quest id="marisa_tier6_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier6_poi_kill_boss"/>
 			<variable name="difficulty" value="6"/>
+			<variable name="quest_rank" value="6"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1153,6 +1879,7 @@
 		<quest id="marisa_tier9_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier9_poi_kill_boss"/>
 			<variable name="difficulty" value="9"/>
+			<variable name="quest_rank" value="9"/>
 			<variable name="poi_tier" value="1"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1162,6 +1889,7 @@
 		<quest id="marisa_tier10_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier10_poi_kill_boss"/>
 			<variable name="difficulty" value="10"/>
+			<variable name="quest_rank" value="10"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1171,6 +1899,7 @@
 		<quest id="marisa_tier11_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier11_poi_kill_boss"/>
 			<variable name="difficulty" value="11"/>
+			<variable name="quest_rank" value="11"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1180,6 +1909,7 @@
 		<quest id="marisa_tier12_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier12_poi_kill_boss"/>
 			<variable name="difficulty" value="12"/>
+			<variable name="quest_rank" value="12"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1190,6 +1920,7 @@
 		<quest id="marisa_tier15_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier15_poi_kill_boss"/>
 			<variable name="difficulty" value="15"/>
+			<variable name="quest_rank" value="15"/>
 			<variable name="poi_tier" value="1"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1199,6 +1930,7 @@
 		<quest id="marisa_tier16_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier16_poi_kill_boss"/>
 			<variable name="difficulty" value="16"/>
+			<variable name="quest_rank" value="16"/>
 			<variable name="poi_tier" value="2"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1208,6 +1940,7 @@
 		<quest id="marisa_tier17_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier17_poi_kill_boss"/>
 			<variable name="difficulty" value="17"/>
+			<variable name="quest_rank" value="17"/>
 			<variable name="poi_tier" value="3"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1217,6 +1950,7 @@
 		<quest id="marisa_tier18_poi_kill_boss" template="marisa_tier3_poi_kill_boss">
 			<variable name="name" value="quest_tier18_poi_kill_boss"/>
 			<variable name="difficulty" value="18"/>
+			<variable name="quest_rank" value="18"/>
 			<variable name="poi_tier" value="4"/>
 			<variable name="entity_boss_spawn" value="questZombieBossArsonist"/>
 
@@ -1229,7 +1963,7 @@
 	</insertAfter>
 
     <!-- 修改商人任务列表 -->
-    <remove xpath="/quests/quest_list[@id!='test_quests']"/>
+	<remove xpath="/quests/quest_list[@id!='test_quests']"/>
 	<insertAfter xpath="/quests/quest_list[@id='test_quests']">
 
 		<quest_list id="trader_rekt_quests">
@@ -1237,53 +1971,6 @@
 			<quest id="intro_buried_supplies" end="0"/>
 			<!-- 贸易路线 -->
 			<quest id="tier2_nexttrader"/>
-			<quest id="tier3_nexttrader"/>
-			<quest id="tier4_nexttrader"/>
-			<!-- 紧急任务 -->
-			<quest id="marisa_tier3_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier4_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier5_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier6_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier9_poi_kill_boss_emergency"/>
-			<!-- 资源采集 -->
-			<quest id="marisa_tier1_fetch_keep_resource"/>
-			<!-- 埋藏补给 -->
-			<quest id="marisa_tier1_buried_supplies"/>
-			<quest id="marisa_tier2_buried_supplies"/>
-			<quest id="marisa_tier3_buried_supplies"/>
-			<!-- 获取 -->
-			<quest id="marisa_tier1_fetch"/>
-			<quest id="marisa_tier2_fetch"/>
-			<quest id="marisa_tier3_fetch"/>
-			<!-- 清理 -->
-			<quest id="marisa_tier2_clear"/>
-			<quest id="marisa_tier3_clear"/>
-			<quest id="marisa_tier4_clear"/>
-			<quest id="marisa_tier5_clear"/>
-			<quest id="marisa_tier6_clear"/>
-			<!-- 群聚 -->
-			<quest id="marisa_tier2_clear_infested"/>
-			<quest id="marisa_tier3_clear_infested"/>
-			<quest id="marisa_tier4_clear_infested"/>
-			<quest id="marisa_tier5_clear_infested"/>
-			<quest id="marisa_tier6_clear_infested"/>
-			<!-- 超级群聚 -->
-			<quest id="marisa_tier2_clear_super_infested"/>
-			<quest id="marisa_tier3_clear_super_infested"/>
-			<quest id="marisa_tier4_clear_super_infested"/>
-			<quest id="marisa_tier5_clear_super_infested"/>
-			<quest id="marisa_tier6_clear_super_infested"/>
-			<!-- 强攻据点 -->
-			<quest id="marisa_tier2_defensive_point"/>
-			<quest id="marisa_tier3_defensive_point"/>
-			<quest id="marisa_tier4_defensive_point"/>
-			<quest id="marisa_tier5_defensive_point"/>
-			<quest id="marisa_tier6_defensive_point"/>
-			<!-- 讨伐任务 -->
-			<quest id="marisa_tier3_poi_kill_boss"/>
-			<quest id="marisa_tier4_poi_kill_boss"/>
-			<quest id="marisa_tier5_poi_kill_boss"/>
-			<quest id="marisa_tier6_poi_kill_boss"/>
 		</quest_list>
 
 		<quest_list id="trader_jen_quests">
@@ -1291,197 +1978,143 @@
 			<quest id="intro_buried_supplies" end="0"/>
 			<!-- 贸易路线 -->
 			<quest id="tier3_nexttrader"/>
-			<quest id="tier4_nexttrader"/>
-			<!-- 紧急任务 -->
-			<quest id="marisa_tier3_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier4_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier5_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier6_poi_kill_boss_emergency"/>
-			<quest id="marisa_tier9_poi_kill_boss_emergency"/>
-			<!-- 资源采集 -->
-			<quest id="marisa_tier1_fetch_keep_resource"/>
-			<!-- 埋藏补给 -->
-			<quest id="marisa_tier1_buried_supplies"/>
-			<quest id="marisa_tier2_buried_supplies"/>
-			<quest id="marisa_tier3_buried_supplies"/>
-			<!-- 获取 -->
-			<quest id="marisa_tier1_fetch"/>
-			<quest id="marisa_tier2_fetch"/>
-			<quest id="marisa_tier3_fetch"/>
-			<!-- 清理 -->
-			<quest id="marisa_tier2_clear"/>
-			<quest id="marisa_tier3_clear"/>
-			<quest id="marisa_tier4_clear"/>
-			<quest id="marisa_tier5_clear"/>
-			<quest id="marisa_tier6_clear"/>
-			<!-- 群聚 -->
-			<quest id="marisa_tier2_clear_infested"/>
-			<quest id="marisa_tier3_clear_infested"/>
-			<quest id="marisa_tier4_clear_infested"/>
-			<quest id="marisa_tier5_clear_infested"/>
-			<quest id="marisa_tier6_clear_infested"/>
-			<!-- 超级群聚 -->
-			<quest id="marisa_tier2_clear_super_infested"/>
-			<quest id="marisa_tier3_clear_super_infested"/>
-			<quest id="marisa_tier4_clear_super_infested"/>
-			<quest id="marisa_tier5_clear_super_infested"/>
-			<quest id="marisa_tier6_clear_super_infested"/>
-			<!-- 强攻据点 -->
-			<quest id="marisa_tier2_defensive_point"/>
-			<quest id="marisa_tier3_defensive_point"/>
-			<quest id="marisa_tier4_defensive_point"/>
-			<quest id="marisa_tier5_defensive_point"/>
-			<quest id="marisa_tier6_defensive_point"/>
-			<!-- 讨伐任务 -->
-			<quest id="marisa_tier3_poi_kill_boss"/>
-			<quest id="marisa_tier4_poi_kill_boss"/>
-			<quest id="marisa_tier5_poi_kill_boss"/>
-			<quest id="marisa_tier6_poi_kill_boss"/>
 		</quest_list>
 
 		<quest_list id="trader_bob_quests">
-			<!-- Tier 1 -->
+			<!-- 初始任务 -->
 			<quest id="intro_buried_supplies" end="0"/>
-			<quest id="tier1_clear"/>
-			<quest id="tier1_fetch"/>
-			<quest id="tier1_buried_supplies"/>
-			<!-- <quest id="tier1_defense"/> -->
-
-			<!-- Tier 2 -->
-			<quest id="tier2_clear"/>
-			<quest id="tier2_clear_infested"/>
-			<quest id="tier2_fetch"/>
-			<quest id="tier2_fetch_clear"/>
-			<quest id="tier2_restore_power"/>
-			<quest id="tier2_buried_supplies"/>
-			<!-- <quest id="tier2_defense"/> -->
-
-			<!-- Tier 3 -->
-			<quest id="tier3_clear"/>
-			<quest id="tier3_clear_infested"/>
-			<quest id="tier3_fetch"/>
-			<quest id="tier3_fetch_clear"/>
-			<quest id="tier3_restore_power"/>
-			<quest id="tier3_buried_supplies"/>
-			<!-- <quest id="tier3_defense"/> -->
-
-			<!-- Tier 4 -->
-			<quest id="tier4_clear"/>
-			<quest id="tier4_clear_infested"/>
-			<quest id="tier4_restore_power"/>
-			<quest id="tier4_fetch_clear"/>
-
-			<!-- Tier 5 -->
-			<quest id="tier5_clear"/>
-			<quest id="tier5_clear_infested"/>
-
-			<quest id="tier5_fetch_clear"/>
-
-			<!-- Tier 6 -->
-			<quest id="tier6_clear_infested"/>
-			<!-- <quest id="tier6_clear"/> -->
-			<!-- <quest id="tier6_fetch"/> -->
-			<!-- <quest id="tier6_fetch_clear"/> -->
-
-			<!-- Special Quests -->
+			<!-- 贸易路线 -->
 			<quest id="tier4_nexttrader"/>
 		</quest_list>
 
 		<quest_list id="trader_hugh_quests">
-			<!-- Tier 1 -->
+			<!-- 初始任务 -->
 			<quest id="intro_buried_supplies" end="0"/>
-			<quest id="tier1_clear"/>
-			<quest id="tier1_fetch"/>
-			<quest id="tier1_buried_supplies"/>
-			<!-- <quest id="tier1_defense"/> -->
-
-			<!-- Tier 2 -->
-			<quest id="tier2_clear"/>
-			<quest id="tier2_clear_infested"/>
-			<quest id="tier2_fetch"/>
-			<quest id="tier2_fetch_clear"/>
-			<quest id="tier2_restore_power"/>
-			<quest id="tier2_buried_supplies"/>
-			<!-- <quest id="tier2_defense"/> -->
-
-			<!-- Tier 3 -->
-			<quest id="tier3_clear"/>
-			<quest id="tier3_clear_infested"/>
-			<quest id="tier3_fetch"/>
-			<quest id="tier3_fetch_clear"/>
-			<quest id="tier3_restore_power"/>
-			<quest id="tier3_buried_supplies"/>
-			<!-- <quest id="tier3_defense"/> -->
-
-			<!-- Tier 4 -->
-			<quest id="tier4_clear"/>
-			<quest id="tier4_clear_infested"/>
-			<quest id="tier4_restore_power"/>
-			<quest id="tier4_fetch_clear"/>
-
-			<!-- Tier 5 -->
-			<quest id="tier5_clear"/>
-			<quest id="tier5_clear_infested"/>
-
-			<quest id="tier5_fetch_clear"/>
-
-			<!-- Tier 6 -->
-			<quest id="tier6_clear_infested"/>
-			<!-- <quest id="tier6_clear"/> -->
-			<!-- <quest id="tier6_fetch"/> -->
-			<!-- <quest id="tier6_fetch_clear"/> -->
-
-			<!-- Special Quests -->
+			<!-- 贸易路线 -->
 			<quest id="tier5_nexttrader"/>
 		</quest_list>
 
 		<quest_list id="trader_joel_quests">
-			<!-- Tier 1 -->
+			<!-- 初始任务 -->
 			<quest id="intro_buried_supplies" end="0"/>
-			<quest id="tier1_clear"/>
-			<quest id="tier1_fetch"/>
-			<quest id="tier1_buried_supplies"/>
-			<!-- <quest id="tier1_defense"/> -->
-
-			<!-- Tier 2 -->
-			<quest id="tier2_clear"/>
-			<quest id="tier2_clear_infested"/>
-			<quest id="tier2_fetch"/>
-			<quest id="tier2_fetch_clear"/>
-			<quest id="tier2_restore_power"/>
-			<quest id="tier2_buried_supplies"/>
-			<!-- <quest id="tier2_defense"/> -->
-
-			<!-- Tier 3 -->
-			<quest id="tier3_clear"/>
-			<quest id="tier3_clear_infested"/>
-			<quest id="tier3_fetch"/>
-			<quest id="tier3_fetch_clear"/>
-			<quest id="tier3_restore_power"/>
-			<quest id="tier3_buried_supplies"/>
-			<!-- <quest id="tier3_defense"/> -->
-
-			<!-- Tier 4 -->
-			<quest id="tier4_clear"/>
-			<quest id="tier4_clear_infested"/>
-			<quest id="tier4_restore_power"/>
-			<quest id="tier4_fetch_clear"/>
-
-			<!-- Tier 5 -->
-			<quest id="tier5_clear"/>
-			<quest id="tier5_clear_infested"/>
-
-			<quest id="tier5_fetch_clear"/>
-
-			<!-- Tier 6 -->
-			<quest id="tier6_clear_infested"/>
-			<!-- <quest id="tier6_clear"/> -->
-			<!-- <quest id="tier6_fetch"/> -->
-			<!-- <quest id="tier6_fetch_clear"/> -->
-
-			<!-- Special Quests -->
 		</quest_list>
 
 	</insertAfter>
+	<append xpath="/quests/quest_list[@id!='test_quests']">
+		<!-- 紧急任务 -->
+		<quest id="marisa_tier3_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier4_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier5_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier6_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier9_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier10_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier11_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier12_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier15_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier16_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier17_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier18_poi_kill_boss_emergency"/>
+		<!-- 资源采集 -->
+		<quest id="marisa_tier1_fetch_keep_resource"/>
+		<quest id="marisa_tier7_fetch_keep_resource"/>
+		<quest id="marisa_tier13_fetch_keep_resource"/>
+		<!-- 埋藏补给 -->
+		<quest id="marisa_tier1_buried_supplies"/>
+		<quest id="marisa_tier2_buried_supplies"/>
+		<quest id="marisa_tier3_buried_supplies"/>
+		<quest id="marisa_tier7_buried_supplies"/>
+		<quest id="marisa_tier8_buried_supplies"/>
+		<quest id="marisa_tier9_buried_supplies"/>
+		<quest id="marisa_tier13_buried_supplies"/>
+		<quest id="marisa_tier14_buried_supplies"/>
+		<quest id="marisa_tier15_buried_supplies"/>
+		<!-- 获取 -->
+		<quest id="marisa_tier1_fetch"/>
+		<quest id="marisa_tier2_fetch"/>
+		<quest id="marisa_tier3_fetch"/>
+		<quest id="marisa_tier7_fetch"/>
+		<quest id="marisa_tier8_fetch"/>
+		<quest id="marisa_tier9_fetch"/>
+		<quest id="marisa_tier13_fetch"/>
+		<quest id="marisa_tier14_fetch"/>
+		<quest id="marisa_tier15_fetch"/>
+		<!-- 清理 -->
+		<quest id="marisa_tier2_clear"/>
+		<quest id="marisa_tier3_clear"/>
+		<quest id="marisa_tier4_clear"/>
+		<quest id="marisa_tier5_clear"/>
+		<quest id="marisa_tier6_clear"/>
+		<quest id="marisa_tier8_clear"/>
+		<quest id="marisa_tier9_clear"/>
+		<quest id="marisa_tier10_clear"/>
+		<quest id="marisa_tier11_clear"/>
+		<quest id="marisa_tier12_clear"/>
+		<quest id="marisa_tier14_clear"/>
+		<quest id="marisa_tier15_clear"/>
+		<quest id="marisa_tier16_clear"/>
+		<quest id="marisa_tier17_clear"/>
+		<quest id="marisa_tier18_clear"/>
+		<!-- 群聚 -->
+		<quest id="marisa_tier2_clear_infested"/>
+		<quest id="marisa_tier3_clear_infested"/>
+		<quest id="marisa_tier4_clear_infested"/>
+		<quest id="marisa_tier5_clear_infested"/>
+		<quest id="marisa_tier6_clear_infested"/>
+		<quest id="marisa_tier8_clear_infested"/>
+		<quest id="marisa_tier9_clear_infested"/>
+		<quest id="marisa_tier10_clear_infested"/>
+		<quest id="marisa_tier11_clear_infested"/>
+		<quest id="marisa_tier12_clear_infested"/>
+		<quest id="marisa_tier14_clear_infested"/>
+		<quest id="marisa_tier15_clear_infested"/>
+		<quest id="marisa_tier16_clear_infested"/>
+		<quest id="marisa_tier17_clear_infested"/>
+		<quest id="marisa_tier18_clear_infested"/>
+		<!-- 超级群聚 -->
+		<quest id="marisa_tier2_clear_super_infested"/>
+		<quest id="marisa_tier3_clear_super_infested"/>
+		<quest id="marisa_tier4_clear_super_infested"/>
+		<quest id="marisa_tier5_clear_super_infested"/>
+		<quest id="marisa_tier6_clear_super_infested"/>
+		<quest id="marisa_tier8_clear_super_infested"/>
+		<quest id="marisa_tier9_clear_super_infested"/>
+		<quest id="marisa_tier10_clear_super_infested"/>
+		<quest id="marisa_tier11_clear_super_infested"/>
+		<quest id="marisa_tier12_clear_super_infested"/>
+		<quest id="marisa_tier14_clear_super_infested"/>
+		<quest id="marisa_tier15_clear_super_infested"/>
+		<quest id="marisa_tier16_clear_super_infested"/>
+		<quest id="marisa_tier17_clear_super_infested"/>
+		<quest id="marisa_tier18_clear_super_infested"/>
+		<!-- 强攻据点 -->
+		<quest id="marisa_tier2_defensive_point"/>
+		<quest id="marisa_tier3_defensive_point"/>
+		<quest id="marisa_tier4_defensive_point"/>
+		<quest id="marisa_tier5_defensive_point"/>
+		<quest id="marisa_tier6_defensive_point"/>
+		<quest id="marisa_tier8_defensive_point"/>
+		<quest id="marisa_tier9_defensive_point"/>
+		<quest id="marisa_tier10_defensive_point"/>
+		<quest id="marisa_tier11_defensive_point"/>
+		<quest id="marisa_tier12_defensive_point"/>
+		<quest id="marisa_tier14_defensive_point"/>
+		<quest id="marisa_tier15_defensive_point"/>
+		<quest id="marisa_tier16_defensive_point"/>
+		<quest id="marisa_tier17_defensive_point"/>
+		<quest id="marisa_tier18_defensive_point"/>
+		<!-- 讨伐任务 -->
+		<quest id="marisa_tier3_poi_kill_boss"/>
+		<quest id="marisa_tier4_poi_kill_boss"/>
+		<quest id="marisa_tier5_poi_kill_boss"/>
+		<quest id="marisa_tier6_poi_kill_boss"/>
+		<quest id="marisa_tier9_poi_kill_boss"/>
+		<quest id="marisa_tier10_poi_kill_boss"/>
+		<quest id="marisa_tier11_poi_kill_boss"/>
+		<quest id="marisa_tier12_poi_kill_boss"/>
+		<quest id="marisa_tier15_poi_kill_boss"/>
+		<quest id="marisa_tier16_poi_kill_boss"/>
+		<quest id="marisa_tier17_poi_kill_boss"/>
+		<quest id="marisa_tier18_poi_kill_boss"/>
+	</append>
 
 </Marisa>
