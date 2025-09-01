@@ -1958,7 +1958,95 @@
 			<reward type="Item" id="casinoCoin" value="12000"/>
 		</quest>
 
-		<!-- 潜行恢复电力 -->
+		<!-- 潜入电力 -->
+		<quest id="marisa_tier9_crouching_restore_power">
+			<property name="name_key" value="quest_tier9_crouching_restore_power" param1="name"/>
+			<property name="subtitle_key" value="quest_crouching_restore_power_subtitle"/>
+			<property name="description_key" value="quest_crouching_restore_power_description"/>
+			<property name="icon" value="ui_game_symbol_quest"/>
+			<property name="repeatable" value="true"/>
+			<property name="category_key" value="quest"/>
+			<property name="difficulty_tier" value="9" param1="difficulty"/>
+			<property name="offer_key" value="quest_crouching_restore_power_offer" param1="offer"/>
+			<property name="statement_key" value="quest_crouching_restore_power_statement"/>
+			<property name="response_key" value="quest_crouching_restore_power_response"/>
+			<property name="reward_choices_count" value="5"/>
+			<property name="extra_tags" value="" param1="extra_tags"/>
+			<property name="shareable" value="true"/>
+
+			<property name="login_rally_reset" value="true"/>
+
+			<property name="completiontype" value="TurnIn"/>
+			<property name="completion_key" value="quest_restore_power_completion"/>
+
+			<objective type="RandomPOIGoto">
+				<property name="phase" value="1"/>
+				<property name="biome_filter_type" value="SameBiome" param1="biome_filter_type"/>
+				<property name="biome_filter" value="" param1="biome_filter"/>
+				<property name="nav_object" value="quest"/>
+				<property name="poi_tier" value="2" param1="poi_tier"/>
+			</objective>
+
+			<objective type="RallyPoint">
+				<property name="phase" value="2"/>
+				<property name="nav_object" value="rally"/>
+				<property name="rally_marker_type" value="questRallyMarkerRestorePower"/>
+			</objective>
+
+			<action type="GameEvent">
+				<property name="id" value="EventCrouchingQuestOn" param1="event_crouching_quest"/>
+				<property name="phase" value="3"/>
+			</action>
+
+			<objective type="ClearSleepers">
+				<property name="phase" value="3"/>
+				<property name="nav_object" value="sleeper_volume"/>
+			</objective>
+
+			<objective type="POIBlockActivate" >
+				<property name="phase" value="3"/>
+				<property name="block_index" value="QuestRestorePower"/>
+				<property name="nav_object" value="restore_power"/>
+
+				<property name="complete_event" value="quest_poi_lights_on"/>
+			</objective>
+
+			<objective type="POIStayWithin">
+				<property name="phase" value="3"/>
+				<property name="radius" value="25"/>
+			</objective>
+
+			<action type="UnlockPOI" >
+				<property name="phase" value="4"/>
+			</action>
+
+			<objective type="ReturnToNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<objective type="InteractWithNPC">
+				<property name="phase" value="4"/>
+				<property name="nav_object" value="return_to_trader"/>
+			</objective>
+
+			<action type="SetCVar">
+				<property name="cvar" value="QuestCompleteCrouchingRestorePower"/>
+				<property name="value" value="9" param1="difficulty"/>
+				<property name="on_complete" value="true"/>
+			</action>
+
+			<reward type="Exp" value="5060"/>
+			<reward type="Item" id="casinoCoin" value="800"/>
+
+			<reward type="LootItem" id="groupQuestFood,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMedical,groupQuestAmmo,groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestResourcesT0" ischosen="true" value="1"/>
+			<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true" value="2"/>
+		</quest>
 
 	</insertAfter>
 
@@ -2115,6 +2203,8 @@
 		<quest id="marisa_tier16_poi_kill_boss"/>
 		<quest id="marisa_tier17_poi_kill_boss"/>
 		<quest id="marisa_tier18_poi_kill_boss"/>
+		<!-- 潜入电力 -->
+		<quest id="marisa_tier9_crouching_restore_power"/>
 	</append>
 
 </Marisa>
