@@ -1,8 +1,117 @@
 <Marisa>
 
+    <!-- ** Forest -->
+    <csv xpath="/entitygroups/entitygroup[@name='WildGameForest']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='WildGameForestNight']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesForestDowntown']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, .1
+		EntityBossAnimalChicken, .1
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesForestDowntownNight']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, .1
+		EntityBossAnimalChicken, .1
+    </csv>
+
+    <!-- ** BurntForest -->
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesBurntForest']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, .1
+		EntityBossAnimalChicken, .1
+        EntityBossAnimalZombieDog, .2
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsBurntForestAny']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+        EntityBossAnimalZombieDog, 5
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsBurntForestNight']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+        EntityBossAnimalZombieDog, 5
+    </csv>
+
+    <!-- ** Desert -->
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsDesert']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 10
+		EntityBossAnimalChicken, 10
+        EntityBossAnimalBearSmall, 10
+        EntityBossZombieVultureSmall, 10
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsDesertNight']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 10
+		EntityBossAnimalChicken, 10
+        EntityBossAnimalBearSmall, 10
+        EntityBossZombieVultureSmall, 10
+    </csv>
+
+    <!-- ** Snow -->
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsSnow']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+        EntityBossAnimalDireWolf, 5
+        EntityBossAnimalBear, 5
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsSnowNight']/text()" delim="\n" op="add" >
+		EntityBossAnimalRabbit, 2
+		EntityBossAnimalChicken, 2
+        EntityBossAnimalDireWolf, 5
+        EntityBossAnimalBear, 5
+    </csv>
+
+    <!-- ** Wasteland -->
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesWasteland']/text()" delim="\n" op="add" >
+        EntityBossAnimalDireWolf
+        EntityBossAnimalBear
+        EntityBossAnimalZombieVulture
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesWastelandNight']/text()" delim="\n" op="add" >
+        EntityBossAnimalDireWolf
+        EntityBossAnimalBear
+        EntityBossAnimalZombieVulture
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='ZombiesWastelandDowntown']/text()" delim="\n" op="add" >
+        EntityBossAnimalDireWolf
+        EntityBossAnimalBear
+        EntityBossAnimalZombieVulture
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsWasteland']/text()" delim="\n" op="add" >
+        EntityBossAnimalDireWolf, 20
+        EntityBossAnimalBear, 20
+        EntityBossAnimalZombieVulture, 20
+    </csv>
+    <csv xpath="/entitygroups/entitygroup[@name='EnemyAnimalsWastelandNight']/text()" delim="\n" op="add" >
+        EntityBossAnimalDireWolf, 20
+        EntityBossAnimalBear, 20
+        EntityBossAnimalZombieVulture, 20
+    </csv>
+
+
+
 	<!-- *** BIOME_ZOMBIES_LUMBERJACK_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieLumberjackGroupGS400' or @name='zombieLumberjackGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieLumberjackGroupGS200']">
+    <remove xpath="/entitygroups/entitygroup[contains(@name,'zombieLumberjackGroupGS')]"/>
+    <insertAfter xpath="/entitygroups/entitygroup[@name='ZombiesCrawlers']">
+
+		<entitygroup name="zombieLumberjackGroupGS1">
+			zombieLumberjack, .9
+		</entitygroup>
+		<entitygroup name="zombieLumberjackGroupGS50">
+			zombieDemolition, .1
+			zombieLumberjackFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieLumberjackGroupGS100">
+			zombieDemolition, .3
+			zombieLumberjackRadiated, .45
+			zombieLumberjackInfernal, .45
+		</entitygroup>
+		<entitygroup name="zombieLumberjackGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieLumberjackCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieLumberjackGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieLumberjackBerserk, .9
@@ -11,11 +120,29 @@
 			zombieDemolitionBerserk
 			zombieLumberjackBerserk
 		</entitygroup>
+
 	</insertAfter>
 
 	<!-- *** POI_BUSINESSMAN_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieBusinessManGroupGS400' or @name='zombieBusinessManGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieBusinessManGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieBusinessManGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieBusinessManGroup']">
+		<entitygroup name="zombieBusinessManGroupGS1">
+			zombieBusinessMan, .9
+		</entitygroup>
+		<entitygroup name="zombieBusinessManGroupGS50">
+			zombieDemolition, .1
+			zombieBusinessManFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieBusinessManGroupGS100">
+			zombieDemolition, .3
+			zombieBusinessManRadiated, .3
+			zombieBusinessManCharged, .3
+			zombieBusinessManInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieBusinessManGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieBusinessManCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieBusinessManGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieBusinessManBerserk, .9
@@ -27,8 +154,24 @@
 	</insertAfter>
 
 	<!-- *** POI_FAT_COP_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieFatCopGroupGS400' or @name='zombieFatCopGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieFatCopGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieFatCopGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieFatCopGroup']">
+		<entitygroup name="zombieFatCopGroupGS1">
+			zombieFatCop, .9
+		</entitygroup>
+		<entitygroup name="zombieFatCopGroupGS50">
+			zombieDemolition, .1
+			zombieFatCopFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieFatCopGroupGS100">
+			zombieDemolition, .3
+			zombieFatCopRadiated, .45
+			zombieFatCopInfernal, .45
+		</entitygroup>
+		<entitygroup name="zombieFatCopGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieFatCopCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieFatCopGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieFatCopBerserk, .9
@@ -40,8 +183,25 @@
 	</insertAfter>
 
 	<!-- *** POI_BURNT_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieBurntGroupGS400' or @name='zombieBurntGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieBurntGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieBurntGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieBurntGroup']">
+		<entitygroup name="zombieBurntGroupGS1">
+			zombieBurnt, .9
+		</entitygroup>
+		<entitygroup name="zombieBurntGroupGS50">
+			zombieDemolition, .1
+			zombieBurntFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieBurntGroupGS100">
+			zombieDemolition, .3
+			zombieBurntRadiated, .3
+			zombieBurntCharged, .3
+			zombieBurntInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieBurntGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieBurntCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieBurntGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieBurntBerserk, .9
@@ -53,8 +213,35 @@
 	</insertAfter>
 
 	<!-- *** POI_SOLDIER_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieSoldierGroupGS400' or @name='zombieSoldierGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieSoldierGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieSoldierGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieSoldierGroup']">
+		<entitygroup name="zombieSoldierGroupGS1">
+			zombieSoldier, .9
+			zombieMaleHazmat, .9
+		</entitygroup>
+		<entitygroup name="zombieSoldierGroupGS50">
+			zombieDemolition, .1
+			zombieSoldierFeral, .9
+			zombieMaleHazmatFeral, .9
+			zombieWightFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieSoldierGroupGS100">
+			zombieDemolition, .3
+			zombieSoldierRadiated, .45
+			zombieSoldierInfernal, .45
+			zombieMaleHazmatRadiated, .3
+			zombieMaleHazmatCharged, .3
+			zombieMaleHazmatInfernal, .3
+			zombieWightRadiated, .3
+			zombieWightCharged, .3
+			zombieWightInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieSoldierGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieSoldierCrystallization, .9
+			zombieMaleHazmatCrystallization, .9
+			zombieWightCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieSoldierGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieSoldierBerserk, .9
@@ -70,8 +257,25 @@
 	</insertAfter>
 
 	<!-- *** POI_HAZMAT_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='ZombieMaleHazmatGroupGS400' or @name='ZombieMaleHazmatGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieMaleHazmatGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'ZombieMaleHazmatGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieSoldierGroupGS800']">
+		<entitygroup name="ZombieMaleHazmatGroupGS1">
+			zombieMaleHazmat, .9
+		</entitygroup>
+		<entitygroup name="ZombieMaleHazmatGroupGS50">
+			zombieDemolition, .1
+			zombieMaleHazmatFeral, .9
+		</entitygroup>
+		<entitygroup name="ZombieMaleHazmatGroupGS100">
+			zombieDemolition, .3
+			zombieMaleHazmatRadiated, .3
+			zombieMaleHazmatCharged, .3
+			zombieMaleHazmatInfernal, .3
+		</entitygroup>
+		<entitygroup name="ZombieMaleHazmatGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieMaleHazmatCrystallization, .9
+		</entitygroup>
 		<entitygroup name="ZombieMaleHazmatGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieMaleHazmatBerserk, .9
@@ -83,8 +287,31 @@
 	</insertAfter>
 
 	<!-- *** POI_UTILITY_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieUtilityWorkerGroupGS400' or @name='zombieUtilityWorkerGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieUtilityWorkerGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieUtilityWorkerGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieUtilityWorkerGroup']">
+		<entitygroup name="zombieUtilityWorkerGroupGS1">
+			zombieUtilityWorker, .9
+			zombieJanitor, .9
+		</entitygroup>
+		<entitygroup name="zombieUtilityWorkerGroupGS50">
+			zombieDemolition, .1
+			zombieUtilityWorkerFeral, .9
+			zombieJanitorFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieUtilityWorkerGroupGS100">
+			zombieDemolition, .3
+			zombieUtilityWorkerRadiated, .3
+			zombieUtilityWorkerCharged, .3
+			zombieUtilityWorkerInfernal, .3
+			zombieJanitorRadiated, .3
+			zombieJanitorCharged, .3
+			zombieJanitorInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieUtilityWorkerGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieUtilityWorkerCrystallization, .9
+			zombieJanitorCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieUtilityWorkerGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieUtilityWorkerBerserk, .9
@@ -98,8 +325,25 @@
 	</insertAfter>
 
 	<!-- *** POI_JANITOR_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieJanitorGroupGS400' or @name='zombieJanitorGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieJanitorGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieJanitorGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieJanitorGroup']">
+		<entitygroup name="zombieJanitorGroupGS1">
+			zombieJanitor, .9
+		</entitygroup>
+		<entitygroup name="zombieJanitorGroupGS50">
+			zombieDemolition, .1
+			zombieJanitorFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieJanitorGroupGS100">
+			zombieDemolition, .3
+			zombieJanitorRadiated, .3
+			zombieJanitorCharged, .3
+			zombieJanitorInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieJanitorGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieJanitorCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieJanitorGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieJanitorBerserk, .9
@@ -111,8 +355,81 @@
 	</insertAfter>
 
 	<!-- *** POI_GHOST_TOWN_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='ZombieGhostTownGroupGS400' or @name='ZombieGhostTownGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieGhostTownGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'ZombieGhostTownGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieGhostTownGroup']">
+		<entitygroup name="ZombieGhostTownGroupGS1">
+			zombieMarlene, .9
+			zombieArlene, .9
+			zombieJoe, .9
+			zombieBoe, .9
+			zombieMoe, .9
+			zombieSteve, .9
+			zombieTomClark, .9
+			zombieFemaleFat, .9
+			zombieFatHawaiian, .9
+			zombieBowler, .9
+			zombieSkateboarder, .9
+			zombieSteveCrawler, .9
+			zombieYo, .9
+		</entitygroup>
+		<entitygroup name="ZombieGhostTownGroupGS50">
+			zombieDemolition, .1
+			zombieMarleneFeral, .9
+			zombieArleneFeral, .9
+			zombieJoeFeral, .9
+			zombieBoeFeral, .9
+			zombieMoeFeral, .9
+			zombieSteveFeral, .9
+			zombieTomClarkFeral, .9
+			zombieFemaleFatFeral, .9
+			zombieFatHawaiianFeral, .9
+			zombieBowlerFeral, .9
+			zombieSkateboarderFeral, .9
+			zombieSteveCrawlerFeral, .9
+			zombieYoFeral, .9
+		</entitygroup>
+		<entitygroup name="ZombieGhostTownGroupGS100">
+			zombieDemolition, .3
+			zombieMarleneRadiated, .45
+			zombieMarleneCharged, .45
+			zombieArleneRadiated, .45
+			zombieArleneCharged, .45
+			zombieJoeRadiated, .45
+			zombieJoeCharged, .45
+			zombieBoeRadiated, .3
+			zombieBoeCharged, .3
+			zombieBoeInfernal, .3
+			zombieMoeRadiated, .45
+			zombieMoeInfernal, .45
+			zombieSteveRadiated, .45
+			zombieSteveCharged, .45
+			zombieTomClarkRadiated, .45
+			zombieTomClarkCharged, .45
+			zombieFemaleFatRadiated, .9
+			zombieFatHawaiianRadiated, .9
+			zombieBowlerRadiated, .9
+			zombieSkateboarderRadiated, .3
+			zombieSkateboarderCharged, .3
+			zombieSkateboarderInfernal, .3
+			zombieYoRadiated, .3
+			zombieYoCharged, .3
+			zombieYoInfernal, .3
+		</entitygroup>
+		<entitygroup name="ZombieGhostTownGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieMarleneCrystallization, .9
+			zombieArleneCrystallization, .9
+			zombieJoeCrystallization, .9
+			zombieBoeCrystallization, .9
+			zombieMoeCrystallization, .9
+			zombieSteveCrystallization, .9
+			zombieTomClarkCrystallization, .9
+			zombieFemaleFatCrystallization, .9
+			zombieFatHawaiianCrystallization, .9
+			zombieBowlerCrystallization, .9
+			zombieSkateboarderCrystallization, .9
+			zombieYoCrystallization, .9
+		</entitygroup>
 		<entitygroup name="ZombieGhostTownGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieMarleneBerserk, .9
@@ -146,8 +463,68 @@
 	</insertAfter>
 
 	<!-- *** POI_HOSPITAL_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieHospitalGroupGS400' or @name='zombieHospitalGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieHospitalGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieHospitalGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='HospitalGroup']">
+		<entitygroup name="zombieHospitalGroupGS1">
+			zombieLab, .9
+			zombieMaleHazmat, .9
+			zombieNurse, .9
+			zombieBoe, .9
+			zombieArlene, .9
+			zombieYo, .9
+			zombieMarlene, .9
+			zombieSkateboarder, .9
+			zombieJoe, .9
+		</entitygroup>
+		<entitygroup name="zombieHospitalGroupGS50">
+			zombieDemolition, .1
+			zombieLabFeral, .9
+			zombieMaleHazmatFeral, .9
+			zombieNurseFeral, .9
+			zombieBoeFeral, .9
+			zombieArleneFeral, .9
+			zombieYoFeral, .9
+			zombieMarleneFeral, .9
+			zombieSkateboarderFeral, .9
+			zombieJoeFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieHospitalGroupGS100">
+			zombieDemolition, .3
+			zombieLabRadiated, .45
+			zombieLabCharged, .45
+			zombieMaleHazmatRadiated, .3
+			zombieMaleHazmatCharged, .3
+			zombieMaleHazmatInfernal, .3
+			zombieNurseRadiated, .45
+			zombieNurseCharged, .45
+			zombieBoeRadiated, .3
+			zombieBoeCharged, .3
+			zombieBoeInfernal, .3
+			zombieArleneRadiated, .45
+			zombieArleneCharged, .45
+			zombieYoRadiated, .3
+			zombieYoCharged, .3
+			zombieYoInfernal, .3
+			zombieMarleneRadiated, .45
+			zombieMarleneCharged, .45
+			zombieSkateboarderRadiated, .3
+			zombieSkateboarderCharged, .3
+			zombieSkateboarderInfernal, .3
+			zombieJoeRadiated, .45
+			zombieJoeCharged, .45
+		</entitygroup>
+		<entitygroup name="zombieHospitalGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieLabCrystallization, .9
+			zombieMaleHazmatCrystallization, .9
+			zombieNurseCrystallization, .9
+			zombieBoeCrystallization, .9
+			zombieArleneCrystallization, .9
+			zombieYoCrystallization, .9
+			zombieMarleneCrystallization, .9
+			zombieSkateboarderCrystallization, .9
+			zombieJoeCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieHospitalGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieLabBerserk, .9
@@ -175,8 +552,36 @@
 	</insertAfter>
 
 	<!-- *** POI_LAB_WORKER_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieLabWorkerGroupGS400' or @name='zombieLabWorkerGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieLabWorkerGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieLabWorkerGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieHospitalGroupGS800']">
+		<entitygroup name="zombieLabWorkerGroupGS1">
+			zombieLab, .9
+			zombieBusinessMan, .9
+			zombieMaleHazmat, .9
+		</entitygroup>
+		<entitygroup name="zombieLabWorkerGroupGS50">
+			zombieDemolition, .1
+			zombieLabFeral, .9
+			zombieBusinessManFeral, .9
+			zombieMaleHazmatFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieLabWorkerGroupGS100">
+			zombieDemolition, .3
+			zombieLabRadiated, .45
+			zombieLabCharged, .45
+			zombieBusinessManRadiated, .3
+			zombieBusinessManCharged, .3
+			zombieBusinessManInfernal, .3
+			zombieMaleHazmatRadiated, .3
+			zombieMaleHazmatCharged, .3
+			zombieMaleHazmatInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieLabWorkerGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieLabCrystallization, .9
+			zombieBusinessManCrystallization, .9
+			zombieMaleHazmatCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieLabWorkerGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieLabBerserk, .9
@@ -192,8 +597,50 @@
 	</insertAfter>
 
 	<!-- *** POI_PRISON_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombiePrisonGroupGS400' or @name='zombiePrisonGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombiePrisonGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombiePrisonGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='PrisonGroup']">
+		<entitygroup name="zombiePrisonGroupGS1">
+			zombieInmate, .9
+			zombieBusinessMan, .9
+			zombieDarlene, .9
+			zombieLab, .9
+			zombieNurse, .9
+			zombieYo, .9
+		</entitygroup>
+		<entitygroup name="zombiePrisonGroupGS50">
+			zombieDemolition, .1
+			zombieInmateFeral, .9
+			zombieBusinessManFeral, .9
+			zombieDarleneFeral, .9
+			zombieLabFeral, .9
+			zombieNurseFeral, .9
+			zombieYoFeral, .9
+		</entitygroup>
+		<entitygroup name="zombiePrisonGroupGS100">
+			zombieDemolition, .3
+			zombieInmateRadiated, .3
+			zombieInmateCharged, .3
+			zombieInmateInfernal, .3
+			zombieBusinessManRadiated, .3
+			zombieBusinessManCharged, .3
+			zombieBusinessManInfernal, .3
+			zombieLabRadiated, .45
+			zombieLabCharged, .45
+			zombieNurseRadiated, .45
+			zombieNurseCharged, .45
+			zombieYoRadiated, .3
+			zombieYoCharged, .3
+			zombieYoInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombiePrisonGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieInmateCrystallization, .9
+			zombieBusinessManCrystallization, .9
+			zombieDarleneCrystallization, .9
+			zombieLabCrystallization, .9
+			zombieNurseCrystallization, .9
+			zombieYoCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombiePrisonGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieInmateBerserk, .9
@@ -215,8 +662,25 @@
 	</insertAfter>
 
 	<!-- *** POI_SPIDER_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='zombieSpiderGroupGS400' or @name='zombieSpiderGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='zombieSpiderGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'zombieSpiderGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='zombiePrisonGroupGS800']">
+		<entitygroup name="zombieSpiderGroupGS1">
+			zombieSpider, .9
+		</entitygroup>
+		<entitygroup name="zombieSpiderGroupGS50">
+			zombieDemolition, .1
+			zombieSpiderFeral, .9
+		</entitygroup>
+		<entitygroup name="zombieSpiderGroupGS100">
+			zombieDemolition, .3
+			zombieSpiderRadiated, .3
+			zombieSpiderCharged, .3
+			zombieSpiderInfernal, .3
+		</entitygroup>
+		<entitygroup name="zombieSpiderGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieSpiderCrystallization, .9
+		</entitygroup>
 		<entitygroup name="zombieSpiderGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieSpiderBerserk, .9
@@ -228,8 +692,54 @@
 	</insertAfter>
 
 	<!-- *** POI_BIKER_BAR_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='ZombieBikerBarGroupGS400' or @name='ZombieBikerBarGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieBikerBarGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'ZombieBikerBarGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieBikerBarGroup']">
+		<entitygroup name="ZombieBikerBarGroupGS1">
+			zombieBiker, .9
+			zombiePartyGirl, .9
+			zombieUtilityWorker, .9
+			zombieJanitor, .9
+			zombieSkateboarder, .9
+			zombieBoe, .9
+			zombieMoe, .9
+		</entitygroup>
+		<entitygroup name="ZombieBikerBarGroupGS50">
+			zombieDemolition, .1
+			zombieBikerFeral, .9
+			zombiePartyGirlFeral, .9
+			zombieUtilityWorkerFeral, .9
+			zombieJanitorFeral, .9
+			zombieSkateboarderFeral, .9
+			zombieBoeFeral, .9
+			zombieMoeFeral, .9
+		</entitygroup>
+		<entitygroup name="ZombieBikerBarGroupGS100">
+			zombieDemolition, .3
+			zombieBikerRadiated, .45
+			zombieBikerInfernal, .45
+			zombiePartyGirlRadiated, .45
+			zombiePartyGirlCharged, .45
+			zombieUtilityWorkerRadiated, .45
+			zombieUtilityWorkerCharged, .45
+			zombieJanitorRadiated, .45
+			zombieJanitorCharged, .45
+			zombieSkateboarderRadiated, .45
+			zombieSkateboarderCharged, .45
+			zombieBoeRadiated, .45
+			zombieBoeCharged, .45
+			zombieMoeRadiated, .45
+			zombieMoeInfernal, .45
+		</entitygroup>
+		<entitygroup name="ZombieBikerBarGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieBikerCrystallization, .9
+			zombiePartyGirlCrystallization, .9
+			zombieUtilityWorkerCrystallization, .9
+			zombieJanitorCrystallization, .9
+			zombieSkateboarderCrystallization, .9
+			zombieBoeCrystallization, .9
+			zombieMoeCrystallization, .9
+		</entitygroup>
 		<entitygroup name="ZombieBikerBarGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieBikerBerserk, .9
@@ -253,8 +763,29 @@
 	</insertAfter>
 
 	<!-- *** POI_NIGHT_CLUB_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='ZombieNightClubGroupGS400' or @name='ZombieNightClubGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieNightClubGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'ZombieNightClubGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieNightClubGroup']">
+		<entitygroup name="ZombieNightClubGroupGS1">
+			zombiePartyGirl, .9
+			zombieBusinessMan, .9
+		</entitygroup>
+		<entitygroup name="ZombieNightClubGroupGS50">
+			zombieDemolition, .1
+			zombiePartyGirlFeral, .9
+			zombieBusinessManFeral, .9
+		</entitygroup>
+		<entitygroup name="ZombieNightClubGroupGS100">
+			zombieDemolition, .3
+			zombiePartyGirlRadiated, .45
+			zombiePartyGirlCharged, .45
+			zombieBusinessManRadiated, .45
+			zombieBusinessManCharged, .45
+		</entitygroup>
+		<entitygroup name="ZombieNightClubGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombiePartyGirlCrystallization, .9
+			zombieBusinessManCrystallization, .9
+		</entitygroup>
 		<entitygroup name="ZombieNightClubGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombiePartyGirlBerserk, .9
@@ -268,8 +799,33 @@
 	</insertAfter>
 
 	<!-- *** POI_SPECIAL_INFECTED_ZOMBIE_GROUPS -->
-	<remove xpath="/entitygroups/entitygroup[@name='ZombieSpecialInfectedGroupGS400' or @name='ZombieSpecialInfectedGroupGS800']"/>
-	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieSpecialInfectedGroupGS200']">
+	<remove xpath="/entitygroups/entitygroup[contains(@name,'ZombieSpecialInfectedGroupGS')]"/>
+	<insertAfter xpath="/entitygroups/entitygroup[@name='ZombieSpecialInfectedGroup']">
+		<entitygroup name="ZombieSpecialInfectedGroupGS1">
+			zombieSpider, .9
+			zombieMutated, .9
+		</entitygroup>
+		<entitygroup name="ZombieSpecialInfectedGroupGS50">
+			zombieDemolition, .1
+			zombieSpiderFeral, .9
+			zombieMutatedFeral, .9
+			zombieWightFeral, .9
+		</entitygroup>
+		<entitygroup name="ZombieSpecialInfectedGroupGS100">
+			zombieDemolition, .3
+			zombieSpiderRadiated, .45
+			zombieSpiderCharged, .45
+			zombieMutatedRadiated, .45
+			zombieMutatedCharged, .45
+			zombieWightRadiated, .45
+			zombieWightCharged, .45
+		</entitygroup>
+		<entitygroup name="ZombieSpecialInfectedGroupGS200">
+			zombieDemolitionCrystallization, .3
+			zombieSpiderCrystallization, .9
+			zombieMutatedCrystallization, .9
+			zombieWightCrystallization, .9
+		</entitygroup>
 		<entitygroup name="ZombieSpecialInfectedGroupGS400">
 			zombieDemolitionBerserk, .3
 			zombieSpiderBerserk, .9
@@ -286,7 +842,7 @@
 
 
 
-	<!-- *** SLEEPER_HORDE_STAGES -->
+	<!-- SLEEPER_HORDE_STAGES -->
     <remove xpath="/entitygroups/entitygroup[contains(@name,'sleeperHordeStageGS')]"/>
     <insertAfter xpath="/entitygroups/entitygroup[@name='FwanderingHordeStageGS64']">
 		<entitygroup name="sleeperHordeStageGS1">
@@ -22509,7 +23065,6 @@
 
 
 	<!-- storm_point -->
-    <remove xpath="/entitygroups/entitygroup[contains(@name,'StormPointGroupGS')]"/>
     <append xpath="/entitygroups">
 
         <entitygroup name="zombieStormPointGroupGS1">
@@ -22709,7 +23264,7 @@
             zombieDemolitionBerserk, .6
         </entitygroup>
 
-				<!-- Arlene 阿琳 -->
+		<!-- Arlene 阿琳 -->
         <entitygroup name="zombieArleneStormPointGroupGS1">
 			zombieArlene
         </entitygroup>
@@ -22728,7 +23283,7 @@
         <entitygroup name="zombieArleneStormPointGroupGS800">
 			zombieArleneBerserk
         </entitygroup>
-				<!-- Marlene 马琳 -->
+		<!-- Marlene 马琳 -->
         <entitygroup name="zombieMarleneStormPointGroupGS1">
 			zombieMarlene
         </entitygroup>
@@ -22747,7 +23302,7 @@
         <entitygroup name="zombieMarleneStormPointGroupGS800">
 			zombieMarleneBerserk
         </entitygroup>
-				<!-- PartyGirl 派对女孩 -->
+		<!-- PartyGirl 派对女孩 -->
         <entitygroup name="zombiePartyGirlStormPointGroupGS1">
 			zombiePartyGirl
         </entitygroup>
@@ -22766,7 +23321,7 @@
         <entitygroup name="zombiePartyGirlStormPointGroupGS800">
 			zombiePartyGirlBerserk
         </entitygroup>
-				<!-- Nurse 护士 -->
+		<!-- Nurse 护士 -->
         <entitygroup name="zombieNurseStormPointGroupGS1">
 			zombieNurse
         </entitygroup>
@@ -22785,7 +23340,7 @@
         <entitygroup name="zombieNurseStormPointGroupGS800">
 			zombieNurseBerserk
         </entitygroup>
-				<!-- Joe 乔 -->
+		<!-- Joe 乔 -->
         <entitygroup name="zombieJoeStormPointGroupGS1">
 			zombieJoe
         </entitygroup>
@@ -22804,7 +23359,7 @@
         <entitygroup name="zombieJoeStormPointGroupGS800">
 			zombieJoeBerserk
         </entitygroup>
-				<!-- Steve 史蒂夫 -->
+		<!-- Steve 史蒂夫 -->
         <entitygroup name="zombieSteveStormPointGroupGS1">
 			zombieSteve
         </entitygroup>
@@ -22823,7 +23378,7 @@
         <entitygroup name="zombieSteveStormPointGroupGS800">
 			zombieSteveBerserk
         </entitygroup>
-				<!-- TomClark 汤姆·克拉克 -->
+		<!-- TomClark 汤姆·克拉克 -->
         <entitygroup name="zombieTomClarkStormPointGroupGS1">
 			zombieTomClark
         </entitygroup>
@@ -22842,7 +23397,7 @@
         <entitygroup name="zombieTomClarkStormPointGroupGS800">
 			zombieTomClarkBerserk
         </entitygroup>
-				<!-- BusinessMan 商人 -->
+		<!-- BusinessMan 商人 -->
         <entitygroup name="zombieBusinessManStormPointGroupGS1">
 			zombieBusinessMan
         </entitygroup>
@@ -22861,7 +23416,7 @@
         <entitygroup name="zombieBusinessManStormPointGroupGS800">
 			zombieBusinessManBerserk
         </entitygroup>
-				<!-- Burnt 被灼烧者 -->
+		<!-- Burnt 被灼烧者 -->
         <entitygroup name="zombieBurntStormPointGroupGS1">
 			zombieBurnt
         </entitygroup>
@@ -22880,7 +23435,7 @@
         <entitygroup name="zombieBurntStormPointGroupGS800">
 			zombieBurntBerserk
         </entitygroup>
-				<!-- Spider 蜘蛛 -->
+		<!-- Spider 蜘蛛 -->
         <entitygroup name="zombieSpiderStormPointGroupGS1">
 			zombieSpider
         </entitygroup>
@@ -22899,7 +23454,7 @@
         <entitygroup name="zombieSpiderStormPointGroupGS800">
 			zombieSpiderBerserk
         </entitygroup>
-				<!-- Boe 布尔 -->
+		<!-- Boe 布尔 -->
         <entitygroup name="zombieBoeStormPointGroupGS1">
 			zombieBoe
         </entitygroup>
@@ -22918,7 +23473,7 @@
         <entitygroup name="zombieBoeStormPointGroupGS800">
 			zombieBoeBerserk
         </entitygroup>
-				<!-- MaleHazmat 穿着防化服的丧尸 -->
+		<!-- MaleHazmat 穿着防化服的丧尸 -->
         <entitygroup name="zombieMaleHazmatStormPointGroupGS1">
 			zombieMaleHazmat
         </entitygroup>
@@ -22937,7 +23492,7 @@
         <entitygroup name="zombieMaleHazmatStormPointGroupGS800">
 			zombieMaleHazmatBerserk
         </entitygroup>
-				<!-- Janitor 看门人 -->
+		<!-- Janitor 看门人 -->
         <entitygroup name="zombieJanitorStormPointGroupGS1">
 			zombieJanitor
         </entitygroup>
@@ -22956,7 +23511,7 @@
         <entitygroup name="zombieJanitorStormPointGroupGS800">
 			zombieJanitorBerserk
         </entitygroup>
-				<!-- Inmate 犯人 -->
+		<!-- Inmate 犯人 -->
         <entitygroup name="zombieInmateStormPointGroupGS1">
 			zombieInmate
         </entitygroup>
@@ -22975,7 +23530,7 @@
         <entitygroup name="zombieInmateStormPointGroupGS800">
 			zombieInmateBerserk
         </entitygroup>
-				<!-- Moe 莫伊 -->
+		<!-- Moe 莫伊 -->
         <entitygroup name="zombieMoeStormPointGroupGS1">
 			zombieMoe
         </entitygroup>
@@ -22994,7 +23549,7 @@
         <entitygroup name="zombieMoeStormPointGroupGS800">
 			zombieMoeBerserk
         </entitygroup>
-				<!-- Lab 实验室工作人员 -->
+		<!-- Lab 实验室工作人员 -->
         <entitygroup name="zombieLabStormPointGroupGS1">
 			zombieLab
         </entitygroup>
@@ -23013,7 +23568,7 @@
         <entitygroup name="zombieLabStormPointGroupGS800">
 			zombieLabBerserk
         </entitygroup>
-				<!-- Darlene 达琳 -->
+		<!-- Darlene 达琳 -->
         <entitygroup name="zombieDarleneStormPointGroupGS1">
 			zombieDarlene
         </entitygroup>
@@ -23032,7 +23587,7 @@
         <entitygroup name="zombieDarleneStormPointGroupGS800">
 			zombieDarleneBerserk
         </entitygroup>
-				<!-- Yo 幽 -->
+		<!-- Yo 幽 -->
         <entitygroup name="zombieYoStormPointGroupGS1">
 			zombieYo
         </entitygroup>
@@ -23051,7 +23606,7 @@
         <entitygroup name="zombieYoStormPointGroupGS800">
 			zombieYoBerserk
         </entitygroup>
-				<!-- UtilityWorker 公用事业工人 -->
+		<!-- UtilityWorker 公用事业工人 -->
         <entitygroup name="zombieUtilityWorkerStormPointGroupGS1">
 			zombieUtilityWorker
         </entitygroup>
@@ -23070,7 +23625,7 @@
         <entitygroup name="zombieUtilityWorkerStormPointGroupGS800">
 			zombieUtilityWorkerBerserk
         </entitygroup>
-				<!-- Biker 摩托车手 -->
+		<!-- Biker 摩托车手 -->
         <entitygroup name="zombieBikerStormPointGroupGS1">
 			zombieBiker
         </entitygroup>
@@ -23089,7 +23644,7 @@
         <entitygroup name="zombieBikerStormPointGroupGS800">
 			zombieBikerBerserk
         </entitygroup>
-				<!-- Lumberjack 伐木工 -->
+		<!-- Lumberjack 伐木工 -->
         <entitygroup name="zombieLumberjackStormPointGroupGS1">
 			zombieLumberjack
         </entitygroup>
@@ -23108,7 +23663,7 @@
         <entitygroup name="zombieLumberjackStormPointGroupGS800">
 			zombieLumberjackBerserk
         </entitygroup>
-				<!-- FemaleFat 大妈妈 -->
+		<!-- FemaleFat 大妈妈 -->
         <entitygroup name="zombieFemaleFatStormPointGroupGS1">
 			zombieFemaleFat
         </entitygroup>
@@ -23127,7 +23682,7 @@
         <entitygroup name="zombieFemaleFatStormPointGroupGS800">
 			zombieFemaleFatBerserk
         </entitygroup>
-				<!-- FatHawaiian 游客 -->
+		<!-- FatHawaiian 游客 -->
         <entitygroup name="zombieFatHawaiianStormPointGroupGS1">
 			zombieFatHawaiian
         </entitygroup>
@@ -23146,7 +23701,7 @@
         <entitygroup name="zombieFatHawaiianStormPointGroupGS800">
 			zombieFatHawaiianBerserk
         </entitygroup>
-				<!-- Bowler 投球手 -->
+		<!-- Bowler 投球手 -->
         <entitygroup name="zombieBowlerStormPointGroupGS1">
 			zombieBowler
         </entitygroup>
@@ -23165,7 +23720,7 @@
         <entitygroup name="zombieBowlerStormPointGroupGS800">
 			zombieBowlerBerserk
         </entitygroup>
-				<!-- FatCop 警察 -->
+		<!-- FatCop 警察 -->
         <entitygroup name="zombieFatCopStormPointGroupGS1">
 			zombieFatCop
         </entitygroup>
@@ -23184,7 +23739,7 @@
         <entitygroup name="zombieFatCopStormPointGroupGS800">
 			zombieFatCopBerserk
         </entitygroup>
-				<!-- Skateboarder 暴徒 -->
+		<!-- Skateboarder 暴徒 -->
         <entitygroup name="zombieSkateboarderStormPointGroupGS1">
 			zombieSkateboarder
         </entitygroup>
@@ -23203,7 +23758,7 @@
         <entitygroup name="zombieSkateboarderStormPointGroupGS800">
 			zombieSkateboarderBerserk
         </entitygroup>
-				<!-- Soldier 士兵 -->
+		<!-- Soldier 士兵 -->
         <entitygroup name="zombieSoldierStormPointGroupGS1">
 			zombieSoldier
         </entitygroup>
@@ -23222,7 +23777,7 @@
         <entitygroup name="zombieSoldierStormPointGroupGS800">
 			zombieSoldierBerserk
         </entitygroup>
-				<!-- Wight 怀特 -->
+		<!-- Wight 怀特 -->
         <entitygroup name="zombieWightStormPointGroupGS1">
 			zombieWightFeral
         </entitygroup>
@@ -23241,7 +23796,7 @@
         <entitygroup name="zombieWightStormPointGroupGS800">
 			zombieWightBerserk
         </entitygroup>
-				<!-- Screamer 尖叫丧尸 -->
+		<!-- Screamer 尖叫丧尸 -->
         <entitygroup name="zombieScreamerStormPointGroupGS1">
 			zombieScreamer
         </entitygroup>
@@ -23260,7 +23815,7 @@
         <entitygroup name="zombieScreamerStormPointGroupGS800">
 			zombieScreamerBerserk
         </entitygroup>
-				<!-- Mutated 变异丧尸 -->
+		<!-- Mutated 变异丧尸 -->
         <entitygroup name="zombieMutatedStormPointGroupGS1">
 			zombieMutated
         </entitygroup>
@@ -23279,7 +23834,7 @@
         <entitygroup name="zombieMutatedStormPointGroupGS800">
 			zombieMutatedBerserk
         </entitygroup>
-				<!-- Demolition 爆破丧尸 -->
+		<!-- Demolition 爆破丧尸 -->
         <entitygroup name="zombieDemolitionStormPointGroupGS1">
 			zombieDemolition
         </entitygroup>
@@ -23298,7 +23853,7 @@
         <entitygroup name="zombieDemolitionStormPointGroupGS800">
 			zombieDemolitionBerserk
         </entitygroup>
-				<!-- SteveCrawler 爬行者 -->
+		<!-- SteveCrawler 爬行者 -->
         <entitygroup name="zombieSteveCrawlerStormPointGroupGS1">
 			zombieSteveCrawler
         </entitygroup>
