@@ -1,0 +1,423 @@
+<Marisa>
+
+    <!--*** 脑震荡不再降低属性 -->
+	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
+	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
+
+
+	<!-- 状态检查 2s -->
+	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
+
+		<!-- 测试打印 cvar -->
+<!--        <effect_group>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="====================================================="/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearWill"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearInfestedWill"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfestedWill"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePointWill"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="===================================="/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaInBiome"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="IntroComplete"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClear"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearInfested"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfested"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePoint"/>-->
+<!--		</effect_group>-->
+
+		<!-- 添加 状态检查 0.1s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa01"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa01"/>
+		</effect_group>
+		<!-- 添加 状态检查 0.2s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa02"/>
+		</effect_group>
+		<!-- 添加 状态检查 1s -->
+        <effect_group>
+			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa10"/>
+		</effect_group>
+
+	</append>
+
+	<!-- 状态检查 0.1s 0.2s 1s -->
+	<append xpath="/buffs">
+
+		<!-- 状态检查 0.1s -->
+		<buff name="buffStatusCheckMarisa01" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".1"/>
+			<duration value="0"/>
+
+			<!-- 玩家所在地形变量 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="3"><requirement name="InBiome" biome="8"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="9"/></triggered_effect>
+			</effect_group>
+
+			<!-- 完成任务修改变量Will -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClear" operation="set" value="@QuestCompleteClearWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="LT" value="@QuestCompleteClearWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearInfested" operation="set" value="@QuestCompleteClearInfestedWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="LT" value="@QuestCompleteClearInfestedWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearSuperInfested" operation="set" value="@QuestCompleteClearSuperInfestedWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="LT" value="@QuestCompleteClearSuperInfestedWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteDefensivePoint" operation="set" value="@QuestCompleteDefensivePointWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="LT" value="@QuestCompleteDefensivePointWill"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+
+		<!-- 状态检查 0.2s -->
+		<buff name="buffStatusCheckMarisa02" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+
+		</buff>
+
+		<!-- 状态检查 1s -->
+		<buff name="buffStatusCheckMarisa10" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+
+		</buff>
+
+	</append>
+
+
+
+	<!-- 任务BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 潜行任务E -->
+		<buff name="buffCrouchingQuestSleeper" name_key="buffCrouchingQuestSleeperName" description_key="buffCrouchingQuestSleeperDesc" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="GT" value="0"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+		</buff>
+		<!-- 潜行任务P -->
+		<buff name="buffCrouchingQuestOn" name_key="buffCrouchingQuestOnName" description_key="buffCrouchingQuestOnDesc" showonhud="true" icon="server_peer" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<display_value value="$CrouchingQuestOn"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOnWill" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1" target="selfOtherPlayers"
+								  target_tags="ally,party"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOn" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventCrouchingQuestFail" allow_client_call="true"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCrouchingQuestOn"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+
+
+	<!-- 敌对BUFF -->
+	<append xpath="/buffs">
+
+		<!-- BOSS每秒随机移除自身控制 -->
+		<buff name="buffZombieBossRandomRollRemoveDeBuff">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossRandomRollRemoveDeBuff2">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossRandomRollRemoveDeBuff3" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+			</effect_group>
+		</buff>
+
+		<!-- BOSS 狂暴 -->
+		<buff name="buffZombieBossAngerCount">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3600"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="45"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="1">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="60"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieBossAnger">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="60"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="0">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LT" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="-20">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZombieBossAnger">
+					<requirement name="CVarCompare" cvar="buffZombieBossAngerCvar" operation="LTE" value="5"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffZombieBossAnger"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="RadiatedParticlesOnMesh"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossAnger">
+			<stack_type value="replace"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_set" value=".95"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02,buffShocked"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMarisaRadiatedParticlesOnMesh"/>
+			</effect_group>
+		</buff>
+
+		<!-- 院长 -->
+		<buff name="buffZombieBossResearchInstituteLeaderCrystallization" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" target="self" event="EventZombieBossResearchInstituteLeaderCrystallization"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieBossResearchInstituteLeaderBerserk" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" target="self" event="EventZombieBossResearchInstituteLeaderBerserk"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- 粒子BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 蓝色电火花（只有一瞬） -->
+		<buff name="buffMarisaElectricFenceSparks" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_fence_sparks" local_offset="0,0.15,0" parent_transform="Head"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_fence_sparks"/>
+			</effect_group>
+		</buff>
+		<!-- 黄绿色闪烁烟花团 -->
+		<buff name="buffMarisaRadiatedParticlesOnMesh" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="RadiatedParticlesOnMesh" local_offset="0,-.5,-.25" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="RadiatedParticlesOnMesh"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="RadiatedParticlesOnMesh"/>
+			</effect_group>
+		</buff>
+		<!-- 白色烟雾团 -->
+		<buff name="buffMarisaSmoke_Unlit" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="Smoke_Unlit" local_offset="0,1.25,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="Smoke_Unlit"/>
+			</effect_group>
+		</buff>
+		<!-- 明亮大火焰 -->
+		<buff name="buffMarisaBurning_barrel" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_burning_barrel" local_offset="0,0.75,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_burning_barrel"/>
+			</effect_group>
+		</buff>
+		<!-- 耀斑 -->
+		<buff name="buffMarisaP_smoke" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_smoke" local_offset="0,-0.25,0" parent_transform="Head"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_smoke"/>
+			</effect_group>
+		</buff>
+		<!-- 烽火烟 -->
+		<buff name="buffMarisaP_signal_flarePrefab" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_signal_flarePrefab" local_offset="0,0.75,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_signal_flarePrefab"/>
+			</effect_group>
+		</buff>
+		<!-- 大范围瘴气烟幕（浅色） -->
+		<buff name="buffMarisaP_smokestorm" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_smokestorm" local_offset="0,1,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_smokestorm"/>
+			</effect_group>
+		</buff>
+		<!-- 大范围暴风雪烟幕（浅白色） -->
+		<buff name="buffMarisaP_snowstorm1" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_snowstorm1" local_offset="0,1,0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_snowstorm1"/>
+			</effect_group>
+		</buff>
+		<!-- 丧尸手部电击效果 -->
+		<buff name="buffMarisaTwitchZombieShock" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_twitch_zombie_shock_left" parent_transform="LeftHand" />
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_twitch_zombie_shock_right" parent_transform="RightHand"  />
+
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_twitch_zombie_shock_left"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_twitch_zombie_shock_right"/>
+			</effect_group>
+		</buff>
+		<!-- 电击效果（有声音） -->
+		<buff name="buffMarisaElectricShock" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0,0" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- 模型BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 纵火犯 -->
+		<buff name="zombieBossArsonistDeco" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/barrelOilPrefab.prefab" local_offset=".45,.25,-.15" local_rotation="0,0,0" parent_transform="Spine"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/barrelGasPrefab.prefab" local_offset="-.15,.25,-.15" local_rotation="0,0,0" parent_transform="Spine"/>
+			</effect_group>
+		</buff>
+		<!-- 攻城爬行者 -->
+		<buff name="zombieBossSteveCrawlerDeco">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/liftHydraulicPrefab.prefab" local_offset="0,-0.267,-0.194" local_rotation="0,0,0" local_scale="0.3,0.4,0.4" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Electrical/satelliteUnitLargePrefab.prefab" local_offset="0.092,-0.4032,-0.2591" local_rotation="-90,0,0" local_scale="0.1,0.1,0.1" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Electrical/motionSensorStraightPOIPrefab.prefab" local_offset="0,0.903,-0.147" local_rotation="-90,0,0" local_scale="0.4,0.4,0.4" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfDied" action="RemovePrefabFromEntity" prefab="satelliteUnitLargePrefab" parent_transform="Spine3" />
+				<triggered_effect trigger="onSelfBuffRemove" action="RemovePrefabFromEntity" prefab="satelliteUnitLargePrefab" parent_transform="Spine3" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/pipeSmall_1x1Prefab.prefab" local_offset="0,0.588,-0.288" local_rotation="0,0,0" local_scale="0.3,0.3,0.103" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfDied" action="RemovePrefabFromEntity" prefab="pipeSmall_1x1Prefab" parent_transform="Spine3" />
+				<triggered_effect trigger="onSelfBuffRemove" action="RemovePrefabFromEntity" prefab="pipeSmall_1x1Prefab" parent_transform="Spine3" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/pipeSmallValve02SwitchPrefab.prefab" local_offset="-0.072,-0.5,0.064" local_rotation="-25.172,32.42,0" local_scale="0.2,0.2,0.2" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfDied" action="RemovePrefabFromEntity" prefab="pipeSmallValve02SwitchPrefab" parent_transform="Spine3" />
+				<triggered_effect trigger="onSelfBuffRemove" action="RemovePrefabFromEntity" prefab="pipeSmallValve02SwitchPrefab" parent_transform="Spine3" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Industrial/pipeSmallValvePrefab.prefab" local_offset="0.1,-0.409,0.034" local_rotation="-25.516,-33.123,0" local_scale="0.2,0.2,0.2" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfDied" action="RemovePrefabFromEntity" prefab="pipeSmallValvePrefab" parent_transform="Spine3" />
+				<triggered_effect trigger="onSelfBuffRemove" action="RemovePrefabFromEntity" prefab="pipeSmallValvePrefab" parent_transform="Spine3" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Entities/Electrical/smallGeneratorPrefab.prefab" local_offset="-0.0952,-0.3872,-0.3571" local_rotation="0,90,-90" local_scale="0.2,0.2,0.2" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Weapons/Ranged/RocketLauncher/rocketlauncherPrefab.prefab" local_offset="0,0.16,-0.458" local_rotation="-90,0,0" local_scale="1.2,1.2,1.2" parent_transform="Spine3"/>
+			</effect_group>
+		</buff>
+		<!-- 院长 -->
+		<buff name="zombieBossResearchInstituteLeaderCrystallizationDeco" >
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Tools/hoe_ironPrefab.prefab" local_offset="-0.111,0.189,-0.232" local_rotation="0,0,30.321" local_scale="1,1,1" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Tools/shovel_ironPrefab.prefab" local_offset="0.045,-0.246,-0.236" local_rotation="0,0,38.826" local_scale="1,1,1" parent_transform="Spine3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Tools/hammerPrefab.prefab" local_offset="-0.226,-0.287,0" local_rotation="0,0,0" local_scale="1,1,1" parent_transform="Spine1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Weapons/Melee/Knives/hunting_knifePrefab.prefab" local_offset="0.221,0.027,0.004" local_rotation="166.226,-0.72,-8.731" local_scale="1,1,1.5" parent_transform="Spine1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Tools/nailgunPrefab.prefab" local_offset="0.17,0.035,-0.038" local_rotation="180,0,180" local_scale="2,2,2" parent_transform="RightHand"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- 特效BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 辐射丧尸特效 -->
+		<buff name="buffMarisaTwitchZombieRadiationLeft" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_twitch_zombie_radiation_left" local_offset="-0.08,0.12,0.03" parent_transform="Head"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_twitch_zombie_radiation_left"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+</Marisa>
