@@ -1,15 +1,11 @@
 <Marisa>
 
-    <!-- *** 死亡经验惩罚 -->
-    <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group/passive_effect[@name='ExpDeficitPerDeathPercentage']/@value">.25</set>
-    <set xpath="/entity_classes/entity_class[@name='playerMale']/effect_group/passive_effect[@name='ExpDeficitMaxPercentage']/@value">.5</set>
-
     <!-- *** 初始物品添加生肉12个 -->
     <set xpath="/entity_classes/entity_class[@name='playerMale']/property[@name='ItemsOnEnterGame.GameModeSurvival']/@value">drinkJarBoiledWater=2,foodCanChili,medicalFirstAidBandage,meleeToolTorch,noteDuke01,foodRawMeat=12</set>
 
 
 
-	<!-- *** 调整爆破丧尸掉落几率 -->
+	<!-- *** 调整爆破丧尸掉包几率 -->
 	<set xpath="/entity_classes/entity_class[@name='zombieDemolition']/property[@name='LootDropProb']/@value">.03</set>
 
 
@@ -59,7 +55,7 @@
 			<property name="RotateToGround" value="true"/>
 			<property name="Faction" value="none"/>
 
-			<property name="NavObject" value="junk_turret" />
+			<property name="NavObject" value="junk_turret"/>
 			<property name="TrackerIcon" value="ui_game_symbol_assemble"/>
 
 			<effect_group>
@@ -88,9 +84,8 @@
 			<property name="IsEnemyEntity" value="false"/>
 			<property name="Faction" value="none"/>
 			<property name="NPCID" value="NPCjunkDrone"/>
-			<property name="MapIcon" value="ui_game_symbol_map_player_arrow"/>
-			<property name="NavObject" value="NOJunkDrone" />
-			<!-- <property name="TrackerIcon" value="ui_game_symbol_drone"/> *Handled by NavObject -->
+			<property name="MapIcon" value="ui_game_symbol_drone"/>
+			<property name="NavObject" value="NOJunkDrone"/>
 
 			<property name="MaxDistance" value="15"/>
 			<property name="RaySpread" value="5"/>
@@ -108,9 +103,9 @@
 
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_set" value="1"/>
-				<passive_effect name="HealthMax" operation="base_set" value="2024"/>
-				<passive_effect name="StaminaMax" operation="base_set" value="2024"/>
-				<passive_effect name="WaterMax" operation="base_set" value="2024"/>
+				<passive_effect name="HealthMax" operation="base_set" value="2025"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="2025"/>
+				<passive_effect name="WaterMax" operation="base_set" value="2025"/>
 				<passive_effect name="BuffResistance" operation="base_set" value="1" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffPerkCharismaticNature,buffRadiationPool"/>
 			</effect_group>
 
@@ -210,6 +205,26 @@
 			<effect_group name="Base Effects">
 				<passive_effect name="PhysicalDamageResist" operation="base_set" value="45"/>
 				<passive_effect name="HealthMax" operation="base_set" value="1500"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+		<!-- *** Crystallization ZombiePlagueSpitter 瘟疫喷吐者 -->
+		<entity_class name="zombiePlagueSpitterCrystallization" extends="zombiePlagueSpitterFeral">
+			<property name="ExperienceGain" value="1650"/>
+			<property name="LootDropProb" value=".04"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="45"/>
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+		<!-- *** Crystallization ZombieFrostclaw 霜爪 -->
+		<entity_class name="zombieFrostclawCrystallization" extends="zombieFrostclawFeral">
+			<property name="ExperienceGain" value="1650"/>
+			<property name="LootDropProb" value=".04"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="45"/>
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
 			</effect_group>
 		</entity_class>
@@ -540,6 +555,26 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
 			</effect_group>
 		</entity_class>
+		<!-- *** Berserk ZombiePlagueSpitter 瘟疫喷吐者 -->
+		<entity_class name="zombiePlagueSpitterBerserk" extends="zombiePlagueSpitterRadiated">
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".05"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="HealthMax" operation="base_set" value="4800"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- *** Berserk ZombieFrostclaw 霜爪 -->
+		<entity_class name="zombieFrostclawBerserk" extends="zombieFrostclawRadiated">
+			<property name="ExperienceGain" value="2000"/>
+			<property name="LootDropProb" value=".05"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="HealthMax" operation="base_set" value="4800"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
 		<!-- *** Berserk ZombieSpider 蜘蛛 -->
 		<entity_class name="zombieSpiderBerserk" extends="zombieSpiderRadiated">
 			<property name="ExperienceGain" value="2000"/>
@@ -784,7 +819,7 @@
 		<!-- ** ZombieDog -->
 		<entity_class name="EntityBossAnimalZombieDog" extends="animalZombieDog">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,dog,perkAT03,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,dog,perkAT03,crystallization,boss"/>
 			<property name="SizeScale" value="1.85"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalDireWolf"/>
@@ -821,7 +856,7 @@
 		<!-- ** AnimalBearSmall -->
 		<entity_class name="EntityBossAnimalBearSmall" extends="animalBearSmall">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,hostile,snake,perkAT03,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,snake,perkAT03,crystallization,boss"/>
 			<property name="SizeScale" value=".75"/>
 
 			<property name="DismemberMultiplierHead" value="0"/>
@@ -857,7 +892,7 @@
 		<!-- ** ZombieVultureSmall -->
 		<entity_class name="EntityBossZombieVultureSmall" extends="animalZombieVulture">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,vulture,perkAT03,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,vulture,perkAT03,crystallization,boss"/>
 			<property name="SizeScale" value="2.7"/>
 
 			<property name="HandItem" value="meleeHandAnimalZombieVultureRadiated"/>
@@ -892,7 +927,7 @@
 		<!-- ** DireWolf -->
 		<entity_class name="EntityBossAnimalDireWolf" extends="animalDireWolf">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,hostile,wolf,perkAT02,perkAT03,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,wolf,perkAT02,perkAT03,crystallization,boss"/>
 			<property name="SizeScale" value="1.95"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalDireWolf"/>
@@ -950,7 +985,7 @@
 		<!-- ** Bear -->
 		<entity_class name="EntityBossAnimalBear" extends="animalBear">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,hostile,bear,perkAT03,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,crystallization,boss"/>
 			<property name="SizeScale" value="1.1"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalBear"/>
@@ -990,7 +1025,7 @@
 		<!-- ** VultureRadiated -->
 		<entity_class name="EntityBossAnimalZombieVulture" extends="animalZombieVultureRadiated">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,radiated,vulture,crystallization,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,radiated,vulture,crystallization,boss"/>
 			<property name="SizeScale" value="4.2"/>
 
 			<property name="HandItem" value="HandEntityBossAnimalZombieVultureRadiated"/>
@@ -1028,7 +1063,7 @@
 		<!-- ** Rabbit -->
 		<entity_class name="EntityBossAnimalRabbit" extends="animalRabbit">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,rabbit,perkAT01,perkAT02,perkAT03,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,rabbit,perkAT01,perkAT02,perkAT03,boss"/>
 
 			<property name="SizeScale" value="3.2"/>
 
@@ -1060,7 +1095,7 @@
 		<!-- ** Chicken -->
 		<entity_class name="EntityBossAnimalChicken" extends="animalChicken">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,chicken,perkAT01,perkAT02,perkAT03,boss"/>
+			<property name="Tags" value="entity,animal,allbiome,chicken,perkAT01,perkAT02,perkAT03,boss"/>
 
 			<property name="SizeScale" value="3.2"/>
 
@@ -1096,7 +1131,7 @@
 		<!-- *** 任务 BOSS -->
 		<!-- ** ZombieDog -->
 		<entity_class name="QuestEntityBossAnimalZombieDog" extends="EntityBossAnimalZombieDog">
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,dog,perkAT03,crystallization,boss,QuestEntityBossAnimalZombieDog"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,dog,perkAT03,crystallization,boss,QuestEntityBossAnimalZombieDog"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
@@ -1112,7 +1147,7 @@
 		</entity_class>
 		<!-- ** AnimalBearSmall -->
 		<entity_class name="QuestEntityBossAnimalBearSmall" extends="EntityBossAnimalBearSmall">
-			<property name="Tags" value="allbiome,entity,animal,hostile,snake,perkAT03,crystallization,boss,QuestEntityBossAnimalBearSmall"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,snake,perkAT03,crystallization,boss,QuestEntityBossAnimalBearSmall"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="25"/>
@@ -1129,7 +1164,7 @@
 		</entity_class>
 		<!-- ** ZombieVultureSmall -->
 		<entity_class name="QuestEntityBossZombieVultureSmall" extends="EntityBossZombieVultureSmall">
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,vulture,perkAT03,crystallization,boss,QuestEntityBossZombieVultureSmall"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,vulture,perkAT03,crystallization,boss,QuestEntityBossZombieVultureSmall"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="30"/>
@@ -1144,7 +1179,7 @@
 		</entity_class>
 		<!-- ** DireWolf -->
 		<entity_class name="QuestEntityBossAnimalDireWolf" extends="EntityBossAnimalDireWolf">
-			<property name="Tags" value="allbiome,entity,animal,hostile,wolf,perkAT02,perkAT03,crystallization,boss,QuestEntityBossAnimalDireWolf"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,wolf,perkAT02,perkAT03,crystallization,boss,QuestEntityBossAnimalDireWolf"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
@@ -1160,7 +1195,7 @@
 		</entity_class>
 		<!-- ** Bear -->
 		<entity_class name="QuestEntityBossAnimalBear" extends="EntityBossAnimalBear">
-			<property name="Tags" value="allbiome,entity,animal,hostile,bear,perkAT03,crystallization,boss,QuestEntityBossAnimalBear"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,crystallization,boss,QuestEntityBossAnimalBear"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="50"/>
@@ -1177,7 +1212,7 @@
 		</entity_class>
 		<!-- ** VultureRadiated -->
 		<entity_class name="QuestEntityBossAnimalZombieVulture" extends="EntityBossAnimalZombieVulture">
-			<property name="Tags" value="allbiome,entity,animal,zombie,hostile,radiated,vulture,crystallization,boss,QuestEntityBossAnimalZombieVulture"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,radiated,vulture,crystallization,boss,QuestEntityBossAnimalZombieVulture"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="30"/>
@@ -1200,7 +1235,7 @@
 
 		<!-- ** zombieBossArsonist -->
 		<entity_class name="zombieBossArsonist" extends="zombieBurnt">
-			<property name="Tags" value="allbiome,entity,zombie,walker,boss,zombieBossArsonist"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,boss,zombieBossArsonist"/>
 			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurnt.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1293,7 +1328,7 @@
 		</entity_class>
 		<!-- ** zombieBossSoldier -->
 		<entity_class name="zombieBossSoldier" extends="zombieSoldier">
-			<property name="Tags" value="allbiome,entity,zombie,walker,zombieSoldier,boss,zombieBossSoldier"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldier,boss,zombieBossSoldier"/>
 			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldier.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1341,7 +1376,7 @@
 
 		<!-- ** zombieBossArsonistCrystallization -->
 		<entity_class name="zombieBossArsonistCrystallization" extends="zombieBurntFeral">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,boss,zombieBossArsonistCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,boss,zombieBossArsonistCrystallization"/>
 			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntFeral.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1436,7 +1471,7 @@
 		</entity_class>
 		<!-- ** zombieBossSoldierCrystallization -->
 		<entity_class name="zombieBossSoldierCrystallization" extends="zombieSoldierFeral">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,zombieSoldier,boss,zombieBossSoldierCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,zombieSoldier,boss,zombieBossSoldierCrystallization"/>
 			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierFeral.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1485,7 +1520,7 @@
 
 		<!-- ** zombieBossResearchInstituteLeaderCrystallization -->
 		<entity_class name="zombieBossResearchInstituteLeaderCrystallization" extends="zombieLumberjackFeral">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,boss,zombieBossResearchInstituteLeaderCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,boss,zombieBossResearchInstituteLeaderCrystallization"/>
 			<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackFeral.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1542,7 +1577,7 @@
 		</entity_class>
 		<entity_class name="researchInstituteAnimalRabbit" extends="animalTemplateHostile">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="Tags" value="entity,animal,allbiome,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
 			<property name="MapIcon" value="ui_game_symbol_tracking_rabbit"/>
 			<property name="TrackerIcon" value="ui_game_symbol_tracking_rabbit"/>
 			<property name="AvatarController" value="AvatarAnimalController"/>
@@ -1603,7 +1638,7 @@
 		</entity_class>
 		<entity_class name="researchInstituteAnimalChickenHostile" extends="animalTemplateHostile">
 			<property name="UserSpawnType" value="Menu"/>
-			<property name="Tags" value="allbiome,entity,animal,chicken,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="Tags" value="entity,animal,allbiome,chicken,hostile,perkAT03,perkAT04,perkAT05"/>
 			<property name="MapIcon" value="ui_game_symbol_tracking_chicken"/>
 			<property name="TrackerIcon" value="ui_game_symbol_tracking_chicken"/>
 			<property name="AvatarController" value="AvatarAnimalController"/>
@@ -1665,7 +1700,7 @@
 
 		<!-- ** zombieBossArsonistBerserk -->
 		<entity_class name="zombieBossArsonistBerserk" extends="zombieBurntRadiated">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,boss,zombieBossArsonistBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,boss,zombieBossArsonistBerserk"/>
 			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntRadiated.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1760,7 +1795,7 @@
 		</entity_class>
 		<!-- ** zombieBossSoldierBerserk -->
 		<entity_class name="zombieBossSoldierBerserk" extends="zombieSoldierRadiated">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSoldier,boss,zombieBossSoldierBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSoldier,boss,zombieBossSoldierBerserk"/>
 			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierRadiated.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1809,7 +1844,7 @@
 
 		<!-- ** zombieBossResearchInstituteLeaderBerserk -->
 		<entity_class name="zombieBossResearchInstituteLeaderBerserk" extends="zombieLumberjackRadiated">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,boss,zombieBossResearchInstituteLeaderBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,boss,zombieBossResearchInstituteLeaderBerserk"/>
 			<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackRadiated.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1865,7 +1900,7 @@
 			</effect_group>
 		</entity_class>
 		<entity_class name="researchInstituteAnimalRabbit2" extends="researchInstituteAnimalRabbit">
-			<property name="Tags" value="allbiome,entity,animal,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="Tags" value="entity,animal,allbiome,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
 			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_rabbit"/>
 			<property name="HandItem" value="handResearchInstituteAnimal"/>
 
@@ -1880,7 +1915,7 @@
 			</effect_group>
 		</entity_class>
 		<entity_class name="researchInstituteAnimalChickenHostile2" extends="researchInstituteAnimalChickenHostile">
-			<property name="Tags" value="allbiome,entity,animal,chicken,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="Tags" value="entity,animal,allbiome,chicken,hostile,perkAT03,perkAT04,perkAT05"/>
 			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_chicken"/>
 			<property name="HandItem" value="handResearchInstituteAnimal2"/>
 
@@ -1900,7 +1935,7 @@
 		<!-- *** 任务 BOSS -->
 		<!-- ** questZombieBossArsonist -->
 		<entity_class name="questZombieBossArsonist" extends="zombieBossArsonist">
-			<property name="Tags" value="allbiome,entity,zombie,walker,boss,questZombieBossArsonist"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,boss,questZombieBossArsonist"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="7200"/>
@@ -1927,7 +1962,7 @@
 		</entity_class>
 		<!-- ** questZombieBossSoldier -->
 		<entity_class name="questZombieBossSoldier" extends="zombieBossSoldier">
-			<property name="Tags" value="allbiome,entity,zombie,walker,zombieSoldier,boss,questZombieBossSoldier"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldier,boss,questZombieBossSoldier"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="16000"/>
@@ -1941,7 +1976,7 @@
 
 		<!-- ** questZombieBossArsonistCrystallization -->
 		<entity_class name="questZombieBossArsonistCrystallization" extends="zombieBossArsonistCrystallization">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,boss,questZombieBossArsonistCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,boss,questZombieBossArsonistCrystallization"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="64000"/>
@@ -1970,7 +2005,7 @@
 		</entity_class>
 		<!-- ** questZombieBossSoldierCrystallization -->
 		<entity_class name="questZombieBossSoldierCrystallization" extends="zombieBossSoldierCrystallization">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,zombieSoldier,boss,questZombieBossSoldierCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,zombieSoldier,boss,questZombieBossSoldierCrystallization"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="128000"/>
@@ -1985,7 +2020,7 @@
 
 		<!-- ** questZombieBossResearchInstituteLeaderCrystallization -->
 		<entity_class name="questZombieBossResearchInstituteLeaderCrystallization" extends="zombieBossResearchInstituteLeaderCrystallization">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,crystallization,boss,questZombieBossResearchInstituteLeaderCrystallization"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,boss,questZombieBossResearchInstituteLeaderCrystallization"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="248000"/>
@@ -2001,7 +2036,7 @@
 
 		<!-- ** questZombieBossArsonistBerserk -->
 		<entity_class name="questZombieBossArsonistBerserk" extends="zombieBossArsonistBerserk">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,boss,questZombieBossArsonistBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,boss,questZombieBossArsonistBerserk"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
@@ -2030,7 +2065,7 @@
 		</entity_class>
 		<!-- ** questZombieBossSoldierBerserk -->
 		<entity_class name="questZombieBossSoldierBerserk" extends="zombieBossSoldierBerserk">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSoldier,boss,questZombieBossSoldierBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSoldier,boss,questZombieBossSoldierBerserk"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
@@ -2045,7 +2080,7 @@
 
 		<!-- ** questZombieBossResearchInstituteLeaderBerserk -->
 		<entity_class name="questZombieBossResearchInstituteLeaderBerserk" extends="zombieBossResearchInstituteLeaderBerserk">
-			<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,boss,questZombieBossResearchInstituteLeaderBerserk"/>
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,boss,questZombieBossResearchInstituteLeaderBerserk"/>
 			<property name="NavObject" value="marisaATQuestBoss"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="540000"/>
@@ -2066,525 +2101,524 @@
 	<!-- *** 添加丧尸标签 丧尸掉落提取素 察觉显示 -->
 	<!-- ** 丧尸 标签 -->
 	<append xpath="/entity_classes/entity_class[@name='zombieArlene']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieArleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieArleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieArleneFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieArleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieArleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieArleneRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieArleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieArleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieArleneCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieArleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieArleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieArleneBerserk']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieArleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMarlene']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieMarleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieMarleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMarleneFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieMarleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieMarleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMarleneRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieMarleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieMarleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMarleneCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieMarleneExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirl']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombiePartyGirlExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombiePartyGirlExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombiePartyGirlExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombiePartyGirlExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieNurse']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieNurseExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieNurseFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieNurseExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieNurseRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieNurseExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieNurseCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieNurseExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJoe']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieJoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJoeFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieJoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJoeRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieJoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJoeCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieJoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteve']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieSteveExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieSteveExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieSteveExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieSteveExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieTomClark']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieTomClarkExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieTomClarkExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieTomClarkExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieTomClarkExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBusinessMan']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieBusinessManExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieBusinessManExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieBusinessManExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieBusinessManExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBurnt']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieBurntExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBurntFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieBurntExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBurntRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieBurntExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBurntCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieBurntExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSpider']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieSpiderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSpiderFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieSpiderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSpiderRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieSpiderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSpiderCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieSpiderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBoe']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieBoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBoeFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieBoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBoeRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieBoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBoeCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieBoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmat']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieMaleHazmatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieMaleHazmatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieMaleHazmatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieMaleHazmatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJanitor']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieJanitorExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJanitorFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieJanitorExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJanitorRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieJanitorExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieJanitorCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieJanitorExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieInmate']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieInmateExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieInmateFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieInmateExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieInmateRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieInmateExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieInmateCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieInmateExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMoe']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieMoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMoeFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieMoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMoeRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieMoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMoeCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieMoeExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLab']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieLabExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLabFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieLabExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLabRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieLabExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLabCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieLabExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDarlene']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieDarleneExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDarleneFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieDarleneExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDarleneRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieDarleneExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDarleneCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieDarleneExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieYo']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieYoExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieYoFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieYoExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieYoRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieYoExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieYoCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieYoExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorker']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieUtilityWorkerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieUtilityWorkerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieUtilityWorkerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieUtilityWorkerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBiker']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieBikerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBikerFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieBikerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBikerRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieBikerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBikerCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieBikerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLumberjack']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieLumberjackExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieLumberjackExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieLumberjackExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieLumberjackExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFat']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieFemaleFatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieFemaleFatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieFemaleFatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieFemaleFatExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiian']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieFatHawaiianExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieFatHawaiianExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieFatHawaiianExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieFatHawaiianExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBowler']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieBowlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBowlerFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieBowlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBowlerRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieBowlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieBowlerCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieBowlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatCop']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieCop,zombieFatCopExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatCopFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieCop,zombieFatCopExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatCopRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieCop,zombieFatCopExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieFatCopCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieFatCopExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarder']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieSkateboarderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieSkateboarderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieSkateboarderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieSkateboarderExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSoldier']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSoldierCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieSoldierExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieWightFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieWightExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieWightRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieWightExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieWightCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieWightExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieScreamer']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieScreamerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieScreamerFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieScreamerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieScreamerRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieScreamerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieScreamerCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieScreamerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMutated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieMutatedExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMutatedFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieMutatedExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMutatedRadiated']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,zombieMutatedExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieMutatedCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieMutatedExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDemolition']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,boss,zombieDemolitionExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieDemolitionCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,crystallization,boss,zombieDemolitionExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawler']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,zombieSteveCrawlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerFeral']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,zombieSteveCrawlerExtract,marisaTrack"/>
-	</append>
-	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerCrystallization']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,zombieSteveCrawlerExtract,marisaTrack"/>
-	</append>
-	<!-- ** 狂化 -->
-	<append xpath="/entity_classes/entity_class[@name='zombieArleneBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieArleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieMarleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMarleneBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieMarleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieMarleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirl']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombiePartyGirlExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombiePartyGirlExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombiePartyGirlExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombiePartyGirlExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombiePartyGirlBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombiePartyGirlExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombiePartyGirlExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieNurse']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieNurseExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieNurseFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieNurseExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieNurseRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieNurseExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieNurseCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieNurseExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieNurseBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieNurseExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieNurseExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJoe']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieJoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJoeFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieJoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJoeRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieJoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJoeCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieJoeExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieJoeBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieJoeExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieJoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteve']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSteveExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSteveExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieSteveExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieSteveExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSteveBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSteveExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSteveExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClark']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieTomClarkExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieTomClarkExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieTomClarkExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieTomClarkExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieTomClarkBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieTomClarkExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieTomClarkExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessMan']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieBusinessManExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieBusinessManExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieBusinessManExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieBusinessManExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBusinessManBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieBusinessManExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBusinessManExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBurnt']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieBurntExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBurntFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieBurntExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBurntRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieBurntExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBurntCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieBurntExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBurntBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieBurntExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBurntExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpider']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSpiderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpiderFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSpiderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpiderRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieSpiderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSpiderCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieSpiderExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSpiderBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSpiderExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSpiderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBoe']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieBoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBoeFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieBoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBoeRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieBoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBoeCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieBoeExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBoeBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieBoeExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmat']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieMaleHazmatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieMaleHazmatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieMaleHazmatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieMaleHazmatExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMaleHazmatBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieMaleHazmatExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieMaleHazmatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitor']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieJanitorExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitorFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieJanitorExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitorRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieJanitorExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieJanitorCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieJanitorExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieJanitorBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieJanitorExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieJanitorExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieInmate']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieInmateExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieInmateFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieInmateExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieInmateRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieInmateExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieInmateCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieInmateExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieInmateBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieInmateExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieInmateExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMoe']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieMoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMoeFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieMoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMoeRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieMoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMoeCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieMoeExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMoeBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieMoeExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieMoeExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLab']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieLabExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLabFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieLabExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLabRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieLabExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLabCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieLabExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieLabBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieLabExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieLabExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDarlene']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieDarleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDarleneFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieDarleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDarleneRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieDarleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDarleneCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieDarleneExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieDarleneBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieDarleneExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieDarleneExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieYo']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieYoExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieYoFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieYoExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieYoRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieYoExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieYoCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieYoExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieYoBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieYoExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieYoExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorker']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieUtilityWorkerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieUtilityWorkerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieUtilityWorkerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieUtilityWorkerExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieUtilityWorkerBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieUtilityWorkerExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieUtilityWorkerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBiker']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieBikerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBikerFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieBikerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBikerRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieBikerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBikerCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieBikerExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBikerBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieBikerExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBikerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjack']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieLumberjackExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieLumberjackExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieLumberjackExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieLumberjackExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieLumberjackBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieLumberjackExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieLumberjackExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFat']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieFemaleFatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieFemaleFatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieFemaleFatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieFemaleFatExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieFemaleFatBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieFemaleFatExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieFemaleFatExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiian']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieFatHawaiianExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieFatHawaiianExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieFatHawaiianExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieFatHawaiianExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieFatHawaiianBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieFatHawaiianExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieFatHawaiianExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBowler']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieBowlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBowlerFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieBowlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBowlerRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieBowlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieBowlerCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieBowlerExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBowlerBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieBowlerExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBowlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCop']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieCop,zombieFatCopExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCopFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieCop,zombieFatCopExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCopRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieCop,zombieFatCopExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFatCopCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieFatCopExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieFatCopBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieFatCopExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieFatCopExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarder']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSkateboarderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSkateboarderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieSkateboarderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieSkateboarderExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSkateboarderBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSkateboarderExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSkateboarderExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldier']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldierFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldierRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieSoldier,zombieSoldierExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSoldierCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieSoldierExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSoldierBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSoldierExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSoldierExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieWightFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieWightExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieWightRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieWightExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieWightCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieWightExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieWightBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieWightExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieWightExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamer']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieScreamerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamerFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieScreamerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamerRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieScreamerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieScreamerCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieScreamerExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieScreamerBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieScreamerExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieScreamerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMutated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieMutatedExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMutatedFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieMutatedExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMutatedRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieMutatedExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieMutatedCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieMutatedExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieMutatedBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieMutatedExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieMutatedExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDemolition']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,boss,zombieDemolitionExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieDemolitionCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,crystallization,boss,zombieDemolitionExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieDemolitionBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,crystallization,berserk,boss,zombieDemolitionExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,crystallization,berserk,boss,zombieDemolitionExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawler']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSteveCrawlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSteveCrawlerExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieSteveCrawlerExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSteveCrawlerBerserk']">
-		<property name="Tags" value="allbiome,entity,zombie,walker,feral,radiated,crystallization,berserk,zombieSteveCrawlerExtract,marisaTrack"/>
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieSteveCrawlerExtract,marisaTrack"/>
 	</append>
 	<!-- ** 动物 标签 -->
 	<append xpath="/entity_classes/entity_class[@name='animalStag']">
-		<property name="Tags" value="allbiome,entity,animal,deer,stag,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,deer,stag,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalRabbit']">
-		<property name="Tags" value="allbiome,entity,animal,rabbit,perkAT01,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,rabbit,perkAT01,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalChicken']">
-		<property name="Tags" value="allbiome,entity,animal,chicken,perkAT01,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,chicken,perkAT01,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalBear']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,bear,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalBearSmall']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,bear,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalZombieBear']">
-		<property name="Tags" value="allbiome,entity,animal,zombie,hostile,bear,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,zombie,hostile,bear,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalWolf']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,wolf,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,wolf,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalDireWolf']">
-		<property name="Tags" value="allbiome,entity,animal,zombie,hostile,wolf,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,zombie,hostile,wolf,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalChickenHostile']">
-		<property name="Tags" value="allbiome,entity,animal,chicken,hostile,perkAT01,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,chicken,hostile,perkAT01,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalCoyote']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,coyote,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,coyote,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalMountainLion']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,mountainlion,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,mountainlion,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalZombieVulture']">
-		<property name="Tags" value="allbiome,entity,animal,zombie,hostile,vulture,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,zombie,hostile,vulture,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalZombieVultureRadiated']">
-		<property name="Tags" value="allbiome,entity,animal,zombie,hostile,radiated,vulture,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,zombie,hostile,radiated,vulture,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalZombieDog']">
-		<property name="Tags" value="allbiome,entity,animal,zombie,hostile,dog,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,zombie,hostile,dog,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalSnake']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,snake,perkAT01,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,snake,perkAT01,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalBoar']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,boar,perkAT02,perkAT03,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,boar,perkAT02,perkAT03,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='animalBossGrace']">
-		<property name="Tags" value="allbiome,entity,animal,hostile,boar,perkAT03,boss,marisaTrack"/>
+		<property name="Tags" value="entity,animal,allbiome,hostile,boar,perkAT03,boss,marisaTrack"/>
 	</append>
 
 
