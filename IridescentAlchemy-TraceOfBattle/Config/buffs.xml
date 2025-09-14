@@ -1,5 +1,16 @@
 <Marisa>
 
+    <!-- *** 与技能联动相关 -->
+    <!-- ** 护甲技能 perkLightArmor -->
+    <insertAfter xpath="/buffs/buff[@name='buffStatusCheck02']/effect_group[3]/triggered_effect[@action='ModifyCVar' and @cvar='.ArmorLightLevel' and @value='4']">
+		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ArmorLightLevel" operation="set" value="5">
+			<requirement name="CVarCompare" cvar=".ArmorLightLevel" operation="Equals" value="0"/>
+			<requirement name="ProgressionLevel" progression_name="perkLightArmor" operation="EQ" value="5"/>
+		</triggered_effect>
+    </insertAfter>
+
+
+
     <!--*** 脑震荡不再降低属性 -->
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>

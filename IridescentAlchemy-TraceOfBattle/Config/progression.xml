@@ -25,15 +25,253 @@
         </passive_effect>
     </insertAfter>
 
-    <!-- 修改 治疗因子 的回复速度 -->
-    <set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT']/@value">.1,.2,.3,.4,.5</set>
-
-    <!-- 修改 厨艺大师 对模组物品的制作速度 -->
-    <insertAfter xpath="/progression/perks/perk[@name='perkMasterChef']/effect_group/passive_effect[@name='CraftingTime' and @tags='perkMasterChef']">
-        <passive_effect name="CraftingTime" operation="perc_add" level="0,1,2,3" value="0,-.2,-.4,-.6" tags="perkMasterChefMarisa"/>
+    <!-- 学霸护甲 对垃圾炮台增加激活距离 -->
+    <insertAfter xpath="/progression/perks/perk[@name='perkTurrets']/effect_group/passive_effect[@name='JunkTurretActiveRange']">
+        <passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>
     </insertAfter>
 
-    <!-- 潜伏3级 改为蹲下就能触发潜行伤害 弓弩、步枪、刀 -->
+    <!-- 智慧专精5 改为电棍攻击距离 -->
+    <append xpath="/progression/perks/perk[@name='perkIntellectMastery']">
+        <effect_group>
+            <requirement name="HoldingItemHasTags" tags="stunBaton"/>
+            <passive_effect name="MaxRange" operation="perc_add" level="5" value=".1"/>
+            <passive_effect name="BlockRange" operation="perc_add" level="5" value="0,.15"/>
+        </effect_group>
+    </append>
+
+
+
+    <!-- *** 原版技能修改 -->
+    <!-- ** 感知 -->
+    <remove xpath="/progression/perks/perk[@name='perkFlurryOfPerception']"/>
+    <remove xpath="/progression/perks/perk[@name='perkPerceptionMastery']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkSalvageOperations']">
+        <perk name="perkLuckyLooter" parent="skillPerceptionScavenging" name_key="perkLuckyLooterName" desc_key="perkLuckyLooterDesc" icon="ui_game_symbol_shopping_cart" override_cost="1,2,2,2,3">
+            <effect_group>
+                <passive_effect name="LootStage" operation="perc_add" level="1,5" value=".05,.25"/>
+                <passive_effect name="ScavengingTime" operation="perc_subtract" level="1,2,3,4,5" value=".1,.2,.4,.6,.8"/>
+
+                <effect_description level="1" desc_key="perkLuckyLooterRank1Desc" long_desc_key="perkLuckyLooterRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkLuckyLooterRank2Desc" long_desc_key="perkLuckyLooterRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkLuckyLooterRank3Desc" long_desc_key="perkLuckyLooterRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkLuckyLooterRank4Desc" long_desc_key="perkLuckyLooterRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkLuckyLooterRank5Desc" long_desc_key="perkLuckyLooterRank5LongDesc"/>
+            </effect_group>
+
+            <effect_group>
+                <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="luckyProb">
+                    <requirement name="ProgressionLevel" progression_name="perkLuckyLooterComplete" operation="LT" value="1"/>
+                </passive_effect>
+                <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="luckyProb">
+                    <requirement name="ProgressionLevel" progression_name="perkLuckyLooterComplete" operation="Equals" value="1"/>
+                </passive_effect>
+            </effect_group>
+        </perk>
+    </insertAfter>
+    <!-- ** 力量 -->
+    <remove xpath="/progression/perks/perk[@name='perkFlurryOfStrength']"/>
+    <remove xpath="/progression/perks/perk[@name='perkStrengthMastery']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkPackMule']">
+        <perk name="perkLightArmor" max_level="5" parent="skillStrengthGeneral" name_key="perkLightArmorName" desc_key="perkLightArmorDesc" icon="ui_game_symbol_light_armor2" override_cost="1,2,3,4,5">
+            <effect_group>
+                <passive_effect name="DegradationPerUse" operation="perc_add" level="0,5" value="0,-.75" tags="lightArmorDeg"/>
+
+                <effect_description level="1" desc_key="perkLightArmorRank1Desc" long_desc_key="perkLightArmorRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkLightArmorRank2Desc" long_desc_key="perkLightArmorRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkLightArmorRank3Desc" long_desc_key="perkLightArmorRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkLightArmorRank4Desc" long_desc_key="perkLightArmorRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkLightArmorRank5Desc" long_desc_key="perkLightArmorRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkStrengthMastery" parent="skillStrengthGeneral" name_key="perkStrengthMasteryName" desc_key="perkStrengthMasteryDesc" icon="ui_game_symbol_strength_mastery" hidden="true">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="6" desc_key="reqStrengthLevel06"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="7" desc_key="reqStrengthLevel07"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="8" desc_key="reqStrengthLevel08"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="9" desc_key="reqStrengthLevel09"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="10" desc_key="reqStrengthLevel10"/></level_requirements>
+
+            <effect_group>
+                <!-- See buffStatusCheck02 $minerHealing for Heal 100% faster when holding a mining tool -->
+
+                <!-- Adds a chance to harvest brass from ore blocks -->
+                <passive_effect name="HarvestCount" operation="base_set" level="2,5" value="1" tags="perkStrengthMasteryBrassHarvest"/>
+
+                <!-- Increase entity damage of mining tools -->
+                <passive_effect name="EntityDamage" operation="perc_add" level="3,5" value=".5" tags="perkMiner69r">
+                    <requirement name="HoldingItemHasTags" tags="perkMiner69r"/>
+                </passive_effect>
+            </effect_group>
+
+            <!-- Adds an additional 50% chance to dismember headshots with clubs, bats, or sledgehammers -->
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="perkPummelPete,perkSkullCrusher"/>
+                <requirement name="ProgressionLevel" progression_name="perkStrengthMastery" operation="GTE" value="4"/>
+                <passive_effect name="DismemberChance" operation="base_add" level="4,5" value=".5" tags="head"/>
+            </effect_group>
+
+            <!-- Reduce incoming damage by 50% for 10 seconds after a kill -->
+            <effect_group>
+                <triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffBerserker">
+                    <requirement name="ProgressionLevel" progression_name="perkStrengthMastery" operation="GTE" value="5"/>
+                    <requirement name="ItemHasTags" tags="perkPummelPete,perkSkullCrusher,perkBoomstick"/>
+                </triggered_effect>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkStrengthMasteryRank1Desc" long_desc_key="perkStrengthMasteryRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkStrengthMasteryRank2Desc" long_desc_key="perkStrengthMasteryRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkStrengthMasteryRank3Desc" long_desc_key="perkStrengthMasteryRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkStrengthMasteryRank4Desc" long_desc_key="perkStrengthMasteryRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkStrengthMasteryRank5Desc" long_desc_key="perkStrengthMasteryRank5LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
+    <!-- ** 强健 -->
+    <remove xpath="/progression/perks/perk[@name='perkFlurryOfFortitude']"/>
+    <remove xpath="/progression/perks/perk[@name='perkTheHuntsman']"/>
+    <remove xpath="/progression/perks/perk[@name='perkFortitudeMastery']"/>
+    <remove xpath="/progression/perks/perk[@name='perkSiphoningStrikes']"/>
+    <remove xpath="/progression/perks/perk[@name='perkRuleOneCardio']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkSlowMetabolism']">
+        <perk name="perkMasterChef" max_level="3" parent="skillFortitudeSurvival" name_key="perkMasterChefName" desc_key="perkMasterChefDesc" icon="ui_game_symbol_spatula" override_cost="1,2,3">
+            <effect_group>
+                <passive_effect name="CraftingTier" operation="base_set" level="0,3" value="0,3" tags="perkMasterChef"/>
+                <passive_effect name="CraftingTime" operation="perc_add" level="0,1,2,3" value="4,2,1,0" tags="perkMasterChef"/>
+                <!-- 修改 厨艺大师 对模组物品的制作速度 -->
+                <passive_effect name="CraftingTime" operation="perc_add" level="0,1,2,3" value="0,-.2,-.4,-.6" tags="perkMasterChefMarisa"/>
+
+                <effect_description level="1" desc_key="perkMasterChefRank1Desc" long_desc_key="perkMasterChefRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMasterChefRank2Desc" long_desc_key="perkMasterChefRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMasterChefRank3Desc" long_desc_key="perkMasterChefRank3LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkLivingOffTheLand" max_level="3" parent="skillFortitudeSurvival" name_key="perkLivingOffTheLandName" desc_key="perkLivingOffTheLandDesc" icon="ui_game_symbol_tree" override_cost="1,2,2">
+            <effect_group>
+                <passive_effect name="CraftingTier" operation="base_set" level="0,3" value="0,3" tags="perkLivingOffTheLandCrafting"/>
+                <passive_effect name="HarvestCount" operation="perc_add" level="1,2,3" value="1,1,2" tags="cropHarvest,wildCropsHarvest"/>
+                <passive_effect name="HarvestCount" operation="base_set" level="2,3" value="1,1" tags="bonusCropHarvest"/>
+
+                <effect_description level="1" desc_key="perkLivingOffTheLandRank1Desc" long_desc_key="perkLivingOffTheLandRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkLivingOffTheLandRank2Desc" long_desc_key="perkLivingOffTheLandRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkLivingOffTheLandRank3Desc" long_desc_key="perkLivingOffTheLandRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkLivingOffTheLandRank4Desc" long_desc_key="perkLivingOffTheLandRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkLivingOffTheLandRank5Desc" long_desc_key="perkLivingOffTheLandRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkRuleOneCardio" max_level="3" parent="skillFortitudeRecovery" name_key="perkRuleOneCardioName" desc_key="perkRuleOneCardioDesc" icon="ui_game_symbol_cardio">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="1" desc_key="reqFortitudeLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="3" desc_key="reqFortitudeLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="StaminaChangeOT" operation="perc_add" level="1,2,3" value=".1,.2,.3" tags="running,swimmingRun"/>
+
+                <effect_description level="1" desc_key="perkRuleOneCardioNameRank1Desc" long_desc_key="perkRuleOneCardioNameRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkRuleOneCardioNameRank2Desc" long_desc_key="perkRuleOneCardioNameRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkRuleOneCardioNameRank3Desc" long_desc_key="perkRuleOneCardioNameRank3LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkFortitudeMastery" parent="skillFortitudeSurvival" name_key="perkFortitudeMasteryName" desc_key="perkFortitudeMasteryDesc" icon="ui_game_symbol_fortitude_mastery" hidden="true">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="6" desc_key="reqFortitudeLevel06"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="8" desc_key="reqFortitudeLevel08"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="9" desc_key="reqFortitudeLevel09"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
+
+            <effect_group>
+                <!-- Killing an enemy will instantly stop a bleeding injury without using a bandage -->
+                <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" buff="buffInjuryBleeding">
+                    <requirement name="ProgressionLevel" progression_name="perkFortitudeMastery" operation="GTE" value="1"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" buff="buffLaceration">
+                    <requirement name="ProgressionLevel" progression_name="perkFortitudeMastery" operation="GTE" value="1"/>
+                </triggered_effect>
+
+                <!-- After recovering from an infection you are immune to further infection for 2 real world hours -->
+                <!-- See buffInfectionImmunity and related infection buffs -->
+
+                <!-- Permanently adds an additional max health -->
+                <passive_effect name="HealthMax" operation="base_add" level="4,5" value="50,100"/>
+            </effect_group>
+
+            <effect_group>
+                <!-- Fist weapons have a 5% chance to gain silver "fillings" from zombie kills -->
+                <requirement name="ProgressionLevel" progression_name="perkFortitudeMastery" operation="GTE" value="3"/>
+                <requirement name="ItemHasTags" tags="perkBrawler"/>
+                <requirement name="EntityTagCompare" target="other" tags="walker,crawler"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="5"/>
+                <triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffPerkTheDentistSilver"/>
+            </effect_group>
+
+            <effect_group>
+                <!-- Fist weapons have a 5% chance to gain gold "fillings" from zombie kills -->
+                <requirement name="ProgressionLevel" progression_name="perkFortitudeMastery" operation="GTE" value="3"/>
+                <requirement name="ItemHasTags" tags="perkBrawler"/>
+                <requirement name="EntityTagCompare" target="other" tags="walker,crawler"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GTE" value="95"/>
+                <triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffPerkTheDentistGold"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkFortitudeMasteryRank1Desc" long_desc_key="perkFortitudeMasteryRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkFortitudeMasteryRank2Desc" long_desc_key="perkFortitudeMasteryRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkFortitudeMasteryRank3Desc" long_desc_key="perkFortitudeMasteryRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkFortitudeMasteryRank4Desc" long_desc_key="perkFortitudeMasteryRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkFortitudeMasteryRank5Desc" long_desc_key="perkFortitudeMasteryRank5LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
+    <!-- * 修改 治疗因子 的回复速度 -->
+    <set xpath="/progression/perks/perk[@name='perkHealingFactor']/effect_group/passive_effect[@name='HealthChangeOT']/@value">.1,.2,.3,.4,.5</set>
+    <!-- ** 敏捷 -->
+    <remove xpath="/progression/perks/perk[@name='perkFlurryOfAgility']"/>
+    <remove xpath="/progression/perks/perk[@name='perkHardTarget']"/>
+    <remove xpath="/progression/perks/perk[@name='perkAgilityMastery']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkDeepCuts']">
+        <perk name="perkTheHuntsman" parent="skillAgilityAthletics" name_key="perkTheHuntsmanName" desc_key="perkTheHuntsmanDesc" icon="ui_game_symbol_archery">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="1" desc_key="reqFortitudeLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="3" desc_key="reqFortitudeLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
+
+            <effect_group>
+                <passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".2,1" tags="butcherHarvest"/>
+
+                <effect_description level="1" desc_key="perkTheHuntsmanRank1Desc" long_desc_key="perkTheHuntsmanRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkTheHuntsmanRank2Desc" long_desc_key="perkTheHuntsmanRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkTheHuntsmanRank3Desc" long_desc_key="perkTheHuntsmanRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkTheHuntsmanRank4Desc" long_desc_key="perkTheHuntsmanRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkTheHuntsmanRank5Desc" long_desc_key="perkTheHuntsmanRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkHardTarget" parent="skillAgilityAthletics" name_key="perkHardTargetName" desc_key="perkHardTargetDesc" icon="ui_game_symbol_hard_target" hidden="true">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
+
+            <effect_group>
+                <requirement name="EntityHasMovementTag" tags="walking,running"/>
+                <passive_effect name="GeneralDamageResist" operation="base_add" level="1,5" value=".05,.25"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkHardTargetRank1Desc" long_desc_key="perkHardTargetRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkHardTargetRank2Desc" long_desc_key="perkHardTargetRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkHardTargetRank3Desc" long_desc_key="perkHardTargetRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkHardTargetRank4Desc" long_desc_key="perkHardTargetRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkHardTargetRank5Desc" long_desc_key="perkHardTargetRank5LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
+    <!-- * 潜伏3级 改为蹲下就能触发潜行伤害 弓弩、步枪、刀 -->
     <remove xpath="/progression/perks/perk[@name='perkHiddenStrike']"/>
     <insertAfter xpath="/progression/perks/perk[@name='perkParkour']">
         <perk name="perkHiddenStrike" parent="skillAgilityStealth" name_key="perkHiddenStrikeName" desc_key="perkHiddenStrikeDesc" icon="ui_game_symbol_sneak_attack" max_level="3">
@@ -110,7 +348,6 @@
             </effect_group>
         </perk>
     </insertAfter>
-
     <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
     </insertAfter>
@@ -133,7 +370,6 @@
 				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
 		</effect_group>
 	</append>
-
     <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
     </insertAfter>
@@ -160,7 +396,6 @@
 				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5"/>
 		</effect_group>
 	</append>
-
     <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerComplete']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
     </insertAfter>
@@ -172,7 +407,6 @@
 				<passive_effect name="EntityDamage" operation="perc_add" level="1" value="2" tags="knife"/>
 		</effect_group>
 	</append>
-
     <insertAfter xpath="/progression/perks/book[@name='perkRangersKnockdown']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
         <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
     </insertAfter>
@@ -186,62 +420,100 @@
 				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffInjuryKnockdown01"/>
 		</effect_group>
 	</append>
-
-    <!-- 学霸护甲 对垃圾炮台增加激活距离 -->
-    <insertAfter xpath="/progression/perks/perk[@name='perkTurrets']/effect_group/passive_effect[@name='JunkTurretActiveRange']">
-        <passive_effect name="JunkTurretActiveRange" operation="base_add" value="@.buffNerdOutfitMarisa"/>
-    </insertAfter>
-
-    <!-- 虹吸打击 削弱 -->
-    <remove xpath="/progression/perks/perk[@name='perkSiphoningStrikes']"/>
-    <insertAfter xpath="/progression/perks/perk[@name='perkFortitudeMastery']">
-        <perk name="perkSiphoningStrikes" parent="skillFortitudeRecovery" name_key="perkSiphoningStrikesName" desc_key="perkSiphoningStrikesDesc" icon="ui_game_symbol_siphoning_strikes">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="6" desc_key="reqFortitudeLevel06"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="7" desc_key="reqFortitudeLevel07"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="8" desc_key="reqFortitudeLevel08"/></level_requirements>
-            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="9" desc_key="reqFortitudeLevel09"/></level_requirements>
-            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="10" desc_key="reqFortitudeLevel10"/></level_requirements>
-
+    <!-- TODO 敏捷专精的4、5级技能改为 晶石技能 -->
+    <!-- ** 智慧 -->
+    <remove xpath="/progression/perks/perk[@name='perkFlurryOfIntellect']"/>
+    <remove xpath="/progression/perks/perk[@name='perkIntellectMastery']"/>
+    <remove xpath="/progression/perks/perk[@name='perkGreaseMonkey']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkAdvancedEngineering']">
+        <perk name="perkLockPicking" max_level="3" parent="skillIntellectCraftsmanship" name_key="perkLockPickingName" desc_key="perkLockPickingDesc" icon="ui_game_symbol_unlock" override_cost="1,2,3">
             <effect_group>
-                <requirement name="ItemHasTags" tags="melee"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="1">
-                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="1"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="2">
-                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="2"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="3">
-                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="3"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="4">
-                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="4"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="5">
-                    <requirement name="ProgressionLevel" progression_name="perkSiphoningStrikes" operation="EQ" value="5"/>
-                </triggered_effect>
+                <passive_effect name="LockPickTime" operation="perc_subtract" level="1,3" value=".17,.375"/>
+                <passive_effect name="LockPickBreakChance" operation="perc_subtract" level="1,3" value=".1,.3"/>
+                <passive_effect name="LootQuantity" operation="base_add" level="2,3" value="1,2" tags="lockPickSkill"/>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="greatHeistProb">
+                    <requirement name="ProgressionLevel" progression_name="perkGreatHeistComplete" operation="LT" value="1"/>
+                </passive_effect>
+                <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="greatHeistProb">
+                    <requirement name="ProgressionLevel" progression_name="perkGreatHeistComplete" operation="Equals" value="1"/>
+                </passive_effect>
 
-                <effect_description level="1" desc_key="perkSiphoningStrikesRank1Desc" long_desc_key="perkSiphoningStrikesRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkSiphoningStrikesRank2Desc" long_desc_key="perkSiphoningStrikesRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkSiphoningStrikesRank3Desc" long_desc_key="perkSiphoningStrikesRank3LongDesc"/>
-                <effect_description level="4" desc_key="perkSiphoningStrikesRank4Desc" long_desc_key="perkSiphoningStrikesRank4LongDesc"/>
-                <effect_description level="5" desc_key="perkSiphoningStrikesRank5Desc" long_desc_key="perkSiphoningStrikesRank5LongDesc"/>
+                <effect_description level="1" desc_key="perkLockPickingRank1Desc" long_desc_key="perkLockPickingRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkLockPickingRank2Desc" long_desc_key="perkLockPickingRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkLockPickingRank3Desc" long_desc_key="perkLockPickingRank3LongDesc"/>
             </effect_group>
         </perk>
     </insertAfter>
+    <!-- TODO 智慧专精的2、3级技能合并到 医师 4、5级里面 -->
+    <!-- ** 通用 -->
+    <remove xpath="/progression/perks/perk[@name='perkLightArmor' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkMediumArmor' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkHeavyArmor' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkMasterChef' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkLivingOffTheLand' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkLockPicking' and @parent='skillGeneralPerks']"/>
+    <remove xpath="/progression/perks/perk[@name='perkLuckyLooter' and @parent='skillGeneralPerks']"/>
+    <append xpath="/progression/perks">
+        <perk name="perkMediumArmor" max_level="4" parent="skillGeneralPerks" name_key="perkMediumArmorName" desc_key="perkMediumArmorDesc" icon="ui_game_symbol_light_armor2" override_cost="1,2,2,3" hidden="true">
+            <effect_group>
+                <!-- Stamina/mobility are handled in buffStatusCheck02 -->
 
-    <!-- 智慧专精5 改为电棍攻击距离 -->
-    <append xpath="/progression/perks/perk[@name='perkIntellectMastery']">
-        <effect_group>
-            <requirement name="HoldingItemHasTags" tags="stunBaton"/>
-            <passive_effect name="MaxRange" operation="perc_add" level="5" value=".1"/>
-            <passive_effect name="BlockRange" operation="perc_add" level="5" value="0,.15"/>
-        </effect_group>
+                <passive_effect name="DegradationPerUse" operation="perc_add" level="0,4" value="0,-.6" tags="mediumArmorDeg"/>
+
+                <!-- Increase the chance to find armor with each perk rank -->
+                <passive_effect name="LootProb" operation="perc_add" level="1,4" value="4,20" tags="armorMediumSkill"/>
+
+                <!-- Increase the chance to find armor crafting skill magazines with each perk rank up to crafting skill 100 -->
+                <passive_effect name="LootProb" operation="perc_add" level="1,4" value="2,10" tags="armorCSM">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="100"/>
+                </passive_effect>
+
+                <!-- Once armor crafting skill reaches 100, set the probability bonus of finding armor crafting skill magazines to 0 -->
+                <passive_effect name="LootProb" operation="base_set" level="1,4" value="1,1" tags="armorCSM">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="Equals" value="100"/>
+                </passive_effect>
+
+                <effect_description level="1" desc_key="perkMediumArmorRank1Desc" long_desc_key="perkMediumArmorRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMediumArmorRank2Desc" long_desc_key="perkMediumArmorRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMediumArmorRank3Desc" long_desc_key="perkMediumArmorRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMediumArmorRank4Desc" long_desc_key="perkMediumArmorRank4LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkHeavyArmor" max_level="4" parent="skillGeneralPerks" name_key="perkHeavyArmorName" desc_key="perkHeavyArmorDesc" icon="ui_game_symbol_armor_iron" override_cost="1,2,2,3" hidden="true">
+            <effect_group>
+                <!-- Stamina/mobility are handled in buffStatusCheck02 -->
+
+                <passive_effect name="DegradationPerUse" operation="perc_add" level="0,4" value="0,-.6" tags="heavyArmorDeg"/>
+
+                <!-- Increase the chance to find armor with each perk rank -->
+                <passive_effect name="LootProb" operation="perc_add" level="1,4" value="4,20" tags="armorHeavySkill"/>
+
+                <!-- Increase the chance to find armor crafting skill magazines with each perk rank up to crafting skill 100 -->
+                <passive_effect name="LootProb" operation="perc_add" level="1,4" value="2,10" tags="armorCSM">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="LT" value="100"/>
+                </passive_effect>
+
+                <!-- Once armor crafting skill reaches 100, set the probability bonus of finding armor crafting skill magazines to 0 -->
+                <passive_effect name="LootProb" operation="base_set" level="1,4" value="1,1" tags="armorCSM">
+                    <requirement name="ProgressionLevel" progression_name="craftingArmor" operation="Equals" value="100"/>
+                </passive_effect>
+
+                <effect_description level="1" desc_key="perkHeavyArmorRank1Desc" long_desc_key="perkHeavyArmorRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkHeavyArmorRank2Desc" long_desc_key="perkHeavyArmorRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkHeavyArmorRank3Desc" long_desc_key="perkHeavyArmorRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkHeavyArmorRank4Desc" long_desc_key="perkHeavyArmorRank4LongDesc"/>
+            </effect_group>
+        </perk>
     </append>
 
 
+
+
     <!-- 虹彩技能栏 -->
-    <set xpath="/progression/skills/skill[@name='skillGeneralPerks']/@hidden">false</set>
+<!--    <set xpath="/progression/skills/skill[@name='skillGeneralPerks']/@hidden">false</set>-->
     <remove xpath="/progression/attributes/attribute[@name='attGeneralPerks']"/>
+<!--    <remove xpath="/progression/skills/skill[@name='skillGeneralPerks']"/>-->
     <insertAfter xpath="/progression/attributes/attribute[@name='attIntellect']">
 
         <!-- 技能：虹彩 -->
@@ -2128,7 +2400,7 @@
                 <effect_description level="5" desc_key="perkMarisaMechanicsRank5Desc" long_desc_key="perkMarisaMechanicsRank5LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 寻宝达人 -->
+        <!-- ** 拾荒达人 -->
         <perk name="perkMarisaTreasureHuntStar" parent="skillIridescentItem" name_key="perkMarisaTreasureHuntStarName" desc_key="perkMarisaTreasureHuntStarDesc" icon="ui_game_symbol_diamond" max_level="5" base_skill_point_cost="20">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -2143,7 +2415,9 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="LootQuantity" operation="perc_add" level="1,2,3,4,5" value=".2,.4,.7,1.2,1.7" tags="buriedTreasure"/>
+                <passive_effect name="LootQuantity" operation="perc_add" level="1,2,3,4,5" value="0,0,.7,1.2,1.7" tags="buriedTreasure"/>
+                <passive_effect name="HarvestCount" operation="base_set" level="1,5" value="1" tags="PercMasteryDukeHarvest"/>
+                <passive_effect name="HarvestCount" operation="base_set" level="2,5" value="1" tags="PercMasterySteelHarvest"/>
             </effect_group>
 
             <effect_group>
@@ -2707,7 +2981,7 @@
                 <effect_description level="1" desc_key="t3PerkMarisaMechanicsRank1Desc" long_desc_key="t3PerkMarisaMechanicsRank1LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 极意 寻宝达人 -->
+        <!-- ** 极意 拾荒达人 -->
         <perk name="t3PerkMarisaTreasureHuntStar" parent="skillIridescentSuit" name_key="t3PerkMarisaTreasureHuntStarName" desc_key="t3PerkMarisaTreasureHuntStarDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="50">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <effect_group>
@@ -4278,22 +4552,18 @@
     </insertAfter>
 
     <!-- 降低无人机的解锁等级 -->
-	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='gunBotT3JunkDrone']/@unlock_level">39,41,43,45,47,49</set>
-    <set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@name='RecipeTagUnlocked' and @tags='gunBotT3JunkDrone']/@level">39,100</set>
-	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@name='CraftingTier' and @tags='gunBotT3JunkDrone']/@level">41,43,45,47,49,100</set>
+    <set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/@max_level">50</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='gunBotT3JunkDrone']/@unlock_level">40,42,44,46,48,50</set>
+    <set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@name='RecipeTagUnlocked' and @tags='gunBotT3JunkDrone']/@level">40,50</set>
+	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@name='CraftingTier' and @tags='gunBotT3JunkDrone']/@level">42,44,46,48,50</set>
 	<set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@name='CraftingTier' and @tags='gunBotT3JunkDrone']/@value">1,2,3,4,5,5</set>
 
 
 
-    <!-- 移除技能等级对制作杂志的搜刮加成 （这些除外：工具摘要、巧手之家、趣味分解、医学期刊、家庭烹饪周刊、南方种植、布线101、电力陷阱、锻造指南） -->
-	<remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags,'CSM') and @tags!='harvestingToolsCSM' and @tags!='repairToolsCSM' and @tags!='salvageToolsCSM' and @tags!='medicalCSM' and @tags!='foodCSM' and @tags!='seedCSM' and @tags!='electricianCSM' and @tags!='trapsCSM' and @tags!='workstationCSM']"/>
-
-
-
     <!-- *** 装备制作覆盖 -->
-    <!-- ** 移除 技能增加的掉落几率 -->
+    <!-- ** 移除 技能增加的掉落几率 （这些除外：工具摘要、巧手之家、趣味分解、医学期刊、家庭烹饪周刊、南方种植、布线101、电力陷阱、锻造指南） -->
     <remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags, 'Skill')]"/>
-    <remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags, 'CSM')]"/>
+    <remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags,'CSM') and @tags!='harvestingToolsCSM' and @tags!='repairToolsCSM' and @tags!='salvageToolsCSM' and @tags!='medicalCSM' and @tags!='foodCSM' and @tags!='seedCSM' and @tags!='electricianCSM' and @tags!='trapsCSM' and @tags!='workstationCSM']"/>
     <!-- ** 移除 护甲 -->
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingArmor']"/>
     <!-- ** 移除 远程 -->
