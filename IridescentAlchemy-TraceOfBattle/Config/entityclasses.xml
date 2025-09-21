@@ -5,6 +5,13 @@
 
 
 
+	<!-- *** 体力急速回复 -->
+	<append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group/triggered_effect[@action='AddBuff' and @buff='buffPowerAttackStaminaStunt']">
+		<requirement name="ProgressionLevel" progression_name="perkMarisaStaminaChangeOT" operation="GTE" value="3"/>
+	</append>
+
+
+
 	<!-- *** 调整爆破丧尸掉包几率 -->
 	<set xpath="/entity_classes/entity_class[@name='zombieDemolition']/property[@name='LootDropProb']/@value">.03</set>
 
@@ -2683,11 +2690,39 @@
 
 
 
-	<!-- *** 丧尸 动物 对近战玩家 伤害减少 -->
+	<!-- *** 丧尸 动物 对近战玩家、战魂玩家 伤害减少 -->
 	<append xpath="/entity_classes/entity_class[@name='zombieTemplateMale' or @name='animalTemplateHostile']">
 		<effect_group name="DamageModifier For MarisaItemHasTagsMelee">
 			<requirement name="CVarCompare" cvar="MarisaItemHasTagsMelee" operation="Equals" value="1" target="other"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value="-.35"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.25"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="1" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.03"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="2" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.06"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="3" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.09"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="4" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.12"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="5" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.15"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="6" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.2"/>
+		</effect_group>
+		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="7" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value="-.25"/>
 		</effect_group>
 	</append>
 
