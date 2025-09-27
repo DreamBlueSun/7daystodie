@@ -15,9 +15,6 @@
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaHandsFallDMG"/>
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaFeetFallDMG"/>
 	</append>
-
-
-
     <!--*** 脑震荡不再降低属性 -->
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
@@ -288,6 +285,32 @@
 			<stack_type value="ignore"/>
 			<update_rate value=".1"/>
 			<duration value="0"/>
+
+			<!-- * 玩家所在地形变量 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="3"><requirement name="InBiome" biome="8"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="9"/></triggered_effect>
+			</effect_group>
+			<!-- * 完成任务修改变量Will -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClear" operation="set" value="@QuestCompleteClearWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="LT" value="@QuestCompleteClearWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearInfested" operation="set" value="@QuestCompleteClearInfestedWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="LT" value="@QuestCompleteClearInfestedWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearSuperInfested" operation="set" value="@QuestCompleteClearSuperInfestedWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="LT" value="@QuestCompleteClearSuperInfestedWill"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteDefensivePoint" operation="set" value="@QuestCompleteDefensivePointWill">
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="LT" value="@QuestCompleteDefensivePointWill"/>
+				</triggered_effect>
+			</effect_group>
+
+
 
 			<!-- 死里逃生 -->
 			<effect_group>
@@ -4469,6 +4492,66 @@
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaMiasmaticErosion"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+
+
+	<!-- 任务BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 潜行任务E -->
+		<buff name="buffCrouchingQuestSleeper" name_key="buffCrouchingQuestSleeperName" description_key="buffCrouchingQuestSleeperDesc" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="GT" value="0"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+		</buff>
+		<!-- 潜行任务P -->
+		<buff name="buffCrouchingQuestOn" name_key="buffCrouchingQuestOnName" description_key="buffCrouchingQuestOnDesc" showonhud="true" icon="ui_game_symbol_twitch_big_head" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<display_value value="$CrouchingQuestOn"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOnWill" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1" target="selfOtherPlayers"
+								  target_tags="ally,party"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOn" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventCrouchingQuestFail" allow_client_call="true"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCrouchingQuestOn"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
 			</effect_group>
 		</buff>
 

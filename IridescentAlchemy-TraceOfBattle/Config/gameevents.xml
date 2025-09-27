@@ -419,6 +419,37 @@
 
 	</append>
 
+	<!-- *** 潜行任务事件 -->
+	<append xpath="/gameevents">
+
+		<action_sequence name="EventCrouchingQuestOn">
+			<property name="allow_user_trigger" value="false"/>
+			<property name="action_type" value="Game"/>
+
+			<action class="Delay">
+				<property name="phase" value="1"/>
+				<property name="time" value="1"/>
+			</action>
+
+			<action class="AddBuff">
+				<property name="phase" value="2"/>
+				<property name="buff_name" value="buffCrouchingQuestOn"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="EventCrouchingQuestFail">
+			<property name="category" value="twitch_actions"/>
+
+			<action class="FailQuest">
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier9_crouching_restore_power"/>
+				</requirement>
+				<property name="quest" value="marisa_tier9_crouching_restore_power"/>
+				<property name="remove_quest" value="true"/>
+			</action>
+		</action_sequence>
+
+	</append>
+
 	<!-- *** marisa home run -->
 	<append xpath="/gameevents">
 
