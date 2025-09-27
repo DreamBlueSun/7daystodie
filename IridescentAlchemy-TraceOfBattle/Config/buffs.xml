@@ -8,6 +8,13 @@
 			<requirement name="ProgressionLevel" progression_name="perkLightArmor" operation="EQ" value="5"/>
 		</triggered_effect>
     </insertAfter>
+    <!-- ** 玩家跌落伤害 buffPlayerFallingDamage -->
+	<append xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group[3]">
+		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaHeadFallDMG"/>
+		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaChestFallDMG"/>
+		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaHandsFallDMG"/>
+		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaFeetFallDMG"/>
+	</append>
 
 
 
