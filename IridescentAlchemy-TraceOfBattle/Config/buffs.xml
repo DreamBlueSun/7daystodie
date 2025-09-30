@@ -8,6 +8,7 @@
 			<requirement name="ProgressionLevel" progression_name="perkLightArmor" operation="EQ" value="5"/>
 		</triggered_effect>
     </insertAfter>
+
     <!-- ** 玩家跌落伤害 buffPlayerFallingDamage -->
 	<append xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group[3]">
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaHeadFallDMG"/>
@@ -15,15 +16,6 @@
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaHandsFallDMG"/>
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$iridescentMarisaFeetFallDMG"/>
 	</append>
-    <!--*** 脑震荡不再降低属性 -->
-	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
-	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
-
-    <!--*** 药品交易加成降低 -->
-	<set xpath="/buffs/buff[@name='buffDrunkGrandpasAwesomeSauce']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
-	<set xpath="/buffs/buff[@name='buffDrunkGrandpasAwesomeSauce']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
-	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
-	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
 
     <!--*** 自动武器第6本技能书的击倒概率降低 -->
 	<set xpath="/buffs/buff[@name='buffAutoWeaponsRagdoll']/effect_group/triggered_effect/requirement[@name='RandomRoll']/@value">1</set>
@@ -136,6 +128,21 @@
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaTurnBadLuckIntoABlessing3"/>
 		</effect_group>
 	</append>
+
+
+
+    <!-- *** 玩家等级不再增加 血量、体力、饱食度、水分 -->
+	<remove xpath="/buffs/buff[@name='buffStatusCheck01']/effect_group/passive_effect[@name='HealthMax' or @name='StaminaMax' or @name='WaterMax' or @name='FoodMax']"/>
+
+    <!--*** 脑震荡不再降低属性 -->
+	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
+	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
+
+    <!--*** 药品交易加成降低 -->
+	<set xpath="/buffs/buff[@name='buffDrunkGrandpasAwesomeSauce']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
+	<set xpath="/buffs/buff[@name='buffDrunkGrandpasAwesomeSauce']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
+	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
+	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
 
 
 
