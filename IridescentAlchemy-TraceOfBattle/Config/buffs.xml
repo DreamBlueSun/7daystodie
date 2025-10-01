@@ -260,7 +260,110 @@
 			</effect_group>
 
 		</buff>
+	</insertAfter>
+    <!-- ** 辐射 -->
+	<remove xpath="/buffs/buff[@name='buffRadiationPool']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffRadiation03']">
+		<!-- 辐射 前置 -->
+		<buff name="buffRadiationPoolEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
 
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolCount" operation="set" value="1">
+					<requirement name="!EntityTagCompare" tags="player"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolCouldCount" operation="multiply" value="@$marisaRadiationPoolCount">
+					<requirement name="CVarCompare" cvar="$marisaRadiationPoolCount" operation="GT" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolCouldCount" operation="multiply" value="@$marisaRadiationPoolCount">
+					<requirement name="CVarCompare" cvar="$marisaRadiationPoolCount" operation="GT" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
+				<requirement name="CVarCompare" cvar="$marisaRadiationPoolEffectAmount" operation="GTE" value="@$marisaRadiationPoolCouldCount"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPool"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaRadiationPoolCount" operation="LT" value="5"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaRadiationPoolCount" operation="LT" value="5"/>
+					</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolEffectAmount" operation="add" value="-1">
+					<requirement name="CVarCompare" cvar="$marisaRadiationPoolEffectAmount" operation="GT" value="0"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 辐射 -->
+		<buff name="buffRadiationPool" name_key="buffRadiation03Name" description_key="buffRadiation03Desc" icon="ui_game_symbol_radiation" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="radiation"/>
+			<damage_source value="Internal"/>
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<display_value value="$radiationPoolDuration"/>
+			<display_value_format value="time"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolDuration" operation="set" value="5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolDuration" operation="set" value="20"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolDuration" operation="set" value="30"><requirement name="EntityTagCompare" tags="bossMarisa"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$radiationPoolDuration" operation="add" value="-1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool">
+					<requirement name="CVarCompare" cvar="$radiationPoolDuration" operation="LTE" value="0"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="40"><requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="100"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="300"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="2"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$radiationPoolAmount"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$radiationPoolAmount">
+					<requirement name="!EntityTagCompare" tags="player"/>
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$radiationPoolAmount"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Stamina" operation="subtract" value="5">
+					<requirement name="EntityTagCompare" tags="player"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".7" effect_name="Hot"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Hot"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Radiation" intensity=".6" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffRadiationPool"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="1"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$radiationPoolAmount,$radiationPoolDuration"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+			</effect_group>
+
+		</buff>
 	</insertAfter>
 
 
