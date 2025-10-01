@@ -221,11 +221,11 @@
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="40"><requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="100"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="300"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="60"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="120"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="160"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="200"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="2"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="divide" value="2">
 					<requirement name="ProgressionLevel" progression_name="perkGreatHeistAdrenalineFall" operation="Equals" value="1"/>
@@ -316,7 +316,6 @@
 		<!-- 辐射 -->
 		<buff name="buffRadiationPool" name_key="buffRadiation03Name" description_key="buffRadiation03Desc" icon="ui_game_symbol_radiation" icon_color="255,0,0" icon_blink="true">
 			<damage_type value="radiation"/>
-			<damage_source value="Internal"/>
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<display_value value="$radiationPoolDuration"/>
@@ -334,11 +333,11 @@
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="40"><requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="100"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="300"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="60"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="120"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="160"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="200"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$radiationPoolAmount" operation="set" value="2"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
 
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$radiationPoolAmount"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
@@ -365,6 +364,208 @@
 
 		</buff>
 	</insertAfter>
+    <!-- ** 燃烧 -->
+	<remove xpath="/buffs/buff[@name='buffBurningElement' or @name='buffBurningEnvironment' or @name='buffBurningFlamingArrow' or @name='buffBurningMolotov' or @name='buffHazardBurningElement' or @name='buffIsOnFire']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffBurningZombie']">
+		<buff name="buffBurningElement" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="100"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurningElement"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningEnvironment" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="100"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurningEnvironment"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningFlamingArrow" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="100"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurningFlamingArrow"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningMolotov" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="250"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurningMolotov"/>
+			</effect_group>
+		</buff>
+		<buff name="buffHazardBurningElement" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="!EntityTagCompare" tags="player"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="100"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffHazardBurningElement"/>
+			</effect_group>
+		</buff>
+		<!-- 燃烧 前置 -->
+		<buff name="buffIsOnFireEffect">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireCount" operation="set" value="1">
+					<requirement name="!EntityTagCompare" tags="player"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireCouldCount" operation="multiply" value="@$marisaFireCount">
+					<requirement name="CVarCompare" cvar="$marisaFireCount" operation="GT" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireCouldCount" operation="multiply" value="@$marisaFireCount">
+					<requirement name="CVarCompare" cvar="$marisaFireCount" operation="GT" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+				<requirement name="CVarCompare" cvar="$marisaFireEffectAmount" operation="GTE" value="@$marisaFireCouldCount"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaFireCount" operation="LT" value="5"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaFireCount" operation="LT" value="5"/>
+					</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="-1">
+					<requirement name="CVarCompare" cvar="$marisaFireEffectAmount" operation="GT" value="0"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 燃烧 -->
+		<buff name="buffIsOnFire" name_key="buffIsOnFireName" description_key="buffIsOnFireDesc" tooltip_key="buffIsOnFireTooltip" icon="ui_game_symbol_fire" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="Heat"/>
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<display_value value="$marisaFireDuration"/>
+			<display_value_format value="time"/>
+
+			<effect_group>
+				<requirements compare_type="or">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+					<requirement name="HasBuff" buff="buffExtinguishFire"/>
+					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+				</requirements>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="20"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="30"><requirement name="EntityTagCompare" tags="bossMarisa"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireDuration" operation="add" value="-1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire">
+					<requirement name="CVarCompare" cvar="$marisaFireDuration" operation="LTE" value="0"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="40"><requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="60"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="120"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="160"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="200"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireAmount" operation="set" value="2"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$marisaFireAmount"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$marisaFireAmount">
+					<requirement name="!EntityTagCompare" tags="player"/>
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$marisaFireAmount"/>
+				</passive_effect>
+
+				<passive_effect name="WaterChangeOT" operation="base_subtract" value="1.5"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$marisaFireAmount,$marisaFireDuration"/>
+			</effect_group>
+
+			<!-- Start and clean up particles and sounds -->
+			<effect_group name="run particles, cleanup">
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="buff_burn_extinguish"/>
+			</effect_group>
+
+			<effect_group>
+				<requirements><requirement name="!IsSDCS"/></requirements>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
+			</effect_group>
+
+			<effect_group>
+				<requirements><requirement name="IsSDCS"/></requirements>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
 
 
 
@@ -373,7 +574,8 @@
 
 		<!-- 测试打印 cvar -->
 <!--        <effect_group>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="MarisaItemHasTagsMelee"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="$marisaFireDuration"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="$marisaFireAmount"/>-->
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
 <!--		</effect_group>-->
 
@@ -4880,92 +5082,6 @@
 			<display_value_key value="{0}"/>
 		</buff>
 
-	</append>
-
-	<!-- 武器BUFF 附属 -->
-    <remove xpath="/buffs/buff[@name='buffIsOnFire']"/>
-	<append xpath="/buffs">
-		<buff name="buffIsOnFire" name_key="buffIsOnFireName" description_key="buffIsOnFireDesc" tooltip_key="buffIsOnFireTooltip" icon="ui_game_symbol_fire" icon_color="255,0,0" icon_blink="true">
-			<damage_type value="Heat"/>
-			<stack_type value="ignore"/>
-			<duration value="0"/>
-			<update_rate value="0.5"/>
-			<display_value value=".buffIsOnFireDisplay"/>
-			<display_value_format value="time"/>
-
-			<effect_group>
-			<!-- Extinguish any fire if wet or if buffExtinguishFire is executed -->
-				<requirements compare_type="or">
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
-					<requirement name="HasBuff" buff="buffExtinguishFire"/>
-					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
-				</requirements>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningFlamingArrow"/>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningMolotov"/>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningEnvironmentHack"/>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningEnvironment"/>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffBurningElement"/>
-						<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffHazardBurningElement" />
-			</effect_group>
-
-			<effect_group>
-				<!-- If the various durations are GT buffIsOnFireDisplay, set the duration to the value of buffIsOnFireDisplay -->
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningFlamingArrowDuration"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningMolotovDuration"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$BurningEnvironmentDuration">
-					<requirement name="CVarCompare" cvar="$BurningEnvironmentDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningElementDuration">
-					<requirement name="CVarCompare" cvar="$buffBurningElementDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffHazardBurningElementDuration">
-					<requirement name="CVarCompare" cvar="$buffHazardBurningElementDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningFlamingArrowDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningMolotovDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$BurningEnvironmentDuration">
-					<requirement name="CVarCompare" cvar="$BurningEnvironmentDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffBurningElementDuration">
-					<requirement name="CVarCompare" cvar="$buffBurningElementDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireDisplay" operation="set" value="@$buffHazardBurningElementDuration">
-					<requirement name="CVarCompare" cvar="$buffHazardBurningElementDuration" operation="GT" value="@.buffIsOnFireDisplay"/></triggered_effect>
-			</effect_group>
-
-			<effect_group>
-				<!-- Terminate only if all burn buffs are gone -->
-				<requirements>
-					<requirement name="!HasBuff" buff="buffBurningFlamingArrow"/>
-					<requirement name="!HasBuff" buff="buffBurningMolotov"/>
-					<requirement name="!HasBuff" buff="buffBurningEnvironmentHack"/>
-					<requirement name="!HasBuff" buff="buffBurningEnvironment"/>
-					<requirement name="!HasBuff" buff="buffBurningElement"/> <!-- torch, burning zombie -->
-					<requirement name="!HasBuff" buff="buffHazardBurningElement"/>
-					<requirement name="!HasBuff" buff="buffModBuffFireAoeEffect"/>
-				</requirements>
-					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<!-- Start and clean up particles and sounds -->
-			<effect_group name="run particles, cleanup">
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffIsOnFireDisplay"/>
-
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_burn_lp"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_burn_lp"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="buff_burn_extinguish"/>
-			</effect_group>
-
-			<effect_group>
-				<requirements><requirement name="!IsSDCS"/></requirements>
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
-			</effect_group>
-
-			<effect_group>
-				<requirements><requirement name="IsSDCS"/></requirements>
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
-			</effect_group>
-		</buff>
 	</append>
 
 
