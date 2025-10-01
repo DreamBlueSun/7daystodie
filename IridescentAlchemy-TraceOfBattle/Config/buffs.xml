@@ -146,6 +146,125 @@
 
 
 
+    <!-- *** 与武器联动相关 -->
+    <!-- ** 流血 -->
+	<remove xpath="/buffs/buff[@name='buffInjuryBleeding']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffSpearHunter7QuickStrike']">
+		<!-- 流血 前置 -->
+		<buff name="buffMarisaBuffBleedEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedCount" operation="set" value="1">
+					<requirement name="!EntityTagCompare" tags="player"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedCouldCount" operation="multiply" value="@$marisaBleedCount">
+					<requirement name="CVarCompare" cvar="$marisaBleedCount" operation="GT" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedCouldCount" operation="set" value="100"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedCouldCount" operation="multiply" value="@$marisaBleedCount">
+					<requirement name="CVarCompare" cvar="$marisaBleedCount" operation="GT" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
+				<requirement name="CVarCompare" cvar="$marisaBleedEffectAmount" operation="GTE" value="@$marisaBleedCouldCount"/>
+					<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedEffectAmount" operation="set" value="0"/>
+
+					<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaBleedCount" operation="LT" value="5"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedCount" operation="add" value="1">
+						<requirement name="!EntityTagCompare" tags="player"/>
+						<requirement name="CVarCompare" cvar="$marisaBleedCount" operation="LT" value="5"/>
+					</triggered_effect>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedEffectAmount" operation="add" value="-1">
+					<requirement name="CVarCompare" cvar="$marisaBleedEffectAmount" operation="GT" value="0"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 流血 -->
+		<buff name="buffInjuryBleeding" name_key="buffInjuryBleedingName" description_key="buffInjuryBleedingDesc" tooltip_key="buffInjuryBleedingTooltip" icon="ui_game_symbol_critical" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="bloodloss"/>
+			<damage_source value="Internal"/>
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<display_value value="$bleedDuration"/>
+			<display_value_format value="time"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedDuration" operation="set" value="5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedDuration" operation="set" value="20"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedDuration" operation="set" value="30"><requirement name="EntityTagCompare" tags="bossMarisa"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$bleedDuration" operation="add" value="-1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLacerationBleedingStatus"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding">
+					<requirement name="CVarCompare" cvar="$bleedDuration" operation="LTE" value="0"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="40"><requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="80"><requirement name="EntityTagCompare" tags="radiated"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="100"><requirement name="EntityTagCompare" tags="charged"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="infernal"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="150"><requirement name="EntityTagCompare" tags="crystallization"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="300"><requirement name="EntityTagCompare" tags="berserk"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="2"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="divide" value="2">
+					<requirement name="ProgressionLevel" progression_name="perkGreatHeistAdrenalineFall" operation="Equals" value="1"/>
+					<requirement name="CVarCompare" cvar="CharismaticNatureLevel" operation="GTE" value="3"/>
+				</triggered_effect>
+
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$bleedAmount"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$bleedAmount">
+					<requirement name="!EntityTagCompare" tags="player"/>
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$bleedAmount"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedSlowdown" operation="set" value="-.2"/>
+
+				<passive_effect name="RunSpeed" operation="perc_add" value="@$bleedSlowdown"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="bleedCounter,$bleedAmount,$bleedSlowdown,$bleedDuration"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Blur" intensity=".6" fade="0.5"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Blur" intensity="0" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Infected" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleedingParticle"/>
+			</effect_group>
+
+		</buff>
+
+	</insertAfter>
+
+
+
 	<!-- 添加 状态检查 -->
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
@@ -5378,7 +5497,7 @@
 		<buff name="buffZombieBossRandomRollRemoveDeBuff">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="3600"/>
+			<duration value="0"/>
 			<effect_group>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="35"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
@@ -5387,7 +5506,7 @@
 		<buff name="buffZombieBossRandomRollRemoveDeBuff2">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="3600"/>
+			<duration value="0"/>
 			<effect_group>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
@@ -5396,7 +5515,7 @@
 		<buff name="buffZombieBossRandomRollRemoveDeBuff3" hidden="true">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="3600"/>
+			<duration value="0"/>
 			<effect_group>
 				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="65"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
@@ -5407,7 +5526,7 @@
 		<buff name="buffZombieBossAngerCount">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="3600"/>
+			<duration value="0"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="set" value="45"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="buffZombieBossAngerCvar" operation="add" value="1">
