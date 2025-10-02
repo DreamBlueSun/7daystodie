@@ -35,7 +35,39 @@
     <!-- *** 原版技能修改 -->
     <!-- ** 感知 -->
     <remove xpath="/progression/perks/perk[@name='perkFlurryOfPerception']"/>
+    <remove xpath="/progression/perks/perk[@name='perkPenetrator']"/>
     <remove xpath="/progression/perks/perk[@name='perkPerceptionMastery']"/>
+    <insertAfter xpath="/progression/perks/perk[@name='perkAnimalTracker']">
+        <perk name="perkPenetrator" parent="skillPerceptionGeneral" name_key="perkPenetratorName" desc_key="perkPenetratorDesc" icon="ui_game_symbol_arrow_max">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="2" desc_key="reqPerceptionLevel02"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="4" desc_key="reqPerceptionLevel04"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="6" desc_key="reqPerceptionLevel06"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="8" desc_key="reqPerceptionLevel08"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="10" desc_key="reqPerceptionLevel10"/></level_requirements>
+            <effect_group>
+                <passive_effect name="TargetArmor" operation="perc_add" level="1,2,3,4,5" value="-.05,-.1,-.15,-.2,-.3"/>
+
+                <effect_description level="1" desc_key="perkPenetratorRank1Desc" long_desc_key="perkPenetratorRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkPenetratorRank2Desc" long_desc_key="perkPenetratorRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkPenetratorRank3Desc" long_desc_key="perkPenetratorRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkPenetratorRank4Desc" long_desc_key="perkPenetratorRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkPenetratorRank5Desc" long_desc_key="perkPenetratorRank5LongDesc"/>
+            </effect_group>
+        </perk>
+
+        <perk name="perkPenetrator2" parent="skillPerceptionGeneral" name_key="perkPenetrator2Name" desc_key="perkPenetrator2Desc" icon="ui_game_symbol_paint_copy_block" max_level="3">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="6" desc_key="reqPerceptionLevel06"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="8" desc_key="reqPerceptionLevel08"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attPerception" operation="GTE" value="10" desc_key="reqPerceptionLevel10"/></level_requirements>
+            <effect_group>
+                <passive_effect name="EntityPenetrationCount" operation="perc_add" level="1,2,3" value="1,2,3" tags="perkDeadEye"/>
+
+                <effect_description level="1" desc_key="perkPenetrator2Rank1Desc" long_desc_key="perkPenetrator2Rank1LongDesc"/>
+                <effect_description level="2" desc_key="perkPenetrator2Rank2Desc" long_desc_key="perkPenetrator2Rank2LongDesc"/>
+                <effect_description level="3" desc_key="perkPenetrator2Rank3Desc" long_desc_key="perkPenetrator2Rank3LongDesc"/>
+            </effect_group>
+        </perk>
+    </insertAfter>
     <insertAfter xpath="/progression/perks/perk[@name='perkSalvageOperations']">
         <perk name="perkLuckyLooter" parent="skillPerceptionScavenging" name_key="perkLuckyLooterName" desc_key="perkLuckyLooterDesc" icon="ui_game_symbol_shopping_cart" override_cost="1,2,2,2,3">
             <effect_group>
@@ -594,6 +626,19 @@
             </effect_group>
         </perk>
     </append>
+
+
+
+    <!-- *** 原版技能书修改 -->
+    <!-- ** 猎人日志 完成 -->
+    <remove xpath="/progression/perks/book[@name='perkHuntingJournalComplete']"/>
+    <insertAfter xpath="/progression/perks/book[@name='perkHuntingJournalSelfDefense']">
+        <book name="perkHuntingJournalComplete" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalCompleteDesc" long_desc_key="perkHuntingJournalCompleteLongDesc">
+            <effect_group>
+                <passive_effect name="TargetArmor" operation="perc_add" level="1" value="-.1"/>
+            </effect_group>
+        </book>
+    </insertAfter>
 
 
 
