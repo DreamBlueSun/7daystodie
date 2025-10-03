@@ -1,7 +1,9 @@
 <Marisa>
 
     <!-- *** 与技能联动相关 -->
-    <!-- ** 护甲技能 perkLightArmor -->
+    <!-- ** 感知 死神之眼 -->
+	<set xpath="/buffs/buff[@name='buffDeadEye']/effect_group/triggered_effect/requirement[@name='ProgressionLevel']/@progression_name">perkSniperComplete</set>
+    <!-- ** 力量 护甲 -->
     <insertAfter xpath="/buffs/buff[@name='buffStatusCheck02']/effect_group[3]/triggered_effect[@action='ModifyCVar' and @cvar='.ArmorLightLevel' and @value='4']">
 		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ArmorLightLevel" operation="set" value="5">
 			<requirement name="CVarCompare" cvar=".ArmorLightLevel" operation="Equals" value="0"/>
@@ -99,14 +101,6 @@
 		</buff>
 	</append>
 
-	<!-- 添加 酒精耐性 效果 -->
-	<append xpath="/buffs/buff[@name='buffBeer']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
-		<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
-	</append>
-	<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
-		<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
-	</append>
-
 	<!-- 添加 转祸为福 触发条件 -->
 	<append xpath="/buffs/buff[@name='buffInfectionMain' or @name='buffInjuryAbrasion' or @name='buffInjuryAbrasionTreated' or @name='buffFatigued' or @name='buffInjuryBleeding' or @name='buffLaceration' or @name='buffInjuryStunned01' or @name='buffInjuryConcussion' or @name='buffLegSprained' or @name='buffLegBroken' or @name='buffArmSprained' or @name='buffArmBroken']">
         <effect_group>
@@ -144,12 +138,16 @@
 
     <!-- *** 碾压王 速度改为20% -->
 	<set xpath="/buffs/buff[@name='buffMegaCrush']/effect_group/passive_effect[@name='RunSpeed']/@value">.2</set>
-    <!-- *** 啤酒 移除暴击伤害 -->
+    <!-- *** 啤酒 移除暴击伤害 添加酒精耐性效果 -->
 	<remove xpath="/buffs/buff[@name='buffBeer']/effect_group/passive_effect[@name='EntityDamage']"/>
-    <!-- *** 私酒 移除近战伤害 降低回复 -->
+	<set xpath="/buffs/buff[@name='buffBeer']/effect_group/triggered_effect/requirement[@name='ProgressionLevel' and @progression_name='perkBarBrawling7BoozedUp']/@progression_name">perkMarisaScreenEffectDrunk</set>
+    <!-- *** 私酒 移除近战伤害 降低回复 添加酒精耐性效果 -->
 	<remove xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='EntityDamage']"/>
 	<set xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='StaminaChangeOT']/@value">.4</set>
 	<set xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='HealthChangeOT']/@value">5</set>
+	<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
+		<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
+	</append>
     <!-- *** 类固醇 载货量改为75 -->
 	<set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">75</set>
     <!-- *** 雷克格 移除水分扣减 降低伤害加成 -->
@@ -4270,8 +4268,8 @@
 			<stack_type value="replace"/>
 			<duration value="1202"/>
 			<effect_group>
-                <passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert"/>
-                <passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
+                <passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的换算术 -->
