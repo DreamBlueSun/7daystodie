@@ -227,6 +227,60 @@
                     </passive_effect>
                 </effect_group>
             </perk>
+            <!-- *** 拾荒行动 -->
+            <perk name="perkSalvageOperations" parent="skillPerceptionScavenging" name_key="perkSalvageOperationsName" desc_key="perkSalvageOperationsDesc" icon="ui_game_symbol_scrap" override_cost="2,2,2,2,2">
+
+                <effect_group>
+                    <passive_effect name="CraftingTime" operation="perc_add" level="1,5" value="-0.1,-.5" tags="salvageScrap"/><!-- does not work on scrapping -->
+
+                    <passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".2,1" tags="perkSalvageOperations"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkSalvageOperations"/>
+
+                    <passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".2,1" tags="salvageHarvest"/>
+                    <passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.1,-.4" tags="Harvesting">
+                        <requirement name="HoldingItemHasTags" tags="perkSalvageOperations"/>
+                    </passive_effect>
+
+                    <!-- Increase the chance to find salvage tools with each perk rank -->
+                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvagingSkill"/>
+
+                    <!-- Increase the chance to find salvage tools crafting skill magazines with each perk rank up to crafting skill 75 -->
+                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvageToolsCSM">
+                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="LT" value="75"/>
+                    </passive_effect>
+
+                    <!-- Once salvage tools crafting skill reaches 75, set the probability bonus of finding salvage tools crafting skill magazines to 0 -->
+                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="salvageToolsCSM">
+                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="Equals" value="75"/>
+                    </passive_effect>
+
+                    <!-- Increase the chance to find Wasteland Treasures books until each book is read -->
+                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="wastelandProb">
+                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="LT" value="1"/>
+                    </passive_effect>
+
+                    <!-- When all Wasteland Treasures books have been read, set the probability bonus of finding them to 0 -->
+                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="wastelandProb">
+                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="Equals" value="1"/>
+                    </passive_effect>
+                </effect_group>
+
+                <!-- SALVAGE_OPERATIONS:SEXREX_REPLACEMENT -->
+                <effect_group>
+                    <requirement name="ItemHasTags" tags="perkSalvageOperations"/>
+                    <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.08,-.15,-.2,-.25,-.25"/>
+                    <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.07,-.15,-.2,-.25,-.25" tags="secondary"/>
+                </effect_group>
+
+                <effect_group>
+                    <!-- wrench (or other relevant tools) do a base_add=1 to hop on the salvage train -->
+                    <effect_description level="1" desc_key="perkSalvageOperationsRank1Desc" long_desc_key="perkSalvageOperationsRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkSalvageOperationsRank2Desc" long_desc_key="perkSalvageOperationsRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkSalvageOperationsRank3Desc" long_desc_key="perkSalvageOperationsRank3LongDesc"/>
+                    <effect_description level="4" desc_key="perkSalvageOperationsRank4Desc" long_desc_key="perkSalvageOperationsRank4LongDesc"/>
+                    <effect_description level="5" desc_key="perkSalvageOperationsRank5Desc" long_desc_key="perkSalvageOperationsRank5LongDesc"/>
+                </effect_group>
+            </perk>
             <!-- *** 寻宝者 -->
             <perk name="perkTreasureHunter" parent="skillPerceptionScavenging" name_key="perkTreasureHunterName" desc_key="perkTreasureHunterDesc" icon="ui_game_symbol_treasure" override_cost="2,2,2,2,2">
 
@@ -1301,60 +1355,6 @@
                     <effect_description level="3" desc_key="perkAdvancedEngineeringRank3Desc" long_desc_key="perkAdvancedEngineeringRank3LongDesc"/>
                     <effect_description level="4" desc_key="perkAdvancedEngineeringRank4Desc" long_desc_key="perkAdvancedEngineeringRank4LongDesc"/>
                     <effect_description level="5" desc_key="perkAdvancedEngineeringRank5Desc" long_desc_key="perkAdvancedEngineeringRank5LongDesc"/>
-                </effect_group>
-            </perk>
-            <!-- *** 拾荒行动 -->
-            <perk name="perkSalvageOperations" parent="skillIntellectCraftsmanship" name_key="perkSalvageOperationsName" desc_key="perkSalvageOperationsDesc" icon="ui_game_symbol_scrap" override_cost="2,2,2,2,2">
-
-                <effect_group>
-                    <passive_effect name="CraftingTime" operation="perc_add" level="1,5" value="-0.1,-.5" tags="salvageScrap"/><!-- does not work on scrapping -->
-
-                    <passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".2,1" tags="perkSalvageOperations"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkSalvageOperations"/>
-
-                    <passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".2,1" tags="salvageHarvest"/>
-                    <passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.1,-.4" tags="Harvesting">
-                        <requirement name="HoldingItemHasTags" tags="perkSalvageOperations"/>
-                    </passive_effect>
-
-                    <!-- Increase the chance to find salvage tools with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvagingSkill"/>
-
-                    <!-- Increase the chance to find salvage tools crafting skill magazines with each perk rank up to crafting skill 75 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvageToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="LT" value="75"/>
-                    </passive_effect>
-
-                    <!-- Once salvage tools crafting skill reaches 75, set the probability bonus of finding salvage tools crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="salvageToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="Equals" value="75"/>
-                    </passive_effect>
-
-                    <!-- Increase the chance to find Wasteland Treasures books until each book is read -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="wastelandProb">
-                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="LT" value="1"/>
-                    </passive_effect>
-
-                    <!-- When all Wasteland Treasures books have been read, set the probability bonus of finding them to 0 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="wastelandProb">
-                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="Equals" value="1"/>
-                    </passive_effect>
-                </effect_group>
-
-                <!-- SALVAGE_OPERATIONS:SEXREX_REPLACEMENT -->
-                <effect_group>
-                    <requirement name="ItemHasTags" tags="perkSalvageOperations"/>
-                    <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.08,-.15,-.2,-.25,-.25"/>
-                    <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.07,-.15,-.2,-.25,-.25" tags="secondary"/>
-                </effect_group>
-
-                <effect_group>
-                    <!-- wrench (or other relevant tools) do a base_add=1 to hop on the salvage train -->
-                    <effect_description level="1" desc_key="perkSalvageOperationsRank1Desc" long_desc_key="perkSalvageOperationsRank1LongDesc"/>
-                    <effect_description level="2" desc_key="perkSalvageOperationsRank2Desc" long_desc_key="perkSalvageOperationsRank2LongDesc"/>
-                    <effect_description level="3" desc_key="perkSalvageOperationsRank3Desc" long_desc_key="perkSalvageOperationsRank3LongDesc"/>
-                    <effect_description level="4" desc_key="perkSalvageOperationsRank4Desc" long_desc_key="perkSalvageOperationsRank4LongDesc"/>
-                    <effect_description level="5" desc_key="perkSalvageOperationsRank5Desc" long_desc_key="perkSalvageOperationsRank5LongDesc"/>
                 </effect_group>
             </perk>
             <!-- *** 撬锁 -->
