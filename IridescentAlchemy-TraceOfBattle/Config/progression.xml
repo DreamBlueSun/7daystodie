@@ -8,6 +8,13 @@
 
 
 
+    <!-- *** 原版属性爆头伤害加成降低 -->
+    <remove xpath="/progression/attributes/attribute[@name='attPerception' or @name='attStrength' or @name='attFortitude' or @name='attAgility' or @name='attIntellect']/effect_group/passive_effect[@name='DamageModifier']"/>
+    <insertAfter xpath="/progression/attributes/attribute[@name='attPerception' or @name='attStrength' or @name='attFortitude' or @name='attAgility' or @name='attIntellect']/effect_group/passive_effect[@name='DismemberChance']">
+        <passive_effect name="DamageModifier" operation="perc_add" level="1,10" value=".05,.5" tags="head"/>
+    </insertAfter>
+    <remove xpath="/progression/attributes/attribute[@name='attPerception' or @name='attStrength' or @name='attFortitude' or @name='attAgility' or @name='attIntellect']/effect_group/passive_effect[@name='DismemberChance']"/>
+
     <!-- *** 原版技能修改 -->
     <set xpath="/progression/skills/skill[@name='skillPerceptionGeneral']/@name_key">skillIridescentHelpName</set>
     <set xpath="/progression/skills/skill[@name='skillStrengthGeneral']/@name_key">skillIridescentHelpName</set>
