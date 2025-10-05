@@ -217,21 +217,14 @@
                 <effect_group>
                     <passive_effect name="LootStage" operation="perc_add" level="1,5" value=".05,.25"/>
                     <passive_effect name="ScavengingTime" operation="perc_subtract" level="1,2,3,4,5" value=".1,.2,.4,.6,.8"/>
+                </effect_group>
 
+                <effect_group>
                     <effect_description level="1" desc_key="perkLuckyLooterRank1Desc" long_desc_key="perkLuckyLooterRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkLuckyLooterRank2Desc" long_desc_key="perkLuckyLooterRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkLuckyLooterRank3Desc" long_desc_key="perkLuckyLooterRank3LongDesc"/>
                     <effect_description level="4" desc_key="perkLuckyLooterRank4Desc" long_desc_key="perkLuckyLooterRank4LongDesc"/>
                     <effect_description level="5" desc_key="perkLuckyLooterRank5Desc" long_desc_key="perkLuckyLooterRank5LongDesc"/>
-                </effect_group>
-
-                <effect_group>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="luckyProb">
-                        <requirement name="ProgressionLevel" progression_name="perkLuckyLooterComplete" operation="LT" value="1"/>
-                    </passive_effect>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="luckyProb">
-                        <requirement name="ProgressionLevel" progression_name="perkLuckyLooterComplete" operation="Equals" value="1"/>
-                    </passive_effect>
                 </effect_group>
             </perk>
             <!-- *** 拾荒行动 -->
@@ -246,29 +239,6 @@
                     <passive_effect name="HarvestCount" operation="perc_add" level="1,5" value=".2,1" tags="salvageHarvest"/>
                     <passive_effect name="PlayerExpGain" operation="perc_add" level="1,5" value="-.1,-.4" tags="Harvesting">
                         <requirement name="HoldingItemHasTags" tags="perkSalvageOperations"/>
-                    </passive_effect>
-
-                    <!-- Increase the chance to find salvage tools with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvagingSkill"/>
-
-                    <!-- Increase the chance to find salvage tools crafting skill magazines with each perk rank up to crafting skill 75 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="salvageToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="LT" value="75"/>
-                    </passive_effect>
-
-                    <!-- Once salvage tools crafting skill reaches 75, set the probability bonus of finding salvage tools crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="salvageToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingSalvageTools" operation="Equals" value="75"/>
-                    </passive_effect>
-
-                    <!-- Increase the chance to find Wasteland Treasures books until each book is read -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="wastelandProb">
-                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="LT" value="1"/>
-                    </passive_effect>
-
-                    <!-- When all Wasteland Treasures books have been read, set the probability bonus of finding them to 0 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="wastelandProb">
-                        <requirement name="ProgressionLevel" progression_name="perkWasteTreasuresComplete" operation="Equals" value="1"/>
                     </passive_effect>
                 </effect_group>
 
@@ -515,35 +485,6 @@
                 <effect_group>
                     <passive_effect name="BlockDamage" operation="perc_add" level="1,5" value=".3,1.5" tags="perkMiner69r"/>
                     <passive_effect name="EntityDamage" operation="perc_add" level="1,5" value=".1,.5" tags="perkMiner69r"/>
-
-                    <!-- Increase the chance to find harvesting tools with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="harvestingSkill"/>
-
-                    <!-- Increase the chance to find harvesting tools crafting skill magazines with each perk rank up to crafting skill 100 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="harvestingToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingHarvestingTools" operation="LT" value="100"/>
-                    </passive_effect>
-
-                    <!-- Once harvesting tools crafting skill reaches 100, set the probability bonus of finding harvesting tool crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="harvestingToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingHarvestingTools" operation="Equals" value="100"/>
-                    </passive_effect>
-
-                    <!-- Increase the chance to find Art of Mining books until each book is read -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="artOfMiningProb">
-                        <requirement name="ProgressionLevel" progression_name="perkArtOfMiningComplete" operation="LT" value="1"/>
-                    </passive_effect>
-
-                    <!-- When all Art of Mining books have been read, set the probability bonus of finding them to 0 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="artOfMiningProb">
-                        <requirement name="ProgressionLevel" progression_name="perkArtOfMiningComplete" operation="Equals" value="1"/>
-                    </passive_effect>
-
-                    <effect_description level="1" desc_key="perkMiner69rRank1Desc" long_desc_key="perkMiner69rRank1LongDesc"/>
-                    <effect_description level="2" desc_key="perkMiner69rRank2Desc" long_desc_key="perkMiner69rRank2LongDesc"/>
-                    <effect_description level="3" desc_key="perkMiner69rRank3Desc" long_desc_key="perkMiner69rRank3LongDesc"/>
-                    <effect_description level="4" desc_key="perkMiner69rRank4Desc" long_desc_key="perkMiner69rRank4LongDesc"/>
-                    <effect_description level="5" desc_key="perkMiner69rRank5Desc" long_desc_key="perkMiner69rRank5LongDesc"/>
                 </effect_group>
 
                 <!-- MINER69R:SEXREX_REPLACEMENT -->
@@ -551,6 +492,14 @@
                     <requirement name="ItemHasTags" tags="perkMiner69r"/>
                     <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.08,-.15,-.2,-.25,-.25"/>
                     <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.07,-.15,-.2,-.25,-.25" tags="secondary"/>
+                </effect_group>
+
+                <effect_group>
+                    <effect_description level="1" desc_key="perkMiner69rRank1Desc" long_desc_key="perkMiner69rRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkMiner69rRank2Desc" long_desc_key="perkMiner69rRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkMiner69rRank3Desc" long_desc_key="perkMiner69rRank3LongDesc"/>
+                    <effect_description level="4" desc_key="perkMiner69rRank4Desc" long_desc_key="perkMiner69rRank4LongDesc"/>
+                    <effect_description level="5" desc_key="perkMiner69rRank5Desc" long_desc_key="perkMiner69rRank5LongDesc"/>
                 </effect_group>
             </perk>
             <!-- *** 母矿 -->
@@ -919,36 +868,29 @@
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
-
-                    <effect_description level="1" desc_key="perkHiddenStrikeRank1Desc" long_desc_key="perkHiddenStrikeRank1LongDesc"/>
-                    <effect_description level="2" desc_key="perkHiddenStrikeRank2Desc" long_desc_key="perkHiddenStrikeRank2LongDesc"/>
-                    <effect_description level="3" desc_key="perkHiddenStrikeRank3Desc" long_desc_key="perkHiddenStrikeRank3LongDesc"/>
+                        <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
+                        <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
+                        <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
+                        <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,2,2.5,3"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,1,1.5,2"/>
+                        <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
+                        <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
                 </effect_group>
 
                 <effect_group>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="urbanProb">
-                        <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="LT" value="1"/>
-                    </passive_effect>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="urbanProb">
-                        <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="Equals" value="1"/>
-                    </passive_effect>
+                    <effect_description level="1" desc_key="perkHiddenStrikeRank1Desc" long_desc_key="perkHiddenStrikeRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkHiddenStrikeRank2Desc" long_desc_key="perkHiddenStrikeRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkHiddenStrikeRank3Desc" long_desc_key="perkHiddenStrikeRank3LongDesc"/>
                 </effect_group>
             </perk>
             <!-- *** 来自暗影 -->
@@ -963,22 +905,14 @@
                         <requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
                     </passive_effect>
                     <passive_effect name="NoiseMultiplier" operation="perc_add" level="0,1,2,3" value="0,-.15,-.3,-.45"/>
-                    <passive_effect name="EnemySearchDuration" operation="perc_add" level="0,1,2,3" value="0,.5,1,2"/>
+                </effect_group>
 
+                <effect_group>
                     <effect_description level="1" desc_key="perkFromTheShadowsRank1Desc" long_desc_key="perkFromTheShadowsRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkFromTheShadowsRank2Desc" long_desc_key="perkFromTheShadowsRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkFromTheShadowsRank3Desc" long_desc_key="perkFromTheShadowsRank3LongDesc"/>
                     <effect_description level="4" desc_key="perkFromTheShadowsRank4Desc" long_desc_key="perkFromTheShadowsRank4LongDesc"/>
                     <effect_description level="5" desc_key="perkFromTheShadowsRank5Desc" long_desc_key="perkFromTheShadowsRank5LongDesc"/>
-                </effect_group>
-
-                <effect_group>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="nightStalkerProb">
-                        <requirement name="ProgressionLevel" progression_name="perkNightStalkerComplete" operation="LT" value="1"/>
-                    </passive_effect>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="nightStalkerProb">
-                        <requirement name="ProgressionLevel" progression_name="perkNightStalkerComplete" operation="Equals" value="1"/>
-                    </passive_effect>
                 </effect_group>
             </perk>
             <!-- *** 奔袭战术 -->
@@ -1047,25 +981,14 @@
                         <requirement name="NotHasBuff" buff="buffAnimalTrackerAcquired"/>
                         <requirement name="ProgressionLevel" progression_name="perkAnimalTracker" operation="GT" value="0"/>
                     </triggered_effect>
+                </effect_group>
 
+                <effect_group>
                     <effect_description level="1" desc_key="perkAnimalTrackerRank1Desc" long_desc_key="perkAnimalTrackerRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkAnimalTrackerRank2Desc" long_desc_key="perkAnimalTrackerRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkAnimalTrackerRank3Desc" long_desc_key="perkAnimalTrackerRank3LongDesc"/>
                     <effect_description level="4" desc_key="perkAnimalTrackerRank4Desc" long_desc_key="perkAnimalTrackerRank4LongDesc"/>
                     <effect_description level="5" desc_key="perkAnimalTrackerRank5Desc" long_desc_key="perkAnimalTrackerRank5LongDesc"/>
-                </effect_group>
-
-                <effect_group>
-                    <!-- Increase the chance to find Hunter's Journal books until each book is read -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="huntingProb">
-                        <!-- <requirement name="PerksUnlocked" skill_name="skillHuntingJournal" operation="LT" value="7"/> -->
-                        <requirement name="ProgressionLevel" progression_name="perkHuntingJournalComplete" operation="LT" value="1"/>
-                    </passive_effect>
-
-                    <!-- When all Hunter's Journal books have been read, set the probability bonus of finding them to 0 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="1,1" tags="huntingProb">
-                        <requirement name="ProgressionLevel" progression_name="perkHuntingJournalComplete" operation="Equals" value="1"/>
-                    </passive_effect>
                 </effect_group>
             </perk>
             <!-- *** 狩猎者 -->
@@ -1313,50 +1236,9 @@
                     <passive_effect name="CraftingTime" operation="perc_add" level="1,5" value="-0.2" tags="perkAdvancedEngineering"/>
                     <passive_effect name="CraftingTime" operation="perc_add" level="2,5" value="-0.2" tags="workbenchCrafting,cementMixerCrafting"/>
                     <passive_effect name="ElectricalTrapXP" operation="base_set" level="1,2,3,4,5" value=".15,.3,.45,.6,.75"/>
+                </effect_group>
 
-                    <!-- Increase the chance to find electrical items with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="electricianSkill"/>
-                    <!-- Increase the chance to find trap items with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="trapsSkill"/>
-                    <!-- Increase the chance to find workstations with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="workstationSkill"/>
-                    <!-- Increase the chance to find repair tools with each perk rank -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="repairingSkill"/>
-
-                    <!-- Increase the chance to find electrical crafting skill magazines with each perk rank up to crafting skill 100 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="electricianCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingElectrician" operation="LT" value="100"/>
-                    </passive_effect>
-                    <!-- Increase the chance to find trap crafting skill magazines with each perk rank up to crafting skill 75 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="trapsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingTraps" operation="LT" value="75"/>
-                    </passive_effect>
-                    <!-- Increase the chance to find workstation crafting skill magazines with each perk rank up to crafting skill 75 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="workstationCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingWorkstations" operation="LT" value="75"/>
-                    </passive_effect>
-                    <!-- Increase the chance to find repair tool crafting skill magazines with each perk rank up to crafting skill 50 -->
-                    <passive_effect name="LootProb" operation="perc_add" level="1,5" value="2,10" tags="repairToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingRepairTools" operation="LT" value="50"/>
-                    </passive_effect>
-
-                    <!-- Once electrical crafting skill reaches 100, set the probability bonus of finding electrical crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="electricianCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingElectrician" operation="Equals" value="100"/>
-                    </passive_effect>
-                    <!-- Once trap crafting skill reaches 75, set the probability bonus of finding trap crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="trapsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingTraps" operation="Equals" value="75"/>
-                    </passive_effect>
-                    <!-- Once workstation crafting skill reaches 75, set the probability bonus of finding workstation crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="workstationCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingWorkstations" operation="Equals" value="75"/>
-                    </passive_effect>
-                    <!-- Once repair tool skill reaches 50, set the probability bonus of finding repair tool crafting skill magazines to 0 -->
-                    <passive_effect name="LootProb" operation="base_set" level="1,5" value="1,1" tags="repairToolsCSM">
-                        <requirement name="ProgressionLevel" progression_name="craftingRepairTools" operation="Equals" value="50"/>
-                    </passive_effect>
-
+                <effect_group>
                     <effect_description level="1" desc_key="perkAdvancedEngineeringRank1Desc" long_desc_key="perkAdvancedEngineeringRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkAdvancedEngineeringRank2Desc" long_desc_key="perkAdvancedEngineeringRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkAdvancedEngineeringRank3Desc" long_desc_key="perkAdvancedEngineeringRank3LongDesc"/>
@@ -1370,13 +1252,9 @@
                     <passive_effect name="LockPickTime" operation="perc_subtract" level="1,3" value=".17,.375"/>
                     <passive_effect name="LockPickBreakChance" operation="perc_subtract" level="1,3" value=".1,.3"/>
                     <passive_effect name="LootQuantity" operation="base_add" level="2,3" value="1,2" tags="lockPickSkill"/>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="2,10" tags="greatHeistProb">
-                        <requirement name="ProgressionLevel" progression_name="perkGreatHeistComplete" operation="LT" value="1"/>
-                    </passive_effect>
-                    <passive_effect name="LootProb" operation="perc_add" level="1,3" value="1,1" tags="greatHeistProb">
-                        <requirement name="ProgressionLevel" progression_name="perkGreatHeistComplete" operation="Equals" value="1"/>
-                    </passive_effect>
+                </effect_group>
 
+                <effect_group>
                     <effect_description level="1" desc_key="perkLockPickingRank1Desc" long_desc_key="perkLockPickingRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkLockPickingRank2Desc" long_desc_key="perkLockPickingRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkLockPickingRank3Desc" long_desc_key="perkLockPickingRank3LongDesc"/>
@@ -1447,6 +1325,22 @@
                     <requirement name="IsNight"/>
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                </effect_group>
+                <effect_group>
+                    <requirement name="IsNight"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                    <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                </effect_group>
+                <effect_group>
+                    <requirement name="IsNight"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                    <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
                     <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
                 </effect_group>
             </book>
@@ -1495,8 +1389,28 @@
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="IsSleeping" target="other"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".5"/> <!--For UI-->
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/> <!--For UI-->
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
+                </effect_group>
+                <effect_group>
+                    <requirement name="IsNight"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <requirement name="IsSleeping" target="other"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                    <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
+                </effect_group>
+                <effect_group>
+                    <requirement name="IsNight"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <requirement name="IsSleeping" target="other"/>
+                    <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
+                    <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                    <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
                 </effect_group>
             </book>
             <!-- *** 7/7 NIGHT_STALKER_COMPLETE -->
@@ -2723,87 +2637,6 @@
 
 
 
-    <!-- ** 移除 技能增加的杂志掉落几率 （这些除外：工具摘要、巧手之家、趣味分解、医学期刊、家庭烹饪周刊、南方种植、布线101、电力陷阱、锻造指南） -->
-    <remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags, 'Skill')]"/>
-    <remove xpath="/progression/perks/perk/effect_group/passive_effect[@name='LootProb' and contains(@tags,'CSM') and @tags!='harvestingToolsCSM' and @tags!='repairToolsCSM' and @tags!='salvageToolsCSM' and @tags!='medicalCSM' and @tags!='foodCSM' and @tags!='seedCSM' and @tags!='electricianCSM' and @tags!='trapsCSM' and @tags!='workstationCSM']"/>
-
-    <!-- *** 原版技能修改 -->
-    <!-- * 潜伏3级 改为蹲下就能触发潜行伤害 弓弩、步枪、刀 -->
-    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
-        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-    </insertAfter>
-    <append xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']">
-		<effect_group>
-			<requirement name="IsNight"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
-		</effect_group>
-	</append>
-    <append xpath="/progression/perks/book[@name='perkNightStalkerStealthDamage']">
-		<effect_group>
-			<requirement name="IsNight"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-            <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
-		</effect_group>
-	</append>
-    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
-        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-    </insertAfter>
-    <append xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']">
-		<effect_group>
-			<requirement name="IsNight"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="IsSleeping" target="other"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="DamageBonus" operation="base_add" level="1" value=".5"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5"/>
-		</effect_group>
-	</append>
-    <append xpath="/progression/perks/book[@name='perkNightStalkerSlumberParty']">
-		<effect_group>
-			<requirement name="IsNight"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="IsSleeping" target="other"/>
-			<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
-				<passive_effect name="DamageBonus" operation="base_add" level="1" value=".5"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5"/>
-		</effect_group>
-	</append>
-    <insertAfter xpath="/progression/perks/book[@name='perkNightStalkerComplete']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
-        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-    </insertAfter>
-    <append xpath="/progression/perks/book[@name='perkNightStalkerComplete']">
-		<effect_group>
-			<requirement name="IsNight"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-				<passive_effect name="EntityDamage" operation="perc_add" level="1" value="2" tags="knife"/>
-		</effect_group>
-	</append>
-    <insertAfter xpath="/progression/perks/book[@name='perkRangersKnockdown']/effect_group/requirement[@name='CVarCompare' and @cvar='_notAlerted']">
-        <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-    </insertAfter>
-    <append xpath="/progression/perks/book[@name='perkRangersKnockdown']">
-		<effect_group>
-			<requirement name="ItemHasTags" tags="perkArchery"/>
-			<requirement name="ProgressionLevel" progression_name="perkRangersKnockdown" operation="Equals" value="1"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-			<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
-				<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffInjuryKnockdown01"/>
-		</effect_group>
-	</append>
-
-
-
     <!-- 虹彩技能栏 -->
     <remove xpath="/progression/attributes/attribute[@name='attGeneralPerks']"/>
     <insertAfter xpath="/progression/attributes/attribute[@name='attIntellect']">
@@ -2874,6 +2707,64 @@
                 <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
                 <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaSneakUp" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
             </level_requirements>
+
+            <!-- 潜伏 lv1-3 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="1"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <passive_effect name="LightMultiplier" operation="perc_add" value="-.15">
+                        <requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+                    </passive_effect>
+                    <passive_effect name="NoiseMultiplier" operation="perc_add" value="-.1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="2"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <passive_effect name="LightMultiplier" operation="perc_add" value="-.3">
+                        <requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+                    </passive_effect>
+                    <passive_effect name="NoiseMultiplier" operation="perc_add" value="-.2"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                    <passive_effect name="LightMultiplier" operation="perc_add" value="-.45">
+                        <requirement name="CVarCompare" cvar="_lightlevel" operation="LTE" value="65"/>
+                    </passive_effect>
+                    <passive_effect name="NoiseMultiplier" operation="perc_add" value="-.3"/>
+            </effect_group>
+
+            <!-- 潜伏 lv4-5 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" value=".3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+                <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" value=".3"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" value=".6"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".6"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
+                <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+                <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+                    <passive_effect name="DamageBonus" operation="base_add" value=".6"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".6"/>
+            </effect_group>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaSneakUpRank1Desc" long_desc_key="perkMarisaSneakUpRank1LongDesc"/>
