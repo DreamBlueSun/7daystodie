@@ -54,7 +54,7 @@
 			<effect_group>
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
 				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
 			</effect_group>
@@ -62,7 +62,7 @@
 				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
 				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-				<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts"/>
+				<requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
 				<passive_effect name="DamageBonus" operation="base_add" value=".5"/>
 				<passive_effect name="EntityDamage" operation="perc_add" value=".5"/>
 			</effect_group>
@@ -5186,6 +5186,1019 @@
 			</effect_group>
 		</buff>
 
+		<!-- 冷却 火箭筒 闪击弹 -->
+		<buff name="buffAmmoRocketAtkTypeSUCD" name_key="buffAmmoRocketAtkTypeSUCDName" description_key="buffAmmoRocketAtkTypeSUCDDesc" showonhud="true" icon="ui_game_symbol_explosion" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MarisaCanAction0Rocket" operation="set" value="1"/>
+            </effect_group>
+		</buff>
+
+		<!-- 鬼意 强化持续 -->
+		<buff name="buffEntityDamageThreeCountUpUp" hidden="true">
+			<stack_type value="replace"/>
+			<update_rate value="1"/>
+			<duration value="10"/>
+
+			<!-- 猎刀 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 砍刀 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 棍棒 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkPummelPete" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkPummelPete" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkPummelPete" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkPummelPete" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 短棒 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 长矛 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 大锤 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="add" value="3"/>
+			</effect_group>
+
+			<!-- 拳套 强化持续 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkBrawler" operation="GTE" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkBrawler" operation="set" value="100"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkBrawler" operation="LT" value="97"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkBrawler" operation="add" value="3"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 满溢 -->
+		<buff name="buffEntityDamageThreeCountUpTo100" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+		</buff>
+
+		<!-- 鬼意 猎刀 -->
+		<buff name="buffEntityDamageThreeCountPerkDeepCutsA" name_key="buffEntityDamageThreeCountPerkDeepCutsAName" description_key="buffEntityDamageThreeCountPerkDeepCutsADesc" showonhud="true" icon="ui_game_symbol_knife" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkDeepCutsA"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkSkullCrusher,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 猎刀 -->
+		<buff name="buffEntityDamageThreeCachePerkDeepCutsA" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkDeepCutsA,buffEntityDamageThreeUpPerkDeepCutsA1,buffEntityDamageThreeUpPerkDeepCutsA2,buffEntityDamageThreeUpPerkDeepCutsA3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkDeepCutsA" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkDeepCutsA" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 猎刀 -->
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsA1" name_key="buffEntityDamageThreeUpPerkDeepCutsA1Name" description_key="buffEntityDamageThreeUpPerkDeepCutsA1Desc" showonhud="true" icon="ui_game_symbol_knife" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsA2" name_key="buffEntityDamageThreeUpPerkDeepCutsA2Name" description_key="buffEntityDamageThreeUpPerkDeepCutsA2Desc" showonhud="true" icon="ui_game_symbol_knife" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsA3" name_key="buffEntityDamageThreeUpPerkDeepCutsA3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_knife" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA1,buffEntityDamageThreeUpPerkDeepCutsA2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsA2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 砍刀 -->
+		<buff name="buffEntityDamageThreeCountPerkDeepCutsB" name_key="buffEntityDamageThreeCountPerkDeepCutsBName" description_key="buffEntityDamageThreeCountPerkDeepCutsBDesc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkDeepCutsB"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkSkullCrusher,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 砍刀 -->
+		<buff name="buffEntityDamageThreeCachePerkDeepCutsB" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkDeepCutsB,buffEntityDamageThreeUpPerkDeepCutsB1,buffEntityDamageThreeUpPerkDeepCutsB2,buffEntityDamageThreeUpPerkDeepCutsB3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsB" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkDeepCutsB" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkDeepCutsB" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 砍刀 -->
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsB1" name_key="buffEntityDamageThreeUpPerkDeepCutsB1Name" description_key="buffEntityDamageThreeUpPerkDeepCutsB1Desc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsB2" name_key="buffEntityDamageThreeUpPerkDeepCutsB2Name" description_key="buffEntityDamageThreeUpPerkDeepCutsB2Desc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkDeepCutsB"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkDeepCutsB3" name_key="buffEntityDamageThreeUpPerkDeepCutsB3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkDeepCuts"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkDeepCuts">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB1,buffEntityDamageThreeUpPerkDeepCutsB2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkDeepCutsB"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkDeepCutsB2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 棍棒 -->
+		<buff name="buffEntityDamageThreeCountPerkPummelPete" name_key="buffEntityDamageThreeCountPerkPummelPeteName" description_key="buffEntityDamageThreeCountPerkPummelPeteDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkPummelPete"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkSkullCrusher,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkPummelPete" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkPummelPete" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 棍棒 -->
+		<buff name="buffEntityDamageThreeCachePerkPummelPete" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkPummelPete,buffEntityDamageThreeUpPerkPummelPete1,buffEntityDamageThreeUpPerkPummelPete2,buffEntityDamageThreeUpPerkPummelPete3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkPummelPete" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkPummelPete" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkPummelPete" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 棍棒 -->
+		<buff name="buffEntityDamageThreeUpPerkPummelPete1" name_key="buffEntityDamageThreeUpPerkPummelPete1Name" description_key="buffEntityDamageThreeUpPerkPummelPete1Desc" showonhud="true" icon="ui_game_symbol_club" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkPummelPete"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkPummelPete2" name_key="buffEntityDamageThreeUpPerkPummelPete2Name" description_key="buffEntityDamageThreeUpPerkPummelPete2Desc" showonhud="true" icon="ui_game_symbol_club" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkPummelPete"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkPummelPete1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkPummelPete3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkPummelPete1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkPummelPete"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkPummelPete3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkPummelPete1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkPummelPete3" name_key="buffEntityDamageThreeUpPerkPummelPete3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_club" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkPummelPete"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkPummelPete">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkPummelPete1,buffEntityDamageThreeUpPerkPummelPete2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkPummelPete2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkPummelPete"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkPummelPete2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 短棒 -->
+		<buff name="buffEntityDamageThreeCountPerkElectrocutioner" name_key="buffEntityDamageThreeCountPerkElectrocutionerName" description_key="buffEntityDamageThreeCountPerkElectrocutionerDesc" showonhud="true" icon="ui_game_symbol_knunchuck" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkElectrocutioner"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkSkullCrusher,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 短棒 -->
+		<buff name="buffEntityDamageThreeCachePerkElectrocutioner" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkElectrocutioner,buffEntityDamageThreeUpPerkElectrocutioner1,buffEntityDamageThreeUpPerkElectrocutioner2,buffEntityDamageThreeUpPerkElectrocutioner3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkElectrocutioner" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkElectrocutioner" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkElectrocutioner" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 短棒 -->
+		<buff name="buffEntityDamageThreeUpPerkElectrocutioner1" name_key="buffEntityDamageThreeUpPerkElectrocutioner1Name" description_key="buffEntityDamageThreeUpPerkElectrocutioner1Desc" showonhud="true" icon="ui_game_symbol_knunchuck" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkElectrocutioner2" name_key="buffEntityDamageThreeUpPerkElectrocutioner2Name" description_key="buffEntityDamageThreeUpPerkElectrocutioner2Desc" showonhud="true" icon="ui_game_symbol_knunchuck" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkElectrocutioner"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkElectrocutioner3" name_key="buffEntityDamageThreeUpPerkElectrocutioner3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_knunchuck" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkElectrocutioner">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner1,buffEntityDamageThreeUpPerkElectrocutioner2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkElectrocutioner"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkElectrocutioner2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 长矛 -->
+		<buff name="buffEntityDamageThreeCountPerkJavelinMaster" name_key="buffEntityDamageThreeCountPerkJavelinMasterName" description_key="buffEntityDamageThreeCountPerkJavelinMasterDesc" showonhud="true" icon="ui_game_symbol_spear" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkJavelinMaster"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkSkullCrusher,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 长矛 -->
+		<buff name="buffEntityDamageThreeCachePerkJavelinMaster" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkJavelinMaster,buffEntityDamageThreeUpPerkJavelinMaster1,buffEntityDamageThreeUpPerkJavelinMaster2,buffEntityDamageThreeUpPerkJavelinMaster3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkJavelinMaster" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkJavelinMaster" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkJavelinMaster" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 长矛 -->
+		<buff name="buffEntityDamageThreeUpPerkJavelinMaster1" name_key="buffEntityDamageThreeUpPerkJavelinMaster1Name" description_key="buffEntityDamageThreeUpPerkJavelinMaster1Desc" showonhud="true" icon="ui_game_symbol_spear" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkJavelinMaster"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkJavelinMaster2" name_key="buffEntityDamageThreeUpPerkJavelinMaster2Name" description_key="buffEntityDamageThreeUpPerkJavelinMaster2Desc" showonhud="true" icon="ui_game_symbol_spear" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkJavelinMaster"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkJavelinMaster"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkJavelinMaster3" name_key="buffEntityDamageThreeUpPerkJavelinMaster3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_spear" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkJavelinMaster"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkJavelinMaster">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster1,buffEntityDamageThreeUpPerkJavelinMaster2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkJavelinMaster"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkJavelinMaster2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 大锤 -->
+		<buff name="buffEntityDamageThreeCountPerkSkullCrusher" name_key="buffEntityDamageThreeCountPerkSkullCrusherName" description_key="buffEntityDamageThreeCountPerkSkullCrusherDesc" showonhud="true" icon="ui_game_symbol_sledge" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkSkullCrusher"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkBrawler"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 大锤 -->
+		<buff name="buffEntityDamageThreeCachePerkSkullCrusher" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkSkullCrusher,buffEntityDamageThreeUpPerkSkullCrusher1,buffEntityDamageThreeUpPerkSkullCrusher2,buffEntityDamageThreeUpPerkSkullCrusher3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkSkullCrusher" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkSkullCrusher" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkSkullCrusher" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 大锤 -->
+		<buff name="buffEntityDamageThreeUpPerkSkullCrusher1" name_key="buffEntityDamageThreeUpPerkSkullCrusher1Name" description_key="buffEntityDamageThreeUpPerkSkullCrusher1Desc" showonhud="true" icon="ui_game_symbol_sledge" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkSkullCrusher"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkSkullCrusher2" name_key="buffEntityDamageThreeUpPerkSkullCrusher2Name" description_key="buffEntityDamageThreeUpPerkSkullCrusher2Desc" showonhud="true" icon="ui_game_symbol_sledge" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkSkullCrusher"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkSkullCrusher"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkSkullCrusher3" name_key="buffEntityDamageThreeUpPerkSkullCrusher3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_sledge" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkSkullCrusher"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkSkullCrusher">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher1,buffEntityDamageThreeUpPerkSkullCrusher2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkSkullCrusher"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkSkullCrusher2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼意 拳套 -->
+		<buff name="buffEntityDamageThreeCountPerkBrawler" name_key="buffEntityDamageThreeCountPerkBrawlerName" description_key="buffEntityDamageThreeCountPerkBrawlerDesc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<display_value value=".MeleeAttackedOtherPerkBrawler"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeCachePerkDeepCutsA,buffEntityDamageThreeCachePerkDeepCutsB,buffEntityDamageThreeCachePerkPummelPete,buffEntityDamageThreeCachePerkElectrocutioner,buffEntityDamageThreeCachePerkJavelinMaster,buffEntityDamageThreeCachePerkSkullCrusher"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeCountUpTo100"/>
+				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkBrawler" operation="GT" value="0"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkBrawler" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼意 暂存 拳套 -->
+		<buff name="buffEntityDamageThreeCachePerkBrawler" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="LT" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountUpUp,buffEntityDamageThreeCountUpTo100"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffEntityDamageThreeCountPerkBrawler,buffEntityDamageThreeUpPerkBrawler1,buffEntityDamageThreeUpPerkBrawler2,buffEntityDamageThreeUpPerkBrawler3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkBrawler" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherPrimaryPerkBrawler" operation="set" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MeleeAttackedOtherSecondaryPerkBrawler" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 鬼人化 拳套 -->
+		<buff name="buffEntityDamageThreeUpPerkBrawler1" name_key="buffEntityDamageThreeUpPerkBrawler1Name" description_key="buffEntityDamageThreeUpPerkBrawler1Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="255,255,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkBrawler"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".04" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkBrawler2" name_key="buffEntityDamageThreeUpPerkBrawler2Name" description_key="buffEntityDamageThreeUpPerkBrawler2Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="255,245,125">
+			<stack_type value="replace"/>
+			<duration value="15"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkBrawler"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".08" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".16" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkBrawler1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="1"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkBrawler3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkBrawler1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkBrawler"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+				<requirement name="NotHasBuff" buff="buffEntityDamageThreeUpPerkBrawler3"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkBrawler1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEntityDamageThreeUpPerkBrawler3" name_key="buffEntityDamageThreeUpPerkBrawler3Name" description_key="buffEntityDamageThreeUpPerkPumme3Pete1Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="255,35,35">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkBrawler"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".12" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="1"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".24" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="2"/>
+				</passive_effect>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".36" tags="perkBrawler">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="EQ" value="3"/>
+				</passive_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffEntityDamageThreeUpPerkBrawler1,buffEntityDamageThreeUpPerkBrawler2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="1"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkBrawler2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffEntityDamageThreeCachePerkBrawler"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsB" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkPummelPete" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkElectrocutioner" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkJavelinMaster" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkSkullCrusher" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkBrawler" operation="EQ" value="0"/>
+					<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffEntityDamageThreeUpPerkBrawler2"/>
+			</effect_group>
+		</buff>
+
+		<!-- 拳套 快速连打 -->
+		<buff name="buffMeleeAttacksPerMinutePerkBrawler" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+				<passive_effect name="AttacksPerMinute" operation="base_add" value="@.CountMeleeAttacksPerMinutePerkBrawler" tags="perkBrawler"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".CountMeleeAttacksPerMinutePerkBrawler" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+
+
 		<!-- 沙鹰 烈炎净世 -->
 		<buff name="buffModBuffFireAoeEffect" hidden="true">
 			<damage_type value="heat"/>
@@ -5201,15 +6214,6 @@
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
 			</effect_group>
-		</buff>
-
-		<!-- 冷却 火箭筒 闪击弹 -->
-		<buff name="buffAmmoRocketAtkTypeSUCD" name_key="buffAmmoRocketAtkTypeSUCDName" description_key="buffAmmoRocketAtkTypeSUCDDesc" showonhud="true" icon="ui_game_symbol_explosion" icon_color="255,0,55">
-			<stack_type value="replace"/>
-			<duration value="1"/>
-            <effect_group>
-                <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".MarisaCanAction0Rocket" operation="set" value="1"/>
-            </effect_group>
 		</buff>
 
 		<!-- 寒气 -->
