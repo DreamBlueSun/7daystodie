@@ -44149,6 +44149,10 @@
 
 
 
+    <!-- 修改原版模组 -->
+    <set xpath="/item_modifiers/item_modifier[@name='modGunShotgunTubeExtenderMagazine']/effect_group/passive_effect[@name='MagazineSize']/@value">.25</set>
+    <set xpath="/item_modifiers/item_modifier[@name='modGunMagazineExtender']/effect_group/passive_effect[@name='MagazineSize']/@value">.1</set>
+    <set xpath="/item_modifiers/item_modifier[@name='modGunDrumMagazineExtender']/effect_group/passive_effect[@name='MagazineSize']/@value">.4</set>
     <!-- 虹彩炼金模组 -->
     <append xpath="/item_modifiers">
 
@@ -44195,7 +44199,7 @@
 
 
         <!-- *** 武器工具模组 -->
-        <!-- ** 匠心 L1 -->
+        <!-- ** 匠心 -->
         <item_modifier name="IridescentModWeaponL1DegradationMax" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44205,23 +44209,23 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
             <effect_group tiered="false">
+                <passive_effect name="DegradationMax" operation="perc_add" value=".5"/>
+            </effect_group>
+        </item_modifier>
+        <item_modifier name="IridescentModWeaponL2DegradationMax" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="resourceDuctTape"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="3440"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+            <effect_group tiered="false">
                 <passive_effect name="DegradationMax" operation="perc_add" value="1"/>
             </effect_group>
         </item_modifier>
-        <!-- ** 泵动弹管 L1 -->
-        <item_modifier name="IridescentModWeaponL1GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
-            <property name="CustomIconTint" value="#84E1EC"/>
-            <property name="EconomicValue" value="430"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-            <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value=".5"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 消声器 L1 -->
+
+        <!-- ** 消声器 -->
         <item_modifier name="IridescentModWeaponL1SoundSuppressorSilencer" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44247,74 +44251,6 @@
                 </passive_effect>
             </effect_group>
         </item_modifier>
-        <!-- ** 快速弹夹 L1 -->
-        <item_modifier name="IridescentModWeaponL1MagazineExtenderα" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="modGunMagazineExtender"/>
-            <property name="CustomIconTint" value="#84E1EC"/>
-            <property name="EconomicValue" value="430"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-            <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value="-.2"/>
-                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 扩容弹夹 L1 -->
-        <item_modifier name="IridescentModWeaponL1MagazineExtenderβ" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="modGunMagazineExtender"/>
-            <property name="CustomIconTint" value="#84E1EC"/>
-            <property name="EconomicValue" value="430"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-            <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value=".75"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 弹鼓 L1 -->
-        <item_modifier name="IridescentModWeaponL1DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="modGunDrumMagazineExtender"/>
-            <property name="CustomIconTint" value="#84E1EC"/>
-            <property name="EconomicValue" value="430"/>
-            <property name="Material" value="MIridescentCube"/>
-            <property name="Weight" value="43"/>
-            <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value="1.5"/>
-                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.3"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 匠心 L2 -->
-        <item_modifier name="IridescentModWeaponL2DegradationMax" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="resourceDuctTape"/>
-            <property name="CustomIconTint" value="#00BFFF"/>
-            <property name="EconomicValue" value="3440"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-            <effect_group tiered="false">
-                <passive_effect name="DegradationMax" operation="perc_add" value="2"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 泵动弹管 L2 -->
-        <item_modifier name="IridescentModWeaponL2GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
-            <property name="Extends" value="modGeneralMaster"/>
-            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
-            <property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
-            <property name="CustomIconTint" value="#00BFFF"/>
-            <property name="EconomicValue" value="3440"/>
-            <property name="Material" value="MIridescentCubeSuper"/>
-            <property name="Weight" value="86"/>
-            <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value=".625"/>
-            </effect_group>
-        </item_modifier>
-        <!-- ** 消声器 L2 -->
         <item_modifier name="IridescentModWeaponL2SoundSuppressorSilencer" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44342,7 +44278,21 @@
                 <passive_effect name="KickDegreesVerticalMax" operation="perc_add" value="-.25"/>
             </effect_group>
         </item_modifier>
-        <!-- ** 快速弹夹 L2 -->
+
+        <!-- ** 快速弹夹 -->
+        <item_modifier name="IridescentModWeaponL1MagazineExtenderα" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunMagazineExtender"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="MagazineSize" operation="perc_add" value="-.2"/>
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".2"/>
+            </effect_group>
+        </item_modifier>
         <item_modifier name="IridescentModWeaponL2MagazineExtenderα" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44353,10 +44303,23 @@
             <property name="Weight" value="86"/>
             <effect_group tiered="false">
                 <passive_effect name="MagazineSize" operation="perc_add" value="-.2"/>
-                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".25"/>
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".3"/>
             </effect_group>
         </item_modifier>
-        <!-- ** 扩容弹夹 L2 -->
+
+        <!-- ** 扩容弹夹 -->
+        <item_modifier name="IridescentModWeaponL1MagazineExtenderβ" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunMagazineExtender"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="MagazineSize" operation="perc_add" value=".2"/>
+            </effect_group>
+        </item_modifier>
         <item_modifier name="IridescentModWeaponL2MagazineExtenderβ" installable_tags="magazine,turretRanged" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44366,10 +44329,24 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
             <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value="1"/>
+                <passive_effect name="MagazineSize" operation="perc_add" value=".3"/>
             </effect_group>
         </item_modifier>
-        <!-- ** 弹鼓 L2 -->
+
+        <!-- ** 弹鼓 -->
+        <item_modifier name="IridescentModWeaponL1DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunDrumMagazineExtender"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="MagazineSize" operation="perc_add" value=".6"/>
+                <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.3"/>
+            </effect_group>
+        </item_modifier>
         <item_modifier name="IridescentModWeaponL2DrumMagazine" installable_tags="drumMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGunMagazineExtender"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -44379,14 +44356,41 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
             <effect_group tiered="false">
-                <passive_effect name="MagazineSize" operation="perc_add" value="2"/>
+                <passive_effect name="MagazineSize" operation="perc_add" value=".8"/>
                 <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="-.35"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 泵动弹管 -->
+        <item_modifier name="IridescentModWeaponL1GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="MagazineSize" operation="perc_add" value=".5"/>
+            </effect_group>
+        </item_modifier>
+        <item_modifier name="IridescentModWeaponL2GunTubeMagazine" installable_tags="modGunShotgunTubeExtenderMagazine" modifier_tags="magazine" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunShotgunTubeExtenderMagazine"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="3440"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+            <effect_group tiered="false">
+                <passive_effect name="MagazineSize" operation="perc_add" value=".75"/>
             </effect_group>
         </item_modifier>
 
 
 
         <!-- *** 特殊功能模组 -->
+
         <!-- ** 破坏抑制 我爱我家 -->
         <item_modifier name="IridescentModSpecialAhMyHome" installable_tags="weapon,tool" modifier_tags="damageDirt,damageStone,damageIron,damageWood" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGunMagazineExtender"/>
@@ -44401,6 +44405,7 @@
                 <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
             </effect_group>
         </item_modifier>
+
         <!-- ** 气吞山河 森海 -->
         <item_modifier name="IridescentModSpecialCandyKnifeFoodWater" installable_tags="weapon,tool" modifier_tags="candyKnifeFoodWater" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
