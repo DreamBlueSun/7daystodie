@@ -308,11 +308,11 @@
 			</effect_group>
 
 			<!-- 游牧民套装效果 -->
-			<effect_group>
-				<requirement name="HasBuff" buff="buffNomadSetBonus"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
-			</effect_group>
+<!--			<effect_group>-->
+<!--				<requirement name="HasBuff" buff="buffNomadSetBonus"/>-->
+<!--				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>-->
+<!--				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>-->
+<!--			</effect_group>-->
 
 			<!-- 丧尸 动物 对近战玩家 伤害减少 -->
 			<effect_group>
@@ -1553,6 +1553,55 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown3"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkPlayerExpGainDown4"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkPlayerExpGainDown5"/>
+			</effect_group>
+
+
+
+			<!-- * 幸运 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore1">
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLuckingBefore1"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking1"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore2">
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLuckingBefore2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore3">
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLuckingBefore3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore4">
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLuckingBefore4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore5">
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLuckingBefore5"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
 			</effect_group>
 
 
@@ -3041,6 +3090,179 @@
 			<effect_group>
 				<requirement name="PlayerLevel" operation="LTE" value="60"/>
 				<passive_effect name="AttributeLevel" operation="base_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 幸运 Before -->
+		<buff name="buffPerkMarisaQuestLuckingBefore1" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="1"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking1"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLuckingBefore2" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking2"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLuckingBefore3" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore3">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking3">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking3"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLuckingBefore4" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore4">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking4">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking4"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLuckingBefore5" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1202"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore5">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="5"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking5">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="5"/>
+					<requirement name="NotHasBuff" buff="buffPerkMarisaQuestLucking5"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<!-- 幸运 -->
+		<buff name="buffPerkMarisaQuestLucking1" name_key="buffPerkMarisaQuestLucking1Name" description_key="buffPerkMarisaQuestLucking1Desc" showonhud="true" icon="ui_game_symbol_twitch_celebrate" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+                <passive_effect name="QuestBonusItemReward" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLucking2" name_key="buffPerkMarisaQuestLucking2Name" description_key="buffPerkMarisaQuestLucking2Desc" showonhud="true" icon="ui_game_symbol_twitch_celebrate" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1,buffPerkMarisaQuestLucking1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLucking2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="QuestBonusItemReward" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLucking3" name_key="buffPerkMarisaQuestLucking3Name" description_key="buffPerkMarisaQuestLucking3Desc" showonhud="true" icon="ui_game_symbol_twitch_celebrate" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1,buffPerkMarisaQuestLucking1,buffPerkMarisaQuestLuckingBefore2,buffPerkMarisaQuestLucking2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLucking3">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="QuestBonusItemReward" operation="perc_add" value=".3"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLucking4" name_key="buffPerkMarisaQuestLucking4Name" description_key="buffPerkMarisaQuestLucking4Desc" showonhud="true" icon="ui_game_symbol_twitch_celebrate" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1,buffPerkMarisaQuestLucking1,buffPerkMarisaQuestLuckingBefore2,buffPerkMarisaQuestLucking2,buffPerkMarisaQuestLuckingBefore3,buffPerkMarisaQuestLucking3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLucking4">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking3">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="QuestBonusItemReward" operation="perc_add" value=".5"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaQuestLucking5" name_key="buffPerkMarisaQuestLucking5Name" description_key="buffPerkMarisaQuestLucking5Desc" showonhud="true" icon="ui_game_symbol_twitch_celebrate" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1,buffPerkMarisaQuestLucking1,buffPerkMarisaQuestLuckingBefore2,buffPerkMarisaQuestLucking2,buffPerkMarisaQuestLuckingBefore3,buffPerkMarisaQuestLucking3,buffPerkMarisaQuestLuckingBefore4,buffPerkMarisaQuestLucking4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLucking5">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="5"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking4">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking3">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking2">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffPerkMarisaQuestLucking1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="Equals" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="QuestBonusItemReward" operation="perc_add" value=".5"/>
+                <passive_effect name="QuestRewardChoiceCount" operation="base_add" value="1"/>
 			</effect_group>
 		</buff>
 
