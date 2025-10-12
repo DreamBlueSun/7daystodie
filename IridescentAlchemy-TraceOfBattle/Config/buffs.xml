@@ -3079,12 +3079,23 @@
 
 
 		<!-- 属性解放 间不容发 -->
-		<buff name="buffHairsBreadth" name_key="buffHairsBreadthName" description_key="buffHairsBreadthDesc" showonhud="true" icon="ui_game_symbol_rifle" icon_color="0,191,255">
+		<buff name="buffHairsBreadth" name_key="buffHairsBreadthName" description_key="buffHairsBreadthDesc" showonhud="true" icon="ui_game_symbol_shape_ammo" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="5"/>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaAttributeLiberation" operation="GTE" value="1"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="@.buffHairsBreadth" tags="perkMachineGunner"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="1"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="3"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
 		<!-- 属性解放 背水一战 -->
@@ -4598,9 +4609,9 @@
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
 				<requirement name="CVarCompare" cvar="$marisaBleedEffectAmount" operation="GTE" value="@$marisaBleedCouldCount"/>
+
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaBleedEffectAmount" operation="set" value="0"/>
-
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaBleedEffectAmount" operation="set" value="0"/>
 
@@ -4724,9 +4735,9 @@
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
 				<requirement name="CVarCompare" cvar="$marisaRadiationPoolEffectAmount" operation="GTE" value="@$marisaRadiationPoolCouldCount"/>
+
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPool"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaRadiationPoolEffectAmount" operation="set" value="0"/>
 
@@ -4811,17 +4822,23 @@
 		</buff>
 	</insertAfter>
 	<!-- ** 燃烧 -->
-	<remove xpath="/buffs/buff[@name='buffBurningElement' or @name='buffBurningEnvironment' or @name='buffBurningFlamingArrow' or @name='buffBurningMolotov' or @name='buffHazardBurningElement' or @name='buffIsOnFire']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffBurningZombie']">
+	<remove xpath="/buffs/buff[@name='buffBurningZombie' or @name='buffBurningElement' or @name='buffBurningEnvironment' or @name='buffBurningFlamingArrow' or @name='buffBurningMolotov' or @name='buffHazardBurningElement' or @name='buffIsOnFire']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
+		<buff name="buffBurningZombie" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="60"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurningZombie"/>
+			</effect_group>
+		</buff>
 		<buff name="buffBurningElement" hidden="true">
 			<stack_type value="ignore"/>
 			<duration value=".5"/>
 			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
 			</effect_group>
@@ -4833,11 +4850,6 @@
 			<stack_type value="ignore"/>
 			<duration value=".5"/>
 			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
 			</effect_group>
@@ -4849,11 +4861,6 @@
 			<stack_type value="ignore"/>
 			<duration value=".5"/>
 			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="50"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
 			</effect_group>
@@ -4865,11 +4872,6 @@
 			<stack_type value="ignore"/>
 			<duration value=".5"/>
 			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="100"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
 			</effect_group>
@@ -4881,11 +4883,6 @@
 			<stack_type value="ignore"/>
 			<duration value=".5"/>
 			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
 			</effect_group>
@@ -4894,15 +4891,35 @@
 			</effect_group>
 		</buff>
 		<!-- 燃烧 前置 -->
-		<buff name="buffIsOnFireEffect">
+		<buff name="buffIsOnFireEffect" hidden="true">
 			<stack_type value="ignore"/>
 			<update_rate value=".5"/>
 			<duration value="0"/>
 
 			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireCount" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDurationMultiply" operation="set" value="1.2"/>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDurationMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDurationMultiply" operation="add" value="@$marisaPerkFireDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireDurationMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireDurationMultiply" operation="add" value="@$marisaPerkFireDurationMultiply"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/>
+				</triggered_effect>
 			</effect_group>
 
 			<effect_group>
@@ -4919,9 +4936,9 @@
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
 				<requirement name="CVarCompare" cvar="$marisaFireEffectAmount" operation="GTE" value="@$marisaFireCouldCount"/>
+
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0"/>
-
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireEffectAmount" operation="set" value="0"/>
 
@@ -4972,9 +4989,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="5"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="20"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="set" value="30"><requirement name="EntityTagCompare" tags="bossMarisa"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="multiply" value="@$marisaFireDurationMultiply">
-					<requirement name="!EntityTagCompare" tags="player"/>
-				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaFireDuration" operation="multiply" value="@$marisaFireDurationMultiply"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaFireDuration" operation="add" value="-1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire">
 					<requirement name="CVarCompare" cvar="$marisaFireDuration" operation="LTE" value="0"/>
@@ -5034,9 +5049,29 @@
 			<duration value="0"/>
 
 			<effect_group>
-				<requirement name="!EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedCount" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDurationMultiply" operation="set" value="1.2"/>
+			</effect_group>
+
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDurationMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDurationMultiply" operation="add" value="@$marisaPerkShockedDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedDurationMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedDurationMultiply" operation="add" value="@$marisaPerkShockedDurationMultiply"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/>
+				</triggered_effect>
 			</effect_group>
 
 			<effect_group>
@@ -5053,9 +5088,9 @@
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffShocked"/>
 				<requirement name="CVarCompare" cvar="$marisaShockedEffectAmount" operation="GTE" value="@$marisaShockedCouldCount"/>
+
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShocked"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0"/>
-
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="set" value="0"/>
 
@@ -5097,9 +5132,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDuration" operation="set" value="5"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDuration" operation="set" value="3"><requirement name="EntityTagCompare" tags="player"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDuration" operation="set" value="10"><requirement name="EntityTagCompare" tags="bossMarisa"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDuration" operation="multiply" value="@$marisaShockedDurationMultiply">
-					<requirement name="!EntityTagCompare" tags="player"/>
-				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedDuration" operation="multiply" value="@$marisaShockedDurationMultiply"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$marisaShockedDuration" operation="add" value="-1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked">
 					<requirement name="CVarCompare" cvar="$marisaShockedDuration" operation="LTE" value="0"/>

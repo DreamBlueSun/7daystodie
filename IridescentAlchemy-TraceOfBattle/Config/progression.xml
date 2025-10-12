@@ -3049,22 +3049,6 @@
                 <effect_description level="1" desc_key="perkMarisaFeintRank1Desc" long_desc_key="perkMarisaFeintRank1LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 搬运达人 -->
-        <perk name="perkMarisaCarryStar" parent="skillIridescentIntensify" name_key="perkMarisaCarryStarName" desc_key="perkMarisaCarryStarDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="10">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3" value="6,12,18"/>
-            </effect_group>
-
-            <effect_group>
-                <effect_description level="1" desc_key="perkMarisaCarryStarRank1Desc" long_desc_key="perkMarisaCarryStarRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaCarryStarRank2Desc" long_desc_key="perkMarisaCarryStarRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaCarryStarRank3Desc" long_desc_key="perkMarisaCarryStarRank3LongDesc"/>
-            </effect_group>
-        </perk>
         <!-- ** 纳刀术 -->
         <perk name="perkMarisaNanoKnife" parent="skillIridescentIntensify" name_key="perkMarisaNanoKnifeName" desc_key="perkMarisaNanoKnifeDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="20">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -3107,6 +3091,83 @@
                 <effect_description level="3" desc_key="perkPlayerExpGainDownRank3Desc" long_desc_key="perkPlayerExpGainDownRank3LongDesc"/>
                 <effect_description level="4" desc_key="perkPlayerExpGainDownRank4Desc" long_desc_key="perkPlayerExpGainDownRank4LongDesc"/>
                 <effect_description level="5" desc_key="perkPlayerExpGainDownRank5Desc" long_desc_key="perkPlayerExpGainDownRank5LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 炸弹客 -->
+        <perk name="perkMarisaBomberman" parent="skillIridescentIntensify" name_key="perkMarisaBombermanName" desc_key="perkMarisaBombermanDesc" icon="ui_game_symbol_diamond" max_level="7" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="6">
+                <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
+                <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaBomberman" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
+            </level_requirements>
+            <level_requirements level="7">
+                <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
+                <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaBomberman" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
+            </level_requirements>
+
+            <effect_group>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.35,.45" tags="perkDemolitionsExpert,perkArchery"/>
+                <passive_effect name="ExplosionEntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.35,.45" tags="perkDemolitionsExpert,perkArchery"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="launcher"/>
+                <requirement name="RoundsInMagazine" operation="GT" value="0"/>
+                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="3"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="ammo"/>
+                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+                <requirement name="CVarCompare" target="self" cvar=".SelfBoomItemActivate" operation="Equals" value="1"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="3"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="LT" value="6"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="launcher"/>
+                <requirement name="RoundsInMagazine" operation="GT" value="0"/>
+                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="6"/>
+                <triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="2"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="ammo"/>
+                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
+                <requirement name="CVarCompare" target="self" cvar=".SelfBoomItemActivate" operation="Equals" value="1"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="6"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="2"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaBombermanRank1Desc" long_desc_key="perkMarisaBombermanRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaBombermanRank2Desc" long_desc_key="perkMarisaBombermanRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaBombermanRank3Desc" long_desc_key="perkMarisaBombermanRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaBombermanRank4Desc" long_desc_key="perkMarisaBombermanRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkMarisaBombermanRank5Desc" long_desc_key="perkMarisaBombermanRank5LongDesc"/>
+                <effect_description level="6" desc_key="perkMarisaBombermanRank6Desc" long_desc_key="perkMarisaBombermanRank6LongDesc"/>
+                <effect_description level="7" desc_key="perkMarisaBombermanRank7Desc" long_desc_key="perkMarisaBombermanRank7LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 强化持续 -->
+        <perk name="perkMarisaThreeCountUpUp" parent="skillIridescentIntensify" name_key="perkMarisaThreeCountUpUpName" desc_key="perkMarisaThreeCountUpUpDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="20">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$buffThreeCountUpUpDuration" operation="set" level="0,1,2,3" value="10,12,14,16"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaThreeCountUpUpRank1Desc" long_desc_key="perkMarisaThreeCountUpUpRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaThreeCountUpUpRank2Desc" long_desc_key="perkMarisaThreeCountUpUpRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaThreeCountUpUpRank3Desc" long_desc_key="perkMarisaThreeCountUpUpRank3LongDesc"/>
             </effect_group>
         </perk>
 
@@ -4187,35 +4248,23 @@
             </effect_group>
         </perk>
         <!-- ** 燃烧耐性 -->
-        <perk name="perkMarisaFireRemove" parent="skillIridescentResistant" name_key="perkMarisaFireRemoveName" desc_key="perkMarisaFireRemoveDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="20">
+        <perk name="perkMarisaFireRemove" parent="skillIridescentResistant" name_key="perkMarisaFireRemoveName" desc_key="perkMarisaFireRemoveDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="20">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="GTE" value="1"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffBurningFlamingArrow"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffBurningMolotov"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffBurningEnvironmentHack"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffBurningEnvironment"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffBurningElement"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffHazardBurningElement" />
-            </effect_group>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaFireRemoveRank1Desc" long_desc_key="perkMarisaFireRemoveRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaFireRemoveRank2Desc" long_desc_key="perkMarisaFireRemoveRank2LongDesc"/>
             </effect_group>
         </perk>
         <!-- ** 电击耐性 -->
-        <perk name="perkMarisaShockedRemove" parent="skillIridescentResistant" name_key="perkMarisaShockedRemoveName" desc_key="perkMarisaShockedRemoveDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="20">
+        <perk name="perkMarisaShockedRemove" parent="skillIridescentResistant" name_key="perkMarisaShockedRemoveName" desc_key="perkMarisaShockedRemoveDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="20">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="GTE" value="1"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveBuff" buff="buffShocked"/>
-            </effect_group>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaShockedRemoveRank1Desc" long_desc_key="perkMarisaShockedRemoveRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaShockedRemoveRank2Desc" long_desc_key="perkMarisaShockedRemoveRank2LongDesc"/>
             </effect_group>
         </perk>
         <!-- ** 饥饿耐性 -->
@@ -4285,6 +4334,59 @@
                 <effect_description level="3" desc_key="perkMarisaMiasmaticErosionResistanceRank3Desc" long_desc_key="perkMarisaMiasmaticErosionResistanceRank3LongDesc"/>
             </effect_group>
         </perk>
+        <!-- ** 属性耐性 -->
+        <perk name="perkMarisaDeEffectRemove" parent="skillIridescentResistant" name_key="perkMarisaDeEffectRemoveName" desc_key="perkMarisaDeEffectRemoveDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="20">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <!-- 属性耐性 0 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="0"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkFireDurationMultiply" operation="set" value="0"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkShockedDurationMultiply" operation="set" value="0"/>
+            </effect_group>
+            <!-- 燃烧耐性 0 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="0"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkFireDurationMultiply" operation="set" value="0"/>
+            </effect_group>
+            <!-- 电击耐性 0 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="0"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkShockedDurationMultiply" operation="set" value="0"/>
+            </effect_group>
+
+            <!-- 属性耐性 1 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="1"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkFireDurationMultiply" operation="set" value="-.4"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkShockedDurationMultiply" operation="set" value="-.4"/>
+            </effect_group>
+            <!-- 燃烧耐性 1 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="1"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkFireDurationMultiply" operation="set" value="-.6"/>
+            </effect_group>
+            <!-- 电击耐性 1 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="1"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkShockedDurationMultiply" operation="set" value="-.6"/>
+            </effect_group>
+
+            <!-- 属性耐性 2 -->
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="2"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkFireDurationMultiply" operation="set" value="-.8"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$marisaPerkShockedDurationMultiply" operation="set" value="-.8"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaDeEffectRemoveRank1Desc" long_desc_key="perkMarisaDeEffectRemoveRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaDeEffectRemoveRank2Desc" long_desc_key="perkMarisaDeEffectRemoveRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaDeEffectRemoveRank3Desc" long_desc_key="perkMarisaDeEffectRemoveRank3LongDesc"/>
+            </effect_group>
+        </perk>
 
         <!-- *** 道具类技能 -->
         <!-- ** 箭矢自动拾取 -->
@@ -4325,65 +4427,20 @@
                 <effect_description level="5" desc_key="perkMarisaFavoriteMushroomRank5Desc" long_desc_key="perkMarisaFavoriteMushroomRank5LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 炸弹客 -->
-        <perk name="perkMarisaBomberman" parent="skillIridescentItem" name_key="perkMarisaBombermanName" desc_key="perkMarisaBombermanDesc" icon="ui_game_symbol_diamond" max_level="7" base_skill_point_cost="30">
+        <!-- ** 搬运达人 -->
+        <perk name="perkMarisaCarryStar" parent="skillIridescentItem" name_key="perkMarisaCarryStarName" desc_key="perkMarisaCarryStarDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="10">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="6">
-                <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
-                <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaBomberman" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
-            </level_requirements>
-            <level_requirements level="7">
-                <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
-                <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaBomberman" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
-            </level_requirements>
 
             <effect_group>
-                <passive_effect name="ExplosionBlockDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.35,.45" tags="perkDemolitionsExpert,perkArchery"/>
-                <passive_effect name="ExplosionEntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.35,.45" tags="perkDemolitionsExpert,perkArchery"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="HoldingItemHasTags" tags="launcher"/>
-                <requirement name="RoundsInMagazine" operation="GT" value="0"/>
-                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="3"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="LT" value="6"/>
-                <triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="1"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="HoldingItemHasTags" tags="ammo"/>
-                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
-                <requirement name="CVarCompare" target="self" cvar=".SelfBoomItemActivate" operation="Equals" value="1"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="3"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="LT" value="6"/>
-                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="1"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="HoldingItemHasTags" tags="launcher"/>
-                <requirement name="RoundsInMagazine" operation="GT" value="0"/>
-                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="6"/>
-                <triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="2"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="HoldingItemHasTags" tags="ammo"/>
-                <requirement name="HoldingItemHasTags" tags="perkDemolitionsExpert"/>
-                <requirement name="CVarCompare" target="self" cvar=".SelfBoomItemActivate" operation="Equals" value="1"/>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaBomberman" operation="GTE" value="6"/>
-                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffPerkMarisaBombermanDef" duration="2"/>
+                <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3" value="6,12,18"/>
             </effect_group>
 
             <effect_group>
-                <effect_description level="1" desc_key="perkMarisaBombermanRank1Desc" long_desc_key="perkMarisaBombermanRank1LongDesc"/>
-                <effect_description level="2" desc_key="perkMarisaBombermanRank2Desc" long_desc_key="perkMarisaBombermanRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaBombermanRank3Desc" long_desc_key="perkMarisaBombermanRank3LongDesc"/>
-                <effect_description level="4" desc_key="perkMarisaBombermanRank4Desc" long_desc_key="perkMarisaBombermanRank4LongDesc"/>
-                <effect_description level="5" desc_key="perkMarisaBombermanRank5Desc" long_desc_key="perkMarisaBombermanRank5LongDesc"/>
-                <effect_description level="6" desc_key="perkMarisaBombermanRank6Desc" long_desc_key="perkMarisaBombermanRank6LongDesc"/>
-                <effect_description level="7" desc_key="perkMarisaBombermanRank7Desc" long_desc_key="perkMarisaBombermanRank7LongDesc"/>
+                <effect_description level="1" desc_key="perkMarisaCarryStarRank1Desc" long_desc_key="perkMarisaCarryStarRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaCarryStarRank2Desc" long_desc_key="perkMarisaCarryStarRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaCarryStarRank3Desc" long_desc_key="perkMarisaCarryStarRank3LongDesc"/>
             </effect_group>
         </perk>
         <!-- ** 广域化 -->
@@ -4877,24 +4934,48 @@
                 <effect_description level="3" desc_key="perkMarisaEffectIntensifyRank3Desc" long_desc_key="perkMarisaEffectIntensifyRank3LongDesc"/>
             </effect_group>
         </perk>
+        <!-- ** 贯星 -->
+        <perk name="perkMarisaThroughStars" parent="skillIridescentEnhanced" name_key="perkMarisaThroughStarsName" desc_key="perkMarisaThroughStarsDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
+            <effect_group>
+                <passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.1" tags="jumping"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaThroughStars" operation="GTE" value="1"/>
+                <triggered_effect trigger="onSelfJump" action="AddBuff" buff="buffperkMarisaThroughStars"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaThroughStarsRank1Desc" long_desc_key="perkMarisaThroughStarsRank1LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 间不容发 -->
+        <perk name="perkMarisaHairsBreadth" parent="skillIridescentEnhanced" name_key="perkMarisaHairsBreadthName" desc_key="perkMarisaHairsBreadthDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="GTE" value="1"/>
+                <triggered_effect trigger="onReloadStop" action="AddBuff" buff="buffHairsBreadth"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaHairsBreadthRank1Desc" long_desc_key="perkMarisaHairsBreadthRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaHairsBreadthRank2Desc" long_desc_key="perkMarisaHairsBreadthRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaHairsBreadthRank3Desc" long_desc_key="perkMarisaHairsBreadthRank3LongDesc"/>
+            </effect_group>
+        </perk>
+
+
+        <!-- *** 套装类技能 -->
     </append>
 
 
 
     <!-- 虹彩技能 极意 -->
     <append xpath="/progression/perks">
-
-        <!-- 虹彩：套装类技能 -->
-        <!-- ** 霜爪丧尸的霸气 -->
-        <perk name="t3SuitPerkMarisaFrostclawAggressiveness" parent="skillIridescentSuit" name_key="t3SuitPerkMarisaFrostclawAggressivenessName" desc_key="t3SuitPerkMarisaFrostclawAggressivenessDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="50">
-            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <effect_group>
-                <effect_description level="1" desc_key="t3SuitPerkMarisaFrostclawAggressivenessRank1Desc" long_desc_key="t3SuitPerkMarisaFrostclawAggressivenessRank1LongDesc"/>
-            </effect_group>
-        </perk>
-
-
 
         <!-- ** 极意 精灵加护 -->
         <perk name="t3SuitPerkMarisaDefensiveElf" parent="skillIridescentSuit" name_key="t3SuitPerkMarisaDefensiveElfName" desc_key="t3SuitPerkMarisaDefensiveElfDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="50">
