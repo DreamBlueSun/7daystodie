@@ -2483,6 +2483,45 @@
 			</effect_group>
 		</buff>
 
+		<!-- 间不容发 -->
+		<buff name="buffHairsBreadth" name_key="buffHairsBreadthName" description_key="buffHairsBreadthDesc" showonhud="true" icon="ui_game_symbol_shape_ammo" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="5"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="1"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="3"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+
+		<!-- 吸血鬼之吻 -->
+		<buff name="buffPerkMarisaVampireKiss" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="4"/>
+			</effect_group>
+		</buff>
+
 		<!-- 转祸为福 -->
 		<buff name="buffPerkMarisaTurnBadLuckIntoABlessing" name_key="buffPerkMarisaTurnBadLuckIntoABlessingName" description_key="buffPerkMarisaTurnBadLuckIntoABlessingDesc" showonhud="true" icon="ui_game_symbol_death" icon_color="0,191,255">
 			<stack_type value="replace"/>
@@ -2517,26 +2556,6 @@
 
 
 
-		<!-- 属性解放 间不容发 -->
-		<buff name="buffHairsBreadth" name_key="buffHairsBreadthName" description_key="buffHairsBreadthDesc" showonhud="true" icon="ui_game_symbol_shape_ammo" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="5"/>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="1"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="2"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaHairsBreadth" operation="EQ" value="3"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
 		<!-- 属性解放 背水一战 -->
 		<buff name="buffADesperateBattle" name_key="buffADesperateBattleName" description_key="buffADesperateBattleDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
 			<stack_type value="replace"/>

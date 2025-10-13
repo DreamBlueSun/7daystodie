@@ -4795,15 +4795,15 @@
 
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="1"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="4"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="2"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="8"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="GTE" value="3"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="7"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="12"/>
             </effect_group>
 
             <effect_group>
@@ -4996,6 +4996,24 @@
                 <effect_description level="1" desc_key="perkMarisaHairsBreadthRank1Desc" long_desc_key="perkMarisaHairsBreadthRank1LongDesc"/>
                 <effect_description level="2" desc_key="perkMarisaHairsBreadthRank2Desc" long_desc_key="perkMarisaHairsBreadthRank2LongDesc"/>
                 <effect_description level="3" desc_key="perkMarisaHairsBreadthRank3Desc" long_desc_key="perkMarisaHairsBreadthRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 吸血鬼之吻 -->
+        <perk name="perkMarisaVampireKiss" parent="skillIridescentEnhanced" name_key="perkMarisaVampireKissName" desc_key="perkMarisaVampireKissDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="GTE" value="1"/>
+                <requirement name="IsAlive" target="other"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaVampireKiss"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaVampireKissRank1Desc" long_desc_key="perkMarisaVampireKissRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaVampireKissRank2Desc" long_desc_key="perkMarisaVampireKissRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaVampireKissRank3Desc" long_desc_key="perkMarisaVampireKissRank3LongDesc"/>
             </effect_group>
         </perk>
 
