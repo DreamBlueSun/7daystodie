@@ -150,6 +150,19 @@
 
 	<!-- *** 玩家等级不再增加 血量、体力、饱食度、水分 -->
 	<remove xpath="/buffs/buff[@name='buffStatusCheck01']/effect_group/passive_effect[@name='HealthMax' or @name='StaminaMax' or @name='WaterMax' or @name='FoodMax']"/>
+	<!-- *** DEBUFF的血量上限降低 -->
+	<set xpath="/buffs/buff[@name='buffInjuryAbrasion' or @name='buffInjuryAbrasionTreated']/effect_group/passive_effect[@name='HealthMaxBlockage']/@value">10</set>
+	<set xpath="/buffs/buff[@name='buffLegSprained' or @name='buffLegBroken' or @name='buffLegSplinted' or @name='buffLegCast']/effect_group/passive_effect[@name='HealthMaxBlockage']">10</set>
+	<set xpath="/buffs/buff[@name='buffArmSprained' or @name='buffArmBroken' or @name='buffArmSplinted' or @name='buffArmCast']/effect_group/passive_effect[@name='HealthMaxBlockage']">10</set>
+	<set xpath="/buffs/buff[@name='buffFatigued']/effect_group/passive_effect[@name='HealthMaxBlockage']">5</set>
+	<set xpath="/buffs/buff[@name='buffLaceration' or @name='buffInjuryConcussion']/effect_group/passive_effect[@name='HealthMaxBlockage']">10</set>
+	<!-- *** 饥饿和口渴的体力上限降低 -->
+	<set xpath="/buffs/buff[@name='buffStatusHungry01']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">20</set>
+	<set xpath="/buffs/buff[@name='buffStatusHungry02']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">40</set>
+	<set xpath="/buffs/buff[@name='buffStatusHungry03']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">60</set>
+	<set xpath="/buffs/buff[@name='buffStatusThirsty01']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">10</set>
+	<set xpath="/buffs/buff[@name='buffStatusThirsty02']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">20</set>
+	<set xpath="/buffs/buff[@name='buffStatusThirsty03']/effect_group/passive_effect[@name='StaminaMaxBlockage']/@value">30</set>
 
 	<!-- *** 脑震荡不再降低属性 -->
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
@@ -3503,17 +3516,14 @@
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="LT" value="1"/>
 				<passive_effect name="HealthMax" operation="perc_add" value="-.4"/>
-				<passive_effect name="StaminaMax" operation="perc_add" value="-.4"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="1"/>
 				<passive_effect name="HealthMax" operation="perc_add" value="-.16"/>
-				<passive_effect name="StaminaMax" operation="perc_add" value="-.16"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="2"/>
 				<passive_effect name="HealthMax" operation="perc_add" value="-.04"/>
-				<passive_effect name="StaminaMax" operation="perc_add" value="-.04"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
