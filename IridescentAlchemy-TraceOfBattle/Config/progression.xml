@@ -862,31 +862,31 @@
 
             <!-- *** 隐蔽之击 -->
             <perk name="perkHiddenStrike" parent="skillAgilityAthletics" name_key="perkHiddenStrikeName" desc_key="perkHiddenStrikeDesc" icon="ui_game_symbol_sneak_attack" max_level="3">
-                <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
-                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
-                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+                <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="7" desc_key="reqAgilityLevel07"/></level_requirements>
+                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="10" desc_key="reqAgilityLevel10"/></level_requirements>
 
                 <effect_group name="regular weapons, sledgehammer">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="1.5,1.7,1.9,2.1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="0,1,2,3" value=".5,.7,.9,1.1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="100,200,300,400"/>
                 </effect_group>
 
                 <effect_group>
@@ -1325,14 +1325,16 @@
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
                 <effect_group>
                     <requirement name="IsNight"/>
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
                 <effect_group>
                     <requirement name="IsNight"/>
@@ -1340,7 +1342,8 @@
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
             </book>
             <!-- *** NIGHT_STALKER_VOLUME_02_SILENT -->
@@ -1389,8 +1392,8 @@
                     <requirement name="IsSleeping" target="other"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/> <!--For UI-->
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
                 <effect_group>
                     <requirement name="IsNight"/>
@@ -1398,8 +1401,8 @@
                     <requirement name="IsSleeping" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
                 <effect_group>
                     <requirement name="IsNight"/>
@@ -1408,8 +1411,8 @@
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="1" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="1" value=".2"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="1" value="50"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="1" value="50"/>
                 </effect_group>
             </book>
             <!-- *** 7/7 NIGHT_STALKER_COMPLETE -->
@@ -2738,31 +2741,31 @@
                 <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
                 <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                 <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                <passive_effect name="DamageBonus" operation="base_add" value=".3"/>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+                <passive_effect name="DamageBonus" operation="base_add" value="100"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="100"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="4"/>
                 <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                 <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                 <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                <passive_effect name="DamageBonus" operation="base_add" value=".3"/>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+                <passive_effect name="DamageBonus" operation="base_add" value="100"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="100"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
                 <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                 <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                <passive_effect name="DamageBonus" operation="base_add" value=".6"/>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".6"/>
+                <passive_effect name="DamageBonus" operation="base_add" value="200"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="200"/>
             </effect_group>
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="Equals" value="5"/>
                 <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                 <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                 <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                <passive_effect name="DamageBonus" operation="base_add" value=".6"/>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".6"/>
+                <passive_effect name="DamageBonus" operation="base_add" value="200"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="200"/>
             </effect_group>
 
             <effect_group>
