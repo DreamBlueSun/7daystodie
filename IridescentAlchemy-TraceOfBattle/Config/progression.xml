@@ -9,12 +9,10 @@
 
 
 
-    <!-- *** 原版属性爆头伤害加成降低 -->
+    <!-- *** 原版属性爆头伤害加成取消 -->
     <remove xpath="/progression/attributes/attribute[@name='attPerception' or @name='attStrength' or @name='attFortitude' or @name='attAgility' or @name='attIntellect']/effect_group/passive_effect[@name='DamageModifier']"/>
     <insertAfter xpath="/progression/attributes/attribute[@name='attPerception' or @name='attStrength' or @name='attFortitude' or @name='attAgility' or @name='attIntellect']/effect_group/passive_effect[@name='DismemberChance']">
         <passive_effect name="DismemberChance" operation="base_add" level="2,3,4,5,6,7,8,9,10" value="-.05,-.1,-.15,-.2,-.25,-.3,-.35,-.4,.45"/>
-        <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7,8,9,10" value="-1,-1,-1,-1,-1,-1,-1,-1,-1,-1" tags="head"/>
-        <passive_effect name="DamageModifier" operation="perc_add" level="1,10" value=".05,.5" tags="head"/>
     </insertAfter>
 
     <!-- *** 原版技能修改 -->
@@ -1359,7 +1357,7 @@
             <book name="perkNightStalkerBlades" parent="skillNightStalker" max_level="1" base_skill_point_cost="0" desc_key="perkNightStalkerBladesDesc" long_desc_key="perkNightStalkerBladesLongDesc">
                 <effect_group>
                     <requirement name="IsNight"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkDeepCuts"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkDeepCuts"/>
                 </effect_group>
             </book>
             <!-- *** NIGHT_STALKER_VOLUME_04_ADRENALINE -->
@@ -1374,7 +1372,7 @@
             <book name="perkNightStalkerArchery" parent="skillNightStalker" max_level="1" base_skill_point_cost="0" desc_key="perkNightStalkerArcheryDesc" long_desc_key="perkNightStalkerArcheryLongDesc">
                 <effect_group>
                     <requirement name="IsNight"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkArchery"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkArchery"/>
                 </effect_group>
             </book>
             <!-- *** NIGHT_STALKER_VOLUME_06_TWILIGHT -->
@@ -1429,7 +1427,7 @@
             <!-- *** BATTER_UP_VOLUME_01_BIG_HITS -->
             <book name="perkBatterUpBigHits" parent="skillBatterUp" max_level="1" base_skill_point_cost="0" desc_key="perkBatterUpBigHitsDesc" long_desc_key="perkBatterUpBigHitsLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkPummelPete"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkPummelPete"/>
                 </effect_group>
             </book>
             <!-- *** BATTER_UP_VOLUME_02_STEALING_BASES -->
@@ -1501,7 +1499,7 @@
             <!-- Do 10% more damage with spears. -->
             <book name="perkSpearHunter1Damage" parent="skillSpearHunter" max_level="1" base_skill_point_cost="0" desc_key="perkSpearHunter1DamageDesc" long_desc_key="perkSpearHunter1DamageLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkJavelinMaster"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkJavelinMaster"/>
                 </effect_group>
             </book>
             <!-- *** SPEAR_HUNTER_VOLUME_02_MAINTENANCE -->
@@ -1531,7 +1529,7 @@
                 <effect_group>
                     <requirement name="ItemHasTags" tags="perkJavelinMaster"/>
                     <requirement name="CVarCompare" cvar="ragdoll" operation="Equals" value="1" target="other"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".5" tags="secondary"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="secondary"/>
                 </effect_group>
             </book>
             <!-- *** SPEAR_HUNTER_VOLUME_05_RAPID_STRIKE -->
@@ -1597,9 +1595,9 @@
             <!-- *** SLEDGE_SAGA_VOLUME_04_PULVERIZING_FINISHERS -->
             <book name="perkSledgeSagaPulverizingFinishers" parent="skillSledgeSaga" max_level="1" base_skill_point_cost="0" name_key="bookSledgeSagaPulverizingFinishers" desc_key="perkSledgeSagaPulverizingFinishersDesc" long_desc_key="perkSledgeSagaPulverizingFinishersLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" value=".25" tags="perkSkullCrusher">
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".1" tags="perkSkullCrusher">
                         <requirement name="ProgressionLevel" progression_name="perkSledgeSagaPulverizingFinishers" operation="Equals" value="1"/>
-                        <requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".3" target="other"/>
+                        <requirement name="StatComparePercCurrentToMax" stat="health" operation="LTE" value=".35" target="other"/>
                     </passive_effect>
                 </effect_group>
             </book>
@@ -1647,7 +1645,7 @@
             <book name="perkBarBrawling1BasicMoves" parent="skillBarBrawling" max_level="1" base_skill_point_cost="0" desc_key="perkBarBrawling1BasicMovesDesc" long_desc_key="perkBarBrawling1BasicMovesLongDesc">
                 <!-- Do 10% more damage with fists, leather, brass and spiked knuckle weapons. -->
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkBrawler"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkBrawler"/>
                 </effect_group>
             </book>
             <!-- *** BAR_BRAWLING_VOLUME_02_KNOCKDOWN -->
@@ -1677,7 +1675,7 @@
                 <effect_group>
                     <requirement name="CVarCompare" cvar="_stunned" operation="Equals" value="1" target="other"/>
                     <requirement name="!IsAttachedToEntity"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="perkBrawler"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".15" tags="perkBrawler"/>
                 </effect_group>
             </book>
             <!-- *** BAR_BRAWLING_VOLUME_05_ADRENALINE_HEALING -->
@@ -1778,7 +1776,7 @@
             <!-- *** 7/7 RANGER'S_GUIDE_TO_ARCHERY_COMPLETE -->
             <book name="perkRangersComplete" parent="skillArchery" max_level="1" base_skill_point_cost="0" name_key="perkRangersCompleteName" desc_key="perkRangersCompleteDesc" long_desc_key="perkRangersCompleteLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkArchery"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkArchery"/>
                 </effect_group>
             </book>
 
@@ -1817,14 +1815,14 @@
             <book name="perkPistolPeteHPAmmo" parent="skillPistolPete" max_level="1" base_skill_point_cost="0" name_key="bookPistolPeteHPAmmo" desc_key="perkPistolPeteHPAmmoDesc" long_desc_key="perkPistolPeteHPAmmoLongDesc">
                 <effect_group>
                     <requirement name="HasBuff" buff="buffHoldBreathAiming01"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="9mmGun"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="9mmGun"/>
                 </effect_group>
             </book>
             <!-- *** PISTOL_PETE_VOLUME_06_APAMMO -->
             <book name="perkPistolPeteAPAmmo" parent="skillPistolPete" max_level="1" base_skill_point_cost="0" name_key="bookPistolPeteAPAmmo" desc_key="perkPistolPeteAPAmmoDesc" long_desc_key="perkPistolPeteAPAmmoLongDesc">
                 <effect_group>
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="9mmGun"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="9mmGun"/>
                 </effect_group>
             </book>
             <!-- *** PISTOL_PETE_VOLUME_07_DAMAGE -->
@@ -1839,7 +1837,7 @@
             <!-- *** 7/7 PISTOL_PETE_COMPLETE -->
             <book name="perkPistolPeteComplete" parent="skillPistolPete" max_level="1" base_skill_point_cost="0" name_key="perkPistolPeteCompleteName" desc_key="perkPistolPeteCompleteDesc" long_desc_key="perkPistolPeteCompleteLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="9mmGun"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="9mmGun"/>
                 </effect_group>
             </book>
 
@@ -1849,48 +1847,48 @@
             <book name="perkEnforcerDamage" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" desc_key="perkEnforcerDamageDesc" long_desc_key="perkEnforcerDamageLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="0"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_02_APPAREL -->
             <book name="perkEnforcerApparel" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" desc_key="perkEnforcerApparelDesc" long_desc_key="perkEnforcerApparelLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_03_PUNKS -->
             <book name="perkEnforcerPunks" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" desc_key="perkEnforcerPunksDesc" long_desc_key="perkEnforcerPunksLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="2"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_04_INTIMIDATION -->
             <book name="perkEnforcerIntimidation" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" desc_key="perkEnforcerIntimidationDesc" long_desc_key="perkEnforcerIntimidationLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="3"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_05_APAMMO -->
             <book name="perkEnforcerAPAmmo" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" name_key="bookEnforcerAPAmmo" desc_key="perkEnforcerAPAmmoDesc" long_desc_key="perkEnforcerAPAmmoLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="4"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_06_HPAMMO -->
             <book name="perkEnforcerHPAmmo" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" name_key="bookEnforcerHPAmmo" desc_key="perkEnforcerHPAmmoDesc" long_desc_key="perkEnforcerHPAmmoLongDesc">
                 <effect_group>
                     <requirement name="RoundsInMagazine" operation="EQ" value="5"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".2" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** MAGNUM_ENFORCER_VOLUME_07_CRIMINAL_PURSUIT -->
             <book name="perkEnforcerCriminalPursuit" parent="skillEnforcer" max_level="1" base_skill_point_cost="0" desc_key="perkEnforcerCriminalPursuitDesc" long_desc_key="perkEnforcerCriminalPursuitLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value="0.1" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="44enforcer"/>
                 </effect_group>
             </book>
             <!-- *** 7/7 MAGNUM_ENFORCER_COMPLETE -->
@@ -1898,7 +1896,7 @@
                 <effect_group>
                     <requirement name="ProgressionLevel" progression_name="perkEnforcerComplete" operation="Equals" value="1"/>
                     <requirement name="StatComparePercCurrentToMax" target="other" stat="Health" operation="GTE" value=".999"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" value=".3" tags="44enforcer"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" value=".2" tags="44enforcer"/>
                 </effect_group>
             </book>
 
@@ -1907,7 +1905,7 @@
             <!-- *** SHOTGUN_MESSIAH_VOLUME_01_DAMAGE -->
             <book name="perkShotgunMessiahDamage" parent="skillShotguns" max_level="1" base_skill_point_cost="0" desc_key="perkShotgunMessiahDamageDesc" long_desc_key="perkShotgunMessiahDamageLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkBoomstick"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkBoomstick"/>
                 </effect_group>
             </book>
             <!-- *** SHOTGUN_MESSIAH_VOLUME_02_BREACHING_SLUGS -->
@@ -1973,7 +1971,7 @@
             <book name="perkAutoWeaponsDamage" parent="skillAutoWeapons" max_level="1" base_skill_point_cost="0" desc_key="perkAutoWeaponsDamageDesc" long_desc_key="perkAutoWeaponsDamageLongDesc">
                 <effect_group>
                     <requirement name="ItemHasTags" tags="perkBookAutoWeapons"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05"/>
                 </effect_group>
             </book>
             <!-- *** AUTOMATIC_WEAPONS_HANDBOOK_VOLUME_02_UNCONTROLLED_BURST -->
@@ -1984,7 +1982,7 @@
                     <triggered_effect trigger="onSelfPrimaryActionStart" action="ModifyCVar" cvar=".AutoWeaponsUBCount" operation="set" value="0"/>
                     <triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar=".AutoWeaponsUBCount" operation="add" value="1"/>
 
-                    <triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar=".AutoWeaponsUBEffect" operation="set" value=".01"/>
+                    <triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar=".AutoWeaponsUBEffect" operation="set" value=".005"/>
 
                     <triggered_effect trigger="onSelfDamagedBlock" action="ModifyCVar" cvar=".AutoWeaponsUBCount" operation="set" value="0"/>
                     <triggered_effect trigger="onSelfPrimaryActionRayMiss" action="ModifyCVar" cvar=".AutoWeaponsUBCount" operation="set" value="0"/>
@@ -2153,7 +2151,7 @@
             <book name="perkSniperAPAmmo" parent="skillSniper" max_level="1" base_skill_point_cost="0" name_key="bookSniperAPAmmo" desc_key="perkSniperAPAmmoDesc" long_desc_key="perkSniperAPAmmoLongDesc">
                 <effect_group>
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkDeadEye"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkDeadEye"/>
                 </effect_group>
             </book>
             <!-- *** SNIPER_VOLUME_07_HPAMMO -->
@@ -2177,7 +2175,7 @@
             <!-- *** TECH_JUNKIE_VOLUME_01_DAMAGE -->
             <book name="perkTechJunkie1Damage" parent="skillTechJunkie" max_level="1" base_skill_point_cost="0" desc_key="perkTechJunkie1DamageDesc" long_desc_key="perkTechJunkie1DamageLongDesc">
                 <effect_group name="held and deployed">
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkTurrets,deployed"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkTurrets,deployed"/>
                 </effect_group>
             </book>
             <!-- *** TECH_JUNKIE_VOLUME_02_MAINTENANCE -->
@@ -2189,7 +2187,7 @@
             <!-- *** TECH_JUNKIE_VOLUME_03_APAMMO -->
             <book name="perkTechJunkie3APAmmo" parent="skillTechJunkie" max_level="1" base_skill_point_cost="0" name_key="bookTechJunkie3APAmmo" desc_key="perkTechJunkie3APAmmoDesc" long_desc_key="perkTechJunkie3APAmmoLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1" tags="perkElectrocutioner"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="perkElectrocutioner"/>
                 </effect_group>
             </book>
             <!-- *** TECH_JUNKIE_VOLUME_04_TURRET_SHELLS -->
@@ -2235,7 +2233,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_01_BEARS -->
             <book name="perkHuntingJournalBears" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalBearsDesc" long_desc_key="perkHuntingJournalBearsLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="bear"/>
                     </passive_effect>
                 </effect_group>
@@ -2243,7 +2241,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_02_WOLVES -->
             <book name="perkHuntingJournalWolves" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalWolvesDesc" long_desc_key="perkHuntingJournalWolvesLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="wolf,dog"/>
                     </passive_effect>
                 </effect_group>
@@ -2251,7 +2249,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_03_COYOTES -->
             <book name="perkHuntingJournalCoyotes" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalCoyotesDesc" long_desc_key="perkHuntingJournalCoyotesLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="coyote"/>
                     </passive_effect>
                 </effect_group>
@@ -2259,7 +2257,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_04_MOUNTAINLIONS -->
             <book name="perkHuntingJournalMountainLions" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalMountainLionsDesc" long_desc_key="perkHuntingJournalMountainLionsLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="mountainlion"/>
                     </passive_effect>
                 </effect_group>
@@ -2267,7 +2265,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_05_DEER -->
             <book name="perkHuntingJournalDeer" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalDeerDesc" long_desc_key="perkHuntingJournalDeerLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="deer"/>
                     </passive_effect>
                 </effect_group>
@@ -2275,7 +2273,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_06_VULTURES -->
             <book name="perkHuntingJournalVultures" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalVulturesDesc" long_desc_key="perkHuntingJournalVulturesLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="vulture"/>
                     </passive_effect>
                 </effect_group>
@@ -2283,7 +2281,7 @@
             <!-- *** HUNTING_JOURNAL_VOLUME_07_SELF_DEFENSE -->
             <book name="perkHuntingJournalSelfDefense" parent="skillHuntingJournal" max_level="1" base_skill_point_cost="0" desc_key="perkHuntingJournalSelfDefenseDesc" long_desc_key="perkHuntingJournalSelfDefenseLongDesc">
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1">
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05">
                         <requirement name="EntityTagCompare" target="other" tags="human,zombie"/>
                         <requirement name="!EntityTagCompare" target="other" tags="bear,wolf,dog,coyote,mountainlion,deer,vulture"/>
                     </passive_effect>
@@ -2341,7 +2339,7 @@
             <book name="perkUrbanCombatRoomClearing" parent="skillUrbanCombat" max_level="1" base_skill_point_cost="0" desc_key="perkUrbanCombatRoomClearingDesc" long_desc_key="perkUrbanCombatRoomClearingLongDesc">
                 <effect_group>
                     <requirement name="IsIndoors"/>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".1"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05"/>
                     <passive_effect name="GeneralDamageResist" operation="base_add" level="1" value="0.05"/>
                 </effect_group>
             </book>
@@ -2411,7 +2409,7 @@
                 </effect_group>
 
                 <effect_group>
-                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value="0.5" tags="chainsaw"/>
+                    <passive_effect name="EntityDamage" operation="perc_add" level="1" value=".05" tags="chainsaw"/>
                 </effect_group>
             </book>
 
@@ -2689,7 +2687,7 @@
             <effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaTrack" operation="GTE" value="1"/>
                 <requirement name="CVarCompare" cvar="_notAlerted" operation="LTE" value="0" target="other"/>
-                <passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".05"/>
             </effect_group>
 
             <effect_group>
@@ -2875,7 +2873,7 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value="0,0,.05,.05,.1,.1,.15"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value="0,0,.03,.03,.06,.06,.1"/>
             </effect_group>
 
             <effect_group>
@@ -3158,9 +3156,9 @@
             <level_requirements level="7"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="3,6,9,12,15,20,25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".3,.6,.9,1.2,1.5,2,2.5" tags="perkBoomstick,perkTurrets"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value="0,0,0,.05,.05,.05,.1"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="5,10,15,20,25,30,35" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".5,1,1.5,2,2.5,3,3.5" tags="perkBoomstick,perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value="0,0,0,0,0,0,.05"/>
             </effect_group>
 
             <effect_group>
@@ -3171,6 +3169,145 @@
                 <effect_description level="5" desc_key="perkMarisaAttackRank5Desc" long_desc_key="perkMarisaAttackRank5LongDesc"/>
                 <effect_description level="6" desc_key="perkMarisaAttackRank6Desc" long_desc_key="perkMarisaAttackRank6LongDesc"/>
                 <effect_description level="7" desc_key="perkMarisaAttackRank7Desc" long_desc_key="perkMarisaAttackRank7LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 看破 -->
+        <perk name="perkMarisaCriticalChance" parent="skillIridescentAttack" name_key="perkMarisaCriticalChanceName" desc_key="perkMarisaCriticalChanceDesc" icon="ui_game_symbol_diamond" max_level="7" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="6"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="7"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+			<!-- ** 会心率 -->
+            <effect_group name="Critical Chance">
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="set" value="0"/>
+				<!-- ** 看破 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="50"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="10"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="15"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="20"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="25"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="30"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="6"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="40"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="7"/></triggered_effect>
+				<!-- ** 攻击 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="6"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="7"/></triggered_effect>
+				<!-- ** 挑战 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="45"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="7"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="7"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="4"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="10"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="15"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="6"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="20"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="7"/></triggered_effect>
+				<!-- ** 弱点特效 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceHeadDamage" operation="set" value="15"><requirement name="ProgressionLevel" progression_name="perkMarisaHeadDamage" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceHeadDamage" operation="set" value="30"><requirement name="ProgressionLevel" progression_name="perkMarisaHeadDamage" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceHeadDamage" operation="set" value="50"><requirement name="ProgressionLevel" progression_name="perkMarisaHeadDamage" operation="EQ" value="3"/></triggered_effect>
+				<!-- ** 精神抖擞 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="10"><requirement name="ProgressionLevel" progression_name="perkMarisaVitality" operation="EQ" value="1"/><requirement name="CVarCompare" cvar=".MarisaCriticalChanceVitalityTime" operation="GTE" value="25"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="20"><requirement name="ProgressionLevel" progression_name="perkMarisaVitality" operation="EQ" value="2"/><requirement name="CVarCompare" cvar=".MarisaCriticalChanceVitalityTime" operation="GTE" value="25"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="30"><requirement name="ProgressionLevel" progression_name="perkMarisaVitality" operation="EQ" value="3"/><requirement name="CVarCompare" cvar=".MarisaCriticalChanceVitalityTime" operation="GTE" value="25"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="40"><requirement name="ProgressionLevel" progression_name="perkMarisaVitality" operation="EQ" value="4"/><requirement name="CVarCompare" cvar=".MarisaCriticalChanceVitalityTime" operation="GTE" value="25"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="40"><requirement name="ProgressionLevel" progression_name="perkMarisaVitality" operation="EQ" value="5"/><requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/></triggered_effect>
+				<!-- ** 力量解放 -->
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="10"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="1"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="20"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="2"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="30"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="3"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="40"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="4"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="50"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="5"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="50"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="6"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="60"><requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="EQ" value="7"/><requirement name="HasBuff" buff="buffPerkMarisaLiberationPower"/></triggered_effect>
+
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallenge" operation="set" value="@.MarisaCriticalChanceAways"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallenge" operation="add" value="@.MarisaCriticalChanceChallenge"/>
+
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="set" value="@.MarisaCriticalChanceAways"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
+
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="set" value="@.MarisaCriticalChanceAways"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceChallenge"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="IsAlive" target="other"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="==========================="/>
+                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceAways"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceWithChallenge"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceWithHeadDamage"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceAll"/>
+            </effect_group>
+
+            <effect_group name="Aways">
+                <requirement name="IsAlive" target="other"/>
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".65" target="other"/>
+                <requirement name="!HitLocation" body_parts="Head"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAways"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================Aways"/>
+            </effect_group>
+            <effect_group name="WithChallenge">
+                <requirement name="IsAlive" target="other"/>
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".65" target="other"/>
+                <requirement name="!HitLocation" body_parts="Head"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallenge"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================WithChallenge"/>
+            </effect_group>
+            <effect_group name="WithHeadDamage">
+                <requirement name="IsAlive" target="other"/>
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".65" target="other"/>
+                <requirement name="HitLocation" body_parts="Head"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithHeadDamage"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================WithHeadDamage"/>
+            </effect_group>
+            <effect_group name="All">
+                <requirement name="IsAlive" target="other"/>
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".65" target="other"/>
+                <requirement name="HitLocation" body_parts="Head"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAll"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================All"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaCriticalChanceRank1Desc" long_desc_key="perkMarisaCriticalChanceRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaCriticalChanceRank2Desc" long_desc_key="perkMarisaCriticalChanceRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaCriticalChanceRank3Desc" long_desc_key="perkMarisaCriticalChanceRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaCriticalChanceRank4Desc" long_desc_key="perkMarisaCriticalChanceRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkMarisaCriticalChanceRank5Desc" long_desc_key="perkMarisaCriticalChanceRank5LongDesc"/>
+                <effect_description level="6" desc_key="perkMarisaCriticalChanceRank6Desc" long_desc_key="perkMarisaCriticalChanceRank6LongDesc"/>
+                <effect_description level="7" desc_key="perkMarisaCriticalChanceRank7Desc" long_desc_key="perkMarisaCriticalChanceRank7LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 超会心 -->
+        <perk name="perkMarisaCriticalMultiplier" parent="skillIridescentAttack" name_key="perkMarisaCriticalMultiplierName" desc_key="perkMarisaCriticalMultiplierDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <!-- ** 会心倍率 -->
+            <effect_group>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".25"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".05"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".1"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".15"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaCriticalMultiplierRank1Desc" long_desc_key="perkMarisaCriticalMultiplierRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaCriticalMultiplierRank2Desc" long_desc_key="perkMarisaCriticalMultiplierRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaCriticalMultiplierRank3Desc" long_desc_key="perkMarisaCriticalMultiplierRank3LongDesc"/>
             </effect_group>
         </perk>
         <!-- ** 挑战 -->
@@ -3191,15 +3328,8 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".65" target="other" tags="animal,player,zombie"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="4,8,12,16,20,24,0" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".4,.8,1.2,1.6,2,2.4,0" tags="perkBoomstick,perkTurrets"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.05,.07,.07,.1,.15,0"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".8" target="other" tags="animal,player,zombie"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="0,0,0,0,0,0,28" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="0,0,0,0,0,0,2.8" tags="perkBoomstick,perkTurrets"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value="0,0,0,0,0,0,.2"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="7,14,21,28,35,42,50" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".7,1.4,2.1,2.8,3.5,4.2,5" tags="perkBoomstick,perkTurrets"/>
             </effect_group>
 
             <effect_group>
@@ -3220,8 +3350,8 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value="1"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value="5,10,20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value=".5,1,2" tags="perkBoomstick,perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value="8,16,30" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value=".8,1.6,3" tags="perkBoomstick,perkTurrets"/>
             </effect_group>
 
             <effect_group>
@@ -3246,7 +3376,7 @@
 
             <effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5" value=".1,.2,.3,.45,.6"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".04,.08,.12,.18,.25"/>
             </effect_group>
             <effect_group>
                 <requirement name="ItemHasTags" tags="weapon"/>
@@ -3412,8 +3542,8 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="1"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5" value="5,10,15,20,25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5" value=".5,1,1.5,2,2.5" tags="perkBoomstick,perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5" value="7,14,21,28,35" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5" value=".7,1.4,2.1,2.8,3.5" tags="perkBoomstick,perkTurrets"/>
             </effect_group>
 
             <effect_group>
@@ -3429,10 +3559,6 @@
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5" value=".05,.15,.25" tags="head"/>
-            </effect_group>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaHeadDamageRank1Desc" long_desc_key="perkMarisaHeadDamageRank1LongDesc"/>
@@ -3453,11 +3579,6 @@
                 <requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/>
                 <requirement name="ProgressionLevel" progression_name="t3SuitPerkMarisaVitality" operation="GTE" value="1" desc_key="reqIridescentt3SuitPerkLevel01"/>
             </level_requirements>
-
-            <effect_group>
-                <requirement name="StatComparePercCurrentToMax" stat="Stamina" operation="GTE" value="1"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5" value=".05,.15,.25,.35,.45"/>
-            </effect_group>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaVitalityRank1Desc" long_desc_key="perkMarisaVitalityRank1LongDesc"/>
@@ -3542,7 +3663,7 @@
             </effect_group>
             <effect_group>
                 <requirement name="HasBuff" buff="buffInjuryStunned01" target="other"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5" value=".15,.15,.3,.3,.45"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".04,.08,.12,.18,.25"/>
             </effect_group>
 
             <effect_group>
@@ -3570,9 +3691,9 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="4,8,12,16,20,30,40" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".4,.8,1.2,1.6,2,3,4" tags="perkBoomstick,perkTurrets"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value=".1,.2,.3,.4,.5,.6,.8"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value="5,10,15,20,25,30,40" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3,4,5,6,7" value=".5,1,1.5,2,2.5,3,4" tags="perkBoomstick,perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.3,.4"/>
                 <passive_effect name="PhysicalDamageResist" operation="base_add" level="1,2,3,4,5,6,7" value="-5,-10,-15,-20,-25,-30,-40"/>
                 <passive_effect name="ElementalDamageResist" operation="base_add" level="1,2,3,4,5,6,7" value="-5,-10,-15,-20,-25,-30,-40"/>
             </effect_group>
@@ -3605,7 +3726,7 @@
 
             <effect_group>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".35"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3,4,5,6,7" value="0,.05,.05,.1,.15,.25,.4"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value="0,.05,.05,.1,.15,.25,.4"/>
             </effect_group>
 
             <effect_group>
@@ -3635,7 +3756,7 @@
             </level_requirements>
 
             <effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.15,.25,.35,.45,.6,.75" tags="perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5,6,7" value=".05,.1,.15,.2,.25,.3,.4" tags="perkTurrets"/>
             </effect_group>
 
             <effect_group>
@@ -3686,8 +3807,8 @@
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="ExplosionBlockDamage" operation="perc_add" level="0,1,2" value="0,0.5,1.5" tags="perkDemolitionsExpert,perkArchery"/>
-                <passive_effect name="ExplosionEntityDamage" operation="perc_add" level="0,1,2" value="0,0.5,1.5" tags="perkDemolitionsExpert,perkArchery"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_add" level="0,1,2" value="0,0.4,1" tags="perkDemolitionsExpert,perkArchery"/>
+                <passive_effect name="ExplosionEntityDamage" operation="perc_add" level="0,1,2" value="0,0.4,1" tags="perkDemolitionsExpert,perkArchery"/>
             </effect_group>
 
             <effect_group>
@@ -3829,7 +3950,7 @@
             <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.05,-.1,-.15,-.2,-.25"/>
+                <passive_effect name="StaminaLoss" operation="perc_add" level="1,2,3,4,5" value="-.1,-.2,-.3,-.4,-.5"/>
             </effect_group>
 
             <effect_group>
@@ -4715,7 +4836,7 @@
             <effect_group>
                 <requirement name="!HoldingItemHasTags" tags="melee"/>
                 <requirement name="TargetRange" operation="LTE" value="8"/>
-                <passive_effect name="DamageModifier" operation="perc_add" level="1,2,3" value=".1,.2,.3"/>
+                <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3" value=".05,.1,.15"/>
             </effect_group>
             <effect_group>
                 <requirement name="!HoldingItemHasTags" tags="melee"/>

@@ -9,8 +9,12 @@
 	<!-- *** 移除丧尸对辐射的免疫 -->
 	<set xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/effect_group/passive_effect[@name='BuffResistance']/@tags">buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo</set>
 
+    <!-- *** 移除原版属性爆头伤害加成 -->
+	<remove xpath="/entity_classes/entity_class[@name='playerMale']/effect_group/passive_effect[@name='DamageModifier' and @tags='head']"/>
 
 
+
+	<!-- *** 与技能联动相关 -->
 	<!-- *** 体力急速回复 -->
 	<append xpath="/entity_classes/entity_class[@name='playerMale']/effect_group/triggered_effect[@action='AddBuff' and @buff='buffPowerAttackStaminaStunt']">
 		<requirement name="ProgressionLevel" progression_name="perkMarisaStaminaChangeOT" operation="LT" value="3"/>
@@ -2697,6 +2701,16 @@
 			<passive_effect name="DamageModifier" operation="perc_add" value="-.2"/>
 		</effect_group>
 
+		<!-- 不屈 -->
+		<effect_group name="DamageModifier For buffPerkMarisaNirvana 1">
+			<requirement name="HasBuff" buff="buffPerkMarisaNirvana" target="other"/>
+			<passive_effect name="DamageModifier" operation="perc_add" value="-.1"/>
+		</effect_group>
+		<effect_group name="DamageModifier For buffPerkMarisaNirvana 2">
+			<requirement name="HasBuff" buff="buffPerkMarisaNirvana2" target="other"/>
+			<passive_effect name="DamageModifier" operation="perc_add" value="-.2"/>
+		</effect_group>
+
 		<!-- 战魂 -->
 		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 1">
 			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="1" target="other"/>
@@ -2724,7 +2738,7 @@
 		</effect_group>
 		<effect_group name="DamageModifier For PerkMarisaSpiritOfWar 7">
 			<requirement name="ProgressionLevel" progression_name="perkMarisaSpiritOfWar" operation="Equals" value="7" target="other"/>
-			<passive_effect name="DamageModifier" operation="perc_add" value="-.25"/>
+			<passive_effect name="DamageModifier" operation="perc_add" value="-.2"/>
 		</effect_group>
 
 		<!-- 玻璃大炮 -->
