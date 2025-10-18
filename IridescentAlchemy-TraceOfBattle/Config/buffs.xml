@@ -231,13 +231,14 @@
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
 		<!-- 测试打印 cvar -->
-		        <effect_group>
-<!--					<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
-<!--					<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceAways"/>-->
-<!--					<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceWithChallenge"/>-->
-<!--					<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceWithHeadDamage"/>-->
-<!--					<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceAll"/>-->
-				</effect_group>
+<!--		<effect_group>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalMultiplier"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceAways"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceWithChallenge"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceWithHeadDamage"/>-->
+<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaCriticalChanceAll"/>-->
+<!--		</effect_group>-->
 
 		<effect_group>
 <!--			<passive_effect name="EntityDamage" operation="perc_add" value="1"/>-->
@@ -2526,6 +2527,36 @@
 			</effect_group>
 		</buff>
 
+		<!-- 攻击守势 -->
+		<buff name="buffPerkMarisaAtkAfterDefBefore" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="IsAlive" target="other"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffPerkMarisaAtkAfterDef"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaAtkAfterDef" name_key="buffPerkMarisaAtkAfterDefName" description_key="buffPerkMarisaAtkAfterDefDesc" icon="ui_game_symbol_defense" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="12"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAtkAfterDef" operation="EQ" value="1"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAtkAfterDef" operation="EQ" value="2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaAtkAfterDef" operation="EQ" value="3"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+
+
 		<!-- 间不容发 -->
 		<buff name="buffHairsBreadth" name_key="buffHairsBreadthName" description_key="buffHairsBreadthDesc" showonhud="true" icon="ui_game_symbol_shape_ammo" icon_color="0,191,255">
 			<stack_type value="replace"/>
@@ -4381,6 +4412,10 @@
 				<requirement name="CVarCompare" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="LT" value="97"/>
 				<requirement name="CVarCompare" cvar=".CanBuffEntityDamageThreeCountPerkDeepCutsA" operation="EQ" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeAttackedOtherPerkDeepCutsA" operation="add" value="3"/>
+			</effect_group>
+			<effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaThreeCountUpUp" operation="GTE" value="3"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".1"/>
 			</effect_group>
 
 			<!-- 砍刀 强化持续 -->

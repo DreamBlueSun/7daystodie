@@ -3181,11 +3181,11 @@
             <level_requirements level="6"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="7"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
-			<!-- ** 会心率 -->
+			<!-- ** 会心率 变量 -->
             <effect_group name="Critical Chance">
                 <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="set" value="0"/>
 				<!-- ** 看破 -->
-				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="50"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="1"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="10"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="2"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="15"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="3"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="20"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalChance" operation="EQ" value="4"/></triggered_effect>
@@ -3198,7 +3198,7 @@
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="6"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaAttack" operation="EQ" value="7"/></triggered_effect>
 				<!-- ** 挑战 -->
-				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="45"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="1"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="5"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="2"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="7"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="3"/></triggered_effect>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceChallenge" operation="set" value="7"><requirement name="ProgressionLevel" progression_name="perkMarisaChallenge" operation="EQ" value="4"/></triggered_effect>
@@ -3234,14 +3234,6 @@
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceChallenge"/>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
             </effect_group>
-            <effect_group>
-                <requirement name="IsAlive" target="other"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="==========================="/>
-                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceAways"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceWithChallenge"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceWithHeadDamage"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="CVarLogValue" cvar=".MarisaCriticalChanceAll"/>
-            </effect_group>
 
             <effect_group name="Aways">
                 <requirement name="IsAlive" target="other"/>
@@ -3250,7 +3242,6 @@
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAways"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================Aways"/>
             </effect_group>
             <effect_group name="WithChallenge">
                 <requirement name="IsAlive" target="other"/>
@@ -3259,7 +3250,6 @@
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallenge"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================WithChallenge"/>
             </effect_group>
             <effect_group name="WithHeadDamage">
                 <requirement name="IsAlive" target="other"/>
@@ -3268,7 +3258,6 @@
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithHeadDamage"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================WithHeadDamage"/>
             </effect_group>
             <effect_group name="All">
                 <requirement name="IsAlive" target="other"/>
@@ -3277,7 +3266,6 @@
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAll"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="twitch_jump"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="LogMessage" message="===========================All"/>
             </effect_group>
 
             <effect_group>
@@ -3814,6 +3802,39 @@
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaShotgunAmmoBoomUpRank1Desc" long_desc_key="perkMarisaShotgunAmmoBoomUpRank1LongDesc"/>
                 <effect_description level="2" desc_key="perkMarisaShotgunAmmoBoomUpRank2Desc" long_desc_key="perkMarisaShotgunAmmoBoomUpRank2LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 攻击守势 -->
+        <perk name="perkMarisaAtkAfterDef" parent="skillIridescentAttack" name_key="perkMarisaAtkAfterDefName" desc_key="perkMarisaAtkAfterDefDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaAtkAfterDef" operation="GTE" value="1"/>
+                <triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffPerkMarisaAtkAfterDefBefore"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaAtkAfterDefRank1Desc" long_desc_key="perkMarisaAtkAfterDefRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaAtkAfterDefRank2Desc" long_desc_key="perkMarisaAtkAfterDefRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaAtkAfterDefRank3Desc" long_desc_key="perkMarisaAtkAfterDefRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 炮击手 -->
+        <perk name="perkMarisaBombardStar" parent="skillIridescentAttack" name_key="perkMarisaBombardStarName" desc_key="perkMarisaBombardStarDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="30">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <requirement name="HoldingItemHasTags" tags="bow,crossbow,launcher"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_add" level="0,1,2" value="0,.06,.12" tags="perkDemolitionsExpert,perkArchery"/>
+                <passive_effect name="ExplosionEntityDamage" operation="perc_add" level="0,1,2" value="0,.06,.12" tags="perkDemolitionsExpert,perkArchery"/>
+            </effect_group>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaBombardStarRank1Desc" long_desc_key="perkMarisaBombardStarRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaBombardStarRank2Desc" long_desc_key="perkMarisaBombardStarRank2LongDesc"/>
             </effect_group>
         </perk>
 
@@ -4970,6 +4991,38 @@
                 <effect_description level="1" desc_key="perkMarisaVampireKissRank1Desc" long_desc_key="perkMarisaVampireKissRank1LongDesc"/>
                 <effect_description level="2" desc_key="perkMarisaVampireKissRank2Desc" long_desc_key="perkMarisaVampireKissRank2LongDesc"/>
                 <effect_description level="3" desc_key="perkMarisaVampireKissRank3Desc" long_desc_key="perkMarisaVampireKissRank3LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 属性莲华 -->
+        <perk name="perkMarisaIntensifyAoe" parent="skillIridescentEnhanced" name_key="perkMarisaIntensifyAoeName" desc_key="perkMarisaIntensifyAoeDesc" icon="ui_game_symbol_diamond" max_level="5" base_skill_point_cost="20">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaIntensifyAoeRank1Desc" long_desc_key="perkMarisaIntensifyAoeRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaIntensifyAoeRank2Desc" long_desc_key="perkMarisaIntensifyAoeRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaIntensifyAoeRank3Desc" long_desc_key="perkMarisaIntensifyAoeRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaIntensifyAoeRank4Desc" long_desc_key="perkMarisaIntensifyAoeRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkMarisaIntensifyAoeRank5Desc" long_desc_key="perkMarisaIntensifyAoeRank5LongDesc"/>
+            </effect_group>
+        </perk>
+        <!-- ** 异常莲华 -->
+        <perk name="perkMarisaEffectAoe" parent="skillIridescentEnhanced" name_key="perkMarisaEffectAoeName" desc_key="perkMarisaEffectAoeDesc" icon="ui_game_symbol_diamond" max_level="5" base_skill_point_cost="20">
+            <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+            <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
+
+            <effect_group>
+                <effect_description level="1" desc_key="perkMarisaEffectAoeRank1Desc" long_desc_key="perkMarisaEffectAoeRank1LongDesc"/>
+                <effect_description level="2" desc_key="perkMarisaEffectAoeRank2Desc" long_desc_key="perkMarisaEffectAoeRank2LongDesc"/>
+                <effect_description level="3" desc_key="perkMarisaEffectAoeRank3Desc" long_desc_key="perkMarisaEffectAoeRank3LongDesc"/>
+                <effect_description level="4" desc_key="perkMarisaEffectAoeRank4Desc" long_desc_key="perkMarisaEffectAoeRank4LongDesc"/>
+                <effect_description level="5" desc_key="perkMarisaEffectAoeRank5Desc" long_desc_key="perkMarisaEffectAoeRank5LongDesc"/>
             </effect_group>
         </perk>
 
