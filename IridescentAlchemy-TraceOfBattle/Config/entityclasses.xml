@@ -1242,6 +1242,54 @@
 	<!-- *** 添加BOSS -->
 	<append xpath="/entity_classes">
 
+
+		<!-- *** 普通 -->
+
+		<!-- ** zombieBossSteveCrawler -->
+		<entity_class name="zombieBossSteveCrawler" extends="zombieSteveCrawler">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,zombieBossSteveCrawler"/>
+			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawler.prefab"/>
+			<property name="SizeScale" value="2.4"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="0.9, 1.5"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossSteveCrawler"/>
+
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".35" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+			</effect_group>
+		</entity_class>
 		<!-- ** zombieBossArsonist -->
 		<entity_class name="zombieBossArsonist" extends="zombieBurnt">
 			<property name="Tags" value="entity,zombie,walker,allbiome,bossMarisa,zombieBossArsonist"/>
@@ -1288,51 +1336,6 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** zombieBossSteveCrawler -->
-		<entity_class name="zombieBossSteveCrawler" extends="zombieSteveCrawler">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,zombieBossSteveCrawler"/>
-			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawler.prefab"/>
-			<property name="SizeScale" value="2.4"/>
-			<property name="Mass" value="300"/>
-
-			<property name="AITask" value="
-				BreakBlock|
-				ApproachDistraction|
-				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
-				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
-				ApproachSpot|
-				Look|
-				Wander|
-			"/>
-
-			<property name="KnockdownProneDamageThreshold" value="0"/>
-			<property name="KnockdownKneelDamageThreshold" value="0"/>
-			<property name="DismemberMultiplierHead" value="0"/>
-			<property name="DismemberMultiplierArms" value="0"/>
-			<property name="DismemberMultiplierLegs" value="0"/>
-			<property name="LegCrawlerThreshold" value="0"/>
-			<property name="LegCrippleThreshold" value="0"/>
-			<property name="PainResistPerHit" value="1"/>
-
-			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="0.9, 1.5"/>
-			<property name="MaxTurnSpeed" value="180"/>
-
-			<property name="HandItem" value="handZombieBossSteveCrawler"/>
-
-			<property name="ExperienceGain" value="3000"/>
-			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
-			<property name="LootDropProb" value="1"/>
-
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".35" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 			</effect_group>
 		</entity_class>
 		<!-- ** zombieBossSoldier -->
@@ -1383,153 +1386,9 @@
 			</effect_group>
 		</entity_class>
 
-		<!-- ** zombieBossArsonistCrystallization -->
-		<entity_class name="zombieBossArsonistCrystallization" extends="zombieBurntFeral">
-			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,zombieBossArsonistCrystallization"/>
-			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntFeral.prefab"/>
-			<property name="Class" value="EntityZombieCop"/>
-			<property name="SizeScale" value="1.3"/>
-			<property name="Mass" value="300"/>
-
-			<property name="AITask" value="
-				BreakBlock|
-				ApproachDistraction|
-				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
-				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
-				ApproachSpot|
-				Look|
-				Wander|
-			"/>
-
-			<property name="KnockdownProneDamageThreshold" value="0"/>
-			<property name="KnockdownKneelDamageThreshold" value="0"/>
-			<property name="DismemberMultiplierHead" value="0"/>
-			<property name="DismemberMultiplierArms" value="0"/>
-			<property name="DismemberMultiplierLegs" value="0"/>
-			<property name="LegCrawlerThreshold" value="0"/>
-			<property name="LegCrippleThreshold" value="0"/>
-			<property name="PainResistPerHit" value="1"/>
-
-			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
-			<property name="JumpMaxDistance" value="1, 2"/>
-			<property name="MaxTurnSpeed" value="180"/>
-
-			<property name="HandItem" value="handZombieBossArsonistCrystallization"/>
-
-			<property name="ExperienceGain" value="32000"/>
-			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
-			<property name="LootDropProb" value="1"/>
-
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="64000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** zombieBossSteveCrawlerCrystallization -->
-		<entity_class name="zombieBossSteveCrawlerCrystallization" extends="zombieSteveCrawlerFeral">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,crystallization,bossMarisa,zombieBossSteveCrawlerCrystallization"/>
-			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawlerFeral.prefab"/>
-			<property name="SizeScale" value="2.4"/>
-			<property name="Mass" value="300"/>
-
-			<property name="AITask" value="
-				BreakBlock|
-				ApproachDistraction|
-				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
-				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
-				ApproachSpot|
-				Look|
-				Wander|
-			"/>
-
-			<property name="KnockdownProneDamageThreshold" value="0"/>
-			<property name="KnockdownKneelDamageThreshold" value="0"/>
-			<property name="DismemberMultiplierHead" value="0"/>
-			<property name="DismemberMultiplierArms" value="0"/>
-			<property name="DismemberMultiplierLegs" value="0"/>
-			<property name="LegCrawlerThreshold" value="0"/>
-			<property name="LegCrippleThreshold" value="0"/>
-			<property name="PainResistPerHit" value="1"/>
-
-			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
-			<property name="MaxTurnSpeed" value="180"/>
-
-			<property name="HandItem" value="handZombieBossSteveCrawlerCrystallization"/>
-
-			<property name="ExperienceGain" value="18000"/>
-			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
-			<property name="LootDropProb" value="1"/>
-
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** zombieBossSoldierCrystallization -->
-		<entity_class name="zombieBossSoldierCrystallization" extends="zombieSoldierFeral">
-			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,zombieSoldier,bossMarisa,zombieBossSoldierCrystallization"/>
-			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierFeral.prefab"/>
-			<property name="Class" value="EntityZombieCop"/>
-			<property name="SizeScale" value="1.3"/>
-			<property name="Mass" value="300"/>
-
-			<property name="AITask" value="
-				BreakBlock|
-				ApproachDistraction|
-				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
-				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
-				ApproachSpot|
-				Look|
-				Wander|
-			"/>
-
-			<property name="KnockdownProneDamageThreshold" value="0"/>
-			<property name="KnockdownKneelDamageThreshold" value="0"/>
-			<property name="DismemberMultiplierHead" value="0"/>
-			<property name="DismemberMultiplierArms" value="0"/>
-			<property name="DismemberMultiplierLegs" value="0"/>
-			<property name="LegCrawlerThreshold" value="0"/>
-			<property name="LegCrippleThreshold" value="0"/>
-			<property name="PainResistPerHit" value="1"/>
-
-			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
-			<property name="JumpMaxDistance" value="1, 2"/>
-			<property name="MaxTurnSpeed" value="180"/>
-
-			<property name="HandItem" value="handZombieBossSoldierCrystallization"/>
-
-			<property name="ExperienceGain" value="50000"/>
-			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
-			<property name="LootDropProb" value="1"/>
-
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="128000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaTwitchZombieShock"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
-			</effect_group>
-		</entity_class>
-
-		<!-- ** zombieBossResearchInstituteLeaderCrystallization -->
-		<entity_class name="zombieBossResearchInstituteLeaderCrystallization" extends="zombieLumberjackFeral">
-			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,zombieBossResearchInstituteLeaderCrystallization"/>
+		<!-- ** zombieBossResearchInstituteLeader -->
+		<entity_class name="zombieBossResearchInstituteLeader" extends="zombieLumberjackFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,bossMarisa,zombieBossResearchInstituteLeader"/>
 			<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackFeral.prefab"/>
 			<property name="Class" value="EntityZombieCop"/>
 			<property name="SizeScale" value="1.3"/>
@@ -1567,21 +1426,20 @@
 			<property name="JumpMaxDistance" value="1, 2"/>
 			<property name="MaxTurnSpeed" value="180"/>
 
-			<property name="HandItem" value="handZombieBossResearchInstituteLeaderCrystallization"/>
+			<property name="HandItem" value="handZombieBossResearchInstituteLeader"/>
 
-			<property name="ExperienceGain" value="100000"/>
+			<property name="ExperienceGain" value="16000"/>
 			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
 			<property name="LootDropProb" value="1"/>
 
 			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="248000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
 				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderCrystallizationDeco"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderCrystallization"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeader"/>
 			</effect_group>
 		</entity_class>
 		<entity_class name="researchInstituteAnimalRabbit" extends="animalTemplateHostile">
@@ -1707,6 +1565,290 @@
 			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_chicken"/>
 		</entity_class>
 
+
+		<!-- *** 晶化 -->
+
+		<!-- ** zombieBossSteveCrawlerCrystallization -->
+		<entity_class name="zombieBossSteveCrawlerCrystallization" extends="zombieSteveCrawlerFeral">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,crystallization,bossMarisa,zombieBossSteveCrawlerCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawlerFeral.prefab"/>
+			<property name="SizeScale" value="2.4"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossSteveCrawlerCrystallization"/>
+
+			<property name="ExperienceGain" value="18000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+		<!-- ** zombieBossArsonistCrystallization -->
+		<entity_class name="zombieBossArsonistCrystallization" extends="zombieBurntFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,zombieBossArsonistCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntFeral.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.3"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossArsonistCrystallization"/>
+
+			<property name="ExperienceGain" value="32000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="64000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+		<!-- ** zombieBossSoldierCrystallization -->
+		<entity_class name="zombieBossSoldierCrystallization" extends="zombieSoldierFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,zombieSoldier,bossMarisa,zombieBossSoldierCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierFeral.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.3"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossSoldierCrystallization"/>
+
+			<property name="ExperienceGain" value="50000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="128000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaTwitchZombieShock"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+
+		<!-- ** zombieBossResearchInstituteLeaderCrystallization -->
+		<entity_class name="zombieBossResearchInstituteLeaderCrystallization" extends="zombieLumberjackFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,zombieBossResearchInstituteLeaderCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackFeral.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.3"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				DestroyArea|
+				Territorial|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=6;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+			<property name="AITarget" value="
+				SetNearestCorpseAsTarget flags=edible|
+				SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+				BlockingTargetTask|
+				SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.8, 2.4"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossResearchInstituteLeaderCrystallization"/>
+
+			<property name="ExperienceGain" value="100000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="248000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderCrystallization"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="researchInstituteAnimalRabbit1" extends="researchInstituteAnimalRabbit">
+			<property name="Tags" value="entity,animal,allbiome,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_rabbit"/>
+			<property name="HandItem" value="handResearchInstituteAnimal1"/>
+
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="2"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="5"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="2"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="300"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="researchInstituteAnimalChickenHostile1" extends="researchInstituteAnimalChickenHostile">
+			<property name="Tags" value="entity,animal,allbiome,chicken,hostile,perkAT03,perkAT04,perkAT05"/>
+			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_chicken"/>
+			<property name="HandItem" value="handResearchInstituteAnimal1"/>
+
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceFeather" tag="butcherHarvest" count="4"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="5"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="2"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="300"/>
+			</effect_group>
+		</entity_class>
+
+
+		<!-- *** 狂化 -->
+
+		<!-- ** zombieBossSteveCrawlerBerserk -->
+		<entity_class name="zombieBossSteveCrawlerBerserk" extends="zombieSteveCrawlerFeral">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,radiated,crystallization,berserk,bossMarisa,zombieBossSteveCrawlerBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawlerFeral.prefab"/>
+			<property name="SizeScale" value="2.4"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="handZombieBossSteveCrawlerBerserk"/>
+
+			<property name="ExperienceGain" value="150000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="80"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
 		<!-- ** zombieBossArsonistBerserk -->
 		<entity_class name="zombieBossArsonistBerserk" extends="zombieBurntRadiated">
 			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,zombieBossArsonistBerserk"/>
@@ -1753,52 +1895,6 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** zombieBossSteveCrawlerBerserk -->
-		<entity_class name="zombieBossSteveCrawlerBerserk" extends="zombieSteveCrawlerFeral">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,radiated,crystallization,berserk,bossMarisa,zombieBossSteveCrawlerBerserk"/>
-			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawlerFeral.prefab"/>
-			<property name="SizeScale" value="2.4"/>
-			<property name="Mass" value="300"/>
-
-			<property name="AITask" value="
-				BreakBlock|
-				ApproachDistraction|
-				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
-				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
-				ApproachSpot|
-				Look|
-				Wander|
-			"/>
-
-			<property name="KnockdownProneDamageThreshold" value="0"/>
-			<property name="KnockdownKneelDamageThreshold" value="0"/>
-			<property name="DismemberMultiplierHead" value="0"/>
-			<property name="DismemberMultiplierArms" value="0"/>
-			<property name="DismemberMultiplierLegs" value="0"/>
-			<property name="LegCrawlerThreshold" value="0"/>
-			<property name="LegCrippleThreshold" value="0"/>
-			<property name="PainResistPerHit" value="1"/>
-
-			<property name="ExplodeHealthThreshold" value="0"/>
-			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
-			<property name="MaxTurnSpeed" value="180"/>
-
-			<property name="HandItem" value="handZombieBossSteveCrawlerBerserk"/>
-
-			<property name="ExperienceGain" value="150000"/>
-			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
-			<property name="LootDropProb" value="1"/>
-
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="80"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
 			</effect_group>
 		</entity_class>
@@ -1903,7 +1999,7 @@
 				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderCrystallizationDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderBerserk"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
 			</effect_group>
@@ -1911,7 +2007,7 @@
 		<entity_class name="researchInstituteAnimalRabbit2" extends="researchInstituteAnimalRabbit">
 			<property name="Tags" value="entity,animal,allbiome,rabbit,hostile,perkAT03,perkAT04,perkAT05"/>
 			<property name="NavObject" value="twitch_spawn,twitch_spawn_other,animaltracking_rabbit"/>
-			<property name="HandItem" value="handResearchInstituteAnimal"/>
+			<property name="HandItem" value="handResearchInstituteAnimal2"/>
 
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="10"/>
@@ -1942,6 +2038,22 @@
 
 
 		<!-- *** 任务 BOSS -->
+
+		<!-- *** 普通 -->
+
+		<!-- ** questZombieBossSteveCrawler -->
+		<entity_class name="questZombieBossSteveCrawler" extends="zombieBossSteveCrawler">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,questZombieBossSteveCrawler"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".35" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+			</effect_group>
+		</entity_class>
 		<!-- ** questZombieBossArsonist -->
 		<entity_class name="questZombieBossArsonist" extends="zombieBossArsonist">
 			<property name="Tags" value="entity,zombie,walker,allbiome,bossMarisa,questZombieBossArsonist"/>
@@ -1954,19 +2066,6 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** questZombieBossSteveCrawler -->
-		<entity_class name="questZombieBossSteveCrawler" extends="zombieBossSteveCrawler">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,questZombieBossSteveCrawler"/>
-			<property name="NavObject" value="marisaATQuestBoss"/>
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="2400"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".35" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 			</effect_group>
 		</entity_class>
 		<!-- ** questZombieBossSoldier -->
@@ -1983,6 +2082,38 @@
 			</effect_group>
 		</entity_class>
 
+		<!-- ** questZombieBossResearchInstituteLeader -->
+		<entity_class name="questZombieBossResearchInstituteLeader" extends="zombieBossResearchInstituteLeader">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,questZombieBossResearchInstituteLeader"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="40"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeader"/>
+			</effect_group>
+		</entity_class>
+
+
+		<!-- *** 晶化 -->
+
+		<!-- ** questZombieBossSteveCrawlerCrystallization -->
+		<entity_class name="questZombieBossSteveCrawlerCrystallization" extends="zombieBossSteveCrawlerCrystallization">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,crystallization,bossMarisa,questZombieBossSteveCrawlerCrystallization"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+			</effect_group>
+		</entity_class>
 		<!-- ** questZombieBossArsonistCrystallization -->
 		<entity_class name="questZombieBossArsonistCrystallization" extends="zombieBossArsonistCrystallization">
 			<property name="Tags" value="entity,zombie,walker,allbiome,feral,crystallization,bossMarisa,questZombieBossArsonistCrystallization"/>
@@ -1995,20 +2126,6 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** questZombieBossSteveCrawlerCrystallization -->
-		<entity_class name="questZombieBossSteveCrawlerCrystallization" extends="zombieBossSteveCrawlerCrystallization">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,crystallization,bossMarisa,questZombieBossSteveCrawlerCrystallization"/>
-			<property name="NavObject" value="marisaATQuestBoss"/>
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="32000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="60"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
 			</effect_group>
 		</entity_class>
@@ -2037,12 +2154,29 @@
 				<passive_effect name="BuffResistance" operation="base_set" value=".5" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff2"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderCrystallizationDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderCrystallization"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
 			</effect_group>
 		</entity_class>
 
+
+		<!-- *** 狂化 -->
+
+		<!-- ** questZombieBossSteveCrawlerBerserk -->
+		<entity_class name="questZombieBossSteveCrawlerBerserk" extends="zombieBossSteveCrawlerBerserk">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,radiated,crystallization,berserk,bossMarisa,questZombieBossSteveCrawlerBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="80"/>
+				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
 		<!-- ** questZombieBossArsonistBerserk -->
 		<entity_class name="questZombieBossArsonistBerserk" extends="zombieBossArsonistBerserk">
 			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questZombieBossArsonistBerserk"/>
@@ -2055,20 +2189,6 @@
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
-			</effect_group>
-		</entity_class>
-		<!-- ** questZombieBossSteveCrawlerBerserk -->
-		<entity_class name="questZombieBossSteveCrawlerBerserk" extends="zombieBossSteveCrawlerBerserk">
-			<property name="Tags" value="allbiome,entity,zombie,crawler,feral,radiated,crystallization,berserk,bossMarisa,questZombieBossSteveCrawlerBerserk"/>
-			<property name="NavObject" value="marisaATQuestBoss"/>
-			<effect_group name="Base Effects">
-				<passive_effect name="HealthMax" operation="base_set" value="360000"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_set" value="80"/>
-				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
 			</effect_group>
 		</entity_class>
@@ -2097,7 +2217,7 @@
 				<passive_effect name="BuffResistance" operation="base_set" value=".65" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossRandomRollRemoveDeBuff3"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
-				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderCrystallizationDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderBerserk"/>
 				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
 			</effect_group>
@@ -2243,6 +2363,36 @@
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieBurntBerserk']">
 		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieBurntExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePlagueSpitter']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombiePlagueSpitterExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePlagueSpitterFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombiePlagueSpitterExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePlagueSpitterRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombiePlagueSpitterExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePlagueSpitterCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombiePlagueSpitterExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombiePlagueSpitterBerserk']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombiePlagueSpitterExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFrostclaw']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,zombieFrostclawExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFrostclawFeral']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieFrostclawExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFrostclawRadiated']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieFrostclawExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFrostclawCrystallization']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,zombieFrostclawExtract,marisaTrack"/>
+	</append>
+	<append xpath="/entity_classes/entity_class[@name='zombieFrostclawBerserk']">
+		<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,zombieFrostclawExtract,marisaTrack"/>
 	</append>
 	<append xpath="/entity_classes/entity_class[@name='zombieSpider']">
 		<property name="Tags" value="entity,zombie,walker,allbiome,zombieSpiderExtract,marisaTrack"/>
