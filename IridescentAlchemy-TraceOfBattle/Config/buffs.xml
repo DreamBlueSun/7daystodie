@@ -2034,6 +2034,23 @@
 			<update_rate value="1"/>
 			<duration value="0"/>
 
+			<!-- * 装备进度解锁 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="2"/>
+				<requirement name="ProgressionLevel" progression_name="craftingEquipment" operation="LT" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingEquipment" level="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="9"/>
+				<requirement name="ProgressionLevel" progression_name="craftingEquipment" operation="LT" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingEquipment" level="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="15"/>
+				<requirement name="ProgressionLevel" progression_name="craftingEquipment" operation="LT" value="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingEquipment" level="1"/>
+			</effect_group>
+
 			<!-- ** 手枪 属性解放 伤害补正 -->
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelDamageModifierGunPistol" operation="set" value="0">
