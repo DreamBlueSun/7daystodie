@@ -3713,6 +3713,9 @@
 			<duration value="0"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="300">
+					<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
+				</triggered_effect>
 			</effect_group>
 			<effect_group>
 				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
@@ -3741,7 +3744,7 @@
 			<display_value value="$CrouchingQuestOn"/>
 			<display_value_key value="{0}"/>
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="7"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$CrouchingQuestOnWill" operation="GTE" value="1"/>
@@ -3755,7 +3758,6 @@
 				<requirement name="CVarCompare" cvar="$CrouchingQuestOn" operation="LTE" value="0"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventCrouchingQuestFail" allow_client_call="true"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCrouchingQuestOn"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="5"/>
 			</effect_group>
 		</buff>
 
