@@ -456,27 +456,23 @@
                 </effect_group>
             </perk>
             <!-- *** 驼骆 -->
-            <perk name="perkPackMule" parent="skillStrengthGeneral" name_key="perkPackMuleName" desc_key="perkPackMuleDesc" icon="ui_game_symbol_pack_mule">
+            <perk name="perkPackMule" max_level="3" parent="skillStrengthGeneral" name_key="perkPackMuleName" desc_key="perkPackMuleDesc" icon="ui_game_symbol_pack_mule">
                 <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="1" desc_key="reqStrengthLevel01"/></level_requirements>
-                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="2" desc_key="reqStrengthLevel02"/></level_requirements>
-                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
-                <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="4" desc_key="reqStrengthLevel04"/></level_requirements>
-                <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
+                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="3" desc_key="reqStrengthLevel03"/></level_requirements>
+                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attStrength" operation="GTE" value="5" desc_key="reqStrengthLevel05"/></level_requirements>
 
                 <effect_group>
                     <!-- Increase the backpack slots available before incumbrance starts -->
-                    <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3,4,5" value="3,6,10,14,18"/>
-
+                    <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3" value="15,30,45"/>
+                    <!-- *** 背包120格 -->
                     <!-- Increase crafting time of items crafting in the backpack -->
-                    <passive_effect name="CraftingTime" operation="perc_add" level="1,2,3,4,5" value="-.1,-.2,-.3,-.4,-.5" tags="packMuleCrafting"/>
+                    <passive_effect name="CraftingTime" operation="perc_add" level="1,2,3" value="-.1,-.25,-.5" tags="packMuleCrafting"/>
                 </effect_group>
 
                 <effect_group>
                     <effect_description level="1" desc_key="perkPackMuleRank1Desc" long_desc_key="perkPackMuleRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkPackMuleRank2Desc" long_desc_key="perkPackMuleRank2LongDesc"/>
                     <effect_description level="3" desc_key="perkPackMuleRank3Desc" long_desc_key="perkPackMuleRank3LongDesc"/>
-                    <effect_description level="4" desc_key="perkPackMuleRank4Desc" long_desc_key="perkPackMuleRank4LongDesc"/>
-                    <effect_description level="5" desc_key="perkPackMuleRank5Desc" long_desc_key="perkPackMuleRank5LongDesc"/>
                 </effect_group>
             </perk>
 
@@ -1365,7 +1361,8 @@
                 <effect_group>
                     <requirement name="IsNight"/>
                     <requirement name="!HasBuff" buff="twitch_buffEncumbered"/>
-                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="27"/>
+                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="120"/>
+                    <!-- *** 背包120格 -->
                 </effect_group>
             </book>
             <!-- *** NIGHT_STALKER_VOLUME_05_ARCHERY -->
@@ -2399,13 +2396,13 @@
                 <effect_group>
                     <requirement name="InBiome" biome="8"/>
                     <passive_effect name="StaminaChangeOT" operation="perc_add" level="1" value="0.2" tags="running"/> <!-- perkFiremansAlmanacComplete -->
-                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="45"/>
+                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="120"/>
                 </effect_group>
-
+                <!-- *** 背包120格 -->
                 <effect_group>
                     <requirement name="InBiome" biome="9"/>
                     <passive_effect name="StaminaChangeOT" operation="perc_add" level="1" value="0.2" tags="running"/> <!-- perkFiremansAlmanacComplete -->
-                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="45"/>
+                    <passive_effect name="CarryCapacity" operation="base_add" level="1" value="120"/>
                 </effect_group>
 
                 <effect_group>
@@ -4434,19 +4431,17 @@
             </effect_group>
         </perk>
         <!-- ** 搬运达人 -->
-        <perk name="perkMarisaCarryStar" parent="skillIridescentItem" name_key="perkMarisaCarryStarName" desc_key="perkMarisaCarryStarDesc" icon="ui_game_symbol_diamond" max_level="3" base_skill_point_cost="10">
+        <perk name="perkMarisaCarryStar" parent="skillIridescentItem" name_key="perkMarisaCarryStarName" desc_key="perkMarisaCarryStarDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="10">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-            <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3" value="6,12,18"/>
+                <passive_effect name="CarryCapacity" operation="base_add" level="1,2,3" value="15,30"/>
             </effect_group>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaCarryStarRank1Desc" long_desc_key="perkMarisaCarryStarRank1LongDesc"/>
                 <effect_description level="2" desc_key="perkMarisaCarryStarRank2Desc" long_desc_key="perkMarisaCarryStarRank2LongDesc"/>
-                <effect_description level="3" desc_key="perkMarisaCarryStarRank3Desc" long_desc_key="perkMarisaCarryStarRank3LongDesc"/>
             </effect_group>
         </perk>
         <!-- ** 广域化 -->
