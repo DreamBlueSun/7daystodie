@@ -3675,10 +3675,11 @@
 		<!-- 魔理沙的饭 -->
 		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="3602"/>
 			<effect_group>
-				<passive_effect name="HealthMax" operation="base_add" value="30"/>
-				<passive_effect name="StaminaMax" operation="base_add" value="60"/>
+				<passive_effect name="HealthMax" operation="base_add" value="50"/>
+				<passive_effect name="StaminaMax" operation="base_add" value="50"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="50"/>
 				<!-- 实体伤害 -->
 				<passive_effect name="EntityDamage" operation="base_add" value="2"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="1"/></passive_effect>
 				<passive_effect name="EntityDamage" operation="base_add" value="3"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="2"/></passive_effect>
@@ -3716,7 +3717,7 @@
 		<!-- 魔理沙的击晕术 -->
 		<buff name="buffMarisasFeastEffect1" name_key="buffMarisasFeastEffect1Name" description_key="buffMarisasFeastEffect1Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="HasBuff" buff="buffInjuryStunned01" target="other"/>
 				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
@@ -3725,7 +3726,7 @@
 		<!-- 魔理沙的体术 -->
 		<buff name="buffMarisasFeastEffect2" name_key="buffMarisasFeastEffect2Name" description_key="buffMarisasFeastEffect2Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="StaminaLoss" operation="perc_add" value="-.05"/>
 			</effect_group>
@@ -3733,16 +3734,16 @@
 		<!-- 魔理沙的火场怪力 -->
 		<buff name="buffMarisasFeastEffect3" name_key="buffMarisasFeastEffect3Name" description_key="buffMarisasFeastEffect3Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".1"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".3"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".40"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的理毛好手 -->
 		<buff name="buffMarisasFeastEffect4" name_key="buffMarisasFeastEffect4Name" description_key="buffMarisasFeastEffect4Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value=".5"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value="0"/>
@@ -3751,7 +3752,7 @@
 		<!-- 魔理沙的治愈术 -->
 		<buff name="buffMarisasFeastEffect5" name_key="buffMarisasFeastEffect5Name" description_key="buffMarisasFeastEffect5Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffStatusHungry03"/>
 				<requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
@@ -3761,33 +3762,33 @@
 		<!-- 魔理沙的射击术 -->
 		<buff name="buffMarisasFeastEffect6" name_key="buffMarisasFeastEffect6Name" description_key="buffMarisasFeastEffect6Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="ItemHasTags" tags="ranged"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".05"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的炮击术 -->
 		<buff name="buffMarisasFeastEffect7" name_key="buffMarisasFeastEffect7Name" description_key="buffMarisasFeastEffect7Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
-				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
-				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".1" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".1" tags="perkDemolitionsExpert,perkArchery"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的换算术 -->
 		<buff name="buffMarisasFeastEffect8" name_key="buffMarisasFeastEffect8Name" description_key="buffMarisasFeastEffect8Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
-				<passive_effect name="QuestBonusItemReward" operation="perc_add" value=".1"/>
+				<passive_effect name="QuestBonusItemReward" operation="perc_add" value=".2"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的收获祭 -->
 		<buff name="buffMarisasFeastEffect9" name_key="buffMarisasFeastEffect9Name" description_key="buffMarisasFeastEffect9Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="farmerBonusHarvest"/>
 			</effect_group>
@@ -3795,7 +3796,7 @@
 		<!-- 魔理沙的财运 -->
 		<buff name="buffMarisasFeastEffect10" name_key="buffMarisasFeastEffect10Name" description_key="buffMarisasFeastEffect10Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="LootQuantity" operation="perc_add" value=".5" tags="dukes"/>
 			</effect_group>
@@ -3803,7 +3804,7 @@
 		<!-- 魔理沙的幸运 -->
 		<buff name="buffMarisasFeastEffect11" name_key="buffMarisasFeastEffect11Name" description_key="buffMarisasFeastEffect11Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="LootStage" operation="base_add" level="1" value="5"/>
 				<passive_effect name="LootStage" operation="perc_add" level="1" value=".1"/>
@@ -3813,7 +3814,7 @@
 		<buff name="buffMarisasFeastEffect12" name_key="buffMarisasFeastEffect12Name" description_key="buffMarisasFeastEffect12Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfDied" action="ModifyStats" stat="Health" target="selfOtherPlayers" target_tags="ally,party" operation="add" value="60"/>
 			</effect_group>
@@ -3821,7 +3822,7 @@
 		<!-- 魔理沙的蛮干术 -->
 		<buff name="buffMarisasFeastEffect13" name_key="buffMarisasFeastEffect13Name" description_key="buffMarisasFeastEffect13Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffMarisasFeastEffect13On"/>
 			</effect_group>
@@ -3836,7 +3837,7 @@
 		<!-- 魔理沙的着地术 -->
 		<buff name="buffMarisasFeastEffect14" name_key="buffMarisasFeastEffect14Name" description_key="buffMarisasFeastEffect14Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value=".08484"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value="0"/>
@@ -3845,7 +3846,7 @@
 		<!-- 魔理沙的天气预报 -->
 		<buff name="buffMarisasFeastEffect15" name_key="buffMarisasFeastEffect15Name" description_key="buffMarisasFeastEffect15Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="marisa_weather_rain" allow_client_call="true"/>
 			</effect_group>
@@ -3853,7 +3854,7 @@
 		<!-- 魔理沙的吸引仇恨好手 -->
 		<buff name="buffMarisasFeastEffect16" name_key="buffMarisasFeastEffect16Name" description_key="buffMarisasFeastEffect16Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="LightMultiplier" operation="perc_add" value=".5"/>
 				<passive_effect name="NoiseMultiplier" operation="perc_add" value=".5"/>
@@ -3862,7 +3863,7 @@
 		<!-- 魔理沙的防御术 -->
 		<buff name="buffMarisasFeastEffect17" name_key="buffMarisasFeastEffect17Name" description_key="buffMarisasFeastEffect17Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"/>
 			</effect_group>
@@ -3870,7 +3871,7 @@
 		<!-- 魔理沙的粗暴射击 -->
 		<buff name="buffMarisasFeastEffect18" name_key="buffMarisasFeastEffect18Name" description_key="buffMarisasFeastEffect18Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="ItemHasTags" tags="ranged"/>
 				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
@@ -3880,7 +3881,7 @@
 		<!-- 魔理沙的指导术 -->
 		<buff name="buffMarisasFeastEffect19" name_key="buffMarisasFeastEffect19Name" description_key="buffMarisasFeastEffect19Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value=".1"/>
 			</effect_group>
@@ -3888,7 +3889,7 @@
 		<!-- 魔理沙的休息术 -->
 		<buff name="buffMarisasFeastEffect20" name_key="buffMarisasFeastEffect20Name" description_key="buffMarisasFeastEffect20Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect20" operation="GTE" value="4"/>
 				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
@@ -3906,16 +3907,16 @@
 		<!-- 魔理沙的短期催眠术 -->
 		<buff name="buffMarisasFeastEffect21" name_key="buffMarisasFeastEffect21Name" description_key="buffMarisasFeastEffect21Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
-				<passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-				<passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
 		<!-- 魔理沙的轻功达人 -->
 		<buff name="buffMarisasFeastEffect22" name_key="buffMarisasFeastEffect22Name" description_key="buffMarisasFeastEffect22Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.05" tags="jumping"/>
 				<passive_effect name="StaminaChangeOT" operation="perc_add" level="1" value=".1" tags="running"/>
@@ -3924,7 +3925,7 @@
 		<!-- 魔理沙的采蜜术 -->
 		<buff name="buffMarisasFeastEffect23" name_key="buffMarisasFeastEffect23Name" description_key="buffMarisasFeastEffect23Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="WasteTreasuresHoneyHarvest"/>
 			</effect_group>
@@ -3932,7 +3933,7 @@
 		<!-- 魔理沙的饱腹术 -->
 		<buff name="buffMarisasFeastEffect24" name_key="buffMarisasFeastEffect24Name" description_key="buffMarisasFeastEffect24Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="1802"/>
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Food" operation="GTE" value=".9"/>
 				<requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value=".9"/>
