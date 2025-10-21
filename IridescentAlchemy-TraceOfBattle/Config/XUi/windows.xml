@@ -26,23 +26,6 @@
       <window name="HUDLeftStatBars" anchor="LeftBottom">
          <!-- 状态 -->
          <rect name="hud" pos="9,180" rows="2" cols="1" width="400" side="right">
-            <rect controller="CharacterFrameWindow">
-               <panel name="header" height="1" depth="1" pos="9999,9999" backgroundspritename="ui_game_panel_header">
-                  <label depth="2" name="characterName" pos="42,-6" width="1" height="1" text="" color="[transparent]" font_size="1" />
-                  <label depth="2" name="levelNumber" pos="240,-10" width="1" height="1" text="" color="[transparent]" font_size="1" />
-               </panel>
-               <rect visible="{showcharactersdcs}" pos="9999,9999">
-                  <panel name="previewFrameSDCS" depth="0" pos="0,-86" width="1" on_press="true" on_hover="true" disableautobackground="true" snap="false" gamepad_selectable="false">
-                     <rect>
-                        <texture depth="2" name="playerPreviewSDCS" material="Materials/Transparent Colored" size="1,1" color="[transparent]" globalopacity="false"/>
-                     </rect>
-                     <rect name="btnCosmetic" pos="9999,9999" depth="3" height="0" width="0">
-                        <rect depth="3" pos="9999,-9999" width="0" height="0">
-                           <button name="clickable" tooltip_key="xuiCosmetics"/>
-                        </rect>
-                     </rect>
-                  </panel>
-               </rect>
                <!-- 经验 -->
                <rect width="400" height="40" pos="0,5" controller="ToolbeltWindow" visible="{statvisible}">
                   <sprite depth="1" name="border" sprite="right_click_9_slice" color="0,0,0,0" type="sliced" globalopacity="false"/>
@@ -54,7 +37,7 @@
                   <sprite depth="8" name="border" sprite="right_click_9_slice" color="0,0,0,0" type="sliced" fillcenter="false"/>
                   <filledsprite depth="8" name="background" sprite="right_click_9_slice" color="0,0,0,0" fillcenter="false" type="filled" fill="{statmodifiedmax}"/>
                   <filledsprite depth="3" name="background" sprite="right_click_9_slice" color="0,0,0,0" width="400" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
-                  <label depth="7" name="TextContent" pos="0,-6" font_size="27" color="[white]" justify="center" pivot="topleft" text="LV: {cvar($LastPlayerLevel)}   XP: {playerxptonextlevel}" height="30"/>
+                  <label depth="7" name="TextContent" pos="0,-6" font_size="27" color="[white]" justify="center" pivot="topleft" text="LV: {cvar($LastPlayerLevel)}" height="30"/>
                </rect>
                <!-- 血量 -->
                <rect width="400" height="40" pos="0,-38" controller="HUDStatBar" stat_type="Health" visible="{statvisible}">
@@ -94,8 +77,7 @@
                   <sprite depth="8" name="border" sprite="right_click_9_slice" color="0,0,0,0" type="sliced" fillcenter="false"/>
                   <filledsprite depth="8" name="background" sprite="right_click_9_slice" color="0,0,0,0" fillcenter="false" type="filled" fill="{statmodifiedmax}"/>
                   <filledsprite depth="3" name="background" sprite="right_click_9_slice" color="0,0,0,0" width="182" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
-                  <label depth="7" name="TextContent" pos="20,-6" font_size="28" color="[white]" justify="center" pivot="topleft" text="{playermodifiedcurrentfood}/{playerfoodmax}
-				  &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;{statcurrent}" height="1000"/>
+                  <label depth="7" name="TextContent" pos="10,-6" font_size="28" color="[white]" justify="center" pivot="topleft" text="{statcurrent}" height="30"/>
                </rect>
                <!-- 水分 -->
                <rect width="182" height="40" pos="218,-126" controller="HUDStatBar" stat_type="Water" visible="{statvisible}">
@@ -108,10 +90,8 @@
                   <sprite depth="8" name="border" sprite="right_click_9_slice" color="0,0,0,0" type="sliced" fillcenter="false"/>
                   <filledsprite depth="8" name="background" sprite="right_click_9_slice" color="0,0,0,0" fillcenter="false" type="filled" fill="{statmodifiedmax}"/>
                   <filledsprite depth="3" name="background" sprite="right_click_9_slice" color="0,0,0,0" width="182" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
-                  <label depth="7" name="TextContent" pos="20,-6" font_size="28" color="[white]" justify="center" pivot="topleft" text="{playermodifiedcurrentwater}/{playerwatermax}
-				  &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;{statcurrent}" height="1000"/>
+                  <label depth="7" name="TextContent" pos="10,-6" font_size="28" color="[white]" justify="center" pivot="topleft" text="{statcurrent}" height="30"/>
                </rect>
-            </rect>
          </rect>
 
          <!-- BUFF -->
