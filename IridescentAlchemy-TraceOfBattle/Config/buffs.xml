@@ -4571,6 +4571,14 @@
 	<!-- ** 电击 -->
 	<remove xpath="/buffs/buff[@name='buffShocked']"/>
 	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
+		<buff name="buffShockedBlock" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$marisaShockedEffectAmount" operation="add" value="60"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
+			</effect_group>
+		</buff>
 		<!-- 电击 前置 -->
 		<buff name="buffShockedEffect" hidden="true">
 			<stack_type value="ignore"/>
