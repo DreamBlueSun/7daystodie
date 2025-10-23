@@ -15,6 +15,7 @@
 	<remove xpath="/dialogs/dialog[@id='trader']/statement[@id='start']/response_entry[@id='jobsnone']"/>
 	<insertAfter xpath="/dialogs/dialog[@id='trader']/statement[@id='start']/response_entry[@id='shop']">
 		<response_entry id="jobshaveall"/>
+		<response_entry id="jobshaveshowall"/>
 	</insertAfter>
 
 	<remove xpath="/dialogs/dialog[@id='trader']/response[@id='jobshave1']"/>
@@ -1014,6 +1015,995 @@
 
 
 
+		<!-- *** 服务器不生效版本 现在用来显示任务进度 -->
+
+		<response id="jobshaveshowall" text="dialog_trader_response_jobshave_show" nextstatementid="currentjobsShowall">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide"/>
+		</response>
+		<response id="nevermindinShow" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShowall"/>
+		<response id="nevermindinShow1" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow1"/>
+		<response id="nevermindinShow2" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow2"/>
+		<response id="nevermindinShow3" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow3"/>
+		<response id="nevermindinShow4" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow4"/>
+		<response id="nevermindinShow5" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow5"/>
+		<response id="nevermindinShow6" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow6"/>
+		<response id="nevermindinShow7" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow7"/>
+		<response id="nevermindinShow8" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow8"/>
+		<response id="nevermindinShow9" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow9"/>
+		<response id="nevermindinShow10" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow10"/>
+		<response id="nevermindinShow11" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow11"/>
+		<response id="nevermindinShow12" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow12"/>
+		<response id="nevermindinShow13" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow13"/>
+		<response id="nevermindinShow14" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow14"/>
+		<response id="nevermindinShow15" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow15"/>
+		<response id="nevermindinShow16" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow16"/>
+		<response id="nevermindinShow17" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow17"/>
+		<response id="nevermindinShow18" text="dialog_trader_response_nevermind" nextstatementid="currentjobsShow18"/>
+
+		<response id="emergencyjobshaveShow3" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency3">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="2" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow4" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency4">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="3" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow5" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency5">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="4" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="4" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="4" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="4" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="4" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow6" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency6">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="5" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="5" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="5" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="5" requirementtype="Hide"/>
+		</response>
+
+		<response id="emergencyjobshaveShow9" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency9">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="6" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="6" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="6" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow10" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency10">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="9" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="9" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="9" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="9" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow11" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency11">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="10" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="10" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="10" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="10" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow12" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency12">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="11" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="11" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="11" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="11" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="11" requirementtype="Hide"/>
+		</response>
+
+		<response id="emergencyjobshaveShow15" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency15">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="12" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="12" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="12" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="12" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow16" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency16">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="15" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="15" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="15" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="15" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow17" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency17">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="16" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="16" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="16" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="16" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="emergencyjobshaveShow18" text="dialog_trader_response_emergencyjobshave" nextstatementid="currentjobsShowemergency18">
+			<requirement type="QuestStatus" value="NotStarted" requirementtype="Hide" tag="emergency"/>
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClear" value="17" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearInfested" value="17" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteClearSuperInfested" value="17" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteDefensivePoint" value="17" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="QuestCompleteCrouchingRestorePower" value="17" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow1_1" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="1" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_2" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="2" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_3" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="3" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_4" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="4" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_5" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_6" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_7" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_8" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_9" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_10" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_11" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_12" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_13" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_14" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_15" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_16" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_17" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_18" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_19" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow1_20" text="dialog_trader_response_jobshave_statement_1" nextstatementid="currentjobsShow1">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow2_2" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="2" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_3" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="3" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_4" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="4" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_5" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_6" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_7" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_8" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_9" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_10" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_11" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_12" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_13" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_14" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_15" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_16" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_17" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_18" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_19" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow2_20" text="dialog_trader_response_jobshave_statement_2" nextstatementid="currentjobsShow2">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow3_3" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="3" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_4" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="4" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_5" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_6" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_7" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_8" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_9" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_10" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_11" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_12" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_13" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_14" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_15" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_16" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_17" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_18" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_19" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow3_20" text="dialog_trader_response_jobshave_statement_3" nextstatementid="currentjobsShow3">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow4_4" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="4" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_5" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_6" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_7" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_8" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_9" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_10" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_11" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_12" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_13" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_14" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_15" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_16" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_17" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_18" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_19" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow4_20" text="dialog_trader_response_jobshave_statement_4" nextstatementid="currentjobsShow4">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow5_5" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="5" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_6" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_7" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_8" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_9" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_10" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_11" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_12" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_13" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_14" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_15" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_16" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_17" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_18" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_19" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow5_20" text="dialog_trader_response_jobshave_statement_5" nextstatementid="currentjobsShow5">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow6_6" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="6" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_7" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_8" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_9" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_10" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_11" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_12" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_13" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_14" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_15" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_16" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_17" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_18" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_19" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow6_20" text="dialog_trader_response_jobshave_statement_6" nextstatementid="currentjobsShow6">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="1" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow7_7" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="7" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_8" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_9" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_10" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_11" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_12" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_13" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_14" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_15" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_16" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_17" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_18" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_19" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow7_20" text="dialog_trader_response_jobshave_statement_7" nextstatementid="currentjobsShow7">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow8_8" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="8" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_9" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_10" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_11" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_12" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_13" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_14" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_15" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_16" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_17" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_18" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_19" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow8_20" text="dialog_trader_response_jobshave_statement_8" nextstatementid="currentjobsShow8">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow9_9" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="9" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_10" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_11" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_12" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_13" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_14" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_15" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_16" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_17" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_18" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_19" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow9_20" text="dialog_trader_response_jobshave_statement_9" nextstatementid="currentjobsShow9">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow10_10" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="10" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_11" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_12" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_13" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_14" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_15" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_16" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_17" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_18" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_19" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow10_20" text="dialog_trader_response_jobshave_statement_10" nextstatementid="currentjobsShow10">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow11_11" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="11" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_12" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_13" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_14" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_15" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_16" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_17" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_18" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_19" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow11_20" text="dialog_trader_response_jobshave_statement_11" nextstatementid="currentjobsShow11">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow12_12" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="12" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_13" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_14" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_15" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_16" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_17" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_18" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_19" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow12_20" text="dialog_trader_response_jobshave_statement_12" nextstatementid="currentjobsShow12">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="2" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow13_13" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="13" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_14" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_15" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_16" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_17" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_18" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_19" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow13_20" text="dialog_trader_response_jobshave_statement_13" nextstatementid="currentjobsShow13">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow14_14" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="14" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_15" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_16" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_17" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_18" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_19" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow14_20" text="dialog_trader_response_jobshave_statement_14" nextstatementid="currentjobsShow14">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow15_15" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="15" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow15_16" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow15_17" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow15_18" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow15_19" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow15_20" text="dialog_trader_response_jobshave_statement_15" nextstatementid="currentjobsShow15">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow16_16" text="dialog_trader_response_jobshave_statement_16" nextstatementid="currentjobsShow16">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="16" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow16_17" text="dialog_trader_response_jobshave_statement_16" nextstatementid="currentjobsShow16">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow16_18" text="dialog_trader_response_jobshave_statement_16" nextstatementid="currentjobsShow16">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow16_19" text="dialog_trader_response_jobshave_statement_16" nextstatementid="currentjobsShow16">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow16_20" text="dialog_trader_response_jobshave_statement_16" nextstatementid="currentjobsShow16">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow17_17" text="dialog_trader_response_jobshave_statement_17" nextstatementid="currentjobsShow17">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="17" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow17_18" text="dialog_trader_response_jobshave_statement_17" nextstatementid="currentjobsShow17">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow17_19" text="dialog_trader_response_jobshave_statement_17" nextstatementid="currentjobsShow17">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow17_20" text="dialog_trader_response_jobshave_statement_17" nextstatementid="currentjobsShow17">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
+		<response id="jobsstatementShow18_18" text="dialog_trader_response_jobshave_statement_18" nextstatementid="currentjobsShow18">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="18" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow18_19" text="dialog_trader_response_jobshave_statement_18" nextstatementid="currentjobsShow18">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="19" requirementtype="Hide"/>
+		</response>
+		<response id="jobsstatementShow18_20" text="dialog_trader_response_jobshave_statement_18" nextstatementid="currentjobsShow18">
+			<requirement type="CheckCVar" id=".MarisaInBiome" value="3" requirementtype="Hide"/>
+			<requirement type="CheckCVar" id="IntroComplete" value="20" requirementtype="Hide"/>
+		</response>
+
 		<!-- 【难度：★1】 -->
 
 		<!-- 资源采集 -->
@@ -1570,57 +2560,6 @@
 			<quest_entry type="emergency" listindex="0" tier="18"/>
 			<response_entry id="nevermindin"/>
 		</statement>
-
-<!--		<statement id="currentjobsemergency3" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier3_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency4" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier4_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency5" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier5_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency6" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier6_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-
-<!--		<statement id="currentjobsemergency9" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier9_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency10" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier10_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency11" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier11_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency12" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier12_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-
-<!--		<statement id="currentjobsemergency15" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier15_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency16" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier16_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency17" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier17_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobsemergency18" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">-->
-<!--			<quest_entry id="marisa_tier18_poi_kill_boss_emergency" listindex="0"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
 
 		<statement id="currentjobs1" text="dialog_trader_statement_currentjobs" nextstatementid="start">
 			<quest_entry listindex="0" tier="1"/>
@@ -2775,160 +3714,458 @@
 			<response_entry id="nevermindin"/>
 		</statement>
 
-<!--		<statement id="currentjobs1" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchKeepResourcejobshave1"/>-->
-<!--			<response_entry id="buriedSuppliesjobshave1"/>-->
-<!--			<response_entry id="fetchjobshave1"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs2" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="buriedSuppliesjobshave2"/>-->
-<!--			<response_entry id="fetchjobshave2"/>-->
-<!--			<response_entry id="clearjobshave2"/>-->
-<!--			<response_entry id="clearInfestedjobshave2"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave2"/>-->
-<!--			<response_entry id="defensivePointjobshave2"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs3" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchjobshave3"/>-->
-<!--			<response_entry id="clearjobshave3"/>-->
-<!--			<response_entry id="clearInfestedjobshave3"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave3"/>-->
-<!--			<response_entry id="defensivePointjobshave3"/>-->
-<!--			<response_entry id="poiKillBossjobshave3"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs4" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave4"/>-->
-<!--			<response_entry id="clearInfestedjobshave4"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave4"/>-->
-<!--			<response_entry id="defensivePointjobshave4"/>-->
-<!--			<response_entry id="poiKillBossjobshave4"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs5" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave5"/>-->
-<!--			<response_entry id="clearInfestedjobshave5"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave5"/>-->
-<!--			<response_entry id="defensivePointjobshave5"/>-->
-<!--			<response_entry id="poiKillBossjobshave5"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs6" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave6"/>-->
-<!--			<response_entry id="clearInfestedjobshave6"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave6"/>-->
-<!--			<response_entry id="defensivePointjobshave6"/>-->
-<!--			<response_entry id="poiKillBossjobshave6"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
 
-<!--		<statement id="currentjobs7" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchKeepResourcejobshave7"/>-->
-<!--			<response_entry id="buriedSuppliesjobshave7"/>-->
-<!--			<response_entry id="fetchjobshave7"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs8" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="buriedSuppliesjobshave8"/>-->
-<!--			<response_entry id="fetchjobshave8"/>-->
-<!--			<response_entry id="clearjobshave8"/>-->
-<!--			<response_entry id="clearInfestedjobshave8"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave8"/>-->
-<!--			<response_entry id="defensivePointjobshave8"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs9" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchjobshave9"/>-->
-<!--			<response_entry id="clearjobshave9"/>-->
-<!--			<response_entry id="clearInfestedjobshave9"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave9"/>-->
-<!--			<response_entry id="defensivePointjobshave9"/>-->
-<!--			<response_entry id="poiKillBossjobshave9"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave9"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs10" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave10"/>-->
-<!--			<response_entry id="clearInfestedjobshave10"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave10"/>-->
-<!--			<response_entry id="defensivePointjobshave10"/>-->
-<!--			<response_entry id="poiKillBossjobshave10"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave10"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs11" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave11"/>-->
-<!--			<response_entry id="clearInfestedjobshave11"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave11"/>-->
-<!--			<response_entry id="defensivePointjobshave11"/>-->
-<!--			<response_entry id="poiKillBossjobshave11"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave11"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs12" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave12"/>-->
-<!--			<response_entry id="clearInfestedjobshave12"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave12"/>-->
-<!--			<response_entry id="defensivePointjobshave12"/>-->
-<!--			<response_entry id="poiKillBossjobshave12"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave12"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
+		<!-- *** 服务器不生效版本 现在用来显示任务进度 -->
 
-<!--		<statement id="currentjobs13" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchKeepResourcejobshave13"/>-->
-<!--			<response_entry id="buriedSuppliesjobshave13"/>-->
-<!--			<response_entry id="fetchjobshave13"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs14" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="buriedSuppliesjobshave14"/>-->
-<!--			<response_entry id="fetchjobshave14"/>-->
-<!--			<response_entry id="clearjobshave14"/>-->
-<!--			<response_entry id="clearInfestedjobshave14"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave14"/>-->
-<!--			<response_entry id="defensivePointjobshave14"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs15" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="fetchjobshave15"/>-->
-<!--			<response_entry id="clearjobshave15"/>-->
-<!--			<response_entry id="clearInfestedjobshave15"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave15"/>-->
-<!--			<response_entry id="defensivePointjobshave15"/>-->
-<!--			<response_entry id="poiKillBossjobshave15"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave15"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs16" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave16"/>-->
-<!--			<response_entry id="clearInfestedjobshave16"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave16"/>-->
-<!--			<response_entry id="defensivePointjobshave16"/>-->
-<!--			<response_entry id="poiKillBossjobshave16"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave16"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs17" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave17"/>-->
-<!--			<response_entry id="clearInfestedjobshave17"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave17"/>-->
-<!--			<response_entry id="defensivePointjobshave17"/>-->
-<!--			<response_entry id="poiKillBossjobshave17"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave17"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
-<!--		<statement id="currentjobs18" text="dialog_trader_statement_currentjobs" nextstatementid="start">-->
-<!--			<response_entry id="clearjobshave18"/>-->
-<!--			<response_entry id="clearInfestedjobshave18"/>-->
-<!--			<response_entry id="clearSuperInfestedjobshave18"/>-->
-<!--			<response_entry id="defensivePointjobshave18"/>-->
-<!--			<response_entry id="poiKillBossjobshave18"/>-->
-<!--			<response_entry id="crouchingRestorePowerjobshave18"/>-->
-<!--			<response_entry id="nevermindin"/>-->
-<!--		</statement>-->
+		<statement id="currentjobsShowall" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="emergencyjobshaveShow3"/>
+			<response_entry id="emergencyjobshaveShow4"/>
+			<response_entry id="emergencyjobshaveShow5"/>
+			<response_entry id="emergencyjobshaveShow6"/>
+			<response_entry id="emergencyjobshaveShow8"/>
+			<response_entry id="emergencyjobshaveShow9"/>
+			<response_entry id="emergencyjobshaveShow10"/>
+			<response_entry id="emergencyjobshaveShow11"/>
+			<response_entry id="emergencyjobshaveShow12"/>
+			<response_entry id="emergencyjobshaveShow14"/>
+			<response_entry id="emergencyjobshaveShow15"/>
+			<response_entry id="emergencyjobshaveShow16"/>
+			<response_entry id="emergencyjobshaveShow17"/>
+			<response_entry id="emergencyjobshaveShow18"/>
+
+			<response_entry id="jobsstatementShow1_1"/>
+			<response_entry id="jobsstatementShow1_2"/>
+			<response_entry id="jobsstatementShow1_3"/>
+			<response_entry id="jobsstatementShow1_4"/>
+			<response_entry id="jobsstatementShow1_5"/>
+			<response_entry id="jobsstatementShow1_6"/>
+			<response_entry id="jobsstatementShow1_7"/>
+			<response_entry id="jobsstatementShow1_8"/>
+			<response_entry id="jobsstatementShow1_9"/>
+			<response_entry id="jobsstatementShow1_10"/>
+			<response_entry id="jobsstatementShow1_11"/>
+			<response_entry id="jobsstatementShow1_12"/>
+			<response_entry id="jobsstatementShow1_13"/>
+			<response_entry id="jobsstatementShow1_14"/>
+			<response_entry id="jobsstatementShow1_15"/>
+			<response_entry id="jobsstatementShow1_16"/>
+			<response_entry id="jobsstatementShow1_17"/>
+			<response_entry id="jobsstatementShow1_18"/>
+			<response_entry id="jobsstatementShow1_19"/>
+			<response_entry id="jobsstatementShow1_20"/>
+
+			<response_entry id="jobsstatementShow2_2"/>
+			<response_entry id="jobsstatementShow2_3"/>
+			<response_entry id="jobsstatementShow2_4"/>
+			<response_entry id="jobsstatementShow2_5"/>
+			<response_entry id="jobsstatementShow2_6"/>
+			<response_entry id="jobsstatementShow2_7"/>
+			<response_entry id="jobsstatementShow2_8"/>
+			<response_entry id="jobsstatementShow2_9"/>
+			<response_entry id="jobsstatementShow2_10"/>
+			<response_entry id="jobsstatementShow2_11"/>
+			<response_entry id="jobsstatementShow2_12"/>
+			<response_entry id="jobsstatementShow2_13"/>
+			<response_entry id="jobsstatementShow2_14"/>
+			<response_entry id="jobsstatementShow2_15"/>
+			<response_entry id="jobsstatementShow2_16"/>
+			<response_entry id="jobsstatementShow2_17"/>
+			<response_entry id="jobsstatementShow2_18"/>
+			<response_entry id="jobsstatementShow2_19"/>
+			<response_entry id="jobsstatementShow2_20"/>
+
+			<response_entry id="jobsstatementShow3_3"/>
+			<response_entry id="jobsstatementShow3_4"/>
+			<response_entry id="jobsstatementShow3_5"/>
+			<response_entry id="jobsstatementShow3_6"/>
+			<response_entry id="jobsstatementShow3_7"/>
+			<response_entry id="jobsstatementShow3_8"/>
+			<response_entry id="jobsstatementShow3_9"/>
+			<response_entry id="jobsstatementShow3_10"/>
+			<response_entry id="jobsstatementShow3_11"/>
+			<response_entry id="jobsstatementShow3_12"/>
+			<response_entry id="jobsstatementShow3_13"/>
+			<response_entry id="jobsstatementShow3_14"/>
+			<response_entry id="jobsstatementShow3_15"/>
+			<response_entry id="jobsstatementShow3_16"/>
+			<response_entry id="jobsstatementShow3_17"/>
+			<response_entry id="jobsstatementShow3_18"/>
+			<response_entry id="jobsstatementShow3_19"/>
+			<response_entry id="jobsstatementShow3_20"/>
+
+			<response_entry id="jobsstatementShow4_4"/>
+			<response_entry id="jobsstatementShow4_5"/>
+			<response_entry id="jobsstatementShow4_6"/>
+			<response_entry id="jobsstatementShow4_7"/>
+			<response_entry id="jobsstatementShow4_8"/>
+			<response_entry id="jobsstatementShow4_9"/>
+			<response_entry id="jobsstatementShow4_10"/>
+			<response_entry id="jobsstatementShow4_11"/>
+			<response_entry id="jobsstatementShow4_12"/>
+			<response_entry id="jobsstatementShow4_13"/>
+			<response_entry id="jobsstatementShow4_14"/>
+			<response_entry id="jobsstatementShow4_15"/>
+			<response_entry id="jobsstatementShow4_16"/>
+			<response_entry id="jobsstatementShow4_17"/>
+			<response_entry id="jobsstatementShow4_18"/>
+			<response_entry id="jobsstatementShow4_19"/>
+			<response_entry id="jobsstatementShow4_20"/>
+
+			<response_entry id="jobsstatementShow5_5"/>
+			<response_entry id="jobsstatementShow5_6"/>
+			<response_entry id="jobsstatementShow5_7"/>
+			<response_entry id="jobsstatementShow5_8"/>
+			<response_entry id="jobsstatementShow5_9"/>
+			<response_entry id="jobsstatementShow5_10"/>
+			<response_entry id="jobsstatementShow5_11"/>
+			<response_entry id="jobsstatementShow5_12"/>
+			<response_entry id="jobsstatementShow5_13"/>
+			<response_entry id="jobsstatementShow5_14"/>
+			<response_entry id="jobsstatementShow5_15"/>
+			<response_entry id="jobsstatementShow5_16"/>
+			<response_entry id="jobsstatementShow5_17"/>
+			<response_entry id="jobsstatementShow5_18"/>
+			<response_entry id="jobsstatementShow5_19"/>
+			<response_entry id="jobsstatementShow5_20"/>
+
+			<response_entry id="jobsstatementShow6_6"/>
+			<response_entry id="jobsstatementShow6_7"/>
+			<response_entry id="jobsstatementShow6_8"/>
+			<response_entry id="jobsstatementShow6_9"/>
+			<response_entry id="jobsstatementShow6_10"/>
+			<response_entry id="jobsstatementShow6_11"/>
+			<response_entry id="jobsstatementShow6_12"/>
+			<response_entry id="jobsstatementShow6_13"/>
+			<response_entry id="jobsstatementShow6_14"/>
+			<response_entry id="jobsstatementShow6_15"/>
+			<response_entry id="jobsstatementShow6_16"/>
+			<response_entry id="jobsstatementShow6_17"/>
+			<response_entry id="jobsstatementShow6_18"/>
+			<response_entry id="jobsstatementShow6_19"/>
+			<response_entry id="jobsstatementShow6_20"/>
+
+			<response_entry id="jobsstatementShow7_7"/>
+			<response_entry id="jobsstatementShow7_8"/>
+			<response_entry id="jobsstatementShow7_9"/>
+			<response_entry id="jobsstatementShow7_10"/>
+			<response_entry id="jobsstatementShow7_11"/>
+			<response_entry id="jobsstatementShow7_12"/>
+			<response_entry id="jobsstatementShow7_13"/>
+			<response_entry id="jobsstatementShow7_14"/>
+			<response_entry id="jobsstatementShow7_15"/>
+			<response_entry id="jobsstatementShow7_16"/>
+			<response_entry id="jobsstatementShow7_17"/>
+			<response_entry id="jobsstatementShow7_18"/>
+			<response_entry id="jobsstatementShow7_19"/>
+			<response_entry id="jobsstatementShow7_20"/>
+
+			<response_entry id="jobsstatementShow8_8"/>
+			<response_entry id="jobsstatementShow8_9"/>
+			<response_entry id="jobsstatementShow8_10"/>
+			<response_entry id="jobsstatementShow8_11"/>
+			<response_entry id="jobsstatementShow8_12"/>
+			<response_entry id="jobsstatementShow8_13"/>
+			<response_entry id="jobsstatementShow8_14"/>
+			<response_entry id="jobsstatementShow8_15"/>
+			<response_entry id="jobsstatementShow8_16"/>
+			<response_entry id="jobsstatementShow8_17"/>
+			<response_entry id="jobsstatementShow8_18"/>
+			<response_entry id="jobsstatementShow8_19"/>
+			<response_entry id="jobsstatementShow8_20"/>
+
+			<response_entry id="jobsstatementShow9_9"/>
+			<response_entry id="jobsstatementShow9_10"/>
+			<response_entry id="jobsstatementShow9_11"/>
+			<response_entry id="jobsstatementShow9_12"/>
+			<response_entry id="jobsstatementShow9_13"/>
+			<response_entry id="jobsstatementShow9_14"/>
+			<response_entry id="jobsstatementShow9_15"/>
+			<response_entry id="jobsstatementShow9_16"/>
+			<response_entry id="jobsstatementShow9_17"/>
+			<response_entry id="jobsstatementShow9_18"/>
+			<response_entry id="jobsstatementShow9_19"/>
+			<response_entry id="jobsstatementShow9_20"/>
+
+			<response_entry id="jobsstatementShow10_10"/>
+			<response_entry id="jobsstatementShow10_11"/>
+			<response_entry id="jobsstatementShow10_12"/>
+			<response_entry id="jobsstatementShow10_13"/>
+			<response_entry id="jobsstatementShow10_14"/>
+			<response_entry id="jobsstatementShow10_15"/>
+			<response_entry id="jobsstatementShow10_16"/>
+			<response_entry id="jobsstatementShow10_17"/>
+			<response_entry id="jobsstatementShow10_18"/>
+			<response_entry id="jobsstatementShow10_19"/>
+			<response_entry id="jobsstatementShow10_20"/>
+
+			<response_entry id="jobsstatementShow11_11"/>
+			<response_entry id="jobsstatementShow11_12"/>
+			<response_entry id="jobsstatementShow11_13"/>
+			<response_entry id="jobsstatementShow11_14"/>
+			<response_entry id="jobsstatementShow11_15"/>
+			<response_entry id="jobsstatementShow11_16"/>
+			<response_entry id="jobsstatementShow11_17"/>
+			<response_entry id="jobsstatementShow11_18"/>
+			<response_entry id="jobsstatementShow11_19"/>
+			<response_entry id="jobsstatementShow11_20"/>
+
+			<response_entry id="jobsstatementShow12_12"/>
+			<response_entry id="jobsstatementShow12_13"/>
+			<response_entry id="jobsstatementShow12_14"/>
+			<response_entry id="jobsstatementShow12_15"/>
+			<response_entry id="jobsstatementShow12_16"/>
+			<response_entry id="jobsstatementShow12_17"/>
+			<response_entry id="jobsstatementShow12_18"/>
+			<response_entry id="jobsstatementShow12_19"/>
+			<response_entry id="jobsstatementShow12_20"/>
+
+			<response_entry id="jobsstatementShow13_13"/>
+			<response_entry id="jobsstatementShow13_14"/>
+			<response_entry id="jobsstatementShow13_15"/>
+			<response_entry id="jobsstatementShow13_16"/>
+			<response_entry id="jobsstatementShow13_17"/>
+			<response_entry id="jobsstatementShow13_18"/>
+			<response_entry id="jobsstatementShow13_19"/>
+			<response_entry id="jobsstatementShow13_20"/>
+
+			<response_entry id="jobsstatementShow14_14"/>
+			<response_entry id="jobsstatementShow14_15"/>
+			<response_entry id="jobsstatementShow14_16"/>
+			<response_entry id="jobsstatementShow14_17"/>
+			<response_entry id="jobsstatementShow14_18"/>
+			<response_entry id="jobsstatementShow14_19"/>
+			<response_entry id="jobsstatementShow14_20"/>
+
+			<response_entry id="jobsstatementShow15_15"/>
+			<response_entry id="jobsstatementShow15_16"/>
+			<response_entry id="jobsstatementShow15_17"/>
+			<response_entry id="jobsstatementShow15_18"/>
+			<response_entry id="jobsstatementShow15_19"/>
+			<response_entry id="jobsstatementShow15_20"/>
+
+			<response_entry id="jobsstatementShow16_16"/>
+			<response_entry id="jobsstatementShow16_17"/>
+			<response_entry id="jobsstatementShow16_18"/>
+			<response_entry id="jobsstatementShow16_19"/>
+			<response_entry id="jobsstatementShow16_20"/>
+
+			<response_entry id="jobsstatementShow17_17"/>
+			<response_entry id="jobsstatementShow17_18"/>
+			<response_entry id="jobsstatementShow17_19"/>
+			<response_entry id="jobsstatementShow17_20"/>
+
+			<response_entry id="jobsstatementShow18_18"/>
+			<response_entry id="jobsstatementShow18_19"/>
+			<response_entry id="jobsstatementShow18_20"/>
+
+			<response_entry id="nevermind"/>
+		</statement>
+
+		<statement id="currentjobsShowemergency3" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier3_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency4" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier4_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency5" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier5_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency6" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier6_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+
+		<statement id="currentjobsShowemergency9" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier9_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency10" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier10_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency11" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier11_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency12" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier12_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+
+		<statement id="currentjobsShowemergency15" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier15_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency16" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier16_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency17" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier17_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShowemergency18" text="dialog_trader_statement_currentjobs_emergency" nextstatementid="start">
+			<quest_entry id="marisa_tier18_poi_kill_boss_emergency" listindex="0"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+
+		<statement id="currentjobsShow1" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchKeepResourcejobshave1"/>
+			<response_entry id="buriedSuppliesjobshave1"/>
+			<response_entry id="fetchjobshave1"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="buriedSuppliesjobshave2"/>
+			<response_entry id="fetchjobshave2"/>
+			<response_entry id="clearjobshave2"/>
+			<response_entry id="clearInfestedjobshave2"/>
+			<response_entry id="clearSuperInfestedjobshave2"/>
+			<response_entry id="defensivePointjobshave2"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchjobshave3"/>
+			<response_entry id="clearjobshave3"/>
+			<response_entry id="clearInfestedjobshave3"/>
+			<response_entry id="clearSuperInfestedjobshave3"/>
+			<response_entry id="defensivePointjobshave3"/>
+			<response_entry id="poiKillBossjobshave3"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow4" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave4"/>
+			<response_entry id="clearInfestedjobshave4"/>
+			<response_entry id="clearSuperInfestedjobshave4"/>
+			<response_entry id="defensivePointjobshave4"/>
+			<response_entry id="poiKillBossjobshave4"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow5" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave5"/>
+			<response_entry id="clearInfestedjobshave5"/>
+			<response_entry id="clearSuperInfestedjobshave5"/>
+			<response_entry id="defensivePointjobshave5"/>
+			<response_entry id="poiKillBossjobshave5"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow6" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave6"/>
+			<response_entry id="clearInfestedjobshave6"/>
+			<response_entry id="clearSuperInfestedjobshave6"/>
+			<response_entry id="defensivePointjobshave6"/>
+			<response_entry id="poiKillBossjobshave6"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+
+		<statement id="currentjobsShow7" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchKeepResourcejobshave7"/>
+			<response_entry id="buriedSuppliesjobshave7"/>
+			<response_entry id="fetchjobshave7"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="buriedSuppliesjobshave8"/>
+			<response_entry id="fetchjobshave8"/>
+			<response_entry id="clearjobshave8"/>
+			<response_entry id="clearInfestedjobshave8"/>
+			<response_entry id="clearSuperInfestedjobshave8"/>
+			<response_entry id="defensivePointjobshave8"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchjobshave9"/>
+			<response_entry id="clearjobshave9"/>
+			<response_entry id="clearInfestedjobshave9"/>
+			<response_entry id="clearSuperInfestedjobshave9"/>
+			<response_entry id="defensivePointjobshave9"/>
+			<response_entry id="poiKillBossjobshave9"/>
+			<response_entry id="crouchingRestorePowerjobshave9"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave10"/>
+			<response_entry id="clearInfestedjobshave10"/>
+			<response_entry id="clearSuperInfestedjobshave10"/>
+			<response_entry id="defensivePointjobshave10"/>
+			<response_entry id="poiKillBossjobshave10"/>
+			<response_entry id="crouchingRestorePowerjobshave10"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave11"/>
+			<response_entry id="clearInfestedjobshave11"/>
+			<response_entry id="clearSuperInfestedjobshave11"/>
+			<response_entry id="defensivePointjobshave11"/>
+			<response_entry id="poiKillBossjobshave11"/>
+			<response_entry id="crouchingRestorePowerjobshave11"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave12"/>
+			<response_entry id="clearInfestedjobshave12"/>
+			<response_entry id="clearSuperInfestedjobshave12"/>
+			<response_entry id="defensivePointjobshave12"/>
+			<response_entry id="poiKillBossjobshave12"/>
+			<response_entry id="crouchingRestorePowerjobshave12"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+
+		<statement id="currentjobsShow13" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchKeepResourcejobshave13"/>
+			<response_entry id="buriedSuppliesjobshave13"/>
+			<response_entry id="fetchjobshave13"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="buriedSuppliesjobshave14"/>
+			<response_entry id="fetchjobshave14"/>
+			<response_entry id="clearjobshave14"/>
+			<response_entry id="clearInfestedjobshave14"/>
+			<response_entry id="clearSuperInfestedjobshave14"/>
+			<response_entry id="defensivePointjobshave14"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="fetchjobshave15"/>
+			<response_entry id="clearjobshave15"/>
+			<response_entry id="clearInfestedjobshave15"/>
+			<response_entry id="clearSuperInfestedjobshave15"/>
+			<response_entry id="defensivePointjobshave15"/>
+			<response_entry id="poiKillBossjobshave15"/>
+			<response_entry id="crouchingRestorePowerjobshave15"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave16"/>
+			<response_entry id="clearInfestedjobshave16"/>
+			<response_entry id="clearSuperInfestedjobshave16"/>
+			<response_entry id="defensivePointjobshave16"/>
+			<response_entry id="poiKillBossjobshave16"/>
+			<response_entry id="crouchingRestorePowerjobshave16"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave17"/>
+			<response_entry id="clearInfestedjobshave17"/>
+			<response_entry id="clearSuperInfestedjobshave17"/>
+			<response_entry id="defensivePointjobshave17"/>
+			<response_entry id="poiKillBossjobshave17"/>
+			<response_entry id="crouchingRestorePowerjobshave17"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
+		<statement id="currentjobsShow18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
+			<response_entry id="clearjobshave18"/>
+			<response_entry id="clearInfestedjobshave18"/>
+			<response_entry id="clearSuperInfestedjobshave18"/>
+			<response_entry id="defensivePointjobshave18"/>
+			<response_entry id="poiKillBossjobshave18"/>
+			<response_entry id="crouchingRestorePowerjobshave18"/>
+			<response_entry id="nevermindinShow"/>
+		</statement>
 
 		<!-- 【难度：★1】 -->
 
@@ -2938,7 +4175,7 @@
 			<quest_entry listindex="1" id="marisa_tier1_fetch_keep_resource_wood"/>
 			<quest_entry listindex="2" id="marisa_tier1_fetch_keep_resource_stone"/>
 			<quest_entry listindex="3" id="marisa_tier1_fetch_keep_resource_stone"/>
-			<response_entry id="nevermindin1"/>
+			<response_entry id="nevermindinShow1"/>
 		</statement>
 		<!-- 埋藏补给 -->
 		<statement id="currentjobsburiedSupplies1" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -2947,7 +4184,7 @@
 			<quest_entry listindex="2" id="marisa_tier1_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier1_buried_supplies"/>
 			<quest_entry listindex="4" id="marisa_tier1_buried_supplies"/>
-			<response_entry id="nevermindin1"/>
+			<response_entry id="nevermindinShow1"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch1" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -2956,7 +4193,7 @@
 			<quest_entry listindex="2" id="marisa_tier1_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier1_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier1_fetch"/>
-			<response_entry id="nevermindin1"/>
+			<response_entry id="nevermindinShow1"/>
 		</statement>
 
 		<!-- 【难度：★2】 -->
@@ -2967,7 +4204,7 @@
 			<quest_entry listindex="1" id="marisa_tier2_buried_supplies"/>
 			<quest_entry listindex="2" id="marisa_tier2_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier2_buried_supplies"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -2976,7 +4213,7 @@
 			<quest_entry listindex="2" id="marisa_tier2_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier2_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier2_fetch"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -2985,7 +4222,7 @@
 			<quest_entry listindex="2" id="marisa_tier2_clear"/>
 			<quest_entry listindex="3" id="marisa_tier2_clear"/>
 			<quest_entry listindex="4" id="marisa_tier2_clear"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -2994,7 +4231,7 @@
 			<quest_entry listindex="2" id="marisa_tier2_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier2_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier2_clear_infested"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3003,7 +4240,7 @@
 			<quest_entry listindex="2" id="marisa_tier2_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier2_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier2_clear_super_infested"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint2" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3012,7 +4249,7 @@
 			<quest_entry listindex="2" id="marisa_tier2_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier2_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier2_defensive_point"/>
-			<response_entry id="nevermindin2"/>
+			<response_entry id="nevermindinShow2"/>
 		</statement>
 
 		<!-- 【难度：★3】 -->
@@ -3024,7 +4261,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier3_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier3_fetch"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3033,7 +4270,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_clear"/>
 			<quest_entry listindex="3" id="marisa_tier3_clear"/>
 			<quest_entry listindex="4" id="marisa_tier3_clear"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3042,7 +4279,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier3_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier3_clear_infested"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3051,7 +4288,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier3_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier3_clear_super_infested"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3060,7 +4297,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier3_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier3_defensive_point"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss3" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3069,7 +4306,7 @@
 			<quest_entry listindex="2" id="marisa_tier3_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier3_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier3_poi_kill_boss"/>
-			<response_entry id="nevermindin3"/>
+			<response_entry id="nevermindinShow3"/>
 		</statement>
 
 		<!-- 【难度：★4】 -->
@@ -3081,7 +4318,7 @@
 			<quest_entry listindex="2" id="marisa_tier4_clear"/>
 			<quest_entry listindex="3" id="marisa_tier4_clear"/>
 			<quest_entry listindex="4" id="marisa_tier4_clear"/>
-			<response_entry id="nevermindin4"/>
+			<response_entry id="nevermindinShow4"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested4" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3090,7 +4327,7 @@
 			<quest_entry listindex="2" id="marisa_tier4_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier4_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier4_clear_infested"/>
-			<response_entry id="nevermindin4"/>
+			<response_entry id="nevermindinShow4"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested4" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3099,7 +4336,7 @@
 			<quest_entry listindex="2" id="marisa_tier4_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier4_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier4_clear_super_infested"/>
-			<response_entry id="nevermindin4"/>
+			<response_entry id="nevermindinShow4"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint4" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3108,7 +4345,7 @@
 			<quest_entry listindex="2" id="marisa_tier4_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier4_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier4_defensive_point"/>
-			<response_entry id="nevermindin4"/>
+			<response_entry id="nevermindinShow4"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss4" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3117,7 +4354,7 @@
 			<quest_entry listindex="2" id="marisa_tier4_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier4_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier4_poi_kill_boss"/>
-			<response_entry id="nevermindin4"/>
+			<response_entry id="nevermindinShow4"/>
 		</statement>
 
 		<!-- 【难度：★5】 -->
@@ -3129,7 +4366,7 @@
 			<quest_entry listindex="2" id="marisa_tier5_clear"/>
 			<quest_entry listindex="3" id="marisa_tier5_clear"/>
 			<quest_entry listindex="4" id="marisa_tier5_clear"/>
-			<response_entry id="nevermindin5"/>
+			<response_entry id="nevermindinShow5"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested5" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3138,7 +4375,7 @@
 			<quest_entry listindex="2" id="marisa_tier5_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier5_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier5_clear_infested"/>
-			<response_entry id="nevermindin5"/>
+			<response_entry id="nevermindinShow5"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested5" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3147,7 +4384,7 @@
 			<quest_entry listindex="2" id="marisa_tier5_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier5_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier5_clear_super_infested"/>
-			<response_entry id="nevermindin5"/>
+			<response_entry id="nevermindinShow5"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint5" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3156,7 +4393,7 @@
 			<quest_entry listindex="2" id="marisa_tier5_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier5_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier5_defensive_point"/>
-			<response_entry id="nevermindin5"/>
+			<response_entry id="nevermindinShow5"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss5" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3165,7 +4402,7 @@
 			<quest_entry listindex="2" id="marisa_tier5_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier5_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier5_poi_kill_boss"/>
-			<response_entry id="nevermindin5"/>
+			<response_entry id="nevermindinShow5"/>
 		</statement>
 
 		<!-- 【难度：★6】 -->
@@ -3177,7 +4414,7 @@
 			<quest_entry listindex="2" id="marisa_tier6_clear"/>
 			<quest_entry listindex="3" id="marisa_tier6_clear"/>
 			<quest_entry listindex="4" id="marisa_tier6_clear"/>
-			<response_entry id="nevermindin6"/>
+			<response_entry id="nevermindinShow6"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested6" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3186,7 +4423,7 @@
 			<quest_entry listindex="2" id="marisa_tier6_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier6_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier6_clear_infested"/>
-			<response_entry id="nevermindin6"/>
+			<response_entry id="nevermindinShow6"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested6" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3195,7 +4432,7 @@
 			<quest_entry listindex="2" id="marisa_tier6_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier6_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier6_clear_super_infested"/>
-			<response_entry id="nevermindin6"/>
+			<response_entry id="nevermindinShow6"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint6" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3204,7 +4441,7 @@
 			<quest_entry listindex="2" id="marisa_tier6_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier6_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier6_defensive_point"/>
-			<response_entry id="nevermindin6"/>
+			<response_entry id="nevermindinShow6"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss6" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3213,7 +4450,7 @@
 			<quest_entry listindex="2" id="marisa_tier6_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier6_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier6_poi_kill_boss"/>
-			<response_entry id="nevermindin6"/>
+			<response_entry id="nevermindinShow6"/>
 		</statement>
 
 		<!-- 【难度：★7】 -->
@@ -3224,7 +4461,7 @@
 			<quest_entry listindex="1" id="marisa_tier7_fetch_keep_resource_wood"/>
 			<quest_entry listindex="2" id="marisa_tier7_fetch_keep_resource_stone"/>
 			<quest_entry listindex="3" id="marisa_tier7_fetch_keep_resource_stone"/>
-			<response_entry id="nevermindin7"/>
+			<response_entry id="nevermindinShow7"/>
 		</statement>
 		<!-- 埋藏补给 -->
 		<statement id="currentjobsburiedSupplies7" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3233,7 +4470,7 @@
 			<quest_entry listindex="2" id="marisa_tier7_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier7_buried_supplies"/>
 			<quest_entry listindex="4" id="marisa_tier7_buried_supplies"/>
-			<response_entry id="nevermindin7"/>
+			<response_entry id="nevermindinShow7"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch7" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3242,7 +4479,7 @@
 			<quest_entry listindex="2" id="marisa_tier7_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier7_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier7_fetch"/>
-			<response_entry id="nevermindin7"/>
+			<response_entry id="nevermindinShow7"/>
 		</statement>
 
 		<!-- 【难度：★8】 -->
@@ -3254,7 +4491,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier8_buried_supplies"/>
 			<quest_entry listindex="4" id="marisa_tier8_buried_supplies"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3263,7 +4500,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier8_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier8_fetch"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3272,7 +4509,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_clear"/>
 			<quest_entry listindex="3" id="marisa_tier8_clear"/>
 			<quest_entry listindex="4" id="marisa_tier8_clear"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3281,7 +4518,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier8_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier8_clear_infested"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3290,7 +4527,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier8_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier8_clear_super_infested"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint8" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3299,7 +4536,7 @@
 			<quest_entry listindex="2" id="marisa_tier8_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier8_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier8_defensive_point"/>
-			<response_entry id="nevermindin8"/>
+			<response_entry id="nevermindinShow8"/>
 		</statement>
 
 		<!-- 【难度：★9】 -->
@@ -3311,7 +4548,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier9_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier9_fetch"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3320,7 +4557,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_clear"/>
 			<quest_entry listindex="3" id="marisa_tier9_clear"/>
 			<quest_entry listindex="4" id="marisa_tier9_clear"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3329,7 +4566,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier9_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier9_clear_infested"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3338,7 +4575,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier9_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier9_clear_super_infested"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3347,7 +4584,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier9_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier9_defensive_point"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3356,7 +4593,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier9_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier9_poi_kill_boss"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower9" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3365,7 +4602,7 @@
 			<quest_entry listindex="2" id="marisa_tier9_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier9_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier9_crouching_restore_power"/>
-			<response_entry id="nevermindin9"/>
+			<response_entry id="nevermindinShow9"/>
 		</statement>
 
 		<!-- 【难度：★10】 -->
@@ -3377,7 +4614,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_clear"/>
 			<quest_entry listindex="3" id="marisa_tier10_clear"/>
 			<quest_entry listindex="4" id="marisa_tier10_clear"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3386,7 +4623,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier10_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier10_clear_infested"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3395,7 +4632,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier10_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier10_clear_super_infested"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3404,7 +4641,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier10_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier10_defensive_point"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3413,7 +4650,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier10_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier10_poi_kill_boss"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower10" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3422,7 +4659,7 @@
 			<quest_entry listindex="2" id="marisa_tier10_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier10_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier10_crouching_restore_power"/>
-			<response_entry id="nevermindin10"/>
+			<response_entry id="nevermindinShow10"/>
 		</statement>
 
 		<!-- 【难度：★11】 -->
@@ -3434,7 +4671,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_clear"/>
 			<quest_entry listindex="3" id="marisa_tier11_clear"/>
 			<quest_entry listindex="4" id="marisa_tier11_clear"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3443,7 +4680,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier11_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier11_clear_infested"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3452,7 +4689,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier11_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier11_clear_super_infested"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3461,7 +4698,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier11_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier11_defensive_point"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3470,7 +4707,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier11_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier11_poi_kill_boss"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower11" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3479,7 +4716,7 @@
 			<quest_entry listindex="2" id="marisa_tier11_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier11_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier11_crouching_restore_power"/>
-			<response_entry id="nevermindin11"/>
+			<response_entry id="nevermindinShow11"/>
 		</statement>
 
 		<!-- 【难度：★12】 -->
@@ -3491,7 +4728,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_clear"/>
 			<quest_entry listindex="3" id="marisa_tier12_clear"/>
 			<quest_entry listindex="4" id="marisa_tier12_clear"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3500,7 +4737,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier12_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier12_clear_infested"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3509,7 +4746,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier12_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier12_clear_super_infested"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3518,7 +4755,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier12_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier12_defensive_point"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3527,7 +4764,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier12_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier12_poi_kill_boss"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower12" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3536,7 +4773,7 @@
 			<quest_entry listindex="2" id="marisa_tier12_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier12_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier12_crouching_restore_power"/>
-			<response_entry id="nevermindin12"/>
+			<response_entry id="nevermindinShow12"/>
 		</statement>
 
 		<!-- 【难度：★13】 -->
@@ -3547,7 +4784,7 @@
 			<quest_entry listindex="1" id="marisa_tier13_fetch_keep_resource_wood"/>
 			<quest_entry listindex="2" id="marisa_tier13_fetch_keep_resource_stone"/>
 			<quest_entry listindex="3" id="marisa_tier13_fetch_keep_resource_stone"/>
-			<response_entry id="nevermindin13"/>
+			<response_entry id="nevermindinShow13"/>
 		</statement>
 		<!-- 埋藏补给 -->
 		<statement id="currentjobsburiedSupplies13" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3556,7 +4793,7 @@
 			<quest_entry listindex="2" id="marisa_tier13_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier13_buried_supplies"/>
 			<quest_entry listindex="4" id="marisa_tier13_buried_supplies"/>
-			<response_entry id="nevermindin13"/>
+			<response_entry id="nevermindinShow13"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch13" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3565,7 +4802,7 @@
 			<quest_entry listindex="2" id="marisa_tier13_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier13_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier13_fetch"/>
-			<response_entry id="nevermindin13"/>
+			<response_entry id="nevermindinShow13"/>
 		</statement>
 
 		<!-- 【难度：★14】 -->
@@ -3577,7 +4814,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_buried_supplies"/>
 			<quest_entry listindex="3" id="marisa_tier14_buried_supplies"/>
 			<quest_entry listindex="4" id="marisa_tier14_buried_supplies"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 		<!-- 获取 -->
 		<statement id="currentjobsfetch14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3586,7 +4823,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier14_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier14_fetch"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3595,7 +4832,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_clear"/>
 			<quest_entry listindex="3" id="marisa_tier14_clear"/>
 			<quest_entry listindex="4" id="marisa_tier14_clear"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3604,7 +4841,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier14_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier14_clear_infested"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3613,7 +4850,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier14_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier14_clear_super_infested"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint14" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3622,7 +4859,7 @@
 			<quest_entry listindex="2" id="marisa_tier14_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier14_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier14_defensive_point"/>
-			<response_entry id="nevermindin14"/>
+			<response_entry id="nevermindinShow14"/>
 		</statement>
 
 		<!-- 【难度：★15】 -->
@@ -3634,7 +4871,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_fetch"/>
 			<quest_entry listindex="3" id="marisa_tier15_fetch"/>
 			<quest_entry listindex="4" id="marisa_tier15_fetch"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 清理 -->
 		<statement id="currentjobsclear15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3643,7 +4880,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_clear"/>
 			<quest_entry listindex="3" id="marisa_tier15_clear"/>
 			<quest_entry listindex="4" id="marisa_tier15_clear"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3652,7 +4889,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier15_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier15_clear_infested"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3661,7 +4898,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier15_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier15_clear_super_infested"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3670,7 +4907,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier15_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier15_defensive_point"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3679,7 +4916,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier15_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier15_poi_kill_boss"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower15" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3688,7 +4925,7 @@
 			<quest_entry listindex="2" id="marisa_tier15_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier15_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier15_crouching_restore_power"/>
-			<response_entry id="nevermindin15"/>
+			<response_entry id="nevermindinShow15"/>
 		</statement>
 
 		<!-- 【难度：★16】 -->
@@ -3700,7 +4937,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_clear"/>
 			<quest_entry listindex="3" id="marisa_tier16_clear"/>
 			<quest_entry listindex="4" id="marisa_tier16_clear"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3709,7 +4946,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier16_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier16_clear_infested"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3718,7 +4955,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier16_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier16_clear_super_infested"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3727,7 +4964,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier16_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier16_defensive_point"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3736,7 +4973,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier16_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier16_poi_kill_boss"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower16" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3745,7 +4982,7 @@
 			<quest_entry listindex="2" id="marisa_tier16_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier16_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier16_crouching_restore_power"/>
-			<response_entry id="nevermindin16"/>
+			<response_entry id="nevermindinShow16"/>
 		</statement>
 
 		<!-- 【难度：★17】 -->
@@ -3757,7 +4994,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_clear"/>
 			<quest_entry listindex="3" id="marisa_tier17_clear"/>
 			<quest_entry listindex="4" id="marisa_tier17_clear"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3766,7 +5003,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier17_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier17_clear_infested"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3775,7 +5012,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier17_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier17_clear_super_infested"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3784,7 +5021,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier17_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier17_defensive_point"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3793,7 +5030,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier17_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier17_poi_kill_boss"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower17" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3802,7 +5039,7 @@
 			<quest_entry listindex="2" id="marisa_tier17_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier17_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier17_crouching_restore_power"/>
-			<response_entry id="nevermindin17"/>
+			<response_entry id="nevermindinShow17"/>
 		</statement>
 
 		<!-- 【难度：★18】 -->
@@ -3814,7 +5051,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_clear"/>
 			<quest_entry listindex="3" id="marisa_tier18_clear"/>
 			<quest_entry listindex="4" id="marisa_tier18_clear"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 		<!-- 群聚 -->
 		<statement id="currentjobsclearInfested18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3823,7 +5060,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_clear_infested"/>
 			<quest_entry listindex="3" id="marisa_tier18_clear_infested"/>
 			<quest_entry listindex="4" id="marisa_tier18_clear_infested"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 		<!-- 超级群聚 -->
 		<statement id="currentjobsclearSuperInfested18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3832,7 +5069,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_clear_super_infested"/>
 			<quest_entry listindex="3" id="marisa_tier18_clear_super_infested"/>
 			<quest_entry listindex="4" id="marisa_tier18_clear_super_infested"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 		<!-- 强攻据点 -->
 		<statement id="currentjobsdefensivePoint18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3841,7 +5078,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_defensive_point"/>
 			<quest_entry listindex="3" id="marisa_tier18_defensive_point"/>
 			<quest_entry listindex="4" id="marisa_tier18_defensive_point"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 		<!-- 讨伐目标 -->
 		<statement id="currentjobspoiKillBoss18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3850,7 +5087,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_poi_kill_boss"/>
 			<quest_entry listindex="3" id="marisa_tier18_poi_kill_boss"/>
 			<quest_entry listindex="4" id="marisa_tier18_poi_kill_boss"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 		<!-- 潜入电力 -->
 		<statement id="currentjobscrouchingRestorePower18" text="dialog_trader_statement_currentjobs" nextstatementid="start">
@@ -3859,7 +5096,7 @@
 			<quest_entry listindex="2" id="marisa_tier18_crouching_restore_power"/>
 			<quest_entry listindex="3" id="marisa_tier18_crouching_restore_power"/>
 			<quest_entry listindex="4" id="marisa_tier18_crouching_restore_power"/>
-			<response_entry id="nevermindin18"/>
+			<response_entry id="nevermindinShow18"/>
 		</statement>
 
 	</insertAfter>
