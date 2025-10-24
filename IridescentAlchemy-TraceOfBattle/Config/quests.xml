@@ -4,6 +4,18 @@
 	<set xpath="/quests/@quests_per_tier">1</set>
 	<set xpath="/quests/@max_quest_tier">18</set>
 
+    <!-- 杰恩和雷克特开放贸易路线任务互换 -->
+	<set xpath="/quests/quest[@id='tier2_nexttrader']/objective[@type='Goto']/property[@name='location_tag']/@value">TraderRekt</set>
+	<set xpath="/quests/quest[@id='tier2_nexttrader']/objective[@type='Goto']/property[@name='location_name']/@value">trader_rekt</set>
+	<set xpath="/quests/quest[@id='test_nexttrader']/objective[@type='Goto']/property[@name='location_tag']/@value">TraderRekt</set>
+	<set xpath="/quests/quest[@id='test_nexttrader']/objective[@type='Goto']/property[@name='location_name']/@value">trader_rekt</set>
+
+    <!-- 开放贸易路线任务等级 -->
+	<set xpath="/quests/quest[@id='tier2_nexttrader']/property[@name='difficulty_tier']/@value">4</set>
+	<set xpath="/quests/quest[@id='tier3_nexttrader']/property[@name='difficulty_tier']/@value">9</set>
+	<set xpath="/quests/quest[@id='tier4_nexttrader']/property[@name='difficulty_tier']/@value">10</set>
+	<set xpath="/quests/quest[@id='tier5_nexttrader']/property[@name='difficulty_tier']/@value">15</set>
+
 	<!-- 移除商人任务 开放贸易路线 的物品奖励 -->
 	<set xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='Exp']/@value">100</set>
 	<remove xpath="/quests/quest[@id='tier2_nexttrader' or @id='tier3_nexttrader' or @id='tier4_nexttrader' or @id='tier5_nexttrader']/reward[@type='LootItem']"/>
@@ -90,7 +102,7 @@
 			</objective>
 
 			<action type="SetCVar">
-				<property name="cvar" value="IntroComplete"/>
+				<property name="cvar" value="IntroCompleteWill"/>
 				<property name="value" value="3" param1="difficulty"/>
 				<property name="on_complete" value="true"/>
 			</action>
@@ -153,6 +165,22 @@
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="3"/>
 		</quest>
 
+		<quest id="marisa_tier8_poi_kill_boss_emergency" template="marisa_tier3_poi_kill_boss_emergency">
+			<variable name="name" value="quest_tier8_poi_kill_boss_emergency"/>
+			<variable name="difficulty" value="8"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="quest_rank" value="8"/>
+			<variable name="entity_boss_spawn" value="questZombieBossResearchInstituteLeader"/>
+
+			<reward type="Exp" value="2500"/>
+			<reward type="Item" id="casinoCoin" value="1250"/>
+
+			<reward type="Item" id="resourceCourageCertificateS1" ischosen="true" isfixed="true" value="4"/>
+			<reward type="Item" id="resourceCourageCertificateS1" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="4"/>
+		</quest>
 		<quest id="marisa_tier9_poi_kill_boss_emergency" template="marisa_tier3_poi_kill_boss_emergency">
 			<variable name="name" value="quest_tier9_poi_kill_boss_emergency"/>
 			<variable name="difficulty" value="9"/>
@@ -218,6 +246,22 @@
 			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="6"/>
 		</quest>
 
+		<quest id="marisa_tier14_poi_kill_boss_emergency" template="marisa_tier3_poi_kill_boss_emergency">
+			<variable name="name" value="quest_tier14_poi_kill_boss_emergency"/>
+			<variable name="difficulty" value="14"/>
+			<variable name="poi_tier" value="1"/>
+			<variable name="quest_rank" value="14"/>
+			<variable name="entity_boss_spawn" value="questZombieBossResearchInstituteLeaderCrystallization"/>
+
+			<reward type="Exp" value="5500"/>
+			<reward type="Item" id="casinoCoin" value="2750"/>
+
+			<reward type="Item" id="resourceCourageCertificateS1" ischosen="true" isfixed="true" value="7"/>
+			<reward type="Item" id="resourceCourageCertificateS1" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+			<reward type="LootItem" id="groupMarisaQuestCube" ischosen="true" isfixed="true" value="7"/>
+		</quest>
 		<quest id="marisa_tier15_poi_kill_boss_emergency" template="marisa_tier3_poi_kill_boss_emergency">
 			<variable name="name" value="quest_tier15_poi_kill_boss_emergency"/>
 			<variable name="difficulty" value="15"/>
@@ -2493,10 +2537,12 @@
 		<quest id="marisa_tier4_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier5_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier6_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier8_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier9_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier10_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier11_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier12_poi_kill_boss_emergency"/>
+		<quest id="marisa_tier14_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier15_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier16_poi_kill_boss_emergency"/>
 		<quest id="marisa_tier17_poi_kill_boss_emergency"/>
