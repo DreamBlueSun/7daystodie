@@ -224,7 +224,7 @@
 		<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
 	</append>
 	<!-- *** 类固醇 载货量改为75 -->
-	<set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">75</set>
+	<set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">120</set>
 	<!-- *** 雷克格 移除水分扣减 降低伤害加成 -->
 	<remove xpath="/buffs/buff[@name='buffDrugRecog']/effect_group/passive_effect[@name='WaterChangeOT']"/>
 	<set xpath="/buffs/buff[@name='buffDrugRecog']/effect_group/passive_effect[@name='EntityDamage']/@value">.15</set>
@@ -4222,7 +4222,7 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$bleedAmount"/>
 				</passive_effect>
 
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedSlowdown" operation="set" value="-.2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedSlowdown" operation="set" value="-.5"/>
 
 				<passive_effect name="RunSpeed" operation="perc_add" value="@$bleedSlowdown"/>
 

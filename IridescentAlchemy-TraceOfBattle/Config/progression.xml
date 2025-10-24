@@ -1164,6 +1164,11 @@
                 <level_requirements level="4"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="9" desc_key="reqIntellectLevel09"/></level_requirements>
                 <level_requirements level="5"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="10" desc_key="reqIntellectLevel10"/></level_requirements>
 
+                <!--魅力十足，给自己加经验获取-->
+                <effect_group>
+                    <passive_effect name="PlayerExpGain" operation="perc_add" level="1,2,3,4,5" value="0,0,0,.1,.2"/>
+                </effect_group>
+
                 <effect_group>
                     <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="CharismaticNatureLevel" operation="set" value="1" target="selfOtherPlayers" target_tags="ally,party">
                         <requirement name="ProgressionLevel" progression_name="perkCharismaticNature" operation="Equals" value="1"/>
