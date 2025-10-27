@@ -693,7 +693,7 @@
                     <requirement name="NotHasBuff" buff="buffStatusHungry03"/>
                     <requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
 
-                    <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.25"/>
+                    <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3,4,5" value=".1,.2,.3,.4,.5"/>
 
                     <effect_description level="1" desc_key="perkHealingFactorRank1Desc" long_desc_key="perkHealingFactorRank1LongDesc"/>
                     <effect_description level="2" desc_key="perkHealingFactorRank2Desc" long_desc_key="perkHealingFactorRank2LongDesc"/>
@@ -3029,7 +3029,7 @@
                     <requirement name="HasBuff" buff="buffElementWet"/>
                 </requirements>
                 <passive_effect name="Mobility" operation="perc_add" level="1,2,3" value=".2,.3,.4"/>
-                <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3" value=".5,1,1.5"/>
+                <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3" value="1,2,3"/>
             </effect_group>
 
             <effect_group>
@@ -3985,7 +3985,7 @@
             <effect_group>
                 <requirement name="NotHasBuff" buff="buffStatusHungry03"/>
                 <requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
-                <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3,4,5" value=".25,.5,.75"/>
+                <passive_effect name="HealthChangeOT" operation="base_add" level="1,2,3,4,5" value=".5,1,1.5"/>
             </effect_group>
 
             <effect_group>
@@ -4831,16 +4831,17 @@
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="1"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="4"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="EQ" value="1"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
             </effect_group>
             <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="Equals" value="2"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="8"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="EQ" value="2"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="10"/>
             </effect_group>
             <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="GTE" value="3"/>
-                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="12"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaKillRecovery" operation="EQ" value="3"/>
+                <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" target="self" operation="add" value="10"/>
+                <triggered_effect trigger="onSelfKilledOther" action="AddBuff" buff="buffMarisaKillRecovery"/>
             </effect_group>
 
             <effect_group>
@@ -5042,9 +5043,19 @@
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="GTE" value="1"/>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="1"/>
                 <requirement name="IsAlive" target="other"/>
-                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaVampireKiss"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaVampireKiss1"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="2"/>
+                <requirement name="IsAlive" target="other"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaVampireKiss2"/>
+            </effect_group>
+            <effect_group>
+                <requirement name="ProgressionLevel" progression_name="perkMarisaVampireKiss" operation="EQ" value="3"/>
+                <requirement name="IsAlive" target="other"/>
+                <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaVampireKiss3"/>
             </effect_group>
 
             <effect_group>
