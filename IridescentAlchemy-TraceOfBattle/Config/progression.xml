@@ -3292,15 +3292,13 @@
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="set" value="@.MarisaCriticalChanceAways"/>
 				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
 
-				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="set" value="@.MarisaCriticalChanceAways"/>
-				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceChallenge"/>
-				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAll" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallengeHeadDamage" operation="set" value="@.MarisaCriticalChanceWithChallenge"/>
+				<triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallengeHeadDamage" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
             </effect_group>
 
             <effect_group name="Aways">
                 <requirement name="IsAlive" target="other"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".65" target="other"/>
-                <requirement name="!HitLocation" body_parts="Head"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAways"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
@@ -3308,26 +3306,30 @@
             <effect_group name="WithChallenge">
                 <requirement name="IsAlive" target="other"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".65" target="other"/>
-                <requirement name="!HitLocation" body_parts="Head"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallenge"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
             </effect_group>
-            <effect_group name="WithHeadDamage">
+
+            <effect_group name="Aways hit head">
                 <requirement name="IsAlive" target="other"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".65" target="other"/>
-                <requirement name="HitLocation" body_parts="Head"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="@.MarisaCriticalChanceAways"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithHeadDamage"/>
-                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier" tags="head"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true">
+                    <requirement name="HitLocation" body_parts="Head"/>
+                </triggered_effect>
             </effect_group>
-            <effect_group name="All">
+            <effect_group name="WithChallenge hit head">
                 <requirement name="IsAlive" target="other"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".65" target="other"/>
-                <requirement name="HitLocation" body_parts="Head"/>
-                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAll"/>
-                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier"/>
-                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="@.MarisaCriticalChanceWithChallenge"/>
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallengeHeadDamage"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplier" tags="head"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true">
+                    <requirement name="HitLocation" body_parts="Head"/>
+                </triggered_effect>
             </effect_group>
 
             <effect_group>
@@ -3348,10 +3350,16 @@
 
             <!-- ** 会心倍率 -->
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".25"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".05"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".1"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".15"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".3"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".35"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".4"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".5"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+            </effect_group>
+            <effect_group>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="130"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="135"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="140"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="150"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
             </effect_group>
 
             <effect_group>
