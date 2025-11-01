@@ -3609,16 +3609,29 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
 			</effect_group>
 
+
 			<!-- 添加 抵御 护甲下降耐性 -->
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaDefDown"/>
 			</effect_group>
 
 			<!-- 添加 抵御 瘴气侵蚀耐性 -->
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffUnablePerkMarisaMiasmaticErosion"/>
+			</effect_group>
+
+			<!-- 添加 护甲下降耐性 3 效果 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="10" buff="buffDefDownBase10"/>
+			</effect_group>
+
+			<!-- 添加 瘴气侵蚀耐性 3 效果 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="10" buff="buffHealthMaxDownPerc10"/>
 			</effect_group>
 
 			<!-- 添加 寒气 -->
@@ -4653,6 +4666,24 @@
 			<duration value="3"/>
 		</buff>
 
+		<!-- ** 护甲下降耐性 3 -->
+		<buff name="buffDefDownBase10" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="60"/>
+			<effect_group>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-10"/>
+			</effect_group>
+		</buff>
+
+		<!-- ** 瘴气侵蚀耐性 3 -->
+		<buff name="buffHealthMaxDownPerc10" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="60"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="perc_add" value="-.1"/>
+			</effect_group>
+		</buff>
+
 
 
 		<!-- 鬼人药 -->
@@ -5637,15 +5668,11 @@
 				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-40"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="1"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-16"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="EQ" value="1"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-12"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="Equals" value="2"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="-4"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="3"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaDefDownResistance" operation="GTE" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaDefDown"/>
 			</effect_group>
 		</buff>
@@ -5660,15 +5687,11 @@
 				<passive_effect name="HealthMax" operation="perc_add" value="-.4"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="1"/>
-				<passive_effect name="HealthMax" operation="perc_add" value="-.16"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="EQ" value="1"/>
+				<passive_effect name="HealthMax" operation="perc_add" value="-.12"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="Equals" value="2"/>
-				<passive_effect name="HealthMax" operation="perc_add" value="-.04"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="3"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaMiasmaticErosionResistance" operation="GTE" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaMiasmaticErosion"/>
 			</effect_group>
 		</buff>
