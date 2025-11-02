@@ -5977,7 +5977,7 @@
 				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="0"/>
 				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -5987,7 +5987,7 @@
 				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="200"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="12"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -5997,7 +5997,7 @@
 				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="2"/>
 				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="300"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="9"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
 			</effect_group>
 
@@ -6006,8 +6006,8 @@
 				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
 				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
 
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPool" duration="15"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="15"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -6028,7 +6028,7 @@
 
 			<effect_group name="HealthChangeOT player">
 				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
@@ -6038,42 +6038,55 @@
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-240"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-400"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="400"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
 			</effect_group>
 
 			<effect_group name="debuff">
@@ -6110,7 +6123,7 @@
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="0"/>
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="100"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -6120,7 +6133,7 @@
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="200"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="8"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -6130,7 +6143,7 @@
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="2"/>
 				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="300"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="6"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
 			</effect_group>
 
@@ -6160,7 +6173,7 @@
 
 			<effect_group name="HealthChangeOT player">
 				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
@@ -6170,42 +6183,55 @@
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-240"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-400"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="400"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
 			</effect_group>
 
 			<effect_group name="debuff">
@@ -6281,7 +6307,7 @@
 				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="0"/>
 				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="100"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -6291,7 +6317,7 @@
 				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="1"/>
 				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="200"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="16"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
 			</effect_group>
@@ -6301,22 +6327,8 @@
 				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="2"/>
 				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="300"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="12"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="apply buff damage">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="CVarCompare" cvar="marisaFireEffectDamage" operation="GT" value="0"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="set" value="1">
-					<requirement name="StatCompareCurrent" stat="Health" operation="LTE" value="@marisaFireEffectDamage"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value="@marisaFireEffectDamage">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@marisaFireEffectDamage"/>
-				</triggered_effect>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectDamage" operation="set" value="0"/>
 			</effect_group>
 
 			<effect_group name="player effect amount">
@@ -6362,7 +6374,7 @@
 
 			<effect_group name="HealthChangeOT player">
 				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
@@ -6372,42 +6384,55 @@
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-240"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-400"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="400"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
 			</effect_group>
 
 			<effect_group name="debuff">
@@ -6502,20 +6527,6 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
 			</effect_group>
 
-			<effect_group name="apply buff damage">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="CVarCompare" cvar="marisaShockedEffectDamage" operation="GT" value="0"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="set" value="1">
-					<requirement name="StatCompareCurrent" stat="Health" operation="LTE" value="@marisaShockedEffectDamage"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value="@marisaShockedEffectDamage">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@marisaShockedEffectDamage"/>
-				</triggered_effect>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectDamage" operation="set" value="0"/>
-			</effect_group>
-
 			<effect_group name="player effect amount">
 				<requirement name="EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/></triggered_effect>
@@ -6559,42 +6570,55 @@
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-20"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-40"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-80"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-240"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="-400"><requirement name="StatCompareCurrent" stat="Health" operation="GT" value="400"/><requirement name="EntityTagCompare" tags="bossMarisa"/></passive_effect>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
 			</effect_group>
 
 			<effect_group name="debuff">
