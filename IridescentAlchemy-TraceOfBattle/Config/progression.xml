@@ -910,23 +910,23 @@
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="30,50,75,100"/>
-                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="25,50,75,100"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="25,50,75,100"/>
-                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="25,50,75,100"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
                 </effect_group>
                 <effect_group name="regular weapons, sledgehammer perkMarisaSneakUp">
                     <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
                     <requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
                     <requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
                     <requirement name="!ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="25,50,75,100"/>
-                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="25,50,75,100"/>
+                    <passive_effect name="DamageBonus" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
+                    <passive_effect name="EntityDamage" operation="base_add" level="0,1,2,3" value="50,75,100,125"/>
                 </effect_group>
 
                 <effect_group>
@@ -3351,16 +3351,18 @@
 
             <!-- ** 会心伤害倍率 -->
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".5"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".6"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".7"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".8"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".25"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".3"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".35"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".4"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="multiply" value="2"><requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/></triggered_effect>
+
             </effect_group>
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="150"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="160"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="170"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="180"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="125"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="130"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="135"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="140"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
             </effect_group>
 
             <effect_group>
@@ -3849,7 +3851,7 @@
                 <effect_description level="2" desc_key="perkMarisaNormalAmmoUpRank2Desc" long_desc_key="perkMarisaNormalAmmoUpRank2LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 贯通弹强化 -->
+        <!-- ** 接击弹/箭强化 -->
         <perk name="perkMarisaPiercingAmmoUp" parent="skillIridescentAttack" name_key="perkMarisaPiercingAmmoUpName" desc_key="perkMarisaPiercingAmmoUpDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="30">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
@@ -3859,7 +3861,7 @@
                 <effect_description level="2" desc_key="perkMarisaPiercingAmmoUpRank2Desc" long_desc_key="perkMarisaPiercingAmmoUpRank2LongDesc"/>
             </effect_group>
         </perk>
-        <!-- ** 霰弹/爆破强化 -->
+        <!-- ** 贯通弹/爆破强化 -->
         <perk name="perkMarisaShotgunAmmoBoomUp" parent="skillIridescentAttack" name_key="perkMarisaShotgunAmmoBoomUpName" desc_key="perkMarisaShotgunAmmoBoomUpDesc" icon="ui_game_symbol_diamond" max_level="2" base_skill_point_cost="30">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
