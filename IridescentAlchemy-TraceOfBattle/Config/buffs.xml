@@ -3342,6 +3342,7 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
 				<requirement name="NotHasBuff" buff="buffYcxBannerStation"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAOEEffect"/>
 			</effect_group>
@@ -3360,6 +3361,7 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
 				<requirement name="NotHasBuff" buff="buffYcxBannerStationDef"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationDefAOEEffect"/>
 			</effect_group>
@@ -3377,6 +3379,7 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
 				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAtkAOEEffect"/>
 			</effect_group>
@@ -3387,6 +3390,25 @@
 
 			<effect_group>
 				<passive_effect name="EntityDamage" operation="base_add" value="10"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 物块伤害降低 -->
+		<buff name="buffBannerStationBlockDamageDownAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+<!--				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>-->
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationBlockDamageDownAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationBlockDamageDownAOEEffect" name_key="buffBannerStationBlockDamageDownAOEEffectName" description_key="buffBannerStationBlockDamageDownAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
+                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
 			</effect_group>
 		</buff>
 
