@@ -298,37 +298,25 @@
 
 		<!-- 添加 状态检查 晶石系统加倍 -->
 		<effect_group>
-			<requirements compare_type="or">
-				<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetResearchInstituteLeader" operation="Equals" value="0"/>
-				<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitResearchInstituteLeader" operation="Equals" value="0"/>
-				<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesResearchInstituteLeader" operation="Equals" value="0"/>
-				<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsResearchInstituteLeader" operation="Equals" value="0"/>
-			</requirements>
-			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffT3SuitPerkMarisaMod2x"/>
-		</effect_group>
-		<effect_group>
-			<requirement name="NotHasBuff" buff="buffT3SuitPerkMarisaMod2x"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT1HelmetResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT1OutfitResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT1GlovesResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT1BootsResearchInstituteLeader" operation="GTE" value="1"/>
-			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2x"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2xStart"/>
 		</effect_group>
 		<effect_group>
-			<requirement name="NotHasBuff" buff="buffT3SuitPerkMarisaMod2x"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT2HelmetResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT2OutfitResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT2GlovesResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT2BootsResearchInstituteLeader" operation="GTE" value="1"/>
-			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2x"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2xStart"/>
 		</effect_group>
 		<effect_group>
-			<requirement name="NotHasBuff" buff="buffT3SuitPerkMarisaMod2x"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3HelmetResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3OutfitResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3GlovesResearchInstituteLeader" operation="GTE" value="1"/>
 			<requirement name="CVarCompare" cvar=".iridescentPerksGroupT3BootsResearchInstituteLeader" operation="GTE" value="1"/>
-			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2x"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffT3SuitPerkMarisaMod2xStart"/>
 		</effect_group>
 
 		<!-- 添加 状态检查 极意 -->
@@ -6465,6 +6453,14 @@
 <!--		</buff>-->
 
 		<!-- 晶石系统加倍 -->
+		<buff name="buffT3SuitPerkMarisaMod2xStart" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="4"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffT3SuitPerkMarisaMod2x"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffT3SuitPerkMarisaMod2x"/>
+			</effect_group>
+		</buff>
 		<buff name="buffT3SuitPerkMarisaMod2x" name_key="buffT3SuitPerkMarisaMod2xName" description_key="buffT3SuitPerkMarisaMod2xDesc" icon="ui_game_symbol_diamond" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="0"/>
