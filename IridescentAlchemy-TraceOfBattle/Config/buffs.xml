@@ -34,14 +34,14 @@
 	<insertAfter xpath="/buffs/buff[@name='buffPerkGunslingerBonus']">
 		<buff name="buffDeadEye" name_key="buffDeadEyeName" description_key="buffDeadEyeDesc" icon="ui_game_symbol_map_cursor" icon_color="0,255,0" icon_blink="true">
 			<stack_type value="replace"/>
-			<duration value="6"/>
+			<duration value="12"/>
 			<display_value value=".DeadEyeEffectDisplay"/>
 			<display_value_key value="+{0}%"/>
 
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="set" value=".05"/>
-				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="add" value=".05">
-					<requirement name="CVarCompare" cvar=".DeadEyeKillCounter" operation="LT" value=".15"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="set" value=".1"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="add" value=".1">
+					<requirement name="CVarCompare" cvar=".DeadEyeKillCounter" operation="LT" value=".3"/>
 				</triggered_effect>
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeEffectApply" operation="set" value="@.DeadEyeKillCounter"/>
