@@ -34,14 +34,14 @@
 	<insertAfter xpath="/buffs/buff[@name='buffPerkGunslingerBonus']">
 		<buff name="buffDeadEye" name_key="buffDeadEyeName" description_key="buffDeadEyeDesc" icon="ui_game_symbol_map_cursor" icon_color="0,255,0" icon_blink="true">
 			<stack_type value="replace"/>
-			<duration value="6"/>
+			<duration value="12"/>
 			<display_value value=".DeadEyeEffectDisplay"/>
 			<display_value_key value="+{0}%"/>
 
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="set" value=".05"/>
-				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="add" value=".05">
-					<requirement name="CVarCompare" cvar=".DeadEyeKillCounter" operation="LT" value=".15"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="set" value=".1"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".DeadEyeKillCounter" operation="add" value=".1">
+					<requirement name="CVarCompare" cvar=".DeadEyeKillCounter" operation="LT" value=".3"/>
 				</triggered_effect>
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".DeadEyeEffectApply" operation="set" value="@.DeadEyeKillCounter"/>
@@ -107,6 +107,14 @@
 			</effect_group>
 		</buff>
 	</insertAfter>
+
+	<!-- ** 学霸刺青 -->
+	<append xpath="/buffs/buff[@name='buffDrugNerdTats']">
+		<effect_group>
+			<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaIntensifyAoe"/>
+			<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaEffectAoe"/>
+		</effect_group>
+	</append>
 
 	<!-- 添加 精准医疗 效果 -->
 	<remove xpath="/buffs/buff[@name='buffHealHealth']"/>
@@ -3866,7 +3874,10 @@
 			<!-- ** SteveCrawler 爬行者 -->
 		</buff>
 
+	</append>
 
+	<!-- *** 猫饭 -->
+	<append xpath="/buffs">
 
 		<!-- 魔理沙的饭 -->
 		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
@@ -4134,6 +4145,196 @@
 				<requirement name="StatComparePercCurrentToMax" stat="Food" operation="GTE" value=".9"/>
 				<requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value=".9"/>
 				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- *** 充能 -->
+	<append xpath="/buffs">
+
+		<!-- * 驾驶名人 -->
+		<buff name="buffMarisaVehicleVelocity" name_key="buffMarisaVehicleVelocityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVehicleVelocity"/>
+			</effect_group>
+		</buff>
+		<!-- * 快速换弹 -->
+		<buff name="buffMarisaReloadSpeed" name_key="buffMarisaReloadSpeedName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaReloadSpeed"/>
+			</effect_group>
+		</buff>
+		<!-- * 纳刀术 -->
+		<buff name="buffMarisaNanoKnife" name_key="buffMarisaNanoKnifeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNanoKnife"/>
+			</effect_group>
+		</buff>
+		<!-- * 集中 -->
+		<buff name="buffMarisaConcentration" name_key="buffMarisaConcentrationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaConcentration"/>
+			</effect_group>
+		</buff>
+		<!-- * 攻击 -->
+		<buff name="buffMarisaAttack" name_key="buffMarisaAttackName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttack"/>
+			</effect_group>
+		</buff>
+		<!-- * 弱点特效 -->
+		<buff name="buffMarisaHeadDamage" name_key="buffMarisaHeadDamageName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHeadDamage"/>
+			</effect_group>
+		</buff>
+		<!-- * 精神抖擞 -->
+		<buff name="buffMarisaVitality" name_key="buffMarisaVitalityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVitality"/>
+			</effect_group>
+		</buff>
+		<!-- * 力量解放 -->
+		<buff name="buffMarisaLiberationPower" name_key="buffMarisaLiberationPowerName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaLiberationPower"/>
+			</effect_group>
+		</buff>
+		<!-- * 体力提升 -->
+		<buff name="buffMarisaStaminaMaxUp" name_key="buffMarisaStaminaMaxUpName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaMaxUp"/>
+			</effect_group>
+		</buff>
+		<!-- * 回复速度 -->
+		<buff name="buffMarisaHealthChangeOT" name_key="buffMarisaHealthChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthChangeOT"/>
+			</effect_group>
+		</buff>
+		<!-- * 体力急速回复 -->
+		<buff name="buffMarisaStaminaChangeOT" name_key="buffMarisaStaminaChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaChangeOT"/>
+			</effect_group>
+		</buff>
+		<!-- * 体术 -->
+		<buff name="buffMarisaStaminaLossDown" name_key="buffMarisaStaminaLossDownName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaLossDown"/>
+			</effect_group>
+		</buff>
+		<!-- * 防御 -->
+		<buff name="buffMarisaDefensive" name_key="buffMarisaDefensiveName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensive"/>
+			</effect_group>
+		</buff>
+		<!-- * 精灵加护 -->
+		<buff name="buffMarisaDefensiveElf" name_key="buffMarisaDefensiveElfName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensiveElf"/>
+			</effect_group>
+		</buff>
+		<!-- * 暴击耐性 -->
+		<buff name="buffMarisaBuffResistance" name_key="buffMarisaBuffResistanceName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBuffResistance"/>
+			</effect_group>
+		</buff>
+		<!-- * 炼铜 -->
+		<buff name="buffMarisaCopperSmelting" name_key="buffMarisaCopperSmeltingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCopperSmelting"/>
+			</effect_group>
+		</buff>
+		<!-- * 盛宴 -->
+		<buff name="buffMarisaKillRecovery" name_key="buffMarisaKillRecoveryName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillRecovery"/>
+			</effect_group>
+		</buff>
+		<!-- * 治愈收割 -->
+		<buff name="buffMarisaKillHealing" name_key="buffMarisaKillHealingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillHealing"/>
+			</effect_group>
+		</buff>
+		<!-- * 属性解放 -->
+		<buff name="buffMarisaAttributeLiberation" name_key="buffMarisaAttributeLiberationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttributeLiberation"/>
+			</effect_group>
+		</buff>
+		<!-- * 贯星 -->
+		<buff name="buffMarisaThroughStars" name_key="buffMarisaThroughStarsName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaThroughStars"/>
+			</effect_group>
+		</buff>
+		<!-- * 吸血鬼之吻 -->
+		<buff name="buffMarisaVampireKiss" name_key="buffMarisaVampireKissName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVampireKiss"/>
+			</effect_group>
+		</buff>
+		<!-- * 属性莲华 -->
+		<buff name="buffMarisaIntensifyAoe" name_key="buffMarisaIntensifyAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaIntensifyAoe"/>
+			</effect_group>
+		</buff>
+		<!-- * 异常莲华 -->
+		<buff name="buffMarisaEffectAoe" name_key="buffMarisaEffectAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectAoe"/>
 			</effect_group>
 		</buff>
 
