@@ -838,6 +838,9 @@
 
                 <effect_group>
                     <passive_effect name="EntityDamage" operation="perc_add" level="1,2,3,4,5" value=".05,.1,.15,.2,.25" tags="perkArchery"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" level="1,2,3,4,5" value="0,0,.1,.2,.3" tags="bowDrawPenalty"/>
+                    <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1,2,3,4,5" value="0,0,.1,.2,.3" tags="perkArchery"/>
+                    <passive_effect name="WeaponHandling" operation="perc_add" level="1,2,3,4,5" value="0,0,.1,.2,.3" tags="perkArchery"/>
                 </effect_group>
 
                 <effect_group>
@@ -1785,7 +1788,7 @@
             <!-- *** RANGER'S_GUIDE_TO_ARCHERY_VOLUME_02_EXPLODING_ARROWS_BOLTS -->
             <book name="perkRangersExplodingBolts" parent="skillArchery" max_level="1" base_skill_point_cost="0" name_key="bookRangersExplodingBolts" desc_key="perkRangersExplodingBoltsDesc" long_desc_key="perkRangersExplodingBoltsLongDesc">
                 <effect_group>
-                    <passive_effect name="RoundsPerMinute" operation="perc_add" level="1" value=".3" tags="bowDrawPenalty"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" level="1" value=".15" tags="bowDrawPenalty"/>
                 </effect_group>
             </book>
             <!-- *** RANGER'S_GUIDE_TO_ARCHERY_VOLUME_03_CRIPPLING_SHOT -->
@@ -1801,13 +1804,13 @@
             <!-- *** RANGER'S_GUIDE_TO_ARCHERY_VOLUME_04_APARROWS -->
             <book name="perkRangersAPAmmo" parent="skillArchery" max_level="1" base_skill_point_cost="0" name_key="bookRangersAPAmmo" desc_key="perkRangersAPAmmoDesc" long_desc_key="perkRangersAPAmmoLongDesc">
                 <effect_group>
-                    <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1" value=".3" tags="perkArchery"/>
+                    <passive_effect name="ReloadSpeedMultiplier" operation="perc_add" level="1" value=".15" tags="perkArchery"/>
                 </effect_group>
             </book>
             <!-- *** RANGER'S_GUIDE_TO_ARCHERY_VOLUME_05_FLAMING_ARROWS -->
             <book name="perkRangersFlamingArrows" parent="skillArchery" max_level="1" base_skill_point_cost="0" name_key="bookRangersFlamingArrows" desc_key="perkRangersFlamingArrowsDesc" long_desc_key="perkRangersFlamingArrowsLongDesc">
                 <effect_group>
-                    <passive_effect name="WeaponHandling" operation="perc_add" level="1" value=".3" tags="perkArchery"/>
+                    <passive_effect name="WeaponHandling" operation="perc_add" level="1" value=".15" tags="perkArchery"/>
                 </effect_group>
             </book>
             <!-- *** RANGER'S_GUIDE_TO_ARCHERY_VOLUME_06_MAINTENANCE -->
@@ -5019,14 +5022,6 @@
         <!-- ** 贯星 -->
         <perk name="perkMarisaThroughStars" parent="skillIridescentEnhanced" name_key="perkMarisaThroughStarsName" desc_key="perkMarisaThroughStarsDesc" icon="ui_game_symbol_diamond" max_level="1" base_skill_point_cost="50">
             <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
-
-            <effect_group>
-                <passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.1" tags="jumping"/>
-            </effect_group>
-            <effect_group>
-                <requirement name="ProgressionLevel" progression_name="perkMarisaThroughStars" operation="GTE" value="1"/>
-                <triggered_effect trigger="onSelfJump" action="AddBuff" buff="buffperkMarisaThroughStars"/>
-            </effect_group>
 
             <effect_group>
                 <effect_description level="1" desc_key="perkMarisaThroughStarsRank1Desc" long_desc_key="perkMarisaThroughStarsRank1LongDesc"/>
