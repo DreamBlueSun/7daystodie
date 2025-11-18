@@ -351,6 +351,13 @@
 			<update_rate value=".1"/>
 			<duration value="0"/>
 
+			<!-- * 猫饭变量 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".casinoCoinGTE" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".casinoCoinGTE" operation="set" value="1">
+					<requirement name="PlayerItemCount" item_name="casinoCoin" operation="GTE" value="500"/>
+				</triggered_effect>
+			</effect_group>
 			<!-- * 玩家所在地形变量 -->
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="1"/></triggered_effect>
@@ -3878,6 +3885,359 @@
 
 	<!-- *** 猫饭 -->
 	<append xpath="/buffs">
+
+		<!-- 触发 -->
+		<buff name="buffMarisasFeastEffectRemove" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffectRemove">
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect4"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect6"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect7"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect8"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect9"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect10"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect11"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect12"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect13"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect14"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect15"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect16"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect17"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect18"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect19"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect21"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect22"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect23"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffMarisasFeastEffect24"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestDefault" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect1">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="4"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="8"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect2">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="8"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="12"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect3">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="12"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="16"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect4">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="16"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect5">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="20"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="24"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect6">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="24"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="28"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect7">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="28"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="32"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect8">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="32"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="36"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect9">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="36"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="40"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect10">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="40"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="44"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect11">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="44"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="48"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect12">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="48"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="52"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect13">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="52"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="56"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect14">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="56"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect15">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="60"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="64"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect16">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="64"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="68"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect17">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="68"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="72"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect18">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="72"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="76"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect19">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="76"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="80"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect20">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="80"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="84"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect21">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="84"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="88"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect22">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="88"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="92"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect23">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="92"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="96"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect24">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="96"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="100"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh1" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh2" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect2"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh3" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect3"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh4" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect4"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh5" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect5"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh6" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect6"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh7" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect7"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh8" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect8"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh9" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect9"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh10" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect10"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh11" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect11"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh12" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect12"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh13" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect13"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh14" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect14"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh15" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect15"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh16" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect16"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh17" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect17"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh18" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect18"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh19" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect19"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh20" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect20"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh21" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect21"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh22" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect22"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh23" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect23"/>
+			</effect_group>
+		</buff>
+		<buff name="buffEventMarisaFeastQuestHigh24" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group name="MarisasFeastEffect">
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffMarisasFeastEffectRemove"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeast"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffMarisasFeastEffect24"/>
+			</effect_group>
+		</buff>
+
 
 		<!-- 魔理沙的饭 -->
 		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
