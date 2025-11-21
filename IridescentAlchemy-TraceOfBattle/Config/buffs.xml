@@ -11,12 +11,13 @@
 	<!-- ** 感知 死神之眼 -->
 	<set xpath="/buffs/buff[@name='buffDeadEye']/effect_group/triggered_effect/requirement[@name='ProgressionLevel']/@progression_name">perkSniperComplete</set>
 	<!-- ** 力量 护甲 -->
-	<insertAfter xpath="/buffs/buff[@name='buffStatusCheck02']/effect_group[3]/triggered_effect[@action='ModifyCVar' and @cvar='.ArmorLightLevel' and @value='4']">
-		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ArmorLightLevel" operation="set" value="5">
-			<requirement name="CVarCompare" cvar=".ArmorLightLevel" operation="Equals" value="0"/>
-			<requirement name="ProgressionLevel" progression_name="perkLightArmor" operation="EQ" value="5"/>
-		</triggered_effect>
-	</insertAfter>
+	<remove xpath="/buffs/buff[@name='buffStatusCheck02']/effect_group[3]/passive_effect[@name='PhysicalDamageResist']"/>
+<!--	<insertAfter xpath="/buffs/buff[@name='buffStatusCheck02']/effect_group[3]/triggered_effect[@action='ModifyCVar' and @cvar='.ArmorLightLevel' and @value='4']">-->
+<!--		<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".ArmorLightLevel" operation="set" value="5">-->
+<!--			<requirement name="CVarCompare" cvar=".ArmorLightLevel" operation="Equals" value="0"/>-->
+<!--			<requirement name="ProgressionLevel" progression_name="perkLightArmor" operation="EQ" value="5"/>-->
+<!--		</triggered_effect>-->
+<!--	</insertAfter>-->
 
 	<!-- ** 玩家跌落伤害 buffPlayerFallingDamage -->
 	<append xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group[3]">
@@ -379,6 +380,57 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteCrouchingRestorePower" operation="set" value="@QuestCompleteCrouchingRestorePowerWill">
 					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="LT" value="@QuestCompleteCrouchingRestorePowerWill"/>
 				</triggered_effect>
+			</effect_group>
+
+			<!-- * 力量护符变量 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentPowerAmulet" operation="set" value="0">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentPowerAmulet" operation="EQ" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentPowerAmulet" operation="set" value="1">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentPowerAmulet" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".IridescentPowerAmulet" operation="GTE" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="8"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentPowerAmuletSuper" operation="set" value="0">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentPowerAmuletSuper" operation="EQ" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentPowerAmuletSuper" operation="set" value="1">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentPowerAmuletSuper" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".IridescentPowerAmuletSuper" operation="GTE" value="1"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="12"/>
+			</effect_group>
+			<!-- * 守护护符变量 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentDefAmulet" operation="set" value="0">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentDefAmulet" operation="EQ" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentDefAmulet" operation="set" value="1">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentDefAmulet" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".IridescentDefAmulet" operation="GTE" value="1"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="4"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentDefAmuletSuper" operation="set" value="0">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentDefAmuletSuper" operation="EQ" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".IridescentDefAmuletSuper" operation="set" value="1">
+					<requirement name="PlayerItemCount" item_name="resourceIridescentDefAmuletSuper" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".IridescentDefAmuletSuper" operation="GTE" value="1"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="6"/>
 			</effect_group>
 
 
@@ -6472,7 +6524,7 @@
 			<stack_type value="ignore"/>
 			<effect_group>
 				<requirement name="ArmorGroupLowestQuality" group_name="groupNerd" operation="GTE" value="1"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="10"/>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value=".2"/>
 			</effect_group>
 		</buff>
 		<!-- 袭击者 -->
