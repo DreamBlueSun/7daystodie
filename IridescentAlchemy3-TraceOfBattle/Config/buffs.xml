@@ -624,7 +624,9 @@
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCanStock" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 foodCornOnTheCob -->
+
+			<!-- * 广域化lv1 食物-->
+			<!-- ** 烤玉米 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCornOnTheCob" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
@@ -633,9 +635,11 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaDefensive"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCornOnTheCob" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 foodCornBread -->
+			<!-- ** 玉米面包 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCornBread" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
@@ -643,10 +647,10 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaStaminaChangeOT"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCornBread" operation="subtract" value="1"/>
 			</effect_group>
-
-			<!-- * 广域化lv1 食物-->
 			<!-- ** 烧焦的肉 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCharredMeat" operation="GTE" value="1"/>
@@ -656,6 +660,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="water" operation="add" value="-5"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaAttack"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCharredMeat" operation="subtract" value="1"/>
 			</effect_group>
@@ -667,6 +673,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="3">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaStaminaMaxUp"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodGrilledMeat" operation="subtract" value="1"/>
 			</effect_group>
@@ -680,6 +688,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaHealthChangeOT"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodBoiledMeat" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 烤土豆 -->
@@ -692,6 +702,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="water" operation="add" value="-2"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaBuffResistance"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodBakedPotato" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 水煮蛋 -->
@@ -702,6 +714,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="15">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaDefensiveElf"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodEggBoiled" operation="subtract" value="1"/>
 			</effect_group>
@@ -714,6 +728,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaStaminaLossDown"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodBaconAndEggs" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 炖杂蔬 -->
@@ -725,6 +741,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaNanoKnife"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodVegetableStew" operation="subtract" value="1"/>
 			</effect_group>
@@ -1084,6 +1102,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaVitality"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodMeatStew" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 牛排配土豆 -->
@@ -1094,6 +1114,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="10">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaHeadDamage"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodSteakAndPotato" operation="subtract" value="1"/>
 			</effect_group>
@@ -1107,6 +1129,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaLiberationPower"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodShamChowder" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 蔬菜炖肉 -->
@@ -1119,6 +1143,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaKillHealing"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodHoboStew" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 鱼肉塔可 -->
@@ -1129,6 +1155,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="10">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaReloadSpeed"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodFishTacos" operation="subtract" value="1"/>
 			</effect_group>
@@ -1141,6 +1169,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaVehicleVelocity"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodChiliDog" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 蓝莓派 -->
@@ -1151,6 +1181,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="20">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaIntensifyAoe"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodBlueberryPie" operation="subtract" value="1"/>
 			</effect_group>
@@ -1163,6 +1195,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaEffectAoe"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodPumpkinPie" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 南瓜芝士蛋糕 -->
@@ -1174,6 +1208,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaCopperSmelting"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodPumpkinCheesecake" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 南瓜面包 -->
@@ -1184,6 +1220,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="15">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaConcentration"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodPumpkinBread" operation="subtract" value="1"/>
 			</effect_group>
@@ -1197,6 +1235,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaKillRecovery"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodGumboStew" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 牧羊人派 -->
@@ -1207,6 +1247,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="25">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaVampireKiss"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodShepardsPie" operation="subtract" value="1"/>
 			</effect_group>
@@ -1219,6 +1261,8 @@
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaAttributeLiberation"/>
+
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodSpaghetti" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 金枪鱼肉汁吐司 -->
@@ -1229,6 +1273,8 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthFarmer" operation="set" value="45">
 					<requirement name="HasBuff" buff="buffFarmerSetBonus"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaThroughStars"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodTunaFishGravyToast" operation="subtract" value="1"/>
 			</effect_group>
