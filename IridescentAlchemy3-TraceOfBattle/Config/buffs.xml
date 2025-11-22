@@ -240,6 +240,17 @@
 	<!-- *** 强健宝 移除水分扣减 降低减免加成 -->
 	<remove xpath="/buffs/buff[@name='buffDrugFortBites']/effect_group/passive_effect[@name='WaterChangeOT']"/>
 	<set xpath="/buffs/buff[@name='buffDrugFortBites']/effect_group/passive_effect[@name='GeneralDamageResist']/@value">.2</set>
+	<!-- *** 止痛药 移除水分扣减 -->
+	<insertAfter xpath="/buffs/buff[@name='buffDrugPainkillers']">
+		<buff name="buffMarisaDrugPainkillers" name_key="buffMarisaDrugPainkillersName" description_key="buffMarisaDrugPainkillersDesc" icon="ui_game_symbol_pills">
+			<stack_type value="ignore"/>
+			<duration value="60"/>
+
+			<effect_group>
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryStunned01CHTrigger,buffInjuryStunned00,buffInjuryStunned01,buffInjuryStunned01Shotgun,buffInjuryStunned02,buffInjuryStunned02Shotgun,buffInjuryStunned03,buffInjuryStunned03Shotgun"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
 
 
 
