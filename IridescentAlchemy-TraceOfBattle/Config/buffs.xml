@@ -3391,7 +3391,6 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
-<!--				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>-->
 				<requirement name="EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationBlockDamageDownAOEEffect"/>
 			</effect_group>
@@ -3399,24 +3398,24 @@
 		<buff name="buffBannerStationBlockDamageDownAOEEffect" name_key="buffBannerStationBlockDamageDownAOEEffectName" description_key="buffBannerStationBlockDamageDownAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="3"/>
-
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-			</effect_group>
-
-		</buff>
-		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-
 			<effect_group>
                 <passive_effect name="BlockDamage" operation="base_set" value="0"/>
                 <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
                 <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
-<!--				<passive_effect name="DamageModifier" operation="perc_set" value="0" tags="cloth,earth,glass,metal,organic,plant,stone,water,wood"/>-->
 			</effect_group>
-
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
+                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
+			</effect_group>
 		</buff>
 
 		<!-- 一次性旗帜 生命回复 -->
