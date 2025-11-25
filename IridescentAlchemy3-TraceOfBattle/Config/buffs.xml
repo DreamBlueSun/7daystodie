@@ -1378,7 +1378,7 @@
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffBeerDuration" operation="add" value="183"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffBeerDuration" operation="set" value="543">
-					<requirement name="CVarCompare" cvar="$buffBeerDuration" operation="GT" value="183"/></triggered_effect>
+					<requirement name="CVarCompare" cvar="$buffBeerDuration" operation="GT" value="543"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffBeer"/>
 			</effect_group>
 			<effect_group>
@@ -1487,7 +1487,7 @@
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasMoonshineDuration" operation="add" value="123"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasMoonshineDuration" operation="set" value="363">
-					<requirement name="CVarCompare" cvar="$buffGrandpasMoonshineDuration" operation="GT" value="183"/></triggered_effect>
+					<requirement name="CVarCompare" cvar="$buffGrandpasMoonshineDuration" operation="GT" value="363"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrunkGrandpasMoonshine"/>
 			</effect_group>
 			<effect_group>
@@ -1608,107 +1608,108 @@
 			</effect_group>
 
 			<!-- * 广域化 虹彩消耗品 -->
+			<!-- ** 碎晶烤肉 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="25"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaFullHealth"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="subtract" value="1"/>
+			</effect_group>
+			<!-- ** 回复药 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionHealth" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="set" value="@$medicRegHealthIncreaseSpeed"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="5">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="healAbrasionMult" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryAbrasionTreated">
+					<requirement name="HasBuff" buff="buffInjuryAbrasion"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="10">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="2"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="3"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="10">
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="4">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="1"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="8">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="2"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="30">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="12">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="3"/>
 				</triggered_effect>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionHealth" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 鬼人药 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionAttack" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionAttack" duration="182"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionAttack" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 硬化药 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionDefend" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionDefend" duration="182"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionDefend" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 强走药 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionStamina" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionStamina" duration="182"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionStamina" operation="subtract" value="1"/>
 			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="80"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="20"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="40"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentFoodGrilledMeat" operation="subtract" value="1"/>
-			</effect_group>
+			<!-- ** 回复药[大] -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionHealth2" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="40"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="set" value="@$medicRegHealthIncreaseSpeed"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
 
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="10">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="healAbrasionMult" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryAbrasionTreated">
+					<requirement name="HasBuff" buff="buffInjuryAbrasion"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="2"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="40">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="3"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20">
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="8">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="1"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="40">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="16">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="2"/>
 				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="60">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="24">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="3"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="80">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="4"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="100">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaHealthIncreaseSpeedUp" operation="Equals" value="5"/>
 				</triggered_effect>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionHealth2" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 鬼人药[大] -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionAttack2" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionAttack2" duration="422"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionAttack2" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 硬化药[大] -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionDefend2" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionDefend2" duration="422"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_IridescentPotionDefend2" operation="subtract" value="1"/>
 			</effect_group>
+			<!-- ** 强走药[大] -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_IridescentPotionStamina2" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionStamina2" duration="422"/>
