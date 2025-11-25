@@ -313,6 +313,7 @@
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
 			<requirement name="NotHasBuff" buff="buffPerkMarisaLiberationPowerCold"/>
+			<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffPerkMarisaLiberationPowerBefore"/>
 			<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffPerkMarisaLiberationPowerBefore"/>
 		</effect_group>
 
@@ -2113,13 +2114,13 @@
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="1"/>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="LT" value="7"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".25"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".35"/>
 				<requirement name="NotHasBuff" buff="buffPerkMarisaLiberationPowerCold"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="7"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".35"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".6"/>
 				<requirement name="NotHasBuff" buff="buffPerkMarisaLiberationPowerCold"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaLiberationPower"/>
 			</effect_group>
@@ -2639,7 +2640,7 @@
 				</triggered_effect>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="15"/>
+				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment1" allow_client_call="true">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="1"/>
 				</triggered_effect>
@@ -2719,7 +2720,7 @@
 		<buff name="buffPerkMarisaLiberationPower" name_key="buffPerkMarisaLiberationPowerName" description_key="buffPerkMarisaLiberationPowerDesc" showonhud="true" icon="ui_game_symbol_muscle" icon_color="0,191,255">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="122"/>
+			<duration value="182"/>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="LT" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaLiberationPower"/>
@@ -2847,7 +2848,7 @@
 		<!-- 力量的代价 -->
 		<buff name="buffPerkPlayerExpGainDown1" name_key="buffPerkPlayerExpGainDown1Name" description_key="buffPerkPlayerExpGainDown1Desc" showonhud="true" icon="ui_game_symbol_skull_crusher" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.2"/>
 			</effect_group>
@@ -2858,7 +2859,7 @@
 		</buff>
 		<buff name="buffPerkPlayerExpGainDown2" name_key="buffPerkPlayerExpGainDown2Name" description_key="buffPerkPlayerExpGainDown2Desc" showonhud="true" icon="ui_game_symbol_skull_crusher" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.4"/>
 			</effect_group>
@@ -2873,7 +2874,7 @@
 		</buff>
 		<buff name="buffPerkPlayerExpGainDown3" name_key="buffPerkPlayerExpGainDown3Name" description_key="buffPerkPlayerExpGainDown3Desc" showonhud="true" icon="ui_game_symbol_skull_crusher" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.6"/>
 			</effect_group>
@@ -2892,7 +2893,7 @@
 		</buff>
 		<buff name="buffPerkPlayerExpGainDown4" name_key="buffPerkPlayerExpGainDown4Name" description_key="buffPerkPlayerExpGainDown4Desc" showonhud="true" icon="ui_game_symbol_skull_crusher" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.8"/>
 			</effect_group>
@@ -2915,7 +2916,7 @@
 		</buff>
 		<buff name="buffPerkPlayerExpGainDown5" name_key="buffPerkPlayerExpGainDown5Name" description_key="buffPerkPlayerExpGainDown5Desc" showonhud="true" icon="ui_game_symbol_skull_crusher" icon_color="109,15,15">
 			<stack_type value="replace"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<passive_effect name="PlayerExpGain" operation="perc_add" value="-1"/>
 			</effect_group>
@@ -2944,7 +2945,7 @@
 		<!-- 幸运 Before -->
 		<buff name="buffPerkMarisaQuestLuckingBefore1" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore1">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="1"/>
@@ -2961,7 +2962,7 @@
 		</buff>
 		<buff name="buffPerkMarisaQuestLuckingBefore2" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore2">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="2"/>
@@ -2977,7 +2978,7 @@
 		</buff>
 		<buff name="buffPerkMarisaQuestLuckingBefore3" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore3">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="3"/>
@@ -2992,7 +2993,7 @@
 		</buff>
 		<buff name="buffPerkMarisaQuestLuckingBefore4" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore4">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="4"/>
@@ -3006,7 +3007,7 @@
 		</buff>
 		<buff name="buffPerkMarisaQuestLuckingBefore5" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1202"/>
+			<duration value="602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLuckingBefore5">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="LT" value="5"/>
@@ -3178,21 +3179,21 @@
 		<!-- 吸血鬼之吻 -->
 		<buff name="buffPerkMarisaVampireKiss1" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1"/>
+			<duration value="2"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="3"/>
 			</effect_group>
 		</buff>
 		<buff name="buffPerkMarisaVampireKiss2" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="1"/>
+			<duration value="2"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="6"/>
 			</effect_group>
 		</buff>
 		<buff name="buffPerkMarisaVampireKiss3" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="0.5"/>
+			<duration value="1"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
 			</effect_group>
@@ -3500,7 +3501,6 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
-<!--				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>-->
 				<requirement name="EntityTagCompare" tags="player"/>
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationBlockDamageDownAOEEffect"/>
 			</effect_group>
@@ -3508,24 +3508,24 @@
 		<buff name="buffBannerStationBlockDamageDownAOEEffect" name_key="buffBannerStationBlockDamageDownAOEEffectName" description_key="buffBannerStationBlockDamageDownAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="3"/>
-
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-			</effect_group>
-
-		</buff>
-		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-
 			<effect_group>
                 <passive_effect name="BlockDamage" operation="base_set" value="0"/>
                 <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
                 <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
-<!--				<passive_effect name="DamageModifier" operation="perc_set" value="0" tags="cloth,earth,glass,metal,organic,plant,stone,water,wood"/>-->
 			</effect_group>
-
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
+                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
+			</effect_group>
 		</buff>
 
 		<!-- 一次性旗帜 生命回复 -->
@@ -4324,6 +4324,14 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttack"/>
 			</effect_group>
 		</buff>
+		<!-- * 无伤 -->
+		<buff name="buffMarisaFullHealth" name_key="buffMarisaFullHealthName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFullHealth"/>
+			</effect_group>
+		</buff>
 		<!-- * 弱点特效 -->
 		<buff name="buffMarisaHeadDamage" name_key="buffMarisaHeadDamageName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
 			<stack_type value="replace"/>
@@ -4734,13 +4742,13 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
@@ -4773,7 +4781,7 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
@@ -4879,13 +4887,13 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
@@ -4918,7 +4926,7 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
@@ -5080,13 +5088,13 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
@@ -5119,7 +5127,7 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
@@ -5266,13 +5274,13 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
+				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
@@ -5305,7 +5313,7 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
 				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
 			</effect_group>
