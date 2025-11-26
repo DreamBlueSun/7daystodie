@@ -7087,7 +7087,17 @@
 	<!-- 特效BUFF -->
 	<append xpath="/buffs">
 
-		<!-- 辐射丧尸特效 -->
+		<!-- 晶化丧尸特效 -->
+		<buff name="buffMarisaTwitchZombieFireLeft" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_twitch_zombie_fire_left" local_offset="-0.08,0.12,0.03" parent_transform="Head"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_twitch_zombie_fire_left"/>
+			</effect_group>
+		</buff>
+
+		<!-- 狂化丧尸特效 -->
 		<buff name="buffMarisaTwitchZombieRadiationLeft" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
@@ -7096,7 +7106,6 @@
 				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_twitch_zombie_radiation_left"/>
 			</effect_group>
 		</buff>
-
 
 	</append>
 
