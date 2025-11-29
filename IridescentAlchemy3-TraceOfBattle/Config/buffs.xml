@@ -7011,6 +7011,28 @@
 	<!-- 敌对BUFF -->
 	<append xpath="/buffs">
 
+		<!-- 晶化丧尸伤害提升 -->
+		<buff name="buffMarisaDamageEffectsCrystallization" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="20"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="50"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMarisaDamageEffectsCrystallization"/>
+			</effect_group>
+		</buff>
+
+		<!-- 狂化丧尸伤害提升 -->
+		<buff name="buffMarisaDamageEffectsBerserk" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="40"/>
+				<passive_effect name="BlockDamage" operation="base_add" value="150"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMarisaDamageEffectsBerserk"/>
+			</effect_group>
+		</buff>
+
 		<!-- BOSS每秒随机移除自身控制 -->
 		<buff name="buffZombieBossRandomRollRemoveDeBuff">
 			<stack_type value="ignore"/>
