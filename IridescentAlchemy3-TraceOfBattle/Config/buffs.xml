@@ -4685,7 +4685,7 @@
 			<update_rate value="1"/>
 			<duration value="0"/>
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="5"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="300">
 					<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
 				</triggered_effect>
@@ -4699,20 +4699,20 @@
 			<effect_group>
 				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
 				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="LTE" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="other" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
 			</effect_group>
 		</buff>
 		<!-- 潜行任务B -->
 		<buff name="buffCrouchingQuestBefore7" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="2"/>
+			<duration value="3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="7"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
@@ -4720,7 +4720,7 @@
 		</buff>
 		<buff name="buffCrouchingQuestBefore9" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="2"/>
+			<duration value="3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="9"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
@@ -4728,7 +4728,7 @@
 		</buff>
 		<buff name="buffCrouchingQuestBefore12" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="2"/>
+			<duration value="3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="12"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
@@ -4736,7 +4736,7 @@
 		</buff>
 		<buff name="buffCrouchingQuestBefore15" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="2"/>
+			<duration value="3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="15"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
@@ -4744,7 +4744,7 @@
 		</buff>
 		<buff name="buffCrouchingQuestBefore20" hidden="true">
 			<stack_type value="ignore"/>
-			<duration value="2"/>
+			<duration value="3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
