@@ -1221,39 +1221,6 @@
                     </triggered_effect>
                 </effect_group>
 
-                <effect_group>
-                    <!-- Set the flag to 1 if the flag is not set and progression is enabled -->
-                    <triggered_effect trigger="onPerkLevelChanged" action="ModifyCVar" cvar="$pointChanceFlag" operation="set" value="1">
-                        <requirement name="CVarCompare" cvar="$pointChanceFlag" operation="LT" value="1"/>
-                        <requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
-                    </triggered_effect>
-
-                    <!-- Adds a 50% chance to gain 2 skill points when reading magazines -->
-                    <triggered_effect trigger="onPerkLevelChanged" action="ModifyCVar" cvar="$perkIntellectMasteryPointChance" operation="add" value="50">
-                        <requirement name="CVarCompare" cvar="$pointChanceFlag" operation="EQ" value="1"/>
-                        <requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
-                    </triggered_effect>
-
-                    <triggered_effect trigger="onPerkLevelChanged" action="ModifyCVar" cvar="$nerdOutfitSkillPointChance" operation="add" value="@$perkIntellectMasteryPointChance">
-                        <requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
-                        <requirement name="CVarCompare" cvar="$pointChanceFlag" operation="EQ" value="1"/>
-                    </triggered_effect>
-
-                    <!-- Set the flag to 2 to stop adding -->
-                    <triggered_effect trigger="onPerkLevelChanged" action="ModifyCVar" cvar="$pointChanceFlag" operation="add" value="1">
-                        <requirement name="CVarCompare" cvar="$pointChanceFlag" operation="EQ" value="1"/>
-                        <requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
-                    </triggered_effect>
-                </effect_group>
-
-                <effect_group>
-                    <!-- Clear CVars if progression is reset -->
-                    <triggered_effect trigger="onSelfProgressionUpdate" action="RemoveCVar" cvar="$perkIntellectMasteryPointChance,$pointChanceFlag,$nerdOutfitSkillPointChance">
-                        <requirement name="ProgressionLevel" progression_name="perkPhysician" operation="LTE" value="0"/>
-                        <requirement name="CVarCompare" cvar="$perkIntellectMasteryPointChance" operation="GT" value="0"/>
-                    </triggered_effect>
-                </effect_group>
-
             </perk>
 
             <!-- *** 高级工程师 -->
