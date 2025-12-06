@@ -40,7 +40,7 @@
 
 
 
-    <!--*** 钢方块升级 -->
+    <!--*** 虹彩方块 钢方块 -->
     <append xpath="/blocks/block[@name='steelShapes']">
         <property class="UpgradeBlock">
             <property name="ToBlock" value="IridescentShapes"/>
@@ -49,13 +49,9 @@
             <property name="UpgradeHitCount" value="4"/>
         </property>
     </append>
-
-
-
-    <!--*** 虹彩方块 水栽培养皿 -->
     <append xpath="/blocks">
 
-        <!-- 虹彩方块 -->
+        <!-- 钢方块 -->
         <block name="IridescentShapes" shapes="All">
             <property name="DescriptionKey" value="IridescentBlockGroupDesc"/>
             <property name="DisplayType" value="blockHardened"/>
@@ -77,6 +73,13 @@
             <property name="Group" value="Building,advBuilding"/>
             <property name="FilterTags" value="MC_Shapes"/>
         </block>
+
+    </append>
+
+
+
+    <!--*** 虹彩方块 水栽培养皿 -->
+    <append xpath="/blocks">
 
         <!-- 水栽培养皿 蓝莓 -->
         <block name="IridescentPlantHydroponicVerticalBlueberries">
@@ -1661,6 +1664,14 @@
 
 
     <!--*** 添加 陷阱 -->
+    <append xpath="/blocks/block[@name='bladeTrap']">
+        <property class="UpgradeBlock">
+            <property name="ToBlock" value="MarisaBladeTrap"/>
+            <property name="Item" value="resourceIridescentCube"/>
+            <property name="ItemCount" value="500"/>
+            <property name="UpgradeHitCount" value="4"/>
+        </property>
+    </append>
     <append xpath="/blocks">
 
         <!-- 炼金刀片陷阱 -->
@@ -1671,7 +1682,7 @@
             <property name="Class" value="BladeTrap"/>
             <property name="RequiredPower" value="20"/>
             <property name="Damage" value="40"/>
-            <property name="DamageReceived" value="4"/>
+            <property name="DamageReceived" value="0"/>
             <property name="BreakingPercentage" value="0.5"/>
             <property name="BrokenPercentage" value="0.25"/>
             <property name="ImpactSound" value="bladetrap_impact"/>
@@ -1680,7 +1691,6 @@
             <property name="RunningSound" value="bladetrap_fire_lp"/>
             <property name="RunningSoundBreaking" value="bladetrap_dm1_lp"/>
             <property name="RunningSoundBroken" value="bladetrap_dm2_lp"/>
-            <property name="UnlockedBy" value="craftingTraps"/>
             <property name="DisplayType" value="blockElectricalHardenedMulti"/>
             <property name="Stacknumber" value="10"/>
             <property name="Material" value="MmetalBladeTrap"/>
@@ -1692,24 +1702,30 @@
             <property name="HandleFace" value="Bottom"/>
             <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
             <property name="IsTerrainDecoration" value="true"/>
-            <property name="EconomicValue" value="7500"/>
+            <property name="EconomicValue" value="5000"/>
             <property name="TraderStageTemplate" value="electricTier3"/><!-- bladeTrap -->
             <property name="ActivationDistance" value="6"/>
             <property name="TakeDelay" value="10"/>
             <property class="RepairItems">
-                <property name="resourceForgedSteel" value="10"/>
+                <property name="resourceIridescentCube" value="500"/>
             </property>
             <drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
             <drop event="Harvest" name="resourceScrapIron" count="20,100" tag="allHarvest,perkJunkMiner"/>
             <drop event="Destroy" count="0"/>
             <drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
             <property name="SortOrder1" value="B155"/>
-            <property name="SortOrder2" value="0021"/>
+            <property name="SortOrder2" value="0022"/>
             <property name="Group" value="Science,TCScience"/>
             <property name="Tags" value="trapsSkill"/>
             <property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
             <property name="SoundPickup" value="bladetrap_grab"/>
             <property name="SoundPlace" value="bladetrap_place"/>
+            <property class="UpgradeBlock">
+                <property name="ToBlock" value="MarisaBladeTrapSuper"/>
+                <property name="Item" value="resourceIridescentCubeSuper"/>
+                <property name="ItemCount" value="500"/>
+                <property name="UpgradeHitCount" value="4"/>
+            </property>
         </block>
 
         <!-- 精致炼金刀片陷阱 -->
@@ -1720,7 +1736,7 @@
             <property name="Class" value="BladeTrap"/>
             <property name="RequiredPower" value="20"/>
             <property name="Damage" value="80"/>
-            <property name="DamageReceived" value="4"/>
+            <property name="DamageReceived" value="0"/>
             <property name="BreakingPercentage" value="0.5"/>
             <property name="BrokenPercentage" value="0.25"/>
             <property name="ImpactSound" value="bladetrap_impact"/>
@@ -1729,7 +1745,6 @@
             <property name="RunningSound" value="bladetrap_fire_lp"/>
             <property name="RunningSoundBreaking" value="bladetrap_dm1_lp"/>
             <property name="RunningSoundBroken" value="bladetrap_dm2_lp"/>
-            <property name="UnlockedBy" value="craftingTraps"/>
             <property name="DisplayType" value="blockElectricalHardenedMulti"/>
             <property name="Stacknumber" value="10"/>
             <property name="Material" value="MmetalBladeTrap"/>
@@ -1741,19 +1756,19 @@
             <property name="HandleFace" value="Bottom"/>
             <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
             <property name="IsTerrainDecoration" value="true"/>
-            <property name="EconomicValue" value="27500"/>
+            <property name="EconomicValue" value="25000"/>
             <property name="TraderStageTemplate" value="electricTier3"/><!-- bladeTrap -->
             <property name="ActivationDistance" value="6"/>
             <property name="TakeDelay" value="10"/>
             <property class="RepairItems">
-                <property name="resourceForgedSteel" value="10"/>
+                <property name="resourceIridescentCubeSuper" value="500"/>
             </property>
             <drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
             <drop event="Harvest" name="resourceScrapIron" count="20,100" tag="allHarvest,perkJunkMiner"/>
             <drop event="Destroy" count="0"/>
             <drop event="Fall" name="scrapMetalPile" count="1" prob="0.75" stick_chance="1"/>
             <property name="SortOrder1" value="B155"/>
-            <property name="SortOrder2" value="0021"/>
+            <property name="SortOrder2" value="0023"/>
             <property name="Group" value="Science,TCScience"/>
             <property name="Tags" value="trapsSkill"/>
             <property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
@@ -1804,13 +1819,11 @@
             <property name="WaterFlow" value="permitted"/>
             <property name="OnlySimpleRotations" value="true"/><!-- the targeting math will NOT work if it's not upright -->
             <property name="Path" value="solid"/>
-            <property name="EconomicValue" value="10000"/>
+            <property name="EconomicValue" value="8000"/>
             <property name="EconomicBundleSize" value="1"/>
             <property name="TraderStageTemplate" value="electricTier3"/><!-- autoTurret -->
             <property class="RepairItems">
-                <property name="resourceForgedIron" value="12"/>
-                <property name="resourceMechanicalParts" value="2"/>
-                <property name="resourceElectricParts" value="2"/>
+                <property name="resourceIridescentCube" value="500"/>
             </property>
             <drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
             <drop event="Harvest" name="resourceMechanicalParts" count="1,4" tag="salvageHarvest"/>
@@ -1818,12 +1831,18 @@
             <drop event="Harvest" name="resourceScrapIron" count="10,40" tag="allHarvest,perkJunkMiner"/>
             <drop event="Destroy" count="0"/>
             <property name="SortOrder1" value="B155"/>
-            <property name="SortOrder2" value="0022"/>
+            <property name="SortOrder2" value="0024"/>
             <property name="Group" value="Science,TCScience"/>
             <property name="Tags" value="trapsSkill"/>
             <property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
             <property name="SoundPickup" value="autoturret_grab"/>
             <property name="SoundPlace" value="autoturret_place"/>
+            <property class="UpgradeBlock">
+                <property name="ToBlock" value="MarisaAutoTurretSuper"/>
+                <property name="Item" value="resourceIridescentCubeSuper"/>
+                <property name="ItemCount" value="500"/>
+                <property name="UpgradeHitCount" value="4"/>
+            </property>
         </block>
 
         <!-- 炼金霰弹炮塔 -->
@@ -1843,8 +1862,14 @@
             <property name="ParticlesMuzzleFire" value="nozzleflash_shotgun"/>
             <property name="FireSound" value="pump_shotgun_fire"/>
             <property name="Model" value="@:Entities/Traps/AutoTurret/autoTurretShotgunPrefab.prefab"/>
-            <property name="EconomicValue" value="10000"/>
-            <property name="SortOrder2" value="0023"/>
+            <property name="EconomicValue" value="8000"/>
+            <property name="SortOrder2" value="0025"/>
+            <property class="UpgradeBlock">
+                <property name="ToBlock" value="MarisaShotgunTurretSuper"/>
+                <property name="Item" value="resourceIridescentCubeSuper"/>
+                <property name="ItemCount" value="500"/>
+                <property name="UpgradeHitCount" value="4"/>
+            </property>
         </block>
 
         <!-- 精致炼金自动炮塔 -->
@@ -1890,13 +1915,11 @@
             <property name="WaterFlow" value="permitted"/>
             <property name="OnlySimpleRotations" value="true"/><!-- the targeting math will NOT work if it's not upright -->
             <property name="Path" value="solid"/>
-            <property name="EconomicValue" value="30000"/>
+            <property name="EconomicValue" value="28000"/>
             <property name="EconomicBundleSize" value="1"/>
             <property name="TraderStageTemplate" value="electricTier3"/><!-- autoTurret -->
             <property class="RepairItems">
-                <property name="resourceForgedIron" value="12"/>
-                <property name="resourceMechanicalParts" value="2"/>
-                <property name="resourceElectricParts" value="2"/>
+                <property name="resourceIridescentCube" value="500"/>
             </property>
             <drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
             <drop event="Harvest" name="resourceMechanicalParts" count="1,4" tag="salvageHarvest"/>
@@ -1904,7 +1927,7 @@
             <drop event="Harvest" name="resourceScrapIron" count="10,40" tag="allHarvest,perkJunkMiner"/>
             <drop event="Destroy" count="0"/>
             <property name="SortOrder1" value="B155"/>
-            <property name="SortOrder2" value="0022"/>
+            <property name="SortOrder2" value="0026"/>
             <property name="Group" value="Science,TCScience"/>
             <property name="Tags" value="trapsSkill"/>
             <property name="FilterTags" value="MC_playerBlocks,SC_electrical,SC_traps"/>
@@ -1929,8 +1952,8 @@
             <property name="ParticlesMuzzleFire" value="nozzleflash_shotgun"/>
             <property name="FireSound" value="pump_shotgun_fire"/>
             <property name="Model" value="@:Entities/Traps/AutoTurret/autoTurretShotgunPrefab.prefab"/>
-            <property name="EconomicValue" value="30000"/>
-            <property name="SortOrder2" value="0023"/>
+            <property name="EconomicValue" value="28000"/>
+            <property name="SortOrder2" value="0027"/>
         </block>
 
     </append>
