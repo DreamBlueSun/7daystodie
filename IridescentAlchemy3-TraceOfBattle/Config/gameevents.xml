@@ -11036,6 +11036,58 @@
 
 		</action_sequence>
 
+		<action_sequence name="marisa_teleport_pull_players_to_me">
+			<property name="category" value="twitch_actions"/>
+
+			<requirement class="HasParty"/>
+
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+				<property name="exclude_target" value="true"/>
+			</action>
+
+			<action class="TeleportToTarget">
+				<property name="phase" value="0"/>
+				<property name="min_distance" value="10"/>
+				<property name="max_distance" value="999999"/>
+				<property name="target_group" value="party"/>
+				<property name="pull_sound" value="twitch_pull"/>
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="1"/>
+				<property name="screen_effect" value="FadeToBlack"/>
+				<property name="intensity" value="1"/>
+				<property name="fade_time" value="0.05"/>
+				<property name="target_group" value="party"/>
+			</action>
+
+			<action class="PlaySound">
+				<property name="sound" value="twitch_bad_action"/>
+				<property name="phase" value="1"/>
+				<property name="target_group" value="party"/>
+			</action>
+
+			<action class="Delay">
+				<property name="time" value=".5"/>
+				<property name="phase" value="2"/>
+			</action>
+
+			<action class="RandomizeRotation">
+				<property name="phase" value="2"/>
+				<property name="target_group" value="party"/>
+			</action>
+
+			<action class="SetScreenEffect">
+				<property name="phase" value="3"/>
+				<property name="screen_effect" value="FadeToBlack"/>
+				<property name="intensity" value="0"/>
+				<property name="fade_time" value="0.1"/>
+				<property name="target_group" value="party"/>
+			</action>
+		</action_sequence>
+
 	</append>
 
 	<!-- *** 增加技能点 -->
