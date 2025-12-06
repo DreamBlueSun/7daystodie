@@ -251,15 +251,15 @@
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
 		<!-- 测试打印 cvar -->
-<!--		<effect_group>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="IntroComplete"/>-->
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".CountMeleeAttacksRangePerkBrawler"/>
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClear"/>-->
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearInfested"/>-->
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfested"/>-->
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePoint"/>-->
 <!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteCrouchingRestorePower"/>-->
-<!--		</effect_group>-->
+		</effect_group>
 
 		<effect_group>
 <!--			<passive_effect name="EntityDamage" operation="perc_add" value="1"/>-->
@@ -6560,6 +6560,12 @@
 				<passive_effect name="AttacksPerMinute" operation="base_add" value="@.CountMeleeAttacksPerMinutePerkBrawler" tags="perkBrawler"/>
 
 				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".CountMeleeAttacksPerMinutePerkBrawler" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<passive_effect name="MaxRange" operation="base_add" value="@.CountMeleeAttacksRangePerkBrawler" tags="perkBrawler"/>
+				<passive_effect name="BlockRange" operation="base_add" value="@.CountMeleeAttacksRangePerkBrawler" tags="perkBrawler"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".CountMeleeAttacksRangePerkBrawler" operation="set" value="0"/>
 			</effect_group>
 		</buff>
 
