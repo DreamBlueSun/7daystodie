@@ -39,7 +39,7 @@
 			<passive_effect name="KickDegreesHorizontalMin" operation="perc_add" value=".05"/>
 			<passive_effect name="KickDegreesHorizontalMax" operation="perc_add" value=".05"/>
 			<passive_effect name="WeaponHandling" operation="perc_add" value="-.08">
-				<requirement name="NotHasBuff" buff="buffHoldBreathAiming01"/>
+				<requirement name="!HasBuff" buff="buffHoldBreathAiming01"/>
 			</passive_effect>
 		</effect_group>
 	</item_modifier>
@@ -1070,7 +1070,7 @@
 	</item_modifier>
 
 	<!-- *** Melee_Mods -->
-	<item_modifier name="modMeleeTemperedBlade" installable_tags="perkDeepCuts,axe,shovel,perkBrawler,perkJavelinMaster" modifier_tags="damage,durability" blocked_tags="noMods,noBlades" type="attachment">
+	<item_modifier name="modMeleeTemperedBlade" installable_tags="tool,perkBrawler,perkJavelinMaster,perkDeepCuts" modifier_tags="damage,durability" blocked_tags="noMods,noBlades" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="UnlockedBy" value="modMeleeTemperedBladeSchematic"/>
 		<property name="TraderStageTemplate" value="modsTier3"/>
@@ -1288,7 +1288,7 @@
 		</item_property_overrides>
 
 		<item_property_overrides name="meleeToolRepairT1ClawHammer">
-			<property name="FlameEffect" value="@:ItemModEffects/mod_hammer_firePrefab.prefab"/>
+			<property name="FlameEffect" value="@:ItemModEffects/mod_hammer_flamePrefab.prefab"/>
 		</item_property_overrides>
 
 		<item_property_overrides name="meleeWpnSledgeT1IronSledgehammer">
@@ -1335,11 +1335,56 @@
 			<property name="FlameEffect" value="@:ItemModEffects/mod_machete_flamePrefab.prefab"/>
 		</item_property_overrides>
 
+		<item_property_overrides name="meleeToolPickT1IronPickaxe">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_IronPickaxe_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="meleeToolPickT2SteelPickaxe">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_SteelPickaxe_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="meleeWpnBladeT1CandyKnife">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_candyCaneKnife_flamePrefab.prefab"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="meleeWpnClubT1CandyClub">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_candyCaneClub_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="meleeWpnClubT0WoodenClub">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_woodenClub_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="meleeToolSalvageT1Wrench">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_wrench_flamePrefab.prefab"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="meleeToolShovelT2SteelShovel">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_steelShovel_flamePrefab.prefab"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="meleeToolShovelT1IronShovel">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_ironShovel_flamePrefab.prefab"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="meleeToolShovelT0StoneShovel">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_stoneShovel_flamePrefab.prefab"/>
+		</item_property_overrides>
+		
+		<item_property_overrides name="meleeWpnSledgeT3SteelSledgehammer">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_steelSledgehammer_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+		<item_property_overrides name="meleeToolRepairT0TazasStoneAxe">
+			<property name="FlameEffect" value="@:ItemModEffects/mod_Tazas_stone_axe_flamePrefab.prefab"/>
+		</item_property_overrides>
+
+
 		<effect_group tiered="false" name="SpecialEffects">
 			<passive_effect name="LightMultiplier" operation="base_add" value=".28"/>
-			<!-- <passive_effect name="HypothermalResist" operation="base_add" value="4"> -->
-				<!-- <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/> -->
-			<!-- </passive_effect> -->
+			<passive_effect name="HypothermalResist" operation="base_add" value="20">
+				<requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+			</passive_effect>
 		</effect_group>
 
 		<effect_group name="light/douse torch always" tiered="false">
@@ -1482,45 +1527,42 @@
 
 	<!-- *** Armor_Mods -->
 
-	<item_modifier name="modArmorInsulatedLinerT1" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+<item_modifier name="modArmorInsulatedLinerT1" installable_tags="armorHead,armorChest,armorHands,armorFeet" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
 		<property name="TraderStageTemplate" value="modsTier1"/>
+		<property name="DisplayType" value="modArmorLiners"/>
 		<property name="Material" value="Mcloth"/>
 
 		<effect_group tiered="false">
-			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="2"/>
-			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+			<passive_effect name="HypothermalResist" operation="base_add" value="2"/>
+			<passive_effect name="HyperthermalResist" operation="base_add" value="2"/>
 		</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorInsulatedLinerT2" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorInsulatedLinerT2" installable_tags="armorHead,armorChest,armorHands,armorFeet" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
 		<property name="TraderStageTemplate" value="modsTier2"/>
+		<property name="DisplayType" value="modArmorLiners"/>
 		<property name="Material" value="Mcloth"/>
 
 		<effect_group tiered="false">
-			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="3"/>
-			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+			<passive_effect name="HypothermalResist" operation="base_add" value="3"/>
+			<passive_effect name="HyperthermalResist" operation="base_add" value="3"/>
 		</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorInsulatedLinerT3" installable_tags="armorChest" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorInsulatedLinerT3" installable_tags="armorHead,armorChest,armorHands,armorFeet" modifier_tags="thermal" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<!-- <property name="UnlockedBy" value="modArmorInsulatedLinerSchematic"/> -->
 		<property name="TraderStageTemplate" value="modsTier3"/>
+		<property name="DisplayType" value="modArmorLiners"/>
 		<property name="Material" value="Mcloth"/>
 
 		<effect_group tiered="false">
-			<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$stormTimeMod" operation="set" value="4"/>
-			<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffInsulatedLiner"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveCVar" cvar="$stormTimeMod"/>
-			<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffInsulatedLiner"/>
+			<passive_effect name="HypothermalResist" operation="base_add" value="5"/>
+			<passive_effect name="HyperthermalResist" operation="base_add" value="5"/>
 		</effect_group>
 	</item_modifier>
 
@@ -1743,7 +1785,7 @@
 	<item_modifier name="modArmorWaterPurifier" installable_tags="armorHead" modifier_tags="waterPurifier" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="UnlockedBy" value="modArmorWaterPurifierSchematic"/>
-		<property name="TraderStageTemplate" value="modsTier2"/>
+		<property name="TraderStageTemplate" value="modsTier3"/>
 		<property name="Material" value="Msteel"/>
 
 		<effect_group tiered="false">
@@ -1789,7 +1831,7 @@
 	</item_modifier>
 
 <!-- *** HELMET_MODS -->
-	<item_modifier name="modArmorPerception" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorPerception" installable_tags="armorHead" modifier_tags="boostPerception" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorPerception"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -1801,7 +1843,7 @@
 	</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorStrength" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorStrength" installable_tags="armorHead" modifier_tags="boostStrength" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorStrength"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -1813,7 +1855,7 @@
 	</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorFortitude" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorFortitude" installable_tags="armorHead" modifier_tags="boostFortitude" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorFortitude"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -1825,7 +1867,7 @@
 	</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorAgility" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorAgility" installable_tags="armorHead" modifier_tags="boostAgility" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorAgility"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -1837,7 +1879,7 @@
 	</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorIntellect" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorIntellect" installable_tags="armorHead" modifier_tags="boostIntellect" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorIntellect"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -1849,7 +1891,7 @@
 	</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorTreasureHunter" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+	<item_modifier name="modArmorTreasureHunter" installable_tags="armorHead" modifier_tags="boostTreasure" blocked_tags="noMods" type="attachment">
 		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
 		<property name="CustomIcon" value="modArmorTreasureHunter"/>
 		<property name="TraderStageTemplate" value="modsTier2"/>
@@ -2148,6 +2190,14 @@
 		</effect_group>
 	</item_modifier>
 
+	<item_modifier name="modVehicleStorage" installable_tags="vstorage" modifier_tags="storage" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster"/>
+		<property name="UnlockedBy" value="modVehicleStorageSchematic"/>
+		<property name="TraderStageTemplate" value="modsTier3"/>
+		<property name="CustomIcon" value="modVehicleStorage"/>
+		<property name="MaxModsAllowed" value="2"/>
+	</item_modifier>
+
 	<!-- *** Robotic_Drone_Mods -->
 
 	<item_modifier name="modRoboticDroneArmorPlatingMod" installable_tags="drone" modifier_tags="droneArmor" type="attachment">
@@ -2305,8 +2355,8 @@
 		<property name="CustomIconTint" value="FF00FF"/>
 	<effect_group tiered="false">
 		<passive_effect name="ModSlots" operation="base_set" value="0"/>
-		<!-- <passive_effect name="HypothermalResist" operation="base_add" value="100"/> -->
-		<!-- <passive_effect name="HyperthermalResist" operation="base_add" value="100"/> -->
+		<passive_effect name="HypothermalResist" operation="base_add" value="100"/>
+		<passive_effect name="HyperthermalResist" operation="base_add" value="100"/>
 		<passive_effect name="HealthMax" operation="base_add" value="19900"/>
 		<display_value name="dHealthMax" value="20000"/>
 		<passive_effect name="HealthMax" operation="base_subtract" value="@$PlayerLevelBonus"/>

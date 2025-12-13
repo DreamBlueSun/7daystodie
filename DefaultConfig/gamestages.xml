@@ -20,6 +20,7 @@ lower game stages.
 		// It will spawn up to 300 zombies, but only 8 can be alive at any one time due to performance reasons.
 		// Zombies will be spawned from the ZombiesNight spawn group defined in entitygroups.xml
 		//
+		// The maximum number for these parameters is 65,535
 		// num (optional, default 1) - The total number to spawn
 		// maxAlive (optional, default 1) - The max that can be alive at any time per player
 		// duration (optional, default 1) - The duration of this stage is 1 game hour, after that game hour the next spawn will start OR
@@ -32,8 +33,7 @@ lower game stages.
 		// After 300 zombies have been killed this defines a kind of "station keeping" mode
 		// where there will be one zombie sent to harass the players until sunrise.
 
-		<spawn group="ZombiesNight" num="9999999" maxAlive="1"/>
-		
+		<spawn group="ZombiesNight" num="65,535" maxAlive="1"/>
 	</gamestage>
 </spawner>
 
@@ -337,6 +337,18 @@ Console command: gamestage
 	<group name="zombieDemolition" spawner="zombieDemolition"/>
 	<group name="zombieSteveCrawler" spawner="zombieSteveCrawler"/>
 	<group name="zombieSteveCrawlerFeral" spawner="zombieSteveCrawlerFeral"/>
+	<group name="zombieRancher" spawner="zombieRancher"/>
+	<group name="zombieRancherFeral" spawner="zombieRancherFeral"/>
+	<group name="zombieRancherRadiated" spawner="zombieRancherRadiated"/>
+	<group name="zombieRancherCharged" spawner="zombieRancherCharged"/>
+	<group name="zombieRancherInfernal" spawner="zombieRancherInfernal"/>
+	<group name="zombieChuck" spawner="zombieChuck"/>
+	<group name="zombieChuckFeral" spawner="zombieChuckFeral"/>
+	<group name="zombieChuckRadiated" spawner="zombieChuckRadiated"/>
+	<group name="zombieChuckCharged" spawner="zombieChuckCharged"/>
+	<group name="zombieChuckInfernal" spawner="zombieChuckInfernal"/>
+
+	<!-- Keeping for POI spawns and V2.4 save games -->
 	<group name="zombiePlagueSpitter" spawner="zombiePlagueSpitter"/>
 	<group name="zombiePlagueSpitterFeral" spawner="zombiePlagueSpitterFeral"/>
 	<group name="zombiePlagueSpitterRadiated" spawner="zombiePlagueSpitterRadiated"/>
@@ -352,6 +364,7 @@ Console command: gamestage
 	<group name="animalBear" spawner="animalBear"/>
 	<group name="animalBearSmall" spawner="animalBearSmall"/>
 	<group name="animalBoar" spawner="animalBoar"/>
+	<group name="animalZombieBoar" spawner="animalZombieBoar"/>
 	<group name="animalBossGrace" spawner="animalBossGrace"/>
 
 	<!-- No Sleeper blocks for these Animals -->
@@ -1285,6 +1298,68 @@ Console command: gamestage
 		</gamestage>
 	</spawner>
 
+	<spawner name="zombieRancher">
+		<gamestage stage="1">
+			<spawn group="zombieRancher" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieRancherFeral">
+		<gamestage stage="1">
+			<spawn group="zombieRancherFeral" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieRancherRadiated">
+		<gamestage stage="1">
+			<spawn group="zombieRancherRadiated" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieRancherCharged">
+		<gamestage stage="1">
+			<spawn group="zombieRancherCharged" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieRancherInfernal">
+		<gamestage stage="1">
+			<spawn group="zombieRancherInfernal" duration="10"/>
+		</gamestage>
+	</spawner>
+
+		<spawner name="zombieChuck">
+		<gamestage stage="1">
+			<spawn group="zombieChuck" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieChuckFeral">
+		<gamestage stage="1">
+			<spawn group="zombieChuckFeral" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieChuckRadiated">
+		<gamestage stage="1">
+			<spawn group="zombieChuckRadiated" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieChuckCharged">
+		<gamestage stage="1">
+			<spawn group="zombieChuckCharged" duration="10"/>
+		</gamestage>
+	</spawner>
+
+	<spawner name="zombieChuckInfernal">
+		<gamestage stage="1">
+			<spawn group="zombieChuckInfernal" duration="10"/>
+		</gamestage>
+	</spawner>
+
+
+<!-- *** Keeping for POI spawns and V2.4 save games -->
 		<spawner name="zombiePlagueSpitter">
 		<gamestage stage="1">
 			<spawn group="zombiePlagueSpitter" duration="10"/>
@@ -1315,6 +1390,7 @@ Console command: gamestage
 		</gamestage>
 	</spawner>
 
+<!-- *** Keeping for POI spawns and V2.4 save games -->
 		<spawner name="zombieFrostclaw">
 		<gamestage stage="1">
 			<spawn group="zombieFrostclaw" duration="10"/>
@@ -1362,6 +1438,12 @@ Console command: gamestage
 	<spawner name="animalBoar">
 		<gamestage stage="1">
 			<spawn group="animalBoar" duration="10"/>
+		</gamestage>
+	</spawner>
+	
+	<spawner name="animalZombieBoar">
+		<gamestage stage="1">
+			<spawn group="animalZombieBoar" duration="10"/>
 		</gamestage>
 	</spawner>
 

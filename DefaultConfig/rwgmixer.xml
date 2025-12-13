@@ -3,7 +3,6 @@
 	<!-- default generation values will go here -->
 	<world name="tiny">
 		<property name="world_size" value="0,5000"/>
-		<property name="border_step_distance" value="128"/>
 
 		<!-- clusters params: stamp count, offset from center in random direction (after the first), stamp strength -->
 		<!-- count decimal is chance for +1 to count, so 1.3 is a 30% chance for 2 -->
@@ -61,10 +60,6 @@
 		<property class="canyons">
 			<property name="scale" value=".5, .75"/>
 			<property name="count" value="2, 4, 8"/>
-		</property>
-
-		<property class="border">
-			<property name="scale" value="0.5,0.75"/>
 		</property>
 
 		<property class="oldwest">
@@ -139,7 +134,6 @@
 	
 	<world name="small">
 		<property name="world_size" value="5000,7000"/>
-		<property name="border_step_distance" value="256"/>
 
 		<property class="plains">
 			<property name="scale" value=".5, 1.5"/>
@@ -196,10 +190,6 @@
 			<property name="count" value="2, 4, 8"/>
 		</property>
 		
-		<property class="border">
-			<property name="scale" value="1,2"/>
-		</property>
-
 		<property class="oldwest">
 			<property name="count" value="0, 1, 2"/>
 			<property name="tiles" value="1, 2"/>
@@ -272,7 +262,6 @@
 
 	<world name="medium">
 		<property name="world_size" value="7000,10000"/>
-		<property name="border_step_distance" value="256"/>
 
 		<property class="plains">
 			<property name="scale" value=".5, 1.5"/>
@@ -327,10 +316,6 @@
 		<property class="canyons">
 			<property name="scale" value="1, 2"/>
 			<property name="count" value="2, 4, 8"/>
-		</property>
-
-		<property class="border">
-			<property name="scale" value="1.5,3.5"/>
 		</property>
 
 		<property class="oldwest">
@@ -405,7 +390,6 @@
 
 	<world name="large">
 		<property name="world_size" value="10000,99000"/>
-		<property name="border_step_distance" value="256"/>
 
 		<property class="plains">
 			<property name="scale" value=".5, 1.5"/>
@@ -462,10 +446,6 @@
 			<property name="count" value="3, 6, 10"/>
 		</property>
 		
-		<property class="water_border">
-			<property name="scale" value="1.5,3.5"/>
-		</property>
-
 		<property class="oldwest">
 			<property name="count" value="1, 2, 3"/>
 			<property name="tiles" value="2, 3"/>
@@ -555,7 +535,7 @@
 
 	<township name="bforest_town">
 		<property name="biomes" value="burntforest"/>
-		<property name="outskirt_district" value="rural"/>
+		<property name="outskirt_district" value="rural, .8"/>
 	</township>
 
 	<township name="countrytown">
@@ -565,22 +545,22 @@
 
 	<township name="town">
 		<property name="biomes" value="desert,snow"/>
-		<property name="outskirt_district" value="rural"/>
+		<property name="outskirt_district" value="rural, .8"/>
 	</township>
 
 	<township name="city">
 		<property name="biomes" value="desert,snow"/>
-		<property name="outskirt_district" value="rural"/>
+		<property name="outskirt_district" value="rural, .8"/>
 	</township>
 
 	<township name="wasteland_city">
 		<property name="biomes" value="wasteland"/>
-		<property name="outskirt_district" value="rural"/>
+		<property name="outskirt_district" value="rural, .8"/>
 	</township>
 
 	<township name="citybig">
 		<property name="biomes" value="wasteland"/>
-		<property name="outskirt_district" value="rural"/>
+		<property name="outskirt_district" value="rural, .8"/>
 	</township>
 
 	<township name="roadside">
@@ -593,7 +573,7 @@
 	</district>
 
 	<district name="countrytown">
-		<property name="spawn_weight" value="0.5"/>
+		<property name="spawn_weight" value=".9"/>
 		<property name="required_township" value="countrytown,forest_countrytown,bforest_countrytown"/>
 		<property name="preview_color" value="0,0,1"/>
 	</district>
@@ -603,21 +583,21 @@
 		<property name="required_township" value="countrytown,forest_countrytown,bforest_countrytown"/>
 		<property name="preview_color" value="0,1,0"/>
 	</district>
-	
+
 	<district name="commercial">
-		<property name="spawn_weight" value="0.4"/>
+		<property name="spawn_weight" value="1"/>
 		<property name="required_township" value="citybig,wasteland_city,city,town,bforest_town"/>
 		<property name="preview_color" value="0,0,1"/>
 	</district>
 
 	<district name="industrial">
-		<property name="spawn_weight" value="0.2"/>
+		<property name="spawn_weight" value="1"/>
 		<property name="required_township" value="citybig,wasteland_city,city,town,bforest_town"/>
-		<property name="preview_color" value="1,1,0"/>
+		<property name="preview_color" value="1,.5,0"/>
 	</district>
-	
+
 	<district name="residential">
-		<property name="spawn_weight" value="0.5"/>
+		<property name="spawn_weight" value="1.1"/>
 		<property name="required_township" value="citybig,wasteland_city,city,town,bforest_town"/>
 		<property name="preview_color" value="0,1,0"/>
 	</district>
@@ -639,7 +619,7 @@
 	</district>
 	
 	<district name="downtown">
-		<property name="spawn_weight" value="0.3"/>
+		<property name="spawn_weight" value="1"/>
 		<property name="required_township" value="citybig,wasteland_city,city"/>
 		<property name="preview_color" value="0.5,0.5,0.5"/>
 		<property name="avoided_neighbor_districts" value="rural"/>

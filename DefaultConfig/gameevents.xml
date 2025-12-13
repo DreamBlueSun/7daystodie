@@ -1183,6 +1183,61 @@
 			<property name="value" value="20"/>
 		</requirement>
 
+			<decision class="If">
+				<requirement class="RandomRoll">
+					<property name="min_max" value="0,100"/>
+					<property name="operation" value="LTE"/>
+					<property name="value" value="50"/>
+				</requirement>
+				<action class="SpawnEntity">
+					<property name="entity_names" value="animalBeeSwarm"/>
+					<property name="single_choice" value="true"/>
+					<property name="spawn_count" value="1"/>
+					<property name="phase" value="0"/>
+					<property name="add_to_group" value="zombies"/>
+					<property name="safe_spawn" value="true"/>
+					<property name="min_distance" value="2"/>
+					<property name="max_distance" value="3"/>
+					<property name="spawn_type" value="Position"/>
+					<property name="is_aggressive" value="true"/>
+				</action>
+				<action class="AddItems">
+					<requirement class="RandomRoll">
+						<property name="min_max" value="0,100"/>
+						<property name="operation" value="LTE"/>
+						<property name="value" value="100"/>
+					</requirement>
+					<property name="added_items" value="resourceBeeswax"/>
+					<property name="added_item_counts" value="1"/>
+				</action>
+			</decision>
+
+			<action class="AddItems">
+				<property name="added_items" value="foodHoney"/>
+				<property name="added_item_counts" value="1"/>
+			</action>
+
+			<action class="AddBuff">
+				<property name="buff_name" value="buffHarvestHoney"/>
+			</action>
+	</action_sequence>
+
+	<!-- *** BLOCK_APIARY_BEES -->
+	<!-- Used on Apiary Workstations -->
+	<action_sequence name="block_apiary_bees">
+		<property name="action_type" value="Game"/>
+		<property name="target_type" value="Block"/>
+		<property name="allow_while_dead" value="true"/>
+			<requirement class="VarString">
+				<property name="operation" value="NotEquals"/>
+				<property name="var_name" value="_Mod3Name"/>
+				<property name="value" value="toolApiarySmoker"/>
+			</requirement>
+			<requirement class="RandomRoll">
+				<property name="min_max" value="0,100"/>
+				<property name="operation" value="LTE"/>
+				<property name="value" value="40"/>
+			</requirement>
 			<action class="SpawnEntity">
 				<property name="entity_names" value="animalBeeSwarm"/>
 				<property name="single_choice" value="true"/>
@@ -1194,21 +1249,6 @@
 				<property name="max_distance" value="3"/>
 				<property name="spawn_type" value="Position"/>
 				<property name="is_aggressive" value="true"/>
-
-				<requirement class="RandomRoll">
-					<property name="min_max" value="0,100"/>
-					<property name="operation" value="LTE"/>
-					<property name="value" value="80"/>
-				</requirement>
-			</action>
-
-			<action class="AddItems">
-				<property name="added_items" value="foodHoney"/>
-				<property name="added_item_counts" value="1"/>
-			</action>
-
-			<action class="AddBuff">
-				<property name="buff_name" value="buffHarvestHoney"/>
 			</action>
 	</action_sequence>
 
@@ -2275,64 +2315,64 @@
 		<variable name="alertsound" value="hulkalert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_PLAUGESPITTER -->
-	<action_sequence name="spawn_plaguespitter" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitter" />
+		<!-- *** SPAWN_RANCHER -->
+	<action_sequence name="spawn_rancher" template="spawn_single">
+		<variable name="zombiename" value="zombieRancher" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_PLAUGESPITTER_FERAL -->
-	<action_sequence name="spawn_plaguespitter_feral" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitterFeral" />
+		<!-- *** SPAWN_RANCHER_FERAL -->
+	<action_sequence name="spawn_rancher_feral" template="spawn_single">
+		<variable name="zombiename" value="zombieRancherFeral" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_PLAUGESPITTER_RAD -->
-	<action_sequence name="spawn_plaguespitter_rad" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitterRadiated" />
+		<!-- *** SPAWN_RANCHER_RAD -->
+	<action_sequence name="spawn_rancher_rad" template="spawn_single">
+		<variable name="zombiename" value="zombieRancherRadiated" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_PLAUGESPITTER_CHARGED -->
-	<action_sequence name="spawn_plaguespitter_charged" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitterCharged" />
+		<!-- *** SPAWN_RANCHER_CHARGED -->
+	<action_sequence name="spawn_rancher_charged" template="spawn_single">
+		<variable name="zombiename" value="zombieRancherCharged" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_PLAUGESPITTER_INFERNAL -->
-	<action_sequence name="spawn_plaguespitter_infernal" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitterInfernal" />
+		<!-- *** SPAWN_RANCHER_INFERNAL -->
+	<action_sequence name="spawn_rancher_infernal" template="spawn_single">
+		<variable name="zombiename" value="zombieRancherInfernal" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_FROSTCLAW -->
-	<action_sequence name="spawn_frostclaw" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclaw" />
-		<variable name="alertsound" value="frostclawalert" />
+		<!-- *** SPAWN_CHUCK -->
+	<action_sequence name="spawn_chuck" template="spawn_single">
+		<variable name="zombiename" value="zombieChuck" />
+		<variable name="alertsound" value="chuckalert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_FROSTCLAW_FERAL -->
-	<action_sequence name="spawn_frostclaw_feral" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclawFeral" />
-		<variable name="alertsound" value="frostclawalert" />
+		<!-- *** SPAWN_CHUCK_FERAL -->
+	<action_sequence name="spawn_chuck_feral" template="spawn_single">
+		<variable name="zombiename" value="zombieChuckFeral" />
+		<variable name="alertsound" value="chuckalert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_FROSTCLAW_RAD -->
-	<action_sequence name="spawn_frostclaw_rad" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclawRadiated" />
-		<variable name="alertsound" value="frostclawalert" />
+		<!-- *** SPAWN_CHUCK_RAD -->
+	<action_sequence name="spawn_chuck_rad" template="spawn_single">
+		<variable name="zombiename" value="zombieChuckRadiated" />
+		<variable name="alertsound" value="chuckalert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_FROSTCLAW_CHARGED -->
-	<action_sequence name="spawn_frostclaw_charged" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclawCharged" />
-		<variable name="alertsound" value="frostclawalert" />
+		<!-- *** SPAWN_CHUCK_CHARGED -->
+	<action_sequence name="spawn_chuck_charged" template="spawn_single">
+		<variable name="zombiename" value="zombieChuckCharged" />
+		<variable name="alertsound" value="chuckalert" />
 	</action_sequence>
 	
-		<!-- *** SPAWN_FROSTCLAW_INFERNAL -->
-	<action_sequence name="spawn_frostclaw_infernal" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclawInfernal" />
-		<variable name="alertsound" value="frostclawalert" />
+		<!-- *** SPAWN_CHUCK_INFERNAL -->
+	<action_sequence name="spawn_chuck_infernal" template="spawn_single">
+		<variable name="zombiename" value="zombieChuckInfernal" />
+		<variable name="alertsound" value="chuckalert" />
 	</action_sequence>
 
 		<!-- *** SPAWN_SNAKE -->
@@ -2766,16 +2806,16 @@
 		<variable name="alertsound" value="hulkalert" />
 	</action_sequence>
 	
-	<!-- *** GROUP_SPITTERS -->
-	<action_sequence name="group_plaguespitters" template="spawn_single">
-		<variable name="zombiename" value="zombiePlagueSpitter" />
+	<!-- *** GROUP_RANCHERS -->
+	<action_sequence name="group_ranchers" template="spawn_single">
+		<variable name="zombiename" value="zombieRancher" />
 		<variable name="spawncount" value="5" />
 		<variable name="alertsound" value="plaguealert" />
 	</action_sequence>
 	
-	<!-- *** GROUP_FROSTCLAWS -->
-	<action_sequence name="group_frostclaws" template="spawn_single">
-		<variable name="zombiename" value="zombieFrostclaw" />
+	<!-- *** GROUP_CHUCKS -->
+	<action_sequence name="group_chucks" template="spawn_single">
+		<variable name="zombiename" value="zombieChuck" />
 		<variable name="spawncount" value="5" />
 		<variable name="alertsound" value="frostclawalert" />
 	</action_sequence>

@@ -139,6 +139,10 @@
 			<display_entry name="AttacksPerMinute" title_key="statAttacksPerMinute"/>
 		</item_display_info>
 
+		<item_display_info display_type="meleeCandle" display_group="groupMelee">
+			<display_entry name="HypothermalResist" display_type="Decimal1" title_key="statHypothermalResist"/>
+		</item_display_info>
+
 		<item_display_info display_type="meleeTorch" display_group="groupMelee">
 			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statEntityDamageMelee"/>
 			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statPowerAttack" tags="secondary"/>
@@ -146,7 +150,7 @@
 			<display_entry name="StaminaLoss" display_type="Decimal1" title_key="statStaminaLoss" negative_preferred="true"/>
 			<display_entry name="AttacksPerMinute" title_key="statAttacksPerMinute"/>
 			<display_entry name="dBurning" title_key="statBurning" display_type="Percent"/>
-			<!-- <display_entry name="HypothermalResist" display_type="Decimal1" title_key="statHypothermalResist"/> -->
+			<display_entry name="HypothermalResist" display_type="Decimal1" title_key="statHypothermalResist"/>
 		</item_display_info>
 
 		<item_display_info display_type="meleeTurret" display_group="groupMelee">
@@ -326,6 +330,11 @@
 		<item_display_info display_type="modArmorMobility" display_group="modAttire" >
 			<display_entry name="dStaminaChangeOT" title_key="statStaminaChangeOT" display_type="Decimal2" display_leading_plus="true"/>
 			<display_entry name="Mobility" title_key="statMobility" display_type="Percent" display_leading_plus="true" show_inverted="true" negative_preferred="false"/>
+		</item_display_info>
+
+		<item_display_info display_type="modArmorLiners" display_group="groupAttire">
+			<display_entry name="HypothermalResist" title_key="statHypothermalResist" display_type="Decimal1"/>
+			<display_entry name="HyperthermalResist" title_key="statHyperthermalResist" display_type="Decimal1"/>
 		</item_display_info>
 
 <!-- *** ARMOR -->
@@ -656,6 +665,11 @@
 		</item_display_info>
 
 <!-- *** CLOTHING -->
+		<item_display_info display_type="clothingDisplay" display_group="groupAttire">
+			<display_entry name="HypothermalResist" title_key="statHypothermalResist" display_type="Decimal1"/>
+			<display_entry name="HyperthermalResist" title_key="statHyperthermalResist" display_type="Decimal1"/>
+		</item_display_info>
+
 		<item_display_info display_type="clothingShades" display_group="groupAttire">
 			<display_entry name="AttributeLevel" tags="attPerception" title_key="statShowPerception" display_leading_plus="true"/>
 		</item_display_info>
@@ -732,11 +746,19 @@
 			<display_entry name="dEfficientDigestion" title_key="statEfficientDigestion" display_type="Percent" display_leading_plus="true"/>
 			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
 		</item_display_info>
-
+		
+		<item_display_info display_type="drinkWithHoney" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
+			<display_entry name="dStaminaRegen" title_key="statStaminaRegen" display_type="Percent"/>
+			<display_entry name="dCureDysentery" title_key="statCureDysentery" display_type="Percent"/>
+			<display_entry name="dCureInfection" title_key="statCureInfection" display_type="Percent"/>
+		</item_display_info>
+		
 		<item_display_info display_type="waterCoffee" display_group="groupConsumables">
 			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
 			<display_entry name="dStaminaRegen" title_key="statStaminaRegen" display_type="Percent"/>
-			<!-- <display_entry name="dHypothermalResist" title_key="statHypothermalResist"/> -->
+			<display_entry name="dHypothermalResist" title_key="statHypothermalResist"/>
 			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
 		</item_display_info>
 
@@ -778,6 +800,15 @@
 			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
+		</item_display_info>
+
+		<item_display_info display_type="foodWithHoney" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dCureInfection" title_key="statCureInfection" display_type="Percent"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodRaw" display_group="groupConsumables">
@@ -785,6 +816,16 @@
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name="ddummyNoBonus" title_key="statFoodStaminaBonus" display_type="Bool"/>
 			<display_entry name="dDysenteryRisk" title_key="statDysenteryRisk" display_type="Percent" negative_preferred="true"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
+		</item_display_info>
+
+		<item_display_info display_type="foodRawMeat" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name="ddummyNoBonus" title_key="statFoodStaminaBonus" display_type="Bool"/>
+			<display_entry name="dDysenteryRisk" title_key="statDysenteryRisk" display_type="Percent" negative_preferred="true"/>
+			<display_entry name="dSmell" title_key="statFoodSmellAlways" display_type="Bool"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodCureInfection" display_group="groupConsumables">
@@ -799,6 +840,7 @@
 			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodWaterRaw" display_group="groupConsumables">
@@ -806,6 +848,7 @@
 			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name="ddummyNoBonus" title_key="statFoodStaminaBonus" display_type="Bool"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodWaterNegative" display_group="groupConsumables">
@@ -813,6 +856,7 @@
 			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodShamChowder" display_group="groupConsumables">
@@ -822,6 +866,7 @@
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
 			<display_entry name="dFortitude" title_key="statShowFortitude" display_leading_plus="true"/>
 			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="foodPumpkinCheesecake" display_group="groupConsumables">
@@ -830,6 +875,7 @@
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
 			<display_entry name="dBartering" title_key="statBarteringBuy" display_type="Percent" display_leading_plus="true"/>
 			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
 		<item_display_info display_type="drinkYuccaSmoothie" display_group="groupConsumables">
@@ -837,7 +883,7 @@
 			<display_entry name="$waterAmountAdd" title_key="statWaterAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name="dStaminaRegen" title_key="statStaminaRegen" display_type="Percent"/>
-			<!-- <display_entry name="dHypothermalResist" title_key="statHypothermalResist" display_leading_plus="true"/> -->
+			<display_entry name="dHyperthermalResist" title_key="statHyperthermalResist"/>
 			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
 		</item_display_info>
 
@@ -1146,8 +1192,8 @@
 		<display_entry name="StaminaChangeOT" title_key="statStaminaChangeOT" display_type="Decimal2"/>
 		<display_entry name="HealthChangeOT" title_key="statHealthChangeOT" display_type="Decimal2"/>
 		<display_entry name="HealthMaxModifierOT" title_key="statHealthMaxModifierOT" display_type="Decimal2"/>
-		<!-- <display_entry name="HypothermalResist" display_type="Decimal1" title_key="statHypothermalResist"/> -->
-		<!-- <display_entry name="HyperthermalResist" display_type="Decimal1" title_key="statHyperthermalResist"/> -->
+		<display_entry name="HypothermalResist" display_type="Decimal1" title_key="statHypothermalResist"/>
+		<display_entry name="HyperthermalResist" display_type="Decimal1" title_key="statHyperthermalResist"/>
 		<display_entry name="Mobility" title_key="statMobility" display_type="Percent"/>
 		<display_entry name="JumpStrength" title_key="statJumpStrength" display_type="Percent"/>
 		<display_entry name="CarryCapacity" title_key="statCarryCapacity"/>
