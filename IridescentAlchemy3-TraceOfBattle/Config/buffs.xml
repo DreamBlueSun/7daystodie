@@ -290,6 +290,31 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa10"/>
 		</effect_group>
 
+		<!-- 添加 玩家所在地形 穿越 -->
+		<effect_group>
+			<requirement name="NotHasBuff" buff="buffPerkMarisaTraversing"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaTraversing"/>
+		</effect_group>
+		<!-- * 预触发 穿越 -->
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="2"/>
+			<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="8"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingUpper3"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingUpper2"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingUpper1"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingUpperCold"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieSpwanMarisaTraversingUpper3"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+			<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupper3"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupper2"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupper1"/>
+			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupperCold"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper3"/>
+		</effect_group>
+
 		<!-- 添加 不屈 -->
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="Equals" value="1"/>
@@ -340,6 +365,85 @@
 		</effect_group>
 
 
+
+	</append>
+
+
+
+	<!-- 穿越 BUFF -->
+	<append xpath="/buffs">
+
+		<!-- 上位 -->
+		<buff name="buffZombieSpwanMarisaTraversingUpper3" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="180"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="8"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingUpper2"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingUpper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingUpper2" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="120"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="8"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingUpper1"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingUpper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingUpper1" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="60"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="8"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingUpperCold"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingUpper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingUpperCold" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="300"/>
+		</buff>
+
+		<!-- 大师 -->
+		<buff name="buffZombieSpwanMarisaTraversingSupper3" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="180"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper2"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingSupper2" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="120"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper1"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingSupper1" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="60"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupperCold"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffZombieSpwanMarisaTraversingSupperCold" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="300"/>
+		</buff>
 
 	</append>
 
@@ -3635,6 +3739,27 @@
 		<buff name="buffYcxBannerStationAtk" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="1200"/>
+		</buff>
+
+
+
+		<!-- * 玩家所在地形 穿越 -->
+		<buff name="buffPerkMarisaTraversing" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="1"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="marisaTraversingLower"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="2"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="marisaTraversingUpper"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="marisaTraversingSupper"/>
+			</effect_group>
 		</buff>
 
 
