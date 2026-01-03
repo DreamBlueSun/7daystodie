@@ -209,9 +209,12 @@
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
 
-	<!-- *** 糖果交易加成降低 -->
+	<!-- *** 糖果 -->
+	<!-- ** 交易加成降低 -->
 	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
 	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
+	<!-- ** 采伐加成适配 -->
+	<set xpath="/buffs/buff[@name='buffDrugRockBusters']/effect_group/passive_effect[@name='HarvestCount']/@tags">oreWoodHarvest,marisaTraversingLower,marisaTraversingUpper,marisaTraversingSupper</set>
 
 	<!-- *** 碾压王 速度改为20% -->
 	<set xpath="/buffs/buff[@name='buffMegaCrush']/effect_group/passive_effect[@name='RunSpeed']/@value">.2</set>
@@ -6780,7 +6783,7 @@
 			<stack_type value="ignore"/>
 			<effect_group>
 				<requirement name="ArmorGroupLowestQuality" group_name="groupLumberjack" operation="GTE" value="1"/>
-				<passive_effect name="HarvestCount" operation="base_add" value=".2" tags="lumberjackHarvest"/>
+				<passive_effect name="HarvestCount" operation="base_add" value=".2" tags="lumberjackHarvest,marisaTraversingLower,marisaTraversingUpper,marisaTraversingSupper"/>
 			</effect_group>
 		</buff>
 		<!-- 传道者 -->
@@ -6876,7 +6879,7 @@
 			<stack_type value="ignore"/>
 			<effect_group>
 				<requirement name="ArmorGroupLowestQuality" group_name="groupMiner" operation="GTE" value="1"/>
-				<passive_effect name="HarvestCount" operation="base_add" value=".2" tags="marisaOreHarvest"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="marisaOreHarvest,marisaTraversingLower,marisaTraversingUpper,marisaTraversingSupper"/>
 			</effect_group>
 		</buff>
 		<!-- 游牧民 -->
