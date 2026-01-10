@@ -77,17 +77,110 @@
 
 
 
-    <!--*** 雪茄移除力量加成 -->
-    <remove xpath="/item_modifiers/item_modifier[@name='modArmorCigar']/effect_group/passive_effect[@name='AttributeLevel']"/>
-    <!--*** 雪茄新增效果 阅读杂志效果有几率翻倍 -->
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorCigar']/property[@name='DisplayType']/@value">ui_ModArmorCigarMarisa</set>
-    <append xpath="/item_modifiers/item_modifier[@name='modArmorCigar']">
-        <effect_group tiered="false">
-            <display_value name="dAttributeLevel" value=".25"/>
-            <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$nerdOutfitSkillPointChanceCigar" operation="set" value="25"/>
-            <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$nerdOutfitSkillPointChanceCigar" operation="set" value="0"/>
-        </effect_group>
-    </append>
+    <!--*** 芯片 雪茄 安装位置更改 -->
+    <remove xpath="/item_modifiers/item_modifier[@name='modArmorCigar' or @name='modArmorPerception' or @name='modArmorStrength' or @name='modArmorFortitude' or @name='modArmorAgility' or @name='modArmorIntellect' or @name='modArmorTreasureHunter']"/>
+    <insertAfter xpath="/item_modifiers/item_modifier[@name='modArmorHelmetLight']">
+
+        <!--** 雪茄 移除力量加成 新增效果阅读杂志效果有几率翻倍 -->
+        <item_modifier name="modArmorCigar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="apparelCigar"/>
+            <property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
+            <property name="UnlockedBy" value="perkUrbanCombatCigar"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Mplants"/>
+            <property name="EconomicValue" value="1000"/>
+            <effect_group tiered="false">
+                <passive_effect name="BarteringBuying" operation="base_add" value=".1"/>
+                <passive_effect name="BarteringSelling" operation="base_add" value=".1"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <display_value name="dAttributeLevel" value=".25"/>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$nerdOutfitSkillPointChanceCigar" operation="set" value="25"/>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$nerdOutfitSkillPointChanceCigar" operation="set" value="0"/>
+            </effect_group>
+        </item_modifier>
+
+
+        <!--** 芯片 属性加成改为 +3 -->
+        <item_modifier name="modArmorPerception" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorPerception"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="AttributeLevel" tags="attPerception" operation="base_add" value="3"/>
+            </effect_group>
+        </item_modifier>
+
+        <item_modifier name="modArmorStrength" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorStrength"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="AttributeLevel" tags="attStrength" operation="base_add" value="3"/>
+            </effect_group>
+        </item_modifier>
+
+        <item_modifier name="modArmorFortitude" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorFortitude"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="AttributeLevel" tags="attFortitude" operation="base_add" value="3"/>
+            </effect_group>
+        </item_modifier>
+
+        <item_modifier name="modArmorAgility" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorAgility"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="AttributeLevel" tags="attAgility" operation="base_add" value="3"/>
+            </effect_group>
+        </item_modifier>
+
+        <item_modifier name="modArmorIntellect" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorIntellect"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="AttributeLevel" tags="attIntellect" operation="base_add" value="3"/>
+            </effect_group>
+        </item_modifier>
+
+        <item_modifier name="modArmorTreasureHunter" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorTreasureHunter"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1000"/>
+
+            <effect_group tiered="false">
+                <passive_effect name="ModSlots" operation="base_set" value="0"/>
+                <passive_effect name="LootStage" operation="base_add" value="5"/>
+                <passive_effect name="PlayerExpGain" operation="perc_add" value=".1"/>
+                <passive_effect name="TreasureBlocksPerReduction" operation="base_add" value="-1"/>
+                <display_value name="dTreasureBlocksPerReduction" value="-1"/>
+                <display_value name="dPlayerExpGain" value=".1"/>
+            </effect_group>
+        </item_modifier>
+
+    </insertAfter>
 
     <!-- 模型修复-红点 -->
     <append xpath="/item_modifiers/item_modifier[@name='modGunReflexSight']">
@@ -54904,19 +54997,13 @@
     <!-- ** 弹夹 -->
     <set xpath="/item_modifiers/item_modifier[@name='modGunShotgunTubeExtenderMagazine']/effect_group/passive_effect[@name='MagazineSize']/@value">.25</set>
     <set xpath="/item_modifiers/item_modifier[@name='modGunMagazineExtender']/effect_group/passive_effect[@name='MagazineSize']/@value">.1</set>
-    <set xpath="/item_modifiers/item_modifier[@name='modGunDrumMagazineExtender']/effect_group/passive_effect[@name='MagazineSize']/@value">.4</set>、
-    <!-- ** 芯片 -->
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorPerception']/effect_group/passive_effect[@name='AttributeLevel']/@value">3</set>
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorStrength']/effect_group/passive_effect[@name='AttributeLevel']/@value">3</set>
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorFortitude']/effect_group/passive_effect[@name='AttributeLevel']/@value">3</set>
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorAgility']/effect_group/passive_effect[@name='AttributeLevel']/@value">3</set>
-    <set xpath="/item_modifiers/item_modifier[@name='modArmorIntellect']/effect_group/passive_effect[@name='AttributeLevel']/@value">3</set>
+    <set xpath="/item_modifiers/item_modifier[@name='modGunDrumMagazineExtender']/effect_group/passive_effect[@name='MagazineSize']/@value">.4</set>
     <!-- 虹彩炼金模组 -->
     <append xpath="/item_modifiers">
 
         <!-- *** 护甲模组 -->
         <!-- ** 六边形模组 -->
-        <item_modifier name="IridescentModArmorHexagon" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+        <item_modifier name="IridescentModArmorHexagon" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
             <property name="DisplayType" value="ui_IridescentModArmorHexagon"/>
@@ -54935,7 +55022,7 @@
             </effect_group>
         </item_modifier>
         <!-- ** 六边形模组 大师 -->
-        <item_modifier name="IridescentModArmorHexagon2" installable_tags="armorHead" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+        <item_modifier name="IridescentModArmorHexagon2" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
             <property name="DisplayType" value="ui_IridescentModArmorHexagon"/>
@@ -55440,7 +55527,7 @@
 
 		<!-- *** cigar r3 r4 -->
         <!-- ** 炎热耐性 -->
-		<item_modifier name="modArmorCigarMarisaR2T1HotResist" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1HotResist" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55463,7 +55550,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 寒冷耐性 -->
-		<item_modifier name="modArmorCigarMarisaR2T1ColdResist" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1ColdResist" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55486,7 +55573,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 烤肉名人 -->
-		<item_modifier name="modArmorCigarMarisaR2T1GrilledMeatStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1GrilledMeatStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55509,7 +55596,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 饥饿耐性 -->
-		<item_modifier name="modArmorCigarMarisaR2T1FoodChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1FoodChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55531,7 +55618,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFoodChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2FoodChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2FoodChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55553,7 +55640,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaFoodChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3FoodChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3FoodChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55576,7 +55663,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 适应水场 -->
-		<item_modifier name="modArmorCigarMarisaR2T1AdaptiveWaterField" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1AdaptiveWaterField" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55598,7 +55685,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAdaptiveWaterField"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2AdaptiveWaterField" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2AdaptiveWaterField" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55620,7 +55707,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAdaptiveWaterField"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3AdaptiveWaterField" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3AdaptiveWaterField" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55643,7 +55730,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 佯动攻击 -->
-		<item_modifier name="modArmorCigarMarisaR2T1Feint" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1Feint" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55666,7 +55753,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 植生学 -->
-		<item_modifier name="modArmorCigarMarisaR2T1PlantBiology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1PlantBiology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55688,7 +55775,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaPlantBiology"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2PlantBiology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2PlantBiology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55710,7 +55797,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaPlantBiology"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3PlantBiology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3PlantBiology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55732,7 +55819,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaPlantBiology"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T4PlantBiology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T4PlantBiology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55755,7 +55842,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 地质学 -->
-		<item_modifier name="modArmorCigarMarisaR2T1Geology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1Geology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55777,7 +55864,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaGeology"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2Geology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2Geology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55799,7 +55886,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaGeology"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3Geology" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3Geology" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55822,7 +55909,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 机械学 -->
-		<item_modifier name="modArmorCigarMarisaR2T1Mechanics" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1Mechanics" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55844,7 +55931,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaMechanics"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2Mechanics" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2Mechanics" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55866,7 +55953,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaMechanics"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3Mechanics" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3Mechanics" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55889,7 +55976,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 制作达人 -->
-		<item_modifier name="modArmorCigarMarisaR2T1CraftStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1CraftStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55911,7 +55998,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCraftStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2CraftStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2CraftStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55933,7 +56020,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaCraftStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3CraftStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3CraftStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55956,7 +56043,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 分解达人 -->
-		<item_modifier name="modArmorCigarMarisaR2T1ScrapeStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1ScrapeStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -55978,7 +56065,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaScrapeStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2ScrapeStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2ScrapeStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56000,7 +56087,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaScrapeStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T3ScrapeStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T3ScrapeStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56023,7 +56110,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 蜂蜜猎人 -->
-		<item_modifier name="modArmorCigarMarisaR2T1HoneyHunter" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1HoneyHunter" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56046,7 +56133,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 搬运达人 -->
-		<item_modifier name="modArmorCigarMarisaR2T1CarryStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR2T1CarryStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56068,7 +56155,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCarryStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR4T2CarryStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T2CarryStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56093,7 +56180,7 @@
 
 		<!-- *** cigar r5 r6 -->
         <!-- ** 不屈 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Nirvana" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Nirvana" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56115,7 +56202,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNirvana"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Nirvana" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Nirvana" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56138,7 +56225,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 运动达人 -->
-		<item_modifier name="modArmorCigarMarisaR3T1SportsStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1SportsStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56161,7 +56248,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 驾驶名人 -->
-		<item_modifier name="modArmorCigarMarisaR3T1VehicleVelocity" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1VehicleVelocity" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56184,7 +56271,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 蹲下移动速度提升 -->
-		<item_modifier name="modArmorCigarMarisaR3T1CrouchSpeed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1CrouchSpeed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56207,7 +56294,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 死里逃生 -->
-		<item_modifier name="modArmorCigarMarisaR3T1NarrowEscape" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1NarrowEscape" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56230,7 +56317,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 燃烧耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1FireRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1FireRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56252,7 +56339,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFireRemove"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2FireRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2FireRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56275,7 +56362,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 电击耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1ShockedRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1ShockedRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56297,7 +56384,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaShockedRemove"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2ShockedRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2ShockedRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56320,7 +56407,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 拾荒达人 -->
-		<item_modifier name="modArmorCigarMarisaR3T1TreasureHuntStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1TreasureHuntStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56342,7 +56429,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaTreasureHuntStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2TreasureHuntStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2TreasureHuntStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56364,7 +56451,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaTreasureHuntStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3TreasureHuntStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3TreasureHuntStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56387,7 +56474,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 破坏王 -->
-		<item_modifier name="modArmorCigarMarisaR3T1BreakStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1BreakStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56409,7 +56496,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBreakStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2BreakStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2BreakStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56431,7 +56518,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaBreakStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3BreakStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3BreakStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56454,7 +56541,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 体力提升 -->
-		<item_modifier name="modArmorCigarMarisaR3T1StaminaMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1StaminaMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56476,7 +56563,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaMaxUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2StaminaMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2StaminaMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56498,7 +56585,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaStaminaMaxUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3StaminaMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3StaminaMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56521,7 +56608,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 防御 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Defensive" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Defensive" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56543,7 +56630,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensive"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Defensive" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Defensive" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56565,7 +56652,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaDefensive"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3Defensive" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3Defensive" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56587,7 +56674,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaDefensive"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4Defensive" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4Defensive" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56609,7 +56696,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaDefensive"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5Defensive" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5Defensive" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56632,7 +56719,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 体力急速回复 -->
-		<item_modifier name="modArmorCigarMarisaR3T1StaminaChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1StaminaChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56654,7 +56741,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2StaminaChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2StaminaChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56676,7 +56763,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaStaminaChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3StaminaChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3StaminaChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56699,7 +56786,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 回复速度 -->
-		<item_modifier name="modArmorCigarMarisaR3T1HealthChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1HealthChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56721,7 +56808,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2HealthChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2HealthChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56743,7 +56830,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaHealthChangeOT"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3HealthChangeOT" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3HealthChangeOT" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56766,7 +56853,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 狂野恢复 -->
-		<item_modifier name="modArmorCigarMarisaR3T1FoodLossPerDownHealthPointGained" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1FoodLossPerDownHealthPointGained" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56788,7 +56875,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFoodLossPerDownHealthPointGained"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2FoodLossPerDownHealthPointGained" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2FoodLossPerDownHealthPointGained" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56811,7 +56898,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 广域化 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Friendly" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Friendly" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56833,7 +56920,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFriendly"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Friendly" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Friendly" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56855,7 +56942,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaFriendly"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3Friendly" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3Friendly" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56877,7 +56964,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaFriendly"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4Friendly" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4Friendly" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56899,7 +56986,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaFriendly"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5Friendly" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5Friendly" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56922,7 +57009,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 暴击耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1BuffResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1BuffResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56944,7 +57031,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBuffResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2BuffResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2BuffResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56966,7 +57053,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaBuffResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3BuffResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3BuffResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -56989,7 +57076,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 快速换弹 -->
-		<item_modifier name="modArmorCigarMarisaR3T1ReloadSpeed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1ReloadSpeed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57011,7 +57098,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaReloadSpeed"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2ReloadSpeed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2ReloadSpeed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57033,7 +57120,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaReloadSpeed"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3ReloadSpeed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3ReloadSpeed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57056,7 +57143,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 整备 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Adjustment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Adjustment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57078,7 +57165,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAdjustment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Adjustment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Adjustment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57100,7 +57187,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAdjustment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3Adjustment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3Adjustment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57122,7 +57209,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaAdjustment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4Adjustment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4Adjustment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57144,7 +57231,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaAdjustment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5Adjustment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5Adjustment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57167,7 +57254,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 振奋 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Inspire" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Inspire" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57190,7 +57277,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 适应瘴气环境 -->
-		<item_modifier name="modArmorCigarMarisaR3T1EnvironmentMiasmatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1EnvironmentMiasmatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57213,7 +57300,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 探索者之幸运 -->
-		<item_modifier name="modArmorCigarMarisaR3T1LuckPathfinder" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1LuckPathfinder" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57236,7 +57323,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 经验获取 -->
-		<item_modifier name="modArmorCigarMarisaR3T1KillExp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1KillExp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57258,7 +57345,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillExp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2KillExp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2KillExp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57280,7 +57367,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaKillExp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3KillExp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3KillExp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57302,7 +57389,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaKillExp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4KillExp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4KillExp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57324,7 +57411,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaKillExp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5KillExp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5KillExp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57347,7 +57434,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 炼铜 -->
-		<item_modifier name="modArmorCigarMarisaR3T1CopperSmelting" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1CopperSmelting" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57369,7 +57456,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCopperSmelting"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2CopperSmelting" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2CopperSmelting" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57391,7 +57478,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaCopperSmelting"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3CopperSmelting" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3CopperSmelting" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57413,7 +57500,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaCopperSmelting"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4CopperSmelting" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4CopperSmelting" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57435,7 +57522,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaCopperSmelting"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5CopperSmelting" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5CopperSmelting" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57458,7 +57545,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 生命提升 -->
-		<item_modifier name="modArmorCigarMarisaR3T1HealthMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1HealthMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57480,7 +57567,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthMaxUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2HealthMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2HealthMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57502,7 +57589,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaHealthMaxUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3HealthMaxUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3HealthMaxUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57525,7 +57612,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 跑者 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Mobility" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Mobility" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57547,7 +57634,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaMobility"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Mobility" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Mobility" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57569,7 +57656,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaMobility"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3Mobility" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3Mobility" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57592,7 +57679,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 跳跃高度提升 -->
-		<item_modifier name="modArmorCigarMarisaR3T1JumpStrength" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1JumpStrength" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57614,7 +57701,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaJumpStrength"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2JumpStrength" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2JumpStrength" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57636,7 +57723,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaJumpStrength"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3JumpStrength" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3JumpStrength" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57659,7 +57746,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 跳跃性能 -->
-		<item_modifier name="modArmorCigarMarisaR3T1JumpDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1JumpDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57681,7 +57768,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaJumpDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2JumpDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2JumpDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57703,7 +57790,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaJumpDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3JumpDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3JumpDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57725,7 +57812,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaJumpDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4JumpDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4JumpDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57747,7 +57834,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaJumpDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5JumpDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5JumpDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57770,7 +57857,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 医疗回复 -->
-		<item_modifier name="modArmorCigarMarisaR3T1HealthIncreaseSpeedUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1HealthIncreaseSpeedUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57792,7 +57879,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthIncreaseSpeedUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2HealthIncreaseSpeedUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2HealthIncreaseSpeedUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57814,7 +57901,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaHealthIncreaseSpeedUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3HealthIncreaseSpeedUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3HealthIncreaseSpeedUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57837,7 +57924,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 满足感 -->
-		<item_modifier name="modArmorCigarMarisaR3T1Stuffed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1Stuffed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57859,7 +57946,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStuffed"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2Stuffed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2Stuffed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57881,7 +57968,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaStuffed"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3Stuffed" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3Stuffed" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57904,7 +57991,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 护甲下降耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1DefDownResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1DefDownResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57926,7 +58013,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefDownResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2DefDownResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2DefDownResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57948,7 +58035,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaDefDownResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3DefDownResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3DefDownResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57971,7 +58058,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 瘴气侵蚀耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1MiasmaticErosionResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1MiasmaticErosionResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -57993,7 +58080,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaMiasmaticErosionResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2MiasmaticErosionResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2MiasmaticErosionResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58015,7 +58102,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaMiasmaticErosionResistance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3MiasmaticErosionResistance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3MiasmaticErosionResistance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58038,7 +58125,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 潜伏 -->
-		<item_modifier name="modArmorCigarMarisaR3T1SneakUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1SneakUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58060,7 +58147,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaSneakUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2SneakUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2SneakUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58082,7 +58169,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaSneakUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3SneakUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3SneakUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58105,7 +58192,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 剥取名人 -->
-		<item_modifier name="modArmorCigarMarisaR3T1HarvestButcherStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1HarvestButcherStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58128,7 +58215,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 纳刀术 -->
-		<item_modifier name="modArmorCigarMarisaR3T1NanoKnife" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1NanoKnife" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58150,7 +58237,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNanoKnife"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2NanoKnife" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2NanoKnife" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58172,7 +58259,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaNanoKnife"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3NanoKnife" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3NanoKnife" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58195,7 +58282,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 精灵加护 -->
-		<item_modifier name="modArmorCigarMarisaR3T1DefensiveElf" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1DefensiveElf" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58217,7 +58304,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensiveElf"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2DefensiveElf" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2DefensiveElf" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58239,7 +58326,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaDefensiveElf"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3DefensiveElf" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3DefensiveElf" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58262,7 +58349,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 强化持续 -->
-		<item_modifier name="modArmorCigarMarisaR3T1ThreeCountUpUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1ThreeCountUpUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58284,7 +58371,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaThreeCountUpUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2ThreeCountUpUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2ThreeCountUpUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58306,7 +58393,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaThreeCountUpUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3ThreeCountUpUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3ThreeCountUpUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58329,7 +58416,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 属性耐性 -->
-		<item_modifier name="modArmorCigarMarisaR3T1DeEffectRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1DeEffectRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58351,7 +58438,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDeEffectRemove"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2DeEffectRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2DeEffectRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58373,7 +58460,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaDeEffectRemove"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3DeEffectRemove" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3DeEffectRemove" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58396,7 +58483,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 幸运 -->
-		<item_modifier name="modArmorCigarMarisaR3T1QuestLucking" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1QuestLucking" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58418,7 +58505,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaQuestLucking"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2QuestLucking" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2QuestLucking" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58440,7 +58527,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaQuestLucking"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3QuestLucking" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3QuestLucking" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58462,7 +58549,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaQuestLucking"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR9T4QuestLucking" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR9T4QuestLucking" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58484,7 +58571,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaQuestLucking"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR11T5QuestLucking" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR11T5QuestLucking" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58507,7 +58594,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 属性莲华 -->
-		<item_modifier name="modArmorCigarMarisaR3T1IntensifyAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1IntensifyAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58529,7 +58616,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaIntensifyAoe"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2IntensifyAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2IntensifyAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58551,7 +58638,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaIntensifyAoe"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3IntensifyAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3IntensifyAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58574,7 +58661,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 异常莲华 -->
-		<item_modifier name="modArmorCigarMarisaR3T1EffectAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR3T1EffectAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58596,7 +58683,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectAoe"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR5T2EffectAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR5T2EffectAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58618,7 +58705,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaEffectAoe"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR7T3EffectAoe" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR7T3EffectAoe" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58643,7 +58730,7 @@
 
 		<!-- *** cigar r7 r8 -->
         <!-- ** 体术 -->
-		<item_modifier name="modArmorCigarMarisaR4T1StaminaLossDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1StaminaLossDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58665,7 +58752,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaLossDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2StaminaLossDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2StaminaLossDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58687,7 +58774,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaStaminaLossDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3StaminaLossDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3StaminaLossDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58709,7 +58796,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaStaminaLossDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4StaminaLossDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4StaminaLossDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58731,7 +58818,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaStaminaLossDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5StaminaLossDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5StaminaLossDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58754,7 +58841,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 玻璃大炮 -->
-		<item_modifier name="modArmorCigarMarisaR4T1PowerAndDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1PowerAndDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58776,7 +58863,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaPowerAndDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2PowerAndDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2PowerAndDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58798,7 +58885,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaPowerAndDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3PowerAndDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3PowerAndDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58820,7 +58907,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaPowerAndDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4PowerAndDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4PowerAndDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58842,7 +58929,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaPowerAndDown"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5PowerAndDown" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5PowerAndDown" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58865,7 +58952,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 弱点特效 -->
-		<item_modifier name="modArmorCigarMarisaR4T1HeadDamage" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1HeadDamage" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58887,7 +58974,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHeadDamage"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2HeadDamage" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2HeadDamage" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58909,7 +58996,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaHeadDamage"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3HeadDamage" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3HeadDamage" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58932,7 +59019,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 力量解放 -->
-		<item_modifier name="modArmorCigarMarisaR4T1LiberationPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1LiberationPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58954,7 +59041,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaLiberationPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2LiberationPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2LiberationPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58976,7 +59063,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaLiberationPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3LiberationPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3LiberationPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -58998,7 +59085,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaLiberationPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4LiberationPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4LiberationPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59020,7 +59107,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaLiberationPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5LiberationPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5LiberationPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59043,7 +59130,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 精神抖擞 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Vitality" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Vitality" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59065,7 +59152,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVitality"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Vitality" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Vitality" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59087,7 +59174,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaVitality"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Vitality" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Vitality" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59110,7 +59197,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 击晕术 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Stun" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Stun" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59132,7 +59219,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStun"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Stun" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Stun" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59154,7 +59241,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaStun"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Stun" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Stun" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59177,7 +59264,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 怨恨 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Resentment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Resentment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59199,7 +59286,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaResentment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Resentment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Resentment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59221,7 +59308,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaResentment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Resentment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Resentment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59243,7 +59330,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaResentment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4Resentment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4Resentment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59265,7 +59352,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaResentment"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5Resentment" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5Resentment" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59288,7 +59375,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 燃血 -->
-		<item_modifier name="modArmorCigarMarisaR4T1BurnBlood" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1BurnBlood" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59310,7 +59397,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBurnBlood"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2BurnBlood" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2BurnBlood" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59332,7 +59419,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaBurnBlood"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3BurnBlood" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3BurnBlood" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59355,7 +59442,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 火场怪力 -->
-		<item_modifier name="modArmorCigarMarisaR4T1CrisisPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1CrisisPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59377,7 +59464,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCrisisPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2CrisisPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2CrisisPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59399,7 +59486,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaCrisisPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3CrisisPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3CrisisPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59421,7 +59508,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaCrisisPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4CrisisPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4CrisisPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59443,7 +59530,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaCrisisPower"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5CrisisPower" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5CrisisPower" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59466,7 +59553,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 转祸为福 -->
-		<item_modifier name="modArmorCigarMarisaR4T1TurnBadLuckIntoABlessing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1TurnBadLuckIntoABlessing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59488,7 +59575,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaTurnBadLuckIntoABlessing"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2TurnBadLuckIntoABlessing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2TurnBadLuckIntoABlessing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59510,7 +59597,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaTurnBadLuckIntoABlessing"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3TurnBadLuckIntoABlessing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3TurnBadLuckIntoABlessing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59533,7 +59620,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 通常弹/箭强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1NormalAmmoUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1NormalAmmoUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59555,7 +59642,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNormalAmmoUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2NormalAmmoUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2NormalAmmoUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59578,7 +59665,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 接击弹/箭强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1PiercingAmmoUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1PiercingAmmoUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59600,7 +59687,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaPiercingAmmoUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2PiercingAmmoUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2PiercingAmmoUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59623,7 +59710,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 贯通弹/爆破强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1ShotgunAmmoBoomUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1ShotgunAmmoBoomUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59645,7 +59732,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaShotgunAmmoBoomUp"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2ShotgunAmmoBoomUp" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2ShotgunAmmoBoomUp" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59668,7 +59755,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 盛宴 -->
-		<item_modifier name="modArmorCigarMarisaR4T1KillRecovery" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1KillRecovery" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59690,7 +59777,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillRecovery"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2KillRecovery" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2KillRecovery" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59712,7 +59799,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaKillRecovery"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3KillRecovery" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3KillRecovery" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59735,7 +59822,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 弹道强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1ProjectileIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1ProjectileIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59757,7 +59844,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaProjectileIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2ProjectileIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2ProjectileIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59779,7 +59866,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaProjectileIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3ProjectileIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3ProjectileIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59802,7 +59889,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 火属性攻击强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1FiredIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1FiredIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59824,7 +59911,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFiredIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2FiredIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2FiredIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59846,7 +59933,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaFiredIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3FiredIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3FiredIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59868,7 +59955,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaFiredIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4FiredIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4FiredIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59890,7 +59977,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaFiredIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5FiredIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5FiredIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59913,7 +60000,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 电属性攻击强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1ShockedIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1ShockedIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59935,7 +60022,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaShockedIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2ShockedIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2ShockedIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59957,7 +60044,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaShockedIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3ShockedIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3ShockedIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -59979,7 +60066,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaShockedIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4ShockedIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4ShockedIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60001,7 +60088,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaShockedIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5ShockedIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5ShockedIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60024,7 +60111,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 精准医疗 -->
-		<item_modifier name="modArmorCigarMarisaR4T1HealthIncreaseSaving" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1HealthIncreaseSaving" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60047,7 +60134,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 异常攻击强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1EffectIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1EffectIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60069,7 +60156,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2EffectIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2EffectIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60091,7 +60178,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaEffectIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3EffectIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3EffectIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60114,7 +60201,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 看破 -->
-		<item_modifier name="modArmorCigarMarisaR4T1CriticalChance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1CriticalChance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60136,7 +60223,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCriticalChance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2CriticalChance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2CriticalChance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60158,7 +60245,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaCriticalChance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3CriticalChance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3CriticalChance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60180,7 +60267,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaCriticalChance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4CriticalChance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4CriticalChance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60202,7 +60289,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaCriticalChance"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5CriticalChance" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5CriticalChance" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60225,7 +60312,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 飞燕 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Noguri" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Noguri" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60248,7 +60335,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 箭矢自动拾取 -->
-		<item_modifier name="modArmorCigarMarisaR4T1ArrowAutoPick" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1ArrowAutoPick" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60270,7 +60357,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaArrowAutoPick"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2ArrowAutoPick" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2ArrowAutoPick" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60292,7 +60379,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaArrowAutoPick"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3ArrowAutoPick" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3ArrowAutoPick" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60315,7 +60402,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 察觉 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Track" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Track" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60338,7 +60425,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 战魂 -->
-		<item_modifier name="modArmorCigarMarisaR4T1SpiritOfWar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1SpiritOfWar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60360,7 +60447,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaSpiritOfWar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2SpiritOfWar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2SpiritOfWar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60382,7 +60469,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaSpiritOfWar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3SpiritOfWar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3SpiritOfWar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60404,7 +60491,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaSpiritOfWar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4SpiritOfWar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4SpiritOfWar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60426,7 +60513,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaSpiritOfWar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5SpiritOfWar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5SpiritOfWar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60449,7 +60536,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 攻击 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Attack" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Attack" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60471,7 +60558,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttack"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Attack" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Attack" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60493,7 +60580,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAttack"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Attack" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Attack" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60515,7 +60602,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaAttack"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4Attack" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4Attack" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60537,7 +60624,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaAttack"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5Attack" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5Attack" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60560,7 +60647,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 挑战 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Challenge" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Challenge" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60582,7 +60669,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaChallenge"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Challenge" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Challenge" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60604,7 +60691,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaChallenge"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Challenge" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Challenge" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60626,7 +60713,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaChallenge"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4Challenge" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4Challenge" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60648,7 +60735,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaChallenge"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5Challenge" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5Challenge" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60671,7 +60758,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 无伤 -->
-		<item_modifier name="modArmorCigarMarisaR4T1FullHealth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1FullHealth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60693,7 +60780,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFullHealth"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2FullHealth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2FullHealth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60715,7 +60802,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaFullHealth"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3FullHealth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3FullHealth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60738,7 +60825,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 炸弹客 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Bomberman" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Bomberman" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60760,7 +60847,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBomberman"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Bomberman" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Bomberman" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60782,7 +60869,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaBomberman"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Bomberman" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Bomberman" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60804,7 +60891,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaBomberman"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4Bomberman" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4Bomberman" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60826,7 +60913,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaBomberman"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5Bomberman" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5Bomberman" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60849,7 +60936,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 防御缓冲 -->
-		<item_modifier name="modArmorCigarMarisaR4T1DefensiveBuffer" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1DefensiveBuffer" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60871,7 +60958,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensiveBuffer"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2DefensiveBuffer" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2DefensiveBuffer" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60893,7 +60980,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaDefensiveBuffer"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3DefensiveBuffer" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3DefensiveBuffer" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60915,7 +61002,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaDefensiveBuffer"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4DefensiveBuffer" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4DefensiveBuffer" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60937,7 +61024,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaDefensiveBuffer"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5DefensiveBuffer" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5DefensiveBuffer" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60960,7 +61047,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 最爱蘑菇 -->
-		<item_modifier name="modArmorCigarMarisaR4T1FavoriteMushroom" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1FavoriteMushroom" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -60982,7 +61069,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFavoriteMushroom"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2FavoriteMushroom" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2FavoriteMushroom" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61004,7 +61091,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaFavoriteMushroom"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3FavoriteMushroom" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3FavoriteMushroom" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61027,7 +61114,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 自动化指示 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Automatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Automatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61049,7 +61136,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAutomatic"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Automatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Automatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61071,7 +61158,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAutomatic"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Automatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Automatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61093,7 +61180,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaAutomatic"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4Automatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4Automatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61115,7 +61202,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="4" tags="perkMarisaAutomatic"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR12T5Automatic" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR12T5Automatic" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61138,7 +61225,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 弹药节约 -->
-		<item_modifier name="modArmorCigarMarisaR4T1AmmoSaving" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1AmmoSaving" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61160,7 +61247,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAmmoSaving"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2AmmoSaving" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2AmmoSaving" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61182,7 +61269,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAmmoSaving"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3AmmoSaving" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3AmmoSaving" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61205,7 +61292,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 治愈收割 -->
-		<item_modifier name="modArmorCigarMarisaR4T1KillHealing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1KillHealing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61227,7 +61314,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillHealing"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2KillHealing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2KillHealing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61249,7 +61336,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaKillHealing"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3KillHealing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3KillHealing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61271,7 +61358,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaKillHealing"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR10T4KillHealing" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR10T4KillHealing" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61294,7 +61381,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 装填扩充 -->
-		<item_modifier name="modArmorCigarMarisaR4T1LoadingExpansion" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1LoadingExpansion" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61316,7 +61403,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaLoadingExpansion"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2LoadingExpansion" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2LoadingExpansion" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61338,7 +61425,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaLoadingExpansion"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3LoadingExpansion" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3LoadingExpansion" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61361,7 +61448,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 炮术 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Bombard" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Bombard" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61383,7 +61470,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBombard"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Bombard" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Bombard" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61405,7 +61492,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaBombard"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Bombard" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Bombard" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61428,7 +61515,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 集中 -->
-		<item_modifier name="modArmorCigarMarisaR4T1Concentration" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1Concentration" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61450,7 +61537,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaConcentration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2Concentration" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2Concentration" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61472,7 +61559,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaConcentration"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3Concentration" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3Concentration" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61495,7 +61582,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 特殊射击强化 -->
-		<item_modifier name="modArmorCigarMarisaR4T1SpecialFireIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1SpecialFireIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61517,7 +61604,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaSpecialFireIntensify"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2SpecialFireIntensify" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2SpecialFireIntensify" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61540,7 +61627,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 属性解放 -->
-		<item_modifier name="modArmorCigarMarisaR4T1AttributeLiberation" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1AttributeLiberation" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61562,7 +61649,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttributeLiberation"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2AttributeLiberation" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2AttributeLiberation" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61584,7 +61671,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAttributeLiberation"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3AttributeLiberation" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3AttributeLiberation" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61607,7 +61694,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 贯星 -->
-		<item_modifier name="modArmorCigarMarisaR4T1ThroughStars" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1ThroughStars" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61630,7 +61717,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 间不容发 -->
-		<item_modifier name="modArmorCigarMarisaR4T1HairsBreadth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1HairsBreadth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61652,7 +61739,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHairsBreadth"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2HairsBreadth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2HairsBreadth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61674,7 +61761,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaHairsBreadth"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3HairsBreadth" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3HairsBreadth" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61697,7 +61784,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 吸血鬼之吻 -->
-		<item_modifier name="modArmorCigarMarisaR4T1VampireKiss" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1VampireKiss" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61719,7 +61806,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVampireKiss"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2VampireKiss" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2VampireKiss" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61741,7 +61828,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaVampireKiss"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3VampireKiss" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3VampireKiss" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61764,7 +61851,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 超会心 -->
-		<item_modifier name="modArmorCigarMarisaR4T1CriticalMultiplier" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1CriticalMultiplier" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61786,7 +61873,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCriticalMultiplier"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2CriticalMultiplier" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2CriticalMultiplier" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61808,7 +61895,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaCriticalMultiplier"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3CriticalMultiplier" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3CriticalMultiplier" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61831,7 +61918,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 攻击守势 -->
-		<item_modifier name="modArmorCigarMarisaR4T1AtkAfterDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1AtkAfterDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61853,7 +61940,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAtkAfterDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2AtkAfterDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2AtkAfterDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61875,7 +61962,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaAtkAfterDef"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR8T3AtkAfterDef" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR8T3AtkAfterDef" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61898,7 +61985,7 @@
 			</effect_group>
 		</item_modifier>
         <!-- ** 炮击手 -->
-		<item_modifier name="modArmorCigarMarisaR4T1BombardStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR4T1BombardStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
@@ -61920,7 +62007,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBombardStar"/>
 			</effect_group>
 		</item_modifier>
-		<item_modifier name="modArmorCigarMarisaR6T2BombardStar" installable_tags="armorHead" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
+		<item_modifier name="modArmorCigarMarisaR6T2BombardStar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
 			<property name="Extends" value="modGeneralMaster"/>
 			<property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
 			<property name="DisplayType" value="ui_ModArmorCigarMarisa"/>
