@@ -657,12 +657,27 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaNarrowEscapeCold"/>
 			</effect_group>
 
-			<!-- 游牧民套装效果 -->
-<!--			<effect_group>-->
-<!--				<requirement name="HasBuff" buff="buffNomadSetBonus"/>-->
-<!--				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>-->
-<!--				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>-->
-<!--			</effect_group>-->
+
+
+			<!-- *** 技能模组 -->
+			<!-- 死中求活 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorLiveInDie">
+					<requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<!-- 狂风骤雨 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorRainstorm">
+					<requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<!-- 磁暴脉冲 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorTeslaCoil">
+					<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
 
 			<!-- 丧尸 动物 对近战玩家 伤害减少 -->
 			<effect_group>
@@ -4696,6 +4711,67 @@
 			<effect_group>
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectAoe"/>
 			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- *** 技能模组 -->
+	<append xpath="/buffs">
+
+		<!-- 死中求活 -->
+		<buff name="buffIridescentModArmorLiveInDie" name_key="buffIridescentModArmorLiveInDieName" description_key="buffIridescentModArmorLiveInDieDesc" showonhud="true" icon="ui_game_symbol_laceration" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="2"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="1"/></passive_effect>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="4"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="2"/></passive_effect>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="6"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="3"/></passive_effect>
+			</effect_group>
+		</buff>
+
+		<!-- 狂风骤雨 -->
+		<buff name="buffIridescentModArmorRainstorm" name_key="buffIridescentModArmorRainstormName" description_key="buffIridescentModArmorRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".1"/>
+			<duration value="0"/>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="1"/></passive_effect>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="2"/></passive_effect>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="3"/></passive_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value=".35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 磁暴脉冲 -->
+		<buff name="buffIridescentModArmorTeslaCoil" name_key="buffIridescentModArmorTeslaCoilName" description_key="buffIridescentModArmorTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
+				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="20"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
+				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="2"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="15"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
+				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="3"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="10"/>
+			</effect_group>
+		</buff>
+		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
 		</buff>
 
 	</append>
