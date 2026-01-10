@@ -1510,12 +1510,8 @@
                 <effect_group>
                     <requirement name="ItemHasTags" tags="perkJavelinMaster"/>
                     <requirement name="ProgressionLevel" progression_name="perkSpearHunter3Bleed" operation="Equals" value="1"/>
-                    <requirement name="IsAlive" target="other"/>
-                    <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/>
-                    <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1">
-                        <requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="1" target="other"/>
-                    </triggered_effect>
-                    <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+                    <passive_effect name="MaxRange" operation="perc_add" value=".1"/>
+                    <passive_effect name="BlockRange" operation="perc_add" value=".1"/>
                 </effect_group>
             </book>
             <!-- *** SPEAR_HUNTER_VOLUME_04_KILL_MOVE -->
