@@ -369,6 +369,20 @@
 
 
 
+		<!-- 灵烁幽影 -->
+		<effect_group>
+			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirlBerserk"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="10"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="CallGameEvent" event="marisa_shuffle_toolbelt" allow_client_call="true"/>
+		</effect_group>
+		<effect_group>
+			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirlBerserk"/>
+			<requirement name="!ItemHasTags" tags="melee"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="10"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="25"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="CallGameEvent" event="marisa_shuffle_toolbelt" allow_client_call="true"/>
+		</effect_group>
+
 	</append>
 
 
@@ -662,20 +676,52 @@
 			<!-- *** 技能模组 -->
 			<!-- 死中求活 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorLiveInDie">
-					<requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModClothingLiveInDie">
+					<requirement name="CVarCompare" cvar="$IridescentModClothingLiveInDie" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+			<!-- 震荡 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$IridescentModClothingVibrate" operation="GTE" value="1"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="buffMeleeHammerAoeAttack" operation="set" value="50"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" target_tags="animal,zombie" buff="buffMeleeHammerAoeAttack"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="1">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="50"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="100"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="2">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="100"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="150"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="3">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="150"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="200"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="4">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="200"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="250"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="5">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="250"/>
+					</triggered_effect>
+			</effect_group>
+			<!-- 磁暴脉冲 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModClothingTeslaCoil">
+					<requirement name="CVarCompare" cvar="$IridescentModClothingTeslaCoil" operation="GTE" value="1"/>
+					<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
 				</triggered_effect>
 			</effect_group>
 			<!-- 狂风骤雨 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorRainstorm">
-					<requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModClothingRainstorm">
+					<requirement name="CVarCompare" cvar="$IridescentModClothingRainstorm" operation="GTE" value="1"/>
 				</triggered_effect>
 			</effect_group>
-			<!-- 磁暴脉冲 -->
+			<!-- 异常自愈 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffIridescentModArmorTeslaCoil">
-					<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentModClothingAutoHealing">
+					<requirement name="CVarCompare" cvar="$IridescentModClothingAutoHealing" operation="GTE" value="1"/>
 				</triggered_effect>
 			</effect_group>
 
@@ -2291,7 +2337,108 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
 			</effect_group>
 
+			<!-- * 异常自愈 -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryConcussion"/>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryStunned01"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffArmBroken"/><!-- 断臂 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmBroken"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffLegBroken"/><!-- 断腿 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegBroken"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLegSprained"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLaceration"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasion"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryAbrasionTreated"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffInfectionMain"/><!-- 感染 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfectionMain"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffFatigued"/><!-- 疲劳 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffFatigued"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="!HasBuff" buff="buffInfectionMain"/><!-- 感染 -->
+				<requirement name="!HasBuff" buff="buffInjuryAbrasion"/><!-- 擦伤 -->
+				<requirement name="!HasBuff" buff="buffInjuryAbrasionTreated"/><!-- 擦伤处理 -->
+				<requirement name="!HasBuff" buff="buffFatigued"/><!-- 疲劳 -->
+				<requirement name="!HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
+				<requirement name="!HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
+				<requirement name="!HasBuff" buff="buffInjuryStunned01"/><!-- 眩晕 -->
+				<requirement name="!HasBuff" buff="buffInjuryConcussion"/><!-- 脑震荡 -->
+				<requirement name="!HasBuff" buff="buffLegSprained"/><!-- 扭伤的腿 -->
+				<requirement name="!HasBuff" buff="buffLegBroken"/><!-- 断腿 -->
+				<requirement name="!HasBuff" buff="buffArmSprained"/><!-- 扭伤的手臂 -->
+				<requirement name="!HasBuff" buff="buffArmBroken"/><!-- 断臂 -->
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
 
 			<!-- 添加 炎热 -->
 			<effect_group>
@@ -4719,26 +4866,37 @@
 	<append xpath="/buffs">
 
 		<!-- 死中求活 -->
-		<buff name="buffIridescentModArmorLiveInDie" name_key="buffIridescentModArmorLiveInDieName" description_key="buffIridescentModArmorLiveInDieDesc" showonhud="true" icon="ui_game_symbol_laceration" icon_color="0,191,255">
+		<buff name="buffIridescentModClothingLiveInDie" name_key="buffIridescentModClothingLiveInDieName" description_key="buffIridescentModClothingLiveInDieDesc" showonhud="true" icon="ui_game_symbol_laceration" icon_color="0,191,255">
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="HealthChangeOT" operation="base_add" value="2"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="1"/></passive_effect>
-					<passive_effect name="HealthChangeOT" operation="base_add" value="4"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="2"/></passive_effect>
-					<passive_effect name="HealthChangeOT" operation="base_add" value="6"><requirement name="CVarCompare" cvar="$IridescentModArmorLiveInDie" operation="EQ" value="3"/></passive_effect>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
 			</effect_group>
 		</buff>
 
+		<!-- 磁暴脉冲 -->
+		<buff name="buffIridescentModClothingTeslaCoil" name_key="buffIridescentModClothingTeslaCoilName" description_key="buffIridescentModClothingTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="12"/>
+			</effect_group>
+		</buff>
+		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+		</buff>
+
 		<!-- 狂风骤雨 -->
-		<buff name="buffIridescentModArmorRainstorm" name_key="buffIridescentModArmorRainstormName" description_key="buffIridescentModArmorRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
+		<buff name="buffIridescentModClothingRainstorm" name_key="buffIridescentModClothingRainstormName" description_key="buffIridescentModClothingRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
 			<stack_type value="ignore"/>
 			<update_rate value=".1"/>
 			<duration value="0"/>
 			<effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".1"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="1"/></passive_effect>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".2"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="2"/></passive_effect>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".3"><requirement name="CVarCompare" cvar="$IridescentModArmorRainstorm" operation="EQ" value="3"/></passive_effect>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value=".35"/>
@@ -4746,32 +4904,52 @@
 			</effect_group>
 		</buff>
 
-		<!-- 磁暴脉冲 -->
-		<buff name="buffIridescentModArmorTeslaCoil" name_key="buffIridescentModArmorTeslaCoilName" description_key="buffIridescentModArmorTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<duration value="0"/>
+		<!-- 愉悦 -->
+		<buff name="buffIridescentModClothingJoy" name_key="buffIridescentModClothingJoyName" description_key="buffIridescentModClothingJoyDesc" showonhud="true" icon="ui_game_symbol_twitch_top_bad" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="122"/>
 			<effect_group>
-				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
-				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="1"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="20"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
-				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="2"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="15"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
-				<requirement name="CVarCompare" cvar="$IridescentModArmorTeslaCoil" operation="EQ" value="3"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="10"/>
+				<passive_effect name="Mobility" operation="perc_add" value=".2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 		</buff>
-		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
+
+		<!-- 寒气炼成 -->
+		<buff name="buffIridescentModClothingColdnessAccumulates" name_key="buffIridescentModClothingColdnessAccumulatesName" description_key="buffIridescentModClothingColdnessAccumulatesDesc" showonhud="true" icon="ui_game_symbol_cold" icon_color="0,191,255">
 			<stack_type value="ignore"/>
-			<duration value="0"/>
+			<update_rate value=".1"/>
+			<display_value value=".buffIridescentModClothingColdnessAccumulates"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="add" value="1">
+					<requirement name="CVarCompare" cvar=".buffIridescentModClothingColdnessAccumulates" operation="LT" value="20"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="set" value="@.buffIridescentModClothingColdnessAccumulates"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="divide" value="50"/>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" value="@$IridescentModClothingColdnessAccumulatesAmount"/>
+			</effect_group>
+		</buff>
+
+		<!-- 活性医疗 -->
+		<buff name="buffIridescentModClothingActiveReply" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
+			</effect_group>
+		</buff>
+
+		<!-- 异常自愈 -->
+		<buff name="buffIridescentModClothingAutoHealing" name_key="buffIridescentModClothingAutoHealingName" description_key="buffIridescentModClothingAutoHealingDesc" showonhud="true" icon="ui_game_symbol_healing_factor" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="30"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="add" value="1"/>
+			</effect_group>
 		</buff>
 
 	</append>
@@ -7303,6 +7481,162 @@
 			</effect_group>
 		</buff>
 
+		<!-- 血冥狼 -->
+		<buff name="buffIridescentBossN001Wolf" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="30"/>
+			</effect_group>
+		</buff>
+
+		<!-- 怨念 -->
+		<buff name="buffIridescentBossN0051InsectSwarmCrystallization" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="IridescentBossN005PlagueSpitterCrystallization" range="50" buff="buffZombieBossAnger" duration="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 冰霜牙 -->
+		<buff name="buffIridescentBossN008FrostclawCrystallization" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="player" range="40" buff="buffTimeToInjuryStunned03"/>
+			</effect_group>
+		</buff>
+		<buff name="buffTimeToInjuryStunned03" name_key="buffTimeToInjuryStunned03Name" description_key="buffTimeToInjuryStunned03Desc" showonhud="true" icon="ui_game_symbol_stunned" icon_color="255,128,0">
+			<stack_type value="ignore"/>
+			<duration value="39"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffInjuryStunned03"/>
+			</effect_group>
+		</buff>
+
+		<!-- 雷霆鸟 -->
+		<buff name="buffIridescentBossN009Vulture" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="player" range="40" buff="buffWindPressure" duration="3"/>
+			</effect_group>
+		</buff>
+		<buff name="buffWindPressure" name_key="buffWindPressureName" description_key="buffWindPressureDesc" showonhud="true" icon="ui_game_symbol_drop" icon_color="255,128,0">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkDefWindPressure" operation="EQ" value="0"/>
+					<passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+					<passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+					<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".2"/>
+					<passive_effect name="JumpStrength" operation="perc_subtract" value=".9"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkDefWindPressure" operation="EQ" value="1"/>
+					<passive_effect name="RunSpeed" operation="perc_subtract" value=".08"/>
+					<passive_effect name="WalkSpeed" operation="perc_subtract" value=".08"/>
+					<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".08"/>
+					<passive_effect name="JumpStrength" operation="perc_subtract" value=".36"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkDefWindPressure" operation="EQ" value="2"/>
+					<passive_effect name="RunSpeed" operation="perc_subtract" value=".02"/>
+					<passive_effect name="WalkSpeed" operation="perc_subtract" value=".02"/>
+					<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".02"/>
+					<passive_effect name="JumpStrength" operation="perc_subtract" value=".09"/>
+			</effect_group>
+		</buff>
+
+		<!-- 病毒护理者 -->
+		<buff name="buffIridescentBossN010NurseBerserk" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+                <triggered_effect trigger="onOtherDamagedSelf" action="ModifyStats" stat="Health" target="self" operation="add" value="250"/>
+			</effect_group>
+		</buff>
+
+		<!-- 惑心尖啸 -->
+		<buff name="buffIridescentBossN011ScreamerBerserk" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="player" range="40" buff="buffTimeToConfusion"/>
+			</effect_group>
+		</buff>
+		<buff name="buffTimeToConfusion" name_key="buffTimeToConfusionName" description_key="buffTimeToConfusionDesc" showonhud="true" icon="ui_game_symbol_twitch_vision_effects" icon_color="255,128,0">
+			<stack_type value="ignore"/>
+			<duration value="20"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffConfusion" duration="10">
+					<requirement name="ProgressionLevel" progression_name="perkDefConfusion" operation="EQ" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffConfusion" duration="5">
+					<requirement name="ProgressionLevel" progression_name="perkDefConfusion" operation="EQ" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffConfusion" duration="2">
+					<requirement name="ProgressionLevel" progression_name="perkDefConfusion" operation="EQ" value="2"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="zombiefemalescoutalert" play_in_head="true"/>
+			</effect_group>
+		</buff>
+		<buff name="buffConfusion" name_key="buffConfusionName" description_key="buffConfusionDesc" showonhud="true" icon="ui_game_symbol_twitch_vision_effects" icon_color="255,128,0">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<passive_effect name="FlipControls" operation="base_set" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 变异尸王 -->
+		<buff name="buffIridescentBossN013MutatedBerserk" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="player" range="40" buff="buffTimeToRandomDeBuff"/>
+			</effect_group>
+		</buff>
+		<buff name="buffTimeToRandomDeBuff" name_key="buffTimeToRandomDeBuffName" description_key="buffTimeToRandomDeBuffDesc" showonhud="true" icon="ui_game_symbol_twitch_top_killer" icon_color="255,128,0">
+			<stack_type value="ignore"/>
+			<duration value="49"/>
+			<effect_group>
+				<!-- 擦伤 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffAbrasionCatch">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="20"/>
+				</triggered_effect>
+				<!-- 流血 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffInjuryBleedingTwo">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="20"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="40"/>
+				</triggered_effect>
+				<!-- 裂伤 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLaceration">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="40"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="60"/>
+				</triggered_effect>
+				<!-- 扭伤的手臂 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffArmSprainedCHTrigger">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="60"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="80"/>
+				</triggered_effect>
+				<!-- 扭伤的腿 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLegSprainedCHTrigger">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="80"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="twitch_bad_buff" play_in_head="true"/>
+			</effect_group>
+		</buff>
+
 		<!-- 院长 -->
 		<buff name="buffZombieBossResearchInstituteLeader" hidden="true">
 			<stack_type value="ignore"/>
@@ -7426,6 +7760,34 @@
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0,0" parent_transform=".body"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+			</effect_group>
+		</buff>
+
+		<!-- 浓烟雾风效果 -->
+		<buff name="buffMarisaSmokestorm" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_smokestorm" local_offset="0,0,0" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_smokestorm"/>
+			</effect_group>
+		</buff>
+		<!-- 沙漠雾风效果 -->
+		<buff name="buffMarisaSandstorm" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_sandstorm" local_offset="0,0,0" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_sandstorm"/>
+			</effect_group>
+		</buff>
+		<!-- 雪地雾风效果 -->
+		<buff name="buffMarisaSnowstorm1" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_snowstorm1" local_offset="0,0,0" parent_transform=".body"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_snowstorm1"/>
 			</effect_group>
 		</buff>
 

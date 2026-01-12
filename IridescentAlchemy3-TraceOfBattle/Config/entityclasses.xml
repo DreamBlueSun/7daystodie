@@ -1240,6 +1240,845 @@
 
 
 	<!-- *** 添加BOSS -->
+
+	<!-- ** 普通 -->
+	<append xpath="/entity_classes">
+
+		<!-- * 血冥狼 -->
+		<entity_class name="IridescentBossN001Wolf" extends="animalDireWolf">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,wolf,perkAT02,perkAT03,bossMarisa,IridescentBossN001Wolf"/>
+			<property name="SizeScale" value="1.65"/>
+
+			<property name="HandItem" value="HandIridescentBossN001Wolf"/>
+
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="MoveSpeed" value="2.0"/>
+			<property name="MoveSpeedAggro" value="3.0, 4.0"/>
+			<property name="MaxTurnSpeed" value="240"/>
+			<property name="JumpMaxDistance" value="8, 12"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="AITask" value="
+			Leap legs=12|
+			BreakBlock|
+			DestroyArea|
+			Territorial|
+			ApproachDistraction|
+			ApproachAndAttackTarget class=EntityPlayer,25,EntityBandit,20,EntityAnimalStag,30|
+			ApproachSpot|
+			Look|
+			Wander|
+			"/>
+			<property name="AITarget" value="
+			SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+			BlockingTargetTask|
+			SetNearestCorpseAsTarget flags=edible|
+			SetNearestEntityAsTarget class=EntityPlayer,16,10,EntityBandit,0,-8,EntityAnimalStag,0,0|
+			"/>
+
+			<property name="ExperienceGain" value="3000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+			<property name="LootDropProb" value="1"/>
+
+			<property name="DeadBodyHitPoints" value="300"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="30"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="30"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1800"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN001Wolf"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 攻城爬行者 -->
+		<entity_class name="IridescentBossN002SteveCrawler" extends="zombieSteveCrawler">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,IridescentBossN002SteveCrawler"/>
+			<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawler.prefab"/>
+			<property name="SizeScale" value="2.4"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=3;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="0.9, 1.5"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN002SteveCrawler"/>
+
+			<property name="ExperienceGain" value="4000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3600"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 泰坦重爪 -->
+		<entity_class name="IridescentBossN003Bear" extends="animalZombieBear">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,bossMarisa,IridescentBossN003Bear"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="HandItem" value="HandIridescentBossN003Bear"/>
+
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="MoveSpeed" value="3.0"/>
+			<property name="MoveSpeedAggro" value="5.6, 5.6"/>
+			<property name="MaxTurnSpeed" value="240"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExperienceGain" value="5000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+			<property name="LootDropProb" value="1"/>
+
+			<property name="DeadBodyHitPoints" value="500"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceTestosteroneExtract" tag="butcherHarvest" count="2"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="5400"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 磁暴掷弹兵 -->
+		<entity_class name="IridescentBossN004Soldier" extends="zombieSoldier">
+			<property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldier,bossMarisa,IridescentBossN004Soldier"/>
+			<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldier.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.2"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN004Soldier"/>
+
+			<property name="ExperienceGain" value="6000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="5400"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="50"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaTwitchZombieShock"/>
+			</effect_group>
+		</entity_class>
+
+
+
+		<!-- *** 任务 BOSS -->
+
+		<!-- * 血冥狼 -->
+		<entity_class name="questIridescentBossN001Wolf" extends="IridescentBossN001Wolf">
+			<property name="Tags" value="entity,animal,allbiome,hostile,wolf,perkAT02,perkAT03,bossMarisa,questIridescentBossN001Wolf"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="30"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="30"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="1"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1800"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN001Wolf"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 攻城爬行者 -->
+		<entity_class name="questIridescentBossN002SteveCrawler" extends="IridescentBossN002SteveCrawler">
+			<property name="Tags" value="allbiome,entity,zombie,crawler,bossMarisa,questIridescentBossN002SteveCrawler"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="3600"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossSteveCrawlerDeco"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 泰坦重爪 -->
+		<entity_class name="questIridescentBossN003Bear" extends="IridescentBossN003Bear">
+			<property name="Tags" value="entity,animal,allbiome,hostile,bear,perkAT03,bossMarisa,questIridescentBossN003Bear"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceTestosteroneExtract" tag="butcherHarvest" count="2"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="1"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="5400"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 磁暴掷弹兵 -->
+		<entity_class name="questIridescentBossN004Soldier" extends="IridescentBossN004Soldier">
+			<property name="Tags" value="entity,zombie,walker,allbiome,zombieSoldier,bossMarisa,questIridescentBossN004Soldier"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="5400"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="50"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaTwitchZombieShock"/>
+			</effect_group>
+		</entity_class>
+
+	</append>
+
+	<!-- ** 晶化 -->
+	<append xpath="/entity_classes">
+
+		<!-- * 咒缚灵 -->
+		<entity_class name="IridescentBossN005PlagueSpitterCrystallization" extends="zombieRancherFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,IridescentBossN005PlagueSpitterCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Rancher/ZRancherFeral.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="AITask" value="
+			RangedAttackTarget itemType=1;cooldown=5;duration=7;minRange=0;maxRange=27|
+			BreakBlock|
+			ApproachDistraction|
+			ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
+			ApproachSpot|
+			Look|
+			Wander exePer=.1;lookMin=8;lookMax=15|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="0.4, 0.8"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN005PlagueSpitterCrystallization"/>
+
+			<property name="ExperienceGain" value="16000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="12000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+			</effect_group>
+		</entity_class>
+		<entity_class name="IridescentBossN0051InsectSwarmCrystallization" extends="animalTemplateHostile">
+			<property name="Class" value="EntitySwarm"/>
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="EntityFlags" value="animal,zombie"/>
+			<property name="EntityType" value="Zombie"/>
+			<property name="Tags" value="entity,hostile"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="PhysicsBody" value=""/>
+			<property name="Mass" value="30"/>
+			<property name="Prefab" value="@:Entities/Animals/Insects/animalInsectSwarmPrefab.prefab"/>
+			<property name="AvatarController" value=""/>
+			<property name="SizeScale" value="1"/>
+			<property name="LookAtAngle" value="0"/>
+
+			<property name="AITask-1" value=""/>
+			<property name="AITarget-1" value=""/>
+
+			<property name="SoundRandom" value="swarmroam"/>
+			<property name="SoundAlert" value="swarmalert"/>
+			<property name="SoundHurt" value="swarmpain"/>
+			<property name="SoundDeath" value="swarmdeath"/>
+			<property name="SoundAttack" value="swarmattack"/>
+
+			<!-- Stealth -->
+			<property name="SightRange" value="20"/>
+
+			<!-- Gameplay -->
+			<property name="MoveSpeed" value="0.6"/>
+			<property name="MoveSpeedAggro" value="2.1, 2.1"/> <!-- Used when player in vehicle -->
+			<property name="MaxTurnSpeed" value="300"/>
+
+			<property name="HandItem" value="HandIridescentBossN0051InsectSwarmCrystallization"/>
+			<property name="Immunity" value="sickness;disease;wellness"/> <!-- bleeding; -->
+
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="PainResistPerHit" value="-1"/> <!-- no pain -->
+
+			<property name="TimeStayAfterDeath" value="0"/>
+
+			<property name="ExperienceGain" value="50"/><!-- XP Swarm -->
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="800"/>
+				<passive_effect name="BuffResistance" operation="base_set" value="5" tags="buffRadiationPool"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN0051InsectSwarmCrystallization"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 地狱犬 -->
+		<entity_class name="IridescentBossN006DogCrystallization" extends="animalZombieDog">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,dog,perkAT03,feral,radiated,crystallization,bossMarisa,IridescentBossN006DogCrystallization"/>
+			<property name="SizeScale" value="1.85"/>
+
+			<property name="AITask" value="
+			BreakBlock|
+			ApproachDistraction|
+			RangedAttackTarget itemType=1;cooldown=4;duration=3;minRange=0;maxRange=6;unreachableRange=18|
+			DestroyArea|
+			ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
+			ApproachSpot|
+			Look|
+			Wander|
+			"/>
+			<property name="HandItem" value="HandIridescentBossN006DogCrystallization"/>
+
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="MoveSpeed" value="1.0"/>
+			<property name="MoveSpeedAggro" value="1.2, 1.8"/>
+			<property name="MaxTurnSpeed" value="180"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExperienceGain" value="18000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<property name="DeadBodyHitPoints" value="700"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="90"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="2"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="16000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 纵火犯 -->
+		<entity_class name="IridescentBossN007ArsonistCrystallization" extends="zombieBurntFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,IridescentBossN007ArsonistCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntFeral.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.2"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=5;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="IridescentBossN007ArsonistCrystallization"/>
+
+			<property name="ExperienceGain" value="20000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="24000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 冰霜牙 -->
+		<entity_class name="IridescentBossN008FrostclawCrystallization" extends="zombieChuckFeral">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,IridescentBossN008FrostclawCrystallization"/>
+			<property name="Mesh" value="@:Entities/Zombies/Chuck/ZChuckFeral.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="AITask" value="
+			BreakBlock|
+			ApproachDistraction|
+			RangedAttackTarget startAnimType=2;itemType=1;cooldown=4;duration=5;minRange=0;maxRange=40;releaseDelay=.41;sndStart=chuckwarning;sndRelease=chuckrelease|
+			ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
+			ApproachSpot|
+			Look|
+			Wander|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="IridescentBossN008FrostclawCrystallization"/>
+
+			<property name="ExperienceGain" value="22000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="30000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN008FrostclawCrystallization"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaSnowstorm1"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 雷霆鸟 -->
+		<entity_class name="IridescentBossN009Vulture" extends="animalZombieVultureRadiated">
+			<property name="UserSpawnType" value="Menu"/>
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,vulture,feral,radiated,crystallization,bossMarisa,IridescentBossN009Vulture"/>
+			<property name="SizeScale" value="4.2"/>
+
+			<property name="HandItem" value="HandIridescentBossN009Vulture"/>
+
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="MoveSpeed" value="2.0"/>
+			<property name="MoveSpeedAggro" value="4.0, 4.0"/>
+			<property name="MaxTurnSpeed" value="240"/>
+
+			<property name="ExperienceGain" value="24000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+			<property name="LootDropProb" value="1"/>
+
+			<property name="DeadBodyHitPoints" value="1000"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="resourceFeather" tag="butcherHarvest" count="120"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="120"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="2"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="36000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffIridescentBossN009Vulture"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaSandstorm"/>
+			</effect_group>
+		</entity_class>
+
+
+
+		<!-- *** 任务 BOSS -->
+
+		<!-- * 咒缚灵 -->
+		<entity_class name="questIridescentBossN005PlagueSpitterCrystallization" extends="IridescentBossN005PlagueSpitterCrystallization">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,questIridescentBossN005PlagueSpitterCrystallization"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="12000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 地狱犬 -->
+		<entity_class name="questIridescentBossN006DogCrystallization" extends="IridescentBossN006DogCrystallization">
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,dog,perkAT03,feral,radiated,crystallization,bossMarisa,questIridescentBossN006DogCrystallization"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="90"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="2"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="16000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 纵火犯 -->
+		<entity_class name="questIridescentBossN007ArsonistCrystallization" extends="IridescentBossN007ArsonistCrystallization">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,questIridescentBossN007ArsonistCrystallization"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="24000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossArsonistDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffMarisaBurning_barrel"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 冰霜牙 -->
+		<entity_class name="questIridescentBossN008FrostclawCrystallization" extends="IridescentBossN008FrostclawCrystallization">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,bossMarisa,questIridescentBossN008FrostclawCrystallization"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="30000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN008FrostclawCrystallization"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieFireLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaSnowstorm1"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 雷霆鸟 -->
+		<entity_class name="questIridescentBossN009Vulture" extends="IridescentBossN009Vulture">
+			<property name="Tags" value="entity,animal,allbiome,zombie,hostile,vulture,feral,radiated,crystallization,bossMarisa,questIridescentBossN009Vulture"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+			<drop event="Harvest" name="resourceFeather" tag="butcherHarvest" count="120"/>
+			<drop event="Harvest" name="foodRottingFlesh" tag="butcherHarvest" count="50"/>
+			<drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="10"/>
+			<drop event="Harvest" name="resourceBone" tag="butcherHarvest" count="20"/>
+			<drop event="Harvest" name="resourceBone" tag="allToolsHarvest" count="10"/>
+			<drop event="Harvest" name="resourceIridescentCube" tag="butcherHarvest" count="120"/>
+			<drop event="Harvest" name="resourcesIridescentSteroids" tag="butcherHarvest" count="2"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="36000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffIridescentBossN009Vulture"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaP_smoke"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaSandstorm"/>
+			</effect_group>
+		</entity_class>
+
+	</append>
+
+	<!-- ** 狂化 -->
+	<append xpath="/entity_classes">
+
+		<!-- * 病毒护理者 -->
+		<entity_class name="IridescentBossN010NurseBerserk" extends="zombieNurseRadiated">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,IridescentBossN010NurseBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Nurse/ZNurseRadiated.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN010NurseBerserk"/>
+
+			<property name="ExperienceGain" value="56000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="60000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN010NurseBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 惑心尖啸 -->
+		<entity_class name="IridescentBossN011ScreamerBerserk" extends="zombieScreamerRadiated">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,IridescentBossN011ScreamerBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Screamer/ZScreamerRadiated.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN011ScreamerBerserk"/>
+
+			<property name="ExperienceGain" value="60000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="90000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN011ScreamerBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 灵烁幽影 -->
+		<entity_class name="IridescentBossN012PartyGirlBerserk" extends="zombiePartyGirlRadiated">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,IridescentBossN012PartyGirlBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/CocktailWaitress/ZCocktailWaitressRadiated.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN012PartyGirlBerserk"/>
+
+			<property name="ExperienceGain" value="64000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="130000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 变异尸王 -->
+		<entity_class name="IridescentBossN013MutatedBerserk" extends="zombieMutatedRadiated">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,IridescentBossN013MutatedBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Mutated/ZMutatedRadiated.prefab"/>
+			<property name="SizeScale" value="1.2"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.5, 2.1"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="HandIridescentBossN013MutatedBerserk"/>
+
+			<property name="ExperienceGain" value="68000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="180000"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="10"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN013MutatedBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 院长 -->
+		<entity_class name="IridescentBossN014ResearchInstituteLeaderBerserk" extends="zombieLumberjackRadiated">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,IridescentBossN014ResearchInstituteLeaderBerserk"/>
+			<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackRadiated.prefab"/>
+			<property name="Class" value="EntityZombieCop"/>
+			<property name="SizeScale" value="1.2"/>
+			<property name="Mass" value="300"/>
+
+			<property name="AITask" value="
+				BreakBlock|
+				DestroyArea|
+				Territorial|
+				ApproachDistraction|
+				RangedAttackTarget itemType=1;cooldown=4;duration=6;minRange=0|
+				ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
+				ApproachSpot|
+				Look|
+				Wander|
+			"/>
+			<property name="AITarget" value="
+				SetNearestCorpseAsTarget flags=edible|
+				SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+				BlockingTargetTask|
+				SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+			"/>
+
+			<property name="KnockdownProneDamageThreshold" value="0"/>
+			<property name="KnockdownKneelDamageThreshold" value="0"/>
+			<property name="DismemberMultiplierHead" value="0"/>
+			<property name="DismemberMultiplierArms" value="0"/>
+			<property name="DismemberMultiplierLegs" value="0"/>
+			<property name="LegCrawlerThreshold" value="0"/>
+			<property name="LegCrippleThreshold" value="0"/>
+			<property name="PainResistPerHit" value="1"/>
+
+			<property name="ExplodeHealthThreshold" value="0"/>
+			<property name="MoveSpeedAggro" value="1.8, 2.4"/>
+			<property name="JumpMaxDistance" value="1, 2"/>
+			<property name="MaxTurnSpeed" value="180"/>
+
+			<property name="HandItem" value="IridescentBossN014ResearchInstituteLeaderBerserk"/>
+
+			<property name="ExperienceGain" value="72000"/>
+			<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+			<property name="LootDropProb" value="1"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="240000"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="20"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderBerserk"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
+
+
+
+		<!-- *** 任务 BOSS -->
+
+		<!-- * 病毒护理者 -->
+		<entity_class name="questIridescentBossN010NurseBerserk" extends="IridescentBossN010NurseBerserk">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questIridescentBossN010NurseBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="60000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN010NurseBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 惑心尖啸 -->
+		<entity_class name="questIridescentBossN011ScreamerBerserk" extends="IridescentBossN011ScreamerBerserk">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questIridescentBossN011ScreamerBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="90000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN011ScreamerBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 灵烁幽影 -->
+		<entity_class name="questIridescentBossN012PartyGirlBerserk" extends="IridescentBossN012PartyGirlBerserk">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questIridescentBossN012PartyGirlBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="130000"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 变异尸王 -->
+		<entity_class name="questIridescentBossN013MutatedBerserk" extends="IridescentBossN013MutatedBerserk">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questIridescentBossN013MutatedBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="180000"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="10"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffIridescentBossN013MutatedBerserk"/>
+			</effect_group>
+		</entity_class>
+		<!-- * 院长 -->
+		<entity_class name="questIridescentBossN014ResearchInstituteLeaderBerserk" extends="IridescentBossN014ResearchInstituteLeaderBerserk">
+			<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,crystallization,berserk,bossMarisa,questIridescentBossN014ResearchInstituteLeaderBerserk"/>
+			<property name="NavObject" value="marisaATQuestBoss"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="240000"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="20"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossAngerCount"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="zombieBossResearchInstituteLeaderDeco"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffZombieBossResearchInstituteLeaderBerserk"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" buff="buffMarisaTwitchZombieRadiationLeft"/>
+			</effect_group>
+		</entity_class>
+
+	</append>
+
+
+
+	<!-- *** 旧的BOSS -->
 	<append xpath="/entity_classes">
 
 

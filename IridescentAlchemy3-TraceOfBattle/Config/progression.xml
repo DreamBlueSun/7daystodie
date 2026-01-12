@@ -696,6 +696,22 @@
                     <effect_description level="3" desc_key="perkRuleOneCardioNameRank3Desc" long_desc_key="perkRuleOneCardioNameRank3LongDesc"/>
                 </effect_group>
             </perk>
+            <!-- *** 眩晕耐性 -->
+            <perk name="perkPainTolerance" parent="skillFortitudeSurvival" name_key="perkPainToleranceName" desc_key="perkPainToleranceDesc" icon="ui_game_symbol_stunned" max_level="3">
+                <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="1" desc_key="reqFortitudeLevel01"/></level_requirements>
+                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="3" desc_key="reqFortitudeLevel03"/></level_requirements>
+                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
+
+                <effect_group>
+                    <passive_effect name="BuffResistance" operation="base_add" level="1,2,3" value="1,1,1" tags="buffInjuryStunned01"/>
+                    <passive_effect name="BuffResistance" operation="base_add" level="2,3" value="1,1" tags="buffInjuryStunned02"/>
+                    <passive_effect name="BuffResistance" operation="base_add" level="3" value="1" tags="buffInjuryStunned03"/>
+
+                    <effect_description level="1" desc_key="perkPainToleranceRank1Desc" long_desc_key="perkPainToleranceRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkPainToleranceRank2Desc" long_desc_key="perkPainToleranceRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkPainToleranceRank3Desc" long_desc_key="perkPainToleranceRank3LongDesc"/>
+                </effect_group>
+            </perk>
             <!-- *** 酒精耐性 -->
             <perk name="perkMarisaScreenEffectDrunk" parent="skillFortitudeSurvival" name_key="perkMarisaScreenEffectDrunkName" desc_key="perkMarisaScreenEffectDrunkDesc" icon="ui_game_symbol_thirst" max_level="2">
                 <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attFortitude" operation="GTE" value="5" desc_key="reqFortitudeLevel05"/></level_requirements>
@@ -975,6 +991,18 @@
                     <effect_description level="5" desc_key="perkParkourRank5Desc" long_desc_key="perkParkourRank5LongDesc"/>
                 </effect_group>
             </perk>
+            <!-- *** 风压耐性 -->
+            <perk name="perkDefWindPressure" parent="skillAgilityAthletics" name_key="perkDefWindPressureName" desc_key="perkDefWindPressureDesc" icon="ui_game_symbol_natural_healing" max_level="3">
+                <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="1" desc_key="reqAgilityLevel01"/></level_requirements>
+                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="3" desc_key="reqAgilityLevel03"/></level_requirements>
+                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attAgility" operation="GTE" value="5" desc_key="reqAgilityLevel05"/></level_requirements>
+
+                <effect_group>
+                    <effect_description level="1" desc_key="perkDefWindPressureRank1Desc" long_desc_key="perkDefWindPressureRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkDefWindPressureRank2Desc" long_desc_key="perkDefWindPressureRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkDefWindPressureRank3Desc" long_desc_key="perkDefWindPressureRank3LongDesc"/>
+                </effect_group>
+            </perk>
 
             <!-- *** 动物追踪器 -->
             <perk name="perkAnimalTracker" parent="skillAgilityStealth" name_key="perkAnimalTrackerName" desc_key="perkAnimalTrackerDesc" icon="ui_game_symbol_animal_tracker" override_cost="2,2,2,2,2">
@@ -1221,6 +1249,18 @@
                     </triggered_effect>
                 </effect_group>
 
+            </perk>
+            <!-- *** 混乱耐性 -->
+            <perk name="perkDefConfusion" parent="skillIntellectInfluence" name_key="perkDefConfusionName" desc_key="perkDefConfusionDesc" icon="ui_game_symbol_twitch_vision_effects" max_level="3">
+                <level_requirements level="1"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="1" desc_key="reqIntellectLevel01"/></level_requirements>
+                <level_requirements level="2"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="3" desc_key="reqIntellectLevel03"/></level_requirements>
+                <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attIntellect" operation="GTE" value="5" desc_key="reqIntellectLevel05"/></level_requirements>
+
+                <effect_group>
+                    <effect_description level="1" desc_key="perkDefConfusionRank1Desc" long_desc_key="perkDefConfusionRank1LongDesc"/>
+                    <effect_description level="2" desc_key="perkDefConfusionRank2Desc" long_desc_key="perkDefConfusionRank2LongDesc"/>
+                    <effect_description level="3" desc_key="perkDefConfusionRank3Desc" long_desc_key="perkDefConfusionRank3LongDesc"/>
+                </effect_group>
             </perk>
 
             <!-- *** 高级工程师 -->
@@ -2779,7 +2819,7 @@
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <passive_effect name="Mobility" operation="perc_add" level="1,2,3,4,5" value=".1,.2,.3"/>
+                <passive_effect name="Mobility" operation="perc_add" level="1,2,3,4,5" value=".15,.3,.45"/>
             </effect_group>
 
             <effect_group>
