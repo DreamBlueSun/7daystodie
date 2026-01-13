@@ -5850,15 +5850,15 @@
 		</buff>
 
 		<!-- 战意 强化持续 -->
-		<buff name="buffEntityDamageThreeCountUpUp" hidden="true">
+		<buff name="buffEntityDamageThreeCountUpUp" name_key="buffEntityDamageThreeCountUpUpName" description_key="buffEntityDamageThreeCountUpUpDesc" showonhud="true" icon="ui_game_symbol_twitch_bits" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<update_rate value="1"/>
-			<duration value="10"/>
+			<duration value="15"/>
 			<!-- perk 强化持续 3 -->
 			<effect_group>
                 <requirement name="ProgressionLevel" progression_name="perkMarisaThreeCountUpUp" operation="GTE" value="3"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="32" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="3.2" tags="perkBoomstick,perkTurrets"/>
 			</effect_group>
 
 			<!-- 猎刀 强化持续 -->
@@ -7497,7 +7497,7 @@
 			<update_rate value=".2"/>
 			<duration value="0"/>
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="IridescentBossN005PlagueSpitterCrystallization" range="50" buff="buffZombieBossAnger" duration="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="IridescentBossN005PlagueSpitter" range="50" buff="buffZombieBossAnger" duration="1"/>
 			</effect_group>
 		</buff>
 
@@ -7558,7 +7558,8 @@
 			<stack_type value="ignore"/>
 			<duration value="0"/>
 			<effect_group>
-                <triggered_effect trigger="onOtherDamagedSelf" action="ModifyStats" stat="Health" target="self" operation="add" value="250"/>
+                <triggered_effect trigger="onOtherDamagedSelf" action="ModifyStats" stat="Health" target="self" operation="add" value="100"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="PlaySound" sound="twitch_baseball_zombie_hit"/>
 			</effect_group>
 		</buff>
 
