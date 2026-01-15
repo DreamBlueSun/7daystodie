@@ -371,15 +371,15 @@
 
 		<!-- 灵烁幽影 -->
 		<effect_group>
-			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirlBerserk"/>
-			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="10"/>
+			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirl"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="20"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="CallGameEvent" event="marisa_shuffle_toolbelt" allow_client_call="true"/>
 		</effect_group>
 		<effect_group>
-			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirlBerserk"/>
+			<requirement name="EntityTagCompare" target="other" tags="IridescentBossN012PartyGirl"/>
 			<requirement name="!ItemHasTags" tags="melee"/>
-			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="10"/>
-			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="25"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="20"/>
+			<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="35"/>
 				<triggered_effect trigger="onSelfDamagedOther" action="CallGameEvent" event="marisa_shuffle_toolbelt" allow_client_call="true"/>
 		</effect_group>
 
@@ -7491,6 +7491,23 @@
 			</effect_group>
 		</buff>
 
+		<!-- 泰坦重爪 -->
+		<buff name="buffIridescentBossN003Bear" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="player" range="40" buff="buffTimeToInjuryBleeding"/>
+			</effect_group>
+		</buff>
+		<buff name="buffTimeToInjuryBleeding" name_key="buffTimeToInjuryBleedingName" description_key="buffTimeToInjuryBleedingDesc" showonhud="true" icon="ui_game_symbol_critical" icon_color="255,128,0">
+			<stack_type value="ignore"/>
+			<duration value="30"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding"/>
+			</effect_group>
+		</buff>
+
+
 		<!-- 怨念 -->
 		<buff name="buffIridescentBossN0051InsectSwarmCrystallization" hidden="true">
 			<stack_type value="ignore"/>
@@ -7617,27 +7634,42 @@
 			<stack_type value="ignore"/>
 			<duration value="49"/>
 			<effect_group>
-				<!-- 擦伤 -->
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffAbrasionCatch">
+				<!-- 流血 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffInjuryBleeding">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="10"/>
+				</triggered_effect>
+				<!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffRadiationPool">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="10"/>
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="20"/>
 				</triggered_effect>
-				<!-- 流血 -->
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffInjuryBleedingTwo">
+				<!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffIsOnFire">
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="20"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="30"/>
+				</triggered_effect>
+				<!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffShocked">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="30"/>
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="40"/>
 				</triggered_effect>
-				<!-- 裂伤 -->
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLaceration">
+				<!-- 疲劳 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffFatigued">
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="40"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="50"/>
+				</triggered_effect>
+				<!-- 眩晕 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffInjuryStunned03">
+					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="50"/>
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="60"/>
 				</triggered_effect>
-				<!-- 扭伤的手臂 -->
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffArmSprainedCHTrigger">
+				<!-- 断臂 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffArmBroken">
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="60"/>
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="LTE" value="80"/>
 				</triggered_effect>
-				<!-- 扭伤的腿 -->
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLegSprainedCHTrigger">
+				<!-- 断腿 -->
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffLegBroken">
 					<requirement name="RandomRoll" seed_type="Random" min_max="1,100" operation="GT" value="80"/>
 				</triggered_effect>
 
