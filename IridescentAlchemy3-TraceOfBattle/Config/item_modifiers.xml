@@ -55054,7 +55054,7 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="43"/>
             <effect_group tiered="false">
-                <passive_effect name="DegradationMax" operation="perc_add" value=".5"/>
+                <passive_effect name="DegradationMax" operation="perc_add" value="1"/>
             </effect_group>
         </item_modifier>
         <item_modifier name="IridescentModWeaponL2DegradationMax" installable_tags="weapon,tool" modifier_tags="marisaDegradation,durability" blocked_tags="noMods" type="attachment">
@@ -55066,7 +55066,7 @@
             <property name="Material" value="MIridescentCubeSuper"/>
             <property name="Weight" value="86"/>
             <effect_group tiered="false">
-                <passive_effect name="DegradationMax" operation="perc_add" value="1"/>
+                <passive_effect name="DegradationMax" operation="perc_add" value="2"/>
             </effect_group>
         </item_modifier>
 
@@ -55089,12 +55089,6 @@
                 <requirement name="HoldingItemHasTags" tags="attachmentsIncluded"/>
                 <triggered_effect trigger="onSelfHoldingItemCreated" action="SetTransformActive" active="true" parent_transform="#HeldItemRoot" transform_path="silencer"/>
             </effect_group>
-
-            <effect_group tiered="false" name="mod effects">
-                <passive_effect name="EntityDamage" operation="perc_add" value="-.15">
-                    <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="LT" value="1"/>
-                </passive_effect>
-            </effect_group>
         </item_modifier>
         <item_modifier name="IridescentModWeaponL2SoundSuppressorSilencer" installable_tags="gun" modifier_tags="barrelAttachment" blocked_tags="noMods,noSilencer" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
@@ -55116,11 +55110,15 @@
             </effect_group>
 
             <effect_group tiered="false" name="mod effects">
-                <passive_effect name="EntityDamage" operation="perc_add" value="-.15">
-                    <requirement name="ProgressionLevel" progression_name="perkUrbanCombatComplete" operation="LT" value="1"/>
-                </passive_effect>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+                <passive_effect name="DamageFalloffRange" operation="perc_add" value=".2"/>
+                <passive_effect name="MaxRange" operation="perc_add" value=".2"/>
+
                 <passive_effect name="KickDegreesVerticalMin" operation="perc_add" value="-.25"/>
                 <passive_effect name="KickDegreesVerticalMax" operation="perc_add" value="-.25"/>
+                <passive_effect name="KickDegreesHorizontalMin" operation="perc_add" value="-.25"/>
+                <passive_effect name="KickDegreesHorizontalMax" operation="perc_add" value="-.25"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value=".08"/>
             </effect_group>
         </item_modifier>
 
@@ -55229,6 +55227,147 @@
             <property name="Weight" value="86"/>
             <effect_group tiered="false">
                 <passive_effect name="MagazineSize" operation="perc_add" value=".75"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 延伸制动 -->
+        <item_modifier name="IridescentModWeaponL1GunBarrelExtenderMuzzleBrake" installable_tags="barrelAttachments,turretRanged" modifier_tags="barrelAttachment" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunBarrelExtender"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="EntityDamage" operation="perc_add" value=".1"/>
+                <passive_effect name="DamageFalloffRange" operation="perc_add" value=".2"/>
+                <passive_effect name="MaxRange" operation="perc_add" value=".2"/>
+
+                <passive_effect name="KickDegreesVerticalMin" operation="perc_add" value="-.25"/>
+                <passive_effect name="KickDegreesVerticalMax" operation="perc_add" value="-.25"/>
+                <passive_effect name="KickDegreesHorizontalMin" operation="perc_add" value="-.25"/>
+                <passive_effect name="KickDegreesHorizontalMax" operation="perc_add" value="-.25"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value=".08"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 握把枪托 -->
+        <item_modifier name="IridescentModWeaponL1GunForegripRetractingStock" installable_tags="bottomAttachments,turretRanged,stock" modifier_tags="grips,stocks" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunForegrip"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="SpreadMultiplierCrouching" operation="perc_add" value="-.15"/>
+                <passive_effect name="SpreadMultiplierHip" operation="perc_add" value="-.3"/>
+                <passive_effect name="SpreadMultiplierWalking" operation="perc_add" value="-.15"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value=".13"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value="-.08">
+                    <requirement name="HasBuff" buff="buffHoldBreathAiming01"/>
+                </passive_effect>
+                <passive_effect name="KickDegreesVerticalMin" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesVerticalMax" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesHorizontalMin" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesHorizontalMax" operation="perc_add" value="-.5"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 自动调节 -->
+        <item_modifier name="IridescentModWeaponL1GunTriggerGroupAutomaticSemi" installable_tags="firingMode,turretRanged,revolver,drumMagazine" modifier_tags="trigger" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunTriggerGroupAutomatic"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".gunTriggerGroupAutomaticSemi" operation="Equals" value="1"/>
+                    <passive_effect name="BurstRoundCount" operation="base_set" value="999"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" value=".12"/>
+                    <passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".06"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".gunTriggerGroupAutomaticSemi" operation="Equals" value="0"/>
+                    <passive_effect name="BurstRoundCount" operation="base_set" value="1"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" value=".1"/>
+                    <passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".05"/>
+            </effect_group>
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfItemActivate" action="ModifyCVar" cvar=".gunTriggerGroupAutomaticSemi" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfItemDeactivate" action="ModifyCVar" cvar=".gunTriggerGroupAutomaticSemi" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+				<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+			</effect_group>
+        </item_modifier>
+        <item_modifier name="IridescentModWeaponL2GunTriggerGroupAutomaticSemi" installable_tags="firingMode,turretRanged,revolver,drumMagazine" modifier_tags="trigger,grips,stocks" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunTriggerGroupAutomatic"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="3440"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".gunTriggerGroupAutomaticSemi" operation="Equals" value="1"/>
+                    <passive_effect name="BurstRoundCount" operation="base_set" value="999"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" value=".12"/>
+                    <passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".06"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".gunTriggerGroupAutomaticSemi" operation="Equals" value="0"/>
+                    <passive_effect name="BurstRoundCount" operation="base_set" value="1"/>
+                    <passive_effect name="RoundsPerMinute" operation="perc_add" value=".1"/>
+                    <passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".05"/>
+            </effect_group>
+			<effect_group tiered="false">
+				<triggered_effect trigger="onSelfItemActivate" action="ModifyCVar" cvar=".gunTriggerGroupAutomaticSemi" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfItemDeactivate" action="ModifyCVar" cvar=".gunTriggerGroupAutomaticSemi" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfItemActivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+				<triggered_effect trigger="onSelfItemDeactivate" action="PlaySound" silent_on_equip="true" target="self" sound="flashlight_toggle" play_in_head="false"/>
+			</effect_group>
+            <effect_group tiered="false">
+                <passive_effect name="SpreadMultiplierCrouching" operation="perc_add" value="-.15"/>
+                <passive_effect name="SpreadMultiplierHip" operation="perc_add" value="-.3"/>
+                <passive_effect name="SpreadMultiplierWalking" operation="perc_add" value="-.15"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value=".13"/>
+                <passive_effect name="WeaponHandling" operation="perc_add" value="-.08">
+                    <requirement name="HasBuff" buff="buffHoldBreathAiming01"/>
+                </passive_effect>
+                <passive_effect name="KickDegreesVerticalMin" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesVerticalMax" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesHorizontalMin" operation="perc_add" value="-.5"/>
+                <passive_effect name="KickDegreesHorizontalMax" operation="perc_add" value="-.5"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 猎杀 -->
+        <item_modifier name="IridescentModWeaponL1GunPowerDamage" installable_tags="weapon,tool" modifier_tags="crippling,specialDamage" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunMeleeTheHunter"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="EntityDamage" operation="perc_add" value=".15"/>
+            </effect_group>
+        </item_modifier>
+        <item_modifier name="IridescentModWeaponL2GunPowerDamage" installable_tags="weapon,tool" modifier_tags="crippling,specialDamage" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunMeleeTheHunter"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="EconomicValue" value="3440"/>
+            <property name="Material" value="MIridescentCubeSuper"/>
+            <property name="Weight" value="86"/>
+            <effect_group tiered="false">
+                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>
             </effect_group>
         </item_modifier>
 
