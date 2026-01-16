@@ -77,9 +77,62 @@
 
 
 
-    <!--*** 芯片 雪茄 安装位置更改 -->
-    <remove xpath="/item_modifiers/item_modifier[@name='modArmorCigar' or @name='modArmorPerception' or @name='modArmorStrength' or @name='modArmorFortitude' or @name='modArmorAgility' or @name='modArmorIntellect' or @name='modArmorTreasureHunter']"/>
-    <insertAfter xpath="/item_modifiers/item_modifier[@name='modArmorHelmetLight']">
+    <!--*** 冲击支撑 安装位置更改 -->
+    <remove xpath="/item_modifiers/item_modifier[@name='modArmorImpactBracing']"/>
+    <insertAfter xpath="/item_modifiers/item_modifier[@name='modArmorAdvancedMuffledConnectors']">
+
+        <!--** 冲击支撑 -->
+        <item_modifier name="modArmorImpactBracing" installable_tags="marisaClothingFeet" modifier_tags="falldamage" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="UnlockedBy" value="modArmorImpactBracingSchematic"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffImpactBracing"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffImpactBracing"/>
+            </effect_group>
+        </item_modifier>
+
+    </insertAfter>
+    <!--*** 净水器 头盔灯 雪茄 芯片 夜视仪 安装位置更改 -->
+    <remove xpath="/item_modifiers/item_modifier[@name='modArmorWaterPurifier' or @name='modArmorHelmetLight' or @name='modArmorCigar' or @name='modArmorPerception' or @name='modArmorStrength' or @name='modArmorFortitude' or @name='modArmorAgility' or @name='modArmorIntellect' or @name='modArmorTreasureHunter' or @name='modArmorNightVision']"/>
+    <insertAfter xpath="/item_modifiers/item_modifier[@name='modArmorStealthBoots']">
+
+        <!--** 净水器 -->
+        <item_modifier name="modArmorWaterPurifier" installable_tags="marisaHexagon" modifier_tags="waterPurifier" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="UnlockedBy" value="modArmorWaterPurifierSchematic"/>
+            <property name="TraderStageTemplate" value="modsTier3"/>
+            <property name="Material" value="Msteel"/>
+
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffDysenteryCatchDrink"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffWaterPurifier"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffWaterPurifier"/>
+            </effect_group>
+        </item_modifier>
+
+        <!--** 头盔灯 -->
+        <item_modifier name="modArmorHelmetLight" installable_tags="marisaHexagon" modifier_tags="misc,modArmorHelmetLight" blocked_tags="noMods,clothing" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="UnlockedBy" value="modArmorHelmetLightSchematic"/>
+            <property name="TraderStageTemplate" value="modsTier1"/>
+            <property name="Material" value="Msteel"/>
+            <property name="LightValue" value=".4"/>
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <triggered_effect trigger="onSelfEquipChanged" action="AddPartFPV" part="HeadLight" prefab="@:Entities/Lighting/miningHelmetLightSource.prefab" parentTransform="CameraNode" localPos="0,0.1,0" localRot="-90,180,0"/>
+                <triggered_effect trigger="onSelfEquipChanged" action="AddPartTPV" part="HeadLight" prefab="@:Entities/Lighting/miningHelmetLightSource.prefab" parentTransform="Spotlight" localPos="0,0,0" localRot="90,0,0"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLight"/>
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLight" active="true"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLight" active="false"/>
+                <triggered_effect trigger="onSelfItemActivate" silent_on_equip="true" action="PlaySound" target="self" sound="flashlight_toggle" play_in_head="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" silent_on_equip="true" action="PlaySound" target="self" sound="flashlight_toggle" play_in_head="false"/>
+            </effect_group>
+        </item_modifier>
 
         <!--** 雪茄 移除力量加成 新增效果阅读杂志效果有几率翻倍 -->
         <item_modifier name="modArmorCigar" installable_tags="marisaCigar" modifier_tags="cigar" blocked_tags="noMods" type="attachment">
@@ -100,7 +153,6 @@
                 <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$nerdOutfitSkillPointChanceCigar" operation="set" value="0"/>
             </effect_group>
         </item_modifier>
-
 
         <!--** 芯片 属性加成改为 +3 -->
         <item_modifier name="modArmorPerception" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
@@ -163,6 +215,7 @@
             </effect_group>
         </item_modifier>
 
+        <!--** 寻宝者 -->
         <item_modifier name="modArmorTreasureHunter" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
             <property name="CustomIcon" value="modArmorTreasureHunter"/>
@@ -177,6 +230,36 @@
                 <passive_effect name="TreasureBlocksPerReduction" operation="base_add" value="-1"/>
                 <display_value name="dTreasureBlocksPerReduction" value="-1"/>
                 <display_value name="dPlayerExpGain" value=".1"/>
+            </effect_group>
+        </item_modifier>
+
+        <!--** 夜视仪 -->
+        <item_modifier name="modArmorNightVision" installable_tags="marisaHexagon" modifier_tags="nightVision" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+            <property name="CustomIcon" value="modArmorNightVision"/>
+            <property name="TraderStageTemplate" value="modsTier2"/>
+            <property name="Material" value="Msteel"/>
+            <property name="EconomicValue" value="1200"/>
+            <effect_group tiered="false">
+                <requirement name="IsLocalPlayer"/>
+
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightTPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="Spotlight" localPos="0,0,0" localRot="90,0,0"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightFPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="CameraNode" localPos="0,0,.1" localRot="-90,0,0"/>
+
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightTPV"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightFPV"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0.80" fade="0"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightTPV" active="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightFPV" active="false"/>
+
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
             </effect_group>
         </item_modifier>
 
@@ -55003,7 +55086,7 @@
 
         <!-- *** 护甲模组 -->
         <!-- ** 六边形模组 -->
-        <item_modifier name="IridescentModArmorHexagon" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+        <item_modifier name="IridescentModArmorHexagon" installable_tags="marisaHexagon" modifier_tags="attributeBoost,waterPurifier,nightVision" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
             <property name="DisplayType" value="ui_IridescentModArmorHexagon"/>
@@ -55020,9 +55103,36 @@
                 <display_value name="dTreasureBlocksPerReduction" value="-1"/>
                 <display_value name="dPlayerExpGain" value=".1"/>
             </effect_group>
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffDysenteryCatchDrink"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffWaterPurifier"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffWaterPurifier"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="IsLocalPlayer"/>
+
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightTPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="Spotlight" localPos="0,0,0" localRot="90,0,0"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightFPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="CameraNode" localPos="0,0,.1" localRot="-90,0,0"/>
+
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightTPV"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightFPV"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0.80" fade="0"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightTPV" active="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightFPV" active="false"/>
+
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+            </effect_group>
         </item_modifier>
         <!-- ** 六边形模组 大师 -->
-        <item_modifier name="IridescentModArmorHexagon2" installable_tags="marisaHexagon" modifier_tags="attributeBoost" blocked_tags="noMods" type="attachment">
+        <item_modifier name="IridescentModArmorHexagon2" installable_tags="marisaHexagon" modifier_tags="attributeBoost,waterPurifier,nightVision" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
             <property name="DisplayType" value="ui_IridescentModArmorHexagon"/>
@@ -55038,6 +55148,71 @@
                 <passive_effect name="TreasureBlocksPerReduction" operation="base_add" value="-2"/>
                 <display_value name="dTreasureBlocksPerReduction" value="-2"/>
                 <display_value name="dPlayerExpGain" value=".2"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffDysenteryCatchDrink"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffWaterPurifier"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffWaterPurifier"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="IsLocalPlayer"/>
+
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightTPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="Spotlight" localPos="0,0,0" localRot="90,0,0"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightFPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="CameraNode" localPos="0,0,.1" localRot="-90,0,0"/>
+
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightTPV"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightFPV"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0.80" fade="0"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightTPV" active="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightFPV" active="false"/>
+
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+            </effect_group>
+        </item_modifier>
+
+        <!-- ** 净水夜视仪 -->
+        <item_modifier name="IridescentModArmorWaterPurifierNightVision" installable_tags="marisaHexagon" modifier_tags="waterPurifier,nightVision" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modArmorNightVision"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <requirement name="IsEquipped"/>
+                <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffDysenteryCatchDrink"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffWaterPurifier"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffWaterPurifier"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="IsLocalPlayer"/>
+
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightTPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="Spotlight" localPos="0,0,0" localRot="90,0,0"/>
+                <triggered_effect trigger="onSelfEquipStart" action="AddPart" part="HeadLightFPV" prefab="ScreenEffects/DeferredNV/NVGLight" parentTransform="CameraNode" localPos="0,0,.1" localRot="-90,0,0"/>
+
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightTPV"/>
+                <triggered_effect trigger="onSelfEquipStop" action="RemovePart" part="HeadLightFPV"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0.80" fade="0"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyScreenEffect" effect_name="Bright" intensity="0" fade="0"/>
+
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfItemActivate" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightTPV" active="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="SetPartActive" part="HeadLightFPV" active="false"/>
+
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightTPV" active="@!.IsFPV"/>
+                <triggered_effect trigger="onSelfChangedView" action="SetPartActive" part="HeadLightFPV" active="@.IsFPV"/>
             </effect_group>
         </item_modifier>
 

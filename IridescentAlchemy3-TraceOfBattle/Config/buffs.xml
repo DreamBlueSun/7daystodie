@@ -232,7 +232,7 @@
 	<set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">120</set>
 	<!-- *** 雷克格 移除水分扣减 降低伤害加成 -->
 	<remove xpath="/buffs/buff[@name='buffDrugRecog']/effect_group/passive_effect[@name='WaterChangeOT']"/>
-	<set xpath="/buffs/buff[@name='buffDrugRecog']/effect_group/passive_effect[@name='EntityDamage']/@value">.15</set>
+	<set xpath="/buffs/buff[@name='buffDrugRecog']/effect_group/passive_effect[@name='EntityDamage']/@value">.25</set>
 	<!-- *** 强健宝 移除水分扣减 降低减免加成 -->
 	<remove xpath="/buffs/buff[@name='buffDrugFortBites']/effect_group/passive_effect[@name='WaterChangeOT']"/>
 	<set xpath="/buffs/buff[@name='buffDrugFortBites']/effect_group/passive_effect[@name='GeneralDamageResist']/@value">.2</set>
@@ -2074,6 +2074,27 @@
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffRadiationPool"/><!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/><!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffShocked"/><!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT1Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT1Marisa02" operation="GTE" value="1"/>
 				<requirement name="HasBuff" buff="buffLaceration"/><!-- 裂伤 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffLaceration"/>
 
@@ -2121,6 +2142,27 @@
 				<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
 				<requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffRadiationPool"/><!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/><!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT2Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffShocked"/><!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT2Marisa02" operation="subtract" value="1"/>
 			</effect_group>
@@ -2189,6 +2231,27 @@
 				<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
 				<requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffRadiationPool"/><!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/><!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT3Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffShocked"/><!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT3Marisa02" operation="subtract" value="1"/>
 			</effect_group>
@@ -2281,6 +2344,27 @@
 				<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
 				<requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffRadiationPool"/><!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/><!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".RemoveDEBuffT4Marisa02" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffShocked"/><!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".RemoveDEBuffT4Marisa02" operation="subtract" value="1"/>
 			</effect_group>
@@ -2384,6 +2468,27 @@
 				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
 				<requirement name="HasBuff" buff="buffInjuryBleeding"/><!-- 流血 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBleeding"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffRadiationPool"/><!-- 辐射 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRadiationPool"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/><!-- 燃烧 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffIridescentModClothingAutoHealing" operation="GTE" value="1"/>
+				<requirement name="HasBuff" buff="buffShocked"/><!-- 电击 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffShocked"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="subtract" value="1"/>
 			</effect_group>
@@ -3738,7 +3843,7 @@
 		<!-- 鬼人药 -->
 		<buff name="buffIridescentPotionAttack" name_key="buffIridescentPotionAttackName" description_key="buffIridescentPotionAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="3602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack2"/>
 				<passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
@@ -3748,7 +3853,7 @@
 		<!-- 硬化药 -->
 		<buff name="buffIridescentPotionDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="3602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend2"/>
 				<passive_effect name="PhysicalDamageResist" operation="base_add" value="10"/>
@@ -3757,7 +3862,7 @@
 		<!-- 强走药 -->
 		<buff name="buffIridescentPotionStamina" name_key="buffIridescentPotionStaminaName" description_key="buffIridescentPotionStaminaDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="182"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionStamina2"/>
 				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
@@ -3768,7 +3873,7 @@
 		<!-- 鬼人药 大 -->
 		<buff name="buffIridescentPotionAttack2" name_key="buffIridescentPotionAttack2Name" description_key="buffIridescentPotionAttack2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="3602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack"/>
 				<passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
@@ -3778,7 +3883,7 @@
 		<!-- 硬化药 大 -->
 		<buff name="buffIridescentPotionDefend2" name_key="buffIridescentPotionDefend2Name" description_key="buffIridescentPotionDefend2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="3602"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend"/>
 				<passive_effect name="PhysicalDamageResist" operation="base_add" value="20"/>
@@ -3787,7 +3892,7 @@
 		<!-- 强走药 大 -->
 		<buff name="buffIridescentPotionStamina2" name_key="buffIridescentPotionStamina2Name" description_key="buffIridescentPotionStamina2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
 			<stack_type value="replace"/>
-			<duration value="1"/>
+			<duration value="422"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="IridescentPotionStamina"/>
 				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
@@ -4860,6 +4965,15 @@
 			</effect_group>
 		</buff>
 
+		<!-- * 生命提升 Ⅲ -->
+		<buff name="buffMarisaHealthMaxUp3" name_key="buffMarisaHealthMaxUp3Name" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaEffectAoe"/>
+			</effect_group>
+		</buff>
+
 	</append>
 
 	<!-- *** 技能模组 -->
@@ -4882,24 +4996,26 @@
 			<effect_group>
 				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
 				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold" duration="12"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold"/>
 			</effect_group>
 		</buff>
 		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
 			<stack_type value="ignore"/>
-			<duration value="0"/>
+			<duration value="12"/>
 		</buff>
 
 		<!-- 狂风骤雨 -->
 		<buff name="buffIridescentModClothingRainstorm" name_key="buffIridescentModClothingRainstormName" description_key="buffIridescentModClothingRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
 			<stack_type value="ignore"/>
-			<update_rate value=".1"/>
+			<update_rate value=".05"/>
 			<duration value="0"/>
 			<effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>
+<!--                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>-->
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="0.5"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value=".35"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>
 					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
 			</effect_group>
 		</buff>
