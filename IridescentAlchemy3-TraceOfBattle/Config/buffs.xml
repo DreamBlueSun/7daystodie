@@ -683,26 +683,57 @@
 			<!-- 震荡 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$IridescentModClothingVibrate" operation="GTE" value="1"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="buffMeleeHammerAoeAttack" operation="set" value="50"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="5" target_tags="animal,zombie" buff="buffMeleeHammerAoeAttack"/>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="1">
+				<requirement name="ItemHasTags" tags="melee"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="buffMeleeHammerAoeAttack" operation="set" value="50"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="2.5" target_tags="animal,zombie" buff="buffMeleeHammerAoeAttack"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="1">
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="50"/>
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="100"/>
 					</triggered_effect>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="2">
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="2">
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="100"/>
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="150"/>
 					</triggered_effect>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="3">
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="3">
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="150"/>
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="200"/>
 					</triggered_effect>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="4">
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="4">
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="200"/>
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="250"/>
 					</triggered_effect>
-					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="5">
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="5">
 						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="250"/>
+					</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$IridescentModClothingVibrate" operation="GTE" value="1"/>
+				<requirement name="ItemHasTags" tags="ranged"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="buffMeleeHammerAoeAttack" operation="set" value="50">
+						<requirement name="!HoldingItemHasTags" tags="perkBoomstick"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="buffMeleeHammerAoeAttack" operation="set" value="5">
+						<requirement name="HoldingItemHasTags" tags="perkBoomstick"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="otherAOE" range="2.5" target_tags="animal,zombie" buff="buffMeleeHammerAoeAttack"/>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="1">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="100"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="200"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="2">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="200"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="300"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="3">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="300"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="400"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="4">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="400"/>
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="LT" value="500"/>
+					</triggered_effect>
+					<triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="otherAOE" range="2.5" target_tags="animal,zombie" cvar="$buffMeleeHammerAoeAttack_count" operation="add" value="5">
+						<requirement name="StatCompareCurrent" stat="Stamina" operation="GTE" value="500"/>
 					</triggered_effect>
 			</effect_group>
 			<!-- 磁暴脉冲 -->
@@ -4970,7 +5001,7 @@
 			<stack_type value="replace"/>
 			<duration value="3602"/>
 			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaEffectAoe"/>
+				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaHealthMaxUp"/>
 			</effect_group>
 		</buff>
 
