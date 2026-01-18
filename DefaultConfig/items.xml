@@ -7409,7 +7409,7 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<property name="DamageBlock" value="50"/>
 		<property name="Explosion.ParticleIndex" value="36"/>
 		<property name="Explosion.RadiusBlocks" value="2.5"/>
-		<property name="Explosion.RadiusEntities" value="3.9"/>
+		<property name="Explosion.RadiusEntities" value="4.7"/>
 		<property name="Explosion.EntityDamage" value="80"/>
 		<property name="Explosion.BlockDamage" value="750"/>
 		<property name="Explosion.DamageBonus.earth" value="0"/>
@@ -10818,8 +10818,10 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<!-- <passive_effect name="HypothermalResist" operation="base_add" value="20"/> -->
 		<!-- <passive_effect name="HyperthermalResist" operation="base_add" value="20"/> -->
 		
+		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$treatedPreacher" operation="set" value=".02,.04,.06,.08,.1,.2">
+			<requirement name="IsEquipped"/></triggered_effect>
+		
 		<display_value name="dTreatedCritHealing" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$treatedPreacher" operation="set" value=".02,.04,.06,.08,.1,.2"/>
 	</effect_group>
 
 	<effect_group>
@@ -10864,7 +10866,7 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	</effect_group>
 
 	<property class="SDCS">
-		<property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/HeadgearMorphMatrix/{race}{variant}/gearStealth{hair}Head.asset"/>
+		<property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/gear{sex}StealthPrefab.prefab"/>
 		<property name="TransformName" value="head"/>
 		<property name="Excludes" value=""/>
 		<property name="CullDistFPV" value="0"/>
@@ -11234,8 +11236,10 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<!-- <passive_effect name="HypothermalResist" operation="base_add" value="20"/> -->
 		<!-- <passive_effect name="HyperthermalResist" operation="base_add" value="20"/> -->
 		
+		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4">
+			<requirement name="IsEquipped"/></triggered_effect>
+		
 		<display_value name="dCritResist" value=".05,.1,.15,.2,.25,.4" tier="1,2,3,4,5,6"/>
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$enforcerBuffResistance" operation="set" value=".05,.1,.15,.2,.25,.4"/>
 	</effect_group>
 
 	<!-- Enforcer Vol 02 -->
@@ -12223,7 +12227,9 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<passive_effect name="NoiseMultiplier" operation="perc_add" value=".1"/>
 		<display_value name="dNoiseMultiplier" value=".1"/>
 		
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value=".02,.04,.06,.08,.1,.2"/>
+		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value=".02,.04,.06,.08,.1,.2">
+			<requirement name="IsEquipped"/></triggered_effect>
+		
 		<display_value name="dNaturalCritHealing" value=".02,.04,.06,.08,.1,.2" tier="1,2,3,4,5,6"/>
 	</effect_group>
 
@@ -13300,7 +13306,9 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<passive_effect name="NoiseMultiplier" operation="perc_add" value=".2"/>
 		<display_value name="dNoiseMultiplier" value=".2"/>
 		
-		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$raiderCritNaturalHealing" operation="set" value=".05,.1,.15,.2,.25,.5"/>
+		<triggered_effect trigger="onSelfEquipUpdate" action="ModifyCVar" cvar="$raiderCritNaturalHealing" operation="set" value=".05,.1,.15,.2,.25,.5">
+			<requirement name="IsEquipped"/></triggered_effect>
+		
 		<display_value name="dNaturalCritHealing" value=".05,.1,.15,.2,.25,.5" tier="1,2,3,4,5,6"/>
 	</effect_group>
 
@@ -13744,7 +13752,6 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	<property name="SoundPlace" value="headwear_cloth_place"/>
 
 	<property class="SDCS">
-		<!-- <property name="Prefab" value="@:TwitchDrops/Pirate/Entities/Player/{sex}/Gear/HeadgearMorphMatrix/{race}{variant}/gearPirate{hair}Head.asset"/> -->
 		<property name="Prefab" value="@:DLC/PirateCosmetic/Entities/Player/{sex}/Gear/Prefabs/gear{sex}PiratePrefab.prefab"/>
 		<property name="TransformName" value="head"/>
 		<property name="Excludes" value=""/>
@@ -14833,8 +14840,8 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	<property name="EconomicValue" value="100"/>
 	<property name="TraderStageTemplate" value="clothingTier1"/><!-- clothingMaster -->
 	<property name="ShowQuality" value="true"/>
-	<property name="SoundPickup" value="headwear_cloth_grab"/>
-	<property name="SoundPlace" value="headwear_cloth_place"/>
+	<property name="SoundPickup" value="liners_cloth_grab"/>
+	<property name="SoundPlace" value="liners_cloth_place"/>
 </item>
 
 	<!-- *** T1_CLOTHING -->
@@ -16595,8 +16602,6 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 		<property name="Delay" value="1.0"/>
 		<property name="Sound_start" value="player_eating"/>
 		<property name="SmellUse" value="10"/>
-		<property name="Create_item" value="drinkJarEmpty"/>
-		<property name="Use_jar_refund" value="true"/>
 	</property>
 	<property name="Group" value="Food/Cooking,CFFood/Cooking"/>
 
@@ -17881,6 +17886,8 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	<property name="Stacknumber" value="10"/>
 	<property name="Weight" value="10"/>
 	<property name="EconomicValue" value="20"/>
+	<property name="SoundPickup" value="jars_empty_grab"/>
+	<property name="SoundPlace" value="jars_empty_place"/>
 	<property name="CraftingIngredientTime" value="9"/>
 	<!-- <property class="Action1"> -->
 		<!-- <property name="Class" value="ExchangeItem"/> -->
@@ -20032,8 +20039,8 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	<property name="EconomicBundleSize" value="1"/>
 	<property name="Group" value="Resources"/>
 	<property name="CraftingIngredientTime" value="2"/>
-	<property name="SoundPickup" value="animalfat_grab"/>
-	<property name="SoundPlace" value="animalfat_place"/>
+	<property name="SoundPickup" value="beeswax_grab"/>
+	<property name="SoundPlace" value="beeswax_place"/>
 </item>
 
 <item name="resourceBeeswax">
@@ -20046,8 +20053,8 @@ The example below represents the statement: [sampleVar0 == 0] OR [sampleVar1 == 
 	<property name="EconomicBundleSize" value="1"/>
 	<property name="Group" value="Resources"/>
 	<property name="CraftingIngredientTime" value="2"/>
-	<property name="SoundPickup" value="animalfat_grab"/>
-	<property name="SoundPlace" value="animalfat_place"/>
+	<property name="SoundPickup" value="beeswax_grab"/>
+	<property name="SoundPlace" value="beeswax_place"/>
 </item>
 
 <item name="resourceCropHopsFlower">

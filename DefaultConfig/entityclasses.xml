@@ -39,12 +39,14 @@
 	<color name="charged" value="0,.8,3, .7"/> <!-- Blue, A + 1 is emissive power (.5 would be 150%) -->
 	<color name="infernal" value="2.7,.8,0, .55"/> <!-- Red -->
 
+	<!-- *** ZOMBIE_SPEED_LIST -->
 <!-- Replace properties values starting with ^ that match these names with the value -->
 	<replace_properties>
 		<property name="chargedMoveSpeedPattern" value="1.2, .8, .7, 1.5, 1, .8, .5, 1.5"/> <!-- Delay, scale -->
 		<property name="infernalMoveSpeedPattern" value="3, .95, 1, .75"/>
 	</replace_properties>
 
+	<!-- *** ZOMBIE_HP_LIST -->
 <!-- Replace passive_effect values starting with ^ that match these names with the value -->
 	<replace_passive_effect>
 		<property name="healthZombieTemplate" 			value="150"/>
@@ -74,6 +76,18 @@
 		<property name="healthSturdyRadiated" 			value="1600"/>
 		<property name="healthSturdyCharged" 			value="1800"/>
 		<property name="healthSturdyInfernal" 			value="2400"/>
+		
+		<property name="healthTough" 				value="700"/>
+		<property name="healthToughFeral" 			value="1000"/>
+		<property name="healthToughRadiated" 		value="1700"/>
+		<property name="healthToughCharged" 		value="1900"/>
+		<property name="healthToughInfernal" 		value="2500"/>
+		
+		<property name="healthBrute" 					value="800"/>
+		<property name="healthBruteFeral" 				value="1100"/>
+		<property name="healthBruteRadiated" 			value="1800"/>
+		<property name="healthBruteCharged" 			value="2000"/>
+		<property name="healthBruteInfernal" 			value="2600"/>
 		
 		<property name="healthStrong" 					value="450"/>
 		<property name="healthStrongFeral" 				value="950"/>
@@ -113,8 +127,6 @@
 	<property name="EntityFlags" value="player,edible"/>
 	<property name="EntityType" value="Player"/>
 	<property name="Tags" value="entity,player,human"/> <!-- this property DOES NOT inherit on extends and target_tags cannot be AND connected -->
-
-	<!-- NEW_SDCS_CHARACTER -->
 	<property name="ModelType" value="SDCS"/>
 	<property name="PhysicsBody" value="PlayerSDCS"/>
 	<property name="AvatarController" value="AvatarSDCSController"/>
@@ -364,13 +376,13 @@
 			<requirement name="CVarCompare" cvar="$WastelandHazardTimerMax" operation="LT" value="180"/></triggered_effect>
 
 		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="$BurntHazardTimer" operation="set" value="180">
-			<requirement name="CVarCompare" cvar="$BurntHazardTimer" operation="Equals" value="-1"/></triggered_effect>
+			<requirement name="CVarCompare" cvar="$BurntHazardTimer" operation="LTE" value="0"/></triggered_effect>
 		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="$DesertHazardTimer" operation="set" value="180">
-			<requirement name="CVarCompare" cvar="$DesertHazardTimer" operation="Equals" value="-1"/></triggered_effect>
+			<requirement name="CVarCompare" cvar="$DesertHazardTimer" operation="LTE" value="0"/></triggered_effect>
 		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="$SnowHazardTimer" operation="set" value="180">
-			<requirement name="CVarCompare" cvar="$SnowHazardTimer" operation="Equals" value="-1"/></triggered_effect>
+			<requirement name="CVarCompare" cvar="$SnowHazardTimer" operation="LTE" value="0"/></triggered_effect>
 		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar="$WastelandHazardTimer" operation="set" value="180">
-			<requirement name="CVarCompare" cvar="$WastelandHazardTimer" operation="Equals" value="-1"/></triggered_effect>
+			<requirement name="CVarCompare" cvar="$WastelandHazardTimer" operation="LTE" value="0"/></triggered_effect>
 
 		<triggered_effect trigger="onSelfEnteredGame" action="AddBuff" target="self" buff="buffStatusCheck01,buffStatusCheck02,buffSmellCheck"/>
 		<triggered_effect trigger="onSelfRespawn" action="AddBuff" target="self" buff="buffStatusCheck01,buffStatusCheck02,buffSmellCheck,buffNearDeathTraumaTrigger,buffDeathFoodDrinkAdjust"/>
@@ -703,11 +715,6 @@
 	<property name="MoveSpeedAggro" value="0.3, 1.35"/> <!-- Slim -->
 </entity_class>
 
-<!-- *** ZOMBIE_ARLENE TEST -->
-<!--<entity_class name="zombieArleneLOD" extends="zombieArlene">
-	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZArleneLOD.prefab"/>
-</entity_class>
--->
 		<!-- *** ZOMBIE_ARLENE_FERAL -->
 <entity_class name="zombieArleneFeral" extends="zombieArlene">
 	<property name="UserSpawnType" value="Menu"/>
@@ -1632,7 +1639,7 @@
 
 	<!-- Dismemberment -->
 	<property name ="DismemberTag_L_HeadGore" value="Rancher/Dismemberment/Blade/Head;Rancher/Dismemberment/Blunt/Head" data="type=blade+target=neck+atp=true+detach=true+asp=head+scale=1,1,1;type=blunt+target=neck+atp=true+asp=head+scale=1,1,1"/>
-	<property name ="DismemberTag_L_LeftLowerArmGore" value="Rancher/Dismemberment/Blade/LeftLowerArm" data="type=blade+target=leftforearmroll+atp=true+detach=true+mask=true"/>
+	<property name ="DismemberTag_L_LeftLowerArmGore" value="Rancher/Dismemberment/Blade/LeftLowerArm" data="type=blade+target=leftforearmroll+atp=true+detach=true+sfv=leftforearm"/>
 	<property name ="DismemberTag_L_LeftUpperArmGore" value="Rancher/Dismemberment/Blade/LeftUpperArm" data="type=blade+target=leftarmroll+atp=true+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_LeftUpperLegGore" value="Rancher/Dismemberment/Blade/LeftUpperLeg" data="type=blade+target=leftupleg+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_RightLowerArmGore" value="Rancher/Dismemberment/Blade/RightLowerArm" data="type=blade+target=rightforearmroll+atp=true+detach=true+mask=true+msb=rightforearmroll"/>
@@ -1735,24 +1742,24 @@
 </entity_class>
 
 		<!-- *** Plague Spitter lookups for POI spawns -->
-	<entity_class name="zombiePlagueSpitter" extends="zombieRancher">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitter.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombiePlagueSpitterFeral" extends="zombieRancherFeral">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterFeral.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombiePlagueSpitterRadiated" extends="zombieRancherRadiated">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterRadiated.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombiePlagueSpitterCharged" extends="zombieRancherCharged">
-		<property name="UserSpawnType" value="None"/>
-	</entity_class>
-	<entity_class name="zombiePlagueSpitterInfernal" extends="zombieRancherInfernal">
-		<property name="UserSpawnType" value="None"/>
-	</entity_class>
+<entity_class name="zombiePlagueSpitter" extends="zombieRancher">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitter.prefab"/> -->
+</entity_class>
+<entity_class name="zombiePlagueSpitterFeral" extends="zombieRancherFeral">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterFeral.prefab"/> -->
+</entity_class>
+<entity_class name="zombiePlagueSpitterRadiated" extends="zombieRancherRadiated">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterRadiated.prefab"/> -->
+</entity_class>
+<entity_class name="zombiePlagueSpitterCharged" extends="zombieRancherCharged">
+	<property name="UserSpawnType" value="None"/>
+</entity_class>
+<entity_class name="zombiePlagueSpitterInfernal" extends="zombieRancherInfernal">
+	<property name="UserSpawnType" value="None"/>
+</entity_class>
 
 		<!-- *** ZOMBIE_CHUCK-->
 <entity_class name="zombieChuck" extends="zombieTemplateMale">
@@ -1762,7 +1769,7 @@
 	<property name="Tags" value="entity,zombie,walker,snow"/>
 	<property name="Mesh" value="@:Entities/Zombies/Chuck/ZChuck.prefab"/>
 	<property name="WalkType" value="2"/>
-	<property name="Mass" value="220"/>
+	<property name="Mass" value="230"/>
 	<property name="RightHandJointName" value="Boulder"/>
 	<property name="SoundRandom" value="chuckroam"/>
 	<property name="SoundAlert" value="chuckalert"/>
@@ -1775,8 +1782,8 @@
 	<property name="ExperienceGain" value="600"/><!-- XP Chuck -->
 
 	<!-- Dismemberment -->
-  <property name ="DismemberTag_L_HeadGore" value="Chuck/Dismemberment/Blade/Head;Chuck/Dismemberment/Blunt/Head" data="type=blade+target=neck+atp=true+detach=true;type=blunt+target=neck+atp=true"/>
-  <property name ="DismemberTag_L_LeftLowerArmGore" value="Chuck/Dismemberment/Blade/LeftLowerArm" data="type=blade+target=leftforearmroll+atp=true+detach=true+mask=true"/>
+	<property name ="DismemberTag_L_HeadGore" value="Chuck/Dismemberment/Blade/Head;Chuck/Dismemberment/Blunt/Head" data="type=blade+target=neck+atp=true+detach=true+asp=head+scale=1,1,1;type=blunt+target=neck+atp=true+asp=head+scale=1,1,1"/>
+	<property name ="DismemberTag_L_LeftLowerArmGore" value="Chuck/Dismemberment/Blade/LeftLowerArm" data="type=blade+target=leftforearmroll+atp=true+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_LeftUpperArmGore" value="Chuck/Dismemberment/Blade/LeftUpperArm" data="type=blade+target=leftarmroll+atp=true+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_LeftLowerLegGore" value="Chuck/Dismemberment/Blade/LeftLowerLeg" data="type=blade+target=LeftLeg+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_RightLowerArmGore" value="Chuck/Dismemberment/Blade/RightLowerArm" data="type=blade+target=rightforearmroll+atp=true+detach=true+mask=true"/>
@@ -1788,7 +1795,7 @@
 	<property name="AITask" value="
 	BreakBlock|
 	ApproachDistraction|
-	RangedAttackTarget startAnimType=2;itemType=1;cooldown=4;duration=5;minRange=5;maxRange=40;releaseDelay=.41;sndStart=chuckwarning;sndRelease=chuckrelease|
+	RangedAttackTarget startAnimType=2;itemType=1;cooldown=4;duration=5;minRange=5;maxRange=43;releaseDelay=.41;sndStart=chuckwarning;sndRelease=chuckrelease|
 	ApproachAndAttackTarget class=EntityPlayer,0,EntityBandit,0,EntityEnemyAnimal,0,EntityAnimal|
 	ApproachSpot|
 	Look|
@@ -1797,11 +1804,11 @@
 
 	<!-- Gameplay zombieChuck -->
 	<property name="MoveSpeed" value=".17"/>
-	<property name="MoveSpeedAggro" value=".5, 1.35"/> <!-- Normal -->
+	<property name="MoveSpeedAggro" value=".55, 1.35"/> <!-- Normal -->
 	<property name="HandItem" value="meleeHandZombieChuck"/>
 	<property name="SightRange" value="40"/>
 	<effect_group>
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdy"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthTough"/>
 	</effect_group>
 </entity_class>
 
@@ -1814,14 +1821,14 @@
 
 	<!-- Gameplay zombieChuckFeral -->
 	<property name="DismemberMultiplierHead" value=".7"/><property name="DismemberMultiplierArms" value=".7"/><property name="DismemberMultiplierLegs" value=".7"/><!-- Feral -->
-	<property name="MoveSpeedAggro" value=".6, 1.45"/> <!-- Normal Feral -->
+	<property name="MoveSpeedAggro" value=".6, 1.4"/> <!-- Normal Feral -->
 	<property name="JumpMaxDistance" value="4.6, 5"/>
 	<property name="HandItem" value="meleeHandZombieChuckFeral"/>
 	<property name="ExperienceGain" value="750"/><!-- XP Chuck Feral -->
 	<property name="LootDropProb" value=".04"/> <!-- Feral -->
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyFeral"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthToughFeral"/>
 	</effect_group>
 </entity_class>
 
@@ -1838,7 +1845,7 @@
 	<property name="ExperienceGain" value="1200"/><!-- XP Chuck Radiated -->
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyRadiated"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthToughRadiated"/>
 		<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="4"/>
 		<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
 	</effect_group>
@@ -1855,7 +1862,7 @@
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyCharged"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthToughCharged"/>
 	</effect_group>
 </entity_class>
 
@@ -1870,30 +1877,30 @@
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyInfernal"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthToughInfernal"/>
 		<passive_effect name="BuffResistance" operation="base_set" value=".75" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 	</effect_group>
 </entity_class>
 
 		<!-- *** Frostclaw lookups for POI spawns -->
-	<entity_class name="zombieFrostclaw" extends="zombieChuck">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClaw.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombieFrostclawFeral" extends="zombieChuckFeral">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawFeral.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombieFrostclawRadiated" extends="zombieChuckRadiated">
-		<property name="UserSpawnType" value="None"/>
-		<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawRadiated.prefab"/> -->
-	</entity_class>
-	<entity_class name="zombieFrostclawCharged" extends="zombieChuckCharged">
-		<property name="UserSpawnType" value="None"/>
-	</entity_class>
-	<entity_class name="zombieFrostclawInfernal" extends="zombieChuckInfernal">
-		<property name="UserSpawnType" value="None"/>
-	</entity_class>
+<entity_class name="zombieFrostclaw" extends="zombieChuck">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClaw.prefab"/> -->
+</entity_class>
+<entity_class name="zombieFrostclawFeral" extends="zombieChuckFeral">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawFeral.prefab"/> -->
+</entity_class>
+<entity_class name="zombieFrostclawRadiated" extends="zombieChuckRadiated">
+	<property name="UserSpawnType" value="None"/>
+	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawRadiated.prefab"/> -->
+</entity_class>
+<entity_class name="zombieFrostclawCharged" extends="zombieChuckCharged">
+	<property name="UserSpawnType" value="None"/>
+</entity_class>
+<entity_class name="zombieFrostclawInfernal" extends="zombieChuckInfernal">
+	<property name="UserSpawnType" value="None"/>
+</entity_class>
 
 		<!-- *** ZOMBIE_SPIDER -->
 <entity_class name="zombieSpider" extends="zombieTemplateMale">
@@ -1959,7 +1966,6 @@
 	<property name="SwimStrokeRate" value="1.5,1.7"/>
 	<property name="CanClimbVertical" value="true"/>
 	<property name="JumpMaxDistance" value="7, 9"/>
-
 </entity_class>
 
 		<!-- *** ZOMBIE_SPIDER_FERAL-->
@@ -3750,8 +3756,7 @@
 		<passive_effect name="BuffResistance" operation="base_set" value=".75" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 	</effect_group>
 
-  <property name="Explosion.ParticleIndex" value="81"/>
-  
+	<property name="Explosion.ParticleIndex" value="81"/>
 </entity_class>
 
 <!-- *** ZOMBIES_FIT -->
@@ -4252,7 +4257,7 @@
 	<property name="ExperienceGain" value="750"/><!-- XP Sturdy -->
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdy"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthBrute"/>
 	</effect_group>
 </entity_class>
 
@@ -4272,7 +4277,7 @@
 	<property name="LootDropProb" value=".04"/> <!-- Feral -->
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyFeral"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthBruteFeral"/>
 	</effect_group>
 </entity_class>
 
@@ -4293,7 +4298,7 @@
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyRadiated"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthBruteRadiated"/>
 		<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="2.5"/>
 		<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
 	</effect_group>
@@ -4310,7 +4315,7 @@
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyCharged"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthBruteCharged"/>
 	</effect_group>
 </entity_class>
 
@@ -4325,7 +4330,7 @@
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
 	<effect_group name="Base Effects">
-		<passive_effect name="HealthMax" operation="base_set" value="^healthSturdyInfernal"/>
+		<passive_effect name="HealthMax" operation="base_set" value="^healthBruteInfernal"/>
 		<passive_effect name="BuffResistance" operation="base_set" value=".75" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 	</effect_group>
 </entity_class>
@@ -6463,6 +6468,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,npc,human,trader"/>
 	<property name="Mesh" value="@:Entities/Traders/Prefabs/TraderJen.prefab"/>
+	<property name="AvatarController" value="AvatarSDCSController"/>
 	<property name="NPCID" value="traderjen"/>
 	<property name="DanceType" value="2"/>
 </entity_class>
