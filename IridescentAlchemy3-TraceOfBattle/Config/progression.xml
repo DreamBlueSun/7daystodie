@@ -6825,6 +6825,46 @@
         </crafting_skill>
     </insertAfter>
 
+    <!-- 降低火箭弹的解锁等级 移除火箭筒制作 -->
+    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']"/>
+    <insertAfter xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']">
+        <crafting_skill name="craftingExplosives" max_level="35" parent="attCrafting" name_key="craftingExplosivesName" desc_key="craftingExplosivesDesc" long_desc_key="craftingExplosivesLongDesc" icon="ui_game_symbol_explosion">
+
+            <display_entry icon="thrownAmmoPipeBomb,thrownGrenade,mineCookingPot" name_key="explosivesT1-1,explosivesT1-2,explosivesT1-3,explosivesT4" has_quality="false" unlock_level="2,3,4,5">
+                <unlock_entry item="thrownAmmoPipeBomb" unlock_tier="1"/>
+                <unlock_entry item="thrownGrenade" unlock_tier="2"/>
+                <unlock_entry item="mineCookingPot" unlock_tier="3"/>
+                <unlock_entry item="resourceRocketTip,resourceRocketCasing,ammoRocketFrag,ammoRocketHE" unlock_tier="4"/>
+            </display_entry>
+            <display_entry icon="thrownDynamite,thrownGrenadeContact,mineHubcap" name_key="explosivesT2-1,explosivesT2-2,explosivesT2-3" has_quality="false" unlock_level="10,15,20">
+                <unlock_entry item="thrownDynamite" unlock_tier="1"/>
+                <unlock_entry item="thrownGrenadeContact" unlock_tier="2"/>
+                <unlock_entry item="mineHubcap" unlock_tier="3"/>
+            </display_entry>
+            <display_entry icon="mineAirFilter,resourceGunPowder,thrownTimedCharge" name_key="explosivesT3-1,explosivesT3-2,explosivesT3-3" has_quality="false" unlock_level="25,30,35">
+                <unlock_entry item="mineAirFilter" unlock_tier="1"/>
+                <unlock_entry item="resourceGunPowderBundle" unlock_tier="2"/>
+                <unlock_entry item="thrownTimedCharge" unlock_tier="3"/>
+            </display_entry>
+
+            <effect_group>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="2,35" value="1" tags="thrownAmmoPipeBomb"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="3,35" value="1" tags="thrownGrenade"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="4,35" value="1" tags="mineCookingPot"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="5,35" value="1" tags="resourceRocketTip,resourceRocketCasing,ammoRocketFrag,ammoRocketHE"/>
+
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="10,35" value="1" tags="thrownDynamite"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="15,35" value="1" tags="thrownGrenadeContact"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="20,35" value="1" tags="mineHubcap"/>
+
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="25,35" value="1" tags="mineAirFilter"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="30,35" value="1" tags="resourceGunPowderBundle"/>
+                <passive_effect name="RecipeTagUnlocked" operation="base_set" level="35" value="1" tags="thrownTimedCharge"/>
+
+            </effect_group>
+        </crafting_skill>
+    </insertAfter>
+
     <!-- 降低无人机的解锁等级 -->
     <set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/@max_level">50</set>
     <set xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='gunBotT3JunkDrone']/@unlock_level">40,42,44,46,48,50</set>
@@ -6843,8 +6883,6 @@
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingShotguns']"/>
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRifles']"/>
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingMachineGuns']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/display_entry[@icon='gunExplosivesT3RocketLauncher']"/>
-    <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingExplosives']/effect_group/passive_effect[@tags='gunExplosivesT3RocketLauncher']"/>
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/display_entry[@item='meleeWpnBatonT0PipeBaton' or @item='meleeWpnBatonT2StunBaton' or @item='gunBotT2JunkTurret']"/>
     <remove xpath="/progression/crafting_skills/crafting_skill[@name='craftingRobotics']/effect_group/passive_effect[@tags='meleeWpnBatonT0PipeBaton' or @tags='meleeWpnBatonT2StunBaton' or @tags='gunBotT2JunkTurret']"/>
     <!-- ** 移除 近战 -->
