@@ -226,10 +226,24 @@
 
 
    <!-- *** 角色状态 -->
-   <insertAfter xpath="/windows/window[@name='CharacterFrameWindow']/rect/rect/rect[@controller='TabSelectorTab']/grid/player_stats_entry[@textcontent='{playerlootstagetitle|once}']">
-      <player_stats_entry backgroundcolor="[darkGrey]" textcontent="会心率" valuecontent="{cvar(.MarisaCriticalChanceAways:0)}%"/>
-      <player_stats_entry backgroundcolor="[darkGrey]" textcontent="会心伤害倍率" valuecontent="{cvar(.MarisaCriticalMultiplierShow:0)}%"/>
+   <insertAfter xpath="/windows/window[@name='CharacterFrameWindow']/rect/panel[@name='previewFrameSDCS']">
+      <rect visible="{# selected_tab == 'armor' or selected_tab == 'clothing' or selected_tab == 'gear' }" pos="0,-123" width="323" height="30">
+         <sprite depth="3" sprite="menu_empty3px" pos="-1,1" width="327" height="34" color="[black]" type="sliced" fillcenter="false"/>
+         <sprite depth="1" sprite="menu_empty3px" color="[darkGrey]" type="sliced" globalopacity="true"/>
+         <label depth="3" pos="5,-5" text="会心率:" width="321" height="26" justify="left" parse_actions="true"/>
+         <label depth="3" pos="-2,-5" text="{cvar(.MarisaCriticalChanceAways:0)}%" width="321" height="26" justify="right" parse_actions="true"/>
+      </rect>
+      <rect visible="{# selected_tab == 'armor' or selected_tab == 'clothing' or selected_tab == 'gear' }" pos="0,-153" width="323" height="30">
+         <sprite depth="3" sprite="menu_empty3px" pos="-1,1" width="327" height="34" color="[black]" type="sliced" fillcenter="false"/>
+         <sprite depth="1" sprite="menu_empty3px" color="[darkGrey]" type="sliced" globalopacity="true"/>
+         <label depth="3" pos="5,-5" text="会心伤害倍率:" width="321" height="26" justify="left" parse_actions="true"/>
+         <label depth="3" pos="-2,-5" text="{cvar(.MarisaCriticalMultiplierShow:0)}%" width="321" height="26" justify="right" parse_actions="true"/>
+      </rect>
    </insertAfter>
+<!--   <insertAfter xpath="/windows/window[@name='CharacterFrameWindow']/rect/rect/rect[@controller='TabSelectorTab']/grid/player_stats_entry[@textcontent='{playerlootstagetitle|once}']">-->
+<!--      <player_stats_entry backgroundcolor="[darkGrey]" textcontent="会心率" valuecontent="{cvar(.MarisaCriticalChanceAways:0)}%"/>-->
+<!--      <player_stats_entry backgroundcolor="[darkGrey]" textcontent="会心伤害倍率" valuecontent="{cvar(.MarisaCriticalMultiplierShow:0)}%"/>-->
+<!--   </insertAfter>-->
 
 
 
