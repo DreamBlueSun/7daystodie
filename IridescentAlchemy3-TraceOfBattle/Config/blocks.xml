@@ -54,6 +54,36 @@
         <drop event="Harvest" name="resourceIridescentStone02" count="1" prob="1" tag="marisaTraversingUpper"/>
         <drop event="Harvest" name="resourceIridescentStone03" count="1" prob="1" tag="marisaTraversingSupper"/>
     </append>
+    <!-- 掉落素材 蘑菇 -->
+    <append xpath="/blocks/block[@name='mushroom01' or @name='mushroom02' or @name='plantedMushroom3Harvest' or @name='plantedMushroom3HarvestPlayer' or @name='mushroomBiome2' or @name='mushroomBiome4' or @name='mushroomRadiated02' or @name='mushroomRadiated04']">
+        <drop event="Harvest" name="foodCropMushroomsHealth" count="1" prob="0.8" tag="marisaTraversingBiomeA"/>
+        <drop event="Harvest" name="foodCropMushroomsHeart" count="1" prob="0.1" tag="marisaTraversingBiomeA"/>
+        <drop event="Harvest" name="foodCropMushroomsCloud" count="1" prob="0.1" tag="marisaTraversingBiomeA"/>
+
+        <drop event="Harvest" name="foodCropMushroomsHealth" count="1" prob="0.2" tag="marisaTraversingBiomeB"/>
+        <drop event="Harvest" name="foodCropMushroomsAttack" count="1" prob="0.6" tag="marisaTraversingBiomeB"/>
+        <drop event="Harvest" name="foodCropMushroomsHeart" count="1" prob="0.1" tag="marisaTraversingBiomeB"/>
+        <drop event="Harvest" name="foodCropMushroomsCloud" count="1" prob="0.1" tag="marisaTraversingBiomeB"/>
+
+        <drop event="Harvest" name="foodCropMushroomsHealth" count="1" prob="0.1" tag="marisaTraversingBiomeC"/>
+        <drop event="Harvest" name="foodCropMushroomsAttack" count="1" prob="0.1" tag="marisaTraversingBiomeC"/>
+        <drop event="Harvest" name="foodCropMushroomsDefend" count="1" prob="0.6" tag="marisaTraversingBiomeC"/>
+        <drop event="Harvest" name="foodCropMushroomsHeart" count="1" prob="0.1" tag="marisaTraversingBiomeC"/>
+        <drop event="Harvest" name="foodCropMushroomsCloud" count="1" prob="0.1" tag="marisaTraversingBiomeC"/>
+
+        <drop event="Harvest" name="foodCropMushroomsHealth" count="1" prob="0.2" tag="marisaTraversingBiomeD"/>
+        <drop event="Harvest" name="foodCropMushroomsAttack" count="1" prob="0.2" tag="marisaTraversingBiomeD"/>
+        <drop event="Harvest" name="foodCropMushroomsDefend" count="1" prob="0.2" tag="marisaTraversingBiomeD"/>
+        <drop event="Harvest" name="foodCropMushroomsHeart" count="1" prob="0.2" tag="marisaTraversingBiomeD"/>
+        <drop event="Harvest" name="foodCropMushroomsCloud" count="1" prob="0.2" tag="marisaTraversingBiomeD"/>
+
+        <drop event="Harvest" name="foodCropMushroomsHealth" count="1" prob="0.1" tag="marisaTraversingBiomeE"/>
+        <drop event="Harvest" name="foodCropMushroomsAttack" count="1" prob="0.1" tag="marisaTraversingBiomeE"/>
+        <drop event="Harvest" name="foodCropMushroomsDefend" count="1" prob="0.1" tag="marisaTraversingBiomeE"/>
+        <drop event="Harvest" name="foodCropMushroomsDemolitions" count="1" prob="0.5" tag="marisaTraversingBiomeE"/>
+        <drop event="Harvest" name="foodCropMushroomsHeart" count="1" prob="0.1" tag="marisaTraversingBiomeE"/>
+        <drop event="Harvest" name="foodCropMushroomsCloud" count="1" prob="0.1" tag="marisaTraversingBiomeE"/>
+    </append>
 
 
 
@@ -1332,6 +1362,577 @@
             <property class="RepairItems">
                 <property name="resourceForgedIron" value="30"/>
                 <property name="resourceElectricParts" value="30"/>
+            </property>
+        </block>
+
+        <!-- 水栽培养皿 蓝蘑菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsHealth">
+            <property name="TintColor" value="84E1EC"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsHealthWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsHealth" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsHealthWorking">
+            <property name="TintColor" value="84E1EC"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsHealthFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsHealth" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsHealthFull">
+            <property name="TintColor" value="84E1EC"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsHealth"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsHealth"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+        </block>
+        <!-- 水栽培养皿 怪力菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsAttack">
+            <property name="TintColor" value="EF949F"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsAttackWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsAttack" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsAttackWorking">
+            <property name="TintColor" value="EF949F"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsAttackFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsAttack" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsAttackFull">
+            <property name="TintColor" value="EF949F"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsAttack"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsAttack"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+        </block>
+        <!-- 水栽培养皿 忍耐菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsDefend">
+            <property name="TintColor" value="FEDB61"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsDefendWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsDefend" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsDefendWorking">
+            <property name="TintColor" value="FEDB61"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsDefendFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsDefend" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsDefendFull">
+            <property name="TintColor" value="FEDB61"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsDefend"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsDefend"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+        </block>
+        <!-- 水栽培养皿 爆炸菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsDemolitions">
+            <property name="TintColor" value="FF985E"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsDemolitionsWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsDemolitions" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsDemolitionsWorking">
+            <property name="TintColor" value="FF985E"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsDemolitionsFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsDemolitions" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsDemolitionsFull">
+            <property name="TintColor" value="FF985E"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsDemolitions"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsDemolitions"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+        </block>
+        <!-- 水栽培养皿 心跳菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsHeart">
+            <property name="TintColor" value="00FF00"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsHeartWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsHeart" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsHeartWorking">
+            <property name="TintColor" value="00FF00"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsHeartFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsHeart" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsHeartFull">
+            <property name="TintColor" value="00FF00"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsHeart"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsHeart"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+        </block>
+        <!-- 水栽培养皿 天丛菇 -->
+        <block name="IridescentPlantHydroponicVerticalMushroomsCloud">
+            <property name="TintColor" value="00BFFF"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="2.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsCloudWorking"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsCloud" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsCloudWorking">
+            <property name="TintColor" value="00BFFF"/>
+            <property name="Extends" value="cropsGrowingMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="plantHydroponicVerticalGroupDesc"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="ModelOffset" value="0,0.25,0"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="RestrictSubmergedPlacement" value="true"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="AllowedRotations" value="Basic90"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Light" value="0.5"/>
+            <property name="IsTerrainDecoration" value="true"/>
+            <property name="PlantGrowing.FertileLevel" value="0"/>
+            <property name="PlantGrowing.LightLevelGrow" value="0"/>
+            <property name="PlantGrowing.GrowthRate" value="30.0"/>
+            <property name="PlantGrowing.IsRandom" value="false"/>
+            <property name="PlantGrowing.LightLevelStay" value="0"/>
+            <property name="PlantGrowing.Next" value="IridescentPlantHydroponicVerticalMushroomsCloudFull"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
+            </property>
+            <drop event="Destroy" name="IridescentPlantHydroponicVerticalMushroomsCloud" count="1"/>
+        </block>
+        <block name="IridescentPlantHydroponicVerticalMushroomsCloudFull">
+            <property name="TintColor" value="00BFFF"/>
+            <property name="CreativeMode" value="Player"/>
+            <property name="DisplayType" value="blockMulti"/>
+            <property name="MultiBlockDim" value="1,2,1"/>
+            <property name="CustomIcon" value="plantHydroponicVertical"/>
+            <property name="Material" value="MresourceClayLump"/>
+            <property name="MaxDamage" value="250"/>
+            <property name="Collide" value="movement,melee,bullet,arrow,rocket"/>
+            <property name="Shape" value="ModelEntity"/>
+            <property name="Model" value="Entities/Plants/plantHydroponicVerticalPrefab"/>
+            <property name="Class" value="Loot"/>
+            <property name="LootList" value="IridescentPlantHydroponicVerticalMushroomsCloud"/>
+            <property name="Place" value="TowardsPlacerInverted"/>
+            <property name="ImposterExclude" value="true"/>
+            <property name="WaterFlow" value="permitted"/>
+            <property name="Group" value="Science,Building,advBuilding"/>
+            <drop event="Destroy" count="0"/>
+            <property name="DowngradeBlock" value="IridescentPlantHydroponicVerticalMushroomsCloud"/>
+            <property class="RepairItems">
+                <property name="resourceForgedIron" value="25"/>
+                <property name="resourceElectricParts" value="25"/>
             </property>
         </block>
 
