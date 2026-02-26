@@ -2,18 +2,34 @@
 
     <!--*** 割草的获取数量修改 -->
     <set xpath="/blocks/block[@name='treeGrassMaster']/drop[@name='resourceYuccaFibers']/@count">5</set>
+
+
     <!--*** 蜂蜜的获取概率修改 -->
-    <set xpath="/blocks/block[@name='treeMaster']/drop[@name='foodHoney']/@prob">1</set>
+    <!--** 树桩 -->
+    <set xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']/property[@name='DestroyedEvent']/@value">marisa_block_tree_stump_bees</set>
     <append xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']">
-        <drop event="Harvest" name="foodHoney" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
+        <drop event="Destroy" name="resourceBeeswax" count="1" prob="1"/>
+        <drop event="Harvest" name="resourceBeeswax" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
     </append>
+    <!--** 树 -->
     <remove xpath="/blocks/block[@name='treeMaster']/drop[@name='foodHoney']"/>
     <append xpath="/blocks/block[@name='treeMaster']">
-        <drop event="Destroy" name="foodHoney" count="1" prob="1"/>
-        <drop event="Harvest" name="foodHoney" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
+        <property name="DestroyedEvent" value="marisa_block_tree_stump_bees"/>
+        <drop event="Destroy" name="resourceBeeswax" count="1" prob="1"/>
+        <drop event="Harvest" name="resourceBeeswax" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
     </append>
+    <!--** 蜂房 -->
+    <set xpath="/blocks/block[@name='cntApiary']/property[@name='FuelTypes']/@value">2,3,resourceCropChrysanthemumPlant,resourceCropGoldenrodPlant,resourceCropCottonPlant</set>
+    <set xpath="/blocks/block[@name='cntApiary']/property[@name='ConvertToItem' or @name='ModdedConvertToItem']/@value">resourceBeeswax</set>
+    <set xpath="/blocks/block[@name='cntApiary']/property[@name='MinConvertTime' or @name='MaxConvertTime']/@value">100</set>
+    <set xpath="/blocks/block[@name='cntApiary']/property[@name='ItemIconBackdrop']/@value">ui_game_symbol_harvest</set>
+    <append xpath="/blocks/block[@name='cntApiary']">
+        <property name="OutputGridHeight" value="3"/>
+    </append>
+
     <!--*** 矿石获取数量加成标签 -->
     <set xpath="/blocks/block/drop[@tag='oreWoodHarvest']/@tag">oreWoodHarvest,marisaOreHarvest</set>
+
 
     <!--*** 修改 双开木门 双开铁门 可旋转角度 -->
     <remove xpath="/blocks/block[@name='oldWoodDoorDouble']/property[@name='AllowAllRotations']"/>
@@ -24,6 +40,7 @@
     <append xpath="/blocks/block[@name='ironDoorDoubleWhite']">
         <property name="AllowedRotations" value="Basic90"/>
     </append>
+
 
     <!--*** 方块造成电击修改 -->
     <set xpath="/blocks/block/property[@name='Buff' and @value='buffShocked']/@value">buffShockedBlock</set>
