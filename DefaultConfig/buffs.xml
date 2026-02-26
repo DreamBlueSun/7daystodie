@@ -282,7 +282,7 @@
 		<effect_group>
 			<!-- Remove particle effect if not on fire, this is a backup removal for remote clients -->
 			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="p_onFire">
-				<requirement name="!HasBuff" buff="buffIsOnFire"/>
+				<requirement name="!HasBuff" buff="buffIsOnFire,buffRingOfFireEffect"/>
 			</triggered_effect>
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" particle="p_onFire" shape_mesh="true">
@@ -6469,6 +6469,11 @@
 			<triggered_effect trigger="onSelfBuffStack" action="GetBuffDuration" reference="$buffShockedDisplay"/>
 
 			<passive_effect name="HealthChangeOT" operation="base_add" value="-6"/>
+			
+			<passive_effect name="HealthChangeOT" operation="base_add" value="-12">
+				<requirement names="ItemHasTags" tags="stunBaton"/>
+				<requirement name="CVarCompare" cvar="perkIntelMaster5" operation="GT" value="0"/>
+			</passive_effect>
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedDisplay" operation="add" value="-1"/>
 
@@ -6498,7 +6503,7 @@
 
 			<triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
 			<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="ETrapHit"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="ETrapHit,perkIntelMaster5"/>
 			<triggered_effect trigger="onSelfLeaveGame" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
 
 			<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="electric_fence_impact"/>
@@ -9911,7 +9916,7 @@
 	<!-- TRIGGERED_BY: Items = ringOfFireAdmin -->
 	<!-- Admin AOE item to quickly burn/kill hostile entities -->
 	<buff name="buffRingOfFire" name_key="buffRingOfFireName" description_key="buffRingOfFireDesc" icon="ui_game_symbol_fire" icon_color="200,200,0" remove_on_death="false">
-		<stack_type value="replace"/>
+		<stack_type value="ignore"/>
 		<duration value="0"/>
 		<update_rate value=".7"/>
 		<display_value_key value="buffRingOfFireEffectNameShort"/>
@@ -9942,10 +9947,18 @@
 
 		<effect_group>
 			<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,10" value="0,500"/>
-
-			<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire"/>
 			<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
 			<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+		</effect_group>
+
+		<effect_group>
+			<requirement name="!IsSDCS"/>
+			<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
+		</effect_group>
+
+		<effect_group>
+			<requirement name="IsSDCS"/>
+			<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
 		</effect_group>
 	</buff>
 
@@ -9953,10 +9966,10 @@
 	<!-- TRIGGERED_BY: Items = rocketBootsAdmin -->
 	<!-- Don't break legs when using rocketBootsAdmin item -->
 	<buff name="buffDontBreakMyLeg" hidden="true" remove_on_death="false">
-		<stack_type value="replace"/>
+		<stack_type value="ignore"/>
 		<duration value="0"/>
 	</buff>
-	
+
 	<!-- *** buffRadiatedRegen -->
 	<!-- TRIGGERED_BY: Entity Class = radiated zombies -->
 	<!-- Regenerates health over time -->
@@ -10015,7 +10028,7 @@
 			<passive_effect name="PlayerExpGain" operation="perc_add" value="-.1" tags="Harvesting"/>
 		</effect_group>
 	</buff>
-	
+
 	<buff name="buffDontMove" hidden="true" remove_on_death="false">
 		<stack_type value="replace"/>
 		<duration value="3"/>
@@ -10625,7 +10638,7 @@
 				<!-- </passive_effect> -->
 				<!-- Reduce health without smoothie buffs -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
-					<requirement name="!HasBuff" buff="buffDesert_Hazard_Over,buffDesertSmoothieRun"/>
+					<requirement name="!HasBuff" buff="buffDesert_Hazard_Over,buffOasisSmoothieRun"/>
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-1">
@@ -10633,7 +10646,7 @@
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-1">
-					<requirement name="HasBuff" buff="buffDesertSmoothieRun"/>
+					<requirement name="HasBuff" buff="buffOasisSmoothieRun"/>
 				</triggered_effect>
 				<!-- Play pain sounds -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
@@ -10903,7 +10916,7 @@
 				<!-- </passive_effect> -->
 				<!-- Reduce health without smoothie buffs -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
-					<requirement name="!HasBuff" buff="buffSnow_Hazard_Over,buffSnowSmoothieRun"/>
+					<requirement name="!HasBuff" buff="buffSnow_Hazard_Over,buffFrostbiteSmoothieRun"/>
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-1">
@@ -10911,7 +10924,7 @@
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-1">
-					<requirement name="HasBuff" buff="buffSnowSmoothieRun"/>
+					<requirement name="HasBuff" buff="buffFrostbiteSmoothieRun"/>
 				</triggered_effect>
 				<!-- Play pain sounds -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
@@ -11174,7 +11187,7 @@
 				<passive_effect name="HealthMaxBlockage" operation="base_add" value="@.WastelandStage01DMG"/>
 				<!-- Reduce health without smoothie buffs -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-4">
-					<requirement name="!HasBuff" buff="buffWasteland_Hazard_Over,buffWastelandSmoothieRun"/>
+					<requirement name="!HasBuff" buff="buffWasteland_Hazard_Over,buffAtomicSmoothieRun"/>
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
@@ -11182,7 +11195,7 @@
 				</triggered_effect>
 				<!-- Reduce health 50% less with smoothie buff -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddHealth" health="-2">
-					<requirement name="HasBuff" buff="buffWastelandSmoothieRun"/>
+					<requirement name="HasBuff" buff="buffAtomicSmoothieRun"/>
 				</triggered_effect>
 				<!-- Play pain sounds -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="player#painsm"/>
@@ -15411,6 +15424,12 @@
 
 			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="-0.15,0,0.035" local_rotation="90,90,0" local_scale="1.75,1.75,1.75" parent_transform="Head">
 				<requirement name="EntityTagCompare" tags="human"/>
+				<requirement name="!EntityTagCompare" tags="humanSDCS"/>
+				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
+			</triggered_effect>
+			
+			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,0.15,0.035" local_rotation="0,90,180" local_scale="1.75,1.75,1.75" parent_transform="Head">
+				<requirement name="EntityTagCompare" tags="humanSDCS"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
 
