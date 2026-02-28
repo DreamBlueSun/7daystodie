@@ -1950,13 +1950,13 @@
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsAttack" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionAttack" duration="182"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMushroomsAttack" duration="302"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsAttack" operation="subtract" value="1"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsDefend" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIridescentPotionDefend" duration="182"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMushroomsDefend" duration="302"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsDefend" operation="subtract" value="1"/>
 			</effect_group>
@@ -3970,6 +3970,24 @@
 		</buff>
 
 
+
+		<!-- 怪力菇 -->
+		<buff name="buffMushroomsAttack" name_key="buffMushroomsAttackName" description_key="buffMushroomsAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="302"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="3" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 忍耐菇 -->
+		<buff name="buffMushroomsDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="302"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05"/>
+			</effect_group>
+		</buff>
 
 		<!-- 鬼人药 -->
 		<buff name="buffIridescentPotionAttack" name_key="buffIridescentPotionAttackName" description_key="buffIridescentPotionAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
