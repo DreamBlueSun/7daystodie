@@ -55658,6 +55658,31 @@
             </effect_group>
         </item_modifier>
 
+        <!-- ** 箭托 -->
+        <item_modifier name="IridescentModWeaponL1BowArrowRest" installable_tags="bow" modifier_tags="accuracy" blocked_tags="noMods" type="attachment">
+            <property name="Extends" value="modGeneralMaster"/>
+            <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
+            <property name="CustomIcon" value="modGunBowArrowRest"/>
+            <property name="CustomIconTint" value="#84E1EC"/>
+            <property name="EconomicValue" value="430"/>
+            <property name="Material" value="MIridescentCube"/>
+            <property name="Weight" value="43"/>
+            <effect_group tiered="false">
+                <passive_effect name="SpreadMultiplierAiming" operation="perc_add" value="-.1"/>
+                <passive_effect name="SpreadMultiplierHip" operation="perc_add" value="-.1"/>
+            </effect_group>
+            <effect_group tiered="false">
+                <requirement name="CVarCompare" cvar=".bowArrowRestDynamicMagazineSize" operation="EQ" value="1"/>
+                <passive_effect name="ReloadSpeedMultiplier" operation="base_set" value="0.8" tags="perkArchery"/>
+            </effect_group>
+			<effect_group tiered="false">
+                <triggered_effect trigger="onSelfItemActivate" action="ModifyCVar" cvar=".bowArrowRestDynamicMagazineSize" operation="set" value="1"/>
+                <triggered_effect trigger="onSelfItemDeactivate" action="ModifyCVar" cvar=".bowArrowRestDynamicMagazineSize" operation="set" value="0"/>
+                <triggered_effect trigger="onSelfItemActivate" silent_on_equip="true" action="PlaySound" target="self" sound="flashlight_toggle" play_in_head="false"/>
+                <triggered_effect trigger="onSelfItemDeactivate" silent_on_equip="true" action="PlaySound" target="self" sound="flashlight_toggle" play_in_head="false"/>
+            </effect_group>
+        </item_modifier>
+
 
 
         <!-- *** 特殊功能模组 -->
