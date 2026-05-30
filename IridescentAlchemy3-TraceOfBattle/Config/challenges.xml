@@ -20,6 +20,7 @@
 
 
 
+    <!--** 基础新手任务 -->
     <set xpath="/challenges/challenge[@name='craftClothes']/objective[@type='Craft']/@item">IridescentArmorT0LeatherPrimitiveOutfit</set>
 
     <set xpath="/challenges/challenge[@name='killLumberjack']/objective[@type='Kill']/@entity_names">zombieLumberjack,zombieLumberjackFeral,zombieLumberjackRadiated,zombieLumberjackInfernal,zombieLumberjackCrystallization,zombieLumberjackBerserk</set>
@@ -38,6 +39,35 @@
         </challenge>
     </insertAfter>
 
+    <!--** 定居 -->
+    <remove xpath="/challenges/challenge[@name='placeDoor' or @name='placeStorageContainer' or @name='upgradeToCobblestone']"/>
+    <insertAfter xpath="/challenges/challenge[@name='placeSpikeTraps']">
+        <!--* 放置 水栽培养皿[蓝蘑菇] -->
+        <challenge name="placeIridescentPlantMushroomsHealth" title_key="challengePlaceplaceIridescentPlantMushroomsHealth" icon="ui_game_symbol_harvest" group="Homesteading" short_description_key="challengePlaceplaceIridescentPlantMushroomsHealthShort" description_key="challengePlaceplaceIridescentPlantMushroomsHealthDesc">
+            <objective type="BlockPlace" block="IridescentPlantHydroponicVerticalMushroomsHealth" count="1"/>
+        </challenge>
+        <!--* 放置 炼金收集器 -->
+        <challenge name="placeMarisaCntDewCollector" title_key="challengePlaceMarisaCntDewCollector" icon="ui_game_symbol_mother_load" group="Homesteading" short_description_key="challengePlaceMarisaCntDewCollectorShort" description_key="challengePlaceMarisaCntDewCollectorDesc">
+            <objective type="BlockPlace" block="cntDewCollectorScrapIron" count="1"/>
+        </challenge>
+        <!--* 放置 旗帜 -->
+        <challenge name="placeMarisaBannerStation" title_key="challengePlaceMarisaBannerStation" icon="ui_game_symbol_adventure" group="Homesteading" short_description_key="challengePlaceMarisaBannerStationShort" description_key="challengePlaceMarisaBannerStationDesc">
+            <objective type="BlockPlace" block="BannerStation" count="1"/>
+        </challenge>
+    </insertAfter>
+
+    <!--** 进阶生存 -->
+    <remove xpath="/challenges/challenge[@name='eatCharredMeat']"/>
+    <insertAfter xpath="/challenges/challenge[@name='drinkWaterSource']">
+        <!--* 放置 魔理沙的微波炉 -->
+        <challenge name="placeMarisaMicrowaveOven" title_key="challengePlaceMarisaMicrowaveOven" icon="ui_game_symbol_cookware" group="AdvancedSurvival" short_description_key="challengePlaceMarisaMicrowaveOvenShort" description_key="challengePlaceMarisaMicrowaveOvenDesc" reward_text_key="challenge_reward_500xp" reward_event="challenge_reward_500">
+            <objective type="BlockPlace" block="MarisaMicrowaveOven" count="1"/>
+        </challenge>
+    </insertAfter>
+
+
+
+    <!--** 环境挑战任务优化 -->
     <remove xpath="/challenges/challenge[@name='burntSurvivalKillZombie']/objective[@type='Kill']"/>
     <remove xpath="/challenges/challenge[@name='desertSurvivalKillZombie']/objective[@type='Kill']"/>
     <remove xpath="/challenges/challenge[@name='snowSurvivalKillZombie']/objective[@type='Kill']"/>
