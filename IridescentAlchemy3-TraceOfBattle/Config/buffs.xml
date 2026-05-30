@@ -248,6 +248,34 @@
 		</buff>
 	</insertAfter>
 
+	<!-- *** 糖果 -->
+	<!-- ** 原子迷 -->
+	<remove xpath="/buffs/buff[@name='buffDrugAtomJunkies']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffDrugFortBites']">
+		<buff name="buffDrugAtomJunkies" name_key="drugAtomJunkies" description_key="drugAtomJunkiesDesc" icon="ui_game_symbol_candy_atom_junkies">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<display_value value=".buffDrugAtomJunkiesDisplay"/>
+			<display_value_format value="time"/>
+
+			<effect_group>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="subtract" value="@$MetabolismDuration"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugAtomJunkiesDisplay" operation="set" value="@$buffDrugAtomJunkiesDuration"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugAtomJunkiesDisplay" operation="divide" value="@$MetabolismDuration"/>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrugAtomJunkies">
+					<requirement name="CVarCompare" cvar="$buffDrugAtomJunkiesDuration" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffDrugAtomJunkiesDisplay,$buffDrugAtomJunkiesDuration"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
+
 
 
 	<!-- 添加 状态检查 -->
