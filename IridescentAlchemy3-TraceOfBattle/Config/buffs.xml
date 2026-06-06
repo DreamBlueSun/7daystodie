@@ -61,55 +61,6 @@
 		</buff>
 	</insertAfter>
 
-
-	<!-- 潜伏3级 隐蔽的猫 -->
-	<remove xpath="/buffs/buff[@name='buffDrugCovertCats']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffDrugAtomJunkies']">
-		<buff name="buffDrugCovertCats" name_key="drugCovertCats" description_key="drugCovertCatsDesc" icon="ui_game_symbol_candy_covert_cats">
-			<stack_type value="replace"/>
-			<duration value="0"/>
-			<display_value value=".buffDrugCovertCatsDisplay"/>
-			<display_value_format value="time"/>
-
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugCovertCatsDuration" operation="subtract" value="@$MetabolismDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugCovertCatsDisplay" operation="set" value="@$buffDrugCovertCatsDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugCovertCatsDisplay" operation="divide" value="@$MetabolismDuration"/>
-			</effect_group>
-
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrugCovertCats">
-					<requirement name="CVarCompare" cvar="$buffDrugCovertCatsDuration" operation="LTE" value="0"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffDrugCovertCatsDisplay,$buffDrugCovertCatsDuration"/>
-			</effect_group>
-
-			<effect_group>
-				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
-				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-				<passive_effect name="DamageBonus" operation="base_add" value="30"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="30"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
-				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
-				<passive_effect name="DamageBonus" operation="base_add" value="30"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="30"/>
-			</effect_group>
-		</buff>
-	</insertAfter>
-
-	<!-- ** 学霸刺青 -->
-	<append xpath="/buffs/buff[@name='buffDrugNerdTats']">
-		<effect_group>
-			<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaIntensifyAoe"/>
-			<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaEffectAoe"/>
-		</effect_group>
-	</append>
-
 	<!-- 添加 精准医疗 效果 -->
 	<remove xpath="/buffs/buff[@name='buffHealHealth']"/>
 	<append xpath="/buffs">
@@ -209,25 +160,63 @@
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/passive_effect[@name='AttributeLevel']"/>
 	<remove xpath="/buffs/buff[@name='buffInjuryConcussion']/effect_group/triggered_effect[@action='RefreshPerks']"/>
 
-	<!-- *** 糖果 -->
-	<!-- ** 交易加成降低 -->
-	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringBuying']/@value">.05</set>
-	<set xpath="/buffs/buff[@name='buffDrugSugarButts']/effect_group/passive_effect[@name='BarteringSelling']/@value">.05</set>
-	<!-- ** 采伐加成适配 -->
-	<set xpath="/buffs/buff[@name='buffDrugRockBusters']/effect_group/passive_effect[@name='HarvestCount']/@tags">oreWoodHarvest,marisaTraversingLower,marisaTraversingUpper,marisaTraversingSupper</set>
 
-	<!-- *** 碾压王 速度改为20% -->
-	<set xpath="/buffs/buff[@name='buffMegaCrush']/effect_group/passive_effect[@name='RunSpeed']/@value">.2</set>
-	<!-- *** 啤酒 移除暴击伤害 添加酒精耐性效果 -->
+
+	<!-- *** 饮品 -->
+	<remove xpath="/buffs/buff[@name='' or @name='buffDrugRockBusters' or @name='buffDrugSkullCrushers' or @name='buffDrugSugarButts']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffDrugFortBites']">
+		<!-- 碾压王 -->
+		<buff name="buffMegaCrush" name_key="buffMegaCrushName" description_key="buffMegaCrushDesc" tooltip_key="buffMegaCrushTooltip" icon="ui_game_symbol_pills">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<!-- 碾压王 速度调整 -->
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".3"/>
+				<passive_effect name="WaterLossPerStaminaPointGained" operation="perc_add" value="1.2"/> <!-- regening stamina costs you water -->
+				<!--<passive_effect name="StaminaLossMaxMult" operation="perc_add" value="1.2"/> --><!-- regening stamina costs food, blacks out the stamina bar -->
+			</effect_group>
+		</buff>
+		<!-- 私酒 -->
+		<buff name="buffDrunkGrandpasMoonshine" name_key="buffDrunkGrandpasMoonshineName" description_key="buffDrunkGrandpasMoonshineDesc" tooltip_key="buffDrunkGrandpasMoonshineTooltip" icon="ui_game_symbol_beer">
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<!-- 私酒 移除近战伤害 降低回复 添加酒精耐性判定 -->
+			<effect_group>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value="0.4"/> <!-- buffDrunkGrandpasMoonshine -->
+				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryStunned00,buffInjuryStunned01,buffInjuryStunned01Shotgun,buffInjuryStunned02,buffInjuryStunned02Shotgun,buffInjuryStunned03,buffInjuryStunned03Shotgun"/>
+				<passive_effect name="HealthChangeOT" operation="base_add" value="6"/>
+				<passive_effect name="FoodLossPerHealthPointGained" operation="base_set" value="0"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="4" effect_name="Drunk"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$buffGrandpasMoonshineDuration,.buffGrandpasMoonshineDisplay"/>
+			</effect_group>
+		</buff>
+		<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
+			<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
+		</append>
+		<!-- 美味酱 -->
+		<buff name="buffDrunkGrandpasAwesomeSauce" name_key="buffDrunkGrandpasAwesomeSauceName" description_key="buffDrunkGrandpasAwesomeSauceDesc" tooltip_key="buffDrunkGrandpasAwesomeSauceTooltip" icon="ui_game_symbol_beer">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="BarteringBuying" operation="base_add" value=".05"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value=".05"/>
+			</effect_group>
+		</buff>
+		<!-- 学习妙药 -->
+		<buff name="buffDrunkGrandpasLearningElixir" name_key="buffDrunkGrandpasLearningElixirName" description_key="buffDrunkGrandpasLearningElixirDesc" tooltip_key="buffDrunkGrandpasLearningElixirTooltip" icon="ui_game_symbol_beer">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
+	<!-- 啤酒 移除暴击伤害 添加酒精耐性判定 -->
 	<remove xpath="/buffs/buff[@name='buffBeer']/effect_group/passive_effect[@name='EntityDamage']"/>
 	<set xpath="/buffs/buff[@name='buffBeer']/effect_group/triggered_effect/requirement[@name='ProgressionLevel' and @progression_name='perkBarBrawling7BoozedUp']/@progression_name">perkMarisaScreenEffectDrunk</set>
-	<!-- *** 私酒 移除近战伤害 降低回复 添加酒精耐性效果 -->
-	<remove xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='EntityDamage']"/>
-	<set xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='StaminaChangeOT']/@value">.4</set>
-	<set xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/passive_effect[@name='HealthChangeOT']/@value">5</set>
-	<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
-		<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
-	</append>
 	<!-- *** 类固醇 载货量改为75 -->
 	<set xpath="/buffs/buff[@name='buffDrugSteroids']/effect_group/passive_effect[@name='CarryCapacity']/@value">120</set>
 	<!-- *** 雷克格 移除水分扣减 降低伤害加成 -->
@@ -249,29 +238,116 @@
 	</insertAfter>
 
 	<!-- *** 糖果 -->
-	<!-- ** 原子迷 -->
-	<remove xpath="/buffs/buff[@name='buffDrugAtomJunkies']"/>
+	<remove xpath="/buffs/buff[@name='buffDrugAtomJunkies' or @name='buffDrugCovertCats' or @name='buffDrugEyeKandy' or @name='buffDrugHackers' or @name='buffDrugHealthBar' or @name='buffDrugJailBreakers' or @name='buffDrugNerdTats' or @name='buffDrugOhShitzDrops' or @name='buffDrugRockBusters' or @name='buffDrugSkullCrushers' or @name='buffDrugSugarButts']"/>
 	<insertAfter xpath="/buffs/buff[@name='buffDrugFortBites']">
+		<!-- ** 原子迷 -->
 		<buff name="buffDrugAtomJunkies" name_key="drugAtomJunkies" description_key="drugAtomJunkiesDesc" icon="ui_game_symbol_candy_atom_junkies">
 			<stack_type value="replace"/>
-			<duration value="0"/>
-			<display_value value=".buffDrugAtomJunkiesDisplay"/>
-			<display_value_format value="time"/>
-
+			<duration value="300"/>
 			<effect_group>
 				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
 				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="subtract" value="@$MetabolismDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugAtomJunkiesDisplay" operation="set" value="@$buffDrugAtomJunkiesDuration"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffDrugAtomJunkiesDisplay" operation="divide" value="@$MetabolismDuration"/>
 			</effect_group>
-
+		</buff>
+        <!-- 隐蔽的猫 -->
+		<buff name="buffDrugCovertCats" name_key="drugCovertCats" description_key="drugCovertCatsDesc" icon="ui_game_symbol_candy_covert_cats">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<!-- 潜伏3级 隐蔽的猫 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrugAtomJunkies">
-					<requirement name="CVarCompare" cvar="$buffDrugAtomJunkiesDuration" operation="LTE" value="0"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffDrugAtomJunkiesDisplay,$buffDrugAtomJunkiesDuration"/>
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="LT" value="3"/>
+				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
+				<passive_effect name="DamageBonus" operation="base_add" value="30"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="30"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaSneakUp" operation="GTE" value="3"/>
+				<requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/>
+				<passive_effect name="DamageBonus" operation="base_add" value="30"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="30"/>
+			</effect_group>
+		</buff>
+        <!-- 寻宝眼药水 -->
+		<buff name="buffDrugEyeKandy" name_key="drugEyeKandy" description_key="drugEyeKandyDesc" icon="ui_game_symbol_candy_eye_candy">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="LootStage" operation="base_add" value="25"/>
+				<passive_effect name="LootStage" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+        <!-- 黑客 -->
+		<buff name="buffDrugHackers" name_key="drugHackers" description_key="drugHackersDesc" icon="ui_game_symbol_candy_hackers">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="perkSalvageOperations"/>
+				<passive_effect name="HarvestCount" operation="perc_add" value="1" tags="salvageHarvest"/>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.25" tags="Harvesting"/>
+			</effect_group>
+		</buff>
+        <!-- 能量棒 -->
+		<buff name="buffDrugHealthBar" name_key="drugHealthBar" description_key="drugHealthBarDesc" icon="ui_game_symbol_candy_health_bar">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<!-- heal effect is rolled into $critHitNaturalHealingRate -->
+				<passive_effect name="BuffResistance" operation="base_add" value=".25" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+				<passive_effect name="HealthMax" operation="base_add" value="10"/>
+			</effect_group>
+		</buff>
+        <!-- 越狱者 -->
+		<buff name="buffDrugJailBreakers" name_key="drugJailBreakers" description_key="drugJailBreakersDesc" icon="ui_game_symbol_candy_jail_breakers">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="LockPickBreakChance" operation="perc_subtract" value="2"/>
+			</effect_group>
+		</buff>
+        <!-- 学霸刺青 -->
+		<buff name="buffDrugNerdTats" name_key="drugNerdTats" description_key="drugNerdTatsDesc" icon="ui_game_symbol_candy_nerd_tats">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaIntensifyAoe"/>
+				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaEffectAoe"/>
+			</effect_group>
+		</buff>
+        <!-- 该死的坠落 -->
+		<buff name="buffDrugOhShitzDrops" name_key="drugOhShitzDrops" description_key="drugOhShitzDropsDesc" icon="ui_game_symbol_candy_oh_shitz">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+		</buff>
+        <!-- 岩石克星 -->
+		<buff name="buffDrugRockBusters" name_key="drugRockBusters" description_key="drugRockBustersDesc" icon="ui_game_symbol_candy_rock_busters">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="perkMiner69r"/>
+				<!-- 采伐加成适配 -->
+				<passive_effect name="HarvestCount" operation="perc_add" value=".2" tags="oreWoodHarvest,marisaTraversingLower,marisaTraversingUpper,marisaTraversingSupper"/>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value="-.05" tags="Harvesting"/>
+			</effect_group>
+		</buff>
+        <!-- 头骨粉碎者 -->
+		<buff name="buffDrugSkullCrushers" name_key="drugSkullCrushers" description_key="drugSkullCrushersDesc" icon="ui_game_symbol_candy_skull_crushers">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="perc_add" value=".2" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler"/>
+			</effect_group>
+		</buff>
+		<!-- 烟蒂糖 -->
+		<buff name="buffDrugSugarButts" name_key="drugSugarButts" description_key="drugSugarButtsDesc" icon="ui_game_symbol_candy_sugar_butts">
+			<stack_type value="replace"/>
+			<duration value="300"/>
+			<effect_group>
+				<!-- 交易加成降低 -->
+				<passive_effect name="BarteringBuying" operation="base_add" value="0.05"/>
+				<passive_effect name="BarteringSelling" operation="base_add" value="0.05"/>
 			</effect_group>
 		</buff>
 	</insertAfter>
@@ -1368,135 +1444,113 @@
 			</effect_group>
 
 			<!-- * 广域化lv2 糖果-->
-			<!-- ** 广域化 drugAtomJunkies -->
+			<!-- ** 广域化 原子迷 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugAtomJunkies" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugAtomJunkiesDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugAtomJunkies"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugAtomJunkies" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugAtomJunkies" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugCovertCats -->
+			<!-- ** 广域化 隐蔽的猫 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugCovertCats" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugCovertCatsDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugCovertCatsDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugCovertCatsDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugCovertCats"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugCovertCats" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugCovertCats" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugEyeKandy -->
+			<!-- ** 广域化 寻宝眼药水 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugEyeKandy" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugEyeKandyDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugEyeKandyDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugEyeKandyDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugEyeKandy"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugEyeKandy" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugEyeKandy" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugHackers -->
+			<!-- ** 广域化 黑客 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugHackers" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugHackersDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugHackers"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugHackers" duration="62"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugHackers" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugHealthBar -->
+			<!-- ** 广域化 能量棒 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugHealthBar" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugHealthBarDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugHealthBarDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugHealthBarDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugHealthBar"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugHealthBar" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugHealthBar" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugJailBreakers -->
+			<!-- ** 广域化 越狱者 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugJailBreakers" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugJailBreakersDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugJailBreakersDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugJailBreakersDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugJailBreakers"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugJailBreakers" duration="302"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugJailBreakers" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugNerdTats -->
+			<!-- ** 广域化 学霸刺青 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugNerdTats" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugNerdTatsDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugNerdTatsDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugNerdTatsDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugNerdTats"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugNerdTats" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugNerdTats" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugOhShitzDrops -->
+			<!-- ** 广域化 该死的坠落 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugOhShitzDrops" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugOhShitzDropsDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugOhShitzDropsDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugOhShitzDropsDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugOhShitzDrops"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugOhShitzDrops" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugOhShitzDrops" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugRockBusters -->
+			<!-- ** 广域化 岩石克星 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugRockBusters" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugRockBustersDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugRockBustersDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugRockBustersDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugRockBusters"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugRockBusters" duration="602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugRockBusters" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugSkullCrushers -->
+			<!-- ** 广域化 头骨粉碎者 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugSkullCrushers" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugSkullCrushersDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugSkullCrushersDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugSkullCrushersDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugSkullCrushers"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugSkullCrushers" duration="3602"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugSkullCrushers" operation="subtract" value="1"/>
 			</effect_group>
-			<!-- ** 广域化 drugSugarButts -->
+			<!-- ** 广域化 烟蒂糖 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drugSugarButts" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugSugarButtsDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugSugarButtsDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffDrugSugarButtsDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugSugarButts"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugSugarButts" duration="302"/>
+
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="2"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugSugarButts" operation="subtract" value="1"/>
 			</effect_group>
@@ -1737,10 +1791,8 @@
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkCanMegaCrush" operation="GTE" value="1"/>
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="60"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffMegaCrushDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffMegaCrushDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffMegaCrushDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffProcessConsumables,buffMegaCrush"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+                <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffMegaCrush" duration="3602"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkCanMegaCrush" operation="GTE" value="1"/>
@@ -1883,10 +1935,7 @@
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasMoonshine" operation="GTE" value="1"/>
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasMoonshineDuration" operation="add" value="123"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasMoonshineDuration" operation="set" value="363">
-					<requirement name="CVarCompare" cvar="$buffGrandpasMoonshineDuration" operation="GT" value="363"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrunkGrandpasMoonshine"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrunkGrandpasMoonshine" duration="3602"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasMoonshine" operation="GTE" value="1"/>
@@ -1901,10 +1950,7 @@
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasAwesomeSauce" operation="GTE" value="1"/>
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasAwesomeSauceDuration" operation="add" value="183"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasAwesomeSauceDuration" operation="set" value="543">
-					<requirement name="CVarCompare" cvar="$buffGrandpasAwesomeSauceDuration" operation="GT" value="543"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrunkGrandpasAwesomeSauce"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrunkGrandpasAwesomeSauce" duration="302"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasAwesomeSauce" operation="GTE" value="1"/>
@@ -1919,10 +1965,7 @@
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasLearningElixir" operation="GTE" value="1"/>
 				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasLearningElixirDuration" operation="add" value="363"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffGrandpasLearningElixirDuration" operation="set" value="1083">
-					<requirement name="CVarCompare" cvar="$buffGrandpasLearningElixirDuration" operation="GT" value="1083"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrunkGrandpasLearningElixir"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrunkGrandpasLearningElixir" duration="3602"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_drinkJarGrandpasLearningElixir" operation="GTE" value="1"/>
