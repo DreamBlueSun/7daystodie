@@ -486,8 +486,6 @@
 
 	</append>
 
-
-
 	<insertAfter xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group/triggered_effect[@action='ModifyCVar' and @cvar='.impactSpeed' and @value='@$parkourBonus']">
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$buffFeastEffectBonus"/>
 	</insertAfter>
@@ -5842,8 +5840,6 @@
 
 	</append>
 
-
-
 	<!-- *** 负面BUFF -->
 	<append xpath="/buffs">
 
@@ -5932,8 +5928,6 @@
 		</buff>
 
 	</append>
-
-
 
 	<!-- 任务BUFF -->
 	<append xpath="/buffs">
@@ -6031,8 +6025,6 @@
 		</buff>
 
 	</append>
-
-
 
 	<!-- *** 与武器联动相关 -->
 	<!-- ** 流血 -->
@@ -6164,6 +6156,7 @@
 
 			<effect_group name="debuff">
 				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
+				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"><requirement name="HasBuff" buff="buffMeleeIronAxeBleedFear"/></passive_effect>
 			</effect_group>
 
 			<effect_group name="particle">
@@ -6723,8 +6716,6 @@
 			</effect_group>
 		</buff>
 	</insertAfter>
-
-
 
 	<!-- 武器BUFF -->
 	<append xpath="/buffs">
@@ -7830,6 +7821,23 @@
 			</effect_group>
 		</buff>
 
+		<!-- 战斧 恐惧 -->
+		<buff name="buffMeleeIronAxeBleedFearCan" name_key="buffMeleeIronAxeBleedFearCanName" description_key="buffMeleeIronAxeBleedFearCanDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="13"/>
+		</buff>
+		<buff name="buffMeleeIronAxeBleedFear" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="10"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMeleeIronAxeBleedFear"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="IsAlive" target="self"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetBigHead" enabled="true"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="SetBigHead" enabled="false"/>
+			</effect_group>
+		</buff>
 
 		<!-- 沙鹰 烈炎净世 -->
 		<buff name="buffModBuffFireAoeEffect" hidden="true">
@@ -7912,8 +7920,6 @@
 		</buff>
 
 	</append>
-
-
 
 	<!-- 护甲套装BUFF -->
 	<remove xpath="/buffs/buff[@name='buffLumberjackSetBonus' or @name='buffPreacherSetBonus' or @name='buffRogueSetBonus' or @name='buffAthleticSetBonus' or @name='buffEnforcerSetBonus']"/>
