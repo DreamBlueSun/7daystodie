@@ -192,6 +192,10 @@
 
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$buffGrandpasMoonshineDuration,.buffGrandpasMoonshineDisplay"/>
 			</effect_group>
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrunkGrandpasMoonshine"/>
+			</effect_group>
 		</buff>
 		<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
 			<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
