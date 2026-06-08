@@ -179,27 +179,27 @@
 		<!-- 私酒 -->
 		<buff name="buffDrunkGrandpasMoonshine" name_key="buffDrunkGrandpasMoonshineName" description_key="buffDrunkGrandpasMoonshineDesc" tooltip_key="buffDrunkGrandpasMoonshineTooltip" icon="ui_game_symbol_beer">
 			<stack_type value="replace"/>
-			<duration value="0"/>
+			<duration value="300"/>
 			<!-- 私酒 移除近战伤害 降低回复 添加酒精耐性判定 -->
 			<effect_group>
 				<passive_effect name="StaminaChangeOT" operation="perc_add" value="0.4"/> <!-- buffDrunkGrandpasMoonshine -->
 				<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryStunned00,buffInjuryStunned01,buffInjuryStunned01Shotgun,buffInjuryStunned02,buffInjuryStunned02Shotgun,buffInjuryStunned03,buffInjuryStunned03Shotgun"/>
 				<passive_effect name="HealthChangeOT" operation="base_add" value="6"/>
 				<passive_effect name="FoodLossPerHealthPointGained" operation="base_set" value="0"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="1" fade="4" effect_name="Drunk">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade="4" effect_name="Drunk">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="GTE" value="1"/>
+				</triggered_effect>
 				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="4" effect_name="Drunk"/>
 
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$buffGrandpasMoonshineDuration,.buffGrandpasMoonshineDisplay"/>
 			</effect_group>
-			<effect_group>
-				<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffDrunkGrandpasMoonshine"/>
-			</effect_group>
 		</buff>
-		<append xpath="/buffs/buff[@name='buffDrunkGrandpasMoonshine']/effect_group/triggered_effect[@action='ModifyScreenEffect' and @trigger!='onSelfBuffRemove']">
-			<requirement name="ProgressionLevel" progression_name="perkMarisaScreenEffectDrunk" operation="Equals" value="0"/>
-		</append>
 		<!-- 美味酱 -->
 		<buff name="buffDrunkGrandpasAwesomeSauce" name_key="buffDrunkGrandpasAwesomeSauceName" description_key="buffDrunkGrandpasAwesomeSauceDesc" tooltip_key="buffDrunkGrandpasAwesomeSauceTooltip" icon="ui_game_symbol_beer">
 			<stack_type value="replace"/>
@@ -2212,6 +2212,11 @@
 
 
 			<!-- * 幸运 -->
+			<effect_group>
+				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="EQ" value="0"/>
+				<requirement name="HasBuff" buff="buffPerkMarisaQuestLucking1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaQuestLucking1"/>
+			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaQuestLucking" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffPerkMarisaQuestLuckingBefore1">
