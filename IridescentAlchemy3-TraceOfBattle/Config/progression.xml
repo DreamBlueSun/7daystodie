@@ -3326,7 +3326,13 @@
             <level_requirements level="3"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$buffThreeCountUpUpDuration" operation="set" level="0,1,2,3" value="15,30,45,45"/>
+                <requirement name="ItemHasTags" tags="melee"/>
+                <requirement name="HasBuff" buff="buffEntityDamageThreeCountUpUp"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value="8,16,32" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" level="1,2,3" value=".8,1.6,3.2" tags="perkBoomstick,perkTurrets"/>
+            </effect_group>
+            <effect_group>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar="$buffThreeCountUpUpDuration" operation="set" level="0,1,2,3" value="15,30,45,60"/>
             </effect_group>
 
             <effect_group>

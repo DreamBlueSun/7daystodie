@@ -4,7 +4,7 @@ import iridescent.Constants;
 import iridescent.WriteToFile;
 
 /**
- *
+ * 战斧
  */
 
 public class MeleeIronAxeBleed {
@@ -15,8 +15,8 @@ public class MeleeIronAxeBleed {
     public static final String STOP = "\n" + "    </append>";
 
     public static void main(String[] args) {
-        int de = RANK_ENTITY_DAMAGE_S1;
-        int db = RANK_BLOCK_DAMAGE_S1;
+        int de = RANK_ENTITY_DAMAGE_S0;
+        int db = RANK_BLOCK_DAMAGE_S0;
         StringBuilder s = new StringBuilder(START);
         for (int i = 1; i <= 13; i++) {
             de += RANK_ENTITY_DAMAGE_ARR[i - 1];
@@ -30,40 +30,36 @@ public class MeleeIronAxeBleed {
                     .replace("MarisaWeaponFlag_ModSlots", Constants.RANK_MOD_SLOTS_LIST.get(i - 1))
                     .replace("MarisaWeaponFlag_EntityDamageTier", RANK_ENTITY_DAMAGE_TIER)
                     .replace("MarisaWeaponFlag_EntityDamage", String.valueOf(de))
-                    .replace("MarisaWeaponFlag_BlockDamageTire", RANK_BLOCK_DAMAGE_TIER)
+                    .replace("MarisaWeaponFlag_BlockDamageTier", RANK_BLOCK_DAMAGE_TIER)
                     .replace("MarisaWeaponFlag_BlockDamage", String.valueOf(db))
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_1", D_MARISA_BLEED_EFFECT_AMOUNT_1)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_2", D_MARISA_BLEED_EFFECT_AMOUNT_2)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_3", D_MARISA_BLEED_EFFECT_AMOUNT_3)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_4", D_MARISA_BLEED_EFFECT_AMOUNT_4)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_5", D_MARISA_BLEED_EFFECT_AMOUNT_5)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_BLEED_EFFECT_AMOUNT);
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_1", D_MARISA_EFFECT_AMOUNT_1)
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_2", D_MARISA_EFFECT_AMOUNT_2)
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_3", D_MARISA_EFFECT_AMOUNT_3)
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_4", D_MARISA_EFFECT_AMOUNT_4)
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_5", D_MARISA_EFFECT_AMOUNT_5)
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT);
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S1 = 60;
+    public static final int RANK_ENTITY_DAMAGE_S0 = 60;
     public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 20, 20, 20, 30, 30, 30, 40, 40, 40, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
-    public static final int RANK_BLOCK_DAMAGE_S1 = 60;
+    public static final int RANK_BLOCK_DAMAGE_S0 = 60;
     public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 20, 20, 20, 30, 30, 30, 40, 40, 40, 0};
     public static final String RANK_BLOCK_DAMAGE_TIER = "0,10";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT = "40";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT_1 = "48";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT_2 = "56";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT_3 = "64";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT_4 = "72";
-    public static final String D_MARISA_BLEED_EFFECT_AMOUNT_5 = "80";
+    public static final String D_MARISA_EFFECT_AMOUNT = "50";
+    public static final String D_MARISA_EFFECT_AMOUNT_1 = "60";
+    public static final String D_MARISA_EFFECT_AMOUNT_2 = "70";
+    public static final String D_MARISA_EFFECT_AMOUNT_3 = "80";
+    public static final String D_MARISA_EFFECT_AMOUNT_4 = "90";
+    public static final String D_MARISA_EFFECT_AMOUNT_5 = "100";
 
-
-    // Tag
-    public static final String T1_TAG = "\n" +
-            "\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon\"/>";
     // 狂化Tag
-    public static final String T3_TAG = "\n" +
-            "\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
+    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
+    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon\"/>";
 
     //战斧
     public static final String MELEE_IRON_AXE_BLEED = "        <item name=\"MeleeIronAxeBleedSMarisaWeaponFlag_RANK\">\n" +
@@ -80,7 +76,7 @@ public class MeleeIronAxeBleed {
             "\n" +
             "            <effect_group name=\"MeleeIronAxeBleedSMarisaWeaponFlag_RANK\">\n" +
             "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"75\" tags=\"perkMiner69r,axe\"/>\n" +
-            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"16\" tags=\"primary\"/>\n" +
+            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"15\" tags=\"primary\"/>\n" +
             "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"150,225\" tier=\"1,6\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.7\" tags=\"perkMiner69r\"/>\n" +
@@ -89,7 +85,7 @@ public class MeleeIronAxeBleed {
             "                <passive_effect name=\"EntityDamage\" operation=\"base_set\" value=\"MarisaWeaponFlag_EntityDamage\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"EntityDamage\" operation=\"base_add\" value=\"MarisaWeaponFlag_EntityDamageTier\" tier=\"2,6\" tags=\"perkMiner69r\"/> <!-- tier bonus -->\n" +
             "                <passive_effect name=\"BlockDamage\" operation=\"base_set\" value=\"MarisaWeaponFlag_BlockDamage\" tags=\"perkMiner69r\"/>\n" +
-            "                <passive_effect name=\"BlockDamage\" operation=\"base_add\" value=\"MarisaWeaponFlag_BlockDamageTire\" tier=\"2,6\" tags=\"perkMiner69r\"/> <!-- tier bonus -->\n" +
+            "                <passive_effect name=\"BlockDamage\" operation=\"base_add\" value=\"MarisaWeaponFlag_BlockDamageTier\" tier=\"2,6\" tags=\"perkMiner69r\"/> <!-- tier bonus -->\n" +
             "                <passive_effect name=\"HarvestCount\" operation=\"base_set\" value=\".7\" tags=\"butcherHarvest\"/>\n" +
             "                <passive_effect name=\"DamageModifier\" operation=\"perc_add\" value=\"-.8\" tags=\"earth\"/>\n" +
             "                <passive_effect name=\"DamageModifier\" operation=\"perc_add\" value=\"-.75\" tags=\"stone\"/>\n" +
@@ -98,7 +94,7 @@ public class MeleeIronAxeBleed {
             "            <effect_group name=\"Power Attack\">\n" +
             "                <passive_effect name=\"EntityDamage\" operation=\"perc_add\" value=\"1\" tags=\"secondary\"/>\n" +
             "                <passive_effect name=\"BlockDamage\" operation=\"perc_add\" value=\"1\" tags=\"secondary\"/>\n" +
-            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"24\" tags=\"secondary\"/>\n" +
+            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"30\" tags=\"secondary\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <effect_group name=\"subtract entitydamage\" tiered=\"false\">\n" +
@@ -145,112 +141,112 @@ public class MeleeIronAxeBleed {
             "            <effect_group name=\"add effect per0 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"0\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per1 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"1\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per2 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"2\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per3 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"3\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per4 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"4\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per5 aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"5\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <effect_group name=\"add effect per0 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"0\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per1 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"1\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per2 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"2\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per3 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"3\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per4 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"4\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per5 aoe2\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"5\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <effect_group name=\"add effect per0 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"0\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per1 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"1\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_1\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per2 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"2\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_2\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per3 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"3\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_3\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per4 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"4\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_4\"/>\n" +
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect per5 aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectIntensify\" operation=\"Equals\" value=\"5\"/>\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"ModifyCVar\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" cvar=\"marisaBleedEffectAmount\" operation=\"add\" value=\"MarisaWeaponFlag_dMarisaBleedEffectAmount_5\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <effect_group name=\"add effect buff\" tiered=\"false\">\n" +
@@ -260,18 +256,18 @@ public class MeleeIronAxeBleed {
             "            </effect_group>\n" +
             "            <effect_group name=\"add effect buff aoe1\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"1\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"1\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
-            "            </effect_group>\n" +
-            "            <effect_group name=\"add effect buff aoe2\" tiered=\"false\">\n" +
-            "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
             "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
             "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"2\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
             "            </effect_group>\n" +
+            "            <effect_group name=\"add effect buff aoe2\" tiered=\"false\">\n" +
+            "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"2\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"4\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
+            "            </effect_group>\n" +
             "            <effect_group name=\"add effect buff aoe3\" tiered=\"false\">\n" +
             "                <requirement name=\"ProgressionLevel\" progression_name=\"perkMarisaEffectAoe\" operation=\"EQ\" value=\"3\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
-            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"3\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfPrimaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
+            "                <triggered_effect trigger=\"onSelfSecondaryActionRayHit\" action=\"AddBuff\" target=\"otherAOE\" target_tags=\"animal,zombie\" range=\"7\" buff=\"buffMarisaBuffBleedEffect\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <!-- 原版斧头附加效果 -->\n" +
