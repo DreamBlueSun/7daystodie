@@ -10,19 +10,19 @@
 		<!--NAMED COLORS-->
 		<style_entry name="limeGreen" 		value="222,255,163,255"/>
 		<style_entry name="tan" 					value="182,166,123,255"/>
-		<style_entry name="beige" 				value="222,206,163"/>
-		<style_entry name="borderColor" 	value="0,0,0"/>
-		<style_entry name="darkestGrey" 		value="32,32,32"/>
-		<style_entry name="darkGrey" 		value="64,64,64"/>
-		<style_entry name="mediumGrey" 	value="96,96,96"/>
-		<style_entry name="lightGrey" 		value="128,128,128"/>
-		<style_entry name="lightestGrey"	value="160,160,160"/>
-		<style_entry name="white" 				value="255,255,255"/>
-		<style_entry name="black" 				value="0,0,0"/>
-		<style_entry name="red" 					value="255,0,0"/>
-		<style_entry name="green" 					value="0,255,0"/>
-		<style_entry name="gold"					value="255,216,0"/>
-		<style_entry name="yellow"					value="255,255,0"/>
+		<style_entry name="beige" 				value="222,206,163,255"/>
+		<style_entry name="borderColor" 	value="0,0,0,255"/>
+		<style_entry name="darkestGrey" 		value="32,32,32,255"/>
+		<style_entry name="darkGrey" 		value="64,64,64,255"/>
+		<style_entry name="mediumGrey" 	value="96,96,96,255"/>
+		<style_entry name="lightGrey" 		value="128,128,128,255"/>
+		<style_entry name="lightestGrey"	value="160,160,160,255"/>
+		<style_entry name="white" 				value="255,255,255,255"/>
+		<style_entry name="black" 				value="0,0,0,255"/>
+		<style_entry name="red" 					value="255,0,0,255"/>
+		<style_entry name="green" 					value="0,255,0,255"/>
+		<style_entry name="gold"					value="255,216,0,255"/>
+		<style_entry name="yellow"					value="255,255,0,255"/>
 		<style_entry name="transparent" 	value="0,0,0,0"/>
 		
 		<style_entry name="white_half_alpha" 				value="255,255,255,128"/>
@@ -33,13 +33,22 @@
 		
 		<style_entry name="white_quarter_alpha" 			value="255,255,255,192"/>
 		
-		<style_entry name="iconColor" 						value="255,255,255" />
-		<style_entry name="labelColor" 						value="255,255,255" />
-		<style_entry name="selectedColor" 					value="222,206,163" />
-		<style_entry name="hoverColor"						value="250,255,163" />
-		<style_entry name="disabledColor"					value="160,160,160" />
+		<style_entry name="iconColor" 						value="255,255,255,255" />
+		<style_entry name="labelColor" 						value="255,255,255,255" />
+		<style_entry name="selectedColor" 					value="222,206,163,255" />
+		<style_entry name="hoverColor"						value="250,255,163,255" />
+		<style_entry name="disabledColor"					value="160,160,160,255" />
 		
-		<style_entry name="disabledLabelColor"				value="160,160,160" />
+		<style_entry name="disabledLabelColor"				value="160,160,160,255" />
+
+		<style_entry name="statBoostedColor"					value="255,175,11,255" />
+		
+		<style_entry name="signGalleryDefault" 				value="151,47,187,255"/>
+		<style_entry name="signGalleryDefaultDisabled" 		value="151,47,187,180"/>
+		<style_entry name="signGalleryPrefab" 				value="52,88,189,255"/>
+		<style_entry name="signGalleryPrefabDisabled" 		value="52,88,189,180"/>
+		<style_entry name="signEditorLayerSelected" 		value="57,208,223,255"/>
+		<style_entry name="signEditorLayerMultiSelected" 	value="35,144,155,255"/>
 		
 		<!--NAMED SPRITES-->
 		<style_entry name="default_sprite" value="menu_empty"/>
@@ -57,6 +66,25 @@
 		<style_entry name="remove_waypoint" 	value="@:Sounds/UI/ui_waypoint_delete.wav"/>
 	</global>
 	
+	<style name="listentry.background_old">
+		<style_entry name="color" value="{% !hasentry ? color(64,64,64,255) : (isselected ? color(255,255,255,255) : (hovered ? color(96,96,96,255) : color(64,64,64,255) ) ) }" />
+		<style_entry name="sprite" value="{% isselected ? 'ui_game_select_row' : 'menu_empty' }" />
+	</style>
+	
+	<style name="listentry.background">
+		<style_entry name="color" value="{% !hasentry ? color(0,0,0,0) : (isselected ? color(228, 18, 21, 180) : (hovered ? color(96,96,96,255) : color(0,0,0,0) ) ) }" />
+		<style_entry name="sprite" value="ui_game_header_fill_gradient" />
+		<style_entry name="type" value="sliced" />
+		<style_entry name="ignoreparentpadding" value="true" />
+	</style>
+	<style name="listentry.border">
+		<style_entry name="color" value="{% !hasentry ? color(0,0,0,0) : (isselected ? color(228, 18, 21, 255) : (hovered ? color(255,255,255,255) : color(64,64,64,255) ) ) }" />
+		<style_entry name="sprite" value="menu_empty" />
+		<style_entry name="type" value="sliced" />
+		<style_entry name="fillcenter" value="false" />
+		<style_entry name="ignoreparentpadding" value="true" />
+	</style>
+
 	<!--LABELS-->
 	<style type="label">
 		<style_entry name="color" value="[labelColor]"/>
@@ -128,6 +156,7 @@
 		<style_entry name="width" value="48"/>
 		<style_entry name="height" value="48"/>
 		<style_entry name="foregroundlayer" value="true" />
+		<style_entry name="globalopacitymod" value="0" />
 	</style>
 	
 	<style type="sprite" name="icon32px">
@@ -135,6 +164,7 @@
 		<style_entry name="width" value="32"/>
 		<style_entry name="height" value="32"/>
 		<style_entry name="foregroundlayer" value="true" />
+		<style_entry name="globalopacitymod" value="0" />
 	</style>
 	
 	<style type="sprite" name="icon30px">
@@ -142,6 +172,7 @@
 		<style_entry name="width" value="30"/>
 		<style_entry name="height" value="30"/>
 		<style_entry name="foregroundlayer" value="true" />
+		<style_entry name="globalopacitymod" value="0" />
 	</style>
 	
 	<style type="sprite" name="icon22px">
@@ -149,6 +180,7 @@
 		<style_entry name="width" value="22"/>
 		<style_entry name="height" value="22"/>
 		<style_entry name="foregroundlayer" value="true" />
+		<style_entry name="globalopacitymod" value="0" />
 	</style>
 	
 	<!--BUTTONS-->
@@ -189,6 +221,22 @@
 		<style_entry name="holding_color" value="[white]"/>
 		<style_entry name="width" value="75"/>
 		<style_entry name="height" value="75"/>
+		<style_entry name="hover_icon_grow" value="1.5"/>
+		<style_entry name="on_press" value="true"/>
+		<style_entry name="sound_volume" value="0.75"/>
+		<style_entry name="pickup_sound" value="[pickup_click]"/>
+		<style_entry name="place_sound" value="[place_click]"/>
+	</style>
+
+	<style name="signStack">
+		<style_entry name="select_color" value="[beige]"/>
+		<style_entry name="press_color" value="[limeGreen]"/>
+		<style_entry name="final_pressed_color" value="[lightGrey]"/>
+		<style_entry name="background_color" value="[mediumGrey]"/>
+		<style_entry name="highlight_color" value="[hoverColor]"/>
+		<style_entry name="holding_color" value="[white]"/>
+		<style_entry name="width" value="125"/>
+		<style_entry name="height" value="125"/>
 		<style_entry name="hover_icon_grow" value="1.5"/>
 		<style_entry name="on_press" value="true"/>
 		<style_entry name="sound_volume" value="0.75"/>
@@ -256,7 +304,12 @@
 		<style_entry name="name" value="header"/>
 		<style_entry name="height" value="43"/>
 		<style_entry name="depth" value="1"/>
-		<style_entry name="backgroundspritename" value="ui_game_panel_header"/>
+	</style>
+	
+	<style name="header.panel" type="rect">
+		<style_entry name="name" value="header"/>
+		<style_entry name="height" value="43"/>
+		<style_entry name="depth" value="1"/>
 	</style>
 	
 	<style name="header.icon" type="sprite">
@@ -264,6 +317,8 @@
 		<style_entry name="depth" value="2"/>
 		<style_entry name="pos" value="5,-5"/>
 		<style_entry name="size" value="32,32"/>
+		<style_entry name="foregroundlayer" value="true" />
+		<style_entry name="globalopacitymod" value="0"/>
 	</style>
 	
 	<style name="header.name" type="label">
@@ -314,7 +369,7 @@
 	<style name="paging.window" type="window">
 		<style_entry name="pos" value="-300,-9"/>
 		<style_entry name="size" value="600,43"/>
-		<style_entry name="anchor" value="CenterTop"/>
+		<style_entry name="anchor" value="Top"/>
 		<style_entry name="normal_color" value="[iconColor]" />
 		<style_entry name="select_color" value="[selectedColor]" />
 		<style_entry name="hover_color" value="[lightGrey]" />
@@ -382,7 +437,7 @@
 	<style name="nonpaging.window" type="window">
 		<style_entry name="pos" value="-200,-9"/>
 		<style_entry name="size" value="400,43"/>
-		<style_entry name="anchor" value="CenterTop"/>
+		<style_entry name="anchor" value="Top"/>
 	</style>
 	
 	<style name="nonpaging.window.background" type="sprite">
@@ -427,7 +482,7 @@
 	<style name="twitch.paging.window" type="window">
 		<style_entry name="pos" value="-225,-9"/>
 		<style_entry name="size" value="450,43"/>
-		<style_entry name="anchor" value="CenterTop"/>
+		<style_entry name="anchor" value="Top"/>
 		<style_entry name="normal_color" value="[iconColor]" />
 		<style_entry name="select_color" value="[selectedColor]" />
 		<style_entry name="hover_color" value="[lightGrey]" />

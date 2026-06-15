@@ -31,6 +31,11 @@
 			<action class="AddBuff">
 				<property name="phase" value="2" />
 				<property name="buff_name" value="buffDukeNote" />
+				
+				<requirement class="SandboxBool">
+					<property name="operation" value="NEQ" />
+					<property name="option" value="NewbieCoat" />
+				</requirement>
 			</action>
 
 		<!-- <action class="BeltTooltip"> -->
@@ -656,9 +661,15 @@
 	<action_sequence name="challenge_group_reward_basics">
 		<property name="allow_user_trigger" value="false" />
 		<property name="action_type" value="Game" />
+		
+		<requirement class="CVar">
+			<property name="cvar" value="challenge_group_reward_basics"/>
+			<property name="operation" value="NEQ" />
+			<property name="value" value="1" />
+		</requirement>
 
 		<action class="AddSkillPoints">
-			<property name="skill_points" value="4" />
+			<property name="skill_points" value="{sandbox.StarterSkillPoints}" />
 		</action>
 
 		<action class="Delay">
@@ -668,7 +679,20 @@
 		<action class="AddQuest">
 			<property name="phase" value="1" />
 			<property name="quest" value="quest_whiteRiverCitizen1" />
+			
+			<requirement class="SandboxBool">
+				<property name="operation" value="Equals" />
+				<property name="option" value="TraderToTraderQuestsEnabled" />
+			</requirement>
 		</action>
+		
+		<action class="ModifyCVar">
+			<property name="cvar" value="challenge_group_reward_basics" param1="cvar" />
+			<property name="operation" value="set" />
+			<property name="value" value="1" />
+		</action>
+		
+		
 	</action_sequence>
 
 	<!-- *** HOMESTEADING_GROUP_REWARD -->
@@ -1171,6 +1195,36 @@
 		<!-- </action> -->
 	</action_sequence>
 
+	<!-- *** BLOCK_BELL -->
+	<!-- Use on the church bells -->
+	<action_sequence name="block_bell_spawn">
+		<property name="action_type" value="Game"/>
+		<property name="allow_while_dead" value="false"/>
+		<requirement class="RandomRoll">
+			<property name="min_max" value="0,100"/>
+			<property name="operation" value="LTE"/>
+			<property name="value" value="99"/>
+		</requirement>
+		<action class="SpawnEntity">
+			<property name="entity_group" value="SleeperGSList"/>
+			<property name="spawn_count" value="4"/>
+			<property name="air_spawn" value="false"/>
+			<property name="add_to_group" value="zombies"/>
+			<property name="safe_spawn" value="true"/>
+			<property name="min_distance" value="10"/>
+			<property name="max_distance" value="20"/>
+			<property name="spawn_type" value="WanderingHorde"/>
+			<property name="is_aggressive" value="true"/>
+			<property name="phase" value="1"/>
+		</action>
+		<action class="RageZombies">
+			<property name="phase" value="2"/>
+			<property name="time" value="60"/>
+			<property name="speed_percent" value="1.5"/>
+			<property name="target_group" value="zombies"/>
+		</action>
+	</action_sequence>
+
 	<!-- *** BLOCK_TREE_STUMP_BEES -->
 	<!-- Used on tree stumps -->
 	<action_sequence name="block_tree_stump_bees">
@@ -1190,6 +1244,10 @@
 					<property name="value" value="50"/>
 				</requirement>
 				<action class="SpawnEntity">
+					<requirement class="SandboxBool">
+						<property name="operation" value="NEQ" />
+						<property name="option" value="EnemySpawnMode" />
+					</requirement>
 					<property name="entity_names" value="animalBeeSwarm"/>
 					<property name="single_choice" value="true"/>
 					<property name="spawn_count" value="1"/>
@@ -1239,6 +1297,10 @@
 				<property name="value" value="40"/>
 			</requirement>
 			<action class="SpawnEntity">
+				<requirement class="SandboxBool">
+					<property name="operation" value="NEQ" />
+					<property name="option" value="EnemySpawnMode" />
+				</requirement>
 				<property name="entity_names" value="animalBeeSwarm"/>
 				<property name="single_choice" value="true"/>
 				<property name="spawn_count" value="1"/>
@@ -1779,7 +1841,7 @@
 			</requirement>
 		</action>
 	</action_sequence>
-
+	
 	<!-- *** GROUP_BUFFED_TEMPLATE -->
 	<!-- Spawns a group of entities with various buffs applied to them -->
 	<action_sequence name="group_buffed">
@@ -4763,7 +4825,7 @@
 
 		<action class="AddBuff">
 			<property name="phase" value="1" />
-			<property name="buff_name" value="twitch_blastresist" />
+			<property name="buff_name" value="twitch_blastResist" />
 			<property name="target_group" value="party" />
 		</action>
 
@@ -4793,7 +4855,7 @@
 
 		<action class="RemoveBuff">
 			<property name="phase" value="4" />
-			<property name="buff_name" value="twitch_blastresist" />
+			<property name="buff_name" value="twitch_blastResist" />
 		</action>
 	</action_sequence>
 
@@ -12561,6 +12623,9 @@
 			min_max - The numbers to check between.
 			operation - Allows for checking common (None, Equals, NotEquals, Less, LessThan, LT, Greater, GreaterThan, GT, LessOrEqual, LessThanOrEqualTo, LTE,	GreaterOrEqual, GreaterThanOrEqualTo, GTE)
 			value - The value to check the number with.
+			
+		SandboxBool - Checks the boolean sandbox option of the game.
+			option - The sandbox option name to test.
 
 		VarFloat - Checks the float variable in the game event.
 		VarInt - Checks the integer variable in the game event.
@@ -12992,10 +13057,18 @@
 
 		BlockHealth - Sets all the blocks within the defined range to the health specified.
 			health_state - The health of the blocks. (Full, Half, OneHealth)
+			
+		BlockPickup - Picks up all blocks within defined range.
 
 		BlockReplace - Replaces the block with the defined block.
 			block_to - the new block to change the old block to.
 			empty_only - only replace if its an empty air block.
+
+		BlockTriggerFall - Sets all the blocks within the defined range to falling.
+		
+		BlockTriggerMines - Triggers all the mines within the defined range.
+			use_trigger - If it should play the trigger sound and use the trigger delay.
+		
 
 	POI Actions:
 

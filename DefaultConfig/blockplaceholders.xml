@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Table_of_Contents -->
 <!-- Search_Find_All_for *** -->
 
-<!-- Loot placeholders do NOT use weighted probabilities like the rest of the loot system. -->
-<!-- The max that an entry can have is 1. That is 100%. -->
-<!-- One item is randomly picked from the list, then has it's prob rolled. -->
-<!-- If that fails, try again. -->
-<!-- Continue until an item is found. -->
+<!-- Loot placeholders use weighted probabilities. By default the weight prob="1". -->
+<!-- An item is randomly picked from the list by rolling the probability 0-1, -->
+<!-- scaling to equal the sum of the weights, and walking through the list, -->
+<!-- summing the weights until the scaled probability is reached. -->
 
 <blockplaceholders>
 
@@ -373,6 +372,8 @@
 		<block name="cntTrashPile07" prob="1"/>
 		<block name="cntTrashPile08" prob="1"/>
 		<block name="cntTrashPile09" prob="1"/>
+		<block name="cntTrashPile10" prob="1"/>
+		<block name="cntTrashPile11" prob="1"/>
 		<block name="cntBackpack01" prob=".05"/>
 		<block name="cntBackpack03" prob=".05"/>
 		<block name="cntDuffle01" prob=".05"/>
@@ -406,6 +407,8 @@
 		<block name="cntTrashPile07" prob="1"/>
 		<block name="cntTrashPile08" prob="1"/>
 		<block name="cntTrashPile09" prob=".5"/>
+		<block name="cntTrashPile10" prob=".5"/>
+		<block name="cntTrashPile11" prob=".5"/>
 		<block name="cntBackpack01" prob=".05"/>
 		<block name="cntBackpack03" prob=".05"/>
 		<block name="cntDuffle01" prob=".05"/>
@@ -440,6 +443,8 @@
 		<block name="cntTrashPile07" prob="1"/>
 		<block name="cntTrashPile08" prob="1"/>
 		<block name="cntTrashPile09" prob="1"/>
+		<block name="cntTrashPile10" prob="1"/>
+		<block name="cntTrashPile11" prob="1"/>
 		<block name="cntBackpack01" prob=".05"/>
 		<block name="cntBackpack03" prob=".05"/>
 		<block name="cntDuffle01" prob=".05"/>
@@ -473,6 +478,8 @@
 		<block name="cntTrashPile07"/>
 		<block name="cntTrashPile08"/>
 		<block name="cntTrashPile09"/>
+		<block name="cntTrashPile10"/>
+		<block name="cntTrashPile11"/>
 	</placeholder>
 
 		<!-- *** HOUSE_LOOT_HELPER -->
@@ -487,6 +494,8 @@
 		<block name="cntTrashPile07"/>
 		<block name="cntTrashPile08"/>
 		<block name="cntTrashPile09"/>
+		<block name="cntTrashPile10"/>
+		<block name="cntTrashPile11"/>
 		<block name="cntWoodenChestClosed"/>
 		<block name="cntCardboardBox"/>
 		<block name="cntBackpack01"/>
@@ -522,6 +531,8 @@
 		<block name="cntTrashPile07"/>
 		<block name="cntTrashPile08"/>
 		<block name="cntTrashPile09"/>
+		<block name="cntTrashPile10"/>
+		<block name="cntTrashPile11"/>
 		<block name="cntShoppingCartEmptyRed" prob=".2"/>
 		<block name="cntShoppingCartEmptyOrange" prob=".2"/>
 		<block name="cntShoppingCartEmptyYellow" prob=".2"/>
@@ -2314,25 +2325,125 @@
 		<block name="cntLockersShortOpen" prob=".66"/>
 		<block name="cntLockersShortClosed" prob=".33"/>
 	</placeholder>
+	<placeholder name="cntLockersShortRedRandomLootHelper">
+		<block name="cntLockersShortOpenRed" prob=".66"/>
+		<block name="cntLockersShortClosedRed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersShortYellowRandomLootHelper">
+		<block name="cntLockersShortOpenYellow" prob=".66"/>
+		<block name="cntLockersShortClosedYellow" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersShortBlueRandomLootHelper">
+		<block name="cntLockersShortOpenBlue" prob=".66"/>
+		<block name="cntLockersShortClosedBlue" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersShortGreyRandomLootHelper">
+		<block name="cntLockersShortOpenGrey" prob=".66"/>
+		<block name="cntLockersShortClosedGrey" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersShortWhiteRandomLootHelper">
+		<block name="cntLockersShortOpenWhite" prob=".66"/>
+		<block name="cntLockersShortClosedWhite" prob=".33"/>
+	</placeholder>
 
 	<placeholder name="cntLockersTallRandomLootHelper">
 		<block name="cntLockersTallOpen" prob=".66"/>
 		<block name="cntLockersTallClosed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallRedRandomLootHelper">
+		<block name="cntLockersTallOpenRed" prob=".66"/>
+		<block name="cntLockersTallClosedRed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallYellowRandomLootHelper">
+		<block name="cntLockersTallOpenYellow" prob=".66"/>
+		<block name="cntLockersTallClosedYellow" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallBlueRandomLootHelper">
+		<block name="cntLockersTallOpenBlue" prob=".66"/>
+		<block name="cntLockersTallClosedBlue" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallGreyRandomLootHelper">
+		<block name="cntLockersTallOpenGrey" prob=".66"/>
+		<block name="cntLockersTallClosedGrey" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallWhiteRandomLootHelper">
+		<block name="cntLockersTallOpenWhite" prob=".66"/>
+		<block name="cntLockersTallClosedWhite" prob=".33"/>
 	</placeholder>
 
 	<placeholder name="cntLockersTallDoubleRandomLootHelper">
 		<block name="cntLockersTallDoubleOpen" prob=".66"/>
 		<block name="cntLockersTallDoubleClosed" prob=".33"/>
 	</placeholder>
+	<placeholder name="cntLockersTallDoubleRedRandomLootHelper">
+		<block name="cntLockersTallDoubleOpenRed" prob=".66"/>
+		<block name="cntLockersTallDoubleClosedRed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallDoubleYellowRandomLootHelper">
+		<block name="cntLockersTallDoubleOpenYellow" prob=".66"/>
+		<block name="cntLockersTallDoubleClosedYellow" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallDoubleBlueRandomLootHelper">
+		<block name="cntLockersTallDoubleOpenBlue" prob=".66"/>
+		<block name="cntLockersTallDoubleClosedBlue" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallDoubleGreyRandomLootHelper">
+		<block name="cntLockersTallDoubleOpenGrey" prob=".66"/>
+		<block name="cntLockersTallDoubleClosedGrey" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallDoubleWhiteRandomLootHelper">
+		<block name="cntLockersTallDoubleOpenWhite" prob=".66"/>
+		<block name="cntLockersTallDoubleClosedWhite" prob=".33"/>
+	</placeholder>
 
 	<placeholder name="cntLockersTallMixRandomLootHelper">
 		<block name="cntLockersTallMixOpen" prob=".66"/>
 		<block name="cntLockersTallMixClosed" prob=".33"/>
 	</placeholder>
+	<placeholder name="cntLockersTallMixRedRandomLootHelper">
+		<block name="cntLockersTallMixOpenRed" prob=".66"/>
+		<block name="cntLockersTallMixClosedRed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixYellowRandomLootHelper">
+		<block name="cntLockersTallMixOpenYellow" prob=".66"/>
+		<block name="cntLockersTallMixClosedYellow" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixBlueRandomLootHelper">
+		<block name="cntLockersTallMixOpenBlue" prob=".66"/>
+		<block name="cntLockersTallMixClosedBlue" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixGreyRandomLootHelper">
+		<block name="cntLockersTallMixOpenGrey" prob=".66"/>
+		<block name="cntLockersTallMixClosedGrey" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixWhiteRandomLootHelper">
+		<block name="cntLockersTallMixOpenWhite" prob=".66"/>
+		<block name="cntLockersTallMixClosedWhite" prob=".33"/>
+	</placeholder>
 
 	<placeholder name="cntLockersTallMixLinkRandomLootHelper">
 		<block name="cntLockersTallMixLinkOpen" prob=".66"/>
 		<block name="cntLockersTallMixLinkClosed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixLinkRedRandomLootHelper">
+		<block name="cntLockersTallMixLinkOpenRed" prob=".66"/>
+		<block name="cntLockersTallMixLinkClosedRed" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixLinkYellowRandomLootHelper">
+		<block name="cntLockersTallMixLinkOpenYellow" prob=".66"/>
+		<block name="cntLockersTallMixLinkClosedYellow" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixLinkBlueRandomLootHelper">
+		<block name="cntLockersTallMixLinkOpenBlue" prob=".66"/>
+		<block name="cntLockersTallMixLinkClosedBlue" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixLinkGreyRandomLootHelper">
+		<block name="cntLockersTallMixLinkOpenGrey" prob=".66"/>
+		<block name="cntLockersTallMixLinkClosedGrey" prob=".33"/>
+	</placeholder>
+	<placeholder name="cntLockersTallMixLinkWhiteRandomLootHelper">
+		<block name="cntLockersTallMixLinkOpenWhite" prob=".66"/>
+		<block name="cntLockersTallMixLinkClosedWhite" prob=".33"/>
 	</placeholder>
 
 		<!-- *** GRILLS -->
@@ -2617,30 +2728,53 @@
 		<!-- *** DRINK_VENDING_MACHINES -->
 	<placeholder name="cntVendingMachine2RandomLootHelper">
 		<block name="cntVendingMachine2Broken" prob=".20"/> <!-- SODA -->
-		<block name="cntVendingMachine2" prob=".13"/> <!-- SODA -->
+		<block name="cntVendingMachine2" prob=".13" sandboxoption="VendingEnabled"/> <!-- SODA -->
 		<block name="cntVendingMachineEnergyBroken" prob=".20"/>
-		<block name="cntVendingMachineEnergy" prob=".13"/>
+		<block name="cntVendingMachineEnergy" prob=".13" sandboxoption="VendingEnabled"/>
 		<block name="cntVendingMachineWaterBroken" prob=".20"/>
-		<block name="cntVendingMachineWater" prob=".13"/>
+		<block name="cntVendingMachineWater" prob=".13" sandboxoption="VendingEnabled"/>
+	</placeholder>
+
+			<!-- *** SODA_VENDING_MACHINE -->
+	<placeholder name="cntVendingTraderSodaRandomLootHelper">
+		<block name="cntVendingMachine2Broken" sandboxoption="!VendingEnabled"/> <!-- SODA -->
+		<block name="cntVendingMachine2" sandboxoption="VendingEnabled"/> <!-- SODA -->
+	</placeholder>
+
+			<!-- *** ENERGY_VENDING_MACHINES -->
+	<placeholder name="cntVendingTraderEnergyRandomLootHelper">
+		<block name="cntVendingMachineEnergyBroken" sandboxoption="!VendingEnabled"/>
+		<block name="cntVendingMachineEnergy" sandboxoption="VendingEnabled"/>
+	</placeholder>
+
+			<!-- *** WATER_VENDING_MACHINE -->
+	<placeholder name="cntVendingTraderWaterRandomLootHelper">
+		<block name="cntVendingMachineWaterBroken" sandboxoption="!VendingEnabled"/>
+		<block name="cntVendingMachineWater" sandboxoption="VendingEnabled"/>
 	</placeholder>
 
 		<!-- *** FOOD_VENDING_MACHINES -->
 	<placeholder name="cntVendingMachineSnacksRandomLootHelper">
-		<block name="cntVendingMachineSnacksFull" prob=".4"/>
+		<block name="cntVendingMachineSnacksFull" prob=".4" sandboxoption="VendingEnabled"/>
 		<block name="cntVendingMachineSnacksEmpty" prob=".1"/>
 		<block name="cntVendingMachineSnacksFullBroken" prob=".4"/>
 		<block name="cntVendingMachineSnacksEmptyBroken" prob=".1"/>
 	</placeholder>
 
+	<placeholder name="cntVendingTraderSnacksRandomLootHelper">
+		<block name="cntVendingMachineSnacksFull" sandboxoption="VendingEnabled"/>
+		<block name="cntVendingMachineSnacksEmptyBroken" sandboxoption="!VendingEnabled"/>
+	</placeholder>
+
 		<!-- *** ALL_VENDING_MACHINES -->
 	<placeholder name="cntAllVendingMachinesRandomLootHelper">
 		<block name="cntVendingMachine2Broken" prob=".15"/>
-		<block name="cntVendingMachine2" prob=".05"/>
+		<block name="cntVendingMachine2" prob=".05" sandboxoption="VendingEnabled"/>
 		<block name="cntVendingMachineEnergyBroken" prob=".15"/>
-		<block name="cntVendingMachineEnergy" prob=".05"/>
+		<block name="cntVendingMachineEnergy" prob=".05" sandboxoption="VendingEnabled"/>
 		<block name="cntVendingMachineWaterBroken" prob=".15"/>
-		<block name="cntVendingMachineWater" prob=".05"/>
-		<block name="cntVendingMachineSnacksFull" prob=".15"/>
+		<block name="cntVendingMachineWater" prob=".05" sandboxoption="VendingEnabled"/>
+		<block name="cntVendingMachineSnacksFull" prob=".15" sandboxoption="VendingEnabled"/>
 		<block name="cntVendingMachineSnacksEmpty" prob=".05"/>
 		<block name="cntVendingMachineSnacksFullBroken" prob=".15"/>
 		<block name="cntVendingMachineSnacksEmptyBroken" prob=".05"/>
@@ -2695,6 +2829,24 @@
 		<block name="cntTrashPile06" prob=".34"/>
 		<block name="cntTrashPile08" prob=".33"/>
 		<block name="cntTrashPile09" prob=".33"/>
+	</placeholder>
+
+		<!-- *** RUBBISH -->
+	<placeholder name="rubbishDecorRandomHelper">
+		<block name="newspaperDecor01" prob=".1" randomrotation="true"/>
+		<block name="newspaperDecor02" prob=".1" randomrotation="true"/>
+		<block name="newspaperDecor03" prob=".1" randomrotation="true"/>
+		<block name="newspaperDecor04" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor01" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor02" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor03" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor04" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor05" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor09" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor10" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor11" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor12" prob=".1" randomrotation="true"/>
+		<block name="rubbishDecor13" prob=".1" randomrotation="true"/>
 	</placeholder>
 
 		<!-- *** TRASH_CANS -->
@@ -3976,23 +4128,23 @@
 <!-- *** WORKSTATION_HELPERS -->
 
 	<placeholder name="cntForgeBustedRandomLootHelper">
-		<!-- <block name="forge" prob=".2"/> -->
-		<block name="cntForgeWorkstationBroken" prob="1"/>
+		<block name="forge" sandboxoption="WorkstationsInTheWild"/>
+		<block name="cntForgeWorkstationBroken" sandboxoption="!WorkstationsInTheWild"/>
 	</placeholder>
 
 	<placeholder name="cntWorkbenchBustedRandomLootHelper">
-		<!-- <block name="workbench" prob=".2"/> -->
-		<block name="cntCollapsedWorkbench" prob="1"/>
+		<block name="workbench" sandboxoption="WorkstationsInTheWild"/>
+		<block name="cntCollapsedWorkbench" sandboxoption="!WorkstationsInTheWild"/>
 	</placeholder>
 
 	<placeholder name="cntCementMixerBustedRandomLootHelper">
-		<!-- <block name="cementMixer" prob=".2"/> -->
-		<block name="cntCollapsedCementMixer" prob="1"/>
+		<block name="cementMixer" sandboxoption="WorkstationsInTheWild"/>
+		<block name="cntCollapsedCementMixer" sandboxoption="!WorkstationsInTheWild"/>
 	</placeholder>
 
 	<placeholder name="cntChemistryStationBustedRandomLootHelper">
-		<!-- <block name="chemistryStation" prob=".2"/> -->
-		<block name="cntCollapsedChemistryStation" prob="1"/>
+		<block name="chemistryStation" sandboxoption="WorkstationsInTheWild"/>
+		<block name="cntCollapsedChemistryStation" sandboxoption="!WorkstationsInTheWild"/>
 	</placeholder>
 
 		<!-- *** POI_PART_HELPER -->

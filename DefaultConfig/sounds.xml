@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Table_of_Contents -->
 <!-- Search_Find_All_for *** -->
@@ -29,6 +29,7 @@
 <CrouchNoiseScale name="0-1"/> - changes the noise volume used when you are crouched to signal AI
 <NoiseScale name="0-1"/> - changes the amount of noise this sound makes in general for AI
 <MaxVoices value="1-inf"/> - maximum simultanious SoundDataNodes playing at once
+<PrioritizeNewNodes value="true-false"/> - if the max number of voices is reached, if true: One of the old instances will be removed and a new one will be created. If false: the current nodes will remain and the new ones will be skipped
 <MaxRepeatRate name="0-inf"/> - this SoundDataNode will not be played faster than the repeat rate (can be used to reduce "audio soup")
 <runningvolumescale name="0-inf"/> - increases the sound volume when entity is running
 <AudioClip ClipName="DirectoryPathFromAssets/WaveFileName" AudioSource="DirectoryPathFromAssets/AudioSourceName"/> - specifying an audio source inside the AudioClip like this will use this specified audioSource for this audio clip instead of the default for the SoundDataNode
@@ -48,6 +49,51 @@
 <Priority name="3"/> - if mouth channel is specified and a 2nd sound is requested to play on the mouth channel, the 2nd sound will only play if the priority value of the 2nd sound has a lower value than what's playing.
 -->
 
+<!-- *** Controller Vibration Audio Source Exclusions -->
+<!-- A list of audio source names that will not generate controller vibrations when an audio clip is played through them -->
+<ControllerVibrationAudioSourceExclusions>
+    <Source name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+    <Source name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Notifications.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Creatures.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_CreaturesLG.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Pain.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_PainLG.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_ChuckBoulder.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_ZombieMutated.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_ZombieMutatedRoam.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Screamer.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_ScreamerAlert.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_PlagueSpitterWarnAttack.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_Announce.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_TraderBob.prefab"/>
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_TraderHugh.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_TraderJen.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_TraderJoel.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_TraderRekt.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_VO_Drone.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Amb_Small.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Amb_XSmall.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Amb_Med_1Shot.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Amb_Med.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_RallyMarker.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_DeathStinger.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Airdrop.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_FridgeLP.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_TVCRT.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_ZPack.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_Medium.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_High.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_Loud.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_Max.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_HordestoneLP.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_HordestoneLP_Start.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_No_Attack.prefab" />
+    <Source name="@:Sounds/Prefabs/AudioSource_Twitch_Spoil.prefab" />
+</ControllerVibrationAudioSourceExclusions> 
+    
 <!-- **** Step Sounds -->
 
 	<!-- *** Stepping Sounds -->
@@ -4471,12 +4517,16 @@
 	<AudioClip ClipName="@:Sounds/Weapons/Ranged/M136/m136_rocket_lp.wav" Loop="true"/>
 	<LocalCrouchVolumeScale value="1"/> <CrouchNoiseScale value="1"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
 
-	<!-- *** Pipebomb -->
+	<!-- *** Pipebomb and Dynamite -->
 
-<SoundDataNode name="light_pipebomb"> <AudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire.prefab"/> <NetworkAudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire_Network.prefab"/>
+<SoundDataNode name="light_pipebomb_start"> <AudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire.prefab"/> <NetworkAudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire_Network.prefab"/>
 	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
-	<AudioClip ClipName="@:Sounds/Weapons/Thrown/Pipebomb/light_pipebomb.wav"/>
-	<AudioClip ClipName="@:Sounds/Twitch/Silly/explosion_silly.wav" AltSound="true"/>
+	<AudioClip ClipName="@:Sounds/Weapons/Thrown/Pipebomb/light_pipebomb_start.wav"/>
+	<LocalCrouchVolumeScale value="1"/> <CrouchNoiseScale value="1"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
+	
+<SoundDataNode name="light_pipebomb_lp"> <AudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire.prefab"/> <NetworkAudioSource name="@:Sounds/Prefabs/AudioSource_WeaponFire_Network.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Weapons/Thrown/Pipebomb/light_pipebomb_lp.wav" Loop="true"/> <!-- Called directly from the prefabs -->
 	<LocalCrouchVolumeScale value="1"/> <CrouchNoiseScale value="1"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
 
 	<!-- *** Grenade -->
@@ -4652,6 +4702,172 @@
 	<AudioClip ClipName="@:Sounds/Animals/Boar/boarsense2.wav"/>
 	<AudioClip ClipName="@:Sounds/Animals/Boar/boarsense3.wav"/>
 	<AudioClip ClipName="@:Sounds/Animals/Boar/boarsense4.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="4"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+	<!-- *** Zombie Boar SFX -->
+
+<SoundDataNode name="zombieboaralert"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracealert1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracealert2.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="3"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboarattack"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack4.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboardeath"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="4" noise="60" time="2" heat_map_strength="0.2" heat_map_time="90"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath3.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="0"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboargiveup"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracegiveup1.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="5"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboarpain"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain5.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="1"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboarroam"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam5.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam6.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="6"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="zombieboarsense"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense4.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="4"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.4"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+	<!-- *** Grace SFX -->
+
+<SoundDataNode name="gracealert"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracealert1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracealert2.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="3"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="graceattack"> <AudioSource name="@:Sounds/Prefabs/Audiosource_CreaturesXLG.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceattack4.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="gracedeath"> <AudioSource name="@:Sounds/Prefabs/Audiosource_CreaturesXLG.prefab"/>
+	<Noise ID="4" noise="60" time="2" heat_map_strength="0.2" heat_map_time="90"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracedeath3.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="0"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="gracegiveup"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracegiveup1.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="5"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="gracepain"> <AudioSource name="@:Sounds/Prefabs/Audiosource_CreaturesXLG.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracepain5.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="1"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="graceroam"> <AudioSource name="@:Sounds/Prefabs/Audiosource_CreaturesXLG.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam5.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/graceroam6.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="6"/>
+	<maxVoicesPerEntity value="1"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="gracesense"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Grace/gracesense4.wav"/>
 	<Channel name="Mouth"/>
 	<Priority name="4"/>
 	<maxVoicesPerEntity value="1"/>
@@ -4849,6 +5065,67 @@
 	<HighestPitch name="1.0"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
 
+<SoundDataNode name="chickendrop"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickendrop1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickendrop2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickendrop3.wav"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
+
+<SoundDataNode name="chickenflap"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenflap1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenflap2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenflap3.wav"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
+
+<SoundDataNode name="chickenhold"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold5.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenhold6.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
+
+<SoundDataNode name="chickenpickupdrop"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup3.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="chickenpickup"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenpickup3.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
 <SoundDataNode name="chickenroam"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
 	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
 	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenroam1.wav"/>
@@ -4861,6 +5138,36 @@
 	<LowestPitch name="0.9"/>
 	<HighestPitch name="1.0"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
+
+<SoundDataNode name="chickenstress"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress5.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstress6.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
+
+<SoundDataNode name="chickenstressincrease"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Creatures.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease1.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease2.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease3.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease4.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease5.wav"/>
+	<AudioClip ClipName="@:Sounds/Animals/Chicken/chickenstressincrease6.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.9"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
 
 	<!-- *** Wolf -->
 
@@ -5584,7 +5891,7 @@
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
 
 <SoundDataNode name="player2sprint1_lp"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Player.prefab"/>
-	<AudioClip ClipName="@:Sounds/Player_Female/player2sprint1_lp.wav"/>
+	<AudioClip ClipName="@:Sounds/Player_Female/player2sprint1_lp.wav" Loop="true"/>
 	<maxVoicesPerEntity value="1"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.9"/> </SoundDataNode>
 
@@ -5797,6 +6104,102 @@
 	<AudioClip ClipName="@:Sounds/DestroyBlock/clothdestroy3.wav"/>
 	<LowestPitch name="0.9"/>
 	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x1_brick"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_brick_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_brick_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_brick_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_brick_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x1_concrete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_concrete_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_concrete_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_concrete_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_concrete_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroyscret_1x1_metal"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroyscret_1x1_metal_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroyscret_1x1_metal_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroyscret_1x1_metal_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroyscret_1x1_metal_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x1_wood"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_wood_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_wood_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_wood_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x1_wood_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x2_brick"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_brick_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_brick_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_brick_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_brick_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x2_concrete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_concrete_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_concrete_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_concrete_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_concrete_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x2_metal"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_metal_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_metal_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_metal_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_metal_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_1x2_wood"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_wood_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_wood_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_wood_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_1x2_wood_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_2x2_brick"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_brick_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_brick_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_brick_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_brick_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_2x2_concrete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_concrete_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_concrete_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_concrete_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_concrete_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_2x2_metal"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_metal_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_metal_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_metal_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_metal_04.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="destroysecret_2x2_wood"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
+	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_wood_01.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_wood_02.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_wood_03.wav"/>
+	<AudioClip ClipName="@:Sounds/UseActions/destroysecret_2x2_wood_04.wav"/>
 	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
 
 <SoundDataNode name="earthdestroy"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact.prefab"/>
@@ -6714,6 +7117,15 @@
 	<LowestPitch name="0.9"/>
 	<HighestPitch name="1.0"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+	<!-- *** Church Bell Impact -->
+
+<SoundDataNode name="churchbellhit"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_XLoud.prefab"/>
+	<Noise ID="2" noise="11" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/ImpactSurface/churchbellhit1.wav"/>
+	<LowestPitch name="0.97"/>
+	<HighestPitch name="1.0"/>
+	<LocalCrouchVolumeScale value="0.3"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="1"/> <MaxRepeatRate value="0.01"/> <PrioritizeNewNodes value = "true"/> </SoundDataNode>
 
 	<!-- *** Death/Spawn Sounds -->
 
@@ -8620,6 +9032,10 @@
 	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
 	<AudioClip ClipName="@:Sounds/UseActions/close_vending.wav"/>
 	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+	
+<SoundDataNode name="interact_vending"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact_Small.prefab"/>
+	<AudioClip ClipName="@:Sounds/UI/ui_trader_inventory_reset.ogg"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="1.5"/> </SoundDataNode>
 
 <SoundDataNode name="open_sign"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
 	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
@@ -8796,6 +9212,32 @@
 	<HighestPitch name="1.0"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="18"/> <MaxRepeatRate value="0.001"/> </SoundDataNode>
 
+	<!-- *** Apiary -->
+
+<SoundDataNode name="apiary_close"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Apiary/apiary_close.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="apiary_complete_item"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Apiary/apiary_complete_item.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="apiary_open"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Apiary/apiary_open.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="apiary_lp">
+	<AudioSource name="@:Sounds/Prefabs/AudioSource_Interact_Quiet.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Apiary/apiary_lp.wav" Loop="true"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxEntities name="30"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="apiary_start"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Apiary/apiary_start.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
 	<!-- *** Campfire -->
 
 <SoundDataNode name="campfire_click_craft"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
@@ -8842,6 +9284,40 @@
 
 <SoundDataNode name="chem_station_mix_click"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
 	<AudioClip ClipName="@:Sounds/Chem_Station/chem_station_mix_click.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+	<!-- *** Chicken Coop  -->
+
+<SoundDataNode name="coop_close"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_close.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_open"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_open.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_chicken_complete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_chicken_complete.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_eggs_complete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_eggs_complete.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_feathers_complete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_feathers_complete.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_lp">
+	<AudioSource name="@:Sounds/Prefabs/AudioSource_Interact_Quiet.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_lp.wav" Loop="true"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxEntities name="30"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="coop_start"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact_Quiet.prefab"/>
+	<AudioClip ClipName="@:Sounds/Chicken_Coop/coop_start.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
 
 	<!-- *** Cement Mixer  -->
@@ -8903,6 +9379,22 @@
 	<MaxEntities name="30"/>
 	<MaxRepeatRate value="0.01"/>
 	</SoundDataNode>
+
+	<!-- *** Combine Station -->
+
+<SoundDataNode name="combine_station_close"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Combine_Station/combine_station_close.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="combine_station_complete_item"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
+	<AudioClip ClipName="@:Sounds/Combine_Station/combine_station_complete_item.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+
+<SoundDataNode name="combine_station_open"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Combine_Station/combine_station_open.wav"/>
+	<LocalCrouchVolumeScale value="0.5"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
 
 	<!-- *** Crafting -->
 
@@ -9551,6 +10043,58 @@
 
 <SoundDataNode name="chemistrystation_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
 	<AudioClip ClipName="@:Sounds/Items/chemistrystation_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickencoop_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickencoop_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickencoop_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickencoop_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickencooplamp_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/burningbarrel_grab.wav"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.3"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickencooplamp_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/burningbarrel_place.wav"/>
+	<LowestPitch name="1.3"/>
+	<HighestPitch name="1.3"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickendomesticated_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickendomesticated_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickendomesticated_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickendomesticated_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenfeed_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenfeed_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenfeed_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenfeed_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenrun_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenrun_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenrun_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenrun_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenwild_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenwild_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="chickenwild_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/chickenwild_place.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
 
 <SoundDataNode name="chilidog_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
@@ -10921,6 +11465,14 @@
 	<AudioClip ClipName="@:Sounds/Items/switch_place.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
 
+<SoundDataNode name="recog_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/recog_grab.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
+<SoundDataNode name="recog_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
+	<AudioClip ClipName="@:Sounds/Items/recog_place.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
+
 <SoundDataNode name="robotic_drone_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
 	<AudioClip ClipName="@:Sounds/Items/robotic_drone_grab.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
@@ -11364,14 +11916,6 @@
 
 <SoundDataNode name="wooddebrisblock_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
 	<AudioClip ClipName="@:Sounds/Items/wooddebrisblock_place.wav"/>
-	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
-
-<SoundDataNode name="wear_armorclothes_click"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
-	<AudioClip ClipName="@:Sounds/Items/wear_armorclothes_click.wav"/>
-	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
-
-<SoundDataNode name="wear_armorclothes_place"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
-	<AudioClip ClipName="@:Sounds/Items/wear_armorclothes_place.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.1"/> </SoundDataNode>
 
 <SoundDataNode name="wiretool_grab"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI_Item.prefab"/>
@@ -12022,7 +12566,7 @@
 
 	<!-- *** Foliage -->
 
-<SoundDataNode name="treefallimpact"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_Large.prefab"/>
+<SoundDataNode name="treefallimpact"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_LargeReducedVol.prefab"/>
 	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
 	<AudioClip ClipName="@:Sounds/Foliage/treefallimpact1.wav"/>
 	<AudioClip ClipName="@:Sounds/Foliage/treefallimpact2.wav"/>
@@ -12033,7 +12577,7 @@
 	<HighestPitch name="1.05"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
 
-<SoundDataNode name="treelogimpact"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_Large.prefab"/>
+<SoundDataNode name="treelogimpact"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_LargeReducedVol.prefab"/>
 	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60"/>
 	<AudioClip ClipName="@:Sounds/Foliage/treelogimpact1.wav"/>
 	<AudioClip ClipName="@:Sounds/Foliage/treelogimpact2.wav"/>
@@ -12044,7 +12588,7 @@
 	<HighestPitch name="1.05"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
 
-<SoundDataNode name="trunkbreak"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_Large.prefab"/>
+<SoundDataNode name="trunkbreak"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Impact_LargeReducedVol.prefab"/>
 	<Noise ID="3" noise="30" time="3" muffled_when_crouched="0.65" heat_map_strength="1.0" heat_map_time="90"/>
 	<AudioClip ClipName="@:Sounds/Foliage/trunkbreak1.wav"/>
 	<AudioClip ClipName="@:Sounds/Foliage/trunkbreak2.wav"/>
@@ -12072,7 +12616,7 @@
 
 <SoundDataNode name="forge_item_complete"> <AudioSource name="@:Sounds/Prefabs/AudioSource_UI.prefab"/>
 	<AudioClip ClipName="@:Sounds/Forge/forge_item_complete.wav"/>
-	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="3"/> <MaxRepeatRate value="0.01"/> </SoundDataNode>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="1"/> <MaxRepeatRate value=".1"/> </SoundDataNode>
 
 <SoundDataNode name="forge_open"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Interact.prefab"/>
 	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
@@ -14375,6 +14919,138 @@
 	<HighestPitch name="1.05"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/> </SoundDataNode>
 
+
+	<!-- Bandits -->
+
+<SoundDataNode name="banditMAlert1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_BanditSenseAlert.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_12.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_alert_13.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="3"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="3"/>
+</SoundDataNode>
+
+<SoundDataNode name="banditMAttack1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Bandit.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_attack_11.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="2"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.8"/>
+</SoundDataNode>
+
+<SoundDataNode name="banditMDeath1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_BanditPain.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_death_12.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="0"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/>
+</SoundDataNode>
+
+<SoundDataNode name="banditMPain1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_BanditPain.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_pain_12.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="1"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.8"/>
+</SoundDataNode>
+
+<SoundDataNode name="banditMRoam1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_Bandit.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_12.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_13.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_14.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_15.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_roam_16.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="5"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="3"/>
+</SoundDataNode>
+
+<SoundDataNode name="banditMSense1"> <AudioSource name="@:Sounds/Prefabs/AudioSource_BanditSenseAlert.prefab"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Male_Hate/male_hate_sense_11.wav"/>
+	<Channel name="Mouth"/>
+	<Priority name="4"/>
+	<maxVoicesPerEntity value="1"/>
+	<LowestPitch name="0.95"/>
+	<HighestPitch name="1.05"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="3"/>
+</SoundDataNode>
+	
 <SoundDataNode name="zombiedog_collar_attack"> <AudioSource name="@:Sounds/Prefabs/AudioSource_CreatureSenseAlert.prefab"/>
 	<AudioClip ClipName="@:Sounds/Enemies/Zombie_Dogs/zombiedog_collar_attack1.wav"/>
 	<AudioClip ClipName="@:Sounds/Enemies/Zombie_Dogs/zombiedog_collar_attack2.wav"/>
@@ -17864,6 +18540,102 @@
 
 	<!-- *** Drone VO -->
 
+<SoundDataNode name="drone_attack"> <AudioSource name="@:Sounds/Prefabs/AudioSource_VO_Drone.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_12.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_13.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_14.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_16.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_17.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_19.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_21.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_23.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_24.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_25.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_27.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_28.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_29.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_32.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_33.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_34.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_35.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_36.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_37.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_39.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_40.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_41.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_42.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_43.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_44.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_45.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_46.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_47.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_48.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_49.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_50.wav"/>		
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/> </SoundDataNode>
+
+<SoundDataNode name="drone_attack_stun"> <AudioSource name="@:Sounds/Prefabs/AudioSource_VO_Drone.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_01.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_02.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_03.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_04.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_05.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_06.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_07.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_08.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_09.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_10.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_11.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_12.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_13.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_14.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_15.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_16.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_17.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_18.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_19.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_20.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_21.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_22.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_23.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_24.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_25.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_26.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_27.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_28.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_29.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_30.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_31.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_32.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_33.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_34.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_35.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_36.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_37.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_38.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_39.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_40.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_41.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_42.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_43.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_44.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_45.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_46.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_47.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_48.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_49.wav"/>
+	<AudioClip ClipName="@:Sounds/VO/Drone/drone_attack_50.wav"/>		
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/> </SoundDataNode>
+
 <SoundDataNode name="drone_command"> <AudioSource name="@:Sounds/Prefabs/AudioSource_VO.prefab"/>
 	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
 	<AudioClip ClipName="@:Sounds/VO/Drone/drone_command_01.wav"/>
@@ -17928,6 +18700,13 @@
 	<AudioClip ClipName="@:Sounds/VO/Drone/drone_shutdown_05.wav"/>
 	<AudioClip ClipName="@:Sounds/VO/Drone/drone_shutdown_06.wav"/>
 	<AudioClip ClipName="@:Sounds/VO/Drone/drone_shutdown_07.wav"/>
+	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/> </SoundDataNode>
+
+<SoundDataNode name="drone_stun_charged"> <AudioSource name="@:Sounds/Prefabs/AudioSource_VO.prefab"/>
+	<Noise ID="1" noise="7" time="3" muffled_when_crouched="0.5"/>
+	<AudioClip ClipName="@:Sounds/Drone/drone_stun_charged1.wav"/>
+	<AudioClip ClipName="@:Sounds/Drone/drone_stun_charged2.wav"/>
+	<AudioClip ClipName="@:Sounds/Drone/drone_stun_charged3.wav"/>
 	<LocalCrouchVolumeScale value="1.0"/> <CrouchNoiseScale value="0.5"/> <NoiseScale value="1"/> <MaxVoices value="10"/> <MaxRepeatRate value="1.111"/> </SoundDataNode>
 
 <SoundDataNode name="drone_take"> <AudioSource name="@:Sounds/Prefabs/AudioSource_VO.prefab"/>

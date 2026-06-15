@@ -200,6 +200,7 @@
 	<property name="LocalAvatarController" value="AvatarLocalPlayerController"/>
 	<property name="Parent" value="Players"/>
 	<property name="CrouchYOffsetFP" value="-0.65"/>
+	<property name="CanClimbLadders" value="true"/>
 	<property name="IsMale" value="true"/>
 	<property name="TimeStayAfterDeath" value="10"/>
 
@@ -227,15 +228,23 @@
 
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="DropInventoryBlock" value="cntBackpackDropped"/> <!-- deprecated. It's an entity now "Backpack" -->
-	<property name="ItemsOnEnterGame.GameModeSurvival" value="drinkJarBoiledWater=2,foodCanChili,medicalFirstAidBandage,meleeToolTorch,noteDuke01"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalSP" value="drinkJarBoiledWater,foodCanChili,medicalFirstAidBandage,meleeToolTorch"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalMP" value="drinkJarBoiledWater,foodCanChili,medicalFirstAidBandage,meleeToolTorch"/>
+	<property class="ItemsOnEnterGame">
+		<property name="GameModeSurvival" value="drinkJarBoiledWater=2,foodCanChili,medicalFirstAidBandage,meleeToolTorch,noteDuke01"/>
+		<property name="GameModeSurvivalSP" value="drinkJarBoiledWater,foodCanChili,medicalFirstAidBandage,meleeToolTorch"/>
+		<property name="GameModeSurvivalMP" value="drinkJarBoiledWater,foodCanChili,medicalFirstAidBandage,meleeToolTorch"/>
+	</property>
 	<property name="ExperienceGain" value="500"/><!-- PLAYER_MALE -->
 	<property name="LegsExplosionDamageMultiplier" value=".41"/> <!-- Player gets 20% damage reduction (where from?) and this takes it to 33% total -->
 	<property name="ArmsExplosionDamageMultiplier" value=".41"/>
 	<property name="HeadExplosionDamageMultiplier" value=".41"/>
 	<property name="ChestExplosionDamageMultiplier" value=".41"/>
 	<property name="Buffs" value="buffStatusCheck01,buffStatusCheck02"/>
+
+	<array name="TokenManager">
+		<item type="MeleeAttack" max="2"/>
+		<item type="RangedAttack" max="2"/>
+		<item type="ThrowProjectile" max="1"/>
+	</array>
 
 	<property name="HandItem" value="meleeHandPlayer"/>
 
@@ -253,7 +262,7 @@
 		<!--<passive_effect name="HealthMaxModifierOT" operation="base_add" value=".00028"/>--> <!-- heal 1 point of MaxHealth / hour -->
 
 		<passive_effect name="DamageModifier" operation="perc_set" value="1"/>
-		<passive_effect name="DamageModifier" operation="perc_add" value="1" tags="head"/>
+		<passive_effect name="HeadshotDamageModifier" operation="perc_add" value="1" tags="head"/>
 		<passive_effect name="DismemberChance" operation="base_set" value=".05"/>
 
 		<passive_effect name="HarvestCount" operation="base_set" value="1" tags="allHarvest,oreWoodHarvest,cropHarvest,wildCropsHarvest"/>
@@ -263,6 +272,7 @@
 		<passive_effect name="HarvestCount" operation="base_set" value="0" tags="WasteTreasuresAcidHarvest,WasteTreasuresCoffinHarvest,WasteTreasuresDoorHarvest,PercMasterySteelHarvest,PercMasteryDukeHarvest,perkStrengthMasteryBrassHarvest"/>
 		<passive_effect name="HarvestCount" operation="base_set" value="0" tags="artOfMiningLuckyStrikeHarvest,WasteTreasuresHoneyHarvest,WasteTreasuresSinkHarvest,WasteTreasuresCompleteHarvest,bonusCropHarvest,farmerBonusHarvest"/>
 
+		<!-- The speeds below are multipliers to the MotorAcceleration values in EntityPlayerLocal and are used by UFPS -->
 		<passive_effect name="WalkSpeed" operation="base_set" value="1.53"/>
 		<passive_effect name="RunSpeed" operation="base_set" value="1.10"/>
 		<passive_effect name="CrouchSpeed" operation="base_set" value="1.04"/>
@@ -356,6 +366,10 @@
 			<requirement name="HoldingItemHasTags" tags="melee"/>
 		</triggered_effect>
 -->
+		
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".carryCapacityBase" operation="set" value="27"/>
+		<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".carryCapacityBase" operation="multiply" value="@_carrySandboxModifier"/>
+
 		<triggered_effect trigger="onSelfSecondaryActionStart" action="AddBuff" buff="buffPowerAttackStaminaStunt">
 			<requirement name="HoldingItemHasTags" tags="melee"/>
 			<requirement name="!HoldingItemHasTags" tags="thrownWeapon"/>
@@ -378,7 +392,7 @@
 		<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="1"/>
 
 		<passive_effect name="CraftingTier" operation="base_set" value="1"/>
-		<passive_effect name="CarryCapacity" operation="base_set" value="27"/>
+		<passive_effect name="CarryCapacity" operation="base_set" value="@.carryCapacityBase"/>
 		<passive_effect name="BagSize" operation="base_set" value="45"/> <!-- number of slots on the inventory UI -->
 
 		<passive_effect name="ProjectileStickChance" operation="base_set" value=".5"/>
@@ -671,7 +685,7 @@
 
 	<property name="ExperienceGain" value="^xpNormal01"/><!-- XP_ZOMBIE_TEMPLATE -->
 	<property name="LootDropProb" value=".04"/> <!-- Whether it drops a loot bag on death or not. -->
-	<!-- <property name="LootListOnDeath" value="45"/> -->
+	<!-- <property name="LootList" value="45"/> -->
 	<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
 
 	<!-- <property name="CorpseBlock" value="air"/><property name="CorpseBlockChance" value="0"/> -->
@@ -781,6 +795,7 @@
 
 		<!-- *** ZOMBIE_ARLENE_FERAL -->
 <entity_class name="zombieArleneFeral" extends="zombieArlene">
+	<property name="PreviousTier" value="zombieArlene"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Arlene/ZArleneFeral.prefab"/>
@@ -801,6 +816,7 @@
 
 		<!-- *** ZOMBIE_ARLENE_RADIATED -->
 <entity_class name="zombieArleneRadiated" extends="zombieArleneFeral">
+	<property name="PreviousTier" value="zombieArleneFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Arlene/ZArleneRadiated.prefab"/>
@@ -821,6 +837,7 @@
 
 		<!-- *** ZOMBIE_ARLENE_CHARGED -->
 <entity_class name="zombieArleneCharged" extends="zombieArleneRadiated">
+	<property name="PreviousTier" value="zombieArleneRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieArleneCharged -->
@@ -836,6 +853,7 @@
 
 		<!-- *** ZOMBIE_ARLENE_INFERNAL -->
 <!-- <entity_class name="zombieArleneInfernal" extends="zombieArleneRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieArleneRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieArleneInfernal -->
@@ -888,6 +906,7 @@
 
 		<!-- *** ZOMBIE_MARLENE_FERAL -->
 <entity_class name="zombieMarleneFeral" extends="zombieMarlene">
+	<property name="PreviousTier" value="zombieMarlene"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Marlene/ZMarleneFeral.prefab"/>
@@ -908,6 +927,7 @@
 
 		<!-- *** ZOMBIE_MARLENE_RADIATED -->
 <entity_class name="zombieMarleneRadiated" extends="zombieMarleneFeral">
+	<property name="PreviousTier" value="zombieMarleneFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Marlene/ZMarleneRadiated.prefab"/>
@@ -929,6 +949,7 @@
 
 		<!-- *** ZOMBIE_MARLENE_CHARGED -->
 <entity_class name="zombieMarleneCharged" extends="zombieMarleneRadiated">
+	<property name="PreviousTier" value="zombieMarleneRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieMarleneCharged -->
@@ -944,6 +965,7 @@
 
 		<!-- *** ZOMBIE_MARLENE_INFERNAL -->
 <!-- <entity_class name="zombieMarleneInfernal" extends="zombieMarleneRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieMarleneRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieMarleneInfernal -->
@@ -985,6 +1007,7 @@
 
 		<!-- *** ZOMBIE_PARTY_GIRL_FERAL -->
 <entity_class name="zombiePartyGirlFeral" extends="zombiePartyGirl">
+	<property name="PreviousTier" value="zombiePartyGirl"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/CocktailWaitress/ZCocktailWaitressFeral.prefab"/>
@@ -1005,6 +1028,7 @@
 
 		<!-- *** ZOMBIE_PARTY_GIRL_RADIATED -->
 <entity_class name="zombiePartyGirlRadiated" extends="zombiePartyGirlFeral">
+	<property name="PreviousTier" value="zombiePartyGirlFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/CocktailWaitress/ZCocktailWaitressRadiated.prefab"/>
@@ -1026,6 +1050,7 @@
 
 		<!-- *** ZOMBIE_PARTY_GIRL_CHARGED -->
 <entity_class name="zombiePartyGirlCharged" extends="zombiePartyGirlRadiated">
+	<property name="PreviousTier" value="zombiePartyGirlRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombiePartyGirlCharged -->
@@ -1041,6 +1066,7 @@
 
 		<!-- *** ZOMBIE_PARTY_GIRL_INFERNAL -->
 <!-- <entity_class name="zombiePartyGirlInfernal" extends="zombiePartyGirlRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombiePartyGirlRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombiePartyGirlInfernal -->
@@ -1096,6 +1122,7 @@
 
 		<!-- *** ZOMBIE_NURSE_FERAL -->
 <entity_class name="zombieNurseFeral" extends="zombieNurse">
+	<property name="PreviousTier" value="zombieNurse"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Nurse/ZNurseFeral.prefab"/>
@@ -1116,6 +1143,7 @@
 
 		<!-- *** ZOMBIE_NURSE_RADIATED -->
 <entity_class name="zombieNurseRadiated" extends="zombieNurseFeral">
+	<property name="PreviousTier" value="zombieNurseFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Nurse/ZNurseRadiated.prefab"/>
@@ -1136,6 +1164,7 @@
 
 		<!-- *** ZOMBIE_NURSE_CHARGED -->
 <entity_class name="zombieNurseCharged" extends="zombieNurseRadiated">
+	<property name="PreviousTier" value="zombieNurseRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieNurseCharged -->
@@ -1151,6 +1180,7 @@
 
 		<!-- *** ZOMBIE_NURSE_INFERNAL -->
 <!-- <entity_class name="zombieNurseInfernal" extends="zombieNurseRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieNurseRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieNurseInfernal -->
@@ -1197,6 +1227,7 @@
 
 		<!-- *** ZOMBIE_JOE_FERAL -->
 <entity_class name="zombieJoeFeral" extends="zombieJoe">
+	<property name="PreviousTier" value="zombieJoe"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Joe/ZJoeFeral.prefab"/>
@@ -1217,6 +1248,7 @@
 
 		<!-- *** ZOMBIE_JOE_RADIATED -->
 <entity_class name="zombieJoeRadiated" extends="zombieJoeFeral">
+	<property name="PreviousTier" value="zombieJoeFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Joe/ZJoeRadiated.prefab"/>
@@ -1238,6 +1270,7 @@
 
 		<!-- *** ZOMBIE_JOE_CHARGED -->
 <entity_class name="zombieJoeCharged" extends="zombieJoeRadiated">
+	<property name="PreviousTier" value="zombieJoeRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieJoeCharged -->
@@ -1253,6 +1286,7 @@
 
 		<!-- *** ZOMBIE_JOE_INFERNAL -->
 <!-- <entity_class name="zombieJoeInfernal" extends="zombieJoeRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieJoeRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieJoeInfernal -->
@@ -1301,6 +1335,7 @@
 
 		<!-- *** ZOMBIE_STEVE_FERAL -->
 <entity_class name="zombieSteveFeral" extends="zombieSteve">
+	<property name="PreviousTier" value="zombieSteve"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Steve/ZSteveFeral.prefab"/>
@@ -1321,6 +1356,7 @@
 
 		<!-- *** ZOMBIE_STEVE_RADIATED -->
 <entity_class name="zombieSteveRadiated" extends="zombieSteveFeral">
+	<property name="PreviousTier" value="zombieSteveFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Steve/ZSteveRadiated.prefab"/>
@@ -1342,6 +1378,7 @@
 
 		<!-- *** ZOMBIE_STEVE_CHARGED -->
 <entity_class name="zombieSteveCharged" extends="zombieSteveRadiated">
+	<property name="PreviousTier" value="zombieSteveRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieSteveCharged -->
@@ -1357,6 +1394,7 @@
 
 		<!-- *** ZOMBIE_STEVE_INFERNAL -->
 <!-- <entity_class name="zombieSteveInfernal" extends="zombieSteveRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieSteveRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieSteveInfernal -->
@@ -1405,6 +1443,7 @@
 
 		<!-- *** ZOMBIE_TOM_CLARK_FERAL -->
 <entity_class name="zombieTomClarkFeral" extends="zombieTomClark">
+	<property name="PreviousTier" value="zombieTomClark"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/TomClark/ZTomClarkFeral.prefab"/>
@@ -1425,6 +1464,7 @@
 
 		<!-- *** ZOMBIE_TOM_CLARK_RADIATED -->
 <entity_class name="zombieTomClarkRadiated" extends="zombieTomClarkFeral">
+	<property name="PreviousTier" value="zombieTomClarkFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/TomClark/ZTomClarkRadiated.prefab"/>
@@ -1446,6 +1486,7 @@
 
 		<!-- *** ZOMBIE_TOM_CLARK_CHARGED -->
 <entity_class name="zombieTomClarkCharged" extends="zombieTomClarkRadiated">
+	<property name="PreviousTier" value="zombieTomClarkRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieTomClarkCharged -->
@@ -1461,6 +1502,7 @@
 
 		<!-- *** ZOMBIE_TOM_CLARK_INFERNAL -->
 <!-- <entity_class name="zombieTomClarkInfernal" extends="zombieTomClarkRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieTomClarkRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieTomClarkInfernal -->
@@ -1505,6 +1547,7 @@
 
 		<!-- *** ZOMBIE_BUSINESSMAN_FERAL -->
 <entity_class name="zombieBusinessManFeral" extends="zombieBusinessMan">
+	<property name="PreviousTier" value="zombieBusinessMan"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Suit/ZSuitFeral.prefab"/>
@@ -1525,6 +1568,7 @@
 
 		<!-- *** ZOMBIE_BUSINESSMAN_RADIATED -->
 <entity_class name="zombieBusinessManRadiated" extends="zombieBusinessManFeral">
+	<property name="PreviousTier" value="zombieBusinessManFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<!-- <property name="Buffs" value="buffLegendaryBoss"/> -->
@@ -1545,6 +1589,7 @@
 
 		<!-- *** ZOMBIE_BUSINESSMAN_CHARGED -->
 <entity_class name="zombieBusinessManCharged" extends="zombieBusinessManRadiated">
+	<property name="PreviousTier" value="zombieBusinessManRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged01"/><!-- zombieBusinessManCharged -->
@@ -1560,6 +1605,7 @@
 
 		<!-- *** ZOMBIE_BUSINESSMAN_INFERNAL -->
 <entity_class name="zombieBusinessManInfernal" extends="zombieBusinessManRadiated">
+	<property name="PreviousTier" value="zombieBusinessManRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpSlimInfernal01"/><!-- zombieBusinessManInfernal -->
@@ -1610,6 +1656,7 @@
 
 		<!-- *** ZOMBIE_BURNT_FERAL -->
 <entity_class name="zombieBurntFeral" extends="zombieBurnt">
+	<property name="PreviousTier" value="zombieBurnt"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,burnt,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntFeral.prefab"/>
@@ -1635,6 +1682,7 @@
 
 		<!-- *** ZOMBIE_BURNT_RADIATED -->
 <entity_class name="zombieBurntRadiated" extends="zombieBurntFeral">
+	<property name="PreviousTier" value="zombieBurntFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,burnt,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Burnt/ZBurntRadiated.prefab"/>
@@ -1655,6 +1703,7 @@
 
 		<!-- *** ZOMBIE_BURNT_CHARGED -->
 <entity_class name="zombieBurntCharged" extends="zombieBurntRadiated">
+	<property name="PreviousTier" value="zombieBurntRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,burnt,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged02"/><!-- zombieBurntCharged -->
@@ -1670,6 +1719,7 @@
 
 		<!-- *** ZOMBIE_BURNT_INFERNAL -->
 <entity_class name="zombieBurntInfernal" extends="zombieBurntRadiated">
+	<property name="PreviousTier" value="zombieBurntRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,burnt,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpSlimInfernal01"/><!-- zombieBurntInfernal -->
@@ -1686,9 +1736,10 @@
 
 		<!-- *** ZOMBIE_RANCHER -->
 <entity_class name="zombieRancher" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
-	<property name="Tags" value="entity,zombie,walker,desert"/>
+	<property name="Tags" value="entity,zombie,walker,desert,special,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Rancher/ZRancher.prefab"/>
 	<property name="WalkType" value="7"/>
 	<property name="Mass" value="160"/>
@@ -1706,7 +1757,7 @@
 	<!-- Dismemberment -->
 	<property name ="DismemberTag_L_HeadGore" value="Rancher/Dismemberment/Blade/Head;Rancher/Dismemberment/Blunt/Head" data="type=blade+target=neck+atp=true+detach=true+asp=head+scale=1,1,1;type=blunt+target=neck+atp=true+asp=head+scale=1,1,1"/>
 	<property name ="DismemberTag_L_LeftLowerArmGore" value="Rancher/Dismemberment/Blade/LeftLowerArm" data="type=blade+target=leftforearmroll+atp=true+detach=true+sfv=leftforearm"/>
-	<property name ="DismemberTag_L_LeftUpperArmGore" value="Rancher/Dismemberment/Blade/LeftUpperArm" data="type=blade+target=leftarmroll+atp=true+detach=true+mask=true"/>
+	<property name ="DismemberTag_L_LeftUpperArmGore" value="Rancher/Dismemberment/Blade/LeftUpperArm" data="type=blade+target=leftarmroll+atp=true+detach=true+scale=.35,1,1"/>
 	<property name ="DismemberTag_L_LeftUpperLegGore" value="Rancher/Dismemberment/Blade/LeftUpperLeg" data="type=blade+target=leftupleg+detach=true+mask=true"/>
 	<property name ="DismemberTag_L_RightLowerArmGore" value="Rancher/Dismemberment/Blade/RightLowerArm" data="type=blade+target=rightforearmroll+atp=true+detach=true+mask=true+msb=rightforearmroll"/>
 	<property name ="DismemberTag_L_RightUpperArmGore" value="Rancher/Dismemberment/Blade/RightUpperArm" data="type=blade+target=rightarmroll+atp=true+detach=true+mask=true"/>
@@ -1734,8 +1785,9 @@
 	</effect_group>
 </entity_class>
 
-	<!-- *** ZOMBIE_RANCHER_FERAL-->
+		<!-- *** ZOMBIE_RANCHER_FERAL-->
 <entity_class name="zombieRancherFeral" extends="zombieRancher">
+	<property name="PreviousTier" value="zombieRancher"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,desert,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Rancher/ZRancherFeral.prefab"/>
@@ -1755,8 +1807,9 @@
 	</effect_group>
 </entity_class>
 
-	<!-- *** ZOMBIE_RANCHER_RADIATED-->
+		<!-- *** ZOMBIE_RANCHER_RADIATED-->
 <entity_class name="zombieRancherRadiated" extends="zombieRancherFeral">
+	<property name="PreviousTier" value="zombieRancherFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,desert,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Rancher/ZRancherRadiated.prefab"/>
@@ -1778,6 +1831,7 @@
 
 		<!-- *** ZOMBIE_RANCHER_CHARGED -->
 <entity_class name="zombieRancherCharged" extends="zombieRancherRadiated">
+	<property name="PreviousTier" value="zombieRancherRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,desert,feral,charged"/>
 	<property name="ExperienceGain" value="^xpStrongCharged01"/><!-- zombieRancherCharged -->
@@ -1793,6 +1847,7 @@
 
 		<!-- *** ZOMBIE_RANCHER_INFERNAL -->
 <entity_class name="zombieRancherInfernal" extends="zombieRancherRadiated">
+	<property name="PreviousTier" value="zombieRancherRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,desert,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieRancherInfernal -->
@@ -1813,26 +1868,31 @@
 	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitter.prefab"/> -->
 </entity_class>
 <entity_class name="zombiePlagueSpitterFeral" extends="zombieRancherFeral">
+	<property name="PreviousTier" value="zombieRancher"/>
 	<property name="UserSpawnType" value="None"/>
 	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterFeral.prefab"/> -->
 </entity_class>
 <entity_class name="zombiePlagueSpitterRadiated" extends="zombieRancherRadiated">
+	<property name="PreviousTier" value="zombieRancherFeral"/>
 	<property name="UserSpawnType" value="None"/>
 	<!-- <property name="Mesh" value="@:Entities/Zombies/PlagueSpitter/ZPlagueSpitterRadiated.prefab"/> -->
 </entity_class>
 <entity_class name="zombiePlagueSpitterCharged" extends="zombieRancherCharged">
+	<property name="PreviousTier" value="zombieRancherRadiated"/>
 	<property name="UserSpawnType" value="None"/>
 </entity_class>
 <entity_class name="zombiePlagueSpitterInfernal" extends="zombieRancherInfernal">
+	<property name="PreviousTier" value="zombieRancherRadiated"/>
 	<property name="UserSpawnType" value="None"/>
 </entity_class>
 
 		<!-- *** ZOMBIE_CHUCK-->
 <entity_class name="zombieChuck" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieLumberjack"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
 	<property name="SizeScale" value="1.2"/>
-	<property name="Tags" value="entity,zombie,walker,snow"/>
+	<property name="Tags" value="entity,zombie,walker,snow,special,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Chuck/ZChuck.prefab"/>
 	<property name="WalkType" value="2"/>
 	<property name="Mass" value="230"/>
@@ -1880,6 +1940,7 @@
 
 		<!-- *** ZOMBIE_CHUCK_FERAL -->
 <entity_class name="zombieChuckFeral" extends="zombieChuck">
+	<property name="PreviousTier" value="zombieChuck"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,snow,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Chuck/ZChuckFeral.prefab"/>
@@ -1900,6 +1961,7 @@
 
 		<!-- *** ZOMBIE_CHUCK_RADIATED -->
 <entity_class name="zombieChuckRadiated" extends="zombieChuckFeral">
+	<property name="PreviousTier" value="zombieChuckFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,snow,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Chuck/ZChuckRadiated.prefab"/>
@@ -1919,6 +1981,7 @@
 
 		<!-- *** ZOMBIE_CHUCK_CHARGED -->
 <entity_class name="zombieChuckCharged" extends="zombieChuckRadiated">
+	<property name="PreviousTier" value="zombieChuckRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,snow,feral,charged"/>
 	<property name="ExperienceGain" value="^xpStrongCharged02"/><!-- zombieChuckCharged -->
@@ -1934,6 +1997,7 @@
 
 		<!-- *** ZOMBIE_CHUCK_INFERNAL -->
 <entity_class name="zombieChuckInfernal" extends="zombieChuckRadiated">
+	<property name="PreviousTier" value="zombieChuckRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,snow,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal03"/><!-- zombieChuckInfernal -->
@@ -1954,17 +2018,21 @@
 	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClaw.prefab"/> -->
 </entity_class>
 <entity_class name="zombieFrostclawFeral" extends="zombieChuckFeral">
+	<property name="PreviousTier" value="zombieChuck"/>
 	<property name="UserSpawnType" value="None"/>
 	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawFeral.prefab"/> -->
 </entity_class>
 <entity_class name="zombieFrostclawRadiated" extends="zombieChuckRadiated">
+	<property name="PreviousTier" value="zombieChuckFeral"/>
 	<property name="UserSpawnType" value="None"/>
 	<!-- <property name="Mesh" value="@:Entities/Zombies/Frostclaw/ZFrostClawRadiated.prefab"/> -->
 </entity_class>
 <entity_class name="zombieFrostclawCharged" extends="zombieChuckCharged">
+	<property name="PreviousTier" value="zombieChuckRadiated"/>
 	<property name="UserSpawnType" value="None"/>
 </entity_class>
 <entity_class name="zombieFrostclawInfernal" extends="zombieChuckInfernal">
+	<property name="PreviousTier" value="zombieChuckRadiated"/>
 	<property name="UserSpawnType" value="None"/>
 </entity_class>
 
@@ -2041,6 +2109,7 @@
 
 		<!-- *** ZOMBIE_SPIDER_FERAL-->
 <entity_class name="zombieSpiderFeral" extends="zombieSpider">
+	<property name="PreviousTier" value="zombieSpider"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,spider,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Spider/ZSpiderFeral.prefab"/>
@@ -2060,6 +2129,7 @@
 
 		<!-- *** ZOMBIE_SPIDER_RADIATED -->
 <entity_class name="zombieSpiderRadiated" extends="zombieSpiderFeral">
+	<property name="PreviousTier" value="zombieSpiderFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,spider,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Spider/ZSpiderRadiated.prefab"/>
@@ -2080,6 +2150,7 @@
 
 		<!-- *** ZOMBIE_SPIDER_CHARGED -->
 <entity_class name="zombieSpiderCharged" extends="zombieSpiderRadiated">
+	<property name="PreviousTier" value="zombieSpiderRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,spider,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged02"/><!-- zombieSpiderCharged -->
@@ -2095,6 +2166,7 @@
 
 		<!-- *** ZOMBIE_SPIDER_INFERNAL -->
 <entity_class name="zombieSpiderInfernal" extends="zombieSpiderRadiated">
+	<property name="PreviousTier" value="zombieSpiderRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,spider,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpSlimInfernal01"/><!-- zombieSpiderInfernal -->
@@ -2151,6 +2223,7 @@
 
 		<!-- *** ZOMBIE_BOE_FERAL -->
 <entity_class name="zombieBoeFeral" extends="zombieBoe">
+	<property name="PreviousTier" value="zombieBoe"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Boe/ZBoeFeral.prefab"/>
@@ -2170,6 +2243,7 @@
 
 		<!-- *** ZOMBIE_BOE_RADIATED -->
 <entity_class name="zombieBoeRadiated" extends="zombieBoeFeral">
+	<property name="PreviousTier" value="zombieBoeFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Boe/ZBoeRadiated.prefab"/>
@@ -2191,6 +2265,7 @@
 
 		<!-- *** ZOMBIE_BOE_CHARGED -->
 <entity_class name="zombieBoeCharged" extends="zombieBoeRadiated">
+	<property name="PreviousTier" value="zombieBoeRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieBoeCharged -->
@@ -2206,6 +2281,7 @@
 
 		<!-- *** ZOMBIE_BOE_INFERNAL -->
 <entity_class name="zombieBoeInfernal" extends="zombieBoeRadiated">
+	<property name="PreviousTier" value="zombieBoeRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieBoeInfernal -->
@@ -2258,6 +2334,7 @@
 
 		<!-- *** ZOMBIE_HAZMAT_FERAL -->
 <entity_class name="zombieMaleHazmatFeral" extends="zombieMaleHazmat">
+	<property name="PreviousTier" value="zombieMaleHazmat"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hazmat/ZHazmatFeral.prefab"/>
@@ -2285,6 +2362,7 @@
 
 		<!-- *** ZOMBIE_HAZMAT_RADIATED -->
 <entity_class name="zombieMaleHazmatRadiated" extends="zombieMaleHazmat">
+	<property name="PreviousTier" value="zombieMaleHazmatFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hazmat/ZHazmatRadiated.prefab"/>
@@ -2315,6 +2393,7 @@
 
 		<!-- *** ZOMBIE_HAZMAT_CHARGED -->
 <entity_class name="zombieMaleHazmatCharged" extends="zombieMaleHazmatRadiated">
+	<property name="PreviousTier" value="zombieMaleHazmatRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieMaleHazmatCharged -->
@@ -2330,6 +2409,7 @@
 
 		<!-- *** ZOMBIE_HAZMAT_INFERNAL -->
 <entity_class name="zombieMaleHazmatInfernal" extends="zombieMaleHazmatRadiated">
+	<property name="PreviousTier" value="zombieMaleHazmatRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieMaleHazmatInfernal -->
@@ -2376,6 +2456,7 @@
 
 		<!-- *** ZOMBIE_JANITOR_FERAL -->
 <entity_class name="zombieJanitorFeral" extends="zombieJanitor">
+	<property name="PreviousTier" value="zombieJanitor"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mechanic/ZMechanicFeral.prefab"/>
@@ -2395,6 +2476,7 @@
 
 		<!-- *** ZOMBIE_JANITOR_RADIATED -->
 <entity_class name="zombieJanitorRadiated" extends="zombieJanitor">
+	<property name="PreviousTier" value="zombieJanitorFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mechanic/ZMechanicRadiated.prefab"/>
@@ -2420,6 +2502,7 @@
 
 		<!-- *** ZOMBIE_JANITOR_CHARGED -->
 <entity_class name="zombieJanitorCharged" extends="zombieJanitorRadiated">
+	<property name="PreviousTier" value="zombieJanitorRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieJanitorCharged -->
@@ -2435,6 +2518,7 @@
 
 		<!-- *** ZOMBIE_JANITOR_INFERNAL -->
 <entity_class name="zombieJanitorInfernal" extends="zombieJanitorRadiated">
+	<property name="PreviousTier" value="zombieJanitorRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieJanitorInfernal -->
@@ -2481,6 +2565,7 @@
 
 		<!-- *** ZOMBIE_INMATE_FERAL -->
 <entity_class name="zombieInmateFeral" extends="zombieInmate">
+	<property name="PreviousTier" value="zombieInmate"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mechanic/ZInmateFeral.prefab"/>
@@ -2500,6 +2585,7 @@
 
 		<!-- *** ZOMBIE_INMATE_RADIATED -->
 <entity_class name="zombieInmateRadiated" extends="zombieInmate">
+	<property name="PreviousTier" value="zombieInmateFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mechanic/ZInmateRadiated.prefab"/>
@@ -2524,6 +2610,7 @@
 
 		<!-- *** ZOMBIE_INMATE_CHARGED -->
 <entity_class name="zombieInmateCharged" extends="zombieInmateRadiated">
+	<property name="PreviousTier" value="zombieInmateRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieInmateCharged -->
@@ -2539,6 +2626,7 @@
 
 		<!-- *** ZOMBIE_INMATE_INFERNAL -->
 <entity_class name="zombieInmateInfernal" extends="zombieInmateRadiated">
+	<property name="PreviousTier" value="zombieInmateRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieInmateInfernal -->
@@ -2595,6 +2683,7 @@
 
 		<!-- *** ZOMBIE_MOE_FERAL -->
 <entity_class name="zombieMoeFeral" extends="zombieMoe">
+	<property name="PreviousTier" value="zombieMoe"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Moe/ZMoeFeral.prefab"/>
@@ -2614,6 +2703,7 @@
 
 		<!-- *** ZOMBIE_MOE_RADIATED -->
 <entity_class name="zombieMoeRadiated" extends="zombieMoeFeral">
+	<property name="PreviousTier" value="zombieMoeFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Moe/ZMoeRadiated.prefab"/>
@@ -2635,6 +2725,7 @@
 
 		<!-- *** ZOMBIE_MOE_CHARGED -->
 <!-- <entity_class name="zombieMoeCharged" extends="zombieMoeRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieMoeRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieMoeCharged -->
@@ -2650,6 +2741,7 @@
 
 		<!-- *** ZOMBIE_MOE_INFERNAL -->
 <entity_class name="zombieMoeInfernal" extends="zombieMoeRadiated">
+	<property name="PreviousTier" value="zombieMoeRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieMoeInfernal -->
@@ -2707,6 +2799,7 @@
 
 		<!-- *** ZOMBIE_LAB_FERAL -->
 <entity_class name="zombieLabFeral" extends="zombieLab">
+	<property name="PreviousTier" value="zombieLab"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Lab/ZLabFeral.prefab"/>
@@ -2726,6 +2819,7 @@
 
 		<!-- *** ZOMBIE_LAB_RADIATED -->
 <entity_class name="zombieLabRadiated" extends="zombieLabFeral">
+	<property name="PreviousTier" value="zombieLabFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Lab/ZLabRadiated.prefab"/>
@@ -2745,6 +2839,7 @@
 
 		<!-- *** ZOMBIE_LAB_CHARGED -->
 <entity_class name="zombieLabCharged" extends="zombieLabRadiated">
+	<property name="PreviousTier" value="zombieLabRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieLabCharged -->
@@ -2760,6 +2855,7 @@
 
 		<!-- *** ZOMBIE_LAB_INFERNAL -->
 <!-- <entity_class name="zombieLabInfernal" extends="zombieLabRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieLabRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieLabInfernal -->
@@ -2815,6 +2911,7 @@
 
 		<!-- *** ZOMBIE_DARLENE_FERAL -->
 <entity_class name="zombieDarleneFeral" extends="zombieDarlene">
+	<property name="PreviousTier" value="zombieDarlene"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Darlene/ZDarleneFeral.prefab"/>
@@ -2834,6 +2931,7 @@
 
 		<!-- *** ZOMBIE_DARLENE_RADIATED -->
 <entity_class name="zombieDarleneRadiated" extends="zombieDarleneFeral">
+	<property name="PreviousTier" value="zombieDarleneFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Darlene/ZDarleneRadiated.prefab"/>
@@ -2855,6 +2953,7 @@
 
 		<!-- *** ZOMBIE_DARLENE_CHARGED -->
 <entity_class name="zombieDarleneCharged" extends="zombieDarleneRadiated">
+	<property name="PreviousTier" value="zombieDarleneRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieDarleneCharged -->
@@ -2870,6 +2969,7 @@
 
 		<!-- *** ZOMBIE_DARLENE_INFERNAL -->
 <entity_class name="zombieDarleneInfernal" extends="zombieDarleneRadiated">
+	<property name="PreviousTier" value="zombieDarleneRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieDarleneInfernal -->
@@ -2917,6 +3017,7 @@
 
 		<!-- *** ZOMBIE_YO_FERAL -->
 <entity_class name="zombieYoFeral" extends="zombieYo">
+	<property name="PreviousTier" value="zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Yo/ZYoFeral.prefab"/>
@@ -2936,6 +3037,7 @@
 
 		<!-- *** ZOMBIE_YO_RADIATED -->
 <entity_class name="zombieYoRadiated" extends="zombieYoFeral">
+	<property name="PreviousTier" value="zombieYoFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Yo/ZYoRadiated.prefab"/>
@@ -2957,6 +3059,7 @@
 
 		<!-- *** ZOMBIE_YO_CHARGED -->
 <entity_class name="zombieYoCharged" extends="zombieYoRadiated">
+	<property name="PreviousTier" value="zombieYoRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged01"/><!-- zombieYoCharged -->
@@ -2972,6 +3075,7 @@
 
 		<!-- *** ZOMBIE_YO_INFERNAL -->
 <entity_class name="zombieYoInfernal" extends="zombieYoRadiated">
+	<property name="PreviousTier" value="zombieYoRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieYoInfernal -->
@@ -3031,6 +3135,7 @@
 
 		<!-- *** ZOMBIE_UTILITY_WORKER_FERAL -->
 <entity_class name="zombieUtilityWorkerFeral" extends="zombieUtilityWorker">
+	<property name="PreviousTier" value="zombieUtilityWorker"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Worker/ZWorkerFeral.prefab"/>
@@ -3050,6 +3155,7 @@
 
 		<!-- *** ZOMBIE_UTILITY_WORKER_RADIATED -->
 <entity_class name="zombieUtilityWorkerRadiated" extends="zombieUtilityWorkerFeral">
+	<property name="PreviousTier" value="zombieUtilityWorkerFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<!-- <property name="Buffs" value="buffLegendaryBoss"/> -->
@@ -3070,6 +3176,7 @@
 
 		<!-- *** ZOMBIE_UTILITY_WORKER_CHARGED -->
 <entity_class name="zombieUtilityWorkerCharged" extends="zombieUtilityWorkerRadiated">
+	<property name="PreviousTier" value="zombieUtilityWorkerRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged02"/><!-- zombieUtilityWorkerCharged -->
@@ -3085,6 +3192,7 @@
 
 		<!-- *** ZOMBIE_UTILITY_WORKER_INFERNAL -->
 <entity_class name="zombieUtilityWorkerInfernal" extends="zombieUtilityWorkerRadiated">
+	<property name="PreviousTier" value="zombieUtilityWorkerRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal02"/><!-- zombieUtilityWorkerInfernal -->
@@ -3104,10 +3212,11 @@
 
 		<!-- *** ZOMBIE_BIKER -->
 <entity_class name="zombieBiker" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="SoundStepType" value="largestep"/>
 	<property name="SizeScale" value="1.08"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/Biker/ZBiker.prefab"/>
 	<property name="Mass" value="230"/>
 	<property name="WalkType" value="7"/>
@@ -3140,6 +3249,7 @@
 
 		<!-- *** ZOMBIE_BIKER_FERAL -->
 <entity_class name="zombieBikerFeral" extends="zombieBiker">
+	<property name="PreviousTier" value="zombieBiker"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Biker/ZBikerFeral.prefab"/>
@@ -3160,6 +3270,7 @@
 
 		<!-- *** ZOMBIE_BIKER_RADIATED -->
 <entity_class name="zombieBikerRadiated" extends="zombieBikerFeral">
+	<property name="PreviousTier" value="zombieBikerFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Biker/ZBikerRadiated.prefab"/>
@@ -3181,6 +3292,7 @@
 
 		<!-- *** ZOMBIE_BIKER_CHARGED -->
 <!-- <entity_class name="zombieBikerCharged" extends="zombieBikerRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieBikerRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieBikerCharged -->
@@ -3196,6 +3308,7 @@
 
 		<!-- *** ZOMBIE_BIKER_INFERNAL -->
 <entity_class name="zombieBikerInfernal" extends="zombieBikerRadiated">
+	<property name="PreviousTier" value="zombieBikerRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieBikerInfernal -->
@@ -3212,9 +3325,10 @@
 
 		<!-- *** ZOMBIE_LUMBERJACK -->
 <entity_class name="zombieLumberjack" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjack.prefab"/>
 	<property name="ModelType" value="Standard"/>
 	<property name="WalkType" value="2"/>
@@ -3253,6 +3367,7 @@
 
 		<!-- *** ZOMBIE_LUMBERJACK_FERAL -->
 <entity_class name="zombieLumberjackFeral" extends="zombieLumberjack">
+	<property name="PreviousTier" value="zombieLumberjack"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackFeral.prefab"/>
@@ -3273,6 +3388,7 @@
 
 		<!-- *** ZOMBIE_LUMBERJACK_RADIATED -->
 <entity_class name="zombieLumberjackRadiated" extends="zombieLumberjackFeral">
+	<property name="PreviousTier" value="zombieLumberjackFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Lumberjack/ZLumberjackRadiated.prefab"/>
@@ -3294,6 +3410,7 @@
 
 		<!-- *** ZOMBIE_LUMBERJACK_CHARGED -->
 <!-- <entity_class name="zombieLumberjackCharged" extends="zombieLumberjackRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieLumberjackRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieLumberjackCharged -->
@@ -3309,6 +3426,7 @@
 
 		<!-- *** ZOMBIE_LUMBERJACK_INFERNAL -->
 <entity_class name="zombieLumberjackInfernal" extends="zombieLumberjackRadiated">
+	<property name="PreviousTier" value="zombieLumberjackRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieLumberjackInfernal -->
@@ -3325,8 +3443,9 @@
 
 		<!-- *** ZOMBIE_FEMALE_FAT -->
 <entity_class name="zombieFemaleFat" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieArlene,zombieMarlene,zombieNurse,zombiePartyGirl,zombieDarlene,zombieLab"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/BigMama/ZBigMama.prefab"/>
 	<property name="AltMats" value="@:Entities/Zombies/BigMama/Materials/HD_BigMomma2.mat,@:Entities/Zombies/BigMama/Materials/HD_BigMomma3.mat"/>
 	
@@ -3371,6 +3490,7 @@
 
 		<!-- *** ZOMBIE_FEMALE_FAT_FERAL-->
 <entity_class name="zombieFemaleFatFeral" extends="zombieFemaleFat">
+	<property name="PreviousTier" value="zombieFemaleFat"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/BigMama/ZBigMamaFeral.prefab"/>
@@ -3391,6 +3511,7 @@
 
 		<!-- *** ZOMBIE_FEMALE_FAT_RADIATED -->
 <entity_class name="zombieFemaleFatRadiated" extends="zombieFemaleFatFeral">
+	<property name="PreviousTier" value="zombieFemaleFatFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/BigMama/ZBigMamaRadiated.prefab"/>
@@ -3413,6 +3534,7 @@
 
 		<!-- *** ZOMBIE_FEMALE_FAT_CHARGED -->
 <!-- <entity_class name="zombieFemaleFatCharged" extends="zombieFemaleFatRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieFemaleFatRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieFemaleFatCharged -->
@@ -3428,6 +3550,7 @@
 
 		<!-- *** ZOMBIE_FEMALE_FAT_INFERNAL -->
 <entity_class name="zombieFemaleFatInfernal" extends="zombieFemaleFatRadiated">
+	<property name="PreviousTier" value="zombieFemaleFatRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieFemaleFatInfernal -->
@@ -3444,9 +3567,10 @@
 
 		<!-- *** ZOMBIE_FAT_HAWAIIAN -->
 <entity_class name="zombieFatHawaiian" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZHawaiian.prefab"/>
 	<property name="AltMats" value="@:Entities/Zombies/Hawaiian/Materials/HD_Hawaiian_Zombie2.mat,@:Entities/Zombies/Hawaiian/Materials/HD_Hawaiian_Zombie4.mat"/>
 	
@@ -3489,6 +3613,7 @@
 
 		<!-- *** ZOMBIE_FAT_HAWAIIAN_FERAL -->
 <entity_class name="zombieFatHawaiianFeral" extends="zombieFatHawaiian">
+	<property name="PreviousTier" value="zombieFatHawaiian"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZHawaiianFeral.prefab"/>
@@ -3509,6 +3634,7 @@
 
 		<!-- *** ZOMBIE_FAT_HAWAIIAN_RADIATED -->
 <entity_class name="zombieFatHawaiianRadiated" extends="zombieFatHawaiianFeral">
+	<property name="PreviousTier" value="zombieFatHawaiianFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZHawaiianRadiated.prefab"/>
@@ -3530,6 +3656,7 @@
 
 		<!-- *** ZOMBIE_FAT_HAWAIIAN_CHARGED -->
 <!-- <entity_class name="zombieFatHawaiianCharged" extends="zombieFatHawaiianRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieFatHawaiianRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieFatHawaiianCharged -->
@@ -3545,6 +3672,7 @@
 
 		<!-- *** ZOMBIE_FAT_HAWAIIAN_INFERNAL -->
 <entity_class name="zombieFatHawaiianInfernal" extends="zombieFatHawaiianRadiated">
+	<property name="PreviousTier" value="zombieFatHawaiianRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieFatHawaiianInfernal -->
@@ -3561,9 +3689,10 @@
 
 		<!-- *** ZOMBIE_BOWLER -->
 <entity_class name="zombieBowler" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZBowler.prefab"/>
 	<property name="AltMats" value="@:Entities/Zombies/Hawaiian/Materials/HD_Hawaiian_Zombie5.mat"/>
 	
@@ -3606,6 +3735,7 @@
 
 		<!-- *** ZOMBIE_BOWLER_FERAL -->
 <entity_class name="zombieBowlerFeral" extends="zombieBowler">
+	<property name="PreviousTier" value="zombieBowler"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZBowlerFeral.prefab"/>
@@ -3626,6 +3756,7 @@
 
 		<!-- *** ZOMBIE_BOWLER_RADIATED -->
 <entity_class name="zombieBowlerRadiated" extends="zombieBowlerFeral">
+	<property name="PreviousTier" value="zombieBowlerFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Hawaiian/ZBowlerRadiated.prefab"/>
@@ -3647,6 +3778,7 @@
 
 		<!-- *** ZOMBIE_BOWLER_CHARGED -->
 <!-- <entity_class name="zombieBowlerCharged" extends="zombieBowlerRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieBowlerRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieBowlerCharged -->
@@ -3662,6 +3794,7 @@
 
 		<!-- *** ZOMBIE_BOWLER_INFERNAL -->
 <entity_class name="zombieBowlerInfernal" extends="zombieBowlerRadiated">
+	<property name="PreviousTier" value="zombieBowlerRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal01"/><!-- zombieBowlerInfernal -->
@@ -3678,10 +3811,11 @@
 
 		<!-- *** ZOMBIE_FAT_COP -->
 <entity_class name="zombieFatCop" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
 	<property name="Class" value="EntityZombieCop"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome,zombieCop"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,zombieCop,special,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Cop/ZCop.prefab"/>
 	<property name="WalkType" value="1"/>
 	<property name="Mass" value="320"/>
@@ -3737,12 +3871,16 @@
 	<property name="ExperienceGain" value="^xpStrong02"/><!-- zombieFatCop -->
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
 
-	<property name="Explosion.ParticleIndex" value="8"/>
-	<property name="Explosion.RadiusBlocks" value="5"/>
-	<property name="Explosion.RadiusEntities" value="6"/>
-	<property name="Explosion.BlockDamage" value="500"/>
-	<property name="Explosion.EntityDamage" value="150"/>
-	<property name="Explosion.DamageBonus.earth" value="0"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="8"/>
+		<property name="RadiusBlocks" value="5"/>
+		<property name="RadiusEntities" value="6"/>
+		<property name="BlockDamage" value="500"/>
+		<property name="EntityDamage" value="150"/>
+		<property class="DamageBonus">
+			<property name="earth" value="0"/>
+		</property>
+	</property>
 	
 	<effect_group name="Base Effects">
 		<passive_effect name="HealthMax" operation="base_set" value="^healthStrong"/>
@@ -3751,6 +3889,7 @@
 
 		<!-- *** ZOMBIE_FAT_COP_FERAL -->
 <entity_class name="zombieFatCopFeral" extends="zombieFatCop">
+	<property name="PreviousTier" value="zombieFatCop"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieCop"/>
 	<property name="Mesh" value="@:Entities/Zombies/Cop/ZCopFeral.prefab"/>
@@ -3763,8 +3902,10 @@
 	<property name="ExperienceGain" value="^xpStrongFeral02"/><!-- zombieFatCopFeral -->
 	<property name="LootDropProb" value=".04"/> <!-- Feral -->
 
-	<property name="Explosion.BlockDamage" value="650"/>
-	<property name="Explosion.EntityDamage" value="200"/>
+	<property class="Explosion">
+		<property name="BlockDamage" value="650"/>
+		<property name="EntityDamage" value="200"/>
+	</property>
 
 	<effect_group name="Base Effects">
 		<passive_effect name="HealthMax" operation="base_set" value="^healthStrongFeral"/>
@@ -3773,6 +3914,7 @@
 
 		<!-- *** ZOMBIE_FAT_COP_RADIATED -->
 <entity_class name="zombieFatCopRadiated" extends="zombieFatCopFeral">
+	<property name="PreviousTier" value="zombieFatCopFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieCop"/>
 	<property name="Mesh" value="@:Entities/Zombies/Cop/ZCopRadiated.prefab"/>
@@ -3792,17 +3934,20 @@
 		<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
 	</effect_group>
 
-	<property name="Explosion.ParticleIndex" value="80"/>
-	<property name="Explosion.BlockDamage" value="750"/>
-	<property name="Explosion.EntityDamage" value="250"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="80"/>
+		<property name="BlockDamage" value="750"/>
+		<property name="EntityDamage" value="250"/>
+	</property>
 </entity_class>
 
 		<!-- *** ZOMBIE_FAT_COP_CHARGED -->
 <!-- <entity_class name="zombieFatCopCharged" extends="zombieFatCopRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieFatCopRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieFatCopCharged -->
-	<!-- <property name="Explosion.EntityDamage" value="350"/> -->
+	<!-- <property name="Explosion|EntityDamage" value="350"/> -->
 	<!-- <property name="MoveSpeedPattern" value="^chargedMoveSpeedPattern"/> -->
 	<!-- <property name="LootDropProb" value=".1"/> --> <!-- Charged -->
 	<!-- <property name="LootDropEntityClass" value="EntityLootContainerStrong"/> -->
@@ -3814,11 +3959,14 @@
 
 		<!-- *** ZOMBIE_FAT_COP_INFERNAL -->
 <entity_class name="zombieFatCopInfernal" extends="zombieFatCopRadiated">
+	<property name="PreviousTier" value="zombieFatCopRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal,zombieCop"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal02"/><!-- zombieFatCopInfernal -->
 	<property name="PainResistPerHit" value="3, .5, .5"/><!-- normal, at low health, health% -->
-	<property name="Explosion.BlockDamage" value="1000"/>
+	<property class="Explosion">
+		<property name="BlockDamage" value="1000"/>
+	</property>
 	<property name="MoveSpeedPattern" value="^infernalMoveSpeedPattern"/>
 	<property name="LootDropProb" value=".1"/> <!-- Infernal -->
 	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
@@ -3828,7 +3976,9 @@
 		<passive_effect name="BuffResistance" operation="base_set" value=".75" tags="buffInjuryKnockdown01,buffInjuryKnockdown02"/>
 	</effect_group>
 
-	<property name="Explosion.ParticleIndex" value="81"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="81"/>
+	</property>
 </entity_class>
 
 <!-- *** ZOMBIES_FIT -->
@@ -3869,6 +4019,7 @@
 
 		<!-- *** ZOMBIE_SKATEBOARDER_FERAL -->
 <entity_class name="zombieSkateboarderFeral" extends="zombieSkateboarder">
+	<property name="PreviousTier" value="zombieSkateboarder"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Thug/ZThugFeral.prefab"/>
@@ -3889,6 +4040,7 @@
 
 		<!-- *** ZOMBIE_SKATEBOARDER_RADIATED -->
 <entity_class name="zombieSkateboarderRadiated" extends="zombieSkateboarderFeral">
+	<property name="PreviousTier" value="zombieSkateboarderFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Thug/ZThugRadiated.prefab"/>
@@ -3911,6 +4063,7 @@
 
 		<!-- *** ZOMBIE_SKATEBOARDER_CHARGED -->
 <entity_class name="zombieSkateboarderCharged" extends="zombieSkateboarderRadiated">
+	<property name="PreviousTier" value="zombieSkateboarderRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpNormalCharged02"/><!-- zombieSkateboarderCharged -->
@@ -3926,6 +4079,7 @@
 
 		<!-- *** ZOMBIE_SKATEBOARDER_INFERNAL -->
 <entity_class name="zombieSkateboarderInfernal" extends="zombieSkateboarderRadiated">
+	<property name="PreviousTier" value="zombieSkateboarderRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal01"/><!-- zombieSkateboarderInfernal -->
@@ -3987,6 +4141,7 @@
 
 		<!-- *** ZOMBIE_SOLDIER_FERAL -->
 <entity_class name="zombieSoldierFeral" extends="zombieSoldier">
+	<property name="PreviousTier" value="zombieSoldier"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,zombieSoldier"/>
 	<property name="Mesh" value="@:Entities/Zombies/Soldier/ZSoldierFeral.prefab"/>
@@ -4006,6 +4161,7 @@
 
 		<!-- *** ZOMBIE_SOLDIER_RADIATED -->
 <entity_class name="zombieSoldierRadiated" extends="zombieSoldierFeral">
+	<property name="PreviousTier" value="zombieSoldierFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="0"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated,zombieSoldier"/>
@@ -4028,6 +4184,7 @@
 
 		<!-- *** ZOMBIE_SOLDIER_CHARGED -->
 <!-- <entity_class name="zombieSoldierCharged" extends="zombieSoldierRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieSoldierRadiated"/> -->
 	<!-- <property name="MatColor" value="charged"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/> -->
 	<!-- <property name="ExperienceGain" value="^xpSlimCharged01"/> zombieSoldierCharged -->
@@ -4043,6 +4200,7 @@
 
 		<!-- *** ZOMBIE_SOLDIER_INFERNAL -->
 <entity_class name="zombieSoldierInfernal" extends="zombieSoldierRadiated">
+	<property name="PreviousTier" value="zombieSoldierRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpNormalInfernal03"/><!-- zombieSoldierInfernal -->
@@ -4059,6 +4217,7 @@
 
 		<!-- *** ZOMBIE_WIGHT_FERAL -->
 <entity_class name="zombieWightFeral" extends="zombieTemplateMale">
+	<property name="PreviousTier" value="zombieBusinessMan,zombieJoe,zombieSteve,zombieBoe,zombieMoe,zombieYo"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
 	<property name="SizeScale" value="1.1"/>
@@ -4101,6 +4260,7 @@
 
 		<!-- *** ZOMBIE_WIGHT_RADIATED -->
 <entity_class name="zombieWightRadiated" extends="zombieWightFeral">
+	<property name="PreviousTier" value="zombieWightFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Wight/ZWightRadiated.prefab"/>
@@ -4135,6 +4295,7 @@
 
 		<!-- *** ZOMBIE_WIGHT_CHARGED -->
 <entity_class name="zombieWightCharged" extends="zombieWightRadiated">
+	<property name="PreviousTier" value="zombieWightRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpStrongCharged02"/><!-- zombieWightCharged -->
@@ -4150,6 +4311,7 @@
 
 		<!-- *** ZOMBIE_WIGHT_INFERNAL -->
 <entity_class name="zombieWightInfernal" extends="zombieWightRadiated">
+	<property name="PreviousTier" value="zombieWightRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal03"/><!-- zombieWightInfernal -->
@@ -4208,6 +4370,7 @@
 
 		<!-- *** ZOMBIE_SCREAMER_FERAL -->
 <entity_class name="zombieScreamerFeral" extends="zombieScreamer">
+	<property name="PreviousTier" value="zombieScreamer"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral"/>
 	<property name="Mesh" value="@:Entities/Zombies/Screamer/ZScreamerFeral.prefab"/>
@@ -4227,6 +4390,7 @@
 
 		<!-- *** ZOMBIE_SCREAMER_RADIATED -->
 <entity_class name="zombieScreamerRadiated" extends="zombieScreamerFeral">
+	<property name="PreviousTier" value="zombieScreamerFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Screamer/ZScreamerRadiated.prefab"/>
@@ -4249,6 +4413,7 @@
 
 		<!-- *** ZOMBIE_SCREAMER_CHARGED -->
 <entity_class name="zombieScreamerCharged" extends="zombieScreamerRadiated">
+	<property name="PreviousTier" value="zombieScreamerRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,allbiome,feral,charged"/>
 	<property name="ExperienceGain" value="^xpSlimCharged02"/><!-- zombieScreamerCharged -->
@@ -4264,6 +4429,7 @@
 
 		<!-- *** ZOMBIE_SCREAMER_INFERNAL -->
 <!-- <entity_class name="zombieScreamerInfernal" extends="zombieScreamerRadiated"> -->
+	<!-- <property name="PreviousTier" value="zombieScreamerRadiated"/> -->
 	<!-- <property name="MatColor" value="infernal"/> -->
 	<!-- <property name="Tags" value="entity,zombie,walker,allbiome,feral,infernal"/> -->
 	<!-- <property name="ExperienceGain" value="^xpStrongCharged01"/> zombieScreamerInfernal -->
@@ -4280,9 +4446,10 @@
 
 		<!-- *** ZOMBIE_MUTATED -->
 <entity_class name="zombieMutated" extends="zombieFatCop">
+	<property name="PreviousTier" value="zombieLumberjack,zombieBiker"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
-	<property name="Tags" value="entity,zombie,walker,wasteland"/>
+	<property name="Tags" value="entity,zombie,walker,wasteland,special,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mutated/ZMutated.prefab"/>
 	<property name="SoundStepType" value="barehvystep"/>
 	<property name="SizeScale" value="1"/>
@@ -4332,8 +4499,9 @@
 
 		<!-- *** ZOMBIE_MUTATED_FERAL -->
 <entity_class name="zombieMutatedFeral" extends="zombieMutated">
+	<property name="PreviousTier" value="zombieMutated"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,zombie,walker,wasteland,feral"/>
+	<property name="Tags" value="entity,zombie,walker,wasteland,feral,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mutated/ZMutatedFeral.prefab"/>
 	<property name="SizeScale" value="1.1"/>
 
@@ -4352,6 +4520,7 @@
 
 		<!-- *** ZOMBIE_MUTATED_RADIATED -->
 <entity_class name="zombieMutatedRadiated" extends="zombieMutatedFeral">
+	<property name="PreviousTier" value="zombieMutatedFeral"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Tags" value="entity,zombie,walker,wasteland,feral,radiated"/>
 	<property name="Mesh" value="@:Entities/Zombies/Mutated/ZMutatedRadiated.prefab"/>
@@ -4386,6 +4555,7 @@
 
 		<!-- *** ZOMBIE_MUTATED_CHARGED -->
 <entity_class name="zombieMutatedCharged" extends="zombieMutatedRadiated">
+	<property name="PreviousTier" value="zombieMutatedRadiated"/>
 	<property name="MatColor" value="charged"/>
 	<property name="Tags" value="entity,zombie,walker,wasteland,feral,charged"/>
 	<property name="ExperienceGain" value="^xpStrongCharged03"/><!-- zombieMutatedCharged -->
@@ -4401,6 +4571,7 @@
 
 		<!-- *** ZOMBIE_MUTATED_INFERNAL -->
 <entity_class name="zombieMutatedInfernal" extends="zombieMutatedRadiated">
+	<property name="PreviousTier" value="zombieMutatedRadiated"/>
 	<property name="MatColor" value="infernal"/>
 	<property name="Tags" value="entity,zombie,walker,wasteland,feral,infernal"/>
 	<property name="ExperienceGain" value="^xpStrongInfernal04"/><!-- zombieMutatedInfernal -->
@@ -4417,10 +4588,11 @@
 
 		<!-- *** ZOMBIE_DEMOLITION -->
 <entity_class name="zombieDemolition" extends="zombieSoldier">
+	<property name="PreviousTier" value="zombieSoldier"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="Censor" value="1,2"/>
 	<property name="Class" value="EntityZombieCop"/>
-	<property name="Tags" value="entity,zombie,walker,allbiome,boss"/>
+	<property name="Tags" value="entity,zombie,walker,allbiome,boss,special,coverWorthy"/>
 	<property name="Mesh" value="@:Entities/Zombies/Demolition/ZDemolition.prefab"/>
 	<property name="Mass" value="300"/>
 	<property name="CrouchType" value="0"/>
@@ -4458,12 +4630,16 @@
 	<property name="HandItem" value="meleeHandZombieDemolition"/>
 	<property name="JumpMaxDistance" value="1, 2"/>
 	<property name="PainResistPerHit" value=".5"/>
-	<property name="Explosion.ParticleIndex" value="2"/>
-	<property name="Explosion.RadiusBlocks" value="5"/>
-	<property name="Explosion.RadiusEntities" value="6"/>
-	<property name="Explosion.BlockDamage" value="5000"/>
-	<property name="Explosion.EntityDamage" value="800"/>
-	<property name="Explosion.DamageBonus.earth" value=".1"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="2"/>
+		<property name="RadiusBlocks" value="5"/>
+		<property name="RadiusEntities" value="6"/>
+		<property name="BlockDamage" value="5000"/>
+		<property name="EntityDamage" value="800"/>
+		<property class="DamageBonus">
+			<property name="earth" value=".1"/>
+		</property>
+	</property>
 	<property name="StompsSpikes" value="true"/>
 	<property name="ExplodeDelay" value="2"/>
 	<property name="ExplodeHealthThreshold" value="0"/> <!-- Disable Health explosion -->
@@ -4516,15 +4692,17 @@
 	<property name="MoveSpeedAggro" value=".7, 1"/>
 	<property name="CanClimbLadders" value="false"/>
 	<property name="HandItem" value="meleeHandZombie02"/>
+	<property name="ExperienceGain" value="^xpNormal02"/><!-- zombieSteveCrawler -->
+
 	<effect_group name="Base Effects">
 		<passive_effect name="HealthMax" operation="base_set" value="^healthCrawler"/>
-		<property name="ExperienceGain" value="^xpNormal02"/><!-- zombieSteveCrawlerFeral -->
 	</effect_group>
 </entity_class>
 
 <entity_class name="zombieSteveCrawlerFeral" extends="zombieSteveCrawler">
+	<property name="PreviousTier" value="zombieSteveCrawler"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,zombie,crawler,allbiome,feral"/>
+	<property name="Tags" value="entity,zombie,crawler,allbiome,feral,strong"/>
 	<property name="Mesh" value="@:Entities/Zombies/Crawler/ZCrawlerFeral.prefab"/>
 
 	<!-- Gameplay zombieSteveCrawlerFeral -->
@@ -4922,8 +5100,9 @@
 
 		<!-- *** BEAR -->
 <entity_class name="animalBear" extends="animalTemplateHostile">
+	<property name="PreviousTier" value="animalCoyote,animalWolf"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,bear,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,bear,perkAT04,perkAT05,special"/>
 	<property name="Prefab" value="@:Entities/Animals/Bear/animalBearGrizzlyPrefab.prefab"/>
 	<property name="PrefabCombined" value="true"/>
 	<property name="MapIcon" value="ui_game_symbol_tracking_bear"/>
@@ -4987,8 +5166,9 @@
 
 		<!-- *** LITTLE_BEAR -->
 <entity_class name="animalBearSmall" extends="animalBear">
+	<property name="PreviousTier" value="animalCoyote,animalWolf"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,bear,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,bear,perkAT04,perkAT05,special"/>
 	<property name="SizeScale" value=".6"/>
 	<property name="Mass" value="300"/>
 
@@ -5014,9 +5194,10 @@
 
 		<!-- *** ZOMBIE_BEAR -->
 <entity_class name="animalZombieBear" extends="animalBear">
+	<property name="PreviousTier" value="animalZombieDog,animalZombieBoar"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
-	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,bear,perkAT05"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,bear,perkAT05,animalFeral"/>
 	<property name="Prefab" value="@:Entities/Animals/Bear/animalBearZombiePrefab.prefab"/>
 	<property name="PrefabCombined" value="true"/>
 	<property name="DismemberMultiplierHead" value="0"/>
@@ -5063,8 +5244,9 @@
 
 		<!-- *** WOLF -->
 <entity_class name="animalWolf" extends="animalTemplateHostile">
+	<property name="PreviousTier" value="animalChicken,animalRabbit,animalBoar"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,wolf,perkAT03,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,wolf,perkAT03,perkAT04,perkAT05,strong"/>
 	<property name="MapIcon" value="ui_game_symbol_tracking_wolf"/>
 	<property name="TrackerIcon" value="ui_game_symbol_tracking_wolf"/>
 	<property name="AvatarController" value="AvatarAnimalController"/>
@@ -5119,9 +5301,10 @@
 
 		<!-- *** DIRE_WOLF -->
 <entity_class name="animalDireWolf" extends="animalWolf">
+	<property name="PreviousTier" value="animalZombieBoar,animalZombieDog"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
-	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,wolf,perkAT05"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,wolf,perkAT05,animalFeral"/>
 	<property name="PhysicsBody" value="AWolf"/>
 	<property name="Mass" value="180"/>
 	<property name="Prefab" value="@:Entities/Animals/DireWolf/animalDireWolfPrefab.prefab"/>
@@ -5219,7 +5402,7 @@
 	<property name="AITarget-3" value="SetNearestCorpseAsTarget" data="flags=player"/>
 	<property name="AITarget-4" value="SetNearestEntityAsTarget" data="class=EntityPlayer,22,20"/>
 	<property name="AITarget-5" value=""/>
-
+	
 	<property name="MoveSpeed" value=".4"/>
 	<property name="MoveSpeedAggro" value="1.65, 1.82"/>
 	
@@ -5247,8 +5430,9 @@
 
 		<!-- *** COYOTE -->
 <entity_class name="animalCoyote" extends="animalWolf">
+	<property name="PreviousTier" value="animalChicken,animalRabbit,animalBoar"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,coyote,perkAT03,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,coyote,perkAT03,perkAT04,perkAT05,strong"/>
 	<property name="MapIcon" value="ui_game_symbol_tracking_wolf"/>
 	<property name="TrackerIcon" value="ui_game_symbol_tracking_wolf"/>
 	<property name="PhysicsBody" value="AWolf"/>
@@ -5298,8 +5482,9 @@
 
 		<!-- *** MOUNTAIN_LION -->
 <entity_class name="animalMountainLion" extends="animalWolf">
+	<property name="PreviousTier" value="animalCoyote,animalWolf"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,mountainlion,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,mountainlion,perkAT04,perkAT05,special"/>
 	<property name="MapIcon" value="ui_game_symbol_tracking_mountain_lion"/>
 	<property name="TrackerIcon" value="ui_game_symbol_tracking_mountain_lion"/>
 	<property name="PhysicsBody" value="MountainLion"/>
@@ -5360,7 +5545,7 @@
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
 	<property name="EntityType" value="Zombie"/>
-	<property name="Tags" value="entity,hostile"/>
+	<property name="Tags" value="entity,hostile,noHead"/>
 	<property name="ModelType" value="Standard"/>
 	<property name="HasRagdoll" value="false"/>
 	<property name="PhysicsBody" value=""/>
@@ -5411,7 +5596,7 @@
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
 	<property name="EntityType" value="Zombie"/>
-	<property name="Tags" value="entity,hostile"/>
+	<property name="Tags" value="entity,hostile,noHead"/>
 	<property name="ModelType" value="Standard"/>
 	<property name="HasRagdoll" value="false"/>
 	<property name="PhysicsBody" value=""/>
@@ -5458,11 +5643,12 @@
 
 		<!-- *** ZOMBIE_VULTURE -->
 <entity_class name="animalZombieVulture" extends="animalTemplateHostile">
+	<property name="PreviousTier" value="animalSnake"/>
 	<property name="Class" value="EntityVulture"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
 	<property name="EntityType" value="Zombie"/>
-	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,vulture"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,vulture,special"/>
 	<property name="AvatarController" value="AvatarAnimalController"/>
 	<property name="Prefab" value="@:Entities/Animals/Vulture/animalBirdVulturePrefab.prefab"/>
 	<property name="PrefabCombined" value="true"/>
@@ -5513,8 +5699,9 @@
 
 		<!-- *** ZOMBIE_VULTURE_RADIATED -->
 <entity_class name="animalZombieVultureRadiated" extends="animalZombieVulture">
+	<property name="PreviousTier" value="animalZombieVulture"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,radiated,vulture"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,radiated,vulture,special"/>
 	<property name="Mass" value="90"/>
 	<property name="SizeScale" value="1.2"/>
 	<!--<property name="ParticleOnSpawn" value="@:ParticleEffects/RadiatedParticlesOnMesh.prefab" param1="SetShapeToMesh0"/>-->
@@ -5544,10 +5731,11 @@
 
 		<!-- *** ZOMBIE_DOG -->
 <entity_class name="animalZombieDog" extends="animalWolf">
+	<property name="PreviousTier" value="animalCoyote"/>
 	<property name="Class" value="EntityZombieDog"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
-	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,dog,perkAT03,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,dog,perkAT03,perkAT04,perkAT05,special"/>
 	<property name="Prefab" value="@:Entities/Animals/Wolf/animalStandardDogZombieRagdoll.prefab"/>
 	<property name="PrefabCombined" value="true"/>
 	<property name="PhysicsBody" value="zombieDog"/>
@@ -5603,9 +5791,10 @@
 
 		<!-- *** SNAKE -->
 <entity_class name="animalSnake" extends="animalTemplateHostile">
+	<property name="PreviousTier" value="animalChicken,animalRabbit"/>
 	<property name="Class" value="EntityAnimalSnake"/>
 	<property name="UserSpawnType" value="Menu"/>
-	<property name="Tags" value="entity,animal,hostile,snake,perkAT01,perkAT02,perkAT03,perkAT04,perkAT05"/>
+	<property name="Tags" value="entity,animal,hostile,snake,perkAT01,perkAT02,perkAT03,perkAT04,perkAT05,strong"/>
 	<property name="MapIcon" value="ui_game_symbol_tracking_snake"/>
 	<property name="TrackerIcon" value="ui_game_symbol_tracking_snake"/>
 	<property name="Prefab" value="@:Entities/Animals/Snake/snake_Prefab.prefab"/>
@@ -5725,21 +5914,22 @@
 
 <!-- *** ZOMBIE BOAR -->
 <entity_class name="animalZombieBoar" extends="animalBoar">
+	<property name="PreviousTier" value="animalBoar"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
-	<property name="Tags" value="entity,animal,zombieAnimal,hostile,boar,boss"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,boar,boss,special"/>
 	<property name="IsEnemyEntity" value="true"/>
 	<property name="Prefab" value="@:Entities/Animals/Grace/animalBossGracePrefab.prefab"/>
 	<property name="PrefabCombined" value="true"/>
 	<!--<property name="ParticleOnSpawn" value="@:ParticleEffects/RadiatedParticlesOnMesh.prefab" param1="SetShapeToMesh0"/>-->
 	<property name="Mass" value="600"/>
-	<property name="SoundRandom" value="boarroam"/>
-	<property name="SoundAlert" value="boaralert"/>
-	<property name="SoundHurt" value="boarpain"/>
-	<property name="SoundDeath" value="boardeath"/>
-	<property name="SoundAttack" value="boarattack"/>
-	<property name="SoundSense" value="boarsense"/>
-	<property name="SoundGiveUp" value="boargiveup"/>
+	<property name="SoundRandom" value="zombieboarroam"/>
+	<property name="SoundAlert" value="zombieboaralert"/>
+	<property name="SoundHurt" value="zombieboarpain"/>
+	<property name="SoundDeath" value="zombieboardeath"/>
+	<property name="SoundAttack" value="zombieboarattack"/>
+	<property name="SoundSense" value="zombieboarsense"/>
+	<property name="SoundGiveUp" value="zombieboargiveup"/>
 	<property name="SoundStepType" value="animalhvyhoofstep"/>
 	<property name="DismemberMultiplierHead" value="0"/>
 	<property name="SizeScale" value="0.75"/>
@@ -5784,21 +5974,22 @@
 
 		<!-- *** GRACE -->
 <entity_class name="animalBossGrace" extends="animalBoar">
+	<property name="PreviousTier" value="animalZombieBoar"/>
 	<property name="UserSpawnType" value="Menu"/>
 	<property name="EntityFlags" value="animal,zombie"/>
-	<property name="Tags" value="entity,animal,zombieAnimal,hostile,boar,boss"/>
+	<property name="Tags" value="entity,animal,zombie,zombieAnimal,hostile,boar,boss,animalFeral"/>
 	<property name="IsEnemyEntity" value="true"/>
 	<property name="Prefab" value="@:Entities/Animals/Grace/animalBossGracePrefab.prefab"/>
 	<property name="PrefabCombined" value="true"/>
 	<!--<property name="ParticleOnSpawn" value="@:ParticleEffects/RadiatedParticlesOnMesh.prefab" param1="SetShapeToMesh0"/>-->
 	<property name="Mass" value="1200"/>
-	<property name="SoundRandom" value="boarroam"/>
-	<property name="SoundAlert" value="boaralert"/>
-	<property name="SoundHurt" value="boarpain"/>
-	<property name="SoundDeath" value="boardeath"/>
-	<property name="SoundAttack" value="boarattack"/>
-	<property name="SoundSense" value="boarsense"/>
-	<property name="SoundGiveUp" value="boargiveup"/>
+	<property name="SoundRandom" value="graceroam"/>
+	<property name="SoundAlert" value="gracealert"/>
+	<property name="SoundHurt" value="gracepain"/>
+	<property name="SoundDeath" value="gracedeath"/>
+	<property name="SoundAttack" value="graceattack"/>
+	<property name="SoundSense" value="gracesense"/>
+	<property name="SoundGiveUp" value="gracegiveup"/>
 	<property name="SoundStepType" value="animalhvyhoofstep"/>
 	<property name="DismemberMultiplierHead" value="0"/>
 
@@ -5847,6 +6038,11 @@
 	<property name="Prefab" value="FallingBlock"/>
 </entity_class>
 
+<entity_class name="fallingBlocks">
+	<property name="UserSpawnType" value="None"/>
+	<property name="Prefab" value="FallingBlocks"/>
+</entity_class>
+
 <entity_class name="fallingTree">
 	<property name="UserSpawnType" value="None"/>
 	<property name="Prefab" value="FallingTree"/>
@@ -5870,11 +6066,13 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="vehicleBicycle"/>
+	<property name="LootList" value="vehicleBicycle"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="25"/>
-	<property name="Explosion.RadiusBlocks" value="1"/>
-	<property name="Explosion.RadiusEntities" value="1"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="25"/>
+		<property name="RadiusBlocks" value="1"/>
+		<property name="RadiusEntities" value="1"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_bicycle"/>
@@ -5889,13 +6087,15 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="vehicleMinibike"/>
+	<property name="LootList" value="vehicleMinibike"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="26"/>
-	<property name="Explosion.RadiusBlocks" value="3"/>
-	<property name="Explosion.RadiusEntities" value="3"/>
-	<property name="Explosion.BlockDamage" value="20"/>
-	<property name="Explosion.EntityDamage" value="20"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="26"/>
+		<property name="RadiusBlocks" value="3"/>
+		<property name="RadiusEntities" value="3"/>
+		<property name="BlockDamage" value="20"/>
+		<property name="EntityDamage" value="20"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_minibike"/>
@@ -5910,13 +6110,15 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="vehicleMotorcycle"/>
+	<property name="LootList" value="vehicleMotorcycle"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="27"/>
-	<property name="Explosion.RadiusBlocks" value="4"/>
-	<property name="Explosion.RadiusEntities" value="4"/>
-	<property name="Explosion.BlockDamage" value="50"/>
-	<property name="Explosion.EntityDamage" value="50"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="27"/>
+		<property name="RadiusBlocks" value="4"/>
+		<property name="RadiusEntities" value="4"/>
+		<property name="BlockDamage" value="50"/>
+		<property name="EntityDamage" value="50"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_motorcycle"/>
@@ -5931,13 +6133,15 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="vehicle4x4Truck"/>
+	<property name="LootList" value="vehicle4x4Truck"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="29"/>
-	<property name="Explosion.RadiusBlocks" value="5"/>
-	<property name="Explosion.RadiusEntities" value="5"/>
-	<property name="Explosion.BlockDamage" value="100"/>
-	<property name="Explosion.EntityDamage" value="100"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="29"/>
+		<property name="RadiusBlocks" value="5"/>
+		<property name="RadiusEntities" value="5"/>
+		<property name="BlockDamage" value="100"/>
+		<property name="EntityDamage" value="100"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_4x4"/>
@@ -5952,13 +6156,15 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="vehicleGyrocopter"/>
+	<property name="LootList" value="vehicleGyrocopter"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="28"/>
-	<property name="Explosion.RadiusBlocks" value="3"/>
-	<property name="Explosion.RadiusEntities" value="3"/>
-	<property name="Explosion.BlockDamage" value="30"/>
-	<property name="Explosion.EntityDamage" value="30"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="28"/>
+		<property name="RadiusBlocks" value="3"/>
+		<property name="RadiusEntities" value="3"/>
+		<property name="BlockDamage" value="30"/>
+		<property name="EntityDamage" value="30"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_gyrocopter"/>
@@ -5974,11 +6180,13 @@
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="81"/>
+	<property name="LootList" value="81"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="6"/>
-	<property name="Explosion.RadiusBlocks" value="6"/>
-	<property name="Explosion.RadiusEntities" value="6"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="6"/>
+		<property name="RadiusBlocks" value="6"/>
+		<property name="RadiusEntities" value="6"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_minibike"/>
@@ -5994,11 +6202,13 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="82"/>
+	<property name="LootList" value="82"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="Explosion.ParticleIndex" value="6"/>
-	<property name="Explosion.RadiusBlocks" value="6"/>
-	<property name="Explosion.RadiusEntities" value="6"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="6"/>
+		<property name="RadiusBlocks" value="6"/>
+		<property name="RadiusEntities" value="6"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 	<property name="MapIcon" value="ui_game_symbol_minibike"/>
@@ -6040,7 +6250,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="HasRagdoll" value="false"/>
 	<property name="SurfaceCategory" value="wood"/>
 	<property name="ParticleOnDeath" value="supply_crate_gib_Prefab"/>
-	<property name="LootListAlive" value="airDrop"/>
+	<property name="LootList" value="airDrop"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="SoundParachuteOpen" value="SupplyDrops/Parachute_Opens"/>
 	<property name="SoundLanding" value="SupplyDrops/Supply_Crate_Land"/>
@@ -6065,7 +6275,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="TimeStayAfterDeath" value="3600"/> <!-- player death backpacks will go poof after this many seconds. 0 means 0, not infinite. -->
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="LootListOnDeath" value="playerBackpack"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="playerBackpack"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 	<property name="NavObject" value="backpack"/>
 </entity_class>
@@ -6081,7 +6291,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="LootListOnDeath" value="cntDropBag"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="cntDropBag"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6096,7 +6306,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
 	<property name="IsEnemyEntity" value="false"/>
-	<property name="LootListOnDeath" value="cntDropBag"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="cntDropBag"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6110,7 +6320,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackReg"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackReg"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6124,7 +6334,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackNurse"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackNurse"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6138,7 +6348,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackLab"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackLab"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6152,7 +6362,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackUtility"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackUtility"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6166,7 +6376,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackSoldier"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackSoldier"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6180,7 +6390,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackThug"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="zPackThug"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6194,7 +6404,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackStrong"/>
+	<property name="LootList" value="zPackStrong"/>
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6208,7 +6418,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackBoss"/>
+	<property name="LootList" value="zPackBoss"/>
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6222,7 +6432,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="zPackPlague"/>
+	<property name="LootList" value="zPackPlague"/>
 	<property name="Faction" value="none"/>
 </entity_class>
 
@@ -6236,10 +6446,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="Backpack"/>
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="TimeStayAfterDeath" value="3600"/>
-	<property name="LootListOnDeath" value="cntDropBag"/> <!-- used to determine container X/Y size -->
+	<property name="LootList" value="cntDropBag"/> <!-- used to determine container X/Y size -->
 	<property name="Faction" value="none"/>
 	<property name="NavObject" value="twitch_dropped_loot"/>
 </entity_class>
+
 
 <!-- *** NPC's -->
 
@@ -6260,9 +6471,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 
 	<property name="AIPackages" value="Human Basic, Human Melee"/>
 
-	<property name="ItemsOnEnterGame.GameModeSurvival" value="meleeWpnClubT0WoodenClub"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalSP" value="meleeWpnClubT0WoodenClub"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalMP" value="meleeWpnClubT0WoodenClub"/>
+	<property class="ItemsOnEnterGame">
+		<property name="GameModeSurvival" value="meleeWpnClubT0WoodenClub"/>
+		<property name="GameModeSurvivalSP" value="meleeWpnClubT0WoodenClub"/>
+		<property name="GameModeSurvivalMP" value="meleeWpnClubT0WoodenClub"/>
+	</property>
 	<property name="MaxHealth" value="150"/>
 	<property name="MaxViewAngle" value="180"/>
 	<property name="Weight" value="70"/>
@@ -6288,7 +6501,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="SoundLandHard" value="Player_Male/player1LandHard"/>
 	<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 	<property name="TimeStayAfterDeath" value="30"/>
-	<property name="LootListOnDeath" value="15"/>
+	<property name="LootList" value="15"/>
 	<property name="HasDeathAnim" value="true"/>
 	<effect_group name="Base Effects">
 		<passive_effect name="HealthMax" operation="base_set" value="150"/>
@@ -6301,9 +6514,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 </entity_class>
 
 <entity_class name="npcSurvivorRanged" extends="npcSurvivorTemplate">
-	<property name="ItemsOnEnterGame.GameModeSurvival" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalSP" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
-	<property name="ItemsOnEnterGame.GameModeSurvivalMP" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
+	<property class="ItemsOnEnterGame">
+		<property name="GameModeSurvival" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
+		<property name="GameModeSurvivalSP" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
+		<property name="GameModeSurvivalMP" value="gunHandgunT1Pistol,ammo9mmBulletBall"/>
+	</property>
 
 	<property name="AttackTimeoutDay" value="0.5"/>
 	<property name="AttackTimeoutNight" value="0.5"/>
@@ -6322,7 +6537,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="roboticTurret"/>
+	<property name="LootList" value="roboticTurret"/>
 	<property name="IsEnemyEntity" value="false"/>
 
 	<property name="WakeUpTime" value="0.5"/>
@@ -6337,7 +6552,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="BlockDamage" value="25"/>
 	<property name="RaySpread" value="1"/>
 	<property name="RayCount" value="1"/>
-	<property name="BurstRoundCount" value="1"/>
+	<property name="BurstRoundCount" value="0"/>
 	<property name="BurstFireRate" value="1"/>
 	<property name="CooldownTime" value="1"/>
 	<property name="OvershootTime" value="0"/>
@@ -6352,9 +6567,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="ParticlesMuzzleFire" value="nozzleflashuzi"/>
 
 	<property name="TimeStayAfterDeath" value="0"/>
-	<property name="Explosion.ParticleIndex" value="6"/>
-	<property name="Explosion.RadiusBlocks" value="1"/>
-	<property name="Explosion.RadiusEntities" value="1"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="6"/>
+		<property name="RadiusBlocks" value="1"/>
+		<property name="RadiusEntities" value="1"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 
@@ -6374,7 +6591,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="ModelType" value="Standard"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="IgnoreTrigger" value="true"/>
-	<property name="LootListAlive" value="roboticTurret"/>
+	<property name="LootList" value="roboticTurret"/>
 	<property name="IsEnemyEntity" value="false"/>
 
 	<property name="WakeUpTime" value="0.5"/>
@@ -6386,7 +6603,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="MaxDistance" value="15"/>
 
 	<property name="RaySpread" value="5"/>
-	<property name="BurstRoundCount" value="1"/>
+	<property name="BurstRoundCount" value="0"/>
 	<property name="BurstFireRate" value="1"/>
 	<property name="CooldownTime" value="1"/>
 	<property name="OvershootTime" value="0"/>
@@ -6400,9 +6617,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="ParticlesMuzzleFire" value="gunfire_junkturret"/>
 
 	<property name="TimeStayAfterDeath" value="0"/>
-	<property name="Explosion.ParticleIndex" value="6"/>
-	<property name="Explosion.RadiusBlocks" value="1"/>
-	<property name="Explosion.RadiusEntities" value="1"/>
+	<property class="Explosion">
+		<property name="ParticleIndex" value="6"/>
+		<property name="RadiusBlocks" value="1"/>
+		<property name="RadiusEntities" value="1"/>
+	</property>
 	<property name="RotateToGround" value="true"/>
 	<property name="Faction" value="none"/>
 
@@ -6419,11 +6638,11 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="Parent" value="NPC"/>
 	<property name="Mesh" value="@:Other/Items/Weapons/Ranged/Junk Drone/junkDrone_Prefab.prefab"/>
 	<property name="Prefab" value="NPC"/>
-	<property name="ModelType" value="Custom"/>
+	<property name="ModelType" value="Drone"/>
 	<property name="SurfaceCategory" value="metal"/>
 	<property name="SizeScale" value="0.25"/>
 
-	<property name="LootListAlive" value="roboticDrone"/>	<!-- used to determine container X/Y size -->
+	<property name="LootList" value="roboticDrone"/>	<!-- used to determine container X/Y size -->
 	<property name="TimeStayAfterDeath" value="3600"/>	<!-- player death backpacks will go poof after this many seconds. 0 means 0, not infinite. -->
 	<property name="IsEnemyEntity" value="false"/>
 	<property name="Faction" value="none"/>
@@ -6440,16 +6659,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="CooldownTime" value="1"/>
 	<property name="EntityDamage" value="5"/>
 
-	<property name="StunActionTime" value="1"/>
-	<property name="StunCooldown" value="14"/>
-	<property name="HealActionTime" value="2"/>
-	<property name="HealCooldown" value="15"/>
-	<property name="HealDamageThreshold" value="50"/>
-
 	<effect_group>
-		<passive_effect name="HealthMax" operation="base_set" value="100"/>
-		<passive_effect name="StaminaMax" operation="base_set" value="100"/>
-		<passive_effect name="WaterMax" operation="base_set" value="100"/>
 		<passive_effect name="BuffResistance" operation="base_set" value="1" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingOne,buffInjuryBleedingTwo,buffInjuryBleeding,buffBurningZombie,buffBurningElement,buffBurningEnvironment,buffBurningEnvironmentHack,buffBurningFlamingArrow,buffBurningMolotov,buffIsOnFire,buffShocked,buffPerkCharismaticNature,buffRadiationPool"/>
 	</effect_group>
 </entity_class>
@@ -6499,7 +6709,7 @@ Kinda sorta works but is buggy and we don't have time for that.
 	<property name="MaxViewAngle" value="180"/>
 
 	<!-- Gameplay -->
-	<property name="LootListAlive" value="traderNPC"/>
+	<property name="LootList" value="traderNPC"/>
 
 	<property name="MoveSpeed" value="0.75"/>
 	<property name="MoveSpeedAggro" value="1.15, 1.15"/>
@@ -6592,435 +6802,435 @@ Kinda sorta works but is buggy and we don't have time for that.
 <entity_class name="TwitchAction_SupplyWeapon1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier0weapon"/>
+	<property name="LootList" value="twitch_tier0weapon"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyWeapon2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier1weapon"/>
+	<property name="LootList" value="twitch_tier1weapon"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyWeapon3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier2weapon"/>
+	<property name="LootList" value="twitch_tier2weapon"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyWeapon4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier3weapon"/>
+	<property name="LootList" value="twitch_tier3weapon"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyTool1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tool1"/>
+	<property name="LootList" value="twitch_tool1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyTool2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tool2"/>
+	<property name="LootList" value="twitch_tool2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyTool3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tool3"/>
+	<property name="LootList" value="twitch_tool3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMedicine1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePopnPillsPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_medicine1"/>
+	<property name="LootList" value="twitch_medicine1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMedicine2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePopnPillsPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_medicine2"/>
+	<property name="LootList" value="twitch_medicine2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMedicine3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePopnPillsPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_medicine3"/>
+	<property name="LootList" value="twitch_medicine3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyResource1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_resources0"/>
+	<property name="LootList" value="twitch_resources0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyResource2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_resources1"/>
+	<property name="LootList" value="twitch_resources1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyResource3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_resources2"/>
+	<property name="LootList" value="twitch_resources2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyResource4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_resources3"/>
+	<property name="LootList" value="twitch_resources3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBuilder1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_builder_box1"/>
+	<property name="LootList" value="twitch_builder_box1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBuilder2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_builder_box2"/>
+	<property name="LootList" value="twitch_builder_box2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBuilder3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_builder_box3"/>
+	<property name="LootList" value="twitch_builder_box3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFarming1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_farmer_box1"/>
+	<property name="LootList" value="twitch_farmer_box1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFarming2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_farmer_box2"/>
+	<property name="LootList" value="twitch_farmer_box2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyAmmo1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammo0"/>
+	<property name="LootList" value="twitch_ammo0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyAmmo2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammo1"/>
+	<property name="LootList" value="twitch_ammo1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyAmmo3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammo2"/>
+	<property name="LootList" value="twitch_ammo2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyAmmo4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammo3"/>
+	<property name="LootList" value="twitch_ammo3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplySpecialAmmo1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammospecial0"/>
+	<property name="LootList" value="twitch_ammospecial0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplySpecialAmmo2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_ammospecial1"/>
+	<property name="LootList" value="twitch_ammospecial1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBooks1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateCrackaBookPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_books1"/>
+	<property name="LootList" value="twitch_books1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBooks2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateCrackaBookPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_books2"/>
+	<property name="LootList" value="twitch_books2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBooks3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateCrackaBookPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_books3"/>
+	<property name="LootList" value="twitch_books3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyUtility1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_utilitysupplies1"/>
+	<property name="LootList" value="twitch_utilitysupplies1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyUtility2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_utilitysupplies2"/>
+	<property name="LootList" value="twitch_utilitysupplies2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyCandy" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_candysupplies"/>
+	<property name="LootList" value="twitch_candysupplies"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyTreasure" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_treasuresupplies"/>
+	<property name="LootList" value="twitch_treasuresupplies"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyArmor1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateSavagePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier0armorplus"/>
+	<property name="LootList" value="twitch_tier0armorplus"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyArmor2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateSavagePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier1armorplus"/>
+	<property name="LootList" value="twitch_tier1armorplus"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyArmor3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateSavagePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier2armorplus"/>
+	<property name="LootList" value="twitch_tier2armorplus"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFoodWater1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShamwayPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_foodanddrinkT0"/>
+	<property name="LootList" value="twitch_foodanddrinkT0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFoodWater2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShamwayPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_foodanddrinkT1"/>
+	<property name="LootList" value="twitch_foodanddrinkT1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFoodWater3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShamwayPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_foodanddrinkT2"/>
+	<property name="LootList" value="twitch_foodanddrinkT2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyFoodWater4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShamwayPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_foodanddrinkT3"/>
+	<property name="LootList" value="twitch_foodanddrinkT3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyBicycle" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_bicycle"/>
+	<property name="LootList" value="twitch_bicycle"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMinibike" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_minibike"/>
+	<property name="LootList" value="twitch_minibike"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMotorcycle" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_motorcycle"/>
+	<property name="LootList" value="twitch_motorcycle"/>
 </entity_class>
 
 <entity_class name="TwitchAction_Supply4x4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_4x4"/>
+	<property name="LootList" value="twitch_4x4"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyGyro" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_Gyro"/>
+	<property name="LootList" value="twitch_Gyro"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyExplosives1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_explosivesT0"/>
+	<property name="LootList" value="twitch_explosivesT0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyExplosives2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_explosivesT1"/>
+	<property name="LootList" value="twitch_explosivesT1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyExplosives3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_explosivesT2"/>
+	<property name="LootList" value="twitch_explosivesT2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyExplosives4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_explosivesT3"/>
+	<property name="LootList" value="twitch_explosivesT3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyRobo1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_robo0"/>
+	<property name="LootList" value="twitch_robo0"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyRobo2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_robo1"/>
+	<property name="LootList" value="twitch_robo1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyRobo3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_robo2"/>
+	<property name="LootList" value="twitch_robo2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyRobo4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_robo3"/>
+	<property name="LootList" value="twitch_robo3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMods1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier1mods"/>
+	<property name="LootList" value="twitch_tier1mods"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMods2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier2mods"/>
+	<property name="LootList" value="twitch_tier2mods"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyMods3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_tier3mods"/>
+	<property name="LootList" value="twitch_tier3mods"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyElectrical1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_electrical1"/>
+	<property name="LootList" value="twitch_electrical1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyElectrical2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_electrical2"/>
+	<property name="LootList" value="twitch_electrical2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_VoteRewardT1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_vote_rewardsT1"/>
+	<property name="LootList" value="twitch_vote_rewardsT1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_VoteRewardT2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_vote_rewardsT2"/>
+	<property name="LootList" value="twitch_vote_rewardsT2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_VoteRewardT3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_vote_rewardsT3"/>
+	<property name="LootList" value="twitch_vote_rewardsT3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_VoteRewardT4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateMoPowerPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_vote_rewardsT4"/>
+	<property name="LootList" value="twitch_vote_rewardsT4"/>
 </entity_class>
 
 <!-- *** TWITCH BITS ONLY -->
 <entity_class name="TwitchAction_SupplyItemFood" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/shippingCrateShamwayPrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_megacrush"/>
+	<property name="LootList" value="twitch_megacrush"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyItemArmor" extends="twitch_crate_template">
   <property name="UserSpawnType" value="Console"/>
   <property name="Mesh" value="@:Entities/LootContainers/shippingCrateSavagePrefab.prefab"/>
-  <property name="LootListOnDeath" value="twitch_armorLumberjack"/>
+  <property name="LootList" value="twitch_armorLumberjack"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyItemVehicle" extends="twitch_crate_template">
   <property name="UserSpawnType" value="Console"/>
   <property name="Mesh" value="@:Entities/LootContainers/shippingCratePassnGasPrefab.prefab"/>
-  <property name="LootListOnDeath" value="twitch_gas"/>
+  <property name="LootList" value="twitch_gas"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyItemTools" extends="twitch_crate_template">
   <property name="UserSpawnType" value="Console"/>
   <property name="Mesh" value="@:Entities/LootContainers/shippingCrateWorkingStiffPrefab.prefab"/>
-  <property name="LootListOnDeath" value="twitch_repairkits"/>
+  <property name="LootList" value="twitch_repairkits"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyItemAmmo" extends="twitch_crate_template">
   <property name="UserSpawnType" value="Console"/>
   <property name="Mesh" value="@:Entities/LootContainers/shippingCrateShotgunPrefab.prefab"/>
-  <property name="LootListOnDeath" value="twitch_44magnumammo"/>
+  <property name="LootList" value="twitch_44magnumammo"/>
 </entity_class>
 
 <entity_class name="TwitchAction_SupplyItemMeds" extends="twitch_crate_template">
   <property name="UserSpawnType" value="Console"/>
   <property name="Mesh" value="@:Entities/LootContainers/shippingCratePopnPillsPrefab.prefab"/>
-  <property name="LootListOnDeath" value="twitch_honey"/>
+  <property name="LootList" value="twitch_honey"/>
 </entity_class>
 
 <!-- *** TWITCH_HOME_RUN_REWARDS -->
 <entity_class name="TwitchAction_HomeRunRewardT1" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_home_run_rewardsT1"/>
+	<property name="LootList" value="twitch_home_run_rewardsT1"/>
 </entity_class>
 
 <entity_class name="TwitchAction_HomeRunRewardT2" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_home_run_rewardsT2"/>
+	<property name="LootList" value="twitch_home_run_rewardsT2"/>
 </entity_class>
 
 <entity_class name="TwitchAction_HomeRunRewardT3" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_home_run_rewardsT3"/>
+	<property name="LootList" value="twitch_home_run_rewardsT3"/>
 </entity_class>
 
 <entity_class name="TwitchAction_HomeRunRewardT4" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_home_run_rewardsT4"/>
+	<property name="LootList" value="twitch_home_run_rewardsT4"/>
 </entity_class>
 
 <entity_class name="TwitchAction_HomeRunRewardT5" extends="twitch_crate_template">
 	<property name="UserSpawnType" value="Console"/>
 	<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
-	<property name="LootListOnDeath" value="twitch_home_run_rewardsT5"/>
+	<property name="LootList" value="twitch_home_run_rewardsT5"/>
 </entity_class>
 
 <entity_class name="twitch_homerungoal_red">
@@ -7051,3 +7261,5 @@ Kinda sorta works but is buggy and we don't have time for that.
 </entity_class>
 
 </entity_classes>
+
+

@@ -55,7 +55,7 @@
 		<passive_effect name="QuestRewardChoiceCount" operation="base_add" level="5" value="1"/>
 -->
 
-<quests max_quest_tier="6" quests_per_tier="10">
+<quests max_quest_tier="6" quests_per_tier="10" starter_quest="quest_whiteRiverCitizen1">
 
 <!-- *** BASIC_QUESTS -->
 
@@ -73,7 +73,12 @@
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_white_river_completion"/>
 		<property name="unique_key" value="traderquest"/>
-
+		
+		<action type="SetCVar">
+			<property name="cvar" value="StarterQuest"/>
+			<property name="value" value="1"/>
+		</action>
+		
 		<action type="ShowMessageWindow">
 			<property name="message" value="quest_WhiteRiverCitizen1_description"/>
 			<property name="title" value="quest_WhiteRiverCitizen1_description_title"/>
@@ -729,7 +734,7 @@
 		<property name="response_key" value="quest_fetch_response"/>
 		<property name="login_rally_reset" value="true"/>
 		<property name="reward_choices_count" value="5"/>
-		<property name="extra_tags" value="" param1="extra_tags"/>
+		<property name="filter_tags" value="poi" param1="filter_tags"/>
 		<property name="shareable" value="true"/>
 
 		<property name="completiontype" value="TurnIn"/>
@@ -902,6 +907,7 @@
 		<property name="login_rally_reset" value="true"/>
 		<property name="reward_choices_count" value="5"/>
 		<property name="extra_tags" value="" param1="extra_tags"/>
+		<property name="filter_tags" value="poi" param1="filter_tags"/>
 		<property name="shareable" value="true"/>
 
 		<property name="completiontype" value="TurnIn"/>
@@ -1072,6 +1078,7 @@
 		<property name="login_rally_reset" value="true"/>
 		<property name="reward_choices_count" value="5"/>
 		<property name="extra_tags" value="infested" param1="extra_tags"/>
+		<property name="filter_tags" value="poi" param1="filter_tags"/>
 		<property name="shareable" value="true"/>
 		<property name="spawn_multiplier" value="2" param1="spawn_multiplier"/>
 		<property name="gamestage_mod" value=".6" param1="gamestage_mod"/>
@@ -1223,9 +1230,8 @@
 
 <!-- *** RESTORE_POWER_QUESTS -->
 	<quest id="tier2_restore_power">
-    <property name="max_quest_count" value="1"/>
-
-    <property name="name_key" value="quest_tier2_restore_power" param1="name"/>
+		<property name="max_quest_count" value="1"/>
+		<property name="name_key" value="quest_tier2_restore_power" param1="name"/>
 		<property name="subtitle_key" value="quest_restore_power_subtitle"/>
 		<property name="description_key" value="quest_restore_power_description"/>
 		<property name="icon" value="ui_game_symbol_quest"/>
@@ -1237,6 +1243,7 @@
 		<property name="response_key" value="quest_restore_power_response"/>
 		<property name="reward_choices_count" value="5"/>
 		<property name="extra_tags" value="" param1="extra_tags"/>
+		<property name="filter_tags" value="poi" param1="filter_tags"/>
 		<property name="shareable" value="true"/>
 
 		<property name="login_rally_reset" value="true"/>
@@ -1355,6 +1362,7 @@
 		<property name="login_rally_reset" value="true"/>
 		<property name="reward_choices_count" value="5"/>
 		<property name="extra_tags" value="" param1="extra_tags"/>
+		<property name="filter_tags" value="poi" param1="filter_tags"/>
 		<property name="shareable" value="true"/>
 
 		<property name="completiontype" value="TurnIn"/>
@@ -1513,6 +1521,7 @@
 		<property name="always_allow" value="true"/>
 		<property name="unique_key" value="introquest"/>
 		<property name="quest_type" value="special"/>
+		<property name="extra_tags" value="introquest"/>
 
 		<objective type="RandomGotoNPC" phase="1">
 			<property name="completion_distance" value="20"/>
@@ -1609,6 +1618,7 @@
 		<property name="completion_key" value="quest_buried_supplies_completion"/>
 		<property name="shareable" value="true"/>
 		<property name="reward_choices_count" value="5"/>
+		<property name="filter_tags" value="buried" param1="extra_tags"/>
 
 		<objective type="RandomGotoNPC" phase="1">
 			<property name="completion_distance" value="20"/>
@@ -2216,6 +2226,65 @@
 		<reward type="LootItem" id="groupQuestResourcesT0" ischosen="true" value="1"/>
 		<reward type="LootItem" id="groupQuestResourcesT0,groupQuestT1SkillMagazineBundle" ischosen="true" value="2"/>
 	</quest>
+	
+	<quest id="test_bandit">
+		<property name="name_key" value="test quest"/>
+		<property name="subtitle_key" value="Test Bandit Sleepers"/>
+		<property name="description_key" value="This is a bandit sleepers test quest for dev purposes"/>
+		<property name="icon" value="ui_game_symbol_quest"/>
+		<property name="repeatable" value="true"/>
+		<property name="category_key" value="challenge"/>
+		<property name="difficulty" value="medium"/>
+		<property name="difficulty_tier" value="1"/>
+		<property name="offer_key" value="Test the clear bandit sleepers objective."/>
+		<property name="statement_key" value="Clear all the bandit sleepers in the POI."/>
+		<property name="response_key" value="Test - Bandit Clear Sleepers"/>
+		<property name="reward_choices_count" value="5" />
+		<property name="extra_tags" value="bandit" />
+
+		<property name="completiontype" value="TurnIn"/>
+		<property name="completion_key" value="WELL I'LL BE DANGED. YOU REALLY MANAGED TO PULL THROUGH IN A PINCH. I NEVER THOUGHT I'D SEE THIS PISTOL AGAIN. GOOD WORK, SON. HERE'S WHAT I OWE YA."/>
+
+		<objective type="ClosestPOIGoto">
+			<property name="distance" value="10"/>
+			<property name="phase" value="1"/>
+		</objective>
+
+		<objective type="RallyPoint">
+			<property name="phase" value="2"/>
+			<property name="nav_object" value="rally" />
+		</objective>
+
+		<objective type="ClearSleepers">
+			<property name="phase" value="3"/>
+			<property name="nav_object" value="sleeper_volume"/>
+		</objective>
+
+		<objective type="POIStayWithin">
+			<property name="phase" value="3"/>
+			<property name="radius" value="25"/>
+		</objective>
+
+		<objective type="ReturnToNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader" />
+		</objective>
+
+		<objective type="InteractWithNPC">
+			<property name="phase" value="4"/>
+			<property name="nav_object" value="return_to_trader" />
+		</objective>
+
+		<reward type="Exp" value="2500"/>
+		<reward type="Item" id="casinoCoin" value="350"/>
+
+		<reward type="LootItem" id="groupQuestWeapons" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestArmor,groupQuestMedical" ischosen="true" isfixed="true" value="2"/>
+		<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="2"/>
+		<reward type="LootItem" id="groupQuestTools" ischosen="true" value="2"/>
+		<reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="2"/>
+		<reward type="LootItem" id="groupQuestMods" ischosen="true" value="2"/>
+	</quest>
 
 	<quest id="test_turnin">
 		<property name="name_key" value="Turn In Quest"/>
@@ -2296,6 +2365,7 @@
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
 		<property name="quest_hints" value="quest_next_trader_hint1"/>
+		<property name="quest_hint_requirement" value="BiomeProgression" />
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2346,6 +2416,7 @@
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
 		<property name="quest_hints" value="quest_next_trader_hint1"/>
+		<property name="quest_hint_requirement" value="BiomeProgression" />
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2396,6 +2467,7 @@
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
 		<property name="quest_hints" value="quest_next_trader_hint1"/>
+		<property name="quest_hint_requirement" value="BiomeProgression" />
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2446,6 +2518,7 @@
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
 		<property name="quest_hints" value="quest_next_trader_hint1"/>
+		<property name="quest_hint_requirement" value="BiomeProgression" />
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="completion_key" value="quest_next_trader_completion"/>
@@ -2496,6 +2569,7 @@
 		<property name="statement_key" value="quest_next_trader_statement"/>
 		<property name="response_key" value="quest_next_trader_response"/>
 		<property name="quest_hints" value="quest_next_trader_hint1"/>
+		<property name="quest_hint_requirement" value="BiomeProgression" />
 
 		<property name="completiontype" value="TurnIn"/>
 		<property name="return_to_quest_giver" value="false"/>
@@ -2890,7 +2964,7 @@
 		<!-- <quest id="tier6_fetch_clear"/> -->
 
 		<!-- Special Quests -->
-		<quest id="tier2_nexttrader"/>
+		<quest id="tier2_nexttrader" cvar="IntroComplete,TraderToTraderQuests"/>
 	</quest_list>
 	
 	<quest_list id="trader_jen_quests">
@@ -2938,7 +3012,7 @@
 		<!-- <quest id="tier6_fetch_clear"/> -->
 
 		<!-- Special Quests -->
-		<quest id="tier3_nexttrader"/>
+		<quest id="tier3_nexttrader" cvar="IntroComplete,TraderToTraderQuests"/>
 	</quest_list>
 	
 	<quest_list id="trader_bob_quests">
@@ -2986,7 +3060,7 @@
 		<!-- <quest id="tier6_fetch_clear"/> -->
 
 		<!-- Special Quests -->
-		<quest id="tier4_nexttrader"/>
+		<quest id="tier4_nexttrader" cvar="IntroComplete,TraderToTraderQuests"/>
 	</quest_list>
 	
 	<quest_list id="trader_hugh_quests">
@@ -3034,7 +3108,7 @@
 		<!-- <quest id="tier6_fetch_clear"/> -->
 
 		<!-- Special Quests -->
-		<quest id="tier5_nexttrader"/>
+		<quest id="tier5_nexttrader" cvar="IntroComplete,TraderToTraderQuests"/>
 	</quest_list>
 	
 	<quest_list id="trader_joel_quests">

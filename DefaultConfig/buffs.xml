@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Table_of_Contents -->
 <!-- Search_Find_All_for *** -->
+
+<!-- Find CVAR_PREFIXES to find the CVar prefix notes faster. -->
 
 <buffs>
 
@@ -153,6 +155,36 @@
 			<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="buffShowAnimationDisabledTooltip"/>
 			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffShowAnimationDisabled"/>
 			<triggered_effect trigger="onSelfEnteredGame" action="RemoveBuff" buff="buffShowAnimationDisabled"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffShowDetachCameraEnabled -->
+	<!-- TRIGGERED_BY: Key Bind = Default P -->
+	<!-- Detaches the camera from the player's character. Buff name is used in code. -->
+	<buff name="buffShowDetachCameraEnabled" name_key="buffShowDetachCameraEnabledName" description_key="buffShowDetachCameraEnabledDesc" icon="ui_game_symbol_camera" icon_color="132,0,155" remove_on_death="false">
+		<stack_type value="ignore"/>
+		<display_value_key value="buffShowDetachCameraEnabledShort"/>
+		<display_value value="xxx"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="buffShowDetachCameraEnabledTooltip"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffShowDetachCameraEnabled"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="RemoveBuff" buff="buffShowDetachCameraEnabled"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffShowToggleDCEnabled -->
+	<!-- TRIGGERED_BY: Key Bind = Default "[" -->
+	<!-- Allows movement controls of the Detached Camera. Buff name is used in code. -->
+	<buff name="buffShowToggleDCEnabled" name_key="buffShowToggleDCEnabledName" description_key="buffShowToggleDCEnabledDesc" icon="ui_game_symbol_camera" icon_color="132,0,155" remove_on_death="false">
+		<stack_type value="ignore"/>
+		<display_value_key value="buffShowToggleDCEnabledNameShort"/>
+		<display_value value="xxx"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="buffShowToggleDCEnabledTooltip"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffShowToggleDCEnabled"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="RemoveBuff" buff="buffShowToggleDCEnabled"/>
 		</effect_group>
 	</buff>
 
@@ -339,9 +371,18 @@
 				<requirement name="HasBuff" buff="buffDukeNote"/>
 			</triggered_effect>
 
-			<triggered_effect trigger="onSelfEnteredGame" action="AddBuff" buff="buffBiomeProgressionCheck"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="RemoveBuff" buff="buffNewbieCoat">
+				<requirement name="!SandboxOptionBool" option="NewbieCoat"/>
+			</triggered_effect>
 
- 			<triggered_effect trigger="onSelfLeaveGame" action="RemoveCVar" cvar="$BiomeProgressionOn"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="AddBuff" buff="buffBiomeProgressionCheck"/>
+			<triggered_effect trigger="onSelfEnteredGame" action="AddBuff" buff="buffCheckScreenEffects"/>
+
+			<triggered_effect trigger="onSelfLeaveGame" action="RemoveCVar" cvar="$BiomeProgressionOn"/>
+
+			<triggered_effect trigger="onSelfDamagedBlock" action="CallGameEvent" event="block_bell_spawn">
+				<requirement name="TriggerHasTags" tags="churchbell"/>
+			</triggered_effect>
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusHungry01">
 				<requirement name="StatComparePercCurrentToMax" stat="Food" operation="LTE" value=".5"/>
@@ -438,6 +479,7 @@
 			<!-- One time weather survival buff for newbies -->
 			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffNewbieCoat">
 				<requirement name="PlayerLevel" operation="LTE" value="5"/>
+				<requirement name="SandboxOptionBool" option="NewbieCoat"/>
 			</triggered_effect>
 
 			<!-- One time healing tip -->
@@ -574,9 +616,13 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelBonus" operation="set" value="100">
 				<requirement name="PlayerLevel" operation="GT" value="100"/>
 			</triggered_effect>
-
-			<passive_effect name="HealthMax" operation="base_add" value="@$PlayerLevelBonus"/>
-			<passive_effect name="StaminaMax" operation="base_add" value="@$PlayerLevelBonus"/>
+			
+			<passive_effect name="HealthMax" operation="base_add" value="@$PlayerLevelBonus">
+				<requirement name="SandboxOptionBool" option="PlayerLevelBonusApplied"/>
+			</passive_effect>
+			<passive_effect name="StaminaMax" operation="base_add" value="@$PlayerLevelBonus">
+				<requirement name="SandboxOptionBool" option="PlayerLevelBonusApplied"/>
+			</passive_effect>
 			<passive_effect name="WaterMax" operation="base_add" value="@$PlayerLevelBonus"/>
 			<passive_effect name="FoodMax" operation="base_add" value="@$PlayerLevelBonus"/>
 		</effect_group>
@@ -1079,6 +1125,9 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveCVar" cvar="foodHealthFarmer,foodHealthFarmerMulti,foodHealthFarmerSub">
 				<requirement name="CVarCompare" cvar="foodHealthAmount" operation="LTE" value="0"/>
 			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveCVar" cvar="foodStaminaFarmer,foodStaminaFarmerMulti,foodStaminaFarmerSub">
+				<requirement name="!HasBuff" buff="buffFoodStaminaBonus"/>
+			</triggered_effect>
 		</effect_group>
 
 		<!-- *** BIKER_FULL_SET_BONUS -->
@@ -1403,7 +1452,7 @@
 	<!-- Newbie Coat is used to reduce the XP penalty for the first 5 levels of the game. -->
 	<!-- This buff also equalizes player health, food, and water at the start of the game. -->
 	<!-- Be careful with that remove_on_death="false". You may have to restart screen effects, particles, etc. on game load. -->
-	<buff name="buffNewbieCoat" name_key="buffNewbieCoatName" description_key="buffNewbieCoatDesc"	icon="ui_game_symbol_light_armor" remove_on_death="false">
+	<buff name="buffNewbieCoat" name_key="buffNewbieCoatName" description_key="buffNewbieCoatDesc" icon="ui_game_symbol_light_armor" remove_on_death="false">
 		<stack_type value="ignore"/>
 
 		<effect_group>
@@ -1423,7 +1472,10 @@
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffNewbieCoat">
 				<requirement name="PlayerLevel" operation="GT" value="5"/>
+				<requirement name="SandboxOptionBool" option="NewbieCoat"/>
 			</triggered_effect>
+
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffDukeNote"/>
 
 			<!-- Taking care of food/water not being maxed with all the game start / initial chunk generation -->
 			<passive_effect name="WaterChangeOT" operation="base_add" value="2,2" duration="0,20"/>
@@ -1585,14 +1637,7 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".smellSoundCheck" operation="set" value="1">
 				<requirement name="CVarCompare" cvar="smell" operation="GTE" value="30"/>
 			</triggered_effect>
-			<!-- <triggered_effect trigger="onSelfBuffUpdate" action="FadeOutSound" sound="flies_lp"> -->
-				<!-- <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LT" value="75"/> -->
-			<!-- </triggered_effect> -->
-			<!-- <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="flies_lp"> -->
-				<!-- <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LT" value="15"/> -->
-			<!-- </triggered_effect> -->
-			<!-- <triggered_effect trigger="onSelfBuffRemove" action="FadeOutSound" sound="flies_lp"/> -->
-			<!-- <triggered_effect trigger="onSelfLeaveGame" action="FadeOutSound" sound="flies_lp"/> -->
+
 			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".smellSoundCheck"/>
 			<triggered_effect trigger="onSelfLeaveGame" action="RemoveCVar" cvar=".smellSoundCheck"/>
 			<triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffSmell"/>
@@ -1631,7 +1676,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="5"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="5"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.05">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.05" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -1641,7 +1686,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="10"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.10">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.10" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -1651,7 +1696,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="15"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="15"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.15">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.15" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -1661,7 +1706,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="20"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.20">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.20" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -1671,7 +1716,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="25"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="25"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.25">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.25" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -1681,7 +1726,7 @@
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="30"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".armorLumberjackFSBDisplay01" operation="set" value="30"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".armorLumberjackFSBDisplay01"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.3">
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.3" tags="primary,secondary">
 					<requirement name="HoldingItemHasTags" tags="axe"/>
 				</passive_effect>
 		</effect_group>
@@ -2023,6 +2068,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.1"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 		
 		<effect_group>
@@ -2039,6 +2096,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.15"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 		
 		<effect_group>
@@ -2055,6 +2124,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.2"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 		
 		<effect_group>
@@ -2071,6 +2152,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.25"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 		
 		<effect_group>
@@ -2087,6 +2180,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.3"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 		
 		<effect_group>
@@ -2103,6 +2208,18 @@
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthFarmerSub" operation="subtract" value="@foodHealthFarmer"/>
 				<!-- Add the difference (AKA the bonus) to the current foodHealthAmount -->
 				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="@foodHealthFarmerSub"/>
+				
+				<!-- The food item already adds foodStaminaAmount to the current foodStaminaAmount value. We need to add the difference of the bonus to that current value. -->
+				<!-- The food item consumed has the value passed to foodStaminaFarmer. Set that value into foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="set" value="@foodStaminaFarmer"/>
+				<!-- Multiply the value for the quality level of the set bonus -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerMulti" operation="multiply" value="1.4"/>
+				<!-- Set foodStaminaFarmerSub to foodStaminaFarmerMulti -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="set" value="@foodStaminaFarmerMulti"/>
+				<!-- Subtract the original foodStaminaFarmer from foodStaminaFarmerSub to get the difference -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="foodStaminaFarmerSub" operation="subtract" value="@foodStaminaFarmer"/>
+				<!-- Add the difference (AKA the bonus) to the current foodStaminaAmount -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".foodStaminaBonusAdd" operation="add" value="@foodStaminaFarmerSub"/>
 		</effect_group>
 	</buff>
 
@@ -3458,7 +3575,7 @@
 
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="twitch_cripple_zombies"/>
-			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCrippledMorale" target="otherAOE" range="3" target_tags="zombie,animal"/>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffCrippledMorale" target="otherAOE" range="3" target_tags="zombie,animal,bandit"/>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$crippledMoraleDuration" operation="set" value="10"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$crippledMoraleDuration" operation="add" value="-1"/>
 		</effect_group>
@@ -4316,21 +4433,6 @@
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLegSprainedFallTrigger"/>
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".sprainLeg" operation="set" value="2"/>
 		</effect_group>
-		
-		<effect_group>
-			<!-- Landing Sound regular landing -->
-			<requirement name="ProgressionLevel" progression_name="perkUrbanCombatJumping" operation="Equals" value="0"/>
-			<requirement name="CVarCompare" cvar=".impactSpeed" operation="GTE" value="0.08"/> <!-- .0784 = 1.5m -->
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="PlayerLandThump"/>
-		</effect_group>
-
-		<effect_group>
-			<!-- Landing Sound regular landing -->
-			<requirement name="ProgressionLevel" progression_name="perkUrbanCombatJumping" operation="Equals" value="1"/>
-			<requirement name="CVarCompare" cvar=".impactSpeed" operation="GTE" value="0.08"/> <!-- .0784 = 1.5m -->
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="0"/>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="PlayerLandThump"/>
-		</effect_group>
 
 		<effect_group>
 			<!-- apply fall damage -->
@@ -4340,14 +4442,6 @@
 				<requirement name="!HasBuff" buff="buffDrugOhShitzDrops,buffTwitchDontBreakLeg,buffDontBreakMyLeg,god"/>
 				<requirement name="CVarCompare" cvar=".impactSpeed" operation="GTE" value="1"/>
 			</triggered_effect>
-		</effect_group>
-
-		<effect_group>
-			<!-- Landing Sound stealth book -->
-			<requirement name="ProgressionLevel" progression_name="perkUrbanCombatJumping" operation="Equals" value="1"/>
-			<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
-			<requirement name="CVarCompare" cvar=".impactSpeed" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="PlayerLandThump"/>
 		</effect_group>
 
 		<effect_group>
@@ -4777,8 +4871,7 @@
 		
 		<effect_group>
 			<!-- Handlers for other leg buffs -->
-			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffLegBroken"/>
-			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffLegSplinted"/>
+			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffLegSprained,buffLegSplinted,buffLegBroken"/>
 			<!-- Start/Update total healing -->
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".legTotalHealingRate" operation="set" value="@$critHitNaturalHealingRate"/>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".legTotalHealingRate" operation="add" value="3.7"/>
@@ -5230,8 +5323,7 @@
 
 		<effect_group>
 			<!-- Remove splinted/broken arms -->
-			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffArmBroken"/>
-			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffArmSplinted"/>
+			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffArmSprained,buffArmSplinted,buffArmBroken"/>
 			<!-- Set counter to natural healing rate, add physician perk, and then add a value -->
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armTotalHealingRate" operation="set" value="@$critHitNaturalHealingRate"/>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".armTotalHealingRate" operation="add" value="3.7"/>
@@ -5536,9 +5628,9 @@
 		<duration value="3"/>
 
 		<effect_group>
-			<!-- If not player AND walker, continue -->
+			<!-- If not player AND or bandit, continue -->
 			<requirement name="!EntityTagCompare" tags="player"/>
-			<requirement name="EntityTagCompare" tags="walker"/>
+			<requirement name="EntityTagCompare" tags="walker,bandit"/>
 				<!-- Stop any cool downs -->
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".shotgunSuppressCooldown" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryStunned01Cooldown"/>
@@ -5556,9 +5648,9 @@
 		<duration value="3"/>
 
 		<effect_group>
-			<!-- If not player AND walker, continue -->
+			<!-- If not player AND walker or bandit, continue -->
 			<requirement name="!EntityTagCompare" tags="player"/>
-			<requirement name="EntityTagCompare" tags="walker"/>
+			<requirement name="EntityTagCompare" tags="walker,bandit"/>
 				<!-- Stop any cool downs -->
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".shotgunSuppressCooldown" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryStunned01Cooldown"/>
@@ -5576,9 +5668,9 @@
 		<duration value="3"/>
 
 		<effect_group>
-			<!-- If not player AND walker, continue -->
+			<!-- If not player AND walker or bandit, continue -->
 			<requirement name="!EntityTagCompare" tags="player"/>
-			<requirement name="EntityTagCompare" tags="walker"/>
+			<requirement name="EntityTagCompare" tags="walker,bandit"/>
 				<!-- Stop any cool downs -->
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".shotgunSuppressCooldown" operation="set" value="1"/>
 				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryStunned01Cooldown"/>
@@ -6038,16 +6130,16 @@
 			<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffInjuryCrippled01"/>
 			<!-- If not a walker, remove the buff -->
 			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryCrippled01">
-				<requirement name="!EntityTagCompare" tags="walker"/>
+				<requirement name="!EntityTagCompare" tags="walker,bandit"/>
 			</triggered_effect>
 			<!-- If a player, remove the buff -->
 			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryCrippled01">
 				<requirement name="EntityTagCompare" tags="player"/>
 			</triggered_effect>
-			<!-- If not a player AND is a walker, start the "crippled" walk type -->
-			<triggered_effect trigger="onSelfBuffStart" action="AnimatorSetInt" property="WalkType" value="5">
+			<!-- If not a player AND is a walker or bandit, start the "crippled" walk type -->
+			<triggered_effect trigger="onSelfBuffStart" action="AnimatorSetWalkType" value="5">
 				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="EntityTagCompare" tags="walker"/>
+				<requirement name="EntityTagCompare" tags="walker,bandit"/>
 			</triggered_effect>
 		</effect_group>
 
@@ -6384,6 +6476,31 @@
 		</effect_group>
 	</buff>
 
+	<!-- *** buffCheckScreenEffects -->
+	<!-- TRIGGERED_BY: Buffs = buffStatusCheck01 -->
+	<!-- Starts on every re-spawn. -->
+	<buff name="buffCheckScreenEffects" hidden="true" remove_on_death="false">
+		<stack_type value="ignore"/>
+
+		<!-- Check the buffs and apply a screen effect -->
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".25" fade="3" effect_name="Hot">
+				<requirement name="HasBuff" buff="buffElementHot"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Hot2">
+				<requirement name="HasBuff" buff="buffElementSweltering"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".25" fade="3" effect_name="Cold2">
+				<requirement name="HasBuff" buff="buffElementCold"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Cold2">
+				<requirement name="HasBuff" buff="buffElementFreezing"/>
+			</triggered_effect>
+			<!-- Remove the buff -->
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCheckScreenEffects"/>
+		</effect_group>
+	</buff>
+
 	<!-- *** buffElementWet -->
 	<!-- TRIGGERED_BY: Buffs = buffStatusCheck01 -->
 	<!-- Displays a percentage of wetness and adjusts thermal resistance stats -->
@@ -6468,12 +6585,42 @@
 
 			<triggered_effect trigger="onSelfBuffStack" action="GetBuffDuration" reference="$buffShockedDisplay"/>
 
-			<passive_effect name="HealthChangeOT" operation="base_add" value="-6"/>
-			
-			<passive_effect name="HealthChangeOT" operation="base_add" value="-12">
+				<!-- Not a Stun Baton -->
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-5"/>
+
+				<!-- Stun Baton -->
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-5">
+				<requirement names="ItemHasTags" tags="stunBaton"/>
+				<requirement name="ProgressionLevel" progression_name="perkIntellectMastery" operation="LT" value="5"/>
+			</triggered_effect>
+
+				<!-- Stun Baton with Mastery 5 -->
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-20">
 				<requirement names="ItemHasTags" tags="stunBaton"/>
 				<requirement name="CVarCompare" cvar="perkIntelMaster5" operation="GT" value="0"/>
-			</passive_effect>
+			</triggered_effect>
+
+				<!-- Drone Stun Mod -->
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-6">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="1"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-7">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="2"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-8">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="3"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-9">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="4"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-10">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="5"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedDamage" operation="set" value="-12">
+				<requirement name="CVarCompare" cvar="_droneStunDamage" operation="EQ" value="6"/>
+			</triggered_effect>
+
+			<passive_effect name="HealthChangeOT" operation="base_add" value="@$buffShockedDamage"/>
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedDisplay" operation="add" value="-1"/>
 
@@ -6493,7 +6640,7 @@
 				<requirement name="EntityTagCompare" tags="charged"/>
 			</triggered_effect>
 
-			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$buffShockedDisplay"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="$buffShockedDisplay,$buffShockedDamage"/>
 
 			<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
 			<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
@@ -6698,18 +6845,7 @@
 		<!-- If damage is towards a non-player, set the decrease health curve based on game difficulty -->
 		<effect_group>
 			<requirement name="!EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="8,26.9,30">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="0"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="6,18.4,22.5">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="4,12.3,15">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="3.32,10.2,12.5">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="3"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="2.64,8.1,9.9">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="4"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="2,6.1,7.5">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="5"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,12,16" value="4,12.3,15"/>
 		</effect_group>
 	</buff>
 
@@ -6755,37 +6891,9 @@
 			<passive_effect name="HyperthermalResist" operation="base_add" value="-15"/>
 		</effect_group>
 
-			<!-- Player damage outgoing
-			case 0: _strength = Mathf.RoundToInt(_strength * 2.0f);
-			case 1: _strength = Mathf.RoundToInt(_strength * 1.5f);
-			case 2: 1
-			case 3: _strength = Mathf.RoundToInt(_strength * 0.83f);
-			case 4: _strength = Mathf.RoundToInt(_strength * 0.66f);
-			case 5: _strength = Mathf.RoundToInt(_strength * 0.5f);
-
-			Player damage incoming
-			case 0: _strength = Mathf.RoundToInt(_strength * 0.5f);
-			case 1: _strength = Mathf.RoundToInt(_strength * 0.75f);
-			case 2: 1
-			case 3: _strength = Mathf.RoundToInt(_strength * 1.5f);
-			case 4: _strength = Mathf.RoundToInt(_strength * 2.0f);
-			case 5: _strength = Mathf.RoundToInt(_strength * 2.5f); -->
-
-		<!-- If damage is towards a non-player, set the decrease health curve based on game difficulty -->
 		<effect_group>
 			<requirement name="!EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="10,36,51,56">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="0"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="7.5,27,38.2,42">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="5,18,25.5,28">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="4.2,14.9,21.1,23.2">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="3"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="3.3,11.9,16.8,18.5">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="4"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="2.5,9,12.7,14">
-					<requirement name="CVarCompare" cvar="_difficulty" operation="Equals" value="5"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" duration="0,8,14,18" value="5,18,25.5,28"/>
 		</effect_group>
 	</buff>
 
@@ -7601,11 +7709,15 @@
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="infectionCounter" operation="set" value="25">
 				<requirement name="!HasBuff" buff="buffInfectionMain"/>
+				<requirement name="CVarCompare" cvar="_InfectionRate" operation="GT" value="0"/>
 			</triggered_effect>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="infectionCounter" operation="add" value="250">
 				<requirement name="HasBuff" buff="buffInfectionMain"/>
+				<requirement name="CVarCompare" cvar="_InfectionRate" operation="GT" value="0"/>
 			</triggered_effect>
-			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInfectionMain"/>
+			<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInfectionMain">
+				<requirement name="CVarCompare" cvar="_InfectionRate" operation="GT" value="0"/>
+			</triggered_effect>
 		</effect_group>
 	</buff>
 
@@ -7640,13 +7752,13 @@
 		</effect_group>
 
 		<effect_group name="main loop">
-			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="infectionCounter" operation="add" value="1.25"/>
-
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="infectionCounter" operation="add" value="@_InfectionRate"/>
+			
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".dummy" operation="set" value="@$critHitNaturalHealingRate"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".dummy" operation="divide" value="4"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="infectionCounter" operation="subtract" value="@.dummy"/>
 
-			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="infectionCounter" operation="add" value="-3">
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="infectionCounter" operation="add" value="@_InfectionCureRate">
 				<requirement name="CVarCompare" cvar="$infectionCureCounter" operation="GT" value="0"/>
 			</triggered_effect>
 
@@ -7657,7 +7769,7 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$infectionCureCounter" operation="add" value="-2">
 				<requirement name="CVarCompare" cvar="$infectionCureCounter" operation="GT" value="0"/>
 			</triggered_effect>
-
+			
 			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveCVar" cvar="$infectionCureCounter">
 				<requirement name="CVarCompare" cvar="$infectionCureCounter" operation="LT" value="0"/>
 			</triggered_effect>
@@ -7689,6 +7801,19 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".infectionDisplayPerc" operation="divide" value="@$infectionDisplayDivisor"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".infectionCureDisplayPerc" operation="set" value="@$infectionCureCounter"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".infectionCureDisplayPerc" operation="divide" value="@$infectionDisplayDivisor"/>
+		</effect_group>
+
+		<effect_group name="handle sandbox setting">
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfectionMain" />
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfectionCureDisplay"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection01Untreated"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection01GetBetter"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection02Untreated"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection02GetBetter"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection03Untreated"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInfection03GetBetter"/>
+			
+			<requirement name="CVarCompare" cvar="_InfectionRate" operation="EQ" value="0"/>
 		</effect_group>
 
 		<effect_group name="signaling buffs">
@@ -8805,7 +8930,7 @@
 		<duration value="0"/>
 
 		<effect_group>
-			<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".15"/>
+			<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="@.bandolierValue"/>
 		</effect_group>
 	</buff>
 
@@ -8820,9 +8945,11 @@
 			<!-- Blinks the display -->
 			<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffArmorShredding"/>
 
-			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ArmorShreddingCounter" operation="set" value=".2"/>
-			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ArmorShreddingCounter" operation="add" value=".2"/>
-			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".ArmorShreddingCounter"/>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".ArmorShreddingCounter" operation="set" value="@.metalSpikesBuff"/>
+			<triggered_effect trigger="onSelfBuffStart" action="CVarLogValue" cvar=".metalSpikesBuff"/>
+			
+			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".ArmorShreddingCounter" operation="add" value="@.metalSpikesBuff"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".ArmorShreddingCounter,.metalSpikesBuff"/>
 			<passive_effect name="PhysicalDamageResist" operation="perc_subtract" value="@.ArmorShreddingCounter"/>
 		</effect_group>
 	</buff>
@@ -9979,7 +10106,7 @@
 		<update_rate value="2.5"/>
 
 		<effect_group>
-			<requirement name="!HasBuff" buff="buffRadiatedRegenBlock"/>
+			<requirement name="!HasBuff" buff="buffRadiatedRegenBlock15,buffRadiatedRegenBlock30,buffRadiatedRegenBlock45,buffRadiatedRegenBlock60,buffRadiatedRegenBlock75,buffRadiatedRegenBlock90"/>
 				<passive_effect name="HealthChangeOT" operation="base_add" value="@RadiatedRegenAmount"/>
 		</effect_group>
 
@@ -10012,7 +10139,27 @@
 	<!-- *** buffRadiatedRegenBlock -->
 	<!-- TRIGGERED_BY: item_modifiers = modGunMeleeRadRemover -->
 	<!-- Temporarily disables radiated entities buffRadiatedRegen abilities -->
-	<buff name="buffRadiatedRegenBlock" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+	<buff name="buffRadiatedRegenBlock15" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+		<stack_type value="replace"/>
+		<duration value="15"/>
+	</buff>
+	<buff name="buffRadiatedRegenBlock30" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+		<stack_type value="replace"/>
+		<duration value="30"/>
+	</buff>
+	<buff name="buffRadiatedRegenBlock45" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+		<stack_type value="replace"/>
+		<duration value="45"/>
+	</buff>
+	<buff name="buffRadiatedRegenBlock60" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+		<stack_type value="replace"/>
+		<duration value="60"/>
+	</buff>
+	<buff name="buffRadiatedRegenBlock75" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
+		<stack_type value="replace"/>
+		<duration value="75"/>
+	</buff>
+	<buff name="buffRadiatedRegenBlock90" name_key="buffRadiatedRegenBlockName" icon="ui_game_symbol_radiation" icon_color="255,255,0" hidden="true">
 		<stack_type value="replace"/>
 		<duration value="90"/>
 	</buff>
@@ -12779,7 +12926,9 @@
 
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Greyscale"/>
-			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Greyscale"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Greyscale">
+				<requirement name="HasBuff" buff="sandbox_blackandwhite"/>
+			</triggered_effect>
 		</effect_group>
 	</buff>
 
@@ -13426,7 +13575,7 @@
 
 	<!-- *** twitch_blastresist -->
 	<!-- Explodes all zombies around the target without harming the target -->
-	<buff name="twitch_blastresist" hidden="true" name_key="BlastResist" icon="ui_game_symbol_zombie" icon_color="175,175,255">
+	<buff name="twitch_blastResist" hidden="true" name_key="BlastResist" icon="ui_game_symbol_zombie" icon_color="175,175,255">
 		<duration value="4"/>
 
 		<effect_group>
@@ -14318,7 +14467,7 @@
 
 		<effect_group>
 			<passive_effect name="HarvestCount" operation="perc_add" value="1"/>
-			<passive_effect name="CraftingTime" operation="perc_add" value="-1"/>
+			<passive_effect name="CraftingTime" operation="perc_add" value="-2"/><!-- Makes negative which clamps to 0. Normally clamps to 1 -->
 			<passive_effect name="ScrappingTime" operation="perc_add" value="-1"/>
 		</effect_group>
 	</buff>
@@ -14412,7 +14561,7 @@
 		</effect_group>
 
 		<effect_group>
-			<passive_effect name="CraftingTime" operation="perc_add" value="-1"/>
+			<passive_effect name="CraftingTime" operation="perc_add" value="-2"/>
 		</effect_group>
 	</buff>
 
@@ -14682,7 +14831,7 @@
 
 		<effect_group>
 			<triggered_effect trigger="onSelfKilledOther" action="CallGameEvent" target="other" event="buff_rez" sequence_link="resurrect" allow_client_call="true" >
-				<requirement name="EntityTagCompare" target="other" tags="zombie,animal"/>
+				<requirement name="EntityTagCompare" target="other" tags="zombie,animal,bandit"/>
 			</triggered_effect>
 			<triggered_effect trigger="onSelfBuffRemove" action="UnregisterSequenceLink" sequence_link="resurrect"/>
 		</effect_group>
@@ -14742,7 +14891,7 @@
 			<passive_effect name="WalkSpeed" operation="perc_add" value=".75"/>
 		</effect_group>
 	</buff>
-
+	
 	<buff name="twitch_recent_rez" remove_on_death="false">
 		<stack_type value="replace"/>
 		<duration value="6000"/>
@@ -15418,13 +15567,13 @@
 
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.1,0" local_rotation="180,90,0" local_scale="1.5,1.5,1.5" parent_transform="Head">
-				<requirement name="!EntityTagCompare" tags="bear,chicken,stag,boar,zombieCop,zombieSoldier,human,drone"/>
+				<requirement name="!EntityTagCompare" tags="bear,chicken,stag,boar,zombieCop,zombieSoldier,human,drone,bandit"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
 
 			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="-0.15,0,0.035" local_rotation="90,90,0" local_scale="1.75,1.75,1.75" parent_transform="Head">
 				<requirement name="EntityTagCompare" tags="human"/>
-				<requirement name="!EntityTagCompare" tags="humanSDCS"/>
+				<requirement name="!EntityTagCompare" tags="humanSDCS,bandit"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
 			
@@ -15473,8 +15622,13 @@
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="skull"/>
 			</triggered_effect>
 
-			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.3,0" local_rotation="180,90,0" local_scale="2.25,2.25,2.25" parent_transform="Head">
+			<triggered_effect trigger="onSelfBuffStart"  action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.3,0" local_rotation="180,90,0" local_scale="2.25,2.25,2.25" parent_transform="Head">
 				<requirement name="EntityTagCompare" tags="drone"/>
+				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
+			</triggered_effect>
+			
+		   <triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.1,0" local_rotation="180,90,0" local_scale="1.25,1.25,1.25" parent_transform="Head">
+				<requirement name="EntityTagCompare" tags="bandit"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
 		</effect_group>
@@ -15487,6 +15641,7 @@
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="-0.15,0,0.035" local_rotation="90,90,0" local_scale="1.75,1.75,1.75" parent_transform="Head">
 				<requirement name="EntityTagCompare" tags="human"/>
+				<requirement name="!EntityTagCompare" tags="humanSDCS,bandit"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
 
@@ -15530,10 +15685,16 @@
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="skull"/>
 			</triggered_effect>
 
-			<triggered_effect trigger="onSelfBuffStart" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.3,0" local_rotation="180,90,0" local_scale="2.25,2.25,2.25" parent_transform="Head">
+			<triggered_effect trigger="onSelfBuffUpdate" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.3,0" local_rotation="180,90,0" local_scale="2.25,2.25,2.25" parent_transform="Head">
 				<requirement name="EntityTagCompare" tags="drone"/>
 				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
 			</triggered_effect>
+
+		   <triggered_effect trigger="onSelfBuffUpdate" action="AttachPrefabToEntity" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" local_offset="0,.1,0" local_rotation="180,0,0" local_scale="1.25,1.25,1.25" parent_transform="Head">
+				<requirement name="EntityTagCompare" tags="bandit"/>
+				<requirement name="!HasAttachedPrefab" prefab="@:Other/Items/Crafting/Metal/IronBucketEmptyPrefab.prefab" parent_transform="Head"/>
+			</triggered_effect>
+			
 		</effect_group>
 	</buff>
 
@@ -15720,6 +15881,43 @@
 
 		<effect_group>
 			<passive_effect name="DisableLoot" operation="base_set" value="1" tags="twitch_dropped"/>
+		</effect_group>
+	</buff>
+	
+	<!-- Sandbox Buffs -->
+	<buff name="sandbox_bighead" remove_on_death="false">
+		<stack_type value="replace"/>
+		<tags value="sandbox_bighead"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="SetBigHead" enabled="true" instant="true"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="SetBigHead" enabled="false" />
+		</effect_group>
+	</buff>
+	
+	<buff name="sandbox_tiny" remove_on_death="false">
+		<stack_type value="replace"/>
+		<tags value="sandbox_tiny"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="SetScale" scale=".65"/>
+			<triggered_effect trigger="onSelfBuffStart" action="SetHeadSize" size="3"/>
+			<triggered_effect trigger="onSelfBuffStart" action="SetPitch" scale=".5"/>
+			
+			<passive_effect name="RunSpeed" operation="perc_add" value=".75"/>
+			<passive_effect name="WalkSpeed" operation="perc_add" value=".75"/>
+		</effect_group>
+	</buff>
+	
+	<buff name="sandbox_blackandwhite" remove_on_death="false">
+		<stack_type value="replace"/>
+		<tags value="sandbox_blackandwhite"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfEnteredGame" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Greyscale"/>
+	
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Greyscale"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Greyscale"/>
 		</effect_group>
 	</buff>
 
@@ -15989,7 +16187,6 @@ _shaded : similar to sheltered but only checks above
 _wetnessrate : current wetness coming from rain or standing in water. 1 = 100% wet.
 _wetness : current wetness that dries over time
 _underwater :
-_difficulty : game difficulty setting
 _biomeradiation :
 _encumberedslots :
 _encumbrance :
@@ -16005,6 +16202,7 @@ smell:	Radius distance that will attract zombies and hostile animals when the pl
 
 ragdoll : 1 while entity is ragdolled
 
+### CVAR_PREFIXES
 CVars that start with "%" are network sync'd to the server, but not to all clients.
 Used to push special case CVars such as buffBurningMolotovDuration to show fire particles between clients properly.
 

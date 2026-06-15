@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <ui_display_info>
 
 <!-- Table_of_Contents -->
@@ -88,7 +90,6 @@
 		<item_display_info display_type="meleeHeavy" display_group="groupMelee">
 			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statEntityDamageMelee" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
 			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statPowerAttack" tags="secondary,perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
-			<display_entry name="dEntityDamageSneak" title_key="statEntityDamageSneak" display_type="Bool"/>
 			<display_entry name="BlockDamage" display_type="Decimal1" title_key="statBlockDamage" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
 			<display_entry name="StaminaLoss" display_type="Decimal1" title_key="statStaminaLoss" negative_preferred="true"/>
 			<display_entry name="AttacksPerMinute" title_key="statAttacksPerMinute" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
@@ -115,9 +116,8 @@
 		</item_display_info>
 
 		<item_display_info display_type="rangedRepairTool" display_group="groupMelee">
-			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statEntityDamageMelee" tags="perkMiner69r"/>
+			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statEntityDamageRanged" tags="perkMiner69r"/>
 			<display_entry name="dBlockRepairAmount" title_key="statBlockRepairAmount"/>
-			<display_entry name="BlockDamage" display_type="Decimal1" title_key="statBlockDamage" tags="perkMiner69r"/>
 			<display_entry name="DamageFalloffRange" title_key="statDamageFalloffRange" tags="perkMiner69r"/>
 			<display_entry name="RoundsPerMinute" title_key="statAttacksPerMinute" tags="perkMiner69r"/>
 			<display_entry name="DegradationMax" title_key="statDegradationMax" tags="perkMiner69r,admin"/>
@@ -145,7 +145,6 @@
 
 		<item_display_info display_type="meleeTorch" display_group="groupMelee">
 			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statEntityDamageMelee"/>
-			<display_entry name="EntityDamage" display_type="Decimal1" title_key="statPowerAttack" tags="secondary"/>
 			<display_entry name="BlockDamage" display_type="Decimal1" title_key="statBlockDamage"/>
 			<display_entry name="StaminaLoss" display_type="Decimal1" title_key="statStaminaLoss" negative_preferred="true"/>
 			<display_entry name="AttacksPerMinute" title_key="statAttacksPerMinute"/>
@@ -170,6 +169,12 @@
 
 		<item_display_info display_type="droneTurret" display_group="groupRanged">
 			<display_entry name="DegradationMax" title_key="statDegradationHPMax" tags="perkTurrets"/>
+		</item_display_info>
+
+		<item_display_info display_type="droneStunMod" display_group="groupDrone">
+			<display_entry name="dEntityDamage" display_type="Decimal1" title_key="statStunDamage"/>
+			<display_entry name="dStunCoolDown" title_key="statStunCooldown"/>
+			<!-- <display_entry name="DegradationMax" title_key="statDegradationHPMax"/> -->
 		</item_display_info>
 
 <!-- *** AMMO -->
@@ -276,7 +281,7 @@
 		</item_display_info>
 
 		<item_display_info display_type="ammoGrenade" display_group="groupAmmo">
-			<display_entry name="dExEntityDamage" title_key="statEntityDamageExplosion" tags="perkDemolitionsExpert,admin"/>		
+			<display_entry name="dExEntityDamage" title_key="statEntityDamageExplosion" tags="perkDemolitionsExpert,admin"/>
 			<display_entry name="dExBlockDamage" title_key="statBlockDamageExplosion" tags="perkDemolitionsExpert,admin"/>
 			<display_entry name="dExRadius" title_key="statExRadius" display_type="Decimal1"/>
 			<display_entry name="dFuseTime" title_key="statFuseTime" display_type="Time" negative_preferred="true"/>
@@ -335,6 +340,131 @@
 		<item_display_info display_type="modArmorLiners" display_group="groupAttire">
 			<display_entry name="HypothermalResist" title_key="statHypothermalResist" display_type="Decimal1"/>
 			<display_entry name="HyperthermalResist" title_key="statHyperthermalResist" display_type="Decimal1"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunMagazineExtender" display_group="modGunMagazine">
+			<display_entry name="dMagazineSize" title_key="statMagazineSize" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunDrumMagazineExtender" display_group="modGunMagazine">
+			<display_entry name="dMagazineSize" title_key="statMagazineSize" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dReloadSpeedMul" title_key="xuiSkillReloadSpeed" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunShotgunTubeExtenderMagazine" display_group="modGunMagazine">
+			<display_entry name="dMagazineSize" title_key="statMagazineSize" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunBowPolymerString" display_group="groupRanged">
+			<display_entry name="dProjectileVelocity" title_key="statProjectileVelocity" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunBowArrowRest" display_group="groupRanged">
+			<display_entry name="dSpreadMultiplierAiming" title_key="statSpreadMultiplierAiming" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dSpreadMultiplierHip" title_key="statSpreadMultiplierHip" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunCrippleEm" display_group="groupRanged">
+			<display_entry name="dCrippleChance" title_key="statCrippleChance" display_type="Percent" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunMeleeTheHunter" display_group="groupRanged">
+			<display_entry name="dAnimalDamage" title_key="statAnimalDamage" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modGunMeleeRadRemover" display_group="groupRanged">
+			<display_entry name="dRegenerationBlocker" title_key="statRegenerationBlocker" display_type="Time"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeTemperedBlade" display_group="groupRanged">
+			<display_entry name="dBlockDamage" title_key="statBlockDamage" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dDegradationPerUse" title_key="statDegradationPerUse" display_type="Percent" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeSerratedBlade" display_group="groupRanged">
+			<display_entry name="dBleedChance" title_key="statBleedChance" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeWeightedHead" display_group="groupRanged">
+			<display_entry name="dStunChance" title_key="statStunChance" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeStructuralBrace" display_group="groupRanged">
+			<display_entry name="dDegradationPerUse" title_key="statDegradationPerUse" display_type="Percent" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeErgonomicGrip" display_group="groupRanged">
+			<display_entry name="dStaminaLoss" title_key="statMeleeStaminaLoss" display_type="Percent" negative_preferred="true"/>
+			<display_entry name="dWeaponHandling" title_key="statBowHandling" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeFortifyingGrip" display_group="groupRanged">
+			<display_entry name="dHPRegenValue" title_key="statHPRegenValue" display_type="Integer"/>
+			<display_entry name="dHPRegenTime" title_key="statHPRegenTime" display_type="Time"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeClubBarbedWire" display_group="groupRanged">
+			<display_entry name="dbarbBleedPrimary" title_key="statbarbBleedPrimary" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dbarbBleedSecondary" title_key="statbarbBleedSecondary" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeClubMetalSpikes" display_group="groupRanged">
+			<display_entry name="dmeatlSpikes" title_key="statMeatlSpikes" display_type="Percent"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeClubMetalChain" display_group="groupRanged">
+			<display_entry name="dmetalChain" title_key="statMetalChain" display_type="Percent"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeClubBurningShaft" display_group="groupRanged">
+			<display_entry name="dburningShaft" title_key="statBurningShaft" display_type="Percent"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeFiremansAxeMod" display_group="groupRanged">
+			<display_entry name="dBlockDamage" title_key="statBlockDamage" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dEntityDamage" title_key="statEntityDamage" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeGraveDigger" display_group="groupRanged">
+			<display_entry name="dBlockDamageDirt" title_key="statBlockDamageDirt" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeBunkerBuster" display_group="groupRanged">
+			<display_entry name="dBlockDamageStone" title_key="statBlockDamageStone" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeIronBreaker" display_group="groupRanged">
+			<display_entry name="dBlockDamageMetal" title_key="statBlockDamageMetal" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeWoodSplitter" display_group="groupRanged">
+			<display_entry name="dBlockDamageWood" title_key="statBlockDamageWood" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeDiamondTip" display_group="groupRanged">
+			<display_entry name="dDegradationPerUse" title_key="statDegradationPerUse" display_type="Percent" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modMeleeFuelTank" display_group="groupRanged">
+			<display_entry name="dMagazineSize" title_key="statMagazineSize" display_type="Percent" display_leading_plus="true" tags="motorTool"/>
+		</item_display_info>
+
+		<item_display_info display_type="modArmorBandolier" display_group="groupRanged">
+			<display_entry name="dBandolier" title_key="xuiSkillReloadSpeed" display_type="Percent" display_leading_plus="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modArmorTreasureHunter" display_group="groupAttire">
+			<display_entry name="dLootStage" title_key="statLootStage" display_leading_plus="true"/>
+			<display_entry name="dPlayerExpGain" title_key="statPlayerExpGain" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dTreasureBlocksPerReduction" title_key="statTreasureRadius" display_leading_plus="true" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modVehicleFuelSaver" display_group="groupRanged">
+			<display_entry name="dVehicleFuelUsePer" title_key="statFuelUsage" display_type="Percent" display_leading_plus="true" negative_preferred="true"/>
+		</item_display_info>
+
+		<item_display_info display_type="modVehicleReserveFuelTank" display_group="groupRanged">
+			<display_entry name="dVehicleFuelMaxPer" title_key="statFuelCapacity" display_type="Percent" display_leading_plus="true"/>
 		</item_display_info>
 
 <!-- *** ARMOR -->
@@ -708,9 +838,13 @@
 			<display_entry name="dFallDamage" title_key="statFallDamage" display_type="Percent"/>
 		</item_display_info>
 
+		<item_display_info display_type="clothingStaminaOnlyBoots" display_group="groupAttire" >
+			<display_entry name="dStaminaMax" title_key="statStaminaAmount" display_leading_plus="true"/>
+		</item_display_info>
+
 		<item_display_info display_type="clothingCigar" display_group="groupAttire" >
-			<display_entry name="AttributeLevel" tags="attStrength" title_key="statShowStrength" display_leading_plus="true"/>
-			<display_entry name="BarteringBuying" title_key="statBarteringSellBuy" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dAttributeLevel" tags="attStrength" title_key="statShowStrength" display_leading_plus="true"/>
+			<display_entry name="dBarteringBuying" title_key="statBarteringSellBuy" display_type="Percent" display_leading_plus="true"/>
 		</item_display_info>
 
 <!-- *** DRINKS -->
@@ -800,6 +934,34 @@
 			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
 			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
 			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
+		</item_display_info>
+
+		<item_display_info display_type="foodChickenNuggets" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dCarryCapacity" title_key="statCarryCapacity" display_leading_plus="true"/>
+			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
+		</item_display_info>
+
+		<item_display_info display_type="foodChickenWings" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dEntityDamage" title_key="statEntityDamageMelee" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dInfectionImmunity" title_key="buffInfectionImmunityName" display_type="Percent"/>
+			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
+			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
+		</item_display_info>
+
+		<item_display_info display_type="foodRoadrunnerChickenJerky" display_group="groupConsumables">
+			<display_entry name="$foodAmountAdd" title_key="statFoodAmount"/>
+			<display_entry name="foodHealthAmount" title_key="statHealthAmount"/>
+			<display_entry name=".foodStaminaBonusAdd" title_key="statFoodStaminaBonus"/>
+			<display_entry name="dRunSpeed" title_key="statRunSpeed" display_type="Percent" display_leading_plus="true"/>
+			<display_entry name="dDuration" title_key="statDuration" display_type="Time"/>
 			<display_entry name="dSmellUse" title_key="statFoodSmell"/>
 		</item_display_info>
 
@@ -1163,6 +1325,10 @@
 			<display_entry name="Explosion.BlockDamage" title_key="statLandmineBlockDMG"/>
 			<display_entry name="Explosion.RadiusEntities" title_key="statLandmineEntRadius"/>
 			<display_entry name="Explosion.EntityDamage" title_key="statLandmineEntDMG"/>
+		</item_display_info>
+
+		<item_display_info display_type="toolCookingPot" display_group="workstationTools">
+			<display_entry name="dCraftingTime" title_key="statCookingTime" display_type="Percent" display_leading_plus="true" negative_preferred="false"/>
 		</item_display_info>
 
 		<item_display_info display_type="toolAnvil" display_group="workstationTools">
