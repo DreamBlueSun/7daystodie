@@ -1,4 +1,4 @@
-package iridescent.items.weapon;
+package ume.marisa.iridescent.items.weapon;
 
 import iridescent.Constants;
 import ume.marisa.iridescent.utils.WriteToFile;

@@ -19,13 +19,17 @@
         <drop event="Harvest" name="resourceBeeswax" prob="1" count="1" tag="WasteTreasuresHoneyHarvest"/>
     </append>
     <!--** 蜂房 -->
-    <set xpath="/blocks/block[@name='cntApiary']/property[@name='FuelTypes']/@value">2,3,resourceCropChrysanthemumPlant,resourceCropGoldenrodPlant,resourceCropCottonPlant</set>
-    <set xpath="/blocks/block[@name='cntApiary']/property[@name='ConvertToItem' or @name='ModdedConvertToItem']/@value">resourceBeeswax</set>
-    <set xpath="/blocks/block[@name='cntApiary']/property[@name='MinConvertTime' or @name='MaxConvertTime']/@value">28800</set>
     <set xpath="/blocks/block[@name='cntApiary']/property[@name='ItemIconBackdrop']/@value">ui_game_symbol_harvest</set>
-    <append xpath="/blocks/block[@name='cntApiary']">
-        <property name="OutputGridHeight" value="3"/>
-    </append>
+    <remove xpath="/blocks/block[@name='cntApiary']/property[@name='FuelTypes' or @name='OutputTypes' or @name='Outputs']"/>
+    <insertAfter xpath="/blocks/block[@name='cntApiary']/property[@name='CloseSound']">
+        <!-- 定义燃料类型 {名称，燃料物品，燃料物品，燃料物品，...} 所有物品均视为该命名类型的1个燃料单位 -->
+        <property name="FuelTypes" value="{flower,resourceCropChrysanthemumPlant,resourceCropGoldenrodPlant,resourceCropCottonPlant}"/>
+        <!-- 生产时间 = 1000 = 1 游戏小时 -->
+        <!-- 定义输出类型 {名称，燃料，燃料成本，附加成本，折扣成本（含模组），转换为，模组化转换为，模组化转换速度，模组化转换数量，最小生产时间，最大生产时间，生产完成音效} -->
+        <property name="OutputTypes" value="{honey,flower,5,0,5,resourceBeeswax,resourceBeeswax,2,2,8000,8000,apiary_complete_item}"/>
+        <!-- 定义输出槽位（目前最多9个）。当数值超过数量时，输出槽位将循环使用这些值 -->
+        <property name="Outputs" value="honey,honey,honey,honey,honey,honey"/>
+    </insertAfter>
 
     <!--*** 矿石获取数量加成标签 -->
     <set xpath="/blocks/block/drop[@tag='oreWoodHarvest']/@tag">oreWoodHarvest,marisaOreHarvest</set>
@@ -2133,7 +2137,7 @@
             <!-- define output types {name,fuel,fuelCost,additionalCost,discountCost (with mod),convertTo,moddedConvertTo,moddedConvertSpeed,moddedconverCount,minProductionTime,manProductionTime} -->
             <!-- 生产时间 = 1000 = 1 游戏小时 -->
             <!-- 定义输出类型 {名称，燃料，燃料成本，附加成本，折扣成本（含模组），转换为，模组化转换为，模组化转换速度，模组化转换数量，最小生产时间，最大生产时间，生产完成音效} -->
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceRockSmallBundle1000,resourceRockSmallBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceRockSmallBundle1000,resourceRockSmallBundle2000,2,2,16000,16000,collector_complete_item}"/>
 
             <!-- define output slots (currently up to 9). Output slots will wrap these values if they exceed the count-->
             <!-- 定义输出槽位（目前最多9个）。当数值超过数量时，输出槽位将循环使用这些值 -->
@@ -2184,7 +2188,7 @@
             <property name="TintColor" value="67C483"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceClayLumpBundle1000,resourceClayLumpBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceClayLumpBundle1000,resourceClayLumpBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2195,7 +2199,7 @@
             <property name="TintColor" value="F5F918"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceScrapBrassBundle1000,resourceScrapBrassBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceScrapBrassBundle1000,resourceScrapBrassBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2206,7 +2210,7 @@
             <property name="TintColor" value="FF985E"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceScrapIronBundle1000,resourceScrapIronBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceScrapIronBundle1000,resourceScrapIronBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2217,7 +2221,7 @@
             <property name="TintColor" value="CCECFF"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourcePotassiumNitratePowderBundle1000,resourcePotassiumNitratePowderBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourcePotassiumNitratePowderBundle1000,resourcePotassiumNitratePowderBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2228,7 +2232,7 @@
             <property name="TintColor" value="00BFFF"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceLeadBundle1000,resourceLeadBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceLeadBundle1000,resourceLeadBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2239,7 +2243,7 @@
             <property name="TintColor" value="000000"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceCoalBundle1000,resourceCoalBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceCoalBundle1000,resourceCoalBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2250,7 +2254,7 @@
             <property name="TintColor" value="BA55D3"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceOilShaleBundle1000,resourceOilShaleBundle2000,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceOilShaleBundle1000,resourceOilShaleBundle2000,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2261,7 +2265,7 @@
             <property name="TintColor" value="FF66B2"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceIridescentCubeBundle20,resourceIridescentCubeBundle40,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceIridescentCubeBundle20,resourceIridescentCubeBundle40,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
@@ -2272,7 +2276,7 @@
             <property name="TintColor" value="FF66B2"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,100,100,resourceIridescentCubeSuperBundle10,resourceIridescentCubeSuperBundle20,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceIridescentCubeSuperBundle10,resourceIridescentCubeSuperBundle20,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
