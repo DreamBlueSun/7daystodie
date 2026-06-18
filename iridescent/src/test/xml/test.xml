@@ -1,0 +1,631 @@
+
+    <!-- 心跳加速菇 -->
+    <!-- 硝化伞菇 -->
+    <!-- 曼陀罗菇 -->
+
+
+    <!-- 小桶爆弹 -->
+    <!-- 大桶爆弹 -->
+
+
+    <!-- 热饮 -->
+    <!-- 冷饮 -->
+    <!-- 活力剂 -->
+    <!-- 营养剂 -->
+    <!-- 虹彩药剂-秘药 -->
+    <!-- 虹彩药剂-远古秘药 -->
+
+
+
+
+
+
+
+
+
+<Marisa>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- *** 投掷 -->
+    <remove xpath="/items/item[@name='thrownAmmoPipeBomb' or @name='thrownGrenadeContact' or @name='thrownGrenade' or @name='thrownTimedCharge' or @name='thrownDynamite' or @name='thrownAmmoMolotovCocktail']"/>
+    <insertAfter xpath="/items/item[@name='resourceGunPowderBundle']">
+
+        <item name="thrownAmmoPipeBomb">
+            <property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill"/>
+            <property name="ItemTypeIcon" value="explosion"/>
+            <property name="DisplayType" value="ammoGrenade"/>
+            <property name="Class" value="ItemClassTimeBomb"/>
+            <property name="HoldType" value="25"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/PipeBomb/PipeBombPrefab.prefab"/>
+            <property name="DropScale" value="2.5"/>
+            <property name="Material" value="Mmetal"/>
+            <property name="Stacknumber" value="200"/>
+            <property name="EconomicValue" value="50"/>
+            <property name="TraderStageTemplate" value="baseTier1"/><!-- thrownAmmoPipeBomb -->
+            <property name="Weight" value="0"/>
+            <property name="Explosion.BlockDamage" value="5"/>
+            <property name="Explosion.EntityDamage" value="150"/>
+            <property name="Explosion.ParticleIndex" value="20"/>
+            <property name="Explosion.RadiusBlocks" value="4"/>
+            <property name="Explosion.RadiusEntities" value="4"/>
+            <property name="Explosion.DamageBonus.earth" value="0"/> <!-- should work? -->
+            <property name="Explosion.DamageBonus.water" value="0"/>
+            <property name="Explosion.BlastPower" value="75"/> <!-- (int,100) how far ragdolls and such are flung -->
+            <property name="FuseTime" value="4"/> <!-- End: Needed for time in sec, max 6 -->
+            <property name="StickPercent" value=".4"/>
+            <property name="UnlockedBy" value="craftingExplosives"/><!-- perkDemolitionsExpert,thrownAmmoPipeBombSchematic, -->
+            <property name="Group" value="Ammo/Weapons,Ammo,Marisa/Weapon/Ammo"/>
+            <property name="ActivationTransformToHide" value="Sparks"/>
+            <property name="SoundPickup" value="pipebomb_grab"/>
+            <property name="SoundPlace" value="pipebomb_place"/>
+            <property class="Action0">
+                <property name="Class" value="ThrowAway"/>
+                <!-- <property name="Hitmask_override" value="Arrow"/> unfortunately this cannot work without a serious rewrite of the hitmask system -->
+                <property name="Delay" value="1.2"/> <!-- obsolete if rounds per minute exists -->
+                <property name="Throw_strength_default" value="8"/>
+                <property name="Throw_strength_max" value="50"/>
+                <property name="Max_strain_time" value="1.25"/>
+                <property name="Sound_start" value="swoosh"/>
+                <property name="triggerEffectTriggerPullDualsense" value="ShotgunTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="ShotgunTrigger"/>
+                <property name="triggerEffectShootDualsense" value="ShotgunShoot"/>
+                <property name="triggerEffectShootXbox" value="PistolShoot"/>
+            </property>
+            <property class="Action1"> <!-- UseAction -->
+                <property name="Class" value="Activate"/>
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+                <property name="Delay" value="1"/> <!-- obsolete if rounds per minute exists -->
+            </property>
+            <property name="ThrowableDecoy" value="true"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="1.5"/>
+                <display_value name="dExBlockDamage" value="5"/>
+                <display_value name="dExEntityDamage" value="150"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+
+        <item name="thrownGrenadeContact">
+            <property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill"/>
+            <property name="ItemTypeIcon" value="explosion"/>
+            <!-- <property name="CustomIconTint" value="191,37,13"/> -->
+            <property name="TintColor" value="191,37,13"/>
+            <property name="DisplayType" value="ammoGrenadeContact"/>
+            <property name="Class" value="ItemClassTimeBomb"/>
+            <property name="HoldType" value="57"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Grenade/GrenadePrefab.prefab"/>
+            <property name="DropScale" value="2.5"/>
+            <property name="Material" value="Mmetal"/>
+            <property name="Stacknumber" value="200"/>
+            <property name="EconomicValue" value="75"/>
+            <property name="TraderStageTemplate" value="baseTier2"/><!-- thrownGrenadeContact -->
+            <property name="Weight" value="0"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="250"/>
+            <property name="Explosion.ParticleIndex" value="13"/>
+            <property name="Explosion.RadiusBlocks" value="4"/>
+            <property name="Explosion.RadiusEntities" value="5"/>
+            <property name="Explosion.DamageBonus.earth" value="0"/> <!-- should work? -->
+            <property name="Explosion.DamageBonus.water" value="0"/>
+            <property name="Explosion.BlastPower" value="75"/> <!-- (int,100) how far ragdolls and such are flung -->
+            <property name="FuseTime" value="6"/>
+            <property name="FusePrimeOnActivate" value="true"/>
+            <property name="ExplodeOnHit" value="true"/>
+            <property name="StickPercent" value=".5"/>
+            <property name="UnlockedBy" value="craftingExplosives"/><!-- perkDemolitionsExpert,thrownGrenadeContactSchematic, -->
+            <property name="Group" value="Ammo/Weapons,Ammo,Marisa/Weapon/Ammo"/>
+            <property name="SoundUnholster" value="grenade_unholster"/>
+            <property name="SoundPickup" value="grenade_grab"/>
+            <property name="SoundPlace" value="grenade_place"/>
+            <property class="Action0">
+                <property name="Class" value="ThrowAway"/>
+                <!-- <property name="Hitmask_override" value="Arrow"/> unfortunately this cannot work without a serious rewrite of the hitmask system -->
+                <property name="Delay" value="1.2"/> <!-- obsolete if rounds per minute exists -->
+                <property name="Throw_strength_default" value="8"/>
+                <property name="Throw_strength_max" value="50"/>
+                <property name="Max_strain_time" value="1.25"/>
+                <property name="Sound_start" value="grenade_throw"/>
+                <property name="Gravity" value="-5"/>
+                <property name="triggerEffectTriggerPullDualsense" value="ShotgunTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="ShotgunTrigger"/>
+                <property name="triggerEffectShootDualsense" value="ShotgunShoot"/>
+                <property name="triggerEffectShootXbox" value="PistolShoot"/>
+            </property>
+            <property class="Action1">
+                <property name="Class" value="Activate"/>
+                <property name="Delay" value="1"/>
+                <property name="Sound_start" value="grenade_pullpin"/>
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+            </property>
+            <property name="ThrowableDecoy" value="true"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="2.5"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="250"/>
+            </effect_group>
+        </item>
+
+        <item name="thrownGrenade">
+            <property name="Extends" value="thrownGrenadeContact" param1="ExplodeOnHit"/>
+            <!-- <property name="CustomIconTint" value="59,62,55"/> -->
+            <property name="TintColor" value="59,62,55"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Grenade/GrenadePrefab.prefab"/>
+            <property name="UnlockedBy" value="craftingExplosives"/><!-- perkDemolitionsExpert,thrownGrenadeSchematic, -->
+            <property name="DisplayType" value="ammoGrenade"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="250"/>
+            <property name="FuseTime" value="3"/>
+            <property name="StickPercent" value=".3"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="1.5"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="250"/>
+                <display_value name="dFuseTime" value="3"/>
+            </effect_group>
+            <property class="Action1">
+                <property name="Class" value="Activate"/>
+                <property name="Delay" value="1"/>
+                <property name="Sound_start" value="grenade_pullpin"/>
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+            </property>
+        </item>
+
+        <item name="thrownTimedCharge">
+            <property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill,perkGreatHeistSafes"/>
+            <property name="ItemTypeIcon" value="explosion"/>
+            <property name="DisplayType" value="ammoGrenadeTimedCharge"/>
+            <property name="Class" value="ItemClassTimeBomb"/>
+            <property name="HoldType" value="62"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/TimedCharge/timedChargePrefab.prefab"/>
+            <property name="ActivationTransformToHide" value="Armed"/>
+            <property name="DropScale" value="1.8"/>
+            <property name="Material" value="Mmetal"/>
+            <property name="Stacknumber" value="200"/>
+            <property name="EconomicValue" value="300"/>
+            <property name="TraderStageTemplate" value="baseTier2"/><!-- thrownTimedCharge -->
+            <property name="Weight" value="0"/>
+            <property name="Explosion.BlockDamage" value="110"/>
+            <property name="Explosion.EntityDamage" value="400"/>
+            <property name="Explosion.BlockTags" value="door,safes,timecharge"/>
+            <property name="Explosion.DamageBonus.tags" value="38"/>
+            <property name="Explosion.ParticleIndex" value="21"/>
+            <property name="Explosion.RadiusBlocks" value=".65"/>
+            <property name="Explosion.RadiusEntities" value="1.2"/>
+            <property name="Explosion.DamageBonus.stone" value="1"/>
+            <property name="Explosion.DamageBonus.metal" value="1"/>
+            <property name="Explosion.DamageBonus.earth" value="1"/> <!-- should work? -->
+            <property name="Explosion.DamageBonus.wood" value="1"/>
+            <property name="Explosion.DamageBonus.water" value="0"/>
+            <property name="Explosion.BlastPower" value="75"/> <!-- (int,100) how far ragdolls and such are flung -->
+            <property name="FusePrimeOnActivate" value="true"/>
+            <property name="FuseTime" value="4"/> <!-- End: Needed for time in sec, max 6 -->
+            <property name="StickPercent" value="1"/>
+            <property name="UnlockedBy" value="craftingExplosives"/><!-- perkDemolitionsExpert,bookGreatHeistGoldRush, -->
+            <property name="Group" value="Ammo/Weapons,Ammo,Marisa/Weapon/Ammo"/>
+            <property name="SoundUnholster" value="charge_unholster"/>
+            <property name="SoundStick" value="charge_stick"/>
+            <property name="SoundTick" value="charge_beep,.8"/>
+            <property name="SoundPickup" value="timedcharge_grab"/>
+            <property name="SoundPlace" value="timedcharge_place"/>
+            <property class="Action0">
+                <property name="Class" value="ThrowAway"/>
+                <property name="Delay" value="1.2"/>
+                <property name="Throw_strength_default" value="15"/>
+                <property name="Max_strain_time" value="0"/>
+                <property name="Sound_start" value="charge_throw"/>
+                <property name="triggerEffectTriggerPullDualsense" value="ShotgunTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="ShotgunTrigger"/>
+                <property name="triggerEffectShootDualsense" value="ShotgunShoot"/>
+                <property name="triggerEffectShootXbox" value="PistolShoot"/>
+            </property>
+            <property class="Action1">
+                <!-- UseAction -->
+                <property name="Class" value="Activate"/>
+                <property name="Delay" value="1"/>
+                <!-- obsolete if rounds per minute exists -->
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+            </property>
+            <property name="ThrowableDecoy" value="true"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="1"/>
+                <display_value name="dExBlockDamage" value="3000"/>
+                <display_value name="dExEntityDamage" value="400"/>
+                <display_value name="dFuseTime" value="4"/>
+            </effect_group>
+        </item>
+
+        <item name="thrownDynamite">
+            <property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill"/>
+            <property name="ItemTypeIcon" value="explosion"/>
+            <property name="DisplayType" value="ammoGrenade"/>
+            <property name="Class" value="ItemClassTimeBomb"/>
+            <property name="HoldType" value="66"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Dynamite/dynamitePrefab.prefab"/>
+            <property name="DropScale" value="2.5"/>
+            <property name="Material" value="MDynamite"/>
+            <property name="Stacknumber" value="200"/>
+            <property name="EconomicValue" value="100"/>
+            <property name="TraderStageTemplate" value="baseTier2"/><!-- thrownDynamite -->
+            <property name="Weight" value="0"/>
+            <property name="ActivationTransformToHide" value="Sparks"/>
+            <property name="Explosion.BlockDamage" value="3000"/>
+            <property name="Explosion.EntityDamage" value="500"/>
+            <property name="Explosion.ParticleIndex" value="22"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <!--<property name="Explosion.DamageBonus.stone" value="0"/><property name="Explosion.DamageBonus.metal" value="0"/><property name="Explosion.DamageBonus.earth" value="0"/><property name="Explosion.DamageBonus.cloth" value="5"/><property name="Explosion.DamageBonus.wood" value="0"/><property name="Explosion.DamageBonus.water" value="0"/>-->
+            <property name="FuseTime" value="4"/> <!-- End: Needed for time in sec, max 6 -->
+            <property name="StickPercent" value=".2"/>
+            <property name="UnlockedBy" value="craftingExplosives"/><!-- perkDemolitionsExpert,thrownDynamiteSchematic, -->
+            <property name="Group" value="Ammo/Weapons,Ammo,Marisa/Weapon/Ammo"/>
+            <property name="SoundPickup" value="dynamite_grab"/>
+            <property name="SoundPlace" value="dynamite_place"/>
+            <property class="Action0">
+                <property name="Class" value="ThrowAway"/>
+                <property name="Delay" value="1.2"/> <!-- obsolete if rounds per minute exists -->
+                <property name="Throw_strength_default" value="6"/>
+                <property name="Throw_strength_max" value="28"/>
+                <property name="Max_strain_time" value="1.25"/>
+                <property name="Sound_start" value="swoosh"/>
+                <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+                <property name="triggerEffectTriggerShootDualsense" value="MGShoot"/>
+                <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+            </property>
+            <property class="Action1"> <!-- UseAction -->
+                <property name="Class" value="Activate"/>
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+                <property name="Delay" value="1"/> <!-- obsolete if rounds per minute exists -->
+            </property>
+            <property name="ThrowableDecoy" value="true"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="1.5"/>
+                <display_value name="dExBlockDamage" value="3000"/>
+                <display_value name="dExEntityDamage" value="500"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+
+        <item name="thrownAmmoMolotovCocktail">
+            <property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill"/>
+            <property name="ItemTypeIcon" value="explosion"/>
+            <property name="DisplayType" value="ui_ammoGrenadeFire"/>
+            <property name="Class" value="ItemClassTimeBomb"/>
+            <property name="HoldType" value="54"/>
+            <property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotov_thrownPrefab.prefab"/>
+            <property name="DropMeshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotov_dropPrefab.prefab"/>
+            <property name="HandMeshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotovPrefab.prefab"/>
+            <property name="ActivationEmissive" value="LOD"/>
+            <property name="ActivationTransformToHide" value="LightMover;Flames;Smoke;ClothFlames;ClothFlamesLight"/>
+            <property name="DropScale" value="2.1"/>
+            <property name="FusePrimeOnActivate" value="true"/>
+            <property name="Material" value="Morganic"/>
+            <property name="ThrowableDecoy" value="true"/>
+            <property name="Weight" value="0"/>
+            <property name="Stacknumber" value="200"/>
+            <property name="LightValue" value=".3"/>
+            <property name="LightSource" value="lightSource"/>
+            <property name="ActivateObject" value="lightSource"/>
+            <property name="Explosion.ParticleIndex" value="10"/>
+            <property name="Explosion.Duration" value="8"/>
+            <property name="Explosion.RadiusBlocks" value="1"/>
+            <property name="Explosion.RadiusEntities" value="1"/>
+            <property name="Explosion.BlastPower" value="35"/>
+            <property name="Explosion.DamageBonus.stone" value=".1"/>
+            <property name="Explosion.DamageBonus.metal" value="0"/>
+            <property name="Explosion.DamageBonus.earth" value="0"/>
+            <property name="Explosion.DamageBonus.water" value="0"/>
+            <property name="Explosion.DamageBonus.wood" value="6"/>
+            <property name="Explosion.Buff" value="buffBurningMolotov"/> <!-- molotovs have a ExplosionDamageArea script that runs this buff for their ground effect -->
+            <property name="FuseTime" value="20000"/> <!-- theoretically redundant but I don't want to experiment on this -->
+            <property name="ExplodeOnHit" value="true"/>
+            <property name="StickPercent" value=".5"/>
+            <property name="EconomicValue" value="75"/>
+            <property name="TraderStageTemplate" value="baseTier1"/><!-- thrownAmmoMolotovCocktail -->
+            <property name="Group" value="Ammo/Weapons,Ammo,Marisa/Weapon/Ammo"/>
+            <property name="UsableUnderwater" value="false"/>
+            <property name="SoundPickup" value="molotov_grab"/>
+            <property name="SoundPlace" value="molotov_place"/>
+            <property class="Action0">
+                <property name="Class" value="ThrowAway"/>
+                <!-- <property name="Hitmask_override" value="Arrow"/> unfortunately this cannot work without a serious rewrite of the hitmask system -->
+                <property name="Delay" value="1.2"/> <!-- obsolete if rounds per minute exists -->
+                <property name="Explosion.ParticleIndex" value="7"/>
+                <property name="Throw_strength_default" value="20"/>
+                <property name="Throw_strength_max" value="50"/>
+                <property name="Max_strain_time" value="1.25"/>
+                <property name="Sound_start" value="swoosh"/>
+                <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+                <property name="triggerEffectTriggerShootDualsense" value="MGShoot"/>
+                <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+            </property>
+            <property class="Action1">
+                <!-- UseAction -->
+                <property name="Class" value="Activate"/>
+                <property name="Delay" value="1"/>
+                <!-- obsolete if rounds per minute exists -->
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value="1"/>
+                <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+                <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+                <property name="triggerEffectTriggerShootDualsense" value="RifleShoot"/>
+                <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+            </property>
+
+            <!-- <property class="Action1">
+                <property name="Class" value="Activate"/>
+                <property name="Delay" value="1"/>
+            </property> -->
+
+            <effect_group tiered="false">
+                <triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE" range="2.7" cvar="%buffBurningMolotovDuration" operation="set" value="16">
+                    <requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="0"/></triggered_effect>
+                <triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="positionAOE" range="2.7" cvar="%buffBurningMolotovDuration" operation="set" value="18">
+                    <requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="NotEquals" value="0"/></triggered_effect>
+                <triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE" range="2.7" buff="buffBurningMolotov">
+                    <requirement name="CVarCompare" target="other" cvar="_underwater" operation="LT" value="0.3"/>
+                </triggered_effect>
+
+                <display_value name="dMarisaFireEffectAmount" value="100"/>
+                <display_value name="dExRadius" value="3"/>
+
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+
+        <!-- ** ammo thrown -->
+        <item name="thrownAmmoPipeBombSE">
+            <property name="Extends" value="thrownAmmoPipeBomb"/>
+            <property name="DescriptionKey" value="thrownAmmoPipeBombDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownAmmoPipeBomb"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="250"/>
+            <property name="Explosion.RadiusBlocks" value="4"/>
+            <property name="Explosion.RadiusEntities" value="5"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="5"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="250"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeContactSE">
+            <property name="Extends" value="thrownGrenadeContact"/>
+            <property name="DescriptionKey" value="thrownGrenadeContactDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenadeContact"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="Explosion.BlockDamage" value="20"/>
+            <property name="Explosion.EntityDamage" value="450"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="6"/>
+                <display_value name="dExBlockDamage" value="20"/>
+                <display_value name="dExEntityDamage" value="450"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeSE">
+            <property name="Extends" value="thrownGrenade"/>
+            <property name="DescriptionKey" value="thrownGrenadeDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenade"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="Explosion.BlockDamage" value="20"/>
+            <property name="Explosion.EntityDamage" value="450"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="6"/>
+                <display_value name="dExBlockDamage" value="20"/>
+                <display_value name="dExEntityDamage" value="450"/>
+                <display_value name="dFuseTime" value="3"/>
+            </effect_group>
+        </item>
+        <item name="thrownDynamiteSE">
+            <property name="Extends" value="thrownDynamite"/>
+            <property name="DescriptionKey" value="thrownDynamiteDesc"/>
+            <property name="EconomicValue" value="100"/>
+            <property name="CustomIcon" value="thrownDynamite"/>
+            <property name="CustomIconTint" value="#FF66B2"/>
+            <property name="Explosion.BlockDamage" value="6000"/>
+            <property name="Explosion.EntityDamage" value="550"/>
+            <property name="Explosion.RadiusBlocks" value="6"/>
+            <property name="Explosion.RadiusEntities" value="7"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="7"/>
+                <display_value name="dExBlockDamage" value="6000"/>
+                <display_value name="dExEntityDamage" value="550"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeContactShockedSE">
+            <property name="Extends" value="thrownGrenadeContact"/>
+            <property name="DescriptionKey" value="thrownGrenadeContactDesc"/>
+            <property name="DisplayType" value="ui_thrownGrenadeContactShocked"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenadeContact"/>
+            <property name="CustomIconTint" value="#7EA8FB"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="125"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="6"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="125"/>
+            </effect_group>
+
+            <effect_group name="add buffShocked count buff" tiered="false">
+                <triggered_effect trigger="onSelfExplosionDamagedOther" action="AddBuff" target="otherAOE" target_tags="animal,zombie" range="0.1" buff="buffThrownGrenadeShockedSE"/>
+                <display_value name="dMarisaShockedEffectAmount" value="100"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeShockedSE">
+            <property name="Extends" value="thrownGrenade"/>
+            <property name="DescriptionKey" value="thrownGrenadeDesc"/>
+            <property name="DisplayType" value="ui_thrownGrenadeShocked"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenade"/>
+            <property name="CustomIconTint" value="#7EA8FB"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="125"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="6"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="125"/>
+                <display_value name="dFuseTime" value="3"/>
+            </effect_group>
+
+            <effect_group name="add buffShocked count buff" tiered="false">
+                <triggered_effect trigger="onSelfExplosionDamagedOther" action="AddBuff" target="otherAOE" target_tags="animal,zombie" range="0.1" buff="buffThrownGrenadeShockedSE"/>
+                <display_value name="dMarisaShockedEffectAmount" value="100"/>
+            </effect_group>
+        </item>
+
+        <item name="thrownAmmoPipeBombSP">
+            <property name="Extends" value="thrownAmmoPipeBomb"/>
+            <property name="DescriptionKey" value="thrownAmmoPipeBombDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownAmmoPipeBomb"/>
+            <property name="CustomIconTint" value="#FFD700"/>
+            <property name="Explosion.BlockDamage" value="20"/>
+            <property name="Explosion.EntityDamage" value="450"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="6"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="6"/>
+                <display_value name="dExBlockDamage" value="20"/>
+                <display_value name="dExEntityDamage" value="450"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeContactSP">
+            <property name="Extends" value="thrownGrenadeContact"/>
+            <property name="DescriptionKey" value="thrownGrenadeContactDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenadeContact"/>
+            <property name="CustomIconTint" value="#FFD700"/>
+            <property name="Explosion.BlockDamage" value="40"/>
+            <property name="Explosion.EntityDamage" value="750"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="7"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="7"/>
+                <display_value name="dExBlockDamage" value="40"/>
+                <display_value name="dExEntityDamage" value="750"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeSP">
+            <property name="Extends" value="thrownGrenade"/>
+            <property name="DescriptionKey" value="thrownGrenadeDesc"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenade"/>
+            <property name="CustomIconTint" value="#FFD700"/>
+            <property name="Explosion.BlockDamage" value="40"/>
+            <property name="Explosion.EntityDamage" value="750"/>
+            <property name="Explosion.RadiusBlocks" value="5"/>
+            <property name="Explosion.RadiusEntities" value="7"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="7"/>
+                <display_value name="dExBlockDamage" value="40"/>
+                <display_value name="dExEntityDamage" value="750"/>
+                <display_value name="dFuseTime" value="3"/>
+            </effect_group>
+        </item>
+        <item name="thrownDynamiteSP">
+            <property name="Extends" value="thrownDynamite"/>
+            <property name="DescriptionKey" value="thrownDynamiteDesc"/>
+            <property name="EconomicValue" value="100"/>
+            <property name="CustomIcon" value="thrownDynamite"/>
+            <property name="CustomIconTint" value="#FFD700"/>
+            <property name="Explosion.BlockDamage" value="12000"/>
+            <property name="Explosion.EntityDamage" value="900"/>
+            <property name="Explosion.RadiusBlocks" value="7"/>
+            <property name="Explosion.RadiusEntities" value="8"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="8"/>
+                <display_value name="dExBlockDamage" value="12000"/>
+                <display_value name="dExEntityDamage" value="900"/>
+                <display_value name="dFuseTime" value="4"/>
+                <triggered_effect trigger="onSelfWaterSubmerge" action="ResetHeldItem"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeContactShockedSP">
+            <property name="Extends" value="thrownGrenadeContact"/>
+            <property name="DescriptionKey" value="thrownGrenadeContactDesc"/>
+            <property name="DisplayType" value="ui_thrownGrenadeContactShocked"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenadeContact"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="375"/>
+            <property name="Explosion.RadiusBlocks" value="6"/>
+            <property name="Explosion.RadiusEntities" value="7"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="7"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="375"/>
+            </effect_group>
+
+            <effect_group name="add buffShocked count buff" tiered="false">
+                <triggered_effect trigger="onSelfExplosionDamagedOther" action="AddBuff" target="otherAOE" target_tags="animal,zombie" range="0.1" buff="buffThrownGrenadeShockedSP"/>
+                <display_value name="dMarisaShockedEffectAmount" value="200"/>
+            </effect_group>
+        </item>
+        <item name="thrownGrenadeShockedSP">
+            <property name="Extends" value="thrownGrenade"/>
+            <property name="DescriptionKey" value="thrownGrenadeDesc"/>
+            <property name="DisplayType" value="ui_thrownGrenadeShocked"/>
+            <property name="EconomicValue" value="41"/>
+            <property name="CustomIcon" value="thrownGrenade"/>
+            <property name="CustomIconTint" value="#00BFFF"/>
+            <property name="Explosion.BlockDamage" value="10"/>
+            <property name="Explosion.EntityDamage" value="375"/>
+            <property name="Explosion.RadiusBlocks" value="6"/>
+            <property name="Explosion.RadiusEntities" value="7"/>
+            <effect_group tiered="false">
+                <display_value name="dExRadius" value="7"/>
+                <display_value name="dExBlockDamage" value="10"/>
+                <display_value name="dExEntityDamage" value="375"/>
+                <display_value name="dFuseTime" value="3"/>
+            </effect_group>
+
+            <effect_group name="add buffShocked count buff" tiered="false">
+                <triggered_effect trigger="onSelfExplosionDamagedOther" action="AddBuff" target="otherAOE" target_tags="animal,zombie" range="0.1" buff="buffThrownGrenadeShockedSP"/>
+                <display_value name="dMarisaShockedEffectAmount" value="200"/>
+            </effect_group>
+        </item>
+
+    </insertAfter>
+
+
+
+
+
+
+
+
+
+
+
+</Marisa>

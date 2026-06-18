@@ -1,0 +1,2304 @@
+<configs>
+<append xpath="/buffs/buff[@name='god']">
+        <effect_group> 
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedBite,buffZBSAttedCystis,buffZBSAttedInfectionSpread,buffZBSAttedEmber,buffZBSAttedAbyss,buffZBSAttedCorrosion,buffZBSAttedOppress"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedElementCold,buffZBSAttedElementFreeze,buffZBSAttedElementWet,buffZBSAttedElementDry"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedNausea,buffZBSCountGluttony,buffZBSAttedDevour,buffZBSAttedBound,buffZBSAttedFlameBalance,buffZBSAttedFlameJudgment,buffZBSCountCorpseMaggot,buffZBSBasedCorpseMaggot,buffZBSAttedCorpseMaggotGnaw"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAloeHealing,buffZBSDrugInjectionSprint,buffZBSDrugInhibitoryMotorRestorer,buffZBSDrugInjectionIronSkin"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSCD300"/>
+		</effect_group>
+</append>
+<append xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group">
+    <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="add" value="-.09">
+        <requirement name="HasBuff" buff="buffZBSDrugInjectionSprint"/>
+	</triggered_effect>
+</append>
+
+<append xpath="/buffs/buff[@name='zombieBuffStatusCheck01']">
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffEntryGeneration">
+                <requirement name="EntityTagCompare" tags="feral"/>
+                <requirement name="!EntityTagCompare" tags="animal"/>
+                <requirement name="!EntityTagCompare" tags="boss"/>
+                <requirement name="!EntityTagCompare" tags="zbsboss"/>
+            </triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffSkillGeneration"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffHalfHealth">
+                <requirement name="EntityTagCompare" tags="feral"/><requirement name="!HasBuff" buff="zombieZBSBuffSkillGeneration"/><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".6"/></triggered_effect>
+		</effect_group>
+</append>
+
+<append xpath="/buffs">
+    <!-- 丧尸词条分配 -->
+    <buff name="zombieZBSBuffEntryGeneration" name_key="zombieZBSBuff Entry Generation" description_key="drunkDesc" tooltip_key="drunkTooltip" icon="ui_game_symbol_beer">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group> 
+            <triggered_effect trigger="onSelfBuffStart" action="AddHealth" health="80000"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".randZBSgroupAB" operation="set" value="randomint(0,20)"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".randZBSgroup" operation="set" value="randomint(0,100)"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".randZBSelement" operation="set" value="randomint(0,25)"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".randZBSrare" operation="set" value="randomint(0,500)"/>
+		</effect_group>
+        <!-- 词条组 -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroupAB" operation="LT" value="8"/>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="GT" value="5"/>
+            <requirement name="!EntityTagCompare" tags="crawler"/>
+            <requirement name="!EntityTagCompare" tags="zbsfat"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupRunner">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="12"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupMinorEntries">
+                 <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="32"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupHeavy">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="88"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupMinorEntries">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="72"/></triggered_effect>
+        </effect_group>
+        <!-- 词条组2 -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroupAB" operation="GT" value="12"/>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="GT" value="5"/>
+            <requirement name="!EntityTagCompare" tags="crawler"/>
+            <requirement name="!EntityTagCompare" tags="zbsfat"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupBGInterference">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="8"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupMinorEntriesB">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="32"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupTank">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="8"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupMinorEntriesB">
+                <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="72"/></triggered_effect>
+        </effect_group>
+        <!-- 元素词条 -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSelement" operation="LTE" value="4"/>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="GT" value="5"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffElementWet">
+                <requirement name="CVarCompare" cvar=".randZBSelement" operation="LTE" value="1"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffElementCold">
+                <requirement name="CVarCompare" cvar=".randZBSelement" operation="Equals" value="2"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffElementDry">
+                <requirement name="CVarCompare" cvar=".randZBSelement" operation="Equals" value="3"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffElementRadiation">
+                <requirement name="EntityTagCompare" tags="radiated"/><requirement name="CVarCompare" cvar=".randZBSelement" operation="Equals" value="4"/></triggered_effect>
+        </effect_group>
+        <!-- 稀有丧尸 -->
+        <effect_group>
+            <requirement name="!EntityTagCompare" tags="crawler"/>
+            <requirement name="!EntityTagCompare" tags="zbsfat"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareGreedy">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="LTE" value="1"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVicious">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="2"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareGambler">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="3"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareGluttony">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="4"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareGhostRider">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="5"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareSpider">
+                 <requirement name="EntityTagCompare" tags="spider"/><requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="15"/></triggered_effect>
+        </effect_group>
+	</buff>
+    <!-- 丧尸技能分配 -->
+    <buff name="zombieZBSBuffSkillGeneration" name_key="zombieZBSBuff Skill Generation" description_key="drunkDesc" tooltip_key="drunkTooltip" icon="ui_game_symbol_beer">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group> 
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffWildnessArousal">
+                <requirement name="EntityTagCompare" tags="animal"/><requirement name="EntityTagCompare" tags="hostile"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRegeneration">
+                <requirement name="EntityTagCompare" tags="zbsfat"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffInfectionSpread">
+                <requirement name="EntityTagCompare" tags="zbslabs"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffDigger">
+                <requirement name="EntityTagCompare" tags="zbsminer"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffExplosiveCascade">
+                <requirement name="EntityTagCompare" tags="zombieCop"/><requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".4"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffBurned">
+                <requirement name="EntityTagCompare" tags="zbsburn"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffAbyss">
+                <requirement name="EntityTagCompare" tags="crawler"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffScream">
+                <requirement name="EntityTagCompare" tags="zbsscream"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffMutated">
+                <requirement name="EntityTagCompare" tags="zbsmutated"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffTacticalAction">
+                <requirement name="EntityTagCompare" tags="zombieSoldier"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffOppress">
+                <requirement name="EntityTagCompare" tags="zbsboss"/></triggered_effect>
+                
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareDeepInfection">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="300"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareCorpseMaggot">
+                <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="350"/></triggered_effect>
+		</effect_group>
+	</buff>
+    <!-- 丧尸技能组 -->
+        <!-- 狂暴 - 凶残 辐射 被动技能-->
+    <buff name="zombieZBSBuffHalfHealth" name_key="狂暴" icon="ui_game_symbol_zombie">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_impact_bullet_on_metal" local_offset="0,1.0,0"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_impact_bullet_on_metal" />
+		</effect_group>
+        <effect_group>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".75"/>
+                <passive_effect name="WalkSpeed" operation="perc_add" value=".1"/>
+                <passive_effect name="RunSpeed" operation="perc_add" value=".1"/>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="8"/>
+                <passive_effect name="ElementalDamageResist" operation="base_subtract" value="8"/>
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBleeding">
+                    <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="15"/></triggered_effect>
+		</effect_group>
+	</buff>
+            <!-- 轻度出血 - 受击技能 -->
+    <buff name="buffZBSAttedBleeding" name_key="buffZBSAttedBleedingName" icon="ui_game_symbol_critical" icon_color="255,100,80" icon_blink="true">
+		<damage_type value="bloodloss"/>
+		<damage_source value="Internal"/>
+		<stack_type value="ignore"/>
+		<duration value="3"/>
+		<effect_group>
+			<passive_effect name="HealthChangeOT" operation="base_subtract" value="3"/>
+			<passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+			<passive_effect name="PhysicalDamageResist" operation="base_subtract" value="3"/>
+            <passive_effect name="ElementalDamageResist" operation="base_subtract" value="3"/>
+			<passive_effect name="BuffResistance" operation="base_subtract" value=".3" tags="buffAbrasionCatch,buffInjuryBleeding,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+
+			<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+			<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+			
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleedingParticle"/>
+		</effect_group>
+	</buff>
+        <!-- 野性觉醒 - 敌对动物 主动技能-->
+    <buff name="zombieZBSBuffWildnessArousal" name_key="野性觉醒" icon="ui_game_symbol_animal_tracker">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBite"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="15" delay="0.1"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffWildnessArousal"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="other" buff="buffZBSAttedBite">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedBite"/></triggered_effect>
+		</effect_group>
+        <effect_group>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value="@$buffZBSAttedBite"/>
+            <passive_effect name="EntityDamage" operation="perc_add" value="@$buffZBSAttedBite"/>
+		</effect_group>
+	</buff>
+            <!-- 撕咬 - 受击技能-->
+    <buff name="buffZBSAttedBite" name_key="buffZBSAttedBiteName" description_key="buffZBSAttedBiteDesc" tooltip_key="buffZBSAttedBiteTooltip" icon="ui_game_symbol_laceration" icon_color="220,0,0">
+		<stack_type value="effect"/>
+		<duration value="8"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSAttedBite" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$buffZBSAttedBite" operation="add" value=".15">
+                <requirement name="CVarCompare" cvar="$buffZBSAttedBite" operation="LT" value=".9"/></triggered_effect>
+            <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" target="other" buff="buffZBSAttedBite">
+				<requirement name="EntityTagCompare" target="other" tags="hostile"/><requirement name="EntityTagCompare" target="other" tags="animal"/></triggered_effect>
+            
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value="@$buffZBSAttedBite"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value="@$buffZBSAttedBite"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value="@$buffZBSAttedBite"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value="@$buffZBSAttedBite"/>
+            
+            <passive_effect name="RunSpeed" operation="base_subtract" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="base_subtract" value=".2"/>
+		</effect_group>
+	</buff>
+        <!-- 再生 - 胖体型 被动技能-->
+    <buff name="zombieZBSBuffRegeneration" name_key="再生" icon="ui_game_symbol_add">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="8"/>
+            
+            <passive_effect name="HealthChangeOT" operation="base_add" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="perc_add" value=".3"/>
+            <passive_effect name="HealthMax" operation="base_add" value="150"/>
+            
+            <passive_effect name="HealthChangeOT" operation="base_add" value="3">
+                <requirement name="EntityTagCompare" tags="feral"/></passive_effect>
+            <passive_effect name="HealthMax" operation="perc_add" value=".3">
+                <requirement name="EntityTagCompare" tags="feral"/></passive_effect>
+                
+            <passive_effect name="HealthChangeOT" operation="base_add" value="3">
+                <requirement name="EntityTagCompare" tags="radiated"/></passive_effect>
+            <passive_effect name="HealthMax" operation="perc_add" value=".6">
+                <requirement name="EntityTagCompare" tags="radiated"/></passive_effect>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCystis"/>
+		</effect_group>
+	</buff>
+            <!-- 囊肿 - 受击技能-->
+    <buff name="buffZBSAttedCystis" name_key="buffZBSAttedCystisName" description_key="buffZBSAttedCystisDesc" tooltip_key="buffZBSAttedCystisTooltip" icon="ui_game_symbol_stunned" icon_color="0,140,50">
+		<stack_type value="effect"/>
+		<duration value="5"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSAttedCystis" operation="set" value="0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffZBSAttedCystis" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$buffZBSAttedCystis" operation="add" value=".3">
+                <requirement name="CVarCompare" cvar="$buffZBSAttedCystis" operation="LT" value=".9"/></triggered_effect>
+            
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value="@$buffZBSAttedCystis"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value="@$buffZBSAttedCystis"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value="@$buffZBSAttedCystis"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value="@$buffZBSAttedCystis"/>
+            
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value="@$buffZBSAttedCystis"/>
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value="2"/>
+            
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Underwater"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Radiation"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$buffZBSAttedCystis" operation="GTE" value=".6"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyScreenEffect" intensity=".1" fade=".5" effect_name="Underwater"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyScreenEffect" intensity=".4" fade=".5" effect_name="Radiation"/>
+                <triggered_effect trigger="onSelfBuffStack" action="AddBuff" buff="buffZBSBodyBomb"/>
+                <triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" range="1.5" target_tags="zombie,animal" buff="buffZBSHeal"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBodyBomb" name_key="buffZBS BodyBomb" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group>
+            <requirement name="EntityTagCompare" tags="player"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffZBSAttedCystis"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" operation="add" value="-25"/>
+                <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="explosion_body"/>
+                <triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="ZBS_BodyBombPlayer"/>
+                <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_fat_cop_explosion" local_offset="0,0.75,0"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_fat_cop_explosion" />
+                <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_fat_cop_explosion" />
+		</effect_group>
+        <effect_group>
+            <requirement name="EntityTagCompare" tags="zombie"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="explosion_body"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="ZBS_BodyBombZombie"/>
+                <triggered_effect trigger="onSelfBuffRemove" action="ModifyStats" stat="Health" operation="add" value="-125"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSHeal" name_key="buffZBS Heal" hidden="true">
+		<stack_type value="effect"/>
+		<duration value="3"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" operation="add" value="80" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" operation="add" value="25" delay="0.1"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 感染扩散 - 实验室 医护 主动技能-->
+    <buff name="zombieZBSBuffInfectionSpread" name_key="感染扩散" icon="ui_game_symbol_infection">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffFatiguedTrigger">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="16"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffAbrasionCatch">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="5"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedInfectionSpread">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="36"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="infectionCounter" operation="add" value="50">
+                <requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+		</effect_group>
+	</buff>
+            <!-- 感染扩散 - 受击技能-->
+    <buff name="buffZBSAttedInfectionSpread" name_key="buffZBSAttedInfectionSpreadName" description_key="buffZBSAttedInfectionSpreadDesc" tooltip_key="buffZBSAttedInfectionSpreadTooltip" icon="ui_game_symbol_infection" icon_color="255,120,50">
+		<stack_type value="ignore"/>
+		<duration value="12"/>
+        <effect_group>
+            <passive_effect name="BuffResistance" operation="base_subtract" value=".15" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInfection01Main,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleeding,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+            
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Blur"/>
+            
+		</effect_group>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffInfectionMain"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="3">
+                <requirement name="CVarCompare" cvar="infectionCounter" operation="GT" value="0"/></passive_effect>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="5">
+                <requirement name="CVarCompare" cvar="infectionCounter" operation="GTE" value="1400"/></passive_effect>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="12">
+                <requirement name="CVarCompare" cvar="infectionCounter" operation="GTE" value="5700"/></passive_effect>
+            
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".6"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".6"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value=".25"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade=".3" effect_name="Infected"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffFatiguedTrigger"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".9"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".3" fade=".3" effect_name="Blur"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffAbrasionCatch"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".6"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="5"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade=".3" effect_name="Blur"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffLaceration"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".9"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="12"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1.0" fade=".3" effect_name="Blur"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 挖掘机 - 工人 主动技能-->
+    <buff name="zombieZBSBuffDigger" name_key="zombieZBSBuff Digger" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+             <passive_effect name="EntityDamage" operation="perc_subtract" value=".25"/>
+             <passive_effect name="BlockDamage" operation="base_add" value="60"/>
+             <passive_effect name="ElementalDamageResist" operation="base_add" value="15"/>
+             <passive_effect name="AttacksPerMinute" operation="base_add" value="50"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 连锁爆炸 - 军肥 被动技能-->
+    <buff name="zombieZBSBuffExplosiveCascade" name_key="zombieZBSBuff Explosive Cascade" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="6"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <requirement name="StatCompareCurrent" stat="Health" operation="GT" value="0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_nozzleflash" local_offset="0,0.75,0"/>
+            <triggered_effect trigger="onSelfExplosionMissEntity" action="AddBuff" target="positionAOE" range="2.0" target_tags="zombie,animal" buff="buffZBSBodyBomb"/>
+            <triggered_effect trigger="onSelfExplosionAttackedOther" action="AddBuff" target="positionAOE" range="2.0" target_tags="zombie,animal" buff="buffZBSBodyBomb"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="positionAOE" range="2.0" target_tags="zombie,animal" buff="buffZBSBodyBomb"/>
+
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_nozzleflash"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_nozzleflash"/>
+		</effect_group>
+	</buff>
+         <!-- 变种显示 -->
+    <buff name="zombieZBSBuffRareVariant" name_key="变种" icon="ui_game_symbol_pills">
+		<stack_type value="ignore"/><duration value="0"/>
+    </buff>
+         <!-- 燃烧 - 灼烧者 主动技能-->
+    <buff name="zombieZBSBuffBurned" name_key="燃烧" icon="ui_game_symbol_fire">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="5"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_onFire" shape_mesh="true"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+			<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+
+			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="1.5" target_tags="animal,player" buff="buffZBSAttedEmber"/>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffBurningElement">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="32"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedEmber"/>
+            
+            <passive_effect name="HealthChangeOT" operation="base_add" value="1.8">
+                <requirement name="HasBuff" buff="buffIsOnFire"/></passive_effect>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="10"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="1.5" target_tags="animal,player" buff="buffBurningElement"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+
+            <passive_effect name="RunSpeed" operation="base_add" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".3"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="3"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="9"/>
+		</effect_group>
+	</buff>
+             <!-- 余烬 - 受击技能-->
+    <buff name="buffZBSAttedEmber" name_key="buffZBSAttedEmberName" tooltip_key="buffZBSAttedEmberTooltip" icon="ui_game_symbol_fire" icon_color="220,50,0" icon_blink="true">
+		<damage_type value="Heat"/>
+        <stack_type value="effect"/>
+		<duration value="8"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".6" fade=".5" effect_name="Hot2"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Hot2"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Hot2"/>
+            
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".5"/>
+            <passive_effect name="HyperthermalResist" operation="base_subtract" value="15"/>
+            <passive_effect name="HypothermalResist" operation="base_add" value="30"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffIsOnFire"/>
+                <passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-10" delay="0.1"/>
+                <triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" operation="add" value="-8" delay="0.1"/>
+		</effect_group>
+        <effect_group>
+			<requirements compare_type="or">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+				<requirement name="HasBuff" buff="buffExtinguishFire"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+			</requirements>
+					<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedEmber"/>
+		</effect_group>
+	</buff>
+
+        <!-- 深渊 - 爬行者 主动技能-->
+    <buff name="zombieZBSBuffAbyss" name_key="深渊" icon="ui_game_symbol_near_death_trauma">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffAbyss"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="other" buff="buffZBSAttedAbyss">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedAbyss"/></triggered_effect>
+		</effect_group>
+        <effect_group>
+            <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="56"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedAbyss">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedAbyss">
+                <requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="20" delay="0.1"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="11"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedAbyss"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".9"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".3"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="7"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="11"/>
+            <requirement name="HasBuff" target="other" buff="buffZBSAttedAbyss"/>
+
+            <passive_effect name="EntityDamage" operation="perc_add" value="12"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".8"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".8"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="25"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="80"/>
+		</effect_group>
+	</buff>
+             <!-- 深渊之握 - 受击技能-->
+    <buff name="buffZBSAttedAbyss" name_key="buffZBSAttedAbyssName" tooltip_key="buffZBSAttedAbyssTooltip" icon="ui_game_symbol_agility" icon_color="0,50,100" icon_blink="true">
+        <stack_type value="ignore"/>
+		<duration value="48"/>
+        <update_rate value="3"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="Drunk"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="2" effect_name="Dying"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Dying"/>
+            
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="4,24" duration="0,48"/>
+            <passive_effect name="HealthMax" operation="perc_subtract" value=".05,.8" duration="0,48"/>
+            <passive_effect name="RunSpeed" operation="base_subtract" value="5"/>
+            <passive_effect name="WalkSpeed" operation="base_set" value=".1"/>
+            <passive_effect name="CrouchSpeed" operation="perc_subtract" value=".5"/>
+            <passive_effect name="JumpStrength" operation="base_subtract" value="1"/>
+
+            <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" target="other" buff="buffZBSAttedAbyss">
+				<requirement name="EntityTagCompare" target="other" tags="crawler"/></triggered_effect>
+		</effect_group>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="timer_start" play_in_head="true">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".25"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-10" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="multiply" value=".97" delay="0.3">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".25"/></triggered_effect>
+		</effect_group>
+	</buff>
+    
+        <!-- 尖啸 - 尖啸者 被动技能-->
+    <buff name="zombieZBSBuffScream" name_key="尖啸" icon="ui_game_symbol_stealth">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedScream"/>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="15"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="5"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="8">
+                <requirement name="EntityTagCompare" tags="radiated"/></passive_effect>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="12"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="45"/>
+            <passive_effect name="EntityDamage" operation="perc_add" value="8">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedScream"/></passive_effect>
+            <passive_effect name="RunSpeed" operation="base_add" value=".8"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".8"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="8">
+                <requirement name="EntityTagCompare" tags="radiated"/></passive_effect>
+		</effect_group>
+	</buff>
+            <!-- 尖啸 - 受击技能-->
+    <buff name="buffZBSAttedScream" name_key="buffZBSAttedScreamName" icon="ui_game_symbol_stunned">
+		<stack_type value="ignore"/>
+		<duration value="5"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="zombiefemalescoutalert" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+            
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".25"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".25"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".25"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="8"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 变异 - 变异丧尸 主动技能-->
+    <buff name="zombieZBSBuffMutated" name_key="变异" icon="ui_game_symbol_radiation">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCorrosion"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffMutated"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropMutated" allow_client_call="true">
+                <requirement name="!EntityTagCompare" tags="feral"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropMutatedFeral" allow_client_call="true">
+                <requirement name="EntityTagCompare" tags="feral"/></triggered_effect>
+            
+            <passive_effect name="HealthChangeOT" operation="base_add" value="4"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="13"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+            <passive_effect name="EntityDamage" operation="perc_add" value="1">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedCorrosion"/></passive_effect>
+            <passive_effect name="HealthMax" operation="perc_add" value="3"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="10"/>
+		</effect_group>
+	</buff>
+            <!-- 腐蚀 - 受击技能-->
+    <buff name="buffZBSAttedCorrosion" name_key="buffZBSAttedCorrosionName" description_key="buffZBSAttedCorrosionDesc" tooltip_key="buffZBSAttedCorrosionTooltip" icon="ui_game_symbol_infection" icon_color="50,120,50">
+		<stack_type value="replace"/>
+		<duration value="8"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".6" fade="3" effect_name="Blur"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Blur"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="Radiation"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Radiation"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-8" delay="0.1">
+                <requirement name="CVarCompare" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Stamina" operation="add" value="-10" delay="0.1">
+                <requirement name="CVarCompare" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+
+            <passive_effect name="BuffResistance" operation="base_subtract" value=".25" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffInfection01Main,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleeding,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_subtract" value="8"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="12">
+                <requirement name="EntityTagCompare" tags="zombie"/></passive_effect>
+            
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="3"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="8">
+                <requirement name="EntityTagCompare" tags="zombie"/></passive_effect>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="5">
+                <requirement name="HasBuff" buff="buffRadiationPool"/></passive_effect>
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value="3">
+                <requirement name="HasBuff" buff="buffZBSAttedCystis"/></passive_effect>
+		</effect_group>
+	</buff>
+    
+        <!-- 蜘蛛 - 蜘蛛 稀有变种-->
+    <buff name="zombieZBSBuffRareSpider" name_key="zombieZBSBuffRare Spider" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" fireOneBuff="true"
+			buff="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"
+			weights=".11,.07,.07,.05,.29,.36,.11"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedGiddy">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="16"/></triggered_effect>
+
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="50"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".6"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="16"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="16"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="2"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+		</effect_group>
+	</buff>
+
+        <!-- 战术行动 - 士兵 被动技能-->
+    <buff name="zombieZBSBuffTacticalAction" name_key="战术行动" icon="ui_game_symbol_light_armor">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="5"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="2.8" target_tags="zombie" buff="zombieZBSBuffMorale"/>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" fireOneBuff="true"
+			buff="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo"
+			weights=".11,.07,.07,.05,.29,.36,.11"/>
+
+            <passive_effect name="RunSpeed" operation="base_add" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".3"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="12"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="25"/>
+            <passive_effect name="HealthMax" operation="base_add" value="125"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="3"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSrare" operation="Equals" value="14"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareVariant"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coin2" allow_client_call="true"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="25" delay="0.1">
+                <requirement name="HasBuff" buff="zombieZBSBuffMorale"/></triggered_effect>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".6"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="3"/>
+		</effect_group>
+	</buff>
+                <!-- 士气高涨 - 被动技能-->
+    <buff name="zombieZBSBuffMorale" name_key="士气高涨" icon="ui_game_symbol_healing_factor">
+		<stack_type value="effect"/>
+		<duration value="60"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffMorale"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="other" target_tags="zombie" buff="zombieZBSBuffMorale"/>
+            
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="5"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="5"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,15,25" duration="5,25,60"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="5,15,25" duration="5,25,60"/>
+            <passive_effect name="HealthMax" operation="perc_add" value=".04,.3,.3" duration="0,5,60"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value=".8"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="8,15" duration="30,60"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 压迫 - Boss 被动技能-->
+    <buff name="zombieZBSBuffOppress" name_key="压迫" icon="ui_game_symbol_stealth">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="5.4" buff="buffZBSBasedOppress"/>
+            <triggered_effect trigger="onSelfDied" target="other" target_tags="player" action="RemoveBuff" buff="buffZBSBasedOppress,buffZBSAttedOppress">
+                <requirement name="HasBuff" target="other" buff="buffZBSBasedOppress"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSBasedOppress"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedOppress">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="18"/></triggered_effect>
+
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="8"/>
+		</effect_group>
+	</buff>
+            <!-- 压迫 - 被动技能-->
+    <buff name="buffZBSBasedOppress" name_key="buffZBSBasedOppressName" tooltip_key="buffZBSBasedOppressTooltip" icon="ui_game_symbol_critical" icon_color="255,0,0" icon_blink="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+        <effect_group>
+            <requirement name="EntityTagCompare" tags="player"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffZBSAttedOppress"/>
+
+            <passive_effect name="EntityDamage" operation="perc_add" value=".2"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".2"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value=".1"/>
+            <passive_effect name="ElementalDamageResist" operation="perc_subtract" value=".1"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="EntityTagCompare" tags="zombie"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="15"/>
+            <passive_effect name="BlockDamage" operation="base_add" value="15"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".3"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+		</effect_group>
+	</buff>
+            <!-- 窒息 - 受击技能-->
+    <buff name="buffZBSAttedOppress" name_key="buffZBSAttedOppressName" tooltip_key="buffZBSAttedOppressTooltip" icon="ui_game_symbol_critical" icon_color="80,80,80" icon_blink="true">
+		<stack_type value="ignore"/>
+		<duration value="5"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="critical_blunt" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="critical_blunt" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="Drunk"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Dying"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Dying"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_impact_metal_on_organic" parent_transform="Hips"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_impact_metal_on_organic"/>
+			<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_impact_metal_on_organic"/>
+            
+             <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-5" delay="0.1"/>
+             
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="CrouchSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".4"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".6"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".8"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".8"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="18"/>
+            <passive_effect name="ElementalDamageResist" operation="base_subtract" value="18"/>
+		</effect_group>
+	</buff>
+    
+    <!-- 玩家效果-->
+        <!-- 抑制性功能恢复 - 药品-->
+    <buff name="buffZBSDrugInhibitoryMotorRestorer" name_key="buffZBSDrugInhibitoryMotorRestorerName" tooltip_key="buffZBSDrugInhibitoryMotorRestorerTooltip" icon="ui_game_symbol_run" icon_color="0,160,255">
+		<stack_type value="replace"/>
+		<duration value="60"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="VibrantDeSat"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$armHurtCounter" operation="add" value="-90">
+                <requirement name="CVarCompare" cvar="$armHurtCounter" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$armHurtCounter" operation="add" value="-2540">
+                <requirement name="CVarCompare" cvar="$armTreatedCritHealing" operation="GT" value="0"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$legHurtCounter" operation="add" value="-90">
+                <requirement name="CVarCompare" cvar="$legHurtCounter" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$legHurtCounter" operation="add" value="-2540">
+                <requirement name="CVarCompare" cvar="$legTreatedCritHealing" operation="GT" value="0"/></triggered_effect>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.2"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value=".2"/>
+            <passive_effect name="StaminaChangeOT" operation="base_add" value=".5"/>
+        </effect_group>
+        <effect_group>
+            <requirements compare_type="or">
+                <requirement name="HasBuff" buff="buffArmSprained"/>
+                <requirement name="HasBuff" buff="buffArmSplinted"/>
+                <requirement name="HasBuff" buff="buffArmCast"/>
+                <requirement name="HasBuff" buff="buffArmBroken"/>
+			</requirements>
+            <passive_effect name="WeaponHandling" operation="perc_add" value=".15" tags="perkGunslinger,perkBoomstick,perkDeadEye,perkMachineGunner,perkBookAutoWeapons,perkTurrets,perkArchery,admin"/>
+			<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value=".25" tags="perkGunslinger,perkBoomstick,perkDeadEye,perkMachineGunner,perkBookAutoWeapons,perkTurrets,perkArchery,admin"/>
+			<passive_effect name="AttacksPerMinute" operation="perc_add" value=".15" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
+		</effect_group>
+        <effect_group>
+            <requirements compare_type="or">
+                <requirement name="HasBuff" buff="buffLegSprained"/>
+                <requirement name="HasBuff" buff="buffLegSplinted"/>
+                <requirement name="HasBuff" buff="buffLegCast"/>
+                <requirement name="HasBuff" buff="buffLegBroken"/>
+			</requirements>
+            <passive_effect name="Mobility" operation="base_add" value=".15"/>
+			<passive_effect name="JumpStrength" operation="perc_add" value="0.04"/>
+		</effect_group>
+	</buff>
+        <!-- 高速冲刺 - 药品-->
+    <buff name="buffZBSDrugInjectionSprint" name_key="buffZBSDrugInjectionSprintName" tooltip_key="buffZBSDrugInjectionSprintTooltip" icon="ui_game_symbol_run" icon_color="100,100,180">
+		<stack_type value="replace"/>
+		<duration value="60"/>
+        <update_rate value="3"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="crawlerstepwater"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".8" fade="2" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyStats" stat="Health" operation="add" value="50" delay="0.1"/>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffArmSprained,buffArmBroken,buffArmSplinted,buffArmCast,buffLegSprained,buffLegBroken,buffLegCast,buffLegSplinted"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffArmSprained,buffArmBroken,buffArmSplinted,buffArmCast,buffLegSprained,buffLegBroken,buffLegCast,buffLegSplinted"/>
+
+            <passive_effect name="RunSpeed" operation="base_add" value="1.5"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value="2.5"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value="1.5"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value="2.5"/>
+            <passive_effect name="JumpStrength" operation="base_add" value=".5"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="1.5">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/></passive_effect>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".8"/>
+		</effect_group>
+	</buff>
+        <!-- 铁皮 - 药品-->
+    <buff name="buffZBSDrugInjectionIronSkin" name_key="buffZBSDrugInjectionIronSkinName" tooltip_key="buffZBSDrugInjectionIronSkinTooltip" icon="ui_game_symbol_armor_iron" icon_color="160,160,180">
+		<stack_type value="replace"/>
+		<duration value="302"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="VibrantDeSat"/>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" operation="add" value="40" delay="0.1"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedCystis,buffZBSAttedEmber,buffZBSAttedAbyss,buffZBSBasedOppress,buffZBSAttedOppress"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedElementCold,buffZBSAttedElementFreeze,buffZBSAttedElementWet,buffZBSAttedElementDry"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSCountCorpseMaggot,buffZBSBasedCorpseMaggot,buffZBSAttedCorpseMaggotGnaw"/>
+            
+            <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffZBSAttedCystis,buffZBSAttedEmber,buffZBSAttedAbyss,buffZBSBasedOppress,buffZBSAttedOppress"/>
+            <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffZBSAttedElementCold,buffZBSAttedElementFreeze,buffZBSAttedElementWet,buffZBSAttedElementDry"/>
+            <passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffZBSCountCorpseMaggot,buffZBSBasedCorpseMaggot,buffZBSAttedCorpseMaggotGnaw"/>
+            
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="8"/>
+            <passive_effect name="BlockDamage" operation="base_add" value="25"/>
+            
+            <passive_effect name="GeneralDamageResist" operation="base_add" value="0.1"/>
+			<passive_effect name="WaterChangeOT" operation="base_subtract" value="0.1"/>
+			<passive_effect name="HealthChangeOT" operation="base_add" value="1.8"/>
+            <passive_effect name="FoodLossPerHealthPointGained" operation="perc_subtract" value=".3"/>
+			<passive_effect name="BuffResistance" operation="base_add" value="1" tags="buffInjuryStunned01CHTrigger,buffInjuryStunned00,buffInjuryStunned01,buffInjuryStunned01Shotgun,buffInjuryStunned02,buffInjuryStunned02Shotgun,buffInjuryStunned03,buffInjuryStunned03Shotgun"/>
+            
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="12">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".6"/></passive_effect>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="12">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".6"/></passive_effect>
+		</effect_group>
+	</buff>
+    
+        <!-- 应急食品-->
+    <buff name="buffZBSBasedFood" name_key="buffZBSBased Food" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="8"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="foodHealthAmount" operation="add" value="2"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffProcessConsumables"/>
+		</effect_group>
+	</buff>
+        <!-- 血肉自愈-->
+    <buff name="buffZBSAloeHealing" name_key="buffZBSAloeHealingName" tooltip_key="buffZBSAloeHealingTooltip" icon="ui_game_symbol_add" icon_color="200,160,160">
+		<stack_type value="replace"/>
+		<duration value="16"/>
+        <update_rate value="3"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="StopSound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Posterize"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Posterize"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Posterize"/>
+			
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="4" delay="0.1"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="Mobility" operation="perc_subtract" value=".5"/>
+		</effect_group>
+	</buff>
+        <!-- 急救绷带-->
+    <buff name="buffZBSBasedFirstAidBandage" name_key="buffZBSBased FirstAidBandage" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="5"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="healAbrasionMult" operation="set" value="3"/>
+            <display_value name="dhealAbrasionMult" value="3"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryAbrasionTreated">
+                <requirement name="HasBuff" buff="buffInjuryAbrasion"/></triggered_effect>
+        
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="30"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="set" value="@medicRegHealthIncreaseSpeed"/>
+            <display_value name="foodHealthAmount" value="30"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="multiply" value="1.2">
+				<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="1"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="multiply" value="1.5">
+				<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="2"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="multiply" value="1.8">
+				<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="3"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="multiply" value="2.1">
+				<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="4"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="multiply" value="2.4">
+				<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/></triggered_effect>
+            
+            
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffProcessConsumables"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffInjuryBleeding"/>
+            <display_value name="dStopsBleeding" value="1"/>
+		</effect_group>
+	</buff>
+            <!-- 移除负面效果-->
+    <buff name="buffZBSBasedRemoveDebuff" name_key="buffZBSBased Remove Debuff" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="2"/>
+        <effect_group>
+            <passive_effect name="GeneralDamageResist" operation="base_add" value="1"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$armHurtCounter" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$legHurtCounter" operation="set" value="0"/>
+
+			<triggered_effect trigger="onSelfBuffStart" action="RemoveAllNegativeBuffs"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedBite,buffZBSAttedCystis,buffZBSAttedInfectionSpread,buffZBSAttedEmber,buffZBSAttedAbyss,buffZBSAttedCorrosion,buffZBSAttedOppress"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedElementCold,buffZBSAttedElementFreeze,buffZBSAttedElementWet,buffZBSAttedElementDry"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedNausea,buffZBSCountGluttony,buffZBSAttedDevour,buffZBSAttedBound,buffZBSAttedFlameBalance,buffZBSAttedFlameJudgment,buffZBSCountCorpseMaggot,buffZBSBasedCorpseMaggot,buffZBSAttedCorpseMaggotGnaw"/>
+		</effect_group>
+	</buff>
+           <!-- CDs-->
+    <buff name="buffZBSCD300" name_key="buffZBS CD 300s" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="300"/>
+	</buff>
+    
+        <!-- 突变 - 玩家 腐蚀之刃-->
+    <buff name="buffZBSPlayerMutated" name_key="buffZBSPlayerMutatedName" tooltip_key="buffZBSPlayerMutatedTooltip" icon="ui_game_symbol_infection" icon_color="220,0,0">
+		<stack_type value="effect"/>
+		<duration value="0"/>
+        <update_rate value="3"/>
+        <display_value value=".buffZBSPlayerMutatedDisplay"/>
+		<display_value_key value="+{0:0}%"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".4" fade="3" effect_name="Drunk"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="3" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Drunk"/>
+
+            <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffZBSPlayerMutated"/>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSPlayerMutated" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$buffZBSPlayerMutated" operation="add" value=".02">
+                <requirement name="CVarCompare" cvar="$buffZBSPlayerMutated" operation="LT" value=".36"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffZBSPlayerMutatedDisplay" operation="set" value="@$buffZBSPlayerMutated"/>
+            <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".buffZBSPlayerMutatedDisplay" operation="set" value="@$buffZBSPlayerMutated"/>
+            <triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar=".buffZBSPlayerMutatedDisplay" operation="multiply" value="100"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".5"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-3" delay="0.1"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffZBSPlayerMutated">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/></triggered_effect>
+            
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value="@$buffZBSPlayerMutated"/>
+            <passive_effect name="EntityDamage" operation="perc_add" value="@$buffZBSPlayerMutated"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="15">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".75"/></passive_effect>
+            
+            <passive_effect name="StaminaChangeOT" operation="base_add" value="1.8"/>
+            <passive_effect name="HealthChangeOT" operation="perc_add" value=".3"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".2"/>
+		</effect_group>
+	</buff>
+    
+    <!-- 随机词组-->
+        <!-- 疾跑者-->
+    <buff name="zombieZBSBuffGroupRunner" name_key="疾跑者" icon="ui_game_symbol_run">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="15"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedImpact"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffGroupRunnerCD"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffGroupRunnerCD"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_hotembersZombie" local_offset="0,0.25,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_hotembersZombie" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_hotembersZombie" />
+
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropSpeed" allow_client_call="true"/>
+            
+            <passive_effect name="RunSpeed" operation="perc_add" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".6"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="5,32,32" duration="0,6,15"/>
+		</effect_group>
+	</buff>
+                <!-- 疾跑者 冷却-->
+    <buff name="zombieZBSBuffGroupRunnerCD" name_key="zombieZBSBuffGroup Runner CD" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="20"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="zombieZBSBuffGroupRunner"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="zombieZBSBuffGroupRunner"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropSpeed" allow_client_call="true"/>
+
+            <passive_effect name="RunSpeed" operation="perc_add" value="0,-.6" duration="0,3"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".1,-.6" duration="0,3"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value="-.5,.2" duration="3,20"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value="-.5,.4" duration="3,20"/>
+            <passive_effect name="EntityDamage" operation="perc_add" value="-.5,-.1" duration="0,20"/>
+		</effect_group>
+	</buff>
+                <!-- 冲击 - 受击技能-->
+    <buff name="buffZBSAttedImpact" name_key="buffZBSAttedImpactName" icon="ui_game_symbol_stunned">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group>
+            <requirement name="!HasBuff" buff="buffZBSAttedGiddy"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="PlayerLandThump"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".3" fade=".5" effect_name="Blur"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Blur"/>
+            
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".5"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".5"/>
+		</effect_group>
+	</buff>
+
+        <!-- 次要词条-->
+    <buff name="zombieZBSBuffGroupMinorEntries" name_key="护甲提升" icon="ui_game_symbol_light_armor">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <!-- 嗜血 Bloodthirsty -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="24"/>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_critical" local_offset="0,0.75,-0.2" local_rotation="-30,180,0"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_critical" />
+        
+            <passive_effect name="HealthMax" operation="base_add" value="75"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="15"/>
+
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".3">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".75"/></passive_effect>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".3">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".5"/></passive_effect>
+                
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="15" delay="0.1"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="35" delay="0.1">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".5"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBleeding">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="45"/></triggered_effect>
+		</effect_group>
+        <!-- 轻甲 ArmorLight -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="32"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="20"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="20"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="8">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".75"/></passive_effect>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="12">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".75"/></passive_effect>
+		</effect_group>
+        <!-- 偏执 Bigotry -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="82"/>
+            <requirement name="EntityTagCompare" target="other" tags="player"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="15"/>
+                <passive_effect name="AttacksPerMinute" operation="perc_add" value=".3"/>
+                <passive_effect name="EntityDamage" operation="perc_add" value=".3"/>
+                <passive_effect name="RunSpeed" operation="perc_subtract" value=".2">
+                    <requirement name="EntityTagCompare" target="other" tags="!player"/></passive_effect>
+		</effect_group>
+        <!-- 铁皮 IronSkin -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="72"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="15"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="15"/>
+            <passive_effect name="BlockDamage" operation="base_add" value="15"/>
+
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="15">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".6"/></passive_effect>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="25">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".4"/></passive_effect>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="25">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".4"/></passive_effect>
+		</effect_group>
+	</buff>
+    
+        <!-- 沉重 -->
+    <buff name="zombieZBSBuffGroupHeavy" name_key="沉重" icon="ui_game_symbol_muscle">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="8"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_candleWall_flame" local_offset="0,0.25,0" local_rotation="-80,180,0"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AttachParticleEffectToEntity" target="self" particle="p_blockdestroy_boulder" local_offset="0,0.8,0" local_rotation="-100,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_candleWall_flame" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_candleWall_flame" />
+        
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedImpact"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedGiddy">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="60"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryConcussion">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="5"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="avalanche"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="explosion_body"/>
+            <triggered_effect trigger="onSelfDamagedBlock" action="PlaySound" sound="explosion2"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryKnockdown01"/>
+            <triggered_effect trigger="onSelfDamagedBlock" action="CallGameEvent" event="ZBS_HeavySmashExplosion"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffGroupHeavyCD"/>
+            <triggered_effect trigger="onSelfDamagedBlock" action="AddBuff" buff="zombieZBSBuffGroupHeavyCD"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffGroupHeavyCD"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffGroupHeavyParticle"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRobust" allow_client_call="true"/>
+            
+            <passive_effect name="RunSpeed" operation="perc_add" value="-.1,.2" duration="0,8"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".2,.4" duration="0,8"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="15,45,45" duration="0,3,8"/>
+            <passive_effect name="BlockDamage" operation="base_add" value="120"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="1.8"/>
+		</effect_group>
+	</buff>
+            <!-- 沉重 CD -->
+    <buff name="zombieZBSBuffGroupHeavyCD" name_key="zombieZBSBuffGroup Heavy CD" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="20"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="zombieZBSBuffGroupHeavy,zombieZBSBuffGroupHeavyParticle"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="zombieZBSBuffGroupHeavy"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedGiddy">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="12"/></triggered_effect>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRobust" allow_client_call="true"/>
+                
+            <passive_effect name="RunSpeed" operation="perc_add" value="0,-.4" duration="0,3"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value="-.3,.2" duration="3,20"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value="-.4,-.1" duration="3,20"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".4"/>
+            <passive_effect name="BlockDamage" operation="base_add" value="25"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="1.8"/>
+		</effect_group>
+	</buff>
+             <!-- 眩晕 - 受击技能-->
+    <buff name="buffZBSAttedGiddy" name_key="buffZBSAttedGiddyName" icon="ui_game_symbol_concussion" icon_color="255,128,0" icon_blink="true">
+        <stack_type value="ignore"/>
+		<duration value="3"/>
+        <effect_group>
+            <passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffInjuryConcussion"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_stunned" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".8" fade="1" effect_name="Blur"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Blur"/>
+
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="8"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".3"/>
+		</effect_group>
+	</buff>
+
+        <!-- 战场干扰-->
+    <buff name="zombieZBSBuffGroupBGInterference" name_key="战场干扰" icon="ui_game_symbol_agility">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedImpact"/>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropSpeed" allow_client_call="true"/>
+            
+            <passive_effect name="RunSpeed" operation="perc_add" value=".8"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".8"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".8"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+            <passive_effect name="HealthMax" operation="perc_subtract" value=".15"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".15"/>
+            <passive_effect name="GeneralDamageResist" operation="base_subtract" value=".3"/>
+		</effect_group>
+	</buff>
+    
+    <!-- 次要词条B-->
+    <buff name="zombieZBSBuffGroupMinorEntriesB" name_key="体质强化" icon="ui_game_symbol_add">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <!-- 高速 Rapidly -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="12"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".3"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value=".3"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value=".15"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".1"/>
+        </effect_group>
+        <!-- 敏捷 Agile -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="LTE" value="32"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".1"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".2"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="5"/>
+        </effect_group>
+        <!-- 重甲 ArmorHeavy -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="84"/>
+            <passive_effect name="HealthMax" operation="base_add" value="200"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="30"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="15"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".15"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".3"/>
+        </effect_group>
+        <!-- 厚重 Thick -->
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSgroup" operation="GTE" value="72"/>
+            <passive_effect name="HealthMax" operation="perc_add" value=".25"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="15"/>
+        </effect_group>
+	</buff>
+    
+        <!-- 坦克-->
+    <buff name="zombieZBSBuffGroupTank" name_key="坦克" icon="ui_game_symbol_armor_iron">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="8"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_candleWall_flame" local_offset="0,1.75,0.15"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" target="self" particle="p_candleWall_flame" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" target="self" particle="p_candleWall_flame" />
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffProtection"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="2.8" target_tags="zombie" buff="zombieZBSBuffProtection"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedGiddy">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="12"/></triggered_effect>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRobust" allow_client_call="true"/>
+            
+            <passive_effect name="HealthMax" operation="perc_add" value="5"/>
+            <passive_effect name="HealthMax" operation="base_add" value="300"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".25"/>
+		</effect_group>
+	</buff>
+            <!-- 保护 - 被动技能-->
+    <buff name="zombieZBSBuffProtection" name_key="保护" icon="ui_game_symbol_armor_iron" icon_color="0,255,0">
+		<stack_type value="ignore"/>
+		<duration value="12"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_candleWall_flame" local_offset="0,1.5,0.1"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" target="self" particle="p_candleWall_flame" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" target="self" particle="p_candleWall_flame" />
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffProtection"/>
+            <triggered_effect trigger="onOtherAttackedSelf" action="RemoveBuff" buff="zombieZBSBuffProtection"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_add" value="80"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="80"/>
+		</effect_group>
+	</buff>
+
+    <!-- 元素词条-->
+    <buff name="zombieZBSBuffElementCold" name_key="寒冷" icon="ui_game_symbol_cold">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="3"/>
+        <!-- 寒冷 ElementCold-->
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_breath_thirdperson" local_offset="0,1.75,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_breath_thirdperson" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_breath_thirdperson" />
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedElementCold"/>
+            
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="12"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="15">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedElementFreeze"/></passive_effect>
+		</effect_group>
+	</buff>
+    <buff name="zombieZBSBuffElementWet" name_key="潮湿" icon="ui_game_symbol_wet">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="3"/>
+        <!-- 潮湿 ElementWet-->
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedElementWet"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffElementWet"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="1.8" buff="buffShocked">
+                <requirement name="HasBuff" buff="buffShocked"/></triggered_effect>
+            
+            <passive_effect name="HealthMax" operation="perc_add" value=".25"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="2"/>
+		</effect_group>
+    </buff>
+    <buff name="zombieZBSBuffElementDry" name_key="干燥" icon="ui_game_symbol_hot">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <!-- 干燥 ElementDry-->
+        <effect_group>
+            <requirements compare_type="or">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="GT" value="@_wetness"/>
+				<requirement name="!HasBuff" buff="buffExtinguishFire"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="LT" value="0.3"/>
+				<requirement name="!HasBuff" target="other" buff="buffElementWet"/>
+			</requirements>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedElementDry"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffBurningElement">
+                <requirement name="HasBuff" buff="buffIsOnFire"/></triggered_effect>
+		</effect_group>
+        <effect_group>
+            <requirements compare_type="or">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+				<requirement name="HasBuff" buff="buffExtinguishFire"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+				<requirement name="HasBuff" target="other" buff="buffElementWet"/>
+			</requirements>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedElementDryCracking"/>
+                
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".5"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+		</effect_group>
+    </buff>
+    <buff name="zombieZBSBuffElementRadiation" name_key="辐射" icon="ui_game_symbol_radiation">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <!-- 辐射 ElementRadiation-->
+        <effect_group>
+            <requirement name="EntityTagCompare" tags="radiated"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffRadiationPool"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="infectionCounter" operation="add" value="150">
+                <requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+                
+            <passive_effect name="RunSpeed" operation="base_add" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".2"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="12"/>
+            <passive_effect name="HealthMax" operation="perc_subtract" value=".3"/>
+		</effect_group>
+	</buff>
+             <!-- 寒冷 - 受击技能-->
+    <buff name="buffZBSAttedElementCold" name_key="buffZBSAttedElementColdName" icon="ui_game_symbol_cold" icon_color="0,128,255" icon_blink="true">
+        <stack_type value="effect"/>
+		<duration value="8"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <passive_effect name="BuffBlink" operation="base_set" value="2" duration="5,8" tags="buffElementFreezing"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Cold"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Cold"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSAttedElementCold" operation="set" value="0"/>
+			<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$buffZBSAttedElementCold" operation="add" value="1"/>
+            <triggered_effect trigger="onSelfBuffStack" action="AddBuff" buff="buffZBSAttedElementFreeze">
+                  <requirement name="CVarCompare" cvar="$buffZBSAttedElementCold" operation="GTE" value="3"/></triggered_effect>
+
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".3"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".5"/>
+		</effect_group>
+        <effect_group>
+			<requirements compare_type="or">
+				<requirement name="HoldingItemHasTags" tags="heldTorch"/>
+				<requirement name="HasBuff" buff="buffCampfireAOE"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/>
+			</requirements>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedElementCold"/>
+		</effect_group>
+	</buff>
+            <!-- 冻结 - 受击技能-->
+    <buff name="buffZBSAttedElementFreeze" name_key="buffZBSAttedElementFreezeName" tooltip_key="buffElementFreezingTooltip" icon="ui_game_symbol_cold" icon_color="0,240,255" icon_blink="true">
+        <stack_type value="ignore"/>
+		<duration value="3"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffElementFreezing"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="3" fade="1" effect_name="Cold2"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Cold2"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSAttedElementCold"/>
+
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".7"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".8"/>
+            <passive_effect name="StaminaChangeOT" operation="base_subtract" value="5"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="15"/>
+            <passive_effect name="ElementalDamageResist" operation="base_subtract" value="15"/>
+		</effect_group>
+        <effect_group>
+			<requirements compare_type="or">
+				<requirement name="HoldingItemHasTags" tags="heldTorch"/>
+				<requirement name="HasBuff" buff="buffCampfireAOE"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/>
+			</requirements>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedElementFreeze"/>
+		</effect_group>
+	</buff>
+
+             <!-- 潮湿 - 受击技能-->
+    <buff name="buffZBSAttedElementWet" name_key="buffZBSAttedElementWetName" tooltip_key="buffElementWetTooltip" icon="ui_game_symbol_wet" icon_color="0,0,255">
+        <stack_type value="effect"/>
+		<duration value="8"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade=".5" effect_name="Cold"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Cold"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire">
+                <requirement name="HasBuff" buff="buffIsOnFire"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedDry">
+                <requirement name="HasBuff" buff="buffZBSAttedDry"/></triggered_effect>
+
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".1"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="2"/>
+		</effect_group>
+        <effect_group>
+			<requirements compare_type="or">
+				<requirement name="HoldingItemHasTags" tags="heldTorch"/>
+				<requirement name="HasBuff" buff="buffCampfireAOE"/>
+				<requirement name="HasBuff" buff="buffIsOnFire"/>
+			</requirements>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedElementWet"/>
+		</effect_group>
+	</buff>
+
+             <!-- 干燥 - 受击技能-->
+    <buff name="buffZBSAttedElementDry" name_key="buffZBSAttedElementDryName" tooltip_key="buffZBSAttedElementDryTooltip" icon="ui_game_symbol_hot" icon_color="255,128,0">
+        <stack_type value="ignore"/>
+		<duration value="5"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade=".5" effect_name="Hot"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Hot"/>
+            
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".5"/>
+		</effect_group>
+        <effect_group>
+			<requirements compare_type="or">
+				<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+				<requirement name="HasBuff" buff="buffExtinguishFire"/>
+				<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+				<requirement name="HasBuff" buff="buffElementWet"/>
+			</requirements>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSAttedElementDry"/>
+		</effect_group>
+	</buff>
+             <!-- 皮肤开裂 - 受击技能-->
+    <buff name="buffZBSAttedElementDryCracking" name_key="buffZBSAttedElementDryCrackingName" tooltip_key="buffZBSAttedElementDryCrackingTooltip" icon="ui_game_symbol_hot" icon_color="255,0,0">
+        <stack_type value="ignore"/>
+		<duration value="3"/>
+        <effect_group>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".8"/>
+            <passive_effect name="BuffResistance" operation="base_subtract" value=".7" tags="buffAbrasionCatch,buffInjuryBleeding,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+		</effect_group>
+	</buff>
+
+    <!-- 稀有丧尸-->
+        <!-- 稀有播报-->
+    <buff name="buffZBSBasedRareBroadcast" name_key="buffZBSBasedRareBroadcastName" description_key="buffZBSBasedRareBroadcastDesc" icon="ui_game_symbol_perk" icon_color="255,220,0">
+		<stack_type value="replace"/>
+		<duration value="8"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffZBSBasedRareBroadcastCD"/>
+            <triggered_effect trigger="onSelfLeaveGame" action="RemoveBuff" buff="buffZBSBasedRareBroadcast"/>
+		</effect_group>
+	</buff>
+        <!-- 稀有播报 CD-->
+    <buff name="buffZBSBasedRareBroadcastCD" name_key="buffZBSBasedRare Broadcast CD" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+	</buff>    <buff name="buffZBSBasedRareBroadcastCD1" name_key="buffZBSBasedRare Broadcast CD1" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+	</buff>    <buff name="buffZBSBasedRareBroadcastCD2" name_key="buffZBSBasedRare Broadcast CD2" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+	</buff>    <buff name="buffZBSBasedRareBroadcastCD3" name_key="buffZBSBasedRare Broadcast CD3" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+	</buff>
+    <buff name="buffZBSBasedRareBroadcastCDa" name_key="buffZBSBasedRare Broadcast CDa" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+	</buff>
+        <!-- 贪婪-->
+    <buff name="zombieZBSBuffRareGreedy" name_key="贪婪" icon="ui_game_symbol_barter">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="2"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" target="other" event="ZBS_BCRareGreedy" allow_client_call="true">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" target_tags="player" buff="buffZBSBasedRareBroadcast"/>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_hotembers" local_offset="0,1.0,0" local_rotation="-80,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_hotembers" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_hotembers" />
+            
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$zombieZBSBuffRareGreedy" operation="set" value="0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$zombieZBSBuffRareGreedy" operation="set" value="0"/>
+            <triggered_effect trigger="onOtherAttackedSelf" action="ModifyCVar" cvar="$zombieZBSBuffRareGreedy" operation="add" value="2"/>
+            <triggered_effect trigger="onOtherAttackedSelf" action="CallGameEvent" target="other" event="ZBS_coinDrop" allow_client_call="true">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value=".5"/></triggered_effect>
+            <triggered_effect trigger="onOtherAttackedSelf" action="CallGameEvent" target="other" event="ZBS_coin0" allow_client_call="true">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".5"/></triggered_effect>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareGreedy"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRareGreedy" allow_client_call="true"/>
+             
+            <passive_effect name="EntityDamage" operation="base_add" value="@$zombieZBSBuffRareGreedy"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="7"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="12"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".8">
+                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/></passive_effect>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".5">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".25"/></passive_effect>
+		</effect_group>
+	</buff>
+        <!-- 恶毒-->
+    <buff name="zombieZBSBuffRareVicious" name_key="恶毒" icon="ui_game_symbol_stomach">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="5"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" target="other" event="ZBS_BCRareVicious">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" target_tags="player" buff="buffZBSBasedRareBroadcast"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_treefall" local_offset="0,0.2,0" local_rotation="-80,180,0"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" target="self" particle="p_treefall"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="hulkroam"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedNausea">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCorrosion">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="50"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="8.0" buff="buffZBSAttedCystis"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="80" delay="0.1"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="hulkexplodewarning">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".1"/></triggered_effect>
+            <triggered_effect trigger="onSelfDied" action="AddBuff" target="selfAOE" range="5.0" buff="buffZBSAttedNausea"/>
+            <triggered_effect trigger="onSelfDied" action="PlaySound" sound="explosion_body"/>
+            <triggered_effect trigger="onSelfDied" action="CallGameEvent" event="ZBS_BodyBombZombie"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareVicious"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRareVicious" allow_client_call="true"/>
+            
+            <passive_effect name="HealthMax" operation="perc_add" value="4"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="5">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".1"/></passive_effect>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".3"/>
+		</effect_group>
+	</buff>
+            <!-- 反胃 - 受击技能-->
+    <buff name="buffZBSAttedNausea" name_key="buffZBSAttedNauseaName" tooltip_key="buffZBSAttedNauseaTooltip" icon="ui_game_symbol_hunger" icon_color="150,180,50">
+		<stack_type value="ignore"/>
+		<duration value="7"/>
+        <update_rate value="2"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".8" fade="3" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Infected"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".6" fade="1" effect_name="Radiation"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Radiation"/>
+            
+            <passive_effect name="StaminaChangeOT" operation="base_subtract" value="5"/>
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value="5"/>
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value="5">
+                <requirement name="HasBuff" buff="buffZBSAttedCystis"/></passive_effect>
+		</effect_group>
+	</buff>
+        <!-- 赌徒-->
+    <buff name="zombieZBSBuffRareGambler" name_key="赌徒" icon="ui_game_symbol_mother_load">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="2"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" target="other" event="ZBS_BCRareGambler">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" target_tags="player" buff="buffZBSBasedRareBroadcast"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_wire_tool_sparks" local_offset="0,1.4,0" local_rotation="-80,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_wire_tool_sparks" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_wire_tool_sparks" />
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".attRareGambler" operation="set" value="randomint(0,16)"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareGambler"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRareGambler" allow_client_call="true"/>
+            
+            <passive_effect name="HealthMax" operation="base_add" value="1250"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".3"/>
+        </effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="GTE" value="9"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="multiply" value=".95"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="0"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="selfAOE" range="5.0" buff="buffZBSAttedNausea"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="explosion_body"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="CallGameEvent" event="ZBS_BodyBombZombie"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="1"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSHeal"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="CallGameEvent" target="other" event="ZBS_move0"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="2"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSBasedFirstAidBandage"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="3"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffBurningElement"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="CallGameEvent" target="other" event="ZBS_trash" allow_client_call="true"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="4"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBleeding"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCystis"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedInfectionSpread"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedElementCold"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="5"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="Ragdoll" target="other" duration="1.5" force="300"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="80" delay="0.1"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="6"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffRegeneration"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="90000" delay="0.4"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".attRareGambler" operation="Equals" value="7"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffWildnessArousal"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffInfectionSpread"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffDigger"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="zombieZBSBuffAbyss"/>
+		</effect_group>
+	</buff>
+        <!-- 暴食-->
+    <buff name="zombieZBSBuffRareGluttony" name_key="暴食" icon="ui_game_symbol_hunger">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="5"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" target="other" event="ZBS_BCRareGluttony">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" target_tags="player" buff="buffZBSBasedRareBroadcast"/>
+            
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_hotembers" local_offset="0,1.0,0" local_rotation="-80,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_hotembers" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_hotembers" />
+            <!-- 周边丧尸附着-->
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="10.0" target_tags="zombie" buff="zombieZBSBuffRareDevour"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="@$zombieZBSBuffRareGluttony" delay="0.1"/>
+            <!-- 死亡掉落和引爆-->
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareGluttony"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRareGluttony" allow_client_call="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="other" buff="buffZBSCountGluttony,buffZBSAttedDevour">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <!-- 附着-->
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedNausea"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="other" target_tags="player" buff="buffZBSCountGluttony"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$zombieZBSBuffRareGluttony" operation="add" value="3"/>
+
+            <passive_effect name="HealthMax" operation="perc_add" value="9"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="12"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".7"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".5"/>
+		</effect_group>
+	</buff>
+            <!-- buff计数-->
+    <buff name="buffZBSCountGluttony" name_key="buffZBS CountGluttony" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="60"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <!-- 暴食层数计算-->
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$zombieZBSBuffRareGluttony" operation="set" value="0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$zombieZBSBuffRareGluttony" operation="set" value="0"/>
+            
+            <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" target="other" buff="buffZBSCountGluttony">
+				<requirement name="HasBuff" target="other" buff="zombieZBSBuffRareGluttony"/></triggered_effect>
+        </effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$zombieZBSBuffRareGluttony" operation="GTE" value="20"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZBSAttedDevour"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" buff="buffZBSAttedDevour"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$zombieZBSBuffRareGluttony" operation="set" value="0"/>
+		</effect_group>
+	</buff>
+            <!-- 吞噬 - 受击-->
+    <buff name="buffZBSAttedDevour" name_key="buffZBSAttedDevourName" tooltip_key="buffZBSAttedDevourTooltip" icon="ui_game_symbol_stomach" icon_color="120,0,0" icon_blink="true">
+		<stack_type value="ignore"/>
+		<duration value="5"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <requirement name="!HasBuff" buff="zombieZBSBuffRareGluttony"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="player#vomit" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Posterize"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Posterize"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".8" fade="1" effect_name="Radiation"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Radiation"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-5" delay="0.1"/>
+            
+            <triggered_effect trigger="onSelfKilledOther" action="RemoveBuff" target="other" buff="buffZBSAttedDevour">
+				<requirement name="HasBuff" target="other" buff="zombieZBSBuffRareGluttony"/></triggered_effect>
+            
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="CrouchSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".99"/>
+		</effect_group>
+	</buff>
+        <!-- 侵吞-->
+    <buff name="zombieZBSBuffRareDevour" name_key="侵吞" icon="ui_game_symbol_hunger">
+		<stack_type value="effect"/>
+		<duration value="0"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onOtherKilledSelf" action="CallGameEvent" target="other" event="ZBS_coinDrop" allow_client_call="true"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$zombieZBSBuffRareGluttony" operation="add" value="1"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" operation="multiply" value="2"/>
+            <triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" operation="add" value="50" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffStack" action="CallGameEvent" event="ZBS_GluttonyBomb">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value="0.15"/></triggered_effect>
+
+            <passive_effect name="HealthMax" operation="perc_add" value="2"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="35"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="35"/>
+		</effect_group>
+	</buff>
+    
+        <!-- 恶灵骑士-->
+    <buff name="zombieZBSBuffRareGhostRider" name_key="恶灵骑士" icon="ui_game_symbol_fire">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="1"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" target="other" event="ZBS_BCRareGhostRider">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="12.0" target_tags="player" buff="buffZBSBasedRareBroadcast"/>
+        
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_torch_wall" local_offset="0,1.6,0" local_rotation="-90,180,0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_torch_wall" local_offset="0,1.6,0" local_rotation="-90,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_torch_wall" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_torch_wall" />
+            
+            <passive_effect name="HealthMax" operation="perc_add" value="4"/>
+            <passive_effect name="HealthLoss" operation="perc_subtract" value=".5"/>
+            <passive_effect name="GeneralDamageResist" operation="base_add" value=".5"/>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="20"/>
+            <passive_effect name="RunSpeed" operation="base_add" value=".5"/>
+            <passive_effect name="WalkSpeed" operation="base_add" value=".5"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".5">
+                <requirement name="!HasBuff" buff="zombieZBSBuffRareGhostRiderRage"/></passive_effect>
+            
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareGhostRider,zombieZBSBuffRareGhostRiderRage"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" target="other" target_tags="player" event="ZBS_DropRareGhostRider" allow_client_call="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="other" buff="buffZBSAttedBound">
+                <requirement name="EntityTagCompare" target="other" tags="player"/></triggered_effect>
+
+            <passive_effect name="HealthChangeOT" operation="base_add" value="12">
+                <requirement name="HasBuff" buff="buffIsOnFire"/></passive_effect>
+        </effect_group>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".attRareGhostRider" operation="set" value="randomint(0,5)"/>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffBurningElement">
+                <requirement name="CVarCompare" cvar=".attRareGhostRider" operation="LTE" value="1"/></triggered_effect>
+            <passive_effect name="EntityDamage" operation="perc_add" value=".5"><requirement name="CVarCompare" cvar=".attRareGhostRider" operation="LTE" value="1"/></passive_effect>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBound">
+                <requirement name="CVarCompare" cvar=".attRareGhostRider" operation="Equals" value="2"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="selfAOE" target_tags="zombie" range="10.0" buff="zombieZBSBuffBurned">
+                <requirement name="CVarCompare" cvar=".attRareGhostRider" operation="Equals" value="3"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="180" delay="0.1">
+                <requirement name="CVarCompare" cvar=".attRareGhostRider" operation="Equals" value="3"/></triggered_effect>
+                            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedFlameBalance">
+                <requirement name="CVarCompare" cvar=".attRareGhostRider" operation="Equals" value="4"/></triggered_effect>
+                        
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedFlameJudgment">
+                <requirement name="HasBuff" buff="zombieZBSBuffRareGhostRiderRage"/><requirement name="CVarCompare" cvar=".attRareGhostRider" operation="Equals" value="4"/></triggered_effect>
+		</effect_group>
+         <effect_group>
+            <requirement name="!HasBuff" buff="zombieZBSBuffRareGhostRiderRage"/>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".5"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffRareGhostRiderRage"/>
+		</effect_group>
+	</buff>
+        <!-- 恶灵骑士 狂暴-->
+    <buff name="zombieZBSBuffRareGhostRiderRage" name_key="zombieZBSBuffRare Ghost Rider Rage" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <tags value="zbs_rare" />
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_onFire" local_offset="0,0.2,0" local_rotation="-70,180,0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_onFire" local_offset="0,0.2,0" local_rotation="-70,180,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire" />
+        
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value="1"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" range="12.0" buff="buffZBSAttedBound"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBound">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedBound"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="zombieZBSBuffRareGhostRiderRage"/>
+		</effect_group>
+	</buff>
+            <!-- 束缚 - 受击-->
+    <buff name="buffZBSAttedBound" name_key="buffZBSAttedBoundName" icon="ui_game_symbol_light_armor" icon_color="180,180,180" icon_blink="true">
+		<stack_type value="replace"/>
+		<duration value="5"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <requirement name="!HasBuff" buff="zombieZBSBuffRareGhostRider"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="gate_chainlink_locked"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="gate_chainlink_locked"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="multiply" value=".95" delay="0.1"/>
+            
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="CrouchSpeed" operation="perc_subtract" value=".99"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".99"/>
+		</effect_group>
+	</buff>
+        <!-- 平衡之焰 - 受击-->
+    <buff name="buffZBSAttedFlameBalance" name_key="buffZBSAttedFlameBalanceName" icon="ui_game_symbol_fire" icon_color="255,200,0">
+		<stack_type value="ignore"/>
+		<duration value="10"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".1"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".2"/>
+            
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".3"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".3"/>
+            <passive_effect name="RoundsPerMinute" operation="perc_subtract" value=".3"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".2"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".2"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="PlayerLevel" operation="GT" value="30"/>
+            <passive_effect name="EntityDamage" operation="base_subtract" value="8"/>
+            <passive_effect name="AttacksPerMinute" operation="base_subtract" value="12"/>
+            <passive_effect name="RoundsPerMinute" operation="base_subtract" value="12"/>
+            <passive_effect name="StaminaLoss" operation="perc_add" value=".3"/>
+            <passive_effect name="PhysicalDamageResist" operation="base_subtract" value="8"/>
+            <passive_effect name="ElementalDamageResist" operation="base_subtract" value="8"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="PlayerLevel" operation="GT" value="50"/>
+            <passive_effect name="HealthMaxBlockage" operation="base_add" value="50"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="CrouchSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".3"/>
+            
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".5"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".5"/>
+            <passive_effect name="RoundsPerMinute" operation="perc_subtract" value=".5"/>
+            <passive_effect name="ReloadSpeedMultiplier" operation="perc_subtract" value=".5"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="StaminaLoss" operation="perc_add" value=".5"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value=".5"/>
+            <passive_effect name="ElementalDamageResist" operation="perc_subtract" value=".5"/>
+		</effect_group>
+	</buff>
+        <!-- 审判之焰 - 受击-->
+    <buff name="buffZBSAttedFlameJudgment" name_key="buffZBSAttedFlameJudgmentName" icon="ui_game_symbol_fire" icon_color="255,0,0">
+		<stack_type value="ignore"/>
+		<duration value="8"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GTE" value=".8"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="zombie" range="5" buff="buffZBSHeal"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="multiply" value=".7" delay="0.1"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".8"/>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".3"/>
+            <passive_effect name="PhysicalDamageResist" operation="perc_subtract" value=".25"/>
+            <passive_effect name="ElementalDamageResist" operation="perc_subtract" value=".25"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffBurningElement"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="multiply" value=".9" delay="0.1"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".3"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffBurningElement"/>
+		</effect_group>
+	</buff>
+
+        <!-- 深度感染 -->
+    <buff name="zombieZBSBuffRareDeepInfection" name_key="深度感染" icon="ui_game_symbol_infection">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInfectionMain"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInfectionCatch"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="infectionCounter" operation="add" value="1250">
+                <requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="50000" delay="0.1">
+                <requirement name="CVarCompare" target="other" cvar="infectionCounter" operation="GT" value="0"/></triggered_effect>
+        
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".7"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_subtract" value=".3"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".1"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="4"/>
+		</effect_group>
+	</buff>
+        <!-- 尸蛆 -->
+    <buff name="zombieZBSBuffRareCorpseMaggot" name_key="尸蛆" icon="ui_game_symbol_infection">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="8"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" target="self" particle="p_impact_wood_on_organic" local_offset="0,1.2,0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" target="self" particle="p_impact_wood_on_organic" local_offset="0,1.2,0"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_impact_wood_on_organic" />
+            <triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_impact_wood_on_organic" />
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="zombieZBSBuffRareCorpseMaggot">
+                <requirement name="EntityTagCompare" tags="player"/></triggered_effect>
+        
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttachCorpseMaggot"/>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$buffZBSCountCorpseMDuration" operation="add" value="5">
+                <requirement name="CVarCompare" target="other" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="1.8" target_tags="zombie" buff="zombieZBSBuffRareCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="selfAOE" range="1.8" target_tags="player" cvar="$buffZBSCountCorpseMDuration" operation="add" value="2">
+                <requirement name="CVarCompare" target="other" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="zombieZBSBuffRareCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="positionAOE" range="2.5" buff="buffZBSAttachCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" target="positionAOE" range="3.2" cvar="$buffZBSCountCorpseMDuration" operation="add" value="15">
+                <requirement name="CVarCompare" target="other" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" target="positionAOE" range="3.2" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="15">
+                <requirement name="CVarCompare" target="other" cvar="$buffZBSBasedCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="explosion_body"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="ZBS_GluttonyBomb"/>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="-14" delay="0.1"/>
+            
+            <passive_effect name="HealthChangeOT" operation="base_set" value="0"/>
+            <passive_effect name="RunSpeed" operation="base_subtract" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="base_subtract" value=".3"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".randZBSCorpseMaggot" operation="set" value="randomint(0,8)"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSCorpseMaggot" operation="Equals" value="1"/>
+            <passive_effect name="AttacksPerMinute" operation="perc_add" value="1.5"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value=".3"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value=".5"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar=".randZBSCorpseMaggot" operation="GT" value="3"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".4"/>
+		</effect_group>
+	</buff>
+            <!-- 尸蛆附着 -->
+    <buff name="buffZBSAttachCorpseMaggot" name_key="buffZBSAttach Corpse Maggot" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffZBSCountCorpseMaggot">
+                <requirement name="EntityTagCompare" tags="player"/><requirement name="!HasBuff" buff="buffZBSBasedCorpseMaggot"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="1">
+                <requirement name="HasBuff" buff="buffZBSBasedCorpseMaggot"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareCorpseMaggot">
+                <requirement name="EntityTagCompare" tags="zombie"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="zombieZBSBuffRareCorpseMaggot">
+                <requirement name="EntityTagCompare" tags="animal"/></triggered_effect>
+		</effect_group>
+	</buff>
+            <!-- 尸蛆感染计数 -->
+    <buff name="buffZBSCountCorpseMaggot" name_key="buffZBSCountCorpseMaggotName" description_key="buffZBSCountCorpseMaggotDesc" tooltip_key="buffZBSCountCorpseMaggotTooltip" icon="ui_game_symbol_infection" icon_color="200,160,160">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="1"/>
+        <display_value value=".buffZBSCountCorpseMDisplay"/>
+		<display_value_key value="{0:0.0}%"/>
+        <effect_group>
+            <requirement name="HasBuff" buff="buffZBSBasedCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffZBSCountCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSCountCorpseMaggot"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="!HasBuff" buff="buffZBSBasedCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".2" fade="2" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Infected"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="set" value="10.01"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="set" value="0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffZBSCountCorpseMDisplay" operation="set" value="@$buffZBSCountCorpseMDuration"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="add" value="0.2">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="10"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="set" value="100">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="100"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZBSBasedCorpseMaggot">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GTE" value="100"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSCountCorpseMaggot">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="LT" value="0.4"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttachCorpseMaggot">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="50"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$buffZBSCountCorpseMDuration" operation="add" value="3">
+                <requirement name="CVarCompare" target="other" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="add" value="-0.8">
+                <requirement name="HoldingItemHasTags" tags="melee"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="-8" delay="0.1">
+                <requirement name="HoldingItemHasTags" tags="melee"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="add" value="-1">
+                <requirement name="HasBuff" buff="buffIsOnFire"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="add" value="-3">
+                <requirement name="HasBuff" buff="buffInfectionCureDisplay"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-0.5" delay="0.1">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="10"/></triggered_effect>
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value=".2"/>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".2"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".15"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".15"/>
+		</effect_group>
+	</buff>
+            <!-- 尸蛆感染 -->
+    <buff name="buffZBSBasedCorpseMaggot" name_key="buffZBSBasedCorpseMaggotName" description_key="buffZBSBasedCorpseMaggotDesc" tooltip_key="buffZBSBasedCorpseMaggotTooltip" icon="ui_game_symbol_infection" icon_color="100,80,80">
+        <damage_type value="Infection"/>
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <update_rate value="2"/>
+        <display_value value=".buffZBSBasedCorpseMDisplay"/>
+		<display_value_key value="{0:0.0}%"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffZBSBasedCorpseMS"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="explosion_body"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="ZBS_BodyBombPlayer"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="selfAOE" range="3.0" buff="buffZBSAttachCorpseMaggot"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="set" value="1"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="set" value="0"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffZBSBasedCorpseMDisplay" operation="set" value="@$buffZBSBasedCorpseMDuration"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="set" value="150">
+                <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GT" value="150"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttachCorpseMaggot"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="-0.1">
+                <requirement name="HasBuff" buff="buffIsOnFire"/><requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GT" value="5"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="-0.6">
+                <requirement name="HasBuff" buff="buffInfectionCureDisplay"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSBasedCorpseMaggot">
+                <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="LT" value="0.1"/></triggered_effect>
+            
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="LTE" value="30"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSBasedCorpseM30Screen,buffZBSBasedCorpseM100Screen,buffZBSBasedCorpseM140Screen,buffZBSBasedCorpseMKillScreen">
+                <requirement name="!HasBuff" buff="buffZBSBasedCorpseM30Screen"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSBasedCorpseM60Screen,buffZBSBasedCorpseM100Screen"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="crawlerstepwater" play_in_head="true"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-0.4" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="0.1">
+                <requirement name="!HasBuff" buff="buffInfectionCureDisplay"/></triggered_effect>
+            
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value=".1"/>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".1"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".3"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".3"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GT" value="30"/>
+            <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="LT" value="60"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZBSBasedCorpseM60Screen">
+                <requirement name="!HasBuff" buff="buffZBSBasedCorpseM60Screen"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSBasedCorpseM30Screen,buffZBSBasedCorpseM100Screen"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="crawlerstepwater" play_in_head="true"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-1" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="0.3">
+                <requirement name="!HasBuff" buff="buffInfectionCureDisplay"/></triggered_effect>
+            
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value=".2"/>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".2"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".5"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".5"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="25"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".2"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".2"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GTE" value="60"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="ZBS_CorpseMKill"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZBSBasedCorpseM100Screen">
+                <requirement name="!HasBuff" buff="buffZBSBasedCorpseM100Screen"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffZBSBasedCorpseM30Screen,buffZBSBasedCorpseM60Screen"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="crawlerstepwater" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="crawlerstepwater" play_in_head="true"/>
+
+            <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCorpseMaggotGnaw"/>
+            <triggered_effect trigger="onSelfKilledOther" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="set" value="60"/>
+            <triggered_effect trigger="onOtherAttackedSelf" action="AddBuff" target="other" buff="buffZBSAttachCorpseMaggot"/>
+            <triggered_effect trigger="onOtherAttackedSelf" action="ModifyStats" stat="Health" operation="add" value="10" delay="0.1"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="3" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="0.5"/>
+            
+            <passive_effect name="FoodChangeOT" operation="base_add" value="6">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedCorpseMaggotGnaw"/></passive_effect>
+            <passive_effect name="WaterChangeOT" operation="base_add" value="6">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedCorpseMaggotGnaw"/></passive_effect>
+            <passive_effect name="HealthChangeOT" operation="base_add" value="10">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedCorpseMaggotGnaw"/></passive_effect>
+            <passive_effect name="StaminaChangeOT" operation="base_add" value="15">
+                <requirement name="HasBuff" target="other" buff="buffZBSAttedCorpseMaggotGnaw"/></passive_effect>
+            
+            <passive_effect name="FoodChangeOT" operation="base_subtract" value=".5"/>
+            <passive_effect name="WaterChangeOT" operation="base_subtract" value=".5"/>
+            <passive_effect name="HealthMax" operation="perc_add" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="perc_subtract" value=".7"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".7"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="45"/>
+            <passive_effect name="EntityDamage" operation="perc_subtract" value=".7"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".6"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".7"/>
+		</effect_group>
+        <effect_group>
+            <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GTE" value="140"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZBSBasedCorpseM140Screen">
+                <requirement name="!HasBuff" buff="buffZBSBasedCorpseM140Screen"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="steporganic" play_in_head="true"/>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="multiply" value=".9" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="1"/>
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="16"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBasedCorpseM30Screen" name_key="buffZBSBasedCorpseM 0-30% Screen" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".4" fade="2" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Infected"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseM30Screen"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBasedCorpseM60Screen" name_key="buffZBSBasedCorpseM 30-60% Screen" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".8" fade="1" effect_name="Infected"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".7" fade="2" effect_name="Drunk"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Drunk"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseM60Screen"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBasedCorpseM100Screen" name_key="buffZBSBasedCorpseM 60-140% Screen" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".6" fade="3" effect_name="Dying"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".2" fade="1" effect_name="Infected"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Dying"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Infected"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseM100Screen"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBasedCorpseM140Screen" name_key="buffZBSBasedCorpseM 140-150% Screen" hidden="true">
+		<stack_type value="ignore"/>
+		<duration value="0"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="3" effect_name="Dead"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="1" effect_name="Dark"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Dead"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Dark"/>
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseM140Screen"/>
+		</effect_group>
+	</buff>
+    <buff name="buffZBSBasedCorpseMKillScreen" name_key="buffZBSBasedCorpseMKillScreenName" tooltip_key="buffZBSBasedCorpseMKillScreenTooltip" icon="ui_game_symbol_infection" icon_color="255,80,80">
+		<stack_type value="replace"/>
+		<duration value="8"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="steporganic" play_in_head="true"/>
+
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="2" effect_name="VibrantDeSat"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="VibrantDeSat"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity="1" fade="2" effect_name="Posterize"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Posterize"/>
+            
+            <passive_effect name="BlockDamage" operation="base_add" value="75"/>
+            <passive_effect name="EntityDamage" operation="base_add" value="25"/>
+            <passive_effect name="AttacksPerMinute" operation="base_add" value="25"/>
+            <passive_effect name="RunSpeed" operation="perc_add" value="2"/>
+            <passive_effect name="WalkSpeed" operation="perc_add" value="2"/>
+            <passive_effect name="StaminaChangeOT" operation="perc_add" value="2"/>
+            <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="25" delay="0.1"/>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-5" delay="0.1">
+                <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".5"/></triggered_effect>
+            
+            <triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffZBSBasedCorpseMKillScreen"/>
+		</effect_group>
+	</buff>
+    
+           <!-- 尸蛆啃噬 - 受击-->
+    <buff name="buffZBSAttedCorpseMaggotGnaw" name_key="buffZBSAttedCorpseMaggotGnawName" tooltip_key="buffZBSAttedCorpseMaggotGnawTooltip" icon="ui_game_symbol_infection" icon_color="200,180,180" icon_blink="true">
+		<stack_type value="replace"/>
+		<duration value="5"/>
+        <update_rate value="1"/>
+        <effect_group>
+            <triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="steporganic" play_in_head="true"/>
+            <triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" intensity=".5" fade="1" effect_name="Blur"/>
+			<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade=".5" effect_name="Blur"/>
+            
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="add" value="-25" delay="0.1">
+                <requirement name="EntityTagCompare" tags="zombie"/></triggered_effect>
+
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSCountCorpseMDuration" operation="add" value="0.4">
+                <requirement name="CVarCompare" cvar="$buffZBSCountCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffZBSBasedCorpseMDuration" operation="add" value="0.2">
+                <requirement name="CVarCompare" cvar="$buffZBSBasedCorpseMDuration" operation="GT" value="0"/></triggered_effect>
+            
+            <passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+            <passive_effect name="WalkSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="RunSpeed" operation="perc_subtract" value=".4"/>
+            <passive_effect name="JumpStrength" operation="perc_subtract" value=".5"/>
+		</effect_group>
+	</buff>
+    
+</append>
+</configs>

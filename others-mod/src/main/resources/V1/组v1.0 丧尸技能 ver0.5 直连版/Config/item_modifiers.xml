@@ -1,0 +1,69 @@
+<configs>
+<append xpath="/item_modifiers">
+        <!-- *** 强化重头模组 -->
+    <item_modifier name="modZBSMeleeWeightedHeadEnhanced" installable_tags="light,medium,heavy,turretMelee" modifier_tags="damage" blocked_tags="noMods,perkDeepCuts" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+        <property name="CustomIcon" value="modMeleeWeightedHead"/> <property name="CustomIconTint" value="a0a0b4"/>
+		<property name="TraderStageTemplate" value="modsTier2"/>
+
+		<effect_group tiered="false">
+			<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffInjuryStunned01">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="25"/></triggered_effect>
+            <triggered_effect trigger="onSelfAttackedOther" action="Ragdoll" target="other" duration="1.5" force="150">
+                <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="12"/></triggered_effect>
+            
+            <passive_effect name="EntityDamage" operation="base_add" value="15">
+                <requirement name="HasBuff" target="other" buff="buffInjuryStunned01"/></passive_effect>
+		</effect_group>
+	</item_modifier>
+        <!-- *** 强制能力模组 -->
+    <item_modifier name="modZBSArmorCoerciveCapacity" installable_tags="armorChest" modifier_tags="movement" blocked_tags="noMods,padded" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<property name="CustomIcon" value="modArmorImprovedFittings"/> <property name="CustomIconTint" value="a0a0b4"/>
+		<property name="TraderStageTemplate" value="modsTier3"/>
+		<property name="DisplayType" value="modArmorMobility"/>
+		<property name="Material" value="Mplastics"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="WalkSpeed" operation="base_add" value=".3"/>
+			<passive_effect name="RunSpeed" operation="base_add" value=".3"/>
+			<passive_effect name="Mobility" operation="perc_add" value=".16"/>
+			<passive_effect name="HealthChangeOT" operation="perc_add" value="-.3"/>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value=".014" tags="walking"/>
+			<passive_effect name="StaminaChangeOT" operation="perc_add" value=".028" tags="running"/>
+			<display_value name="dStaminaChangeOT" value=".028"/>
+		</effect_group>
+	</item_modifier>
+        <!-- *** 突变装甲板模组 -->
+	<item_modifier name="modZBSArmorPlatingMutated" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<property name="CustomIcon" value="modArmorPlatingBasic"/> <property name="CustomIconTint" value="dca0a0"/>
+		<property name="TraderStageTemplate" value="modsTier1"/>
+		<property name="DisplayType" value="modArmor"/>
+		<property name="Material" value="Mleather"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="2"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="2"/>
+
+			<passive_effect name="BuffResistance" operation="base_add" value=".08" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+		</effect_group>
+	</item_modifier>
+        <!-- *** 突变带状装甲板模组 -->
+	<item_modifier name="modZBSArmorPlatingReinforcedMutated" installable_tags="armor" modifier_tags="resistance" blocked_tags="noMods" type="attachment">
+		<property name="Extends" value="modGeneralMaster" param1="CustomIcon"/>
+		<property name="CustomIcon" value="modArmorPlatingReinforced"/> <property name="CustomIconTint" value="dca0a0"/>
+		<property name="TraderStageTemplate" value="modsTier2"/>
+		<property name="DisplayType" value="modArmor"/>
+		<property name="Material" value="Mleather"/>
+
+		<effect_group tiered="false">
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="4"/>
+            <passive_effect name="ElementalDamageResist" operation="base_add" value="4"/>
+
+            <passive_effect name="BuffResistance" operation="base_add" value=".1" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+			<passive_effect name="BuffResistance" operation="base_add" value=".15" tags="buffInjuryStunned01CHTrigger,buffInjuryStunned00,buffInjuryStunned01,buffInjuryStunned01Shotgun,buffInjuryStunned02,buffInjuryStunned02Shotgun,buffInjuryStunned03,buffInjuryStunned03Shotgun"/>
+		</effect_group>
+	</item_modifier>
+</append>
+</configs>

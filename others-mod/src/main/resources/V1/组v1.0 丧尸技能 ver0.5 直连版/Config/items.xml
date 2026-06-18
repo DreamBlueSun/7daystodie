@@ -1,0 +1,479 @@
+<configs>
+<append xpath="/items">
+   <!-- *** 零件包 -->
+<item name="questZBSPartsBundle">
+    <property name="Extends" value="questRewardBundleMaster"/>
+	<property name="CreativeMode" value="Player"/>
+    <property name="CustomIcon" value="bundleRangedMods"/>
+    <property name="ItemTypeIcon" value="bundle"/>
+    <property name="DescriptionKey" value="questZBSPartsBundleDesc"/>
+    <property class="Action0">
+		<property name="Create_item" value="resourceRepairKit"/>
+		<property name="Create_item_count" value="3"/>
+		<property name="Random_item" value="gunMGT1AK47Parts,gunHandgunT1PistolParts,gunRifleT1HuntingRifleParts,gunShotgunT1DoubleBarrelParts,meleeWpnBatonT2StunBatonParts,gunExplosivesT3RocketLauncherParts,meleeWpnKnucklesT3SteelKnucklesParts,meleeWpnBladeT3MacheteParts,meleeWpnSpearT3SteelSpearParts,meleeWpnClubT3SteelClubParts,meleeWpnSledgeT3SteelSledgehammerParts,meleeToolAllSteelParts,armorMilitarySetParts,armorSteelSetParts,meleeToolAxeT3ChainsawParts"/>
+		<property name="Random_item_count" value="2-4,2-4,2-4,2-4,2-4,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3,1-3"/>
+		<property name="Random_count" value="5"/>
+		<property name="Unique_random_only" value="true"/>
+	</property>
+</item>
+    <!-- *** 神奇糖果 -->
+<item name="giveXPZBSRareCandy">
+    <property name="CustomIcon" value="drugCovertCats"/><property name="CustomIconTint" value="B4C8FF"/>
+    <property name="DescriptionKey" value="giveXPZBSRareCandyDesc"/>
+    <property name="Tags" value="medical"/>
+	<property name="HoldType" value="16"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/parcelPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="Morganic"/>
+	<property name="EconomicValue" value="2500"/>
+	<property name="Stacknumber" value="125"/> <!-- STK loot -->
+	<property name="Group" value="Science,Medical"/>
+    <property class="Action0">
+		<property name="Class" value="Quest"/>
+		<property name="QuestGiven" value="quest_ZBSRareCandy"/>
+		<property name="Delay" value="0.5"/>
+		<property name="UseAnimation" value="false"/>
+	</property>
+</item>
+
+   <!-- *** 突变碎片 -->
+<item name="partZBSMutatedFragments">
+    <property name="Extends" value="partsMaster" param1="CustomIcon"/>
+    <property name="CustomIcon" value="foodRottingFlesh"/><property name="CustomIconTint" value="A0C800"/>
+    <property name="Tags" value="parts"/>
+    <property name="DescriptionKey" value="partZBSMutatedFragmentsDesc"/>
+	<property name="Material" value="MMachineGunParts"/>
+    <property name="EconomicValue" value="180"/>
+	<property name="Stacknumber" value="1600"/>
+    <property name="Weight" value="1"/>
+</item>
+   <!-- *** 突变基因片段 -->
+<item name="partZBSGeneSegmentMutated">
+    <property name="Extends" value="partsMaster" param1="CustomIcon"/>
+    <property name="CustomIcon" value="modArmorImprovedFittings"/><property name="CustomIconTint" value="FA6464"/>
+    <property name="Tags" value="parts"/>
+    <property name="DescriptionKey" value="partZBSGeneSegmentDesc"/>
+	<property name="Material" value="MMachineGunParts"/>
+    <property name="EconomicValue" value="240"/>
+	<property name="Stacknumber" value="1600"/>
+    <property name="Weight" value="1"/>
+</item>
+   <!-- *** 速度基因片段 -->
+<item name="partZBSGeneSegmentSpeed">
+    <property name="Extends" value="partsMaster" param1="CustomIcon"/>
+    <property name="CustomIcon" value="modArmorImprovedFittings"/><property name="CustomIconTint" value="A0A0E1"/>
+    <property name="Tags" value="parts"/>
+    <property name="DescriptionKey" value="partZBSGeneSegmentDesc"/>
+	<property name="Material" value="MMachineGunParts"/>
+    <property name="EconomicValue" value="270"/>
+	<property name="Stacknumber" value="1600"/>
+    <property name="Weight" value="1"/>
+</item>
+   <!-- *** 强健基因片段 -->
+<item name="partZBSGeneSegmentRobust">
+    <property name="Extends" value="partsMaster" param1="CustomIcon"/>
+    <property name="CustomIcon" value="modArmorImprovedFittings"/><property name="CustomIconTint" value="FA9632"/>
+    <property name="Tags" value="parts"/>
+    <property name="DescriptionKey" value="partZBSGeneSegmentDesc"/>
+	<property name="Material" value="MMachineGunParts"/>
+    <property name="EconomicValue" value="300"/>
+	<property name="Stacknumber" value="1600"/>
+    <property name="Weight" value="1"/>
+</item>
+
+   <!-- *** 血肉自愈霜 -->
+<item name="medicalZBSHealingAloeCream">
+	<property name="Extends" value="medicalAloeCream" param1="CustomIcon"/>
+    <property name="CustomIcon" value="medicalAloeCream"/><property name="CustomIconTint" value="dca0a0"/>
+	<property name="EconomicValue" value="30"/>
+	<property name="Stacknumber" value="50"/>
+	<property class="Action0">
+		<property name="Class" value="Eat"/>
+		<property name="Delay" value="1.0"/>
+		<property name="Sound_start" value="player_ointment"/>
+	</property>
+	<property class="Action1">
+		<property name="Class" value="UseOther"/>
+		<property name="Delay" value="1.0"/>
+		<property name="Sound_start" value="player_ointment"/>
+	</property>
+
+	<effect_group tiered="false"> <!-- aloeCream -->
+		<!-- used on self -->
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="healAbrasionMult" operation="set" value="5"/>
+		<display_value name="dhealAbrasionMult" value="5"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffInjuryAbrasionTreated">
+			<requirement name="HasBuff" buff="buffInjuryAbrasion"/></triggered_effect>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffZBSAloeHealing"/>
+
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="medicalRegHealthAmount" operation="add" value="25"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="medRegHealthIncSpeed" operation="set" value="@medicRegHealthIncreaseSpeed"/>
+		<display_value name="foodHealthAmount" value="25"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+
+		<!-- used on other -->
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="healAbrasionMult" operation="set" value="5"/>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medicalRegHealthAmount" operation="add" value="25"/>
+
+		<!-- used on other, regular health per tick based on perkPhysician -->
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medRegHealthIncSpeed" operation="set" value="2">
+			<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="0"/></triggered_effect>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medRegHealthIncSpeed" operation="set" value="2.5">
+			<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="1"/></triggered_effect>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medRegHealthIncSpeed" operation="set" value="2.8">
+			<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="2"/></triggered_effect>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medRegHealthIncSpeed" operation="set" value="3.1">
+			<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="3"/></triggered_effect>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="medRegHealthIncSpeed" operation="set" value="3.5">
+			<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="Equals" value="4"/></triggered_effect>
+
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="other" buff="buffProcessConsumables"/>
+		<triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="other" buff="buffInjuryAbrasionTreated">
+			<requirement name="HasBuff" buff="buffInjuryAbrasion"/></triggered_effect>
+	</effect_group>
+</item>
+   <!-- *** 抑制性功能恢复剂 -->
+<item name="drugZBSInhibitoryMotorRestorer">
+	<property name="Extends" value="drugPainkillers"/>
+    <property name="CustomIcon" value="drugSteroids"/><property name="CustomIconTint" value="00a0ff"/>
+	<property name="EconomicValue" value="350"/>
+    <property name="Stacknumber" value="128"/>
+	<property name="Group" value="Science,Medical,TCMedical"/>
+	<effect_group tiered="false" name="Drug Tier 3">
+		<display_value name="dInstantHealth" value="40"/>
+		<display_value name="dRunSpeed" value=".1"/>
+		<display_value name="$waterAmountAdd" value="-10"/>
+		<display_value name="dDuration" value="30"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffZBSDrugInhibitoryMotorRestorer"/>
+	</effect_group>
+</item>
+   <!-- *** 冲刺注射剂 -->
+<item name="drugZBSInjectionSprint">
+	<property name="Extends" value="drugPainkillers"/>
+    <property name="CustomIcon" value="drugSteroids"/><property name="CustomIconTint" value="5050ff"/>
+	<property name="DisplayType" value="drugSteroids"/>
+	<property name="EconomicValue" value="550"/>
+    <property name="Stacknumber" value="128"/>
+	<property name="Group" value="Science,Medical,TCMedical"/>
+	<effect_group tiered="false" name="Drug Tier 3">
+		<display_value name="dCarryCapacity" value="0"/>
+		<display_value name="dRunSpeed" value="2.5"/>
+		<display_value name="$waterAmountAdd" value="-50"/>
+		<display_value name="dDuration" value="60"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffZBSDrugInjectionSprint"/>
+	</effect_group>
+</item>
+   <!-- *** 铁皮药剂 -->
+<item name="drugZBSInjectionIronSkin">
+	<property name="Extends" value="drugPainkillers"/>
+    <property name="CustomIcon" value="drugSteroids"/><property name="CustomIconTint" value="a0a0a0"/>
+	<property name="EconomicValue" value="550"/>
+    <property name="Stacknumber" value="128"/>
+	<property name="Group" value="Science,Medical,TCMedical"/>
+	<effect_group tiered="false" name="Drug Tier 3">
+		<display_value name="dInstantHealth" value="40"/>
+		<display_value name="dHealthLoss" value=".1"/>
+		<display_value name="$waterAmountAdd" value="-20"/>
+		<display_value name="dStunResist" value="1"/>
+		<display_value name="dDuration" value="180"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffZBSDrugInjectionIronSkin"/>
+	</effect_group>
+</item>
+   <!-- *** 荣誉之证 -->
+<item name="bookZBSProofofHonor">
+	<property name="Extends" value="schematicMaster"/>
+    <property name="CustomIcon" value="bookWasteTreasuresHoney"/><property name="CustomIconTint" value="ffc800"/>
+    <property name="DescriptionKey" value="bookZBSProofofHonorDesc"/>
+    <property name="EconomicValue" value="2500"/>
+    <property name="Stacknumber" value="16"/>
+    <property class="Action0">
+        <requirement name="!HasBuff" buff="buffZBSBasedFirstAidBandage"/>
+		<property name="Class" value="Eat"/>
+        <property name="Consume" value="false"/>
+		<property name="Delay" value="1.0"/>
+		<property name="UseAnimation" value="false"/>
+		<property name="Sound_start" value="player_bandage"/>
+		<property name="Sound_in_head" value="true"/>
+	</property>
+    <property class="Action1">
+        <requirement name="!HasBuff" buff="buffZBSCD300"/>
+		<property name="Class" value="Eat"/>
+        <property name="Consume" value="false"/>
+		<property name="Delay" value="1.0"/>
+		<property name="UseAnimation" value="false"/>
+		<property name="Sound_start" value="player_firstaidkit"/>
+		<property name="Sound_in_head" value="true"/>
+	</property>
+    <effect_group tiered="false">
+        <display_value name="foodHealthAmount" value="30"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffZBSBasedFirstAidBandage">
+            <requirement name="!HasBuff" buff="buffZBSBasedFirstAidBandage"/></triggered_effect>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffZBSDrugInjectionIronSkin">
+            <requirement name="!HasBuff" buff="buffZBSCD300"/></triggered_effect>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffZBSBasedRemoveDebuff">
+            <requirement name="!HasBuff" buff="buffZBSCD300"/></triggered_effect>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" buff="buffZBSCD300">
+            <requirement name="!HasBuff" buff="buffZBSCD300"/></triggered_effect>
+	</effect_group>
+</item>
+
+   <!-- *** 腐蚀之刃 -->
+<item name="meleeZBSWpnBladeCorrosionKnife">
+	<property name="Extends" value="meleeWpnBladeT0BoneKnife" param1="CustomIcon"/>
+	<property name="CustomIcon" value="meleeWpnBladeT0BoneKnife"/><property name="CustomIconTint" value="a00000"/>
+	<property name="TintColor" value="160, 0, 0"/>
+	<property name="EconomicValue" value="300"/>
+	<property name="TraderStageTemplate" value="baseTier1"/>
+
+	<effect_group name="meleeZBSWpnBladeCorrosionKnife">
+		<passive_effect name="AttacksPerMinute" operation="base_set" value="110" tags="perkDeepCuts,perkFlurryOfAgility"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="9.1" tags="primary"/>
+		<passive_effect name="DegradationMax" operation="base_set" value="320,620" tier="1,6" tags="perkDeepCuts"/>
+		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkDeepCuts"/>
+		<passive_effect name="MaxRange" operation="base_set" value="2.1" tags="perkDeepCuts"/>
+		<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+		<passive_effect name="ModSlots" operation="base_set" value="2,2,3,3,4,4" tier="1,2,3,4,5,6"/>
+		<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="8" tags="perkDeepCuts,knife"/> <!-- meleeWpnBladeT0BoneKnife -->
+		<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+		<passive_effect name="BlockDamage" operation="base_set" value="12" tags="perkDeepCuts"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="earth"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="stone"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.5" tags="metal"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value=".8" tags="organic"/>
+		<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+	</effect_group>
+    <effect_group name="Power Attack">
+		<passive_effect name="EntityDamage" operation="base_add" value="5.1" tags="secondary"/>
+		<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+		<passive_effect name="AttacksPerMinute" operation="base_add" value="-60" tags="secondary"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="12.9" tags="secondary"/> <!-- using perc_add here increases StaminaOT for no obvious reason -->
+		<triggered_effect trigger="onSelfSecondaryActionStart" action="AddJournalEntry" journal="powerAttackTip"/>
+	</effect_group>
+	<effect_group name="sneak damage bonus">
+		<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+		<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<passive_effect name="DamageBonus" operation="base_add" value="4"/>
+			<passive_effect name="EntityDamage" operation="perc_add" value="4" tags="perkDeepCuts"/>
+			<display_value name="dEntityDamageSneak" value="4"/>
+	</effect_group>
+
+	<effect_group name="corpseRemoval">
+		<requirement name="!IsAlive" target="other"/>
+		<requirement name="EntityTagCompare" target="other" tags="walker,crawler,spider"/>
+			<passive_effect name="EntityDamage" operation="base_add" value="500"/>
+	</effect_group>
+    <effect_group tiered="false">
+        <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCorrosion">
+            <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/></triggered_effect>
+        <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="5" delay="0.1">
+            <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="8"/></triggered_effect>
+	</effect_group>
+</item>
+
+   <!-- *** 腐蚀之刃 激活-->
+<item name="meleeZBSWpnBladeCorrosionKnifeII">
+	<property name="Extends" value="meleeWpnBladeT0BoneKnife" param1="CustomIcon"/>
+    <property name="CustomIcon" value="meleeWpnBladeT0BoneKnife"/><property name="CustomIconTint" value="dc0000"/>
+	<property name="TintColor" value="220, 0, 0"/>
+	<property name="EconomicValue" value="720"/>
+	<property name="TraderStageTemplate" value="baseTier2"/>
+
+	<effect_group name="meleeZBSWpnBladeCorrosionKnifeII">
+		<passive_effect name="AttacksPerMinute" operation="base_set" value="120" tags="perkDeepCuts,perkFlurryOfAgility"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="11.3" tags="primary"/>
+		<passive_effect name="DegradationMax" operation="base_set" value="600,1560" tier="1,6" tags="perkDeepCuts"/>
+		<passive_effect name="DegradationPerUse" operation="base_set" value=".5" tags="perkDeepCuts"/>
+		<passive_effect name="MaxRange" operation="base_set" value="2.3" tags="perkDeepCuts"/>
+		<passive_effect name="BlockRange" operation="base_set" value="2.5" tags="perkDeepCuts"/>
+		<passive_effect name="ModSlots" operation="base_set" value="3,3,4,4,5,6" tier="1,2,3,4,5,6"/>
+		<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="18" tags="perkDeepCuts,knife"/> <!-- meleeWpnBladeT0BoneKnife -->
+		<passive_effect name="EntityDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+		<passive_effect name="BlockDamage" operation="base_set" value="24" tags="perkDeepCuts"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6" tags="perkDeepCuts"/> <!-- tier bonus -->
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.3" tags="earth"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.1" tags="stone"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.1" tags="metal"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="1.5" tags="organic"/>
+		<passive_effect name="HarvestCount" operation="base_set" value="1" tags="butcherHarvest"/>
+	</effect_group>
+	<effect_group name="Power Attack">
+		<passive_effect name="EntityDamage" operation="base_add" value="8.1" tags="secondary"/>
+		<passive_effect name="EntityDamage" operation="perc_add" value="1" tags="secondary"/>
+		<passive_effect name="BlockDamage" operation="perc_add" value="1" tags="secondary"/>
+		<passive_effect name="AttacksPerMinute" operation="base_add" value="-40" tags="secondary"/>
+		<passive_effect name="StaminaLoss" operation="base_set" value="15.9" tags="secondary"/> <!-- using perc_add here increases StaminaOT for no obvious reason -->
+		<triggered_effect trigger="onSelfSecondaryActionStart" action="AddJournalEntry" journal="powerAttackTip"/>
+	</effect_group>
+	<effect_group name="sneak damage bonus">
+		<requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+		<requirement name="CVarCompare" cvar="_notAlerted" operation="GT" value="0" target="other"/>
+			<passive_effect name="DamageBonus" operation="base_add" value="5"/>
+			<passive_effect name="EntityDamage" operation="perc_add" value="5" tags="perkDeepCuts"/>
+			<display_value name="dEntityDamageSneak" value="5"/>
+	</effect_group>
+
+	<effect_group name="corpseRemoval">
+		<requirement name="!IsAlive" target="other"/>
+		<requirement name="EntityTagCompare" target="other" tags="walker,crawler,spider"/>
+			<passive_effect name="EntityDamage" operation="base_add" value="500"/>
+	</effect_group>
+	<effect_group tiered="false">
+		<triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffZBSPlayerMutated"/>
+		<triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffZBSPlayerMutated"/>
+		<triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedBleeding"/>
+        <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Health" operation="add" value="8" delay="0.1"/>
+        <triggered_effect trigger="onSelfKilledOther" action="ModifyStats" stat="Food" operation="add" value="8" delay="0.1"/>
+        <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffZBSAttedCorrosion">
+            <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/></triggered_effect>
+        <triggered_effect trigger="onSelfAttackedOther" action="ModifyStats" stat="Health" operation="add" value="5" delay="0.1">
+            <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="30"/></triggered_effect>
+	</effect_group>
+</item>
+   <!-- *** 瓶装腐蚀液-->
+<item name="thrownZBSAmmoCorrosiveLiquid">
+	<property name="Tags" value="ammo,weapon,attPerception,perkDemolitionsExpert,explosivesSkill"/>
+    <property name="CustomIcon" value="thrownAmmoMolotovCocktail"/><property name="CustomIconTint" value="328C50"/>
+	<property name="ItemTypeIcon" value="explosion"/>
+	<property name="DisplayType" value="ammoGrenadeFire"/>
+	<property name="Class" value="ItemClassTimeBomb"/>
+	<property name="HoldType" value="54"/>
+	<property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotov_thrownPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotov_dropPrefab.prefab"/>
+	<property name="HandMeshfile" value="@:Other/Items/Weapons/Ranged/Molotov/molotovPrefab.prefab"/>
+  <property name="ActivationTransformToHide" value="LightMover;Flames;Smoke;ClothFlames;ClothFlamesLight"/>
+  <property name="DropScale" value="2.1"/>
+  <property name="FusePrimeOnActivate" value="true"/>
+  <property name="Material" value="Morganic"/>
+	<property name="ThrowableDecoy" value="true"/>
+	<property name="Weight" value="0"/>
+	<property name="Stacknumber" value="120"/>
+	<property name="LightValue" value=".2"/>
+	<property name="LightSource" value="lightSource"/>
+	<property name="ActivateObject" value="lightSource"/>
+	<property name="Explosion.ParticleIndex" value="7"/>
+	<property name="Explosion.Duration" value="8"/>
+	<property name="Explosion.RadiusBlocks" value="1"/>
+	<property name="Explosion.RadiusEntities" value="4"/>
+	<property name="Explosion.BlastPower" value="35"/>
+	<property name="Explosion.DamageBonus.stone" value=".1"/>
+	<property name="Explosion.DamageBonus.metal" value="0"/>
+	<property name="Explosion.DamageBonus.earth" value="0"/>
+	<property name="Explosion.DamageBonus.water" value="0"/>
+	<property name="Explosion.DamageBonus.wood" value="6"/>
+	<property name="Explosion.Buff" value="buffZBSAttedCorrosion"/>
+	<property name="FuseTime" value="20000"/>
+	<property name="ExplodeOnHit" value="true"/>
+	<property name="StickPercent" value=".5"/>
+	<property name="EconomicValue" value="21"/>
+	<property name="TraderStageTemplate" value="baseTier1"/>
+	<property name="Group" value="Ammo/Weapons,Ammo"/>
+	<property class="Action0">
+		<property name="Class" value="ThrowAway"/>
+        <property name="Delay" value="1.2"/>
+		<property name="Explosion.ParticleIndex" value="7"/>
+		<property name="Throw_strength_default" value="20"/>
+		<property name="Throw_strength_max" value="50"/>
+		<property name="Max_strain_time" value="1.25"/>
+		<property name="Sound_start" value="swoosh"/>
+	        <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+	        <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+	        <property name="triggerEffectTriggerShootDualsense" value="MGShoot"/>
+	        <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+	</property>
+	<property class="Action1">
+		<!-- UseAction -->
+		<property name="Class" value="Activate"/>
+		<property name="Delay" value="1"/>
+		<!-- obsolete if rounds per minute exists -->
+		<property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+		<property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+		<property name="triggerEffectTriggerShootDualsense" value="RifleShoot"/>
+		<property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+	</property>
+
+	<effect_group tiered="false">
+        <display_value name="dExDamageFire" value="88"/>
+		<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE" range="2.7" buff="buffZBSAttedCorrosion"/>			
+		<passive_effect name="EntityDamage" operation="base_set" value="25" tags="perkDemolitionsExpert"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="1" tags="perkDemolitionsExpert"/>
+		<display_value name="dExRadius" value="3"/>
+        <display_value name="dDuration" value="8"/>
+	</effect_group>
+</item>
+<item name="thrownZBSAmmoCorrosiveLiquidInf">
+	<property name="Extends" value="thrownZBSAmmoCorrosiveLiquid"/>
+    <property name="DescriptionKey" value="thrownZBSAmmoCorrosiveLiquidDesc"/>
+	<property name="EconomicValue" value="280"/>
+    <property class="Action0">
+		<property name="Class" value="ThrowAway"/>
+        <property name="Delay" value=".4"/>
+		<property name="Explosion.ParticleIndex" value="7"/>
+		<property name="Throw_strength_default" value="20"/>
+		<property name="Throw_strength_max" value="50"/>
+		<property name="Max_strain_time" value="1.25"/>
+		<property name="Sound_start" value="swoosh"/>
+	        <property name="triggerEffectTriggerPullDualsense" value="RifleTrigger"/>
+	        <property name="triggerEffectTriggerPullXbox" value="PistolTrigger"/>
+	        <property name="triggerEffectTriggerShootDualsense" value="MGShoot"/>
+	        <property name="triggerEffectTriggerShootXbox" value="PistolShoot"/>
+	</property>
+	<effect_group tiered="false">
+        <display_value name="dExDamageFire" value="88"/>
+		<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE" range="2.7" buff="buffZBSAttedCorrosion"/>			
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="CallGameEvent" event="ZBS_InfiniteCorro"/>			
+		<passive_effect name="EntityDamage" operation="base_set" value="35" tags="perkDemolitionsExpert"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="1" tags="perkDemolitionsExpert"/>
+		<display_value name="dExRadius" value="3"/>
+        <display_value name="dDuration" value="8"/>
+	</effect_group>
+</item>
+   <!-- *** 触炸腐蚀手雷-->
+<item name="thrownZBSGrenadeContactCorrosion">
+	<property name="Extends" value="thrownGrenadeContact"/>
+    <property name="DisplayType" value="ammoGrenadeContact"/>
+    <property name="CustomIcon" value="thrownGrenadeContact"/><property name="CustomIconTint" value="328C50"/>
+	<property name="Meshfile" value="@:Other/Items/Weapons/Ranged/Grenade/GrenadePrefab.prefab"/>
+    <property name="Stacknumber" value="60"/>
+	<property name="UnlockedBy" value="perkDemolitionsExpert"/>
+	<effect_group tiered="false">
+		<passive_effect name="BlockDamage" operation="base_set" value="2" tags="perkDemolitionsExpert"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="325" tags="perkDemolitionsExpert"/>
+		<display_value name="dExRadius" value="5"/>
+        <triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE" range="4.8" buff="buffZBSAttedCorrosion"/>
+	</effect_group>
+</item>
+<item name="thrownZBSGrenadeContactCorrosionInf">
+	<property name="Extends" value="thrownZBSGrenadeContactCorrosion"/>
+    <property name="DescriptionKey" value="thrownZBSGrenadeContactCorrosionDesc"/>
+	<property name="EconomicValue" value="580"/>
+    <property class="Action0">
+		<property name="Class" value="ThrowAway"/>
+		<!-- <property name="Hitmask_override" value="Arrow"/> unfortunately this cannot work without a serious rewrite of the hitmask system -->
+		<property name="Delay" value=".4"/> <!-- obsolete if rounds per minute exists -->
+		<property name="Throw_strength_default" value="8"/>
+		<property name="Throw_strength_max" value="50"/>
+		<property name="Max_strain_time" value="1.25"/>
+		<property name="Sound_start" value="grenade_throw"/>
+		<property name="Gravity" value="-5"/>
+		<requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".98"/>
+        <property name="triggerEffectTriggerPullDualsense" value="ShotgunTrigger"/>
+        <property name="triggerEffectTriggerPullXbox" value="ShotgunTrigger"/>
+        <property name="triggerEffectShootDualsense" value="ShotgunShoot"/>
+        <property name="triggerEffectShootXbox" value="PistolShoot"/>
+	</property>
+	<effect_group tiered="false">
+        <passive_effect name="BlockDamage" operation="base_set" value="5" tags="perkDemolitionsExpert"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="375" tags="perkDemolitionsExpert"/>
+		<display_value name="dExRadius" value="5"/>
+        <triggered_effect trigger="onProjectileImpact" action="AddBuff" target="positionAOE" range="4.8" buff="buffZBSAttedCorrosion"/>		
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="CallGameEvent" event="ZBS_InfiniteGrenadeCorro"/>			
+	</effect_group>
+</item>
+</append>
+</configs>

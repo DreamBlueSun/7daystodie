@@ -1,0 +1,258 @@
+<configs>
+<append xpath="/gameevents">
+        <!-- 无限弹药 -->
+	<action_sequence name="ZBS_InfiniteCorro">
+		<action class="AddItems">
+			<property name="added_items" value="thrownZBSAmmoCorrosiveLiquidInf" />
+			<property name="added_item_counts" value="1" /></action>
+	</action_sequence>
+    <action_sequence name="ZBS_InfiniteGrenadeCorro">
+		<action class="AddItems">
+			<property name="added_items" value="thrownZBSGrenadeContactCorrosionInf" />
+			<property name="added_item_counts" value="1" /></action>
+	</action_sequence>
+    
+        <!-- 自爆 -->
+	<action_sequence name="ZBS_BodyBombPlayer">
+		<action class="ExplodeTarget">
+			<property name="blast_power" value="0" />
+			<property name="block_damage" value="0" />
+			<property name="block_radius" value="1" />
+			<property name="entity_damage" value="50" />
+			<property name="entity_radius" value="1" />
+            <property name="particle_index" value="7" />
+		</action>
+	</action_sequence>
+	<action_sequence name="ZBS_BodyBombZombie">
+		<action class="ExplodeTarget">
+			<property name="blast_power" value="80" />
+			<property name="block_damage" value="0" />
+			<property name="block_radius" value="1" />
+			<property name="entity_damage" value="250" />
+			<property name="entity_radius" value="6" />
+            <property name="particle_index" value="7" />
+		</action>
+	</action_sequence>
+    <action_sequence name="ZBS_GluttonyBomb">
+        <action class="ExplodeTarget">
+			<property name="blast_power" value="60" />
+			<property name="block_damage" value="0" />
+			<property name="block_radius" value="1" />
+			<property name="entity_damage" value="650" />
+			<property name="entity_radius" value="4" />
+            <property name="particle_index" value="7" />
+		</action>
+	</action_sequence>
+    
+	<action_sequence name="ZBS_HeavySmashExplosion">
+		<action class="ExplodeTarget">
+			<property name="blast_power" value="0" />
+			<property name="block_damage" value="250" />
+			<property name="block_radius" value="2" />
+			<property name="entity_damage" value="150" />
+			<property name="entity_radius" value="4" />
+            <property name="particle_index" value="12" />
+		</action>
+	</action_sequence>
+    
+        <!-- 宿主驱使 -->
+	<action_sequence name="ZBS_CorpseMKill">
+        <decision class="If">
+        <requirement class="NearbyEntities">
+			<property name="max_distance" value="10" />
+		</requirement>
+		<action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedCorpseMKillScreen"/></action>
+		</decision>
+	</action_sequence>
+    
+        <!-- 掉落钱币 -->
+	<action_sequence name="ZBS_cash0">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="oldCash" />
+			<property name="added_item_counts" value="12-18" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_cash1">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="oldCash,resourceLockPick" />
+			<property name="added_item_counts" value="24-45,1-3" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_cash2">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="oldCash,resourceSewingKit" />
+			<property name="added_item_counts" value="80-120,2-5" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_coin0">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="casinoCoin,resourcePaper" />
+			<property name="added_item_counts" value="80-120,10-25" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_coin1">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="casinoCoin,oldCash" />
+			<property name="added_item_counts" value="175-225,24-45" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_coin2">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="casinoCoin,questRewardT1SkillMagazineBundle" />
+			<property name="added_item_counts" value="360-450,1" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_coinDrop">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="casinoCoin" />
+			<property name="added_item_counts" value="160-225" /></action>
+    </action_sequence>
+
+    <action_sequence name="ZBS_DropSpeed">
+        <action class="PlaySound">
+			<property name="sound" value="crawlersteporganic" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="partZBSMutatedFragments,partZBSGeneSegmentSpeed" />
+			<property name="added_item_counts" value="1-3,1-2" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_DropRobust">
+        <action class="PlaySound">
+			<property name="sound" value="crawlersteporganic" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="partZBSMutatedFragments,partZBSGeneSegmentRobust" />
+			<property name="added_item_counts" value="2-4,1-2" /></action>
+    </action_sequence>
+    
+    <action_sequence name="ZBS_DropMutated">
+        <action class="PlaySound">
+			<property name="sound" value="crawlersteporganic" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="partZBSMutatedFragments" />
+			<property name="added_item_counts" value="3-5" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_DropMutatedFeral">
+        <action class="PlaySound">
+			<property name="sound" value="crawlersteporganic" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="partZBSMutatedFragments,partZBSGeneSegmentMutated" />
+			<property name="added_item_counts" value="6-10,1-3" /></action>
+    </action_sequence>
+    
+    <action_sequence name="ZBS_DropRareGreedy">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="giveXPZBSRareCandy,casinoCoin" />
+			<property name="added_item_counts" value="1,720-1280" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_DropRareVicious">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="resourceAcid,questZBSPartsBundle,casinoCoin" />
+			<property name="added_item_counts" value="3-6,1,480-560" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_DropRareGambler">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="resourceSilverNugget,resourceGoldNugget,resourceRawDiamond,casinoCoin" />
+			<property name="added_item_counts" value="3-6,1-4,0-3,1600-2100" /></action>
+    </action_sequence>
+    <action_sequence name="ZBS_DropRareGluttony">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="giveXPZBSRareCandy,resourceAcid,resourceForgedSteel,questZBSPartsBundle,casinoCoin" />
+			<property name="added_item_counts" value="1,3-6,12-16,1,1000-1200" /></action>
+    </action_sequence>
+    
+    <action_sequence name="ZBS_DropRareGhostRider">
+        <action class="PlaySound">
+			<property name="sound" value="ui_trader_purchase" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="giveXPZBSRareCandy,casinoCoin,bookZBSProofofHonor" />
+			<property name="added_item_counts" value="5,3000,1" /></action>
+    </action_sequence>
+    
+    <action_sequence name="ZBS_trash">
+        <action class="PlaySound">
+			<property name="sound" value="open_garbage" /></action>
+		<action class="AddItems">
+			<property name="added_items" value="resourceBone,resourceFeather,resourceScrapPolymers,resourceScrapIron,resourceScrapBrass" />
+			<property name="added_item_counts" value="9-28,8-24,15-56,0-34,0-89" /></action>
+    </action_sequence>
+
+        <!-- 稀有播报 -->
+	<action_sequence name="ZBS_BCRareGreedy">
+        <requirement class="HasBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD"/>
+			<property name="invert" value="true" />
+		</requirement>
+        <action class="PlaySound">
+			<property name="sound" value="ui_menu_start" /></action>
+		<action class="BeltTooltip">
+            <property name="text" value="[FFDC00][贪婪][-]已出现" /></action>
+        <action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD"/></action>
+    </action_sequence>
+    <action_sequence name="ZBS_BCRareVicious">
+        <requirement class="HasBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD1"/>
+			<property name="invert" value="true" />
+		</requirement>
+        <action class="PlaySound">
+			<property name="sound" value="ui_menu_start" /></action>
+		<action class="BeltTooltip">
+            <property name="text" value="[505078][恶毒][-]已出现" /></action>
+        <action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD1"/></action>
+    </action_sequence>
+    <action_sequence name="ZBS_BCRareGambler">
+        <requirement class="HasBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD2"/>
+			<property name="invert" value="true" />
+		</requirement>
+        <action class="PlaySound">
+			<property name="sound" value="ui_menu_start" /></action>
+		<action class="BeltTooltip">
+            <property name="text" value="[78B478][赌徒][-]已出现" /></action>
+        <action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD2"/></action>
+    </action_sequence>
+    <action_sequence name="ZBS_BCRareGluttony">
+        <requirement class="HasBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD3"/>
+			<property name="invert" value="true" />
+		</requirement>
+        <action class="PlaySound">
+			<property name="sound" value="ui_menu_start" /></action>
+		<action class="BeltTooltip">
+            <property name="text" value="[DCE600][暴食][-]已出现" /></action>
+        <action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCD3"/></action>
+    </action_sequence>
+    
+    <action_sequence name="ZBS_BCRareGhostRider">
+        <requirement class="HasBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCDa"/>
+			<property name="invert" value="true" />
+		</requirement>
+        <action class="PlaySound">
+			<property name="sound" value="ui_menu_start" /></action>
+		<action class="BeltTooltip">
+            <property name="text" value="[A00000][恶灵骑士][-]已出现" /></action>
+        <action class="AddBuff">
+			<property name="buff_name" value="buffZBSBasedRareBroadcastCDa"/></action>
+    </action_sequence>
+</append>
+</configs>

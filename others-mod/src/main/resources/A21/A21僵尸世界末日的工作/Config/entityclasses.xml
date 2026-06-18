@@ -1,0 +1,1305 @@
+<configs>
+
+
+
+	<append xpath="/entity_classes">
+
+<!--BossCraven-->
+
+	<entity_class name="ZombieINC_BossCraven" extends="zombieSteve">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossCraven,boss"/>
+		<property name="SizeScale" value=".8"/>
+		<property name="ExperienceGain" value="2000"/>
+	    
+	    <property name="MoveSpeed" value="0.7"/>
+	    <property name="MoveSpeedPanic" value="1"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossCraven"/>
+	    <property name="NavObject" value="zombie" />
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+		
+	<property name="AIGroupCircle" value="1"/>
+	<property name="AIPathCostScale" value=".4, .6"/>
+	<property name="AITask-1" value="BreakBlock"/>
+	<property name="AITask-2" value="Territorial"/>
+	<property name="AITask-3" value="RunawayWhenHurt" data="runChance=.9;healthPer=.8;healthPerMax=0.75;fleeDistance=1,5,10"/>
+	<property name="AITask-4" value="ApproachAndAttackTarget" data="class=EntityPlayer,10,EntityAnimalRabbit,8"/>
+	<property name="AITask-5" value="ApproachSpot"/>
+	<property name="AITask-6" value="Look"/>
+	<property name="AITask-7" value="Wander"/>
+	<property name="AITask-8" value=""/>
+	<property name="AITarget-1" value="SetAsTargetIfHurt"/>
+	<property name="AITarget-2" value="BlockingTargetTask"/>
+	<property name="AITarget-3" value="SetNearestEntityAsTarget" data="class=EntityPlayer,15,10,EntityAnimalRabbit,0,18"/>
+	<property name="AITarget-4" value=""/>
+	
+		<effect_group name="Base Effects">
+		
+			<passive_effect name="HealthMax" operation="base_set" value="720"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionCravenBuff"/>
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionCraven1" extends="zombieSteve">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionCraven"/>
+		<property name="SizeScale" value=".9"/>
+		<property name="ExperienceGain" value="100"/>
+	    
+	    <property name="MoveSpeed" value="0.9"/>
+		<property name="MoveSpeedAggro" value="1.1, 1.4"/>
+	    <property name="MoveSpeedPanic" value="1.3"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionCraven"/>
+		
+		
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="55"/>	
+       
+		</effect_group>
+	</entity_class>
+	<!--BossCraven-->
+	<!--BossCravenInfested-->
+
+	<entity_class name="ZombieINC_BossCravenInfested" extends="zombieSteve">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossCravenInfested,boss"/>
+		<property name="SizeScale" value="1.1"/>
+		<property name="ExperienceGain" value="2000"/>
+	    
+	    <property name="MoveSpeed" value="0.7"/>
+	    <property name="MoveSpeedPanic" value="1"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossCraven"/>
+	    <property name="NavObject" value="zombie" />
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		
+	<property name="AIGroupCircle" value="1"/>
+	<property name="AIPathCostScale" value=".4, .6"/>
+	<property name="AITask-1" value="BreakBlock"/>
+	<property name="AITask-2" value="Territorial"/>
+	<property name="AITask-3" value="RunawayWhenHurt" data="runChance=.9;healthPer=.8;healthPerMax=0.75;fleeDistance=1,5,10"/>
+	<property name="AITask-4" value="ApproachAndAttackTarget" data="class=EntityPlayer,10,EntityAnimalRabbit,8"/>
+	<property name="AITask-5" value="ApproachSpot"/>
+	<property name="AITask-6" value="Look"/>
+	<property name="AITask-7" value="Wander"/>
+	<property name="AITask-8" value=""/>
+	<property name="AITarget-1" value="SetAsTargetIfHurt"/>
+	<property name="AITarget-2" value="BlockingTargetTask"/>
+	<property name="AITarget-3" value="SetNearestEntityAsTarget" data="class=EntityPlayer,15,10,EntityAnimalRabbit,0,18"/>
+	<property name="AITarget-4" value=""/>
+	
+		<effect_group name="Base Effects">
+		
+			<passive_effect name="HealthMax" operation="base_set" value="720"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionCravenInfestedBuff"/>
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionCravenInfested1" extends="zombieSteve">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionCravenInfested"/>
+		<property name="SizeScale" value=".9"/>
+		<property name="ExperienceGain" value="100"/>
+	    
+	    <property name="MoveSpeed" value="0.9"/>
+		<property name="MoveSpeedAggro" value="1.1, 1.4"/>
+	    <property name="MoveSpeedPanic" value="1.3"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionCraven"/>
+		
+		
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="55"/>	
+       
+		</effect_group>
+	</entity_class>
+	<!--BossCravenInfested-->
+	<!--BossWitch-->
+	
+	<entity_class name="ZombieINC_BossWitch" extends="zombieTemplateShort">
+	
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,boss,BossWitch"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZScreamerFeral.prefab"/>
+	<property name="SoundRandom" value="Enemies/Base_Zombie_Female/zombiefemalescoutroam"/>
+	<property name="SoundAlert" value="Enemies/Scout_Zombie/zombiefemalescoutalert"/>
+	<property name="SoundAttack" value="Enemies/Base_Zombie_Female/zombiefemalescoutattack"/>
+	<property name="SoundHurt" value="Enemies/Base_Zombie_Female/zombiefemalescoutpain"/>
+	<property name="SoundDeath" value="Enemies/Base_Zombie_Female/zombiefemalescoutdeath"/>
+	<property name="SoundSense" value="Enemies/Base_Zombie_Female/zombiefemalescoutsense"/>
+	<property name="ModelType" value="Standard"/>
+	<property name="WalkType" value="3"/>
+	<property name="Mass" value="110"/>
+	<property name="RootMotion" value="true"/>
+	<property name="HasDeathAnim" value="true"/>
+	<property name="AIPathCostScale" value=".5, .6"/>
+	<property name="DanceType" value="2" />
+	
+	<property name="ExperienceGain" value="750"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerRegular"/>
+	<property name="NavObject" value="zombie" />
+	
+	<property name="MoveSpeed" value="0.7"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchAttachPrefabBuff"/>
+	</effect_group>
+	
+	</entity_class>
+	
+	<!--BossWitch-->
+	<!--BossWitchInfested-->
+	
+	<entity_class name="ZombieINC_BossWitchInfested" extends="zombieTemplateShort">
+	
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,boss,BossWitchInfested"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZScreamerFeral.prefab"/>
+	<property name="SizeScale" value="1.1"/>
+	<property name="SoundRandom" value="Enemies/Base_Zombie_Female/zombiefemalescoutroam"/>
+	<property name="SoundAlert" value="Enemies/Scout_Zombie/zombiefemalescoutalert"/>
+	<property name="SoundAttack" value="Enemies/Base_Zombie_Female/zombiefemalescoutattack"/>
+	<property name="SoundHurt" value="Enemies/Base_Zombie_Female/zombiefemalescoutpain"/>
+	<property name="SoundDeath" value="Enemies/Base_Zombie_Female/zombiefemalescoutdeath"/>
+	<property name="SoundSense" value="Enemies/Base_Zombie_Female/zombiefemalescoutsense"/>
+	<property name="ModelType" value="Standard"/>
+	<property name="WalkType" value="3"/>
+	<property name="Mass" value="110"/>
+	<property name="RootMotion" value="true"/>
+	<property name="HasDeathAnim" value="true"/>
+	<property name="AIPathCostScale" value=".5, .6"/>
+	<property name="DanceType" value="2" />
+	
+	<property name="ExperienceGain" value="7500"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	<property name="NavObject" value="zombie" />
+	
+	<property name="MoveSpeed" value="0.7"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="7500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchInfestedBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchInfestedBuff2"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchInfestedAttachPrefabBuff"/>
+	</effect_group>
+	
+	</entity_class>
+	
+	<entity_class name="ZombieINC_BossWitchMinionInfested" extends="zombieTemplateShort">
+	
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,boss,BossWitchMinionInfested,Minion"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZScreamerFeral.prefab"/>
+	<property name="SizeScale" value="0.8"/>
+	<property name="SoundRandom" value="Enemies/Base_Zombie_Female/zombiefemalescoutroam"/>
+	<property name="SoundAlert" value="Enemies/Scout_Zombie/zombiefemalescoutalert"/>
+	<property name="SoundAttack" value="Enemies/Base_Zombie_Female/zombiefemalescoutattack"/>
+	<property name="SoundHurt" value="Enemies/Base_Zombie_Female/zombiefemalescoutpain"/>
+	<property name="SoundDeath" value="Enemies/Base_Zombie_Female/zombiefemalescoutdeath"/>
+	<property name="SoundSense" value="Enemies/Base_Zombie_Female/zombiefemalescoutsense"/>
+	<property name="ModelType" value="Standard"/>
+	<property name="WalkType" value="3"/>
+	<property name="Mass" value="50"/>
+	<property name="RootMotion" value="true"/>
+	<property name="HasDeathAnim" value="true"/>
+	<property name="AIPathCostScale" value=".5, .6"/>
+	<property name="DanceType" value="2" />
+	
+	<property name="ExperienceGain" value="200"/>
+	<property name="NavObject" value="ZombieINC_EnemyDot" />
+	
+	<property name="MoveSpeed" value="0.7"/>
+	<property name="MoveSpeedPanic" value="1.2"/>
+	<property name="MoveSpeedAggro" value=".7, 1.35"/>
+	
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossWitchMinionsInfestedAttachPrefabBuff"/>
+	</effect_group>
+	
+	</entity_class>
+	
+	<!--BossWitchInfested-->
+	<!--BossDog-->
+	<entity_class name="ZombieINC_BossDog" extends="animalZombieDog">
+	<property name="Class" value="EntityZombieDog"/>
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="EntityFlags" value="animal,zombie"/>
+	<property name="Tags" value="entity,animal,zombie,hostile,dog,BossDog,boss"/>
+	<property name="Prefab" value="/Entities/Animals/Wolf/animalStandardDogZombieRagdoll"/>
+	<property name="PhysicsBody" value="zombieDog"/>
+	<property name="SizeScale" value="2"/>
+	 <property name="NavObject" value="zombie" />
+    <property name="ExperienceGain" value="2500"/>
+	<property name="SleeperSmellSenseThreshold" value="5,30"/> 
+	<property name="SleeperSmellWakeThreshold" value="10,40"/>
+	<property name="SmellAlertThreshold" value="5"/> 
+	<property name="MoveSpeed" value=".15"/>
+	<property name="MoveSpeedNight" value=".3"/>
+	<property name="MoveSpeedAggro" value="0.6, 1.3"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="HandItem" value="meleeHandAnimalZombieDog"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+		<property name="MaxViewAngle" value="360"/>
+		<property name="SightRange" value="40"/>
+	
+	
+
+	<effect_group name="Base Effects">
+	 
+	   <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionDogBuff"/>
+		<passive_effect name="HealthMax" operation="base_set" value="900"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+<entity_class name="ZombieINC_MinionDog1" extends="animalZombieDog">
+	<property name="Class" value="EntityZombieDog"/>
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="EntityFlags" value="animal,zombie"/>
+	<property name="Tags" value="entity,animal,zombie,hostile,dog,MinionDog"/>
+	<property name="Prefab" value="/Entities/Animals/Wolf/animalStandardDogZombieRagdoll"/>
+	<property name="PhysicsBody" value="zombieDog"/>
+	<property name="SizeScale" value="0.9"/>
+	<property name="ExperienceGain" value="400"/>
+	<property name="SleeperSmellSenseThreshold" value="5,30"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+	<property name="SleeperSmellWakeThreshold" value="10,40"/>
+	<property name="SmellAlertThreshold" value="5"/> <!-- for awake zombies -->
+	<property name="MoveSpeed" value=".2"/>
+	<property name="MoveSpeedNight" value=".3"/>
+	<property name="MoveSpeedAggro" value="0.8, 1.3"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="HandItem" value="meleeHandAnimalZombieDog"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>
+	<property name="MaxViewAngle" value="360"/>
+		<property name="SightRange" value="40"/>
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="100"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+	<!--BossDog-->
+	<!--BossDogInfested-->
+	<entity_class name="ZombieINC_BossDogInfested" extends="animalZombieDog">
+	<property name="Class" value="EntityZombieDog"/>
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="EntityFlags" value="animal,zombie"/>
+	<property name="Tags" value="entity,animal,zombie,hostile,dog,BossDogInfested,boss"/>
+	<property name="Prefab" value="/Entities/Animals/Wolf/animalStandardDogZombieRagdoll"/>
+	<property name="PhysicsBody" value="zombieDog"/>
+	<property name="SizeScale" value="2"/>
+	 <property name="NavObject" value="zombie" />
+    <property name="ExperienceGain" value="2500"/>
+	<property name="SleeperSmellSenseThreshold" value="5,30"/> 
+	<property name="SleeperSmellWakeThreshold" value="10,40"/>
+	<property name="SmellAlertThreshold" value="5"/> 
+	<property name="MoveSpeed" value=".15"/>
+	<property name="MoveSpeedNight" value=".3"/>
+	<property name="MoveSpeedAggro" value="0.6, 1.3"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="HandItem" value="meleeHandAnimalZombieDog"/>
+	<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+		<property name="MaxViewAngle" value="360"/>
+		<property name="SightRange" value="40"/>
+	
+	
+
+	<effect_group name="Base Effects">
+	 
+	   <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionDogInfestedBuff"/>
+		<passive_effect name="HealthMax" operation="base_set" value="900"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+<entity_class name="ZombieINC_MinionDogInfested1" extends="animalZombieDog">
+	<property name="Class" value="EntityZombieDog"/>
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="EntityFlags" value="animal,zombie"/>
+	<property name="Tags" value="entity,animal,zombie,hostile,dog,MinionDogInfested"/>
+	<property name="Prefab" value="/Entities/Animals/Wolf/animalStandardDogZombieRagdoll"/>
+	<property name="PhysicsBody" value="zombieDog"/>
+	<property name="SizeScale" value="0.9"/>
+	<property name="ExperienceGain" value="400"/>
+	<property name="SleeperSmellSenseThreshold" value="5,30"/> <!-- Indiv.Random. smell capability - "I smell something" player smell value -->
+	<property name="SleeperSmellWakeThreshold" value="10,40"/>
+	<property name="SmellAlertThreshold" value="5"/> <!-- for awake zombies -->
+	<property name="MoveSpeed" value=".2"/>
+	<property name="MoveSpeedNight" value=".3"/>
+	<property name="MoveSpeedAggro" value="0.8, 1.3"/>
+	<property name="MoveSpeedPanic" value="1"/>
+	<property name="HandItem" value="meleeHandAnimalZombieDog"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>
+	<property name="MaxViewAngle" value="360"/>
+		<property name="SightRange" value="40"/>
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="100"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+	<!--BossDogInfested-->
+	<!--BossBiker-->
+	
+	<entity_class name="ZombieINC_BossBiker" extends="zombieBiker">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="SizeScale" value="1.3"/>
+	<property name="Tags" value="entity,zombie,walker,BossBiker,boss"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBikerFeral.prefab"/>
+	<property name="Mass" value="230"/>
+	<property name="WalkType" value="7"/>
+	<property name="PainResistPerHit" value=".75"/>
+	<property name="HandItem" value="meleeHandZombieStrongFeral"/>
+    <property name="NavObject" value="zombie" />
+	<!-- Gameplay zombieBiker -->
+	<property name="MoveSpeedAggro" value="0.2, 1.2"/> 
+	<property name="JumpMaxDistance" value=".8, 1.1"/>
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="ExperienceGain" value="2000"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="1250"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_set" value="50"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionBikerBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabBikerBuff"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+<entity_class name="ZombieINC_MinionBiker1" extends="zombieBiker">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="SizeScale" value="1"/>
+	<property name="Tags" value="entity,zombie,walker,MinionBiker"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBiker.prefab"/>
+	<property name="Mass" value="230"/>
+	<property name="WalkType" value="7"/>
+	<property name="PainResistPerHit" value=".75"/>
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="MoveSpeedAggro" value="0.2, 1.2"/> 
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="ExperienceGain" value="450"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>	
+	
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="200"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_set" value="10"/>
+	
+	</effect_group>
+</entity_class>
+
+	<!--BossBiker-->
+	<!--BossBikerInfested-->
+	
+	<entity_class name="ZombieINC_BossBikerInfested" extends="zombieBiker">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="SizeScale" value="1.3"/>
+	<property name="Tags" value="entity,zombie,walker,BossBikerInfested,boss"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBikerFeral.prefab"/>
+	<property name="Mass" value="230"/>
+	<property name="WalkType" value="7"/>
+	<property name="PainResistPerHit" value=".75"/>
+	<property name="HandItem" value="meleeHandZombieStrongFeral"/>
+    <property name="NavObject" value="zombie" />
+	<!-- Gameplay zombieBiker -->
+	<property name="MoveSpeedAggro" value="0.2, 1.2"/> 
+	<property name="JumpMaxDistance" value=".8, 1.1"/>
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="ExperienceGain" value="2000"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="1250"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_set" value="50"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionBikerInfestedBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabBikerInfestedBuff"/>
+		
+	</effect_group>
+	
+</entity_class>
+
+<entity_class name="ZombieINC_MinionBikerInfested1" extends="zombieBiker">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="SizeScale" value="1"/>
+	<property name="Tags" value="entity,zombie,walker,MinionBikerInfested"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBiker.prefab"/>
+	<property name="Mass" value="230"/>
+	<property name="WalkType" value="7"/>
+	<property name="PainResistPerHit" value=".75"/>
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="MoveSpeedAggro" value="0.2, 1.2"/> 
+	<property name="HandItem" value="meleeHandZombieStrong"/>
+	<property name="ExperienceGain" value="450"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+	<property name="AIFeralSense" value="2"/>
+	<property name="AINoiseSeekDist" value="30"/>	
+	
+	<effect_group name="Base Effects">
+	
+		<passive_effect name="HealthMax" operation="base_set" value="200"/>
+		<passive_effect name="PhysicalDamageResist" operation="base_set" value="10"/>
+	
+	</effect_group>
+</entity_class>
+
+	<!--BossBikerInfested-->
+	<!--BossMultiply-->
+	
+	<entity_class name="ZombieINC_BossMultiply" extends="zombieFatHawaiian">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossMultiply,boss"/>
+		<property name="SizeScale" value="1.4"/>
+		<property name="ExperienceGain" value="4000"/>
+	    <property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+	    <property name="MoveSpeed" value="0.6"/>
+	    <property name="MoveSpeedPanic" value="1"/>
+	    <property name="NavObject" value="zombie" />
+	    <property name="HandItem" value="ZombieINC_meleeHandMultiply"/>
+		<property name="RightHandJointName" value="Jaw"/>
+		<property name="PushFactor" value="20"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>		
+
+		<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=7;duration=5;minRange=1;maxRange=10|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+		
+		<property name="AITarget" value="
+		SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+		BlockingTargetTask|
+		SetNearestCorpseAsTarget flags=edible|
+		SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+		"/>
+		
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="4000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			
+			
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionMultiplyBuff"/>
+		
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionMultiply1" extends="zombieTomClark">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionMultiply"/>
+		<property name="SizeScale" value=".9"/>
+		<property name="ExperienceGain" value="200"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>	 
+	    <property name="MoveSpeed" value="0.8"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.3, 1.4"/>
+	
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="150"/>
+			
+			
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_BossMultiplyMini" extends="zombieFatHawaiian">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MultiplyMini,miniboss"/>
+		<property name="SizeScale" value="1.1"/>
+		<property name="ExperienceGain" value="2000"/>
+	    <property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+	    <property name="MoveSpeed" value="0.3"/>
+		<property name="MoveSpeedAggro" value="0.3, 0.8"/>
+	    <property name="MoveSpeedPanic" value="0.8"/>
+	    <property name="NavObject" value="zombie" />
+	    <property name="HandItem" value="ZombieINC_meleeHandMultiplyMini"/>
+		<property name="RightHandJointName" value="Jaw"/>
+		<property name="PushFactor" value="20"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>		
+
+		<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=7;duration=5;minRange=1;maxRange=20|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+		
+		<property name="AITarget" value="
+		SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+		BlockingTargetTask|
+		SetNearestCorpseAsTarget flags=edible|
+		SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+		"/>
+		
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="1050"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			
+			
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionMultiplyBuff"/>
+		
+
+		</effect_group>
+	</entity_class>
+	
+	<!--BossMultiply-->
+	<!--BossMultiplyInfested-->
+	
+	<entity_class name="ZombieINC_BossMultiplyInfested" extends="zombieFatHawaiian">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossMultiplyInfested,boss"/>
+		<property name="SizeScale" value="1.4"/>
+		<property name="ExperienceGain" value="4000"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	    <property name="MoveSpeed" value="0.6"/>
+	    <property name="MoveSpeedPanic" value="1"/>
+	    <property name="NavObject" value="zombie" />
+	    <property name="HandItem" value="ZombieINC_meleeHandMultiply"/>
+		<property name="RightHandJointName" value="Jaw"/>
+		<property name="PushFactor" value="20"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>		
+
+		<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=7;duration=5;minRange=1;maxRange=10|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+		
+		<property name="AITarget" value="
+		SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+		BlockingTargetTask|
+		SetNearestCorpseAsTarget flags=edible|
+		SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+		"/>
+		
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="4000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			
+			
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionMultiplyInfestedBuff"/>
+		
+
+		</effect_group>
+	</entity_class>
+	<!--BossMultiplyInfested-->
+	
+	<!--BossFire-->
+	
+	<entity_class name="ZombieINC_BossFire" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossFire,boss"/>
+		<property name="SizeScale" value="1.25"/>
+		<property name="ExperienceGain" value="4000"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBurntFeral.prefab"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>	
+	    <property name="MoveSpeed" value="0.6"/>
+	    <property name="MoveSpeedPanic" value="1.1"/>
+		<property name="MoveSpeedAggro" value="0.3, 1.1"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossFire"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+		<property name="NavObject" value="zombie" />
+	
+		<effect_group name="Base Effects">
+		    <passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+			<passive_effect name="HealthMax" operation="base_set" value="2550"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionFireBuff"/>
+			
+
+		</effect_group>
+	</entity_class>
+	
+	
+	<entity_class name="ZombieINC_MinionMaleFire" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionFire"/>
+		<property name="SizeScale" value="0.15"/>
+		<property name="ExperienceGain" value="300"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionFire"/>
+		
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.7"/>
+	    <property name="MoveSpeedPanic" value="1.2"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.2"/>
+	    <property name="JumpMaxDistance" value="4.6, 5"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="180"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="Ragdoll" duration="0.01"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"  buff="ZombieINC_MinionFireMaleSpawning"/>
+		
+			
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionWomanFire" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionFire"/>
+		<property name="SizeScale" value="0.15"/>
+		<property name="ExperienceGain" value="300"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionFire"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.9, 1.4"/>
+	    <property name="JumpMaxDistance" value="4.6, 5"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="120"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="Ragdoll"  duration="0.1"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"  buff="ZombieINC_MinionFireWomanSpawning"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionKidFire" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionFire"/>
+		<property name="SizeScale" value="0.15"/>
+		<property name="ExperienceGain" value="300"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionKidFire"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="1"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="1.2, 1.4"/>
+	    <property name="JumpMaxDistance" value="4.6, 5"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="60"/>
+		<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="Ragdoll"  duration="0.1"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"  buff="ZombieINC_MinionFireKidSpawning"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionKidFire2" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionFire"/>
+		<property name="SizeScale" value="0.15"/>
+		<property name="ExperienceGain" value="300"/>
+		<property name="HandItem" value="ZombieINC_meleeHandMinionKidFire"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="1.1"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="1.4, 1.5"/>
+		<property name="JumpMaxDistance" value="4.6, 5"/>
+	
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="30"/>
+		    <passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="Ragdoll"  duration="0.05"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff"  buff="ZombieINC_MinionFireKid2Spawning"/>
+
+		</effect_group>
+	</entity_class>
+	<!--BossFire-->
+	<!--BossFireInfested-->
+	
+	<entity_class name="ZombieINC_BossFireInfested" extends="zombieBurnt">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossFireInfested,boss"/>
+		<property name="SizeScale" value="1.25"/>
+		<property name="ExperienceGain" value="4000"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZBurntFeral.prefab"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>	
+	    <property name="MoveSpeed" value="0.6"/>
+	    <property name="MoveSpeedPanic" value="1.1"/>
+		<property name="MoveSpeedAggro" value="0.3, 1.1"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossFire"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		<property name="NavObject" value="zombie" />
+	
+		<effect_group name="Base Effects">
+		    <passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat"/>
+			<passive_effect name="HealthMax" operation="base_set" value="2550"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionFireInfestedBuff"/>
+			
+
+		</effect_group>
+	</entity_class>
+	<!--BossScientist-->
+	
+	<entity_class name="ZombieINC_BossScientist" extends="zombieMaleHazmat">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossScientist,boss"/>
+		<property name="SizeScale" value="1.2"/>
+		<property name="ExperienceGain" value="6000"/>
+		<property name="NavObject" value="zombie" />
+	    <property name="MoveSpeed" value="0.6"/>
+	    <property name="MoveSpeedPanic" value="1"/>
+		<property name="MoveSpeedAggro" value="0.3, 1.1"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerStrong"/>
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="3500"/>
+			
+			
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_SpawnMinionScientistBuff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabScientistBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	
+	<entity_class name="ZombieINC_MinionScientist1" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist1Buff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionScientist2" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist2Buff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionScientist3" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist3Buff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionScientist4" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist4Buff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionScientist5" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist5Buff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_MinionScientist6" extends="zombieLab">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,MinionScientist"/>
+		<property name="SizeScale" value="1"/>
+		<property name="ExperienceGain" value="200"/>
+	 	<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="MoveSpeed" value="0.9"/>
+	    <property name="MoveSpeedPanic" value="1.4"/>
+		<property name="MoveSpeedAggro" value="0.7, 1.4"/>
+	    <property name="TimeStayAfterDeath" value="20"/>
+		<property name="DeadBodyHitPoints" value="150000"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="350"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientist6Buff"/>
+			<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_MinionScientistRegenBuff"/>
+
+		</effect_group>
+	</entity_class>
+	
+	<!--BossScientist-->
+	<!--BossTwins-->
+	
+	<entity_class name="ZombieINC_BossTwinsBlue" extends="zombieMutatedFeral">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,feral,BossTwinsBlue"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedFeral.prefab"/>
+	<property name="SizeScale" value="1.1"/>
+	<property name="NavObject" value="zombie" />
+	<!-- Gameplay zombieMutatedFeral -->
+	<property name="HandItem" value="meleeHandzombieMutatedFeral"/>
+	<property name="DismemberMultiplierHead" value=".7"/>
+	<property name="DismemberMultiplierArms" value=".7"/>
+	<property name="DismemberMultiplierLegs" value=".7"/><!-- Feral -->
+	<property name="PainResistPerHit" value=".7"/><!-- Feral -->
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<property name="ExperienceGain" value="5000"/><!-- XP grunt feral -->
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="3500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsBlueBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsBlueAttachPrefabBuff"/>
+	</effect_group>
+	</entity_class>
+	
+	
+	
+	
+	<entity_class name="ZombieINC_BossTwinsRed" extends="zombieMutatedFeral">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,feral,BossTwinsRed"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedFeral.prefab"/>
+	<property name="SizeScale" value="1.1"/>
+	<property name="NavObject" value="zombie" />
+	<!-- Gameplay zombieMutatedFeral -->
+	<property name="HandItem" value="meleeHandzombieMutatedFeral"/>
+	<property name="DismemberMultiplierHead" value=".7"/>
+	<property name="DismemberMultiplierArms" value=".7"/>
+	<property name="DismemberMultiplierLegs" value=".7"/><!-- Feral -->
+	<property name="PainResistPerHit" value=".7"/><!-- Feral -->
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<property name="ExperienceGain" value="5000"/><!-- XP grunt feral -->
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="3500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsRedBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsRedAttachPrefabBuff"/>
+	</effect_group>
+	</entity_class>
+	
+	<!--BossTwins-->
+	<!--BossTwinsInfested-->
+	
+	<entity_class name="ZombieINC_BossTwinsBlueInfested" extends="zombieMutatedRadiated">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,feral,BossTwinsBlueInfested"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedRadiated.prefab"/>
+	<property name="SizeScale" value="1.3"/>
+	<property name="NavObject" value="zombie" />
+	
+	<property name="HandItem" value="ZombieINC_meleeHandBossTwinsBlueInfested"/>
+	<property name="RightHandJointName" value="RightArm"/>
+	<property name="DismemberMultiplierHead" value=".7"/>
+	<property name="DismemberMultiplierArms" value=".7"/>
+	<property name="DismemberMultiplierLegs" value=".7"/>
+	<property name="PainResistPerHit" value=".7"/>
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<property name="ExperienceGain" value="5000"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	
+	<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=12;duration=8;minRange=1;maxRange=18|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+	
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="3500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsBlueInfestedBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsBlueInfestedAttachPrefabBuff"/>
+		
+	</effect_group>
+	</entity_class>
+	
+	
+	
+	
+	<entity_class name="ZombieINC_BossTwinsRedInfested" extends="zombieMutatedRadiated">
+	<property name="UserSpawnType" value="Menu"/>
+	<property name="Tags" value="entity,zombie,walker,feral,BossTwinsRedInfested"/>
+	<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZMutatedRadiated.prefab"/>
+	<property name="SizeScale" value="1.3"/>
+	<property name="NavObject" value="zombie" />
+	
+	<property name="HandItem" value="ZombieINC_meleeHandBossTwinsRedInfested"/>
+	<property name="RightHandJointName" value="LeftArm"/>
+	<property name="DismemberMultiplierHead" value=".7"/>
+	<property name="DismemberMultiplierArms" value=".7"/>
+	<property name="DismemberMultiplierLegs" value=".7"/>
+	<property name="PainResistPerHit" value=".7"/>
+	<property name="MoveSpeedAggro" value=".5, 1.35"/>
+	
+	<property name="ExperienceGain" value="5000"/>
+	<property name="LootDropProb" value="1"/>
+	<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	
+	<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=12;duration=8;minRange=1;maxRange=18|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+	
+	<effect_group name="Base Effects">
+		<passive_effect name="HealthMax" operation="base_set" value="3500"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsRedInfestedBuff"/>
+		<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_BossTwinsRedInfestedAttachPrefabBuff"/>
+	</effect_group>
+	</entity_class>
+	
+	<!--BossTwinsInfested-->
+	<!--BossBomber-->
+	
+	<entity_class name="ZombieINC_BossBomber" extends="zombieWightFeral">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossBomber,boss"/>
+		<property name="SizeScale" value="1.35"/>
+		<property name="ExperienceGain" value="8000"/>
+		<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWightFeral.prefab"/>
+		<property name="WalkType" value="2"/>
+		<property name="NavObject" value="zombie" />
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		<property name="MoveSpeedAggro" value="0.2, 1.0"/> 
+	
+		<property name="Explosion.ParticleIndex" value="2"/>
+		<property name="Explosion.RadiusBlocks" value="5"/>
+		<property name="Explosion.RadiusEntities" value="6"/>
+		<property name="Explosion.BlockDamage" value="5000"/>
+		<property name="Explosion.EntityDamage" value="800"/>
+		<property name="Explosion.DamageBonus.earth" value=".1"/>
+
+	
+		<property name="SoundExplodeWarn" value="demolitionzexplodewarning"/>
+		<property name="SoundTick" value="demolitionz_beep,.5,.9"/>
+	
+		<effect_group name="Base Effects">
+		
+			<passive_effect name="HealthMax" operation="base_set" value="4000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			<passive_effect name="ExplosionIncomingDamage" operation="perc_add" value="-1.0"/>
+			
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="EntityBoss" operation="set" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="13.1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabBomberBuff"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_ActionBomberBuff"/>
+			
+		</effect_group>
+	</entity_class> 
+	
+	<!--BossBomber-->
+	<!--BossBomberInfested-->
+	
+	<entity_class name="ZombieINC_BossBomberInfested" extends="zombieWightFeral">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossBomberInfested,boss"/>
+		<property name="SizeScale" value="1.35"/>
+		<property name="ExperienceGain" value="8000"/>
+		<property name="Mesh" value="@:Entities/Zombies/Prefabs/ZWightFeral.prefab"/>
+		<property name="WalkType" value="2"/>
+		<property name="NavObject" value="zombie" />
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+		<property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		<property name="MoveSpeedAggro" value="0.2, 1.0"/> 
+	
+		<property name="Explosion.ParticleIndex" value="2"/>
+		<property name="Explosion.RadiusBlocks" value="5"/>
+		<property name="Explosion.RadiusEntities" value="6"/>
+		<property name="Explosion.BlockDamage" value="5000"/>
+		<property name="Explosion.EntityDamage" value="800"/>
+		<property name="Explosion.DamageBonus.earth" value=".1"/>
+
+	
+		<property name="SoundExplodeWarn" value="demolitionzexplodewarning"/>
+		<property name="SoundTick" value="demolitionz_beep,.5,.9"/>
+	
+		<effect_group name="Base Effects">
+		
+			<passive_effect name="HealthMax" operation="base_set" value="4000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			<passive_effect name="ExplosionIncomingDamage" operation="perc_add" value="-1.0"/>
+			
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="EntityBoss" operation="set" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="13.1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabBomberInfestedBuff"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_ActionBomberInfestedBuff"/>
+			
+		</effect_group>
+	</entity_class> 
+	
+	<!--BossBomberInfested-->
+	<!--BossDemolition-->
+	<entity_class name="ZombieINC_BossDemolition" extends="zombieDemolition">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossDemolition,boss"/>
+		<property name="SizeScale" value="1.20"/>
+		<property name="ExperienceGain" value="16000"/>
+		 <property name="NavObject" value="zombie" />
+		<property name="WalkType" value="2"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="ExplodeHealthThreshold" value="0"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossDemolition"/>
+		<property name="RightHandJointName" value="LeftArm"/>
+		<property name="MoveSpeedAggro" value="0.3, 1.0"/> 
+	    <property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+	
+	
+	<property name="AITask" value="
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=12;duration=8;minRange=1;maxRange=18|
+		ApproachAndAttackTarget class=EntityPlayer,0|
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+		
+		<property name="AITarget" value="
+		SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+		BlockingTargetTask|
+		SetNearestCorpseAsTarget flags=edible|
+		SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+		"/>
+	
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="8000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			<passive_effect name="ExplosionIncomingDamage" operation="perc_add" value="-1.0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="EntityBoss" operation="set" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8.1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabDemolitionBuff"/>
+				
+				
+			
+  
+			
+					
+
+		</effect_group>
+	</entity_class>
+	<!--BossDemolition-->
+	
+	<!--BossDemolitionInfested-->
+	<entity_class name="ZombieINC_BossDemolitionInfested" extends="zombieDemolition">
+	    <property name="UserSpawnType" value="Menu"/>
+		<property name="Tags" value="entity,zombie,walker,BossDemolitionInfested,boss"/>
+		<property name="SizeScale" value="1.40"/>
+		<property name="ExperienceGain" value="50000"/>
+		 <property name="NavObject" value="zombie" />
+		<property name="WalkType" value="2"/>
+		<property name="AIFeralSense" value="2"/>
+		<property name="AINoiseSeekDist" value="30"/>
+	    <property name="ExplodeHealthThreshold" value="0"/>
+		<property name="HandItem" value="ZombieINC_meleeHandBossDemolition"/>
+		<property name="RightHandJointName" value="Neck"/>
+		<property name="MoveSpeedAggro" value="0.5, 1.2"/> 
+	    <property name="LootDropProb" value="1"/>
+		<property name="LootDropEntityClass" value="EntityLootContainerBoss"/>
+		
+		
+	<property name="AITask" value="
+		
+		BreakBlock|
+		DestroyArea|
+		Territorial|
+		RangedAttackTarget itemType=1;cooldown=12;duration=8;minRange=1;maxRange=18|
+		ApproachAndAttackTarget class=EntityPlayer,0|	
+		ApproachSpot|
+		Look|
+		Wander|
+		"/>
+		
+		<property name="AITarget" value="
+		SetAsTargetIfHurt class=EntityPlayer,EntityBandit,EntityEnemyAnimal|
+		SetNearestCorpseAsTarget flags=edible|
+		SetNearestEntityAsTarget class=EntityPlayer,0,0,EntityBandit,0,-10|
+		"/>
+		
+		
+		
+		<effect_group name="Base Effects">
+			<passive_effect name="HealthMax" operation="base_set" value="20000"/>
+			<passive_effect name="HealthMax" operation="perc_add" value="0"/>
+			<passive_effect name="ExplosionIncomingDamage" operation="perc_add" value="-1.0"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="ModifyCVar" target="self" cvar="EntityBoss" operation="set" value="1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="8.1"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+				<triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="ZombieINC_AttachPrefabDemolitionInfestedBuff"/>
+											  						
+		</effect_group>
+	</entity_class>
+	<!--BossDemolitionInfested-->
+	<!--Creates-->
+	
+	<entity_class name="ZombieINC_crate_template">
+		<property name="Class" value="EntityLootContainer"/>
+		<property name="UserSpawnType" value="None"/>
+		<property name="ModelType" value="Custom"/>
+		<property name="Prefab" value="Backpack"/>
+		<property name="Parent" value="Backpack"/>
+		<property name="IsEnemyEntity" value="false"/>
+		<property name="TimeStayAfterDeath" value="2400"/>
+		<property name="Faction" value="none"/>
+		<property name="NavObject" value="ZombieINC_supply,ZombieINC_supply_other" />
+	</entity_class>
+
+
+	<entity_class name="ZombieINC_crate_T1" extends="ZombieINC_crate_template">
+		<property name="UserSpawnType" value="Console"/>
+		<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
+		<property name="LootListOnDeath" value="ZombieINC_DefenseCrate_T1"/>
+	</entity_class>
+	
+	<entity_class name="ZombieINC_crate_T2" extends="ZombieINC_crate_template">
+		<property name="UserSpawnType" value="Console"/>
+		<property name="Mesh" value="@:Entities/LootContainers/crate_storeSignablePrefab.prefab"/>
+		<property name="LootListOnDeath" value="ZombieINC_DefenseCrate_T2"/>
+	</entity_class>
+	
+	<!--Creates-->
+	</append>
+
+</configs>
+
