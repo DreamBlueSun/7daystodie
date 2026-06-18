@@ -46617,7 +46617,7 @@
                     <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" buff="buffIridescentModClothingJoy"/>
             </effect_group>
         </item_modifier>
-        <!-- ** 寒气炼成 -->
+        <!-- ** 源：冰霜牙 -->
         <item_modifier name="IridescentModClothingColdnessAccumulates" installable_tags="marisaPerBuffMod" modifier_tags="perBuffMod" blocked_tags="noMods" type="attachment">
             <property name="Extends" value="modGeneralMaster"/>
             <property name="Group" value="Mods,Tool/Weapon Mods,Marisa/Mods"/>
@@ -46627,26 +46627,6 @@
             <property name="Material" value="MIridescentCube"/>
             <property name="Weight" value="11"/>
             <effect_group tiered="false">
-                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulates" operation="set" value="1"/>
-                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulates" operation="set" value="0"/>
-            </effect_group>
-            <effect_group tiered="false">
-                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".DisIridescentModClothingColdnessAccumulates" operation="set" value="2"/>
-                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".DisIridescentModClothingColdnessAccumulates" operation="set" value="0"/>
-            </effect_group>
-            <effect_group name="MeleeHuntingKnife_Atk_Equip">
-                <triggered_effect trigger="onSelfEquipStart" action="AddBuff" buff="buffIridescentModClothingColdnessAccumulates"/>
-                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="set" value="0"/>
-                <triggered_effect trigger="onSelfEquipStop" action="RemoveBuff" buff="buffIridescentModClothingColdnessAccumulates"/>
-            </effect_group>
-            <effect_group name="MeleeHuntingKnife_Atk_Attacked">
-                <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="set" value="0">
-                    <requirement name="ItemHasTags" tags="melee"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="set" value="0">
-                    <requirement name="ItemHasTags" tags="melee"/>
-                </triggered_effect>
-                <triggered_effect trigger="onSelfRangedBurstShotStart" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="set" value="0"/>
             </effect_group>
         </item_modifier>
         <!-- ** 雷霆之翼 -->

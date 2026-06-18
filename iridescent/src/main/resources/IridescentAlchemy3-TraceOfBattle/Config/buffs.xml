@@ -389,17 +389,17 @@
 			<triggered_effect trigger="onSelfEnteredGame" action="ModifyCVar" cvar=".MarisaCrossBowMagazineSize" operation="set" value="1"/>
 		</effect_group>
 
-		<!-- 添加 状态检查 0.1s -->
+		<!-- 添加 状态检查 01 -->
 		<effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa01"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa01"/>
 		</effect_group>
-		<!-- 添加 状态检查 0.2s -->
+		<!-- 添加 状态检查 02 -->
 		<effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa02"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa02"/>
 		</effect_group>
-		<!-- 添加 状态检查 1s -->
+		<!-- 添加 状态检查 10 -->
 		<effect_group>
 			<requirement name="NotHasBuff" buff="buffStatusCheckMarisa10"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffStatusCheckMarisa10"/>
@@ -571,7 +571,7 @@
 	<!-- *** 玩家正面 -->
 	<append xpath="/buffs">
 
-		<!-- 状态检查 0.1s -->
+		<!-- 状态检查 01 = 0.1s -->
 		<buff name="buffStatusCheckMarisa01" hidden="true">
 			<stack_type value="ignore"/>
 			<update_rate value=".1"/>
@@ -964,7 +964,7 @@
 
 		</buff>
 
-		<!-- 状态检查 0.2s -->
+		<!-- 状态检查 02 = 0.2s -->
 		<buff name="buffStatusCheckMarisa02" hidden="true">
 			<stack_type value="ignore"/>
 			<update_rate value=".2"/>
@@ -2878,36 +2878,9 @@
 					<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="10" buff="buffHealthMaxDownPerc10"/>
 			</effect_group>
 
-
-
-			<!-- 添加 寒气 -->
-			<effect_group name="buffMeleeHuntingKnifeAtkModifyCVar">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1">
-					<requirement name="HasBuff" buff="buffMeleeHuntingKnifeAtk"/>
-					<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="20"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1">
-					<requirement name="HasBuff" buff="buffMeleeHuntingKnifeAtk"/>
-					<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="20"/>
-					<requirement name="ProgressionLevel" progression_name="perkMarisaConcentration" operation="Equals" value="1"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="50"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1">
-					<requirement name="HasBuff" buff="buffMeleeHuntingKnifeAtk"/>
-					<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="20"/>
-					<requirement name="ProgressionLevel" progression_name="perkMarisaConcentration" operation="Equals" value="2"/>
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="75"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1">
-					<requirement name="HasBuff" buff="buffMeleeHuntingKnifeAtk"/>
-					<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="20"/>
-					<requirement name="ProgressionLevel" progression_name="perkMarisaConcentration" operation="Equals" value="3"/>
-				</triggered_effect>
-			</effect_group>
-
 		</buff>
 
-		<!-- 状态检查 1s -->
+		<!-- 状态检查 10 = 1s -->
 		<buff name="buffStatusCheckMarisa10" hidden="true">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
@@ -3295,7 +3268,7 @@
 				</triggered_effect>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="10"/>
+				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment1" allow_client_call="true">
 					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="1"/>
 				</triggered_effect>
@@ -5323,7 +5296,6 @@
 		</buff>
 
 	</append>
-
 	<!-- *** 玩家负面 -->
 	<append xpath="/buffs">
 
@@ -5413,1377 +5385,6 @@
 
 	</append>
 
-	<!-- *** 猫饭 -->
-	<append xpath="/buffs">
-
-		<!-- 魔理沙的饭 -->
-		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_cookware" icon_color="255,165,0">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="HealthMax" operation="base_add" value="50"/>
-				<passive_effect name="StaminaMax" operation="base_add" value="50"/>
-                <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="50" delay="0.5"/>
-				<!-- 实体伤害 -->
-				<passive_effect name="EntityDamage" operation="base_add" value="2"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="3"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="EntityDamage" operation="base_add" value="5"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="3"/></passive_effect>
-				<!-- 伤害减免 -->
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="3"/></passive_effect>
-				<!-- 移动速度 -->
-				<passive_effect name="Mobility" operation="perc_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="Mobility" operation="perc_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="Mobility" operation="perc_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="3"/></passive_effect>
-				<!-- 生命回复 -->
-				<passive_effect name="HealthChangeOT" operation="base_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="3"/></passive_effect>
-				<!-- 体力回复 -->
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="3"/></passive_effect>
-				<!-- 物块伤害 -->
-				<passive_effect name="BlockDamage" operation="perc_add" value=".08"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="1"/></passive_effect>
-				<passive_effect name="BlockDamage" operation="perc_add" value=".12"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="2"/></passive_effect>
-				<passive_effect name="BlockDamage" operation="perc_add" value=".2"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="3"/></passive_effect>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEntityDamage" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastGeneralDamageResist" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastMobility" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasHealthChangeOT" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastStaminaChangeOT" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastBlockDamage" operation="set" value="0"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的击晕术 -->
-		<buff name="buffMarisasFeastEffect1" name_key="buffMarisasFeastEffect1Name" description_key="buffMarisasFeastEffect1Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="HasBuff" buff="buffInjuryStunned01" target="other"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的体术 -->
-		<buff name="buffMarisasFeastEffect2" name_key="buffMarisasFeastEffect2Name" description_key="buffMarisasFeastEffect2Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.05"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的火场怪力 -->
-		<buff name="buffMarisasFeastEffect3" name_key="buffMarisasFeastEffect3Name" description_key="buffMarisasFeastEffect3Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".1"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".40"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的理毛好手 -->
-		<buff name="buffMarisasFeastEffect4" name_key="buffMarisasFeastEffect4Name" description_key="buffMarisasFeastEffect4Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value=".5"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value="0"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的治愈术 -->
-		<buff name="buffMarisasFeastEffect5" name_key="buffMarisasFeastEffect5Name" description_key="buffMarisasFeastEffect5Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="NotHasBuff" buff="buffStatusHungry03"/>
-				<requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
-				<passive_effect name="HealthChangeOT" operation="base_add" value=".15"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的射击术 -->
-		<buff name="buffMarisasFeastEffect6" name_key="buffMarisasFeastEffect6Name" description_key="buffMarisasFeastEffect6Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="ItemHasTags" tags="ranged"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的炮击术 -->
-		<buff name="buffMarisasFeastEffect7" name_key="buffMarisasFeastEffect7Name" description_key="buffMarisasFeastEffect7Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".15" tags="perkDemolitionsExpert,perkArchery"/>
-				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".15" tags="perkDemolitionsExpert,perkArchery"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的换算术 -->
-		<buff name="buffMarisasFeastEffect8" name_key="buffMarisasFeastEffect8Name" description_key="buffMarisasFeastEffect8Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="QuestBonusItemReward" operation="perc_add" value=".2"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的收获祭 -->
-		<buff name="buffMarisasFeastEffect9" name_key="buffMarisasFeastEffect9Name" description_key="buffMarisasFeastEffect9Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="farmerBonusHarvest"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的财运 -->
-		<buff name="buffMarisasFeastEffect10" name_key="buffMarisasFeastEffect10Name" description_key="buffMarisasFeastEffect10Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="LootQuantity" operation="perc_add" value=".5" tags="dukes"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的幸运 -->
-		<buff name="buffMarisasFeastEffect11" name_key="buffMarisasFeastEffect11Name" description_key="buffMarisasFeastEffect11Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="LootStage" operation="base_add" level="1" value="5"/>
-				<passive_effect name="LootStage" operation="perc_add" level="1" value=".1"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的后面交给你们了！ -->
-		<buff name="buffMarisasFeastEffect12" name_key="buffMarisasFeastEffect12Name" description_key="buffMarisasFeastEffect12Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfDied" action="ModifyStats" stat="Health" target="selfOtherPlayers" target_tags="ally,party" operation="add" value="60"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的蛮干术 -->
-		<buff name="buffMarisasFeastEffect13" name_key="buffMarisasFeastEffect13Name" description_key="buffMarisasFeastEffect13Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffMarisasFeastEffect13On"/>
-			</effect_group>
-		</buff>
-		<buff name="buffMarisasFeastEffect13On" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="1"/>
-			<effect_group>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的着地术 -->
-		<buff name="buffMarisasFeastEffect14" name_key="buffMarisasFeastEffect14Name" description_key="buffMarisasFeastEffect14Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value=".08484"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value="0"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的天气预报 -->
-		<buff name="buffMarisasFeastEffect15" name_key="buffMarisasFeastEffect15Name" description_key="buffMarisasFeastEffect15Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="marisa_weather_rain" allow_client_call="true"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的吸引仇恨好手 -->
-		<buff name="buffMarisasFeastEffect16" name_key="buffMarisasFeastEffect16Name" description_key="buffMarisasFeastEffect16Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="LightMultiplier" operation="perc_add" value=".5"/>
-				<passive_effect name="NoiseMultiplier" operation="perc_add" value=".5"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的防御术 -->
-		<buff name="buffMarisasFeastEffect17" name_key="buffMarisasFeastEffect17Name" description_key="buffMarisasFeastEffect17Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的粗暴射击 -->
-		<buff name="buffMarisasFeastEffect18" name_key="buffMarisasFeastEffect18Name" description_key="buffMarisasFeastEffect18Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="ItemHasTags" tags="ranged"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
-				<passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".1"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的指导术 -->
-		<buff name="buffMarisasFeastEffect19" name_key="buffMarisasFeastEffect19Name" description_key="buffMarisasFeastEffect19Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="PlayerExpGain" operation="perc_add" value=".1"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的休息术 -->
-		<buff name="buffMarisasFeastEffect20" name_key="buffMarisasFeastEffect20Name" description_key="buffMarisasFeastEffect20Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect20" operation="GTE" value="4"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="add" value="1">
-					<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect15" operation="LT" value="4"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的短期催眠术 -->
-		<buff name="buffMarisasFeastEffect21" name_key="buffMarisasFeastEffect21Name" description_key="buffMarisasFeastEffect21Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的轻功达人 -->
-		<buff name="buffMarisasFeastEffect22" name_key="buffMarisasFeastEffect22Name" description_key="buffMarisasFeastEffect22Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.05" tags="jumping"/>
-				<passive_effect name="StaminaChangeOT" operation="perc_add" level="1" value=".1" tags="running"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的采蜜术 -->
-		<buff name="buffMarisasFeastEffect23" name_key="buffMarisasFeastEffect23Name" description_key="buffMarisasFeastEffect23Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="WasteTreasuresHoneyHarvest"/>
-			</effect_group>
-		</buff>
-		<!-- 魔理沙的饱腹术 -->
-		<buff name="buffMarisasFeastEffect24" name_key="buffMarisasFeastEffect24Name" description_key="buffMarisasFeastEffect24Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Food" operation="GTE" value=".8"/>
-				<requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value=".8"/>
-				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
-			</effect_group>
-		</buff>
-
-	</append>
-	<!-- ** 魔理沙的着地术 -->
-	<insertAfter xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group/triggered_effect[@action='ModifyCVar' and @cvar='.impactSpeed' and @value='@$parkourBonus']">
-		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$buffFeastEffectBonus"/>
-	</insertAfter>
-
-	<!-- *** 食物充能 -->
-	<append xpath="/buffs">
-
-		<!-- * 驾驶名人 -->
-		<buff name="buffMarisaVehicleVelocity" name_key="buffMarisaVehicleVelocityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVehicleVelocity"/>
-			</effect_group>
-		</buff>
-		<!-- * 快速换弹 -->
-		<buff name="buffMarisaReloadSpeed" name_key="buffMarisaReloadSpeedName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaReloadSpeed"/>
-			</effect_group>
-		</buff>
-		<!-- * 纳刀术 -->
-		<buff name="buffMarisaNanoKnife" name_key="buffMarisaNanoKnifeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNanoKnife"/>
-			</effect_group>
-		</buff>
-		<!-- * 集中 -->
-		<buff name="buffMarisaConcentration" name_key="buffMarisaConcentrationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaConcentration"/>
-			</effect_group>
-		</buff>
-		<!-- * 攻击 -->
-		<buff name="buffMarisaAttack" name_key="buffMarisaAttackName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttack"/>
-			</effect_group>
-		</buff>
-		<!-- * 无伤 -->
-		<buff name="buffMarisaFullHealth" name_key="buffMarisaFullHealthName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFullHealth"/>
-			</effect_group>
-		</buff>
-		<!-- * 弱点特效 -->
-		<buff name="buffMarisaHeadDamage" name_key="buffMarisaHeadDamageName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHeadDamage"/>
-			</effect_group>
-		</buff>
-		<!-- * 精神抖擞 -->
-		<buff name="buffMarisaVitality" name_key="buffMarisaVitalityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVitality"/>
-			</effect_group>
-		</buff>
-		<!-- * 力量解放 -->
-		<buff name="buffMarisaLiberationPower" name_key="buffMarisaLiberationPowerName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaLiberationPower"/>
-			</effect_group>
-		</buff>
-		<!-- * 体力提升 -->
-		<buff name="buffMarisaStaminaMaxUp" name_key="buffMarisaStaminaMaxUpName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaMaxUp"/>
-			</effect_group>
-		</buff>
-		<!-- * 回复速度 -->
-		<buff name="buffMarisaHealthChangeOT" name_key="buffMarisaHealthChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthChangeOT"/>
-			</effect_group>
-		</buff>
-		<!-- * 体力急速回复 -->
-		<buff name="buffMarisaStaminaChangeOT" name_key="buffMarisaStaminaChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaChangeOT"/>
-			</effect_group>
-		</buff>
-		<!-- * 体术 -->
-		<buff name="buffMarisaStaminaLossDown" name_key="buffMarisaStaminaLossDownName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaLossDown"/>
-			</effect_group>
-		</buff>
-		<!-- * 防御 -->
-		<buff name="buffMarisaDefensive" name_key="buffMarisaDefensiveName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensive"/>
-			</effect_group>
-		</buff>
-		<!-- * 精灵加护 -->
-		<buff name="buffMarisaDefensiveElf" name_key="buffMarisaDefensiveElfName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensiveElf"/>
-			</effect_group>
-		</buff>
-		<!-- * 暴击耐性 -->
-		<buff name="buffMarisaBuffResistance" name_key="buffMarisaBuffResistanceName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBuffResistance"/>
-			</effect_group>
-		</buff>
-		<!-- * 炼铜 -->
-		<buff name="buffMarisaCopperSmelting" name_key="buffMarisaCopperSmeltingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCopperSmelting"/>
-			</effect_group>
-		</buff>
-		<!-- * 盛宴 -->
-		<buff name="buffMarisaKillRecovery" name_key="buffMarisaKillRecoveryName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillRecovery"/>
-			</effect_group>
-		</buff>
-		<!-- * 治愈收割 -->
-		<buff name="buffMarisaKillHealing" name_key="buffMarisaKillHealingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillHealing"/>
-			</effect_group>
-		</buff>
-		<!-- * 属性解放 -->
-		<buff name="buffMarisaAttributeLiberation" name_key="buffMarisaAttributeLiberationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttributeLiberation"/>
-			</effect_group>
-		</buff>
-		<!-- * 贯星 -->
-		<buff name="buffMarisaThroughStars" name_key="buffMarisaThroughStarsName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaThroughStars"/>
-			</effect_group>
-		</buff>
-		<!-- * 吸血鬼之吻 -->
-		<buff name="buffMarisaVampireKiss" name_key="buffMarisaVampireKissName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVampireKiss"/>
-			</effect_group>
-		</buff>
-		<!-- * 属性莲华 -->
-		<buff name="buffMarisaIntensifyAoe" name_key="buffMarisaIntensifyAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaIntensifyAoe"/>
-			</effect_group>
-		</buff>
-		<!-- * 异常莲华 -->
-		<buff name="buffMarisaEffectAoe" name_key="buffMarisaEffectAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="1802"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectAoe"/>
-			</effect_group>
-		</buff>
-
-		<!-- * 生命提升 Ⅲ -->
-		<buff name="buffMarisaHealthMaxUp3" name_key="buffMarisaHealthMaxUp3Name" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaHealthMaxUp"/>
-			</effect_group>
-		</buff>
-
-	</append>
-
-	<!-- *** 技能模组 -->
-	<append xpath="/buffs">
-
-		<!-- 死中求活 -->
-		<buff name="buffIridescentModClothingLiveInDie" name_key="buffIridescentModClothingLiveInDieName" description_key="buffIridescentModClothingLiveInDieDesc" showonhud="true" icon="ui_game_symbol_laceration" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
-			</effect_group>
-		</buff>
-
-		<!-- 磁暴脉冲 -->
-		<buff name="buffIridescentModClothingTeslaCoil" name_key="buffIridescentModClothingTeslaCoilName" description_key="buffIridescentModClothingTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<duration value="0"/>
-			<effect_group>
-				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold"/>
-			</effect_group>
-		</buff>
-		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
-			<stack_type value="ignore"/>
-			<duration value="12"/>
-		</buff>
-
-		<!-- 狂风骤雨 -->
-		<buff name="buffIridescentModClothingRainstorm" name_key="buffIridescentModClothingRainstormName" description_key="buffIridescentModClothingRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<update_rate value=".05"/>
-			<duration value="0"/>
-			<effect_group>
-<!--                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>-->
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".35"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="0.5"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>
-					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
-			</effect_group>
-		</buff>
-
-		<!-- 愉悦 -->
-		<buff name="buffIridescentModClothingJoy" name_key="buffIridescentModClothingJoyName" description_key="buffIridescentModClothingJoyDesc" showonhud="true" icon="ui_game_symbol_twitch_top_bad" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="122"/>
-			<effect_group>
-				<passive_effect name="Mobility" operation="perc_add" value=".2"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
-
-		<!-- 寒气炼成 -->
-		<buff name="buffIridescentModClothingColdnessAccumulates" name_key="buffIridescentModClothingColdnessAccumulatesName" description_key="buffIridescentModClothingColdnessAccumulatesDesc" showonhud="true" icon="ui_game_symbol_cold" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<update_rate value=".1"/>
-			<display_value value=".buffIridescentModClothingColdnessAccumulates"/>
-			<display_value_key value="{0}"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIridescentModClothingColdnessAccumulates" operation="add" value="1">
-					<requirement name="CVarCompare" cvar=".buffIridescentModClothingColdnessAccumulates" operation="LT" value="20"/>
-				</triggered_effect>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="set" value="@.buffIridescentModClothingColdnessAccumulates"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="divide" value="50"/>
-			</effect_group>
-			<effect_group>
-                <passive_effect name="EntityDamage" operation="perc_add" value="@$IridescentModClothingColdnessAccumulatesAmount"/>
-			</effect_group>
-		</buff>
-
-		<!-- 活性医疗 -->
-		<buff name="buffIridescentModClothingActiveReply" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
-			</effect_group>
-		</buff>
-
-		<!-- 异常自愈 -->
-		<buff name="buffIridescentModClothingAutoHealing" name_key="buffIridescentModClothingAutoHealingName" description_key="buffIridescentModClothingAutoHealingDesc" showonhud="true" icon="ui_game_symbol_healing_factor" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<duration value="30"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="add" value="1"/>
-			</effect_group>
-		</buff>
-
-	</append>
-
-	<!-- *** 任务 -->
-	<append xpath="/buffs">
-
-		<!-- 潜行任务E -->
-		<buff name="buffCrouchingQuestSleeper" name_key="buffCrouchingQuestSleeperName" description_key="buffCrouchingQuestSleeperDesc" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value="1"/>
-			<duration value="0"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="5"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="300">
-					<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
-				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="GT" value="0"/>
-				<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="subtract" value="1"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
-				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="LTE" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
-				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
-			</effect_group>
-		</buff>
-		<!-- 潜行任务B -->
-		<buff name="buffCrouchingQuestBefore7" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="2"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="7"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-		<buff name="buffCrouchingQuestBefore9" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="9"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-		<buff name="buffCrouchingQuestBefore12" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="12"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-		<buff name="buffCrouchingQuestBefore15" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="15"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-		<buff name="buffCrouchingQuestBefore20" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="20"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-		<!-- 潜行任务P -->
-		<buff name="buffCrouchingQuestOn" name_key="buffCrouchingQuestOnName" description_key="buffCrouchingQuestOnDesc" showonhud="true" icon="ui_game_symbol_ninja" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<update_rate value=".2"/>
-			<duration value="0"/>
-			<display_value value="$CrouchingQuestOn"/>
-			<display_value_key value="{0}"/>
-			<effect_group>
-				<requirement name="CVarCompare" cvar="$CrouchingQuestOnWill" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="marisa_twitch_record_scratch" play_in_head="true"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" operation="subtract" value="1"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar="$CrouchingQuestOn" operation="LTE" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventCrouchingQuestFail" allow_client_call="true"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCrouchingQuestOn"/>
-			</effect_group>
-		</buff>
-
-	</append>
-
-
-
-	<!-- *** 属性/异常 -->
-	<!-- ** 流血 -->
-	<remove xpath="/buffs/buff[@name='buffInjuryBleeding']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffSpearHunter7QuickStrike']">
-		<!-- 流血 前置 -->
-		<buff name="buffMarisaBuffBleedEffect" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value=".5"/>
-			<duration value="0"/>
-
-			<effect_group name="apply buff primary count 0">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
-				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="0"/>
-				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 1">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
-				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="1"/>
-				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="200"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="12"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="2"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 2">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
-				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="2"/>
-				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="300"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="9"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="player apply buff">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
-				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="effect amount subtract by time">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="subtract" value="1">
-					<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="1"/>
-				</triggered_effect>
-			</effect_group>
-
-		</buff>
-		<!-- 流血 -->
-		<buff name="buffInjuryBleeding" name_key="buffInjuryBleedingName" description_key="buffInjuryBleedingDesc" tooltip_key="buffInjuryBleedingTooltip" icon="ui_game_symbol_critical" icon_color="255,0,0" icon_blink="true">
-			<damage_type value="bloodloss"/>
-			<damage_source value="Internal"/>
-			<stack_type value="ignore"/>
-			<duration value="15"/>
-
-			<effect_group name="HealthChangeOT player">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT base">
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT feral">
-				<requirement name="EntityTagCompare" tags="feral"/>
-				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT radiated">
-				<requirement name="EntityTagCompare" tags="radiated"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT charged">
-				<requirement name="EntityTagCompare" tags="charged"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT infernal">
-				<requirement name="EntityTagCompare" tags="infernal"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization">
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk">
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
-			</effect_group>
-
-			<effect_group name="debuff">
-				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
-				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"><requirement name="HasBuff" buff="buffMeleeIronAxeBleedFear"/></passive_effect>
-			</effect_group>
-
-			<effect_group name="particle">
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
-				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Blur" intensity=".6" fade="0.5"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Blur" intensity="0" fade="1"/>
-				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Infected" intensity="0" fade="0"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffInjuryBleeding"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleedingParticle"/>
-			</effect_group>
-
-		</buff>
-	</insertAfter>
-	<!-- ** 辐射 -->
-	<remove xpath="/buffs/buff[@name='buffRadiationPool']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffRadiation03']">
-		<!-- 辐射 前置 -->
-		<buff name="buffRadiationPoolEffect" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value=".5"/>
-			<duration value="0"/>
-
-			<effect_group name="apply buff primary count 0">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="0"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="10"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 1">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="1"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="200"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="8"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="2"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 2">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="2"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="300"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="6"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="player apply buff">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
-				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPool" duration="10"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="10"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="effect amount subtract by time">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="subtract" value="1">
-					<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="1"/>
-				</triggered_effect>
-			</effect_group>
-
-		</buff>
-		<!-- 辐射 -->
-		<buff name="buffRadiationPool" name_key="buffRadiation03Name" description_key="buffRadiation03Desc" icon="ui_game_symbol_radiation" icon_color="255,0,0" icon_blink="true">
-			<damage_type value="radiation"/>
-			<stack_type value="ignore"/>
-			<duration value="10"/>
-
-			<effect_group name="HealthChangeOT player">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT base">
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT feral">
-				<requirement name="EntityTagCompare" tags="feral"/>
-				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT radiated">
-				<requirement name="EntityTagCompare" tags="radiated"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT charged">
-				<requirement name="EntityTagCompare" tags="charged"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT infernal">
-				<requirement name="EntityTagCompare" tags="infernal"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization">
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk">
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
-			</effect_group>
-
-			<effect_group name="debuff">
-				<passive_effect name="StaminaChangeOT" operation="base_add" value="-10"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="Ragdoll" duration="3"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffRemove" action="Ragdoll" duration="3"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
-			</effect_group>
-
-			<effect_group name="particle">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".7" effect_name="Hot"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Hot"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Radiation" intensity=".6" fade="1"/>
-				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="0"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffRadiationPool"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="1"/>
-			</effect_group>
-		</buff>
-	</insertAfter>
-	<!-- ** 燃烧 -->
-	<remove xpath="/buffs/buff[@name='buffBurningElement' or @name='buffBurningEnvironment' or @name='buffBurningFlamingArrow' or @name='buffBurningMolotov' or @name='buffHazardBurningElement' or @name='buffIsOnFire']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
-		<buff name="buffBurningElement" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBurningEnvironment" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBurningFlamingArrow" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="50"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBurningMolotov" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="100"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffHazardBurningElement" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
-			</effect_group>
-		</buff>
-		<!-- 燃烧 前置 -->
-		<buff name="buffIsOnFireEffect" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value=".5"/>
-			<duration value="0"/>
-
-			<effect_group name="apply buff primary count 0">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="0"/>
-				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="20"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 1">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="1"/>
-				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="200"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="16"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="2"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 2">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="2"/>
-				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="300"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="12"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="player effect amount">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
-			</effect_group>
-
-			<effect_group name="player apply buff">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire" duration="@$marisaFireDurationMultiply"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="@$marisaFireDurationMultiply"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="effect amount subtract by time">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="subtract" value="1">
-					<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="1"/>
-				</triggered_effect>
-			</effect_group>
-
-		</buff>
-		<!-- 燃烧 -->
-		<buff name="buffIsOnFire" name_key="buffIsOnFireName" description_key="buffIsOnFireDesc" tooltip_key="buffIsOnFireTooltip" icon="ui_game_symbol_fire" icon_color="255,0,0" icon_blink="true">
-			<damage_type value="Heat"/>
-			<stack_type value="ignore"/>
-			<duration value="20"/>
-
-			<effect_group>
-				<requirements compare_type="or">
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
-					<requirement name="HasBuff" buff="buffExtinguishFire"/>
-					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
-				</requirements>
-				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
-			</effect_group>
-
-			<effect_group name="HealthChangeOT player">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT base">
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT feral">
-				<requirement name="EntityTagCompare" tags="feral"/>
-				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT radiated">
-				<requirement name="EntityTagCompare" tags="radiated"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT charged">
-				<requirement name="EntityTagCompare" tags="charged"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT infernal">
-				<requirement name="EntityTagCompare" tags="infernal"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization">
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk">
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
-			</effect_group>
-
-			<effect_group name="debuff">
-				<passive_effect name="WaterChangeOT" operation="base_subtract" value="2"/>
-			</effect_group>
-
-			<!-- Start and clean up particles and sounds -->
-			<effect_group name="run particles, cleanup">
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffIsOnFire"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_burn_lp"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_burn_lp"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="buff_burn_extinguish"/>
-			</effect_group>
-
-			<effect_group name="particle">
-				<requirements><requirement name="!IsSDCS"/></requirements>
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
-			</effect_group>
-
-			<effect_group name="particle">
-				<requirements><requirement name="IsSDCS"/></requirements>
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
-			</effect_group>
-
-		</buff>
-	</insertAfter>
-	<!-- ** 电击 -->
-	<remove xpath="/buffs/buff[@name='buffShocked']"/>
-	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
-		<buff name="buffShockedBlock" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value=".5"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="60"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
-			</effect_group>
-		</buff>
-        <buff name="buffThrownGrenadeShockedSE" hidden="true">
-            <stack_type value="ignore"/>
-            <duration value=".5"/>
-            <effect_group>
-                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="100"/>
-                <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
-            </effect_group>
-        </buff>
-        <buff name="buffThrownGrenadeShockedSP" hidden="true">
-            <stack_type value="ignore"/>
-            <duration value=".5"/>
-            <effect_group>
-                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="200"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
-            </effect_group>
-        </buff>
-		<!-- 电击 前置 -->
-		<buff name="buffShockedEffect" hidden="true">
-			<stack_type value="ignore"/>
-			<update_rate value=".5"/>
-			<duration value="0"/>
-
-			<effect_group name="apply buff primary count 0">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffShocked"/>
-				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="0"/>
-				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="5"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedCount" operation="set" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 1">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffShocked"/>
-				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="1"/>
-				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="200"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="4"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedCount" operation="set" value="2"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-			<effect_group name="apply buff primary count 2">
-				<requirement name="!EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffShocked"/>
-				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="2"/>
-				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="300"/>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="3"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="player effect amount">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
-			</effect_group>
-
-			<effect_group name="player apply buff">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffShocked"/>
-				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="100"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShocked" duration="@$marisaPerkShockedDurationMultiply"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="@$marisaPerkShockedDurationMultiply"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
-			</effect_group>
-
-			<effect_group name="effect amount subtract by time">
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="subtract" value="1">
-					<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="1"/>
-				</triggered_effect>
-			</effect_group>
-		</buff>
-		<!-- 电击 -->
-		<buff name="buffShocked" description_key="buffShockedDesc" tooltip_key="buffShockedTooltip" icon="ui_game_symbol_electric_power" name_key="buffShockedName" icon_color="255,0,0">
-			<damage_type value="electrical"/>
-			<stack_type value="ignore"/>
-			<duration value="3"/>
-
-			<effect_group name="HealthChangeOT player">
-				<requirement name="EntityTagCompare" tags="player"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT base">
-				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT feral">
-				<requirement name="EntityTagCompare" tags="feral"/>
-				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT radiated">
-				<requirement name="EntityTagCompare" tags="radiated"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT charged">
-				<requirement name="EntityTagCompare" tags="charged"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT infernal">
-				<requirement name="EntityTagCompare" tags="infernal"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization">
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk">
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT crystallization bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="crystallization"/>
-				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120"/>
-			</effect_group>
-			<effect_group name="HealthChangeOT berserk bossMarisa">
-				<requirement name="EntityTagCompare" tags="bossMarisa"/>
-				<requirement name="EntityTagCompare" tags="berserk"/>
-				<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240"/>
-			</effect_group>
-
-			<effect_group name="debuff">
-				<passive_effect name="RunSpeed" operation="perc_subtract" value=".9"/>
-				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".9"/>
-				<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".9"/>
-				<passive_effect name="JumpStrength" operation="perc_subtract" value=".9"/>
-			</effect_group>
-
-			<effect_group name="particle">
-				<!-- Blinks the display -->
-				<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffShocked"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
-				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
-
-				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-
-				<triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="ETrapHit"/>
-				<triggered_effect trigger="onSelfLeaveGame" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
-
-				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="electric_fence_impact"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="FadeOutSound" sound="electric_fence_impact"/>
-				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="electric_fence_impact"/>
-			</effect_group>
-		</buff>
-	</insertAfter>
-
-
-
 	<!-- *** 武器 -->
 	<append xpath="/buffs">
 
@@ -6796,8 +5397,74 @@
 			</effect_group>
 		</buff>
 
-		<!-- 拳套 快速连打 -->
-		<buff name="buffMeleeAttacksPerMinutePerkBrawler" hidden="true">
+		<!-- 寒气 -->
+		<buff name="buffMeleeHuntingKnifeAtk" name_key="buffMeleeHuntingKnifeAtkName" description_key="buffMeleeHuntingKnifeAtkDesc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".1"/>
+			<display_value value=".MeleeHuntingKnifeAtk"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MeleeHuntingKnifeAtk" operation="add" value="1">
+					<requirement name="CVarCompare" cvar=".MeleeHuntingKnifeAtk" operation="LT" value="30"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="set" value="@.MeleeHuntingKnifeAtk"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$IridescentModClothingColdnessAccumulatesAmount" operation="multiply" value="3"/>
+			</effect_group>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="base_add" value="@$IridescentModClothingColdnessAccumulatesAmount"/>
+			</effect_group>
+		</buff>
+
+		<!-- 棍势 -->
+		<buff name="buffMeleeClubAttackedOtherSecondary" name_key="buffMeleeClubAttackedOtherSecondaryName" description_key="buffMeleeClubAttackedOtherSecondaryDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeClubAttackedOtherSecondary"/>
+			<display_value_key value="{0}"/>
+		</buff>
+
+		<!-- 枪影 -->
+		<buff name="buffMeleeSpearAttacked" name_key="buffMeleeSpearAttackedName" description_key="buffMeleeSpearAttackedDesc" showonhud="true" icon="ui_game_symbol_spear" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeSpearAttackedSecondaryCount"/>
+			<display_value_key value="{0}"/>
+		</buff>
+		<!-- 缭乱 -->
+		<buff name="buffMeleeSpearAttackedDEBuff" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="base_set" value="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMeleeSpearAttackedDEBuff"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="IsAlive" target="self"/>
+				<triggered_effect trigger="onSelfBuffStart" action="SetBigHead" enabled="true"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="SetBigHead" enabled="false"/>
+			</effect_group>
+		</buff>
+
+		<!-- 恐惧 -->
+		<buff name="buffMeleeAxeAttacked" name_key="buffMeleeAxeAttackedName" description_key="buffMeleeAxeAttackedDesc" showonhud="true" icon="ui_game_symbol_twitch_big_head" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".MeleeAxeAttackedSecondaryCount"/>
+			<display_value_key value="{0}"/>
+		</buff>
+		<!-- 碾碎 -->
+		<buff name="buffMeleeAxeAttackedDEBuff" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
+				<passive_effect name="PhysicalDamageResist" operation="perc_add" value="-1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMeleeAxeAttackedDEBuff"/>
+			</effect_group>
+		</buff>
+
+		<!-- 拳套 欧拉欧拉·木大木大 -->
+		<buff name="buffMeleeAttacksPerMinutePerkBrawler" name_key="buffMeleeAttacksPerMinutePerkBrawlerName" description_key="buffMeleeAttacksPerMinutePerkBrawlerDesc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
 			<stack_type value="replace"/>
 			<duration value="3"/>
 			<effect_group>
@@ -6810,24 +5477,6 @@
 				<passive_effect name="BlockRange" operation="base_add" value="@.CountMeleeAttacksRangePerkBrawler" tags="perkBrawler"/>
 
 				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".CountMeleeAttacksRangePerkBrawler" operation="set" value="0"/>
-			</effect_group>
-		</buff>
-
-		<!-- 战斧 恐惧 -->
-		<buff name="buffMeleeIronAxeBleedFearCan" name_key="buffMeleeIronAxeBleedFearCanName" description_key="buffMeleeIronAxeBleedFearCanDesc" showonhud="true" icon="ui_game_symbol_twitch_big_head" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="13"/>
-		</buff>
-		<buff name="buffMeleeIronAxeBleedFear" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="10"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMeleeIronAxeBleedFear"/>
-			</effect_group>
-			<effect_group>
-				<requirement name="IsAlive" target="self"/>
-				<triggered_effect trigger="onSelfBuffStart" action="SetBigHead" enabled="true"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="SetBigHead" enabled="false"/>
 			</effect_group>
 		</buff>
 
@@ -7034,91 +5683,7 @@
 			</effect_group>
 		</buff>
 
-
-
-
-		<!-- 沙鹰 烈炎净世 -->
-		<buff name="buffModBuffFireAoeEffect" hidden="true">
-			<damage_type value="heat"/>
-			<stack_type value="replace"/>
-			<update_rate value="1"/>
-			<duration value="20"/>
-			<effect_group>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@buffModBuffFireAoeEffect">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@buffModBuffFireAoeEffect"/>
-				</passive_effect>
-
-				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire"/>
-				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
-			</effect_group>
-		</buff>
-
-		<!-- 寒气 -->
-		<buff name="buffMeleeHuntingKnifeAtk" name_key="buffMeleeHuntingKnifeAtkName" description_key="buffMeleeHuntingKnifeAtkDesc" showonhud="true" icon="ui_game_symbol_deep_cuts" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeHuntingKnifeAtk"/>
-			<display_value_key value="{0}"/>
-		</buff>
-
-		<!-- 棍势 -->
-		<buff name="buffMeleeClubAttackedOtherPrimary" name_key="buffMeleeClubAttackedOtherPrimaryName" description_key="buffMeleeClubAttackedOtherPrimaryDesc" showonhud="true" icon="ui_game_symbol_club" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeClubAttackedOtherPrimary"/>
-			<display_value_key value="{0}"/>
-		</buff>
-
-		<!-- 枪影 -->
-		<buff name="buffMeleeSpearAttacked" name_key="buffMeleeSpearAttackedName" description_key="buffMeleeSpearAttackedDesc" showonhud="true" icon="ui_game_symbol_spear" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeSpearAttacked"/>
-			<display_value_key value="{0}"/>
-		</buff>
-
-		<!-- 缭乱 -->
-		<buff name="buffMeleeSpearAttackedDEBuff" hidden="true">
-			<stack_type value="duration"/>
-			<duration value="7"/>
-			<effect_group>
-				<passive_effect name="AttacksPerMinute" operation="perc_add" value="-.8"/>
-				<passive_effect name="RunSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".8"/>
-				<passive_effect name="JumpStrength" operation="perc_subtract" value=".8"/>
-			</effect_group>
-		</buff>
-
-		<!-- 大锤 震荡 -->
-		<buff name="buffMeleeHammerAoeAttack" hidden="true">
-			<damage_type value="crushing"/>
-			<stack_type value="replace"/>
-			<update_rate value=".5"/>
-			<duration value="5"/>
-			<effect_group>
-				<requirement name="CVarCompare" cvar="$buffMeleeHammerAoeAttack_count" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="subtract" value="@buffMeleeHammerAoeAttack">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@buffMeleeHammerAoeAttack"/>
-				</triggered_effect>
-
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffMeleeHammerAoeAttack_count" operation="subtract" value="1"/>
-			</effect_group>
-		</buff>
-
-		<!-- 拳套 欧拉欧拉 -->
-		<buff name="buffMeleeKnucklesAttacked_0" name_key="buffMeleeKnucklesAttacked_0Name" description_key="buffMeleeKnucklesAttacked_0Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeKnucklesAttacked_0"/>
-			<display_value_key value="{0}"/>
-		</buff>
-		<!-- 拳套 木大木大 -->
-		<buff name="buffMeleeKnucklesAttacked_1" name_key="buffMeleeKnucklesAttacked_1Name" description_key="buffMeleeKnucklesAttacked_1Desc" showonhud="true" icon="ui_game_symbol_boxer" icon_color="0,191,255">
-			<stack_type value="ignore"/>
-			<display_value value=".MeleeKnucklesAttacked_1"/>
-			<display_value_key value="{0}"/>
-		</buff>
-
 	</append>
-
 	<!-- *** 护甲套装 -->
 	<remove xpath="/buffs/buff[@name='buffLumberjackSetBonus' or @name='buffPreacherSetBonus' or @name='buffRogueSetBonus' or @name='buffAthleticSetBonus' or @name='buffEnforcerSetBonus']"/>
 	<remove xpath="/buffs/buff[@name='buffFarmerSetBonus' or @name='buffBikerSetBonus' or @name='buffScavengerSetBonus' or @name='buffRangerSetBonus' or @name='buffCommandoSetBonus']"/>
@@ -7458,6 +6023,1606 @@
 		</buff>
 
 	</append>
+
+	<!-- *** 食物充能 -->
+	<append xpath="/buffs">
+
+		<!-- * 驾驶名人 -->
+		<buff name="buffMarisaVehicleVelocity" name_key="buffMarisaVehicleVelocityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVehicleVelocity"/>
+			</effect_group>
+		</buff>
+		<!-- * 快速换弹 -->
+		<buff name="buffMarisaReloadSpeed" name_key="buffMarisaReloadSpeedName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaReloadSpeed"/>
+			</effect_group>
+		</buff>
+		<!-- * 纳刀术 -->
+		<buff name="buffMarisaNanoKnife" name_key="buffMarisaNanoKnifeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaNanoKnife"/>
+			</effect_group>
+		</buff>
+		<!-- * 集中 -->
+		<buff name="buffMarisaConcentration" name_key="buffMarisaConcentrationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaConcentration"/>
+			</effect_group>
+		</buff>
+		<!-- * 攻击 -->
+		<buff name="buffMarisaAttack" name_key="buffMarisaAttackName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttack"/>
+			</effect_group>
+		</buff>
+		<!-- * 无伤 -->
+		<buff name="buffMarisaFullHealth" name_key="buffMarisaFullHealthName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaFullHealth"/>
+			</effect_group>
+		</buff>
+		<!-- * 弱点特效 -->
+		<buff name="buffMarisaHeadDamage" name_key="buffMarisaHeadDamageName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHeadDamage"/>
+			</effect_group>
+		</buff>
+		<!-- * 精神抖擞 -->
+		<buff name="buffMarisaVitality" name_key="buffMarisaVitalityName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVitality"/>
+			</effect_group>
+		</buff>
+		<!-- * 力量解放 -->
+		<buff name="buffMarisaLiberationPower" name_key="buffMarisaLiberationPowerName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaLiberationPower"/>
+			</effect_group>
+		</buff>
+		<!-- * 体力提升 -->
+		<buff name="buffMarisaStaminaMaxUp" name_key="buffMarisaStaminaMaxUpName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaMaxUp"/>
+			</effect_group>
+		</buff>
+		<!-- * 回复速度 -->
+		<buff name="buffMarisaHealthChangeOT" name_key="buffMarisaHealthChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaHealthChangeOT"/>
+			</effect_group>
+		</buff>
+		<!-- * 体力急速回复 -->
+		<buff name="buffMarisaStaminaChangeOT" name_key="buffMarisaStaminaChangeOTName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaChangeOT"/>
+			</effect_group>
+		</buff>
+		<!-- * 体术 -->
+		<buff name="buffMarisaStaminaLossDown" name_key="buffMarisaStaminaLossDownName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaStaminaLossDown"/>
+			</effect_group>
+		</buff>
+		<!-- * 防御 -->
+		<buff name="buffMarisaDefensive" name_key="buffMarisaDefensiveName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensive"/>
+			</effect_group>
+		</buff>
+		<!-- * 精灵加护 -->
+		<buff name="buffMarisaDefensiveElf" name_key="buffMarisaDefensiveElfName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensiveElf"/>
+			</effect_group>
+		</buff>
+		<!-- * 暴击耐性 -->
+		<buff name="buffMarisaBuffResistance" name_key="buffMarisaBuffResistanceName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBuffResistance"/>
+			</effect_group>
+		</buff>
+		<!-- * 炼铜 -->
+		<buff name="buffMarisaCopperSmelting" name_key="buffMarisaCopperSmeltingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaCopperSmelting"/>
+			</effect_group>
+		</buff>
+		<!-- * 盛宴 -->
+		<buff name="buffMarisaKillRecovery" name_key="buffMarisaKillRecoveryName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillRecovery"/>
+			</effect_group>
+		</buff>
+		<!-- * 治愈收割 -->
+		<buff name="buffMarisaKillHealing" name_key="buffMarisaKillHealingName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaKillHealing"/>
+			</effect_group>
+		</buff>
+		<!-- * 属性解放 -->
+		<buff name="buffMarisaAttributeLiberation" name_key="buffMarisaAttributeLiberationName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAttributeLiberation"/>
+			</effect_group>
+		</buff>
+		<!-- * 贯星 -->
+		<buff name="buffMarisaThroughStars" name_key="buffMarisaThroughStarsName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaThroughStars"/>
+			</effect_group>
+		</buff>
+		<!-- * 吸血鬼之吻 -->
+		<buff name="buffMarisaVampireKiss" name_key="buffMarisaVampireKissName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVampireKiss"/>
+			</effect_group>
+		</buff>
+		<!-- * 属性莲华 -->
+		<buff name="buffMarisaIntensifyAoe" name_key="buffMarisaIntensifyAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaIntensifyAoe"/>
+			</effect_group>
+		</buff>
+		<!-- * 异常莲华 -->
+		<buff name="buffMarisaEffectAoe" name_key="buffMarisaEffectAoeName" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="1802"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaEffectAoe"/>
+			</effect_group>
+		</buff>
+
+		<!-- * 生命提升 Ⅲ -->
+		<buff name="buffMarisaHealthMaxUp3" name_key="buffMarisaHealthMaxUp3Name" description_key="buffMarisaPerCommonDesc" showonhud="true" icon="ui_game_symbol_diamond" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaHealthMaxUp"/>
+			</effect_group>
+		</buff>
+
+	</append>
+	<!-- *** 猫饭 -->
+	<append xpath="/buffs">
+
+		<!-- 魔理沙的饭 -->
+		<buff name="buffMarisasFeast" name_key="buffMarisasFeastName" description_key="buffMarisasFeastDesc" showonhud="true" icon="ui_game_symbol_cookware" icon_color="255,165,0">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="HealthMax" operation="base_add" value="50"/>
+				<passive_effect name="StaminaMax" operation="base_add" value="50"/>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="50" delay="0.5"/>
+				<!-- 实体伤害 -->
+				<passive_effect name="EntityDamage" operation="base_add" value="2"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="base_add" value="3"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="EntityDamage" operation="base_add" value="5"><requirement name="CVarCompare" cvar=".buffMarisasFeastEntityDamage" operation="Equals" value="3"/></passive_effect>
+				<!-- 伤害减免 -->
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastGeneralDamageResist" operation="Equals" value="3"/></passive_effect>
+				<!-- 移动速度 -->
+				<passive_effect name="Mobility" operation="perc_add" value=".02"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="Mobility" operation="perc_add" value=".03"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="Mobility" operation="perc_add" value=".05"><requirement name="CVarCompare" cvar=".buffMarisasFeastMobility" operation="Equals" value="3"/></passive_effect>
+				<!-- 生命回复 -->
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasHealthChangeOT" operation="Equals" value="3"/></passive_effect>
+				<!-- 体力回复 -->
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".04"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".06"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"><requirement name="CVarCompare" cvar=".buffMarisasFeastStaminaChangeOT" operation="Equals" value="3"/></passive_effect>
+				<!-- 物块伤害 -->
+				<passive_effect name="BlockDamage" operation="perc_add" value=".08"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="1"/></passive_effect>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".12"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="2"/></passive_effect>
+				<passive_effect name="BlockDamage" operation="perc_add" value=".2"><requirement name="CVarCompare" cvar=".buffMarisasFeastBlockDamage" operation="Equals" value="3"/></passive_effect>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEntityDamage" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastGeneralDamageResist" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastMobility" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasHealthChangeOT" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastStaminaChangeOT" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastBlockDamage" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的击晕术 -->
+		<buff name="buffMarisasFeastEffect1" name_key="buffMarisasFeastEffect1Name" description_key="buffMarisasFeastEffect1Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffInjuryStunned01" target="other"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的体术 -->
+		<buff name="buffMarisasFeastEffect2" name_key="buffMarisasFeastEffect2Name" description_key="buffMarisasFeastEffect2Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.05"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的火场怪力 -->
+		<buff name="buffMarisasFeastEffect3" name_key="buffMarisasFeastEffect3Name" description_key="buffMarisasFeastEffect3Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".1"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".40"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的理毛好手 -->
+		<buff name="buffMarisasFeastEffect4" name_key="buffMarisasFeastEffect4Name" description_key="buffMarisasFeastEffect4Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value=".5"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$commandoCritNaturalHealing" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的治愈术 -->
+		<buff name="buffMarisasFeastEffect5" name_key="buffMarisasFeastEffect5Name" description_key="buffMarisasFeastEffect5Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffStatusHungry03"/>
+				<requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
+				<passive_effect name="HealthChangeOT" operation="base_add" value=".15"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的射击术 -->
+		<buff name="buffMarisasFeastEffect6" name_key="buffMarisasFeastEffect6Name" description_key="buffMarisasFeastEffect6Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="ItemHasTags" tags="ranged"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的炮击术 -->
+		<buff name="buffMarisasFeastEffect7" name_key="buffMarisasFeastEffect7Name" description_key="buffMarisasFeastEffect7Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".15" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".15" tags="perkDemolitionsExpert,perkArchery"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的换算术 -->
+		<buff name="buffMarisasFeastEffect8" name_key="buffMarisasFeastEffect8Name" description_key="buffMarisasFeastEffect8Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="QuestBonusItemReward" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的收获祭 -->
+		<buff name="buffMarisasFeastEffect9" name_key="buffMarisasFeastEffect9Name" description_key="buffMarisasFeastEffect9Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="farmerBonusHarvest"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的财运 -->
+		<buff name="buffMarisasFeastEffect10" name_key="buffMarisasFeastEffect10Name" description_key="buffMarisasFeastEffect10Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="LootQuantity" operation="perc_add" value=".5" tags="dukes"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的幸运 -->
+		<buff name="buffMarisasFeastEffect11" name_key="buffMarisasFeastEffect11Name" description_key="buffMarisasFeastEffect11Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="LootStage" operation="base_add" level="1" value="5"/>
+				<passive_effect name="LootStage" operation="perc_add" level="1" value=".1"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的后面交给你们了！ -->
+		<buff name="buffMarisasFeastEffect12" name_key="buffMarisasFeastEffect12Name" description_key="buffMarisasFeastEffect12Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfDied" action="ModifyStats" stat="Health" target="selfOtherPlayers" target_tags="ally,party" operation="add" value="60"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的蛮干术 -->
+		<buff name="buffMarisasFeastEffect13" name_key="buffMarisasFeastEffect13Name" description_key="buffMarisasFeastEffect13Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffMarisasFeastEffect13On"/>
+			</effect_group>
+		</buff>
+		<buff name="buffMarisasFeastEffect13On" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<effect_group>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的着地术 -->
+		<buff name="buffMarisasFeastEffect14" name_key="buffMarisasFeastEffect14Name" description_key="buffMarisasFeastEffect14Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value=".08484"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar="$buffFeastEffectBonus" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的天气预报 -->
+		<buff name="buffMarisasFeastEffect15" name_key="buffMarisasFeastEffect15Name" description_key="buffMarisasFeastEffect15Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="CallGameEvent" event="marisa_weather_rain" allow_client_call="true"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的吸引仇恨好手 -->
+		<buff name="buffMarisasFeastEffect16" name_key="buffMarisasFeastEffect16Name" description_key="buffMarisasFeastEffect16Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="LightMultiplier" operation="perc_add" value=".5"/>
+				<passive_effect name="NoiseMultiplier" operation="perc_add" value=".5"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的防御术 -->
+		<buff name="buffMarisasFeastEffect17" name_key="buffMarisasFeastEffect17Name" description_key="buffMarisasFeastEffect17Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value=".05"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的粗暴射击 -->
+		<buff name="buffMarisasFeastEffect18" name_key="buffMarisasFeastEffect18Name" description_key="buffMarisasFeastEffect18Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="ItemHasTags" tags="ranged"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+				<passive_effect name="IncrementalSpreadMultiplier" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的指导术 -->
+		<buff name="buffMarisasFeastEffect19" name_key="buffMarisasFeastEffect19Name" description_key="buffMarisasFeastEffect19Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="PlayerExpGain" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的休息术 -->
+		<buff name="buffMarisasFeastEffect20" name_key="buffMarisasFeastEffect20Name" description_key="buffMarisasFeastEffect20Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect20" operation="GTE" value="4"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".1"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffMarisasFeastEffect20" operation="add" value="1">
+					<requirement name="CVarCompare" cvar=".buffMarisasFeastEffect15" operation="LT" value="4"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的短期催眠术 -->
+		<buff name="buffMarisasFeastEffect21" name_key="buffMarisasFeastEffect21Name" description_key="buffMarisasFeastEffect21Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="15" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="1.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的轻功达人 -->
+		<buff name="buffMarisasFeastEffect22" name_key="buffMarisasFeastEffect22Name" description_key="buffMarisasFeastEffect22Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="StaminaLoss" operation="perc_add" level="1" value="-.05" tags="jumping"/>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" level="1" value=".1" tags="running"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的采蜜术 -->
+		<buff name="buffMarisasFeastEffect23" name_key="buffMarisasFeastEffect23Name" description_key="buffMarisasFeastEffect23Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="HarvestCount" operation="base_add" value="1" tags="WasteTreasuresHoneyHarvest"/>
+			</effect_group>
+		</buff>
+		<!-- 魔理沙的饱腹术 -->
+		<buff name="buffMarisasFeastEffect24" name_key="buffMarisasFeastEffect24Name" description_key="buffMarisasFeastEffect24Desc" showonhud="true" icon="ui_game_symbol_spatula" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Food" operation="GTE" value=".8"/>
+				<requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value=".8"/>
+				<passive_effect name="DamageModifier" operation="perc_add" value=".15"/>
+			</effect_group>
+		</buff>
+
+	</append>
+	<!-- ** 魔理沙的着地术 -->
+	<insertAfter xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group/triggered_effect[@action='ModifyCVar' and @cvar='.impactSpeed' and @value='@$parkourBonus']">
+		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$buffFeastEffectBonus"/>
+	</insertAfter>
+
+	<!-- *** 技能模组 -->
+	<append xpath="/buffs">
+
+		<!-- 死中求活 -->
+		<buff name="buffIridescentModClothingLiveInDie" name_key="buffIridescentModClothingLiveInDieName" description_key="buffIridescentModClothingLiveInDieDesc" showonhud="true" icon="ui_game_symbol_laceration" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="5"/>
+			</effect_group>
+		</buff>
+
+		<!-- 磁暴脉冲 -->
+		<buff name="buffIridescentModClothingTeslaCoil" name_key="buffIridescentModClothingTeslaCoilName" description_key="buffIridescentModClothingTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="0"/>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffNerdSetBonusShockedCold"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="selfAOE" range="3" target_tags="animal,zombie" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" buff="buffNerdSetBonusShockedCold"/>
+			</effect_group>
+		</buff>
+		<buff name="buffNerdSetBonusShockedCold" name_key="buffNerdSetBonusShockedColdName" description_key="buffNerdSetBonusShockedColdDesc" showonhud="true" icon="ui_game_symbol_electric_power" icon_color="255,0,55">
+			<stack_type value="ignore"/>
+			<duration value="12"/>
+		</buff>
+
+		<!-- 狂风骤雨 -->
+		<buff name="buffIridescentModClothingRainstorm" name_key="buffIridescentModClothingRainstormName" description_key="buffIridescentModClothingRainstormDesc" showonhud="true" icon="ui_game_symbol_clock" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".05"/>
+			<duration value="0"/>
+			<effect_group>
+<!--                <passive_effect name="EntityDamage" operation="perc_add" value=".25"/>-->
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LT" value=".35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="0.5"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".35"/>
+					<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="-1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 愉悦 -->
+		<buff name="buffIridescentModClothingJoy" name_key="buffIridescentModClothingJoyName" description_key="buffIridescentModClothingJoyDesc" showonhud="true" icon="ui_game_symbol_twitch_top_bad" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="122"/>
+			<effect_group>
+				<passive_effect name="Mobility" operation="perc_add" value=".2"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="25" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2.5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+
+		<!-- 源：冰霜牙 -->
+		<buff name="buffIridescentModClothingColdnessAccumulates" name_key="buffIridescentModClothingColdnessAccumulatesName" description_key="buffIridescentModClothingColdnessAccumulatesDesc" showonhud="true" icon="ui_game_symbol_cold" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".1"/>
+			<display_value value=".buffIridescentModClothingColdnessAccumulates"/>
+			<display_value_key value="{0}"/>
+		</buff>
+
+		<!-- 活性医疗 -->
+		<buff name="buffIridescentModClothingActiveReply" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="self" operation="add" value="5"/>
+			</effect_group>
+		</buff>
+
+		<!-- 异常自愈 -->
+		<buff name="buffIridescentModClothingAutoHealing" name_key="buffIridescentModClothingAutoHealingName" description_key="buffIridescentModClothingAutoHealingDesc" showonhud="true" icon="ui_game_symbol_healing_factor" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<duration value="30"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIridescentModClothingAutoHealing" operation="add" value="1"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+	<!-- *** 任务 -->
+	<append xpath="/buffs">
+
+		<!-- 潜行任务E -->
+		<buff name="buffCrouchingQuestSleeper" name_key="buffCrouchingQuestSleeperName" description_key="buffCrouchingQuestSleeperDesc" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value="1"/>
+			<duration value="0"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="5"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="300">
+					<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="GT" value="0"/>
+				<requirement name="CVarCompare" cvar="_notAlerted" operation="Equals" value="0" target="self"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestWarning" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestWarning" operation="set" value="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffCrouchingQuestOn" target="other" target_tags="player"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="ModifyCVar" cvar="$CrouchingQuestOnWill" target="selfAOE" range="30" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfDamagedOther" action="AddBuff" buff="buffMarisaElectricFenceSparks"/>
+			</effect_group>
+		</buff>
+		<!-- 潜行任务B -->
+		<buff name="buffCrouchingQuestBefore7" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="2"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="7"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+		<buff name="buffCrouchingQuestBefore9" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="9"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+		<buff name="buffCrouchingQuestBefore12" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="12"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+		<buff name="buffCrouchingQuestBefore15" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="15"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+		<buff name="buffCrouchingQuestBefore20" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+		<!-- 潜行任务P -->
+		<buff name="buffCrouchingQuestOn" name_key="buffCrouchingQuestOnName" description_key="buffCrouchingQuestOnDesc" showonhud="true" icon="ui_game_symbol_ninja" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<update_rate value=".2"/>
+			<duration value="0"/>
+			<display_value value="$CrouchingQuestOn"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOnWill" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOn" operation="subtract" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="PlaySound" sound="marisa_twitch_record_scratch" play_in_head="true"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$CrouchingQuestOnWill" operation="subtract" value="1"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$CrouchingQuestOn" operation="LTE" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventCrouchingQuestFail" allow_client_call="true"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffCrouchingQuestOn"/>
+			</effect_group>
+		</buff>
+
+	</append>
+
+
+
+	<!-- *** 属性/异常 -->
+	<!-- ** 流血 -->
+	<remove xpath="/buffs/buff[@name='buffInjuryBleeding']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffSpearHunter7QuickStrike']">
+		<!-- 流血 前置 -->
+		<buff name="buffMarisaBuffBleedEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group name="apply buff primary count 0">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
+				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 1">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
+				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="200"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="12"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedCount" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 2">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
+				<requirement name="CVarCompare" cvar="marisaBleedCount" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="300"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="9"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="player apply buff">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffInjuryBleeding"/>
+				<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffInjuryBleeding" duration="15"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="effect amount subtract by time">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaBleedEffectAmount" operation="subtract" value="1">
+					<requirement name="CVarCompare" cvar="marisaBleedEffectAmount" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 流血 -->
+		<buff name="buffInjuryBleeding" name_key="buffInjuryBleedingName" description_key="buffInjuryBleedingDesc" tooltip_key="buffInjuryBleedingTooltip" icon="ui_game_symbol_critical" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="bloodloss"/>
+			<damage_source value="Internal"/>
+			<stack_type value="ignore"/>
+			<duration value="15"/>
+
+			<effect_group name="HealthChangeOT player">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT base">
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT feral">
+				<requirement name="EntityTagCompare" tags="feral"/>
+				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT radiated">
+				<requirement name="EntityTagCompare" tags="radiated"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT charged">
+				<requirement name="EntityTagCompare" tags="charged"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT infernal">
+				<requirement name="EntityTagCompare" tags="infernal"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization">
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk">
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group name="debuff">
+				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
+			</effect_group>
+
+			<effect_group name="particle">
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Blur" intensity=".6" fade="0.5"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Blur" intensity="0" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Infected" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffInjuryBleeding"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleedingParticle"/>
+			</effect_group>
+
+		</buff>
+	</insertAfter>
+	<!-- ** 辐射 -->
+	<remove xpath="/buffs/buff[@name='buffRadiationPool']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffRadiation03']">
+		<!-- 辐射 前置 -->
+		<buff name="buffRadiationPoolEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group name="apply buff primary count 0">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 1">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="200"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="8"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolCount" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 2">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolCount" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="300"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="6"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="player apply buff">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffRadiationPool"/>
+				<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPool" duration="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffRadiationPool" duration="10"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="effect amount subtract by time">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="subtract" value="1">
+					<requirement name="CVarCompare" cvar="marisaRadiationPoolEffectAmount" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 辐射 -->
+		<buff name="buffRadiationPool" name_key="buffRadiation03Name" description_key="buffRadiation03Desc" icon="ui_game_symbol_radiation" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="radiation"/>
+			<stack_type value="ignore"/>
+			<duration value="10"/>
+
+			<effect_group name="HealthChangeOT player">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="4"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT base">
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT feral">
+				<requirement name="EntityTagCompare" tags="feral"/>
+				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT radiated">
+				<requirement name="EntityTagCompare" tags="radiated"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT charged">
+				<requirement name="EntityTagCompare" tags="charged"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT infernal">
+				<requirement name="EntityTagCompare" tags="infernal"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization">
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk">
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group name="debuff">
+				<passive_effect name="StaminaChangeOT" operation="base_add" value="-10"><requirement name="EntityTagCompare" tags="player"/></passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" buff="buffRadiatedRegenBlock"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="Ragdoll" duration="3"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffRemove" action="Ragdoll" duration="3"><requirement name="!EntityTagCompare" tags="player"/></triggered_effect>
+			</effect_group>
+
+			<effect_group name="particle">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyScreenEffect" intensity="0" fade=".7" effect_name="Hot"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" intensity="0" fade="1" effect_name="Hot"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Radiation" intensity=".6" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffRadiationPool"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Radiation" intensity="0" fade="1"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
+	<!-- ** 燃烧 -->
+	<remove xpath="/buffs/buff[@name='buffBurningElement' or @name='buffBurningEnvironment' or @name='buffBurningFlamingArrow' or @name='buffBurningMolotov' or @name='buffHazardBurningElement' or @name='buffIsOnFire']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
+		<buff name="buffBurningElement" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningEnvironment" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningFlamingArrow" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="50"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBurningMolotov" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="100"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffHazardBurningElement" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFireEffect"/>
+			</effect_group>
+		</buff>
+		<!-- 燃烧 前置 -->
+		<buff name="buffIsOnFireEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group name="apply buff primary count 0">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 1">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="200"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="16"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireCount" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 2">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+				<requirement name="CVarCompare" cvar="marisaFireCount" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="300"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="12"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="player effect amount">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaFireRemove" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
+			</effect_group>
+
+			<effect_group name="player apply buff">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+				<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffIsOnFire" duration="@$marisaFireDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffIsOnFire" duration="@$marisaFireDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="effect amount subtract by time">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaFireEffectAmount" operation="subtract" value="1">
+					<requirement name="CVarCompare" cvar="marisaFireEffectAmount" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+
+		</buff>
+		<!-- 燃烧 -->
+		<buff name="buffIsOnFire" name_key="buffIsOnFireName" description_key="buffIsOnFireDesc" tooltip_key="buffIsOnFireTooltip" icon="ui_game_symbol_fire" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="Heat"/>
+			<stack_type value="ignore"/>
+			<duration value="20"/>
+
+			<effect_group>
+				<requirements compare_type="or">
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+					<requirement name="HasBuff" buff="buffExtinguishFire"/>
+					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+				</requirements>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
+			</effect_group>
+
+			<effect_group name="HealthChangeOT player">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="2"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT base">
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT feral">
+				<requirement name="EntityTagCompare" tags="feral"/>
+				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT radiated">
+				<requirement name="EntityTagCompare" tags="radiated"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT charged">
+				<requirement name="EntityTagCompare" tags="charged"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT infernal">
+				<requirement name="EntityTagCompare" tags="infernal"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization">
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk">
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group name="debuff">
+				<passive_effect name="WaterChangeOT" operation="base_subtract" value="2"/>
+			</effect_group>
+
+			<!-- Start and clean up particles and sounds -->
+			<effect_group name="run particles, cleanup">
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffIsOnFire"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_burn_lp"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="PlaySound" sound="buff_burn_extinguish"/>
+			</effect_group>
+
+			<effect_group name="particle">
+				<requirements><requirement name="!IsSDCS"/></requirements>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,0,0" parent_transform="LOD0" shape_mesh="true"/>
+			</effect_group>
+
+			<effect_group name="particle">
+				<requirements><requirement name="IsSDCS"/></requirements>
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_onFire" parent_transform=".body" shape_mesh="true"/>
+			</effect_group>
+
+		</buff>
+	</insertAfter>
+	<!-- ** 电击 -->
+	<remove xpath="/buffs/buff[@name='buffShocked']"/>
+	<insertAfter xpath="/buffs/buff[@name='buffShockImmune']">
+		<buff name="buffShockedBlock" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value=".5"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="60"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
+			</effect_group>
+		</buff>
+        <buff name="buffThrownGrenadeShockedSE" hidden="true">
+            <stack_type value="ignore"/>
+            <duration value=".5"/>
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="100"/>
+                <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
+            </effect_group>
+        </buff>
+        <buff name="buffThrownGrenadeShockedSP" hidden="true">
+            <stack_type value="ignore"/>
+            <duration value=".5"/>
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="200"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
+            </effect_group>
+        </buff>
+		<!-- 电击 前置 -->
+		<buff name="buffShockedEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<update_rate value=".5"/>
+			<duration value="0"/>
+
+			<effect_group name="apply buff primary count 0">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffShocked"/>
+				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="0"/>
+				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedCount" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 1">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffShocked"/>
+				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="1"/>
+				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="200"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="4"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedCount" operation="set" value="2"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+			<effect_group name="apply buff primary count 2">
+				<requirement name="!EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffShocked"/>
+				<requirement name="CVarCompare" cvar="marisaShockedCount" operation="EQ" value="2"/>
+				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="300"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="3"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="player effect amount">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaShockedRemove" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"><requirement name="ProgressionLevel" progression_name="perkMarisaDeEffectRemove" operation="EQ" value="3"/></triggered_effect>
+			</effect_group>
+
+			<effect_group name="player apply buff">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffShocked"/>
+				<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="100"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShocked" duration="@$marisaPerkShockedDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffShocked" duration="@$marisaPerkShockedDurationMultiply"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="set" value="0"/>
+			</effect_group>
+
+			<effect_group name="effect amount subtract by time">
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="subtract" value="1">
+					<requirement name="CVarCompare" cvar="marisaShockedEffectAmount" operation="GTE" value="1"/>
+				</triggered_effect>
+			</effect_group>
+		</buff>
+		<!-- 电击 -->
+		<buff name="buffShocked" description_key="buffShockedDesc" tooltip_key="buffShockedTooltip" icon="ui_game_symbol_electric_power" name_key="buffShockedName" icon_color="255,0,0">
+			<damage_type value="electrical"/>
+			<stack_type value="ignore"/>
+			<duration value="3"/>
+
+			<effect_group name="HealthChangeOT player">
+				<requirement name="EntityTagCompare" tags="player"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="10"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT base">
+				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT feral">
+				<requirement name="EntityTagCompare" tags="feral"/>
+				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT radiated">
+				<requirement name="EntityTagCompare" tags="radiated"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT charged">
+				<requirement name="EntityTagCompare" tags="charged"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT infernal">
+				<requirement name="EntityTagCompare" tags="infernal"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization">
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk">
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT crystallization bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="crystallization"/>
+				<requirement name="!EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+			<effect_group name="HealthChangeOT berserk bossMarisa">
+				<requirement name="EntityTagCompare" tags="bossMarisa"/>
+				<requirement name="EntityTagCompare" tags="berserk"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
+				</passive_effect>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</passive_effect>
+			</effect_group>
+
+			<effect_group name="debuff">
+				<passive_effect name="RunSpeed" operation="perc_subtract" value=".9"/>
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value=".9"/>
+				<passive_effect name="CrouchSpeed" operation="perc_subtract" value=".9"/>
+				<passive_effect name="JumpStrength" operation="perc_subtract" value=".9"/>
+			</effect_group>
+
+			<effect_group name="particle">
+				<!-- Blinks the display -->
+				<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffShocked"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="AttachParticleEffectToEntity" particle="p_electric_shock" parent_transform="Spine1" local_offset="0,-.2,0"/>
+
+				<triggered_effect trigger="onSelfDied" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+
+				<triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="ETrapHit"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="electric_fence_impact"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="FadeOutSound" sound="electric_fence_impact"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="electric_fence_impact"/>
+			</effect_group>
+		</buff>
+	</insertAfter>
 
 
 
