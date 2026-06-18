@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * 常量
  */
 
 public interface Constants {
@@ -57,6 +57,7 @@ public interface Constants {
     String RANK_MATERIAL_12 = "MIridescentCubeSuper";
     String RANK_MATERIAL_12_S = "MCrimsonGold";
     List<String> RANK_MATERIAL_LIST = new ArrayList<>(Arrays.asList(RANK_MATERIAL_1, RANK_MATERIAL_2, RANK_MATERIAL_3, RANK_MATERIAL_4, RANK_MATERIAL_5, RANK_MATERIAL_6, RANK_MATERIAL_7, RANK_MATERIAL_8, RANK_MATERIAL_9, RANK_MATERIAL_10, RANK_MATERIAL_11, RANK_MATERIAL_12, RANK_MATERIAL_12_S));
+
     // 分解权重
     String RANK_WEIGHT_1 = "3";
     String RANK_WEIGHT_2 = "6";
@@ -72,6 +73,7 @@ public interface Constants {
     String RANK_WEIGHT_12 = "342";
     String RANK_WEIGHT_12_S = "2";
     List<String> RANK_WEIGHT_LIST = new ArrayList<>(Arrays.asList(RANK_WEIGHT_1, RANK_WEIGHT_2, RANK_WEIGHT_3, RANK_WEIGHT_4, RANK_WEIGHT_5, RANK_WEIGHT_6, RANK_WEIGHT_7, RANK_WEIGHT_8, RANK_WEIGHT_9, RANK_WEIGHT_10, RANK_WEIGHT_11, RANK_WEIGHT_12, RANK_WEIGHT_12_S));
+
     // 槽位
     String RANK_MOD_SLOTS_1 = "2";
     String RANK_MOD_SLOTS_2 = "2";

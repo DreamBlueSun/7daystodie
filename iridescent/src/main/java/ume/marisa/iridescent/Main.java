@@ -1,4 +1,6 @@
-package iridescent;
+package ume.marisa.iridescent;
+
+import ume.marisa.iridescent.utils.WriteToFile;
 
 public class Main {
 

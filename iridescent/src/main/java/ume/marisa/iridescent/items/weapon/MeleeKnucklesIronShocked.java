@@ -1,7 +1,7 @@
 package iridescent.items.weapon;
 
 import iridescent.Constants;
-import iridescent.WriteToFile;
+import ume.marisa.iridescent.utils.WriteToFile;
 
 /**
  * 电击拳套
@@ -18,9 +18,13 @@ public class MeleeKnucklesIronShocked {
         int de = RANK_ENTITY_DAMAGE_S0;
         int db = RANK_BLOCK_DAMAGE_S0;
         StringBuilder s = new StringBuilder(START);
+        StringBuilder entityDamage = new StringBuilder("EntityDamage");
+        StringBuilder blockDamage = new StringBuilder("BlockDamage");
         for (int i = 1; i <= 13; i++) {
             de += RANK_ENTITY_DAMAGE_ARR[i - 1];
             db += RANK_BLOCK_DAMAGE_ARR[i - 1];
+            entityDamage.append(",").append(de);
+            blockDamage.append(",").append(db);
             String replace = MELEE_IRON_AXE_BLEED.replace("MarisaWeaponFlag_RANK", String.valueOf(i))
                     .replace("MarisaWeaponFlag_T3_TAG", i <= 8 ? T1_TAG : T3_TAG_2)
                     .replace("MarisaWeaponFlag_CustomIconTint", Constants.RANK_COLOR_LIST.get(i - 1))
@@ -32,6 +36,7 @@ public class MeleeKnucklesIronShocked {
                     .replace("MarisaWeaponFlag_EntityDamage", String.valueOf(de))
                     .replace("MarisaWeaponFlag_BlockDamageTier", RANK_BLOCK_DAMAGE_TIER)
                     .replace("MarisaWeaponFlag_BlockDamage", String.valueOf(db))
+                    .replace("MarisaWeaponFlag_StaminaLossPrimary", String.valueOf(RANK_STAMINA_LOSS_PRIMARY[Math.min((i - 1) / 4, 2)]))
                     .replace("MarisaWeaponFlag_dMarisaShockedEffectAmount_1", D_MARISA_EFFECT_AMOUNT_1)
                     .replace("MarisaWeaponFlag_dMarisaShockedEffectAmount_2", D_MARISA_EFFECT_AMOUNT_2)
                     .replace("MarisaWeaponFlag_dMarisaShockedEffectAmount_3", D_MARISA_EFFECT_AMOUNT_3)
@@ -44,14 +49,16 @@ public class MeleeKnucklesIronShocked {
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
+        System.out.println(entityDamage);
+        System.out.println(blockDamage);
     }
 
     // 伤害
     public static final int RANK_ENTITY_DAMAGE_S0 = 50;
     public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 20, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
-    public static final int RANK_BLOCK_DAMAGE_S0 = 8;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0};
+    public static final int RANK_BLOCK_DAMAGE_S0 = 50;
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 20, 0};
     public static final String RANK_BLOCK_DAMAGE_TIER = "0,0";
     public static final String D_MARISA_EFFECT_AMOUNT = "20";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "24";
@@ -59,6 +66,9 @@ public class MeleeKnucklesIronShocked {
     public static final String D_MARISA_EFFECT_AMOUNT_3 = "32";
     public static final String D_MARISA_EFFECT_AMOUNT_4 = "36";
     public static final String D_MARISA_EFFECT_AMOUNT_5 = "40";
+
+    // 体力消耗
+    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{5, 10, 15};
 
     // 模型
     public static final String RANK_MARISA_CUSTOMICON_1 = "meleeWpnKnucklesT1IronKnuckles";
@@ -73,7 +83,7 @@ public class MeleeKnucklesIronShocked {
     public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"blunt,melee,grunting,light,perkFlurryOfFortitude,weapon,attFortitude,perkBrawler,noBlades,canHaveCosmetic,knuckleSkill,PerkT3Marisa\"/>\"/>";
     public static final String T3_TAG_2 = "\n\t        <property name=\"Tags\" value=\"blunt,melee,grunting,light,perkFlurryOfFortitude,weapon,attFortitude,perkBrawler,canHaveCosmetic,knuckleSkill,corpseRemoval,PerkT3Marisa\"/>";
 
-    //战斧
+    // item
     public static final String MELEE_IRON_AXE_BLEED = "        <item name=\"MeleeKnucklesIronShockedSMarisaWeaponFlag_RANK\">\n" +
             "            <property name=\"UnlockedBy\" value=\"craftingEquipment\"/>\n" +
             "            <property name=\"TraderStageTemplate\" value=\"baseTier2\"/>\n" +
@@ -87,8 +97,8 @@ public class MeleeKnucklesIronShocked {
             "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>\n" +
             "\n" +
             "            <effect_group name=\"MeleeKnucklesIronShockedSMarisaWeaponFlag_RANK\">\n" +
-            "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"90\" tags=\"perkBrawler,perkFlurryOfFortitude\"/>\n" +
-            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"10\" tags=\"primary,secondary\"/>\n" +
+            "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"100\" tags=\"perkBrawler,perkFlurryOfFortitude\"/>\n" +
+            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossPrimary\" tags=\"primary,secondary\"/>\n" +
             "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"300,450\" tier=\"1,6\" tags=\"perkBrawler\"/>\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkBrawler\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.5\" tags=\"perkBrawler\"/>\n" +

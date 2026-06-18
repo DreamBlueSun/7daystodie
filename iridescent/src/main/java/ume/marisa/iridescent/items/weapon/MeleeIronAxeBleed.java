@@ -1,7 +1,7 @@
 package iridescent.items.weapon;
 
 import iridescent.Constants;
-import iridescent.WriteToFile;
+import ume.marisa.iridescent.utils.WriteToFile;
 
 /**
  * 战斧
@@ -18,11 +18,15 @@ public class MeleeIronAxeBleed {
         int de = RANK_ENTITY_DAMAGE_S0;
         int db = RANK_BLOCK_DAMAGE_S0;
         StringBuilder s = new StringBuilder(START);
+        StringBuilder entityDamage = new StringBuilder("EntityDamage");
+        StringBuilder blockDamage = new StringBuilder("BlockDamage");
         for (int i = 1; i <= 13; i++) {
             de += RANK_ENTITY_DAMAGE_ARR[i - 1];
             db += RANK_BLOCK_DAMAGE_ARR[i - 1];
+            entityDamage.append(",").append(de);
+            blockDamage.append(",").append(db);
             String replace = MELEE_IRON_AXE_BLEED.replace("MarisaWeaponFlag_RANK", String.valueOf(i))
-                    .replace("MarisaWeaponFlag_T3_TAG", i >= 9 ? T3_TAG : T1_TAG)
+                    .replace("MarisaWeaponFlag_T3_TAG", i >= 9 ? T3_TAG_2 : T1_TAG)
                     .replace("MarisaWeaponFlag_CustomIconTint", Constants.RANK_COLOR_LIST.get(i - 1))
                     .replace("MarisaWeaponFlag_EconomicValue", Constants.RANK_ECONOMIC_LIST.get(i - 1))
                     .replace("MarisaWeaponFlag_Material", Constants.RANK_MATERIAL_LIST.get(i - 1))
@@ -32,15 +36,21 @@ public class MeleeIronAxeBleed {
                     .replace("MarisaWeaponFlag_EntityDamage", String.valueOf(de))
                     .replace("MarisaWeaponFlag_BlockDamageTier", RANK_BLOCK_DAMAGE_TIER)
                     .replace("MarisaWeaponFlag_BlockDamage", String.valueOf(db))
+                    .replace("MarisaWeaponFlag_StaminaLossPrimary", String.valueOf(RANK_STAMINA_LOSS_PRIMARY[Math.min((i - 1) / 4, 2)]))
+                    .replace("MarisaWeaponFlag_StaminaLossSecondary", String.valueOf(RANK_STAMINA_LOSS_SECONDARY[Math.min((i - 1) / 4, 2)]))
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_1", D_MARISA_EFFECT_AMOUNT_1)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_2", D_MARISA_EFFECT_AMOUNT_2)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_3", D_MARISA_EFFECT_AMOUNT_3)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_4", D_MARISA_EFFECT_AMOUNT_4)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_5", D_MARISA_EFFECT_AMOUNT_5)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT);
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT)
+                    .replace("MarisaWeaponFlag_Extends", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2)
+                    .replace("MarisaWeaponFlag_CustomIcon", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2);
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
+        System.out.println(entityDamage);
+        System.out.println(blockDamage);
     }
 
     // 伤害
@@ -57,26 +67,35 @@ public class MeleeIronAxeBleed {
     public static final String D_MARISA_EFFECT_AMOUNT_4 = "90";
     public static final String D_MARISA_EFFECT_AMOUNT_5 = "100";
 
-    // 狂化Tag
-    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
-    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon\"/>";
+    // 体力消耗
+    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{15, 30, 45};
+    public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{30, 60, 90};
 
-    //战斧
+    // 模型
+    public static final String RANK_MARISA_CUSTOMICON_1 = "meleeToolAxeT1IronFireaxe";
+    public static final String RANK_MARISA_CUSTOMICON_2 = "meleeToolAxeT2SteelAxe";
+
+    // 狂化Tag
+    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon\"/>";
+    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
+    public static final String T3_TAG_2 = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
+
+    // item
     public static final String MELEE_IRON_AXE_BLEED = "        <item name=\"MeleeIronAxeBleedSMarisaWeaponFlag_RANK\">\n" +
             "            <property name=\"UnlockedBy\" value=\"craftingEquipment\"/>\n" +
             "            <property name=\"TraderStageTemplate\" value=\"baseTier2\"/>\n" +
-            "            <property name=\"Extends\" value=\"meleeToolAxeT1IronFireaxe\"/>MarisaWeaponFlag_T3_TAG\n" +
+            "            <property name=\"Extends\" value=\"MarisaWeaponFlag_Extends\"/>MarisaWeaponFlag_T3_TAG\n" +
             "            <property name=\"DisplayType\" value=\"ui_weapon_melee_marisa_bleed\"/>\n" +
             "            <property name=\"SellableToTrader\" value=\"false\"/>\n" +
-            "            <property name=\"CustomIcon\" value=\"meleeToolAxeT1IronFireaxe\"/>\n" +
+            "            <property name=\"CustomIcon\" value=\"MarisaWeaponFlag_CustomIcon\"/>\n" +
             "            <property name=\"CustomIconTint\" value=\"MarisaWeaponFlag_CustomIconTint\"/>\n" +
             "            <property name=\"EconomicValue\" value=\"MarisaWeaponFlag_EconomicValue\"/>\n" +
             "            <property name=\"Material\" value=\"MarisaWeaponFlag_Material\"/>\n" +
             "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>\n" +
             "\n" +
             "            <effect_group name=\"MeleeIronAxeBleedSMarisaWeaponFlag_RANK\">\n" +
-            "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"75\" tags=\"perkMiner69r,axe\"/>\n" +
-            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"15\" tags=\"primary\"/>\n" +
+            "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"60\" tags=\"perkMiner69r,axe\"/>\n" +
+            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossPrimary\" tags=\"primary\"/>\n" +
             "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"150,225\" tier=\"1,6\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.7\" tags=\"perkMiner69r\"/>\n" +
@@ -94,7 +113,7 @@ public class MeleeIronAxeBleed {
             "            <effect_group name=\"Power Attack\">\n" +
             "                <passive_effect name=\"EntityDamage\" operation=\"perc_add\" value=\"1\" tags=\"secondary\"/>\n" +
             "                <passive_effect name=\"BlockDamage\" operation=\"perc_add\" value=\"1\" tags=\"secondary\"/>\n" +
-            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"30\" tags=\"secondary\"/>\n" +
+            "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossSecondary\" tags=\"secondary\"/>\n" +
             "            </effect_group>\n" +
             "\n" +
             "            <effect_group name=\"subtract entitydamage\" tiered=\"false\">\n" +
