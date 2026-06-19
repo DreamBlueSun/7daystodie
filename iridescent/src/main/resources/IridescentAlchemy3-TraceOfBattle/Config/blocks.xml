@@ -1,5 +1,19 @@
 <Marisa>
 
+    <!--*** 修复官方BUG -->
+    <remove xpath="/blocks/block[@name='chainlinkFenceDoorDouble']/property[@class='CompositeFeatures']"/>
+    <insertAfter xpath="/blocks/block[@name='chainlinkFenceDoorDouble']/property[@name='Class']">
+        <property class="CompositeFeatures">
+            <property class="TEFeatureDoor">
+                <property name="OpenSound" value="door_chainlink_double_open"/>
+                <property name="CloseSound" value="door_chainlink_double_close"/>
+                <property name="LockedSound" value="gate_chainlink_locked"/>
+            </property>
+            <property class="TEFeatureLockable"/>
+        </property>
+    </insertAfter>
+
+
     <!--*** 割草的获取数量修改 -->
     <set xpath="/blocks/block[@name='treeGrassMaster']/drop[@name='resourceYuccaFibers']/@count">5</set>
 

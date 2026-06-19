@@ -300,7 +300,7 @@
 			<effect_group>
 				<!-- heal effect is rolled into $critHitNaturalHealingRate -->
 				<passive_effect name="BuffResistance" operation="base_add" value=".25" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffLaceration,buffInfectionCatch,buffAbrasionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
-				<passive_effect name="HealthMax" operation="base_add" value="10"/>
+				<passive_effect name="HealthMax" operation="base_add" value="20"/>
 			</effect_group>
 		</buff>
         <!-- 越狱者 -->
@@ -2008,34 +2008,33 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_drugFortBites" operation="subtract" value="1"/>
 			</effect_group>
 
+			<!-- * 广域化 虹彩素材 -->
 			<!-- ** 蓝蘑菇 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsHealth" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsHealthBefore"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20" delay="0.5"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsHealth" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 怪力菇 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsAttack" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMushroomsAttack" duration="302"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsAttackBefore"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsAttack" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 忍耐菇 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsDefend" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffMushroomsDefend" duration="302"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsDefendBefore"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsDefend" operation="subtract" value="1"/>
 			</effect_group>
 			<!-- ** 爆炸菇 -->
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsDemolitions" operation="GTE" value="1"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="add" value="182"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffDrugAtomJunkiesDuration" operation="set" value="543">
-					<requirement name="CVarCompare" cvar="$buffDrugAtomJunkiesDuration" operation="GT" value="543"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffDrugAtomJunkies"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsDemolitionsBefore"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsDemolitions" operation="subtract" value="1"/>
 			</effect_group>
@@ -2895,26 +2894,26 @@
 			<!-- 添加 职业 检查 -->
 			<effect_group>
 				<!-- ** 拓荒者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionPathFinder1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionPathFinder2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 调查员 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionInvestigator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionInvestigator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 守护者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionGuardian1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionGuardian2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 探险家 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionEZ1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionEZ2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 掠夺者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionPredator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionPredator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 作战员 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionCombatant1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionCombatant2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="2"/></triggered_effect>
 				<!-- ** 吸血鬼 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="2"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionVampire1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffPerkMarisaProfessionVampire2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="2"/></triggered_effect>
 			</effect_group>
 
 
@@ -3348,22 +3347,22 @@
 		<buff name="buffPerkMarisaLiberationPower" name_key="buffPerkMarisaLiberationPowerName" description_key="buffPerkMarisaLiberationPowerDesc" showonhud="true" icon="ui_game_symbol_muscle" icon_color="0,191,255">
 			<stack_type value="ignore"/>
 			<update_rate value="1"/>
-			<duration value="182"/>
+			<duration value="122"/>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="LT" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffPerkMarisaLiberationPower"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="1"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.3"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.1"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="Equals" value="2"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.3"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.2"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaLiberationPower" operation="GTE" value="3"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.5"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-.3"/>
 			</effect_group>
 
 			<effect_group>
@@ -4001,197 +4000,6 @@
 
 
 
-		<!-- 怪力菇 -->
-		<buff name="buffMushroomsAttack" name_key="buffMushroomsAttackName" description_key="buffMushroomsAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="302"/>
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="base_add" value="30" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="3" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
-		<!-- 忍耐菇 -->
-		<buff name="buffMushroomsDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="302"/>
-			<effect_group>
-				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.05"/>
-			</effect_group>
-		</buff>
-
-		<!-- 鬼人药 -->
-		<buff name="buffIridescentPotionAttack" name_key="buffIridescentPotionAttackName" description_key="buffIridescentPotionAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack2"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
-		<!-- 硬化药 -->
-		<buff name="buffIridescentPotionDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend2"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="10"/>
-			</effect_group>
-		</buff>
-		<!-- 强走药 -->
-		<buff name="buffIridescentPotionStamina" name_key="buffIridescentPotionStaminaName" description_key="buffIridescentPotionStaminaDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="182"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionStamina2"/>
-				<passive_effect name="StaminaChangeOT" operation="base_add" value="100"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
-			</effect_group>
-		</buff>
-
-		<!-- 鬼人药 大 -->
-		<buff name="buffIridescentPotionAttack2" name_key="buffIridescentPotionAttack2Name" description_key="buffIridescentPotionAttack2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
-				<passive_effect name="EntityDamage" operation="base_add" value="2" tags="perkBoomstick,perkTurrets"/>
-			</effect_group>
-		</buff>
-		<!-- 硬化药 大 -->
-		<buff name="buffIridescentPotionDefend2" name_key="buffIridescentPotionDefend2Name" description_key="buffIridescentPotionDefend2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3602"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="20"/>
-			</effect_group>
-		</buff>
-		<!-- 强走药 大 -->
-		<buff name="buffIridescentPotionStamina2" name_key="buffIridescentPotionStamina2Name" description_key="buffIridescentPotionStamina2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="422"/>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="IridescentPotionStamina"/>
-				<passive_effect name="StaminaChangeOT" operation="base_add" value="100"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
-			</effect_group>
-		</buff>
-
-		<!-- 天丛菇 冷却 -->
-		<buff name="buffMarisaTeleportUpCold" name_key="buffMarisaTeleportUpColdName" description_key="buffMarisaTeleportUpColdDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="20"/>
-		</buff>
-
-
-
-		<!-- 旗帜 生命回复 -->
-		<buff name="buffBannerStationAOE" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffYcxBannerStation"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAOEEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBannerStationAOEEffect" name_key="buffBannerStationAOEEffectName" description_key="buffBannerStationAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-
-			<effect_group>
-				<passive_effect name="HealthChangeOT" operation="base_add" value="1"/>
-				<passive_effect name="FoodLossPerHealthPointGained" operation="base_set" value="0"/>
-			</effect_group>
-		</buff>
-		<!-- 旗帜 伤害减免 -->
-		<buff name="buffBannerStationDefAOE" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffYcxBannerStationDef"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationDefAOEEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBannerStationDefAOEEffect" name_key="buffBannerStationDefAOEEffectName" description_key="buffBannerStationDefAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-
-			<effect_group>
-				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.1"/>
-			</effect_group>
-		</buff>
-		<!-- 旗帜 伤害提升 -->
-		<buff name="buffBannerStationAtkAOE" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAtkAOEEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBannerStationAtkAOEEffect" name_key="buffBannerStationAtkAOEEffectName" description_key="buffBannerStationAtkAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-
-			<effect_group>
-				<passive_effect name="EntityDamage" operation="base_add" value="10"/>
-			</effect_group>
-		</buff>
-		<!-- 旗帜 物块伤害降低 -->
-		<buff name="buffBannerStationBlockDamageDownAOE" hidden="true">
-			<stack_type value="ignore"/>
-			<duration value="1"/>
-			<effect_group>
-				<requirement name="EntityTagCompare" tags="player"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationBlockDamageDownAOEEffect"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBannerStationBlockDamageDownAOEEffect" name_key="buffBannerStationBlockDamageDownAOEEffectName" description_key="buffBannerStationBlockDamageDownAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-			<effect_group>
-                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
-                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
-                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
-			</effect_group>
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
-			</effect_group>
-		</buff>
-		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="3"/>
-			<effect_group>
-                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
-                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
-                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
-			</effect_group>
-		</buff>
-
-		<!-- 一次性旗帜 生命回复 -->
-		<buff name="buffYcxBannerStation" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="1200"/>
-		</buff>
-		<!-- 一次性旗帜 伤害减免 -->
-		<buff name="buffYcxBannerStationDef" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="1200"/>
-		</buff>
-		<!-- 一次性旗帜 伤害提升 -->
-		<buff name="buffYcxBannerStationAtk" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="1200"/>
-		</buff>
-
-
-
 		<!-- * 玩家所在地形 穿越 -->
 		<buff name="buffPerkMarisaTraversing" hidden="true">
 			<stack_type value="replace"/>
@@ -4236,17 +4044,17 @@
 
 		<!-- * 职业 BUFF -->
 		<!-- 拓荒者 -->
-		<buff name="buffperkMarisaProfessionPathFinder1" hidden="true">
+		<buff name="buffPerkMarisaProfessionPathFinder1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
 			<effect_group>
 				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkPlayerExpGainDown"/>
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaGeology"/>
-				<passive_effect name="PlayerExpGain" operation="perc_add" value=".4"/>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionPathFinder2" hidden="true">
+		<buff name="buffPerkMarisaProfessionPathFinder2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4254,31 +4062,45 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkPlayerExpGainDown"/>
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaGeology"/>
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaBreakStar"/>
-				<passive_effect name="PlayerExpGain" operation="perc_add" value=".6"/>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2"/>
 			</effect_group>
 		</buff>
 		<!-- 调查员 -->
-		<buff name="buffperkMarisaProfessionInvestigator1" hidden="true">
+		<buff name="buffPerkMarisaProfessionInvestigator1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
 			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaMechanics"/>
-				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaScrapeStar"/>
+				<passive_effect name="PerkLevel" operation="base_add" value="2" tags="perkMarisaScrapeStar"/>
+				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAdjustment"/>
+				<triggered_effect trigger="onCombatEntered" action="AddBuff" buff="buffPerkMarisaProfessionInvestigatorRunSpeedCold"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffPerkMarisaProfessionInvestigatorRunSpeedCold"/>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".3"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionInvestigator2" hidden="true">
+		<buff name="buffPerkMarisaProfessionInvestigator2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
 			<effect_group>
-				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaMechanics"/>
 				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaScrapeStar"/>
+				<passive_effect name="PerkLevel" operation="base_add" value="3" tags="perkMarisaMechanics"/>
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaAdjustment"/>
+				<triggered_effect trigger="onCombatEntered" action="AddBuff" buff="buffPerkMarisaProfessionInvestigatorRunSpeedCold"/>
 			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffPerkMarisaProfessionInvestigatorRunSpeedCold"/>
+				<passive_effect name="RunSpeed" operation="perc_add" value=".5"/>
+			</effect_group>
+		</buff>
+		<buff name="buffPerkMarisaProfessionInvestigatorRunSpeedCold" name_key="buffPerkMarisaProfessionInvestigatorRunSpeedColdName" description_key="buffPerkMarisaProfessionInvestigatorRunSpeedColdDesc" showonhud="true" icon="ui_game_symbol_light_armor" icon_color="255,0,55">
+			<stack_type value="replace"/>
+			<duration value="20"/>
 		</buff>
 		<!-- 守护者 -->
-		<buff name="buffperkMarisaProfessionGuardian1" hidden="true">
+		<buff name="buffPerkMarisaProfessionGuardian1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4287,7 +4109,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaDefensive"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionGuardian2" hidden="true">
+		<buff name="buffPerkMarisaProfessionGuardian2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4297,7 +4119,7 @@
 			</effect_group>
 		</buff>
 		<!-- 探险家 -->
-		<buff name="buffperkMarisaProfessionEZ1" hidden="true">
+		<buff name="buffPerkMarisaProfessionEZ1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4305,7 +4127,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaSneakUp"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionEZ2" hidden="true">
+		<buff name="buffPerkMarisaProfessionEZ2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4314,7 +4136,7 @@
 			</effect_group>
 		</buff>
 		<!-- 掠夺者 -->
-		<buff name="buffperkMarisaProfessionPredator1" hidden="true">
+		<buff name="buffPerkMarisaProfessionPredator1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4322,7 +4144,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaSpiritOfWar"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionPredator2" hidden="true">
+		<buff name="buffPerkMarisaProfessionPredator2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4331,7 +4153,7 @@
 			</effect_group>
 		</buff>
 		<!-- 作战员 -->
-		<buff name="buffperkMarisaProfessionCombatant1" hidden="true">
+		<buff name="buffPerkMarisaProfessionCombatant1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4339,7 +4161,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVitality"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionCombatant2" hidden="true">
+		<buff name="buffPerkMarisaProfessionCombatant2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4348,7 +4170,7 @@
 			</effect_group>
 		</buff>
 		<!-- 吸血鬼 -->
-		<buff name="buffperkMarisaProfessionVampire1" hidden="true">
+		<buff name="buffPerkMarisaProfessionVampire1" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -4356,7 +4178,7 @@
 				<passive_effect name="PerkLevel" operation="base_add" value="1" tags="perkMarisaVampireKiss"/>
 			</effect_group>
 		</buff>
-		<buff name="buffperkMarisaProfessionVampire2" hidden="true">
+		<buff name="buffPerkMarisaProfessionVampire2" hidden="true">
 			<stack_type value="replace"/>
 			<duration value="0"/>
 
@@ -5996,6 +5818,281 @@
 
 	</append>
 
+	<!-- *** 消耗品 虹彩 -->
+	<append xpath="/buffs">
+
+		<!-- 蓝蘑菇 -->
+		<buff name="buffFoodCropMushroomsHealthBefore" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsHealth1" name_key="buffFoodCropMushroomsHealth1Name" description_key="buffFoodCropMushroomsHealth1Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <passive_effect name="HealthMax" operation="base_add" value="10"/>
+            </effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsHealth2" name_key="buffFoodCropMushroomsHealth2Name" description_key="buffFoodCropMushroomsHealth2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <passive_effect name="HealthMax" operation="base_add" value="20"/>
+            </effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsHealth3" name_key="buffFoodCropMushroomsHealth3Name" description_key="buffFoodCropMushroomsHealth3Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <passive_effect name="HealthMax" operation="base_add" value="30"/>
+            </effect_group>
+		</buff>
+		<!-- 怪力菇 -->
+		<buff name="buffFoodCropMushroomsAttackBefore" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsAttack1" name_key="buffFoodCropMushroomsAttack1Name" description_key="buffFoodCropMushroomsAttack1Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="base_add" value="5" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value=".5" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsAttack2" name_key="buffFoodCropMushroomsAttack2Name" description_key="buffFoodCropMushroomsAttack2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsAttack3" name_key="buffFoodCropMushroomsAttack3Name" description_key="buffFoodCropMushroomsAttack3Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="2" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 忍耐菇 -->
+		<buff name="buffFoodCropMushroomsDefendBefore" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDefend3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDefend3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDefend2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsDefend2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDefend3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDefend1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsDefend1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDefend2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDefend1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDefend2"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDefend3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDefend1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDefend1" name_key="buffFoodCropMushroomsDefend1Name" description_key="buffFoodCropMushroomsDefend1Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <requirement name="NotHasBuff" buff="buffStatusHungry03"/>
+                <requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
+                <passive_effect name="HealthChangeOT" operation="base_add"  value=".5"/>
+            </effect_group>
+			<effect_group>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDefend2" name_key="buffFoodCropMushroomsDefend2Name" description_key="buffFoodCropMushroomsDefend2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <requirement name="NotHasBuff" buff="buffStatusHungry03"/>
+                <requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
+                <passive_effect name="HealthChangeOT" operation="base_add"  value="1"/>
+            </effect_group>
+			<effect_group>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".2"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDefend3" name_key="buffFoodCropMushroomsDefend3Name" description_key="buffFoodCropMushroomsDefend3Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+            <effect_group>
+                <requirement name="NotHasBuff" buff="buffStatusHungry03"/>
+                <requirement name="NotHasBuff" buff="buffStatusThirsty03"/>
+                <passive_effect name="HealthChangeOT" operation="base_add"  value="1.5"/>
+            </effect_group>
+			<effect_group>
+				<passive_effect name="StaminaChangeOT" operation="perc_add" value=".3"/>
+			</effect_group>
+		</buff>
+		<!-- 爆炸菇 -->
+		<buff name="buffFoodCropMushroomsDemolitionsBefore" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDemolitions3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDemolitions3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDemolitions2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsDemolitions2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDemolitions3"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsDemolitions1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsDemolitions1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDemolitions2"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDemolitions1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDemolitions2"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsDemolitions3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsDemolitions1"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDemolitions1" name_key="buffFoodCropMushroomsDemolitions1Name" description_key="buffFoodCropMushroomsDemolitions1Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".05" tags="perkDemolitionsExpert,perkArchery"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDemolitions2" name_key="buffFoodCropMushroomsDemolitions2Name" description_key="buffFoodCropMushroomsDemolitions2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".1" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".1" tags="perkDemolitionsExpert,perkArchery"/>
+			</effect_group>
+		</buff>
+		<buff name="buffFoodCropMushroomsDemolitions3" name_key="buffFoodCropMushroomsDemolitions3Name" description_key="buffFoodCropMushroomsDemolitions3Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<passive_effect name="ExplosionBlockDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
+				<passive_effect name="ExplosionEntityDamage" operation="perc_add" value=".2" tags="perkDemolitionsExpert,perkArchery"/>
+			</effect_group>
+		</buff>
+		<!-- 天丛菇 冷却 -->
+		<buff name="buffMarisaTeleportUpCold" name_key="buffMarisaTeleportUpColdName" description_key="buffMarisaTeleportUpColdDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="20"/>
+		</buff>
+
+		<!-- 鬼人药 -->
+		<buff name="buffIridescentPotionAttack" name_key="buffIridescentPotionAttackName" description_key="buffIridescentPotionAttackDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack2"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="10" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="1" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 硬化药 -->
+		<buff name="buffIridescentPotionDefend" name_key="buffIridescentPotionDefendName" description_key="buffIridescentPotionDefendDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend2"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="10"/>
+			</effect_group>
+		</buff>
+		<!-- 强走药 -->
+		<buff name="buffIridescentPotionStamina" name_key="buffIridescentPotionStaminaName" description_key="buffIridescentPotionStaminaDesc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="182"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionStamina2"/>
+				<passive_effect name="StaminaChangeOT" operation="base_add" value="100"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
+			</effect_group>
+		</buff>
+
+		<!-- 鬼人药 大 -->
+		<buff name="buffIridescentPotionAttack2" name_key="buffIridescentPotionAttack2Name" description_key="buffIridescentPotionAttack2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionAttack"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="20" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+				<passive_effect name="EntityDamage" operation="base_add" value="2" tags="perkBoomstick,perkTurrets"/>
+			</effect_group>
+		</buff>
+		<!-- 硬化药 大 -->
+		<buff name="buffIridescentPotionDefend2" name_key="buffIridescentPotionDefend2Name" description_key="buffIridescentPotionDefend2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3602"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffIridescentPotionDefend"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="20"/>
+			</effect_group>
+		</buff>
+		<!-- 强走药 大 -->
+		<buff name="buffIridescentPotionStamina2" name_key="buffIridescentPotionStamina2Name" description_key="buffIridescentPotionStamina2Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="422"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="IridescentPotionStamina"/>
+				<passive_effect name="StaminaChangeOT" operation="base_add" value="100"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-1"/>
+			</effect_group>
+		</buff>
+
+	</append>
 	<!-- *** 食物充能 -->
 	<append xpath="/buffs">
 
@@ -6479,6 +6576,114 @@
 	<insertAfter xpath="/buffs/buff[@name='buffPlayerFallingDamage']/effect_group/triggered_effect[@action='ModifyCVar' and @cvar='.impactSpeed' and @value='@$parkourBonus']">
 		<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".impactSpeed" operation="subtract" value="@$buffFeastEffectBonus"/>
 	</insertAfter>
+
+	<!-- *** 旗帜 -->
+	<append xpath="/buffs">
+
+		<!-- 旗帜 生命回复 -->
+		<buff name="buffBannerStationAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStation"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationAOEEffect" name_key="buffBannerStationAOEEffectName" description_key="buffBannerStationAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="HealthChangeOT" operation="base_add" value="1"/>
+				<passive_effect name="FoodLossPerHealthPointGained" operation="base_set" value="0"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 伤害减免 -->
+		<buff name="buffBannerStationDefAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStationDef"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationDefAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationDefAOEEffect" name_key="buffBannerStationDefAOEEffectName" description_key="buffBannerStationDefAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="0.1"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 伤害提升 -->
+		<buff name="buffBannerStationAtkAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<requirement name="NotHasBuff" buff="buffYcxBannerStationAtk"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationAtkAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationAtkAOEEffect" name_key="buffBannerStationAtkAOEEffectName" description_key="buffBannerStationAtkAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+
+			<effect_group>
+				<passive_effect name="EntityDamage" operation="base_add" value="10"/>
+			</effect_group>
+		</buff>
+		<!-- 旗帜 物块伤害降低 -->
+		<buff name="buffBannerStationBlockDamageDownAOE" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="1"/>
+			<effect_group>
+				<requirement name="EntityTagCompare" tags="player"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffBannerStationBlockDamageDownAOEEffect"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationBlockDamageDownAOEEffect" name_key="buffBannerStationBlockDamageDownAOEEffectName" description_key="buffBannerStationBlockDamageDownAOEEffectDesc" icon="ui_game_symbol_adventure" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
+                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+				<triggered_effect trigger="onSelfBuffStack" action="AddBuff" target="selfAOE" target_tags="animal,zombie" range="50" buff="buffBannerStationBlockDamageDownAOEEffectZombie"/>
+			</effect_group>
+		</buff>
+		<buff name="buffBannerStationBlockDamageDownAOEEffectZombie" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="3"/>
+			<effect_group>
+                <passive_effect name="BlockDamage" operation="base_set" value="0"/>
+                <passive_effect name="BlockDamage" operation="perc_set" value="0"/>
+                <passive_effect name="ExplosionBlockDamage" operation="perc_set" value="0"/>
+			</effect_group>
+		</buff>
+
+		<!-- 一次性旗帜 生命回复 -->
+		<buff name="buffYcxBannerStation" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1200"/>
+		</buff>
+		<!-- 一次性旗帜 伤害减免 -->
+		<buff name="buffYcxBannerStationDef" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1200"/>
+		</buff>
+		<!-- 一次性旗帜 伤害提升 -->
+		<buff name="buffYcxBannerStationAtk" hidden="true">
+			<stack_type value="replace"/>
+			<duration value="1200"/>
+		</buff>
+
+	</append>
 
 	<!-- *** 技能模组 -->
 	<append xpath="/buffs">

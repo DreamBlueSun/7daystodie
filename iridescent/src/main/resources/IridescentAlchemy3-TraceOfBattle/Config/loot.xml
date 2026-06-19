@@ -116,20 +116,20 @@
 
 	<!-- *** 搜刮替换 武器/工具 为零件 -->
 	<!-- ** 钢制工具零件 -->
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT1IronFireaxe']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT2SteelAxe']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT1IronPickaxe']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT2SteelPickaxe']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolShovelT1IronShovel']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolShovelT2SteelShovel']">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT1IronFireaxe']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT2SteelAxe']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT1IronPickaxe']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT2SteelPickaxe']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolShovelT1IronShovel']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolShovelT2SteelShovel']/@name">meleeToolAllSteelParts</set>
 	<!-- ** 电动工具零件 -->
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolRepairT3Nailgun']">meleeToolAxeT3ChainsawParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT3Chainsaw']">meleeToolAxeT3ChainsawParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT3Auger']">meleeToolAxeT3ChainsawParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolRepairT3Nailgun']/@name">meleeToolAxeT3ChainsawParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT3Chainsaw']/@name">meleeToolAxeT3ChainsawParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolPickT3Auger']/@name">meleeToolAxeT3ChainsawParts</set>
 	<!-- ** 拆解工具零件 -->
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT1Wrench']">resourceMechanicalParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT2Ratchet']">meleeToolAllSteelParts</set>
-	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT3ImpactDriver']">meleeToolAxeT3ChainsawParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT1Wrench']/@name">resourceMechanicalParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT2Ratchet']/@name">meleeToolAllSteelParts</set>
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT3ImpactDriver']/@name">meleeToolAxeT3ChainsawParts</set>
 
 
 
@@ -322,7 +322,7 @@
 
 
 
-	<!-- *** prob -->
+	<!-- *** 搜刮 掉落概率 -->
 	<append xpath="/lootcontainers/lootprobtemplates">
 		<lootprobtemplate name="probResourceZombieT1">
 			<loot level="1,999999" prob=".4"/>
@@ -561,10 +561,37 @@
 			<loot level="1,200" prob="0.02"/>
 			<loot level="201,999999" prob="0.02"/>
 		</lootprobtemplate>
+
+		<lootprobtemplate name="probNoteByIridescentS1">
+			<loot level="1,50" prob=".6"/>
+			<loot level="51,100" prob=".25"/>
+			<loot level="101,150" prob=".1"/>
+			<loot level="151,999999" prob=".05"/>
+		</lootprobtemplate>
+		<lootprobtemplate name="probNoteByIridescentS50">
+			<loot level="1,50" prob="0"/>
+			<loot level="51,100" prob=".6"/>
+			<loot level="101,150" prob=".25"/>
+			<loot level="151,999999" prob=".1"/>
+		</lootprobtemplate>
+		<lootprobtemplate name="probNoteByIridescentS100">
+			<loot level="1,50" prob="0"/>
+			<loot level="51,100" prob="0"/>
+			<loot level="101,150" prob=".6"/>
+			<loot level="151,999999" prob=".25"/>
+		</lootprobtemplate>
+		<lootprobtemplate name="probNoteByIridescentS150">
+			<loot level="1,50" prob="0"/>
+			<loot level="51,100" prob="0"/>
+			<loot level="101,150" prob="0"/>
+			<loot level="151,999999" prob=".6"/>
+		</lootprobtemplate>
+
 	</append>
 
-	<!-- *** group-->
+	<!-- *** 搜刮 分组-->
 	<insertBefore xpath="/lootcontainers/lootgroup[@name='empty']">
+
 		<!-- 晶石 -->
 		<lootgroup name="groupModR3" count="1">
 			<item name="ModR3S1L1HotResist"/>
@@ -3422,8 +3449,6 @@
 			<item name="ammoJunkTurretShell" count="3,6" loot_stage_count_mod="0.01"/>
 		</lootgroup>
 
-
-
 		<!-- 水栽培养皿 -->
 		<lootgroup name="groupFoodCropBlueberries" count="all">
 			<item name="foodCropBlueberries" count="2,4"/>
@@ -3630,6 +3655,34 @@
 			<item name="foodCropMushroomsCloud" count="2"><requirement class="Progression" name="perkMarisaPlantBiology" operation="EQ" value="4"/></item>
 		</lootgroup>
 
+        <!-- 笔记 -->
+        <lootgroup name="noteByIridescent" count="1">
+			<!-- 群友的远古笔记 -->
+			<item name="noteByIridescentPlayers01" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<item name="noteByIridescentPlayers02" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<item name="noteByIridescentPlayers03" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<item name="noteByIridescentPlayers04" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<item name="noteByIridescentPlayers05" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<item name="noteByIridescentPlayers06" count="1" loot_prob_template="probNoteByIridescentS150"/>
+			<!-- 群友的奇妙笔记 -->
+			<item name="noteByIridescentPlayers101" count="1" loot_prob_template="probNoteByIridescentS100"/>
+			<!-- 精致的笔记 -->
+			<item name="noteByIridescentMarisa01" count="1" loot_prob_template="probNoteByIridescentS50"/>
+			<item name="noteByIridescentMarisa02" count="1" loot_prob_template="probNoteByIridescentS50"/>
+			<!-- 破旧的笔记 -->
+			<item name="noteByIridescentMarisa101" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa102" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa103" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa104" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa105" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa106" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa107" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa108" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa109" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa110" count="1" loot_prob_template="probNoteByIridescentS1"/>
+			<item name="noteByIridescentMarisa111" count="1" loot_prob_template="probNoteByIridescentS1"/>
+		</lootgroup>
+
 	</insertBefore>
 
 
@@ -3713,7 +3766,7 @@
 
 
 
-	<!-- MarisaAmmo -->
+	<!-- *** 搜刮 弹药 -->
 	<append xpath="/lootcontainers/lootgroup[@name='groupReinforcedChestT1']">
 		<item group="groupMarisaAmmoLarge" count="2"/>
 	</append>
@@ -3745,6 +3798,24 @@
 		<item group="groupMarisaAmmoLarge" count="36"/>
 	</append>
 
+
+	<!-- *** 搜刮 笔记 -->
+	<!-- ** 垃圾食物类 -->
+	<append xpath="/lootcontainers/lootgroup[@name='groupFoodTrashCommon' or @name='groupFoodTrashUncommon']">
+		<item group="noteByIridescent" loot_prob_template="low"/>
+	</append>
+	<!-- ** 基础垃圾 -->
+	<append xpath="/lootcontainers/lootgroup[@name='groupScrapCommon' or @name='groupScrapUncommon' or @name='groupScrapRare']">
+		<item group="noteByIridescent" loot_prob_template="low"/>
+	</append>
+	<!-- ** 背包 帐篷 -->
+	<append xpath="/lootcontainers/lootgroup[@name='groupBackpacks01' or @name='groupCampingTents01']">
+		<item group="noteByIridescent" loot_prob_template="low"/>
+	</append>
+	<!-- ** 车辆（轿车/面包车等）、脚柜等容器 -->
+	<append xpath="/lootcontainers/lootgroup[@name='groupJunkNoBMats01']">
+		<item group="noteByIridescent" loot_prob_template="low"/>
+	</append>
 
 
 	<!-- PlantHydroponicVertical -->
@@ -3809,6 +3880,7 @@
 			<item group="groupFoodCropMushroomsCloud" count="1" prob="1"/>
 		</lootcontainer>
 	</append>
+
 
 
 </Marisa>
