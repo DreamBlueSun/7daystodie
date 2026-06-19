@@ -6698,6 +6698,22 @@
 			</effect_group>
 		</buff>
 
+		<!-- 震荡 -->
+		<buff name="buffMeleeHammerAoeAttack" hidden="true">
+			<damage_type value="crushing"/>
+			<stack_type value="replace"/>
+			<update_rate value=".5"/>
+			<duration value="5"/>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="$buffMeleeHammerAoeAttack_count" operation="GTE" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="subtract" value="@buffMeleeHammerAoeAttack">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@buffMeleeHammerAoeAttack"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffMeleeHammerAoeAttack_count" operation="subtract" value="1"/>
+			</effect_group>
+		</buff>
+
 		<!-- 磁暴脉冲 -->
 		<buff name="buffIridescentModClothingTeslaCoil" name_key="buffIridescentModClothingTeslaCoilName" description_key="buffIridescentModClothingTeslaCoilDesc" showonhud="true" icon="ui_game_symbol_electric_max_power" icon_color="0,191,255">
 			<stack_type value="ignore"/>
