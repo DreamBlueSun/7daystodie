@@ -3,7 +3,6 @@
     <!--*** 割草的获取数量修改 -->
     <set xpath="/blocks/block[@name='treeGrassMaster']/drop[@name='resourceYuccaFibers']/@count">5</set>
 
-
     <!--*** 蜂蜜的获取概率修改 -->
     <!--** 树桩 -->
     <set xpath="/blocks/block[@name='treeStump' or @name='treeStumpPOI']/property[@name='DestroyedEvent']/@value">marisa_block_tree_stump_bees</set>
@@ -34,20 +33,27 @@
     <!--*** 矿石获取数量加成标签 -->
     <set xpath="/blocks/block/drop[@tag='oreWoodHarvest']/@tag">oreWoodHarvest,marisaOreHarvest</set>
 
-
-    <!--*** 修改 双开木门 双开铁门 可旋转角度 -->
-    <remove xpath="/blocks/block[@name='oldWoodDoorDouble']/property[@name='AllowAllRotations']"/>
-    <append xpath="/blocks/block[@name='oldWoodDoorDouble']">
-        <property name="AllowedRotations" value="Basic90"/>
-    </append>
-    <remove xpath="/blocks/block[@name='ironDoorDoubleWhite']/property[@name='AllowAllRotations']"/>
-    <append xpath="/blocks/block[@name='ironDoorDoubleWhite']">
-        <property name="AllowedRotations" value="Basic90"/>
-    </append>
-
-
     <!--*** 方块造成电击修改 -->
     <set xpath="/blocks/block/property[@name='Buff' and @value='buffShocked']/@value">buffShockedBlock</set>
+
+    <!--*** 修改 露水收集器 体积 -->
+    <set xpath="/blocks/block[@name='cntDewCollector']/property[@name='MultiBlockDim']/@value">1,2,1</set>
+
+    <!--*** 作物收割后保留种子生长状态 -->
+    <append xpath="/blocks/block[@name='plantedBlueberry3HarvestPlayer']"><property name="DowngradeBlock" value="plantedBlueberry1"/></append>
+    <append xpath="/blocks/block[@name='plantedCorn3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCorn1"/></append>
+    <append xpath="/blocks/block[@name='plantedGraceCorn3HarvestPlayer']"><property name="DowngradeBlock" value="plantedGraceCorn1"/></append>
+    <append xpath="/blocks/block[@name='plantedPotato3HarvestPlayer']"><property name="DowngradeBlock" value="plantedPotato1"/></append>
+    <append xpath="/blocks/block[@name='plantedMushroom3HarvestPlayer']"><property name="DowngradeBlock" value="plantedMushroom1"/></append>
+    <append xpath="/blocks/block[@name='plantedYucca3HarvestPlayer']"><property name="DowngradeBlock" value="plantedYucca1"/></append>
+    <append xpath="/blocks/block[@name='plantedPumpkin3HarvestPlayer']"><property name="DowngradeBlock" value="plantedPumpkin1"/></append>
+
+    <append xpath="/blocks/block[@name='plantedHop3HarvestPlayer']"><property name="DowngradeBlock" value="plantedHop1"/></append>
+    <append xpath="/blocks/block[@name='plantedAloe3HarvestPlayer']"><property name="DowngradeBlock" value="plantedAloe1"/></append>
+    <append xpath="/blocks/block[@name='plantedChrysanthemum3HarvestPlayer']"><property name="DowngradeBlock" value="plantedChrysanthemum1"/></append>
+    <append xpath="/blocks/block[@name='plantedCotton3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCotton1"/></append>
+    <append xpath="/blocks/block[@name='plantedGoldenrod3HarvestPlayer']"><property name="DowngradeBlock" value="plantedGoldenrod1"/></append>
+    <append xpath="/blocks/block[@name='plantedCoffee3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCoffee1"/></append>
 
 
 
@@ -143,8 +149,6 @@
         </block>
 
     </append>
-
-
 
     <!--*** 虹彩方块 水栽培养皿 -->
     <append xpath="/blocks">
@@ -2073,31 +2077,6 @@
 
     </append>
 
-
-
-    <!--*** 修改 露水收集器 体积 -->
-    <set xpath="/blocks/block[@name='cntDewCollector']/property[@name='MultiBlockDim']/@value">1,2,1</set>
-
-
-
-    <!--*** 作物收割后保留种子生长状态 -->
-    <append xpath="/blocks/block[@name='plantedBlueberry3HarvestPlayer']"><property name="DowngradeBlock" value="plantedBlueberry1"/></append>
-    <append xpath="/blocks/block[@name='plantedCorn3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCorn1"/></append>
-    <append xpath="/blocks/block[@name='plantedGraceCorn3HarvestPlayer']"><property name="DowngradeBlock" value="plantedGraceCorn1"/></append>
-    <append xpath="/blocks/block[@name='plantedPotato3HarvestPlayer']"><property name="DowngradeBlock" value="plantedPotato1"/></append>
-    <append xpath="/blocks/block[@name='plantedMushroom3HarvestPlayer']"><property name="DowngradeBlock" value="plantedMushroom1"/></append>
-    <append xpath="/blocks/block[@name='plantedYucca3HarvestPlayer']"><property name="DowngradeBlock" value="plantedYucca1"/></append>
-    <append xpath="/blocks/block[@name='plantedPumpkin3HarvestPlayer']"><property name="DowngradeBlock" value="plantedPumpkin1"/></append>
-
-    <append xpath="/blocks/block[@name='plantedHop3HarvestPlayer']"><property name="DowngradeBlock" value="plantedHop1"/></append>
-    <append xpath="/blocks/block[@name='plantedAloe3HarvestPlayer']"><property name="DowngradeBlock" value="plantedAloe1"/></append>
-    <append xpath="/blocks/block[@name='plantedChrysanthemum3HarvestPlayer']"><property name="DowngradeBlock" value="plantedChrysanthemum1"/></append>
-    <append xpath="/blocks/block[@name='plantedCotton3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCotton1"/></append>
-    <append xpath="/blocks/block[@name='plantedGoldenrod3HarvestPlayer']"><property name="DowngradeBlock" value="plantedGoldenrod1"/></append>
-    <append xpath="/blocks/block[@name='plantedCoffee3HarvestPlayer']"><property name="DowngradeBlock" value="plantedCoffee1"/></append>
-
-
-
     <!--*** 添加炼金收集器 -->
     <append xpath="/blocks">
 
@@ -2115,7 +2094,7 @@
             <property name="Material" value="MFuelBarrelPolymer"/>
             <property name="Shape" value="ModelEntity"/>
             <property name="TintColor" value="999498"/>
-<!--            <property name="CustomIcon" value="waterHeaterWhite"/>-->
+            <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="Model" value="@:Entities/Appliances/heaterHotWaterPrefab.prefab"/>
             <property name="MultiBlockDim" value="1,2,1"/>
             <property name="ImposterExchange" value="imposterBlock" param1="77"/>
@@ -2276,13 +2255,11 @@
             <property name="TintColor" value="FF66B2"/>
             <property name="CustomIcon" value="waterHeaterWhite"/>
             <property name="FuelTypes" value="{gasCan,ammoGasCan}"/>
-            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceIridescentCubeSuperBundle10,resourceIridescentCubeSuperBundle20,2,2,16000,16000,collector_complete_item}"/>
+            <property name="OutputTypes" value="{resourceMarisa,gasCan,100,0,100,resourceIridescentCubeSuperBundle20,resourceIridescentCubeSuperBundle40,2,2,16000,16000,collector_complete_item}"/>
             <property name="Outputs" value="resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa,resourceMarisa"/>
         </block>
 
     </append>
-
-
 
     <!--*** 添加 旗帜 -->
     <append xpath="/blocks">
@@ -2386,8 +2363,6 @@
 
     </append>
 
-
-
     <!--*** 添加 微波炉 -->
     <append xpath="/blocks">
 
@@ -2454,8 +2429,6 @@
         </block>
 
     </append>
-
-
 
     <!--*** 添加 陷阱 -->
     <append xpath="/blocks/block[@name='bladeTrap']">

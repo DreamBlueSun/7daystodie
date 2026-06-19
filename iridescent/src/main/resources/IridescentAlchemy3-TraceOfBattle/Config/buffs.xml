@@ -2856,6 +2856,69 @@
 			<update_rate value="1"/>
 			<duration value="0"/>
 
+			<!-- ** 整备 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".perkMarisaAdjustmentCount" operation="add" value="1">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="GT" value="0"/>
+				</triggered_effect>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment1" allow_client_call="true">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="1"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment2" allow_client_call="true">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="2"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment3" allow_client_call="true">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="3"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment4" allow_client_call="true">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment5" allow_client_call="true">
+					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="5"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".perkMarisaAdjustmentCount" operation="set" value="0"/>
+			</effect_group>
+
+			<!-- * 杂志获取技能点加倍判定 -->
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$nerdOutfitSkillPointChance" operation="set" value="@$nerdOutfitSkillPointChanceCigar"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$nerdOutfitSkillPointChance" operation="add" value="50">
+					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
+				</triggered_effect>
+			</effect_group>
+
+
+
+			<!-- 添加 职业 检查 -->
+			<effect_group>
+				<!-- ** 拓荒者 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 调查员 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 守护者 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 探险家 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 掠夺者 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 作战员 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="2"/></triggered_effect>
+				<!-- ** 吸血鬼 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="2"/></triggered_effect>
+			</effect_group>
+
+
+
 			<!-- * 关键任务完成状态展示 -->
 			<effect_group>
 
@@ -3229,67 +3292,6 @@
 				<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="14"/>
 				<requirement name="ProgressionLevel" progression_name="craftingEquipment" operation="LT" value="4"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddProgressionLevel" progression_name="craftingEquipment" level="1"/>
-			</effect_group>
-
-			<!-- ** 整备 -->
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".perkMarisaAdjustmentCount" operation="add" value="1">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="GT" value="0"/>
-				</triggered_effect>
-			</effect_group>
-			<effect_group>
-				<requirement name="CVarCompare" cvar=".perkMarisaAdjustmentCount" operation="GTE" value="20"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment1" allow_client_call="true">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="1"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment2" allow_client_call="true">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="2"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment3" allow_client_call="true">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="3"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment4" allow_client_call="true">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="4"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="EventMarisaAdjustment5" allow_client_call="true">
-					<requirement name="ProgressionLevel" progression_name="perkMarisaAdjustment" operation="EQ" value="5"/>
-				</triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".perkMarisaAdjustmentCount" operation="set" value="0"/>
-			</effect_group>
-
-			<!-- * 杂志获取技能点加倍判定 -->
-			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$nerdOutfitSkillPointChance" operation="set" value="@$nerdOutfitSkillPointChanceCigar"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$nerdOutfitSkillPointChance" operation="add" value="50">
-					<requirement name="ProgressionLevel" progression_name="perkPhysician" operation="GTE" value="5"/>
-				</triggered_effect>
-			</effect_group>
-
-
-
-			<!-- 添加 职业 检查 -->
-			<effect_group>
-				<!-- ** 拓荒者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPathFinder2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPathFinder" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 调查员 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionInvestigator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionInvestigator" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 守护者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionGuardian2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionGuardian" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 探险家 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionEZ2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionEZ" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 掠夺者 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionPredator2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionPredator" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 作战员 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionCombatant2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionCombatant" operation="EQ" value="2"/></triggered_effect>
-				<!-- ** 吸血鬼 -->
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire1"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="1"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="AddOrRemoveBuff" buff="buffperkMarisaProfessionVampire2"><requirement name="ProgressionLevel" progression_name="perkMarisaProfessionVampire" operation="EQ" value="2"/></triggered_effect>
 			</effect_group>
 
 		</buff>
@@ -7187,9 +7189,9 @@
 
 			<effect_group>
 				<requirements compare_type="or">
-					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetness"/>
+					<requirement name="RandomRoll" seed_type="Random" min_max="0,1" operation="LTE" value="@_wetnessrate"/>
 					<requirement name="HasBuff" buff="buffExtinguishFire"/>
-					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.3"/>
+					<requirement name="CVarCompare" cvar="_underwater" operation="GTE" value="0.2"/>
 				</requirements>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffIsOnFire"/>
 			</effect_group>
