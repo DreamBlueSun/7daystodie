@@ -54,12 +54,12 @@ public class MeleeKnucklesIronShocked {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 50;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 20, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
-    public static final int RANK_BLOCK_DAMAGE_S0 = 50;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 20, 0};
-    public static final String RANK_BLOCK_DAMAGE_TIER = "0,0";
+    public static final int RANK_ENTITY_DAMAGE_S0 = 70;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{15, 15, 15, 15, 25, 25, 25, 25, 35, 35, 35, 35, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,15";
+    public static final int RANK_BLOCK_DAMAGE_S0 = 70;
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{15, 15, 15, 15, 25, 25, 25, 25, 35, 35, 35, 35, 0};
+    public static final String RANK_BLOCK_DAMAGE_TIER = "0,15";
     public static final String D_MARISA_EFFECT_AMOUNT = "20";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "24";
     public static final String D_MARISA_EFFECT_AMOUNT_2 = "28";

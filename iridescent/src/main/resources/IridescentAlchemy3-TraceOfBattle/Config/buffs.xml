@@ -2013,6 +2013,7 @@
 			<effect_group>
 				<requirement name="CVarCompare" cvar="$perkMarisaFriendly_foodCropMushroomsHealth" operation="GTE" value="1"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsHealthBefore"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffFoodCropMushroomsHealthBefore"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" target="self" operation="add" value="20" delay="0.5"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$perkMarisaFriendly_foodCropMushroomsHealth" operation="subtract" value="1"/>
@@ -3380,10 +3381,10 @@
 			<stack_type value="ignore"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_add" value="1"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200" tags="coredamageresist"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="cold,heat,electrical"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="heat,electrical"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100" tags="coredamageresist"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="cold,heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat,electrical"/>
 			</effect_group>
 		</buff>
 
@@ -3427,10 +3428,10 @@
 			<duration value="5"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_add" value="1"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200" tags="coredamageresist"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="cold,heat,electrical"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="heat,electrical"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100" tags="coredamageresist"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="cold,heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat,electrical"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="ProgressionLevel" progression_name="perkMarisaDefensiveBuffer" operation="Equals" value="1"/>
@@ -3465,10 +3466,10 @@
 			<stack_type value="replace"/>
 			<effect_group>
 				<passive_effect name="GeneralDamageResist" operation="base_add" value="1"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
-				<passive_effect name="PhysicalDamageResist" operation="base_add" value="200" tags="coredamageresist"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="cold,heat,electrical"/>
-				<passive_effect name="ElementalDamageResist" operation="base_add" value="200" tags="heat,electrical"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100" tags="coredamageresist"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="cold,heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat,electrical"/>
 			</effect_group>
 		</buff>
 
@@ -5216,6 +5217,18 @@
 			<display_value value=".MeleeClubAttackedOtherSecondary"/>
 			<display_value_key value="{0}"/>
 		</buff>
+		<!-- 棍反 -->
+		<buff name="buffMeleeClubAttackedOtherPowerFire" name_key="buffMeleeClubAttackedOtherPowerFireName" description_key="buffMeleeClubAttackedOtherPowerFireDesc" showonhud="true" icon="ui_game_symbol_melee" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="2"/>
+			<effect_group>
+				<passive_effect name="GeneralDamageResist" operation="base_add" value="1"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_add" value="100" tags="coredamageresist"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="cold,heat,electrical"/>
+				<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="heat,electrical"/>
+			</effect_group>
+		</buff>
 
 		<!-- 枪影 -->
 		<buff name="buffMeleeSpearAttacked" name_key="buffMeleeSpearAttackedName" description_key="buffMeleeSpearAttackedDesc" showonhud="true" icon="ui_game_symbol_spear" icon_color="0,191,255">
@@ -5251,8 +5264,8 @@
 			<effect_group>
 				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
 				<passive_effect name="PhysicalDamageResist" operation="perc_add" value="-1"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="1"/>
-				<triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="2"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyStats" stat="Health" target="selfAOE" range="7" target_tags="player" operation="add" value="2"/>
 				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffMeleeAxeAttackedDEBuff"/>
 			</effect_group>
 		</buff>
@@ -5826,24 +5839,24 @@
 			<stack_type value="ignore"/>
 			<duration value="1"/>
 			<effect_group>
-				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack3"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsHealth3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsHealth3"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack2"/>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack2"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack3"/>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsHealth2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsHealth2"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsHealth3"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="HasBuff" buff="buffFoodCropMushroomsAttack1"/>
-				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsAttack1"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack2"/>
+				<requirement name="HasBuff" buff="buffFoodCropMushroomsHealth1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffFoodCropMushroomsHealth1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsHealth2"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack1"/>
-				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack2"/>
-				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsAttack3"/>
-				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsAttack1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsHealth1"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsHealth2"/>
+				<requirement name="NotHasBuff" buff="buffFoodCropMushroomsHealth3"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffFoodCropMushroomsHealth1"/>
 			</effect_group>
 		</buff>
 		<buff name="buffFoodCropMushroomsHealth1" name_key="buffFoodCropMushroomsHealth1Name" description_key="buffFoodCropMushroomsHealth1Desc" showonhud="true" icon="ui_game_symbol_tea" icon_color="0,191,255">
@@ -6958,8 +6971,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -6970,8 +6983,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -6982,8 +6995,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -6994,8 +7007,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7006,8 +7019,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7018,8 +7031,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7029,8 +7042,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7041,8 +7054,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7054,8 +7067,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7066,8 +7079,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7164,8 +7177,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7176,8 +7189,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7188,8 +7201,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7200,8 +7213,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7212,8 +7225,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7224,8 +7237,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7235,8 +7248,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7247,8 +7260,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7260,8 +7273,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7272,8 +7285,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7427,8 +7440,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7439,8 +7452,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7451,8 +7464,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7463,8 +7476,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7475,8 +7488,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7487,8 +7500,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7498,8 +7511,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7510,8 +7523,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7523,8 +7536,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7535,8 +7548,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7674,8 +7687,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7686,8 +7699,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7698,8 +7711,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7710,8 +7723,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7722,8 +7735,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7734,8 +7747,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7745,8 +7758,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="160">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="160"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7757,8 +7770,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7770,8 +7783,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>
@@ -7782,8 +7795,8 @@
 					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
 				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="480">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="480"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
 				</passive_effect>
 			</effect_group>

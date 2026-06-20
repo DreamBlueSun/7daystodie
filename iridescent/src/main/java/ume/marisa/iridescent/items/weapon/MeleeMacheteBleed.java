@@ -52,11 +52,11 @@ public class MeleeMacheteBleed {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 45;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0};
+    public static final int RANK_ENTITY_DAMAGE_S0 = 50;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
-    public static final int RANK_BLOCK_DAMAGE_S0 = 45;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0};
+    public static final int RANK_BLOCK_DAMAGE_S0 = 50;
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0};
     public static final String RANK_BLOCK_DAMAGE_TIER = "0,10";
     public static final String D_MARISA_EFFECT_AMOUNT = "20";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "24";
@@ -66,8 +66,8 @@ public class MeleeMacheteBleed {
     public static final String D_MARISA_EFFECT_AMOUNT_5 = "40";
 
     // 体力消耗
-    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{15, 30, 45};
-    public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{30, 60, 90};
+    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{10, 20, 30};
+    public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{20, 40, 60};
 
     // 狂化Tag
     public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"machete,melee,grunting,light,longShaft,perkFlurryOfAgility,weapon,meleeWeapon,attAgility,perkDeepCuts,perkTheHuntsman,canHaveCosmetic,bladeSkill,corpseRemoval\"/>";

@@ -54,12 +54,12 @@ public class MeleeClubBaseballBatFire {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 60;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 20, 20, 20, 30, 30, 30, 40, 40, 40, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
-    public static final int RANK_BLOCK_DAMAGE_S0 = 60;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 20, 20, 20, 30, 30, 30, 40, 40, 40, 0};
-    public static final String RANK_BLOCK_DAMAGE_TIER = "0,10";
+    public static final int RANK_ENTITY_DAMAGE_S0 = 100;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{20, 20, 20, 20, 25, 25, 25, 25, 30, 30, 30, 30, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,20";
+    public static final int RANK_BLOCK_DAMAGE_S0 = 100;
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{20, 20, 20, 20, 25, 25, 25, 25, 30, 30, 30, 30, 0};
+    public static final String RANK_BLOCK_DAMAGE_TIER = "0,20";
     public static final String D_MARISA_EFFECT_AMOUNT = "50";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "60";
     public static final String D_MARISA_EFFECT_AMOUNT_2 = "70";
@@ -68,8 +68,8 @@ public class MeleeClubBaseballBatFire {
     public static final String D_MARISA_EFFECT_AMOUNT_5 = "100";
 
     // 体力消耗
-    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{15, 30, 45};
-    public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{30, 60, 90};
+    public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{10, 20, 30};
+    public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{20, 40, 60};
 
     // 模型
     public static final String RANK_MARISA_CUSTOMICON_1 = "meleeWpnClubT1BaseballBat";
