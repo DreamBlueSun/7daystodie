@@ -1,0 +1,317 @@
+<Marisa>
+
+    <!-- 基础设置 -->
+    <set xpath="/rwgmixer/world/property[@class='burntForest_mountains']/property[@name='clusters']/@value">2, .4, .63</set>
+
+    <set xpath="/rwgmixer/world/property[@class='forest_countrytown' or @class='bforest_countrytown' or @class='bforest_town']/property[@name='count']/@value">0, 0, 0</set>
+    <set xpath="/rwgmixer/world/property[@class='countrytown' or @class='town' or @class='city' or @class='wasteland_city']/property[@name='count']/@value">0, 0, 0</set>
+    <set xpath="/rwgmixer/world/property[@class='citybig']/property[@name='count']/@value">200, 200, 200</set>
+
+    <set xpath="/rwgmixer/township[@name='bforest_town' or @name='town' or @name='city' or @name='wasteland_city' or @name='citybig']/property[@name='outskirt_district']/@value">rural, .8</set>
+    <set xpath="/rwgmixer/township[@name='countrytown']/property[@name='outskirt_district']/@value">rural, .5</set>
+
+    <set xpath="/rwgmixer/district[@name='countrytown']/property[@name='spawn_weight']/@value">.9</set>
+    <set xpath="/rwgmixer/district[@name='countrytown']/property[@name='preview_color']/@value">0,0,1</set>
+    <set xpath="/rwgmixer/district[@name='countryresidential']/property[@name='preview_color']/@value">0,1,0</set>
+
+
+    <!-- 其他设置 -->
+    <set xpath="/rwgmixer/township[@name='town']/property[@name='biomes']/@value">wasteland,desert,forest,snow,burntforest</set>
+    <set xpath="/rwgmixer/township[@name='city']/property[@name='biomes']/@value">wasteland,desert,forest,snow,burntforest</set>
+    <set xpath="/rwgmixer/township[@name='citybig']/property[@name='biomes']/@value">wasteland,desert,forest,snow,burntforest</set>
+    <!-- Default citybig value = 28, 40 -->
+    <!-- tiny world_size value="0,5000" ie. 4k maps -->
+    <set xpath="/rwgmixer/world[@name='tiny']/property[@class='citybig']/property[@name='tiles']/@value">28, 2000</set>
+    <set xpath="/rwgmixer/world[@name='tiny']/property[@class='citybig']/property[@name='count']/@value">0, 0, 5</set>
+    <!-- small world_size value="5000,7000" ie. 6k maps -->
+    <set xpath="/rwgmixer/world[@name='small']/property[@class='citybig']/property[@name='tiles']/@value">28, 2000</set>
+    <set xpath="/rwgmixer/world[@name='small']/property[@class='citybig']/property[@name='count']/@value">0, 0, 5</set>
+    <!-- medium world_size value="7000,10000" ie. 8k maps -->
+    <set xpath="/rwgmixer/world[@name='medium']/property[@class='citybig']/property[@name='tiles']/@value">28, 2000</set>
+    <set xpath="/rwgmixer/world[@name='medium']/property[@class='citybig']/property[@name='count']/@value">0, 0, 5</set>
+    <!-- large world_size value="10000,17000" ie. 10k-16k maps  -->
+    <set xpath="/rwgmixer/world[@name='large']/property[@name='world_size']/@value">10000,17000</set>
+    <set xpath="/rwgmixer/world[@name='large']/property[@class='citybig']/property[@name='tiles']/@value">28, 2000</set>
+    <set xpath="/rwgmixer/world[@name='large']/property[@class='citybig']/property[@name='count']/@value">0, 0, 5</set>
+
+    <!-- Reorganize the generation order for bigger cities first... Thanks and credit to antisocialIan for the idea -->
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='oldwest']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='forest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='bforest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='bforest_town']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='town']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='city']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='wasteland_city']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='roadside']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='forest_wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='tiny']/property[@class='wasteland_wilderness']"/>
+    <append xpath="/rwgmixer/world[@name='tiny']">
+        <property class="wasteland_city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 14"/>
+        </property>
+
+        <property class="city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="10, 15"/>
+        </property>
+
+        <property class="town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 8"/>
+        </property>
+
+        <property class="countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="bforest_town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 7"/>
+        </property>
+
+        <property class="bforest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="forest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="oldwest">
+            <property name="count" value="0, 1, 2"/>
+            <property name="tiles" value="1, 1"/>
+        </property>
+
+        <property class="roadside">
+            <property name="count" value="3, 5, 7"/>
+        </property>
+
+        <property class="wilderness">
+            <property name="count" value="12, 24, 36"/>
+        </property>
+
+        <property class="forest_wilderness">
+            <property name="count" value="12, 24, 36"/>
+        </property>
+
+        <property class="wasteland_wilderness">
+            <property name="count" value="16, 32, 48"/>
+        </property>
+    </append>
+
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='oldwest']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='forest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='bforest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='bforest_town']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='town']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='city']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='wasteland_city']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='roadside']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='forest_wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='small']/property[@class='wasteland_wilderness']"/>
+    <append xpath="/rwgmixer/world[@name='small']">
+        <property class="wasteland_city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 14"/>
+        </property>
+
+        <property class="city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="10, 15"/>
+        </property>
+
+        <property class="town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 8"/>
+        </property>
+
+        <property class="countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="bforest_town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 7"/>
+        </property>
+
+        <property class="bforest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="forest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="oldwest">
+            <property name="count" value="0, 1, 2"/>
+            <property name="tiles" value="1, 2"/>
+        </property>
+
+        <property class="roadside">
+            <property name="count" value="5, 8, 12"/>
+        </property>
+
+        <property class="wilderness">
+            <property name="count" value="27, 54, 81"/>
+        </property>
+
+        <property class="forest_wilderness">
+            <property name="count" value="27, 54, 81"/>
+        </property>
+
+        <property class="wasteland_wilderness">
+            <property name="count" value="36, 72, 108"/>
+        </property>
+    </append>
+
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='oldwest']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='forest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='bforest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='bforest_town']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='town']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='city']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='wasteland_city']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='roadside']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='forest_wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='medium']/property[@class='wasteland_wilderness']"/>
+    <append xpath="/rwgmixer/world[@name='medium']">
+        <property class="wasteland_city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 14"/>
+        </property>
+
+        <property class="city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="10, 15"/>
+        </property>
+
+        <property class="town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 8"/>
+        </property>
+
+        <property class="countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="bforest_town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 7"/>
+        </property>
+
+        <property class="bforest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="forest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 6"/>
+            <property name="distance" value="4"/>
+        </property>
+
+        <property class="oldwest">
+            <property name="count" value="0, 1, 2"/>
+            <property name="tiles" value="2, 2"/>
+        </property>
+
+        <property class="roadside">
+            <property name="count" value="8, 13, 17"/>
+        </property>
+
+        <property class="wilderness">
+            <property name="count" value="45, 90, 135"/>
+        </property>
+
+        <property class="forest_wilderness">
+            <property name="count" value="45, 90, 135"/>
+        </property>
+
+        <property class="wasteland_wilderness">
+            <property name="count" value="60, 120, 180"/>
+        </property>
+    </append>
+
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='oldwest']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='forest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='bforest_countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='bforest_town']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='countrytown']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='town']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='city']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='wasteland_city']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='roadside']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='forest_wilderness']"/>
+    <remove xpath="/rwgmixer/world[@name='large']/property[@class='wasteland_wilderness']"/>
+
+    <append xpath="/rwgmixer/world[@name='large']">
+        <property class="wasteland_city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 14"/>
+        </property>
+        <property class="city">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="10, 15"/>
+        </property>
+        <property class="town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 8"/>
+        </property>
+        <property class="countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+        </property>
+        <property class="bforest_town">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="7, 8"/>
+        </property>
+        <property class="bforest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="5, 6"/>
+        </property>
+        <property class="forest_countrytown">
+            <property name="count" value="0, 0, 0"/>
+            <property name="tiles" value="6, 6"/>
+        </property>
+        <property class="oldwest">
+            <property name="count" value="1, 2, 3"/>
+            <property name="tiles" value="2, 3"/>
+        </property>
+        <property class="roadside">
+            <property name="count" value="9, 15, 19"/>
+        </property>
+        <property class="wilderness">
+            <property name="count" value="75, 150, 225"/>
+        </property>
+        <property class="forest_wilderness">
+            <property name="count" value="75, 150, 225"/>
+        </property>
+        <property class="wasteland_wilderness">
+            <property name="count" value="100, 200, 300"/>
+        </property>
+    </append>
+
+</Marisa>
