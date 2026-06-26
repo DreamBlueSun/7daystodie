@@ -5,7 +5,7 @@
 
 
 
-	<!-- *** remove A20_Food_Groups -->
+	<!-- *** 减少食物搜刮 -->
 	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodSmall01']/item[@group='groupFoodPileCommon']"/>
 	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodSmall01']/item[@group='groupFoodUncommon']"/>
 	<remove xpath="/lootcontainers/lootgroup[@name='groupFoodSmall01']/item[@group='groupFoodRare']"/>
@@ -115,6 +115,32 @@
 
 
 	<!-- *** 搜刮替换 武器/工具 为零件 -->
+	<!-- ** 弓弩 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunBowT0PrimitiveBow' or @name='gunBowT1WoodenBow' or @name='gunBowT3CompoundBow' or @name='gunBowT1IronCrossbow' or @name='gunBowT3CompoundCrossbow']/@name">gunBowT1WoodenBowParts</set>
+	<!-- ** 手枪 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunHandgunT0PipePistol' or @name='gunHandgunT1Pistol' or @name='gunHandgunT3SMG5' or @name='gunHandgunT2Magnum44' or @name='gunHandgunT3DesertVulture']/@name">gunHandgunT1PistolParts</set>
+	<!-- ** 霰弹枪 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunShotgunT0PipeShotgun' or @name='gunShotgunT1DoubleBarrel' or @name='gunShotgunT2PumpShotgun' or @name='gunShotgunT3AutoShotgun']/@name">gunShotgunT1DoubleBarrelParts</set>
+	<!-- ** 步枪 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunRifleT0PipeRifle' or @name='gunRifleT1HuntingRifle' or @name='gunRifleT2LeverActionRifle' or @name='gunRifleT3SniperRifle']/@name">gunRifleT1HuntingRifleParts</set>
+	<!-- ** 机枪 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunMGT0PipeMachineGun' or @name='gunMGT1AK47' or @name='gunMGT2TacticalAR' or @name='gunMGT3M60']/@name">gunMGT1AK47Parts</set>
+	<!-- ** 火箭筒 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunExplosivesT3RocketLauncher']/@name">gunExplosivesT3RocketLauncherParts</set>
+	<!-- ** 机器人 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='gunBotT1JunkSledge' or @name='gunBotT2JunkTurret' or @name='gunBotT3JunkDrone']/@name">gunBotRoboticsParts</set>
+	<!-- ** 电击棍 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnBatonT0PipeBaton' or @name='meleeWpnBatonT2StunBaton']/@name">meleeWpnBatonT2StunBatonParts</set>
+	<!-- ** 拳套 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnKnucklesT0LeatherKnuckles' or @name='meleeWpnKnucklesT1IronKnuckles' or @name='meleeWpnKnucklesT3SteelKnuckles']/@name">meleeWpnKnucklesT3SteelKnucklesParts</set>
+	<!-- ** 砍刀 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnBladeT0BoneKnife' or @name='meleeWpnBladeT1HuntingKnife' or @name='meleeWpnBladeT3Machete']/@name">meleeWpnBladeT3MacheteParts</set>
+	<!-- ** 长矛 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnSpearT0StoneSpear' or @name='meleeWpnSpearT1IronSpear' or @name='meleeWpnSpearT3SteelSpear']/@name">meleeWpnSpearT3SteelSpearParts</set>
+	<!-- ** 棍棒 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnClubT0WoodenClub' or @name='meleeWpnClubT1BaseballBat' or @name='meleeWpnClubT3SteelClub']/@name">meleeWpnClubT3SteelClubParts</set>
+	<!-- ** 大锤 -->
+	<set xpath="/lootcontainers/lootgroup/item[@name='meleeWpnSledgeT0StoneSledgehammer' or @name='meleeWpnSledgeT1IronSledgehammer' or @name='meleeWpnSledgeT3SteelSledgehammer']/@name">meleeWpnSledgeT3SteelSledgehammerParts</set>
 	<!-- ** 钢制工具零件 -->
 	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT1IronFireaxe']/@name">meleeToolAllSteelParts</set>
 	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolAxeT2SteelAxe']/@name">meleeToolAllSteelParts</set>
@@ -131,15 +157,51 @@
 	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT2Ratchet']/@name">meleeToolAllSteelParts</set>
 	<set xpath="/lootcontainers/lootgroup/item[@name='meleeToolSalvageT3ImpactDriver']/@name">meleeToolAxeT3ChainsawParts</set>
 
+	<!-- *** 搜刮移除 护甲 -->
+	<remove xpath="/lootcontainers/lootgroup[@name='groupAllArmor']/item[starts-with(@name,'armor')]"/>
+	<append xpath="/lootcontainers/lootgroup[@name='groupAllArmor']"><item group="groupArmorParts" count="1"/></append>
 
+	<!-- *** 搜刮移除 武器 -->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaled']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaled']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']/item"/>-->
+<!--	<append xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']">-->
+<!--		<item group="groupWeapons_MeleeParts" loot_prob_template="ProbT1Cap"/>-->
+<!--		<item group="groupWeapons_RangedParts" loot_prob_template="ProbT1Cap"/>-->
+<!--	</append>-->
+
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT1']/item[@name='meleeWpnSledgeT1IronSledgehammer']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT1Bonus']/item[@name='meleeWpnSledgeT1IronSledgehammer']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT2']/item[@name='meleeWpnSledgeT3SteelSledgehammer']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupStunBaton']/item[@name='meleeWpnBatonT2StunBaton']"/>-->
+
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupHuntingRanged']/item[@name!='gunBowT0PrimitiveBow']"/>-->
+
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupCars02']/item[@group='groupWeaponsT1_Melee']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupCars03']/item[@group='groupWeaponsT1_Ranged']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupMilitaryFootlocker02']/item[@group='groupFootlockerWeapons02']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupPurse']/item[@group='groupPurse03']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupToilet']/item[@group='groupToilet02']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupDesks']/item[@group='groupDesks02']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupNightstand02']/item[@name='gunHandgunT1Pistol']"/>-->
+
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT2Bundles']/item[@group='groupQuestT1Firearms']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT3Bundles']/item[@group='groupQuestT2Firearms']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT4Bundles']/item[@group='groupQuestT3Firearms']"/>-->
+
+<!--	<remove xpath="/lootcontainers/lootgroup/item[@name='gunBotT2JunkTurret']"/>-->
+<!--	<remove xpath="/lootcontainers/lootgroup/item[@name='meleeWpnBladeT1HuntingKnife']"/>-->
 
 	<!-- *** 搜刮替换 武器合成 星星 -->
 	<append xpath="/lootcontainers/lootgroup[@name='groupInfestedT5']">
 		<item group="groupMarisaWeapons_GunPistolS13" count="1"/>
 	</append>
 
-
-	<!-- *** remove Hardened_Chest_T5 FoodBundle medical -->
+	<!-- *** 移除 5级战利品箱子 食品包 医疗 -->
 	<remove xpath="/lootcontainers/lootgroup[@name='groupHardenedChestT5_08']/item[@name='questRewardT4FoodBundle']"/>
 	<remove xpath="/lootcontainers/lootgroup[@name='groupHardenedChestT5_03']/item[@name='medicalFirstAidKit']"/>
 	<append xpath="/lootcontainers/lootgroup[@name='groupHardenedChestT5_03']">
@@ -148,61 +210,10 @@
 		<item name="medicalFirstAidKit" count="1" loot_prob_template="low"/>
 	</append>
 
-
-	<!-- *** 搜刮移除 装备制作书 -->
-    <!-- ** 移除 护甲 -->
+	<!-- *** 搜刮移除 装备制作书 护甲 远程 近战 -->
 	<remove xpath="/lootcontainers/lootgroup/item[@name ='armorSkillMagazine']"/>
-    <!-- ** 移除 远程 -->
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='bowsSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='handgunsSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='shotgunsSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='riflesSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='machineGunsSkillMagazine']"/>
-	<!-- ** 移除 近战 -->
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='bladesSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='clubsSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='spearsSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='sledgehammersSkillMagazine']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name ='knucklesSkillMagazine']"/>
-
-	<!-- *** 搜刮移除 护甲 -->
-	<remove xpath="/lootcontainers/lootgroup[@name='groupAllArmor']/item[starts-with(@name,'armor')]"/>
-	<append xpath="/lootcontainers/lootgroup[@name='groupAllArmor']"><item group="groupArmorParts" count="1"/></append>
-
-	<!-- *** 搜刮移除 武器 -->
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaled']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsMeleeScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaled']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledTPlus']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupWeaponsRangedScaledNoStone']/item[starts-with(@group,'groupWeaponsT')]"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']/item"/>
-	<append xpath="/lootcontainers/lootgroup[@name='groupInfestedT5MeleeRanged']">
-		<item group="groupWeapons_MeleeParts" loot_prob_template="ProbT1Cap"/>
-		<item group="groupWeapons_RangedParts" loot_prob_template="ProbT1Cap"/>
-	</append>
-
-	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT1']/item[@name='meleeWpnSledgeT1IronSledgehammer']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT1Bonus']/item[@name='meleeWpnSledgeT1IronSledgehammer']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupToolsT2']/item[@name='meleeWpnSledgeT3SteelSledgehammer']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupStunBaton']/item[@name='meleeWpnBatonT2StunBaton']"/>
-
-	<remove xpath="/lootcontainers/lootgroup[@name='groupHuntingRanged']/item[@name!='gunBowT0PrimitiveBow']"/>
-
-	<remove xpath="/lootcontainers/lootgroup[@name='groupCars02']/item[@group='groupWeaponsT1_Melee']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupCars03']/item[@group='groupWeaponsT1_Ranged']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupMilitaryFootlocker02']/item[@group='groupFootlockerWeapons02']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupPurse']/item[@group='groupPurse03']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupToilet']/item[@group='groupToilet02']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupDesks']/item[@group='groupDesks02']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupNightstand02']/item[@name='gunHandgunT1Pistol']"/>
-
-	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT2Bundles']/item[@group='groupQuestT1Firearms']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT3Bundles']/item[@group='groupQuestT2Firearms']"/>
-	<remove xpath="/lootcontainers/lootgroup[@name='groupAirDropT4Bundles']/item[@group='groupQuestT3Firearms']"/>
-
-	<remove xpath="/lootcontainers/lootgroup/item[@name='gunBotT2JunkTurret']"/>
-	<remove xpath="/lootcontainers/lootgroup/item[@name='meleeWpnBladeT1HuntingKnife']"/>
+	<remove xpath="/lootcontainers/lootgroup/item[@name ='bowsSkillMagazine' or @name ='handgunsSkillMagazine' or @name ='shotgunsSkillMagazine' or @name ='riflesSkillMagazine' or @name ='machineGunsSkillMagazine']"/>
+	<remove xpath="/lootcontainers/lootgroup/item[@name ='bladesSkillMagazine' or @name ='clubsSkillMagazine' or @name ='spearsSkillMagazine' or @name ='sledgehammersSkillMagazine' or @name ='knucklesSkillMagazine']"/>
 
 	<!-- 搜刮减少 弹药 -->
 	<remove xpath="/lootcontainers/lootgroup[@name='group9mmSmall' or @name='group9mmMedium' or @name='group9mmLarge']/item[@name='ammo9mmBulletHP' or @name='ammo9mmBulletAP']"/>
@@ -3740,7 +3751,9 @@
 	</insertBefore>
 
 
-	<!--lootGroupReinforcedChest lootGroupInfested-->
+
+	<!-- *** 搜刮 战利品 群聚战利品 -->
+	<!-- ** 战利品 群聚战利品 添加晶石 -->
 	<append xpath="/lootcontainers/lootgroup[@name='groupInfestedT1']">
 		<item group="groupModR3" loot_prob_template="probModR3" force_prob="true"/>
 		<item group="groupModR4" loot_prob_template="probModR4" force_prob="true"/>
@@ -3817,10 +3830,7 @@
 		<item group="groupModR11" loot_prob_template="probModR11" force_prob="true"/>
 		<item group="groupModR12" loot_prob_template="probModR12" force_prob="true"/>
 	</append>
-
-
-
-	<!-- *** 搜刮 弹药 -->
+	<!-- ** 战利品 群聚战利品 添加弹药 -->
 	<append xpath="/lootcontainers/lootgroup[@name='groupReinforcedChestT1']">
 		<item group="groupMarisaAmmoLarge" count="2"/>
 	</append>
@@ -3852,7 +3862,6 @@
 		<item group="groupMarisaAmmoLarge" count="36"/>
 	</append>
 
-
 	<!-- *** 搜刮 笔记 -->
 	<!-- ** 垃圾食物类 -->
 	<append xpath="/lootcontainers/lootgroup[@name='groupFoodTrashCommon' or @name='groupFoodTrashUncommon']">
@@ -3871,8 +3880,7 @@
 		<item group="noteByIridescent" loot_prob_template="low"/>
 	</append>
 
-
-	<!-- PlantHydroponicVertical -->
+	<!-- *** 搜刮 水栽培养皿 -->
 	<append xpath="/lootcontainers">
 		<lootcontainer name="IridescentPlantHydroponicVerticalBlueberries" count="1" size="4,2" ignore_loot_abundance="true" destroy_on_close="empty" sound_open="UseActions/open_cooler" sound_close="silencefiller" loot_quality_template="qualBaseTemplate">
 			<item group="groupFoodCropBlueberries" count="1" prob="1"/>
