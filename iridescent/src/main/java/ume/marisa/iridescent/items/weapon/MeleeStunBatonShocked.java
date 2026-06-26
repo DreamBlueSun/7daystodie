@@ -55,11 +55,11 @@ public class MeleeStunBatonShocked {
 
     // 伤害
     public static final int RANK_ENTITY_DAMAGE_S0 = 70;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{15, 15, 15, 15, 25, 25, 25, 25, 35, 35, 35, 35, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,15";
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 20, 20, 20, 20, 30, 30, 30, 30, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
     public static final int RANK_BLOCK_DAMAGE_S0 = 70;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{15, 15, 15, 15, 25, 25, 25, 25, 35, 35, 35, 35, 0};
-    public static final String RANK_BLOCK_DAMAGE_TIER = "0,15";
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 20, 20, 20, 20, 30, 30, 30, 30, 0};
+    public static final String RANK_BLOCK_DAMAGE_TIER = "0,10";
     public static final String D_MARISA_EFFECT_AMOUNT = "20";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "24";
     public static final String D_MARISA_EFFECT_AMOUNT_2 = "28";
@@ -85,7 +85,7 @@ public class MeleeStunBatonShocked {
             "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
             "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
             "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
-            "                <stat name=\"StaminaLoss\" value=\"1,0,1,.01,.2\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,-.2,-.01\"/>\n" +
             "            </stats>";
 
     // 狂化Tag

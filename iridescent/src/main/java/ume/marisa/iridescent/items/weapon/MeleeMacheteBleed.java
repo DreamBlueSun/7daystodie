@@ -55,10 +55,10 @@ public class MeleeMacheteBleed {
 
     // 伤害
     public static final int RANK_ENTITY_DAMAGE_S0 = 50;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0};
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
     public static final int RANK_BLOCK_DAMAGE_S0 = 50;
-    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0};
+    public static final int[] RANK_BLOCK_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15, 0};
     public static final String RANK_BLOCK_DAMAGE_TIER = "0,10";
     public static final String D_MARISA_EFFECT_AMOUNT = "20";
     public static final String D_MARISA_EFFECT_AMOUNT_1 = "24";
@@ -85,7 +85,7 @@ public class MeleeMacheteBleed {
             "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
             "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
             "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
-            "                <stat name=\"StaminaLoss\" value=\"1,0,1,.01,.2\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,-.2,-.01\"/>\n" +
             "            </stats>";
 
     // 狂化Tag
