@@ -45,7 +45,9 @@ public class MeleeKnucklesIronShocked {
                     .replace("MarisaWeaponFlag_dMarisaShockedEffectAmount", D_MARISA_EFFECT_AMOUNT)
                     .replace("MarisaWeaponFlag_Extends", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2)
                     .replace("MarisaWeaponFlag_CustomIcon", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2)
-                    .replace("MarisaWeaponFlag_Prefab", i <= 8 ? RANK_MARISA_PREFAB_1 : RANK_MARISA_PREFAB_2);
+                    .replace("MarisaWeaponFlag_Prefab", i <= 8 ? RANK_MARISA_PREFAB_1 : RANK_MARISA_PREFAB_2)
+                    .replace("MarisaWeaponFlag_StarDegradation", i == 13 ? STAR_DEGRADATION_B : STAR_DEGRADATION_A)
+                    .replace("MarisaWeaponFlag_StarStats", i == 13 ? STAR_STATS : "");
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
@@ -78,6 +80,23 @@ public class MeleeKnucklesIronShocked {
     public static final String RANK_MARISA_PREFAB_2 = "<triggered_effect trigger=\"onSelfEquipStart\" action=\"AddPart\" part=\"LeftKnuckles\" prefab=\"@:Other/Items/Weapons/Melee/Knuckles/knucklesSpikedLeft_Prefab.prefab\" parentTransform=\"LeftWeapon\" localPos=\"0,0,0\" localRot=\"0,0,0\" colorTint=\"true\"/>\n" +
             "                <triggered_effect trigger=\"onSelfEquipStop\" action=\"RemovePart\" part=\"LeftKnuckles\"/>";
 
+    // 武器合成 星星
+    public static final String STAR_DEGRADATION_A = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"300,450\" tier=\"1,6\" tags=\"perkBrawler\"/>";
+    public static final String STAR_DEGRADATION_B = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"1,330,360,390,420,450\" tier=\"1,2,3,4,5,6\" tags=\"perkBrawler\"/>";
+    public static final String STAR_STATS = "\n\n" +
+            "            <stats>\n" +
+            "                <!-- Base_Random_Roll -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"0,0,1,0,0\"/>\n" +
+            "                <!-- Q1_Boosted_Rolls -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,.01,.2\"/>\n" +
+            "            </stats>";
+
     // 狂化Tag
     public static final String T1_TAG = "";
     public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"blunt,melee,grunting,light,perkFlurryOfFortitude,weapon,attFortitude,perkBrawler,noBlades,canHaveCosmetic,knuckleSkill,PerkT3Marisa\"/>\"/>";
@@ -94,12 +113,12 @@ public class MeleeKnucklesIronShocked {
             "            <property name=\"CustomIconTint\" value=\"MarisaWeaponFlag_CustomIconTint\"/>\n" +
             "            <property name=\"EconomicValue\" value=\"MarisaWeaponFlag_EconomicValue\"/>\n" +
             "            <property name=\"Material\" value=\"MarisaWeaponFlag_Material\"/>\n" +
-            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>\n" +
+            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>MarisaWeaponFlag_StarStats\n" +
             "\n" +
             "            <effect_group name=\"MeleeKnucklesIronShockedSMarisaWeaponFlag_RANK\">\n" +
             "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"100\" tags=\"perkBrawler,perkFlurryOfFortitude\"/>\n" +
             "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossPrimary\" tags=\"primary,secondary\"/>\n" +
-            "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"300,450\" tier=\"1,6\" tags=\"perkBrawler\"/>\n" +
+            "                MarisaWeaponFlag_StarDegradation\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkBrawler\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.5\" tags=\"perkBrawler\"/>\n" +
             "                <passive_effect name=\"BlockRange\" operation=\"base_set\" value=\"3\" tags=\"perkBrawler\"/>\n" +

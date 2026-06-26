@@ -45,7 +45,9 @@ public class MeleeIronAxeBleed {
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_5", D_MARISA_EFFECT_AMOUNT_5)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT)
                     .replace("MarisaWeaponFlag_Extends", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2)
-                    .replace("MarisaWeaponFlag_CustomIcon", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2);
+                    .replace("MarisaWeaponFlag_CustomIcon", i <= 8 ? RANK_MARISA_CUSTOMICON_1 : RANK_MARISA_CUSTOMICON_2)
+                    .replace("MarisaWeaponFlag_StarDegradation", i == 13 ? STAR_DEGRADATION_B : STAR_DEGRADATION_A)
+                    .replace("MarisaWeaponFlag_StarStats", i == 13 ? STAR_STATS : "");
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
@@ -75,6 +77,23 @@ public class MeleeIronAxeBleed {
     public static final String RANK_MARISA_CUSTOMICON_1 = "meleeToolAxeT1IronFireaxe";
     public static final String RANK_MARISA_CUSTOMICON_2 = "meleeToolAxeT2SteelAxe";
 
+    // 武器合成 星星
+    public static final String STAR_DEGRADATION_A = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"150,225\" tier=\"1,6\" tags=\"perkMiner69r\"/>";
+    public static final String STAR_DEGRADATION_B = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"1,165,180,195,210,225\" tier=\"1,2,3,4,5,6\" tags=\"perkMiner69r\"/>";
+    public static final String STAR_STATS = "\n\n" +
+            "            <stats>\n" +
+            "                <!-- Base_Random_Roll -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"0,0,1,0,0\"/>\n" +
+            "                <!-- Q1_Boosted_Rolls -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,.01,.2\"/>\n" +
+            "            </stats>";
+
     // 狂化Tag
     public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon\"/>";
     public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"axe,melee,grunting,medium,tool,longShaft,attStrength,perkMiner69r,perkMotherLode,canHaveCosmetic,harvestingSkill,corpseRemoval,weapon,PerkT3Marisa\"/>";
@@ -91,12 +110,12 @@ public class MeleeIronAxeBleed {
             "            <property name=\"CustomIconTint\" value=\"MarisaWeaponFlag_CustomIconTint\"/>\n" +
             "            <property name=\"EconomicValue\" value=\"MarisaWeaponFlag_EconomicValue\"/>\n" +
             "            <property name=\"Material\" value=\"MarisaWeaponFlag_Material\"/>\n" +
-            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>\n" +
+            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>MarisaWeaponFlag_StarStats\n" +
             "\n" +
             "            <effect_group name=\"MeleeIronAxeBleedSMarisaWeaponFlag_RANK\">\n" +
             "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"60\" tags=\"perkMiner69r,axe\"/>\n" +
             "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossPrimary\" tags=\"primary\"/>\n" +
-            "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"150,225\" tier=\"1,6\" tags=\"perkMiner69r\"/>\n" +
+            "                MarisaWeaponFlag_StarDegradation\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.7\" tags=\"perkMiner69r\"/>\n" +
             "                <passive_effect name=\"BlockRange\" operation=\"base_set\" value=\"3.6\" tags=\"perkMiner69r\"/>\n" +

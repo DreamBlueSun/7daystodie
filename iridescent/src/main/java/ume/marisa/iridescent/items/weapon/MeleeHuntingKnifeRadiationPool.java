@@ -43,7 +43,9 @@ public class MeleeHuntingKnifeRadiationPool {
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_3", D_MARISA_EFFECT_AMOUNT_3)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_4", D_MARISA_EFFECT_AMOUNT_4)
                     .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount_5", D_MARISA_EFFECT_AMOUNT_5)
-                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT);
+                    .replace("MarisaWeaponFlag_dMarisaBleedEffectAmount", D_MARISA_EFFECT_AMOUNT)
+                    .replace("MarisaWeaponFlag_StarDegradation", i == 13 ? STAR_DEGRADATION_B : STAR_DEGRADATION_A)
+                    .replace("MarisaWeaponFlag_StarStats", i == 13 ? STAR_STATS : "");
             s.append(replace).append("\n");
         }
         WriteToFile.output(s.append(STOP).toString());
@@ -69,6 +71,23 @@ public class MeleeHuntingKnifeRadiationPool {
     public static final int[] RANK_STAMINA_LOSS_PRIMARY = new int[]{10, 20, 30};
     public static final int[] RANK_STAMINA_LOSS_SECONDARY = new int[]{20, 40, 60};
 
+    // 武器合成 星星
+    public static final String STAR_DEGRADATION_A = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"100,150\" tier=\"1,6\" tags=\"perkDeepCuts\"/>";
+    public static final String STAR_DEGRADATION_B = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"1,110,120,130,140,150\" tier=\"1,2,3,4,5,6\" tags=\"perkDeepCuts\"/>";
+    public static final String STAR_STATS = "\n\n" +
+            "            <stats>\n" +
+            "                <!-- Base_Random_Roll -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"0,0,1,0,0\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"0,0,1,0,0\"/>\n" +
+            "                <!-- Q1_Boosted_Rolls -->\n" +
+            "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,.01,.2\"/>\n" +
+            "            </stats>";
+
     // 狂化Tag
     public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"knife,melee,grunting,light,perkFlurryOfAgility,weapon,meleeWeapon,attAgility,perkDeepCuts,perkTheHuntsman,canHaveCosmetic,bladeSkill,corpseRemoval,scrap100\"/>";
     public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"knife,melee,grunting,light,perkFlurryOfAgility,weapon,meleeWeapon,attAgility,perkDeepCuts,perkTheHuntsman,canHaveCosmetic,bladeSkill,corpseRemoval,scrap100,PerkT3Marisa\"/>";
@@ -84,12 +103,12 @@ public class MeleeHuntingKnifeRadiationPool {
             "            <property name=\"CustomIconTint\" value=\"MarisaWeaponFlag_CustomIconTint\"/>\n" +
             "            <property name=\"EconomicValue\" value=\"MarisaWeaponFlag_EconomicValue\"/>\n" +
             "            <property name=\"Material\" value=\"MarisaWeaponFlag_Material\"/>\n" +
-            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>\n" +
+            "            <property name=\"Weight\" value=\"MarisaWeaponFlag_Weight\"/>MarisaWeaponFlag_StarStats\n" +
             "\n" +
             "            <effect_group name=\"MeleeHuntingKnifeRadiationPoolSMarisaWeaponFlag_RANK\">\n" +
             "                <passive_effect name=\"AttacksPerMinute\" operation=\"base_set\" value=\"120\" tags=\"perkDeepCuts,perkFlurryOfAgility\"/>\n" +
             "                <passive_effect name=\"StaminaLoss\" operation=\"base_set\" value=\"MarisaWeaponFlag_StaminaLossPrimary\" tags=\"primary\"/>\n" +
-            "                <passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"100,150\" tier=\"1,6\" tags=\"perkDeepCuts\"/>\n" +
+            "                MarisaWeaponFlag_StarDegradation\n" +
             "                <passive_effect name=\"DegradationPerUse\" operation=\"base_set\" value=\"1\" tags=\"perkDeepCuts\"/>\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"2.0\" tags=\"perkDeepCuts\"/>\n" +
             "                <passive_effect name=\"BlockRange\" operation=\"base_set\" value=\"2.5\" tags=\"perkDeepCuts\"/>\n" +
