@@ -7115,6 +7115,14 @@
 	<!-- ** 辐射 -->
 	<remove xpath="/buffs/buff[@name='buffRadiationPool']"/>
 	<insertAfter xpath="/buffs/buff[@name='buffRadiation03']">
+        <buff name="buffMarisaRadiationPoolN50" hidden="true">
+            <stack_type value="ignore"/>
+            <duration value=".2"/>
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaRadiationPoolEffectAmount" operation="add" value="50"/>
+                <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffRadiationPoolEffect"/>
+            </effect_group>
+        </buff>
 		<!-- 辐射 前置 -->
 		<buff name="buffRadiationPoolEffect" hidden="true">
 			<stack_type value="ignore"/>
@@ -7618,6 +7626,14 @@
 				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
             </effect_group>
         </buff>
+        <buff name="buffMarisaShockedN50" hidden="true">
+            <stack_type value="ignore"/>
+            <duration value=".2"/>
+            <effect_group>
+                <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="marisaShockedEffectAmount" operation="add" value="50"/>
+                <triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffShockedEffect"/>
+            </effect_group>
+        </buff>
 		<!-- 电击 前置 -->
 		<buff name="buffShockedEffect" hidden="true">
 			<stack_type value="ignore"/>
@@ -7984,7 +8000,7 @@
 			<duration value="0"/>
 			<effect_group>
 				<requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".5"/>
-					<passive_effect name="HealthChangeOT" operation="base_add" value="30"/>
+					<passive_effect name="HealthChangeOT" operation="base_add" value="10"/>
 			</effect_group>
 		</buff>
 
