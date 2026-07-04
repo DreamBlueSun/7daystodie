@@ -168,7 +168,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="1"/>
+						<property name="count" value="2"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -220,7 +220,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="2"/>
+						<property name="count" value="3"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -272,7 +272,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="3"/>
+						<property name="count" value="4"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -324,7 +324,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="4"/>
+						<property name="count" value="5"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -376,7 +376,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="5"/>
+						<property name="count" value="6"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -429,7 +429,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="5"/>
+						<property name="count" value="8"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -481,7 +481,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="7"/>
+						<property name="count" value="9"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -533,7 +533,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="9"/>
+						<property name="count" value="10"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -637,7 +637,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="13"/>
+						<property name="count" value="12"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -690,7 +690,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="13"/>
+						<property name="count" value="14"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -742,7 +742,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="16"/>
+						<property name="count" value="15"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -794,7 +794,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="19"/>
+						<property name="count" value="16"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -846,7 +846,7 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="22"/>
+						<property name="count" value="17"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -898,7 +898,267 @@
 					<requirement class="GroupLiveCount">
 						<property name="target_group" value="zombies"/>
 						<property name="operation" value="LessThan"/>
-						<property name="count" value="25"/>
+						<property name="count" value="18"/>
+					</requirement>
+					<action class="Delay">
+						<property name="time" value="5-10"/>
+						<property name="phase" value="1"/>
+					</action>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="3"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire20_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest"/>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="20"/>
+					</requirement>
+					<action class="Delay">
+						<property name="time" value="5-10"/>
+						<property name="phase" value="1"/>
+					</action>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="3"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire21_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest"/>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="21"/>
+					</requirement>
+					<action class="Delay">
+						<property name="time" value="5-10"/>
+						<property name="phase" value="1"/>
+					</action>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="3"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire22_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest"/>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="22"/>
+					</requirement>
+					<action class="Delay">
+						<property name="time" value="5-10"/>
+						<property name="phase" value="1"/>
+					</action>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="3"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire23_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest"/>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="23"/>
+					</requirement>
+					<action class="Delay">
+						<property name="time" value="5-10"/>
+						<property name="phase" value="1"/>
+					</action>
+					<action class="SpawnEntity">
+						<property name="entity_group" value="zombieStormPointHorde"/>
+						<property name="add_to_group" value="zombies"/>
+						<property name="air_spawn" value="false"/>
+						<property name="safe_spawn" value="true"/>
+						<property name="spawn_count" value="1"/>
+						<property name="min_distance" value="10"/>
+						<property name="max_distance" value="20"/>
+					</action>
+				</decision>
+			</loop>
+			<action class="ModifyCVar">
+				<property name="phase" value="4"/>
+				<property name="cvar" value="questStormPoint"/>
+				<property name="operation" value="set"/>
+				<property name="value" value="0"/>
+			</action>
+			<action class="RemoveEntities">
+				<property name="phase" value="3"/>
+				<property name="target_group" value="zombies"/>
+			</action>
+		</action_sequence>
+		<action_sequence name="marisa_tire24_storm_point">
+			<property name="allow_user_trigger" value="true"/>
+			<property name="refund_inactivity" value="false"/>
+			<property name="category" value="twitch_votes"/>
+			<action class="AddPartyToGroup">
+				<property name="phase" value="0"/>
+				<property name="group_name" value="party"/>
+			</action>
+			<action class="Delay">
+				<property name="time" value="5"/>
+				<property name="phase" value="1"/>
+			</action>
+			<loop class="While" >
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest"/>
+				<requirement class="CVar">
+					<property name="cvar" value="questStormPoint"/>
+					<property name="operation" value="Equals"/>
+					<property name="value" value="1"/>
+				</requirement>
+				<decision class="If">
+					<requirement class="GroupLiveCount">
+						<property name="target_group" value="zombies"/>
+						<property name="operation" value="LessThan"/>
+						<property name="count" value="24"/>
 					</requirement>
 					<action class="Delay">
 						<property name="time" value="5-10"/>
@@ -1059,6 +1319,39 @@
 					<property name="quest" value="marisa_tier18_crouching_restore_power"/>
 				</requirement>
 				<property name="quest" value="marisa_tier18_crouching_restore_power"/>
+				<property name="remove_quest" value="false"/>
+			</action>
+
+			<action class="FailQuest">
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier21_crouching_restore_power"/>
+				</requirement>
+				<property name="quest" value="marisa_tier21_crouching_restore_power"/>
+				<property name="remove_quest" value="false"/>
+			</action>
+			<action class="FailQuest">
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier22_crouching_restore_power"/>
+				</requirement>
+				<property name="quest" value="marisa_tier22_crouching_restore_power"/>
+				<property name="remove_quest" value="false"/>
+			</action>
+			<action class="FailQuest">
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier23_crouching_restore_power"/>
+				</requirement>
+				<property name="quest" value="marisa_tier23_crouching_restore_power"/>
+				<property name="remove_quest" value="false"/>
+			</action>
+			<action class="FailQuest">
+				<property name="phase" value="2"/>
+				<requirement class="OnQuest">
+					<property name="quest" value="marisa_tier24_crouching_restore_power"/>
+				</requirement>
+				<property name="quest" value="marisa_tier24_crouching_restore_power"/>
 				<property name="remove_quest" value="false"/>
 			</action>
 		</action_sequence>

@@ -366,15 +366,16 @@
 	<append xpath="/buffs/buff[@name='buffStatusCheck01']">
 
 		<!-- 测试打印 cvar -->
-<!--		<effect_group>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="IntroComplete"/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClear"/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearInfested"/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfested"/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePoint"/>-->
-<!--			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteCrouchingRestorePower"/>-->
-<!--		</effect_group>-->
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaInBiome"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="IntroComplete"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClear"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearInfested"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfested"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePoint"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteCrouchingRestorePower"/>
+		</effect_group>
 
 		<effect_group>
 <!--			<passive_effect name="EntityDamage" operation="perc_add" value="1"/>-->
@@ -421,7 +422,7 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieSpwanMarisaTraversingUpper3"/>
 		</effect_group>
 		<effect_group>
-			<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+			<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="GTE" value="3"/>
 			<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
 			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupper3"/>
 			<requirement name="NotHasBuff" buff="buffZombieSpwanMarisaTraversingSupper2"/>
@@ -535,7 +536,7 @@
 			<stack_type value="ignore"/>
 			<duration value="180"/>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="GTE" value="3"/>
 				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper2"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
@@ -545,7 +546,7 @@
 			<stack_type value="ignore"/>
 			<duration value="120"/>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="GTE" value="3"/>
 				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper1"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
@@ -555,7 +556,7 @@
 			<stack_type value="ignore"/>
 			<duration value="60"/>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="GTE" value="3"/>
 				<requirement name="CVarCompare" cvar="IntroComplete" operation="LT" value="14"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupperCold"/>
 				<triggered_effect trigger="onSelfBuffRemove" action="CallGameEvent" event="EventZombieSpwanMarisaTraversingSupper" allow_client_call="true"/>
@@ -665,11 +666,11 @@
 
 			<!-- * 玩家所在地形变量 -->
 			<effect_group>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="1"/></triggered_effect>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="3"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="5"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="3"><requirement name="InBiome" biome="8"/></triggered_effect>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="1"><requirement name="InBiome" biome="9"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="2"><requirement name="InBiome" biome="9"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="3"><requirement name="InBiome" biome="5"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="4"><requirement name="InBiome" biome="1"/></triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaInBiome" operation="set" value="4"><requirement name="InBiome" biome="8"/></triggered_effect>
 			</effect_group>
 			<!-- * 完成任务修改变量Will -->
 			<effect_group>
@@ -2987,6 +2988,27 @@
 					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="18"/>
 				</triggered_effect>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clear20MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clear20MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clear21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clear21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clear22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clear22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clear23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clear23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clear24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clear24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClear" operation="GTE" value="24"/>
+				</triggered_effect>
+
 				<!-- * 群聚 -->
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested2MarisaQuestShow" operation="set" value="100">
@@ -3050,6 +3072,27 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested18MarisaQuestShow" operation="set" value="100">
 					<requirement name="CVarCompare" cvar="clearInfested18MarisaQuestShow" operation="NotEquals" value="100"/>
 					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="18"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested20MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearInfested20MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearInfested21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearInfested22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearInfested23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearInfested24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearInfested24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearInfested" operation="GTE" value="24"/>
 				</triggered_effect>
 
 				<!-- * 超级群聚 -->
@@ -3116,6 +3159,27 @@
 					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="18"/>
 				</triggered_effect>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearSuperInfested20MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearSuperInfested20MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearSuperInfested21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearSuperInfested21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearSuperInfested22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearSuperInfested22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearSuperInfested23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearSuperInfested23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="clearSuperInfested24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="clearSuperInfested24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfested" operation="GTE" value="24"/>
+				</triggered_effect>
+
 				<!-- * 强攻据点 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint2MarisaQuestShow" operation="set" value="100">
 					<requirement name="CVarCompare" cvar="defensivePoint2MarisaQuestShow" operation="NotEquals" value="100"/>
@@ -3180,6 +3244,27 @@
 					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="18"/>
 				</triggered_effect>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint20MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="defensivePoint20MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="defensivePoint21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="defensivePoint22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="defensivePoint23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="defensivePoint24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="defensivePoint24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteDefensivePoint" operation="GTE" value="24"/>
+				</triggered_effect>
+
 				<!-- * 讨伐目标 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss3MarisaQuestShow" operation="set" value="100">
 					<requirement name="CVarCompare" cvar="poiKillBoss3MarisaQuestShow" operation="NotEquals" value="100"/>
@@ -3240,6 +3325,27 @@
 					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="18"/>
 				</triggered_effect>
 
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss20MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="poiKillBoss20MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="20"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="poiKillBoss21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="poiKillBoss22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="poiKillBoss23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="poiKillBoss24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="poiKillBoss24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="IntroComplete" operation="GTE" value="24"/>
+				</triggered_effect>
+
 				<!-- * 潜入电力 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower9MarisaQuestShow" operation="set" value="100">
 					<requirement name="CVarCompare" cvar="crouchingRestorePower9MarisaQuestShow" operation="NotEquals" value="100"/>
@@ -3273,6 +3379,23 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower18MarisaQuestShow" operation="set" value="100">
 					<requirement name="CVarCompare" cvar="crouchingRestorePower18MarisaQuestShow" operation="NotEquals" value="100"/>
 					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="GTE" value="18"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower21MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="crouchingRestorePower21MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="GTE" value="21"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower22MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="crouchingRestorePower22MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="GTE" value="22"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower23MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="crouchingRestorePower23MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="GTE" value="23"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="crouchingRestorePower24MarisaQuestShow" operation="set" value="100">
+					<requirement name="CVarCompare" cvar="crouchingRestorePower24MarisaQuestShow" operation="NotEquals" value="100"/>
+					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="GTE" value="24"/>
 				</triggered_effect>
 
 			</effect_group>
@@ -4015,7 +4138,7 @@
 				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="marisaTraversingUpper"/>
 			</effect_group>
 			<effect_group>
-				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="EQ" value="3"/>
+				<requirement name="CVarCompare" cvar=".MarisaInBiome" operation="GTE" value="3"/>
 				<passive_effect name="HarvestCount" operation="base_set" value="1" tags="marisaTraversingSupper"/>
 			</effect_group>
 
