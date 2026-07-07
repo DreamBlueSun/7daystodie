@@ -1,0 +1,2311 @@
+    <!-- ** 护甲 T1 zombieArlene 阿琳 -->
+    <append xpath="/items">
+
+        <!-- * 伐木工 Arlene -->
+        <item name="IridescentArmorT1ArleneLumberjackHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorLumberjackHelmet"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneLumberjackHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupLumberjack"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="LumberjackHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/LumberJack/HeadgearMorphMatrix/{race}{variant}/gearLumberjack{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneLumberjackOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorLumberjackOutfit"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneLumberjackOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupLumberjack"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="LumberjackOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/LumberJack/gear{sex}LumberJackPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneLumberjackGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorLumberjackGloves"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneLumberjackGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupLumberjack"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="LumberjackGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/LumberJack/gear{sex}LumberJackPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneLumberjackBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorLumberjackBoots"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneLumberjackBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupLumberjack"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_regular_grab"/>
+            <property name="SoundPlace" value="footwear_regular_place"/>
+            <effect_group name="LumberjackBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/LumberJack/gear{sex}LumberJackPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 传道者 Arlene -->
+        <item name="IridescentArmorT1ArlenePreacherHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorPreacherHelmet"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArlenePreacherHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupPreacher"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="PreacherHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Preacher/HeadgearMorphMatrix/{race}{variant}/gearPreacher{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArlenePreacherOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorPreacherOutfit"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArlenePreacherOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupPreacher"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="PreacherOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Preacher/gear{sex}PreacherPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArlenePreacherGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorPreacherGloves"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArlenePreacherGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupPreacher"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_cloth_grab"/>
+            <property name="SoundPlace" value="gloves_cloth_place"/>
+            <effect_group name="PreacherGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Preacher/gear{sex}PreacherPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArlenePreacherBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorPreacherBoots"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArlenePreacherBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupPreacher"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="PreacherBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Preacher/gear{sex}PreacherPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 盗贼 Arlene -->
+        <item name="IridescentArmorT1ArleneRogueHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRogueHelmet"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRogueHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupRogue"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="RogueHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/HeadgearMorphMatrix/{race}{variant}/gearStealth{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="CullDistFPV" value="0"/>
+                <property name="HairMaskType" value="None"/>
+                <property name="FacialHairMaskType" value="None"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRogueOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRogueOutfit"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRogueOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupRogue"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_leather_grab"/>
+            <property name="SoundPlace" value="outfit_leather_place"/>
+            <effect_group name="RogueOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/gear{sex}StealthPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+                <property name="CullDistFPV" value="0.32"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRogueGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRogueGloves"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRogueGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupRogue"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="RogueGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/gear{sex}StealthPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+                <property name="CullDistFPV" value="0"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRogueBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRogueBoots"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRogueBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupRogue"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="RogueBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Stealth/gear{sex}StealthPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+                <property name="CullDistFPV" value="0"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 运动员 Arlene -->
+        <item name="IridescentArmorT1ArleneAthleticHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAthleticHelmet"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAthleticHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupAthletic"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="AthleticHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Fitness/HeadgearMorphMatrix/{race}{variant}/gearFitness{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAthleticOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAthleticOutfit"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAthleticOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupAthletic"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="AthleticOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Fitness/gear{sex}FitnessPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAthleticGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAthleticGloves"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAthleticGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupAthletic"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="AthleticGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Fitness/gear{sex}FitnessPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAthleticBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAthleticBoots"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAthleticBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupAthletic"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_regular_grab"/>
+            <property name="SoundPlace" value="footwear_regular_place"/>
+            <effect_group name="AthleticBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Fitness/gear{sex}FitnessPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 警官 Arlene -->
+        <item name="IridescentArmorT1ArleneEnforcerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorEnforcerHelmet"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneEnforcerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupEnforcer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_sunglasses_grab"/>
+            <property name="SoundPlace" value="headwear_sunglasses_place"/>
+            <effect_group name="EnforcerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Enforcer/HeadgearMorphMatrix/{race}{variant}/gearEnforcer{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Full"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneEnforcerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorEnforcerOutfit"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneEnforcerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupEnforcer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="EnforcerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Enforcer/gear{sex}EnforcerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneEnforcerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorEnforcerGloves"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneEnforcerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupEnforcer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="EnforcerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Enforcer/gear{sex}EnforcerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneEnforcerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorEnforcerBoots"/>
+            <property name="Extends" value="armorLightMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneEnforcerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupEnforcer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_regular_grab"/>
+            <property name="SoundPlace" value="footwear_regular_place"/>
+            <effect_group name="EnforcerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Enforcer/gear{sex}EnforcerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 农夫 Arlene -->
+        <item name="IridescentArmorT1ArleneFarmerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorFarmerHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneFarmerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupFarmer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_straw_grab"/>
+            <property name="SoundPlace" value="headwear_straw_place"/>
+            <effect_group name="FarmerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Farmer/HeadgearMorphMatrix/{race}{variant}/gearFarmer{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneFarmerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorFarmerOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneFarmerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupFarmer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="FarmerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Farmer/gear{sex}FarmerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneFarmerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorFarmerGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneFarmerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupFarmer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_cloth_grab"/>
+            <property name="SoundPlace" value="gloves_cloth_place"/>
+            <effect_group name="FarmerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Farmer/gear{sex}FarmerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneFarmerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorFarmerBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneFarmerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupFarmer"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="FarmerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Farmer/gear{sex}FarmerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 摩托车手 Arlene -->
+        <item name="IridescentArmorT1ArleneBikerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorBikerHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneBikerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupBiker"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_metalplastic_grab"/>
+            <property name="SoundPlace" value="headwear_metalplastic_place"/>
+            <effect_group name="BikerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Biker/HeadgearMorphMatrix/{race}{variant}/gearBiker{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneBikerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorBikerOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneBikerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupBiker"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_leather_grab"/>
+            <property name="SoundPlace" value="outfit_leather_place"/>
+            <effect_group name="BikerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Biker/gear{sex}BikerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneBikerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorBikerGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneBikerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupBiker"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="BikerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Biker/gear{sex}BikerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneBikerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorBikerBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneBikerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupBiker"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="BikerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Biker/gear{sex}BikerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 拾荒者 Arlene -->
+        <item name="IridescentArmorT1ArleneScavengerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorScavengerHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneScavengerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupScavenger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="ScavengerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Scavenger/HeadgearMorphMatrix/{race}{variant}/gearScavenger{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneScavengerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorScavengerOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneScavengerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupScavenger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="ScavengerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Scavenger/gear{sex}ScavengerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneScavengerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorScavengerGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneScavengerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupScavenger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="ScavengerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Scavenger/gear{sex}ScavengerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneScavengerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorScavengerBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneScavengerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupScavenger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="ScavengerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Scavenger/gear{sex}ScavengerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 护林员 Arlene -->
+        <item name="IridescentArmorT1ArleneRangerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRangerHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRangerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupRanger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="RangerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Ranger/HeadgearMorphMatrix/{race}{variant}/gearRanger{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRangerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRangerOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRangerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupRanger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_leather_grab"/>
+            <property name="SoundPlace" value="outfit_leather_place"/>
+            <effect_group name="RangerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Ranger/gear{sex}RangerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRangerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRangerGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRangerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupRanger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="RangerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Ranger/gear{sex}RangerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRangerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRangerBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRangerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupRanger"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="RangerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Ranger/gear{sex}RangerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 指挥官 Arlene -->
+        <item name="IridescentArmorT1ArleneCommandoHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorCommandoHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneCommandoHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupCommando"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="CommandoHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Commando/HeadgearMorphMatrix/{race}{variant}/gearCommando{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneCommandoOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorCommandoOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneCommandoOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupCommando"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="CommandoOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Commando/gear{sex}CommandoPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneCommandoGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorCommandoGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneCommandoGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupCommando"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="CommandoGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Commando/gear{sex}CommandoPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneCommandoBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorCommandoBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneCommandoBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupCommando"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="CommandoBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Commando/gear{sex}CommandoPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 刺客 Arlene -->
+        <item name="IridescentArmorT1ArleneAssassinHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAssassinHelmet"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAssassinHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupAssassin"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="AssassinHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Assassin/gear{sex}AssassinPrefab.prefab"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value="head"/>
+                <property name="CullDistFPV" value="0"/>
+                <property name="HairMaskType" value="None"/>
+                <property name="FacialHairMaskType" value="None"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAssassinOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAssassinOutfit"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAssassinOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupAssassin"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_clothmetal_grab"/>
+            <property name="SoundPlace" value="outfit_clothmetal_place"/>
+            <effect_group name="AssassinOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Assassin/gear{sex}AssassinPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+                <property name="CullDistFPV" value="0.32"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAssassinGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAssassinGloves"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAssassinGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupAssassin"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="AssassinGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Assassin/gear{sex}AssassinPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+                <property name="CullDistFPV" value="0"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneAssassinBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorAssassinBoots"/>
+            <property name="Extends" value="armorMediumMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneAssassinBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupAssassin"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="AssassinBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Assassin/gear{sex}AssassinPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+                <property name="CullDistFPV" value="0"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 矿工 Arlene -->
+        <item name="IridescentArmorT1ArleneMinerHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorMinerHelmet"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneMinerHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupMiner"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_metalplastic_grab"/>
+            <property name="SoundPlace" value="headwear_metalplastic_place"/>
+            <effect_group name="MinerHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Miner/HeadgearMorphMatrix/{race}{variant}/gearMiner{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneMinerOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorMinerOutfit"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneMinerOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupMiner"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="MinerOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Miner/gear{sex}MinerPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneMinerGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorMinerGloves"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneMinerGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupMiner"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="MinerGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Miner/gear{sex}MinerPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneMinerBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorMinerBoots"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneMinerBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupMiner"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="MinerBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Miner/gear{sex}MinerPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 游牧民 Arlene -->
+        <item name="IridescentArmorT1ArleneNomadHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNomadHelmet"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNomadHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupNomad"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="NomadHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nomad/gear{sex}NomadPrefab.prefab"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value="head"/>
+                <property name="HairMaskType" value="None"/>
+                <property name="FacialHairMaskType" value="None"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNomadOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNomadOutfit"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNomadOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupNomad"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_cloth_grab"/>
+            <property name="SoundPlace" value="outfit_cloth_place"/>
+            <effect_group name="NomadOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nomad/gear{sex}NomadPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNomadGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNomadGloves"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNomadGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupNomad"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="NomadGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nomad/gear{sex}NomadPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNomadBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNomadBoots"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNomadBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupNomad"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="NomadBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nomad/gear{sex}NomadPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 学霸 Arlene -->
+        <item name="IridescentArmorT1ArleneNerdHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNerdHelmet"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNerdHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupNerd"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_cloth_grab"/>
+            <property name="SoundPlace" value="headwear_cloth_place"/>
+            <effect_group name="NerdHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nerd/HeadgearMorphMatrix/{race}{variant}/gearNerd{hair}Head.asset"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value=""/>
+                <property name="HairMaskType" value="Hat"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNerdOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNerdOutfit"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNerdOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupNerd"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_metal_grab"/>
+            <property name="SoundPlace" value="outfit_metal_place"/>
+            <effect_group name="NerdOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nerd/gear{sex}NerdPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNerdGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNerdGloves"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNerdGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupNerd"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="NerdGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nerd/gear{sex}NerdPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneNerdBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorNerdBoots"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneNerdBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupNerd"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_nerd_grab"/>
+            <property name="SoundPlace" value="footwear_nerd_place"/>
+            <effect_group name="NerdBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Nerd/gear{sex}NerdPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+        <!-- * 袭击者 Arlene -->
+        <item name="IridescentArmorT1ArleneRaiderHelmet">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRaiderHelmet"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRaiderHelmetDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_head"/>
+            <property name="ArmorGroup" value="groupRaider"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,head,armor,armorHead,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Head"/>
+            <property name="SoundPickup" value="headwear_metal_grab"/>
+            <property name="SoundPlace" value="headwear_metal_place"/>
+            <effect_group name="RaiderHelmet">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_1"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="1"><requirement name="RequirementItemTier" operation="Equals" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="2"><requirement name="RequirementItemTier" operation="Equals" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="3"><requirement name="RequirementItemTier" operation="Equals" value="4"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="4"><requirement name="RequirementItemTier" operation="Equals" value="5"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="5"><requirement name="RequirementItemTier" operation="Equals" value="6"/></triggered_effect>
+                <triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar="$iridescentMarisaCriticalChanceHead" operation="set" value="0"/>
+                <display_value name="dMarisaCriticalChance" value="0,.01,.02,.03,.04,.05" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Raider/gear{sex}RaiderPrefab.prefab"/>
+                <property name="TransformName" value="head"/>
+                <property name="Excludes" value="head"/>
+                <property name="HairMaskType" value="None"/>
+                <property name="FacialHairMaskType" value="None"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Helmet
+            <effect_group name="IridescentPerks Group Helmet">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1HelmetArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRaiderOutfit">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRaiderOutfit"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRaiderOutfitDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_chest"/>
+            <property name="ArmorGroup" value="groupRaider"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,chest,armor,armorChest,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Chest"/>
+            <property name="SoundPickup" value="outfit_metal_grab"/>
+            <property name="SoundPlace" value="outfit_metal_place"/>
+            <effect_group name="RaiderOutfit">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_2"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="BuffResistance" operation="base_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6" tags="buffFatiguedTrigger,buffArmSprainedCHTrigger,buffLegSprainedCHTrigger,buffAbrasionCatch,buffLaceration,buffInfectionCatch,buffInjuryStunned01CHTrigger,buffInjuryBleedingTwo,buffInjuryBleedingBarbedWire"/>
+                <display_value name="dBuffResistance1" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Raider/gear{sex}RaiderPrefab.prefab"/>
+                <property name="TransformName" value="body"/>
+                <property name="Excludes" value="body"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Outfit
+            <effect_group name="IridescentPerks Group Outfit">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1OutfitArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRaiderGloves">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRaiderGloves"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRaiderGlovesDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_hands"/>
+            <property name="ArmorGroup" value="groupRaider"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,upperbody,hands,armor,armorHands,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Hands"/>
+            <property name="SoundPickup" value="gloves_leather_grab"/>
+            <property name="SoundPlace" value="gloves_leather_place"/>
+            <effect_group name="RaiderGloves">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_3"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="EntityDamage" operation="base_add" value="0,1,2,3,4,5" tier="1,2,3,4,5,6" tags="perkDeadEye,perkJavelinMaster,perkSalvageOperations,perkPummelPete,perkSkullCrusher,perkMiner69r,perkBrawler,perkMachineGunner,perkArchery,perkGunslinger,perkDeepCuts,perkElectrocutioner"/>
+                <passive_effect name="EntityDamage" operation="base_add" value="0,.1,.2,.3,.4,.5" tier="1,2,3,4,5,6" tags="perkBoomstick,perkTurrets"/>
+                <display_value name="dEntityDamageUp" value="0,1,2,3,4,5" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Raider/gear{sex}RaiderPrefab.prefab"/>
+                <property name="TransformName" value="hands"/>
+                <property name="Excludes" value="hands"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Gloves
+            <effect_group name="IridescentPerks Group Gloves">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1GlovesArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+        <item name="IridescentArmorT1ArleneRaiderBoots">
+            <property name="UnlockedBy" value="craftingEquipment"/>
+            <property name="SellableToTrader" value="false"/>
+            <property name="CustomIcon" value="armorRaiderBoots"/>
+            <property name="Extends" value="armorHeavyMaster" param1="CustomIcon"/>
+            <property name="DescriptionKey" value="IridescentArmorT1ArleneRaiderBootsDesc"/>
+            <property name="DisplayType" value="ui_armor_marisa_common_feet"/>
+            <property name="ArmorGroup" value="groupRaider"/>
+            <property name="Tags" value="PerkT1Marisa,canHaveCosmetic,lowerbody,feet,armor,armorFeet,lightArmor,lightArmorDeg,armorLightSkill,biomeChallenge"/>
+            <property name="EquipSlot" value="Feet"/>
+            <property name="SoundPickup" value="footwear_leather_grab"/>
+            <property name="SoundPlace" value="footwear_leather_place"/>
+            <effect_group name="RaiderBoots">
+                <passive_effect name="ModSlots" operation="base_set" value="MarisaArmorFlag_ModSlots_4"/>
+                <passive_effect name="ModPowerBonus" operation="base_add" value="0" tags="EconomicValue"/>
+                <passive_effect name="PhysicalDamageResist" operation="base_add" value="5,6,7,8,9,10" tier="1,2,3,4,5,6"/>
+                <passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="lightArmorDeg"/>
+                <passive_effect name="DegradationMax" operation="base_set" value="200,300" tier="1,6"/>
+            </effect_group>
+
+            <effect_group name="Marisa Prefix Skill">
+                <passive_effect name="RunSpeed" operation="perc_add" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+                <display_value name="dRunSpeed" value="0,.04,.08,.12,.16,.2" tier="1,2,3,4,5,6"/>
+            </effect_group>
+
+            <property class="SDCS">
+                <property name="Prefab" value="@:Entities/Player/{sex}/Gear/Raider/gear{sex}RaiderPrefab.prefab"/>
+                <property name="TransformName" value="feet"/>
+                <property name="Excludes" value="feet"/>
+            </property>
+MarisaArmorFlag_IridescentPerks_Replace_Boots
+            <effect_group name="IridescentPerks Group Boots">
+				<triggered_effect trigger="onSelfEquipStart" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfEquipStop" action="ModifyCVar" cvar=".iridescentPerksGroupT1BootsArlene" operation="set" value="0"/>
+			</effect_group>
+        </item>
+
+   </append>

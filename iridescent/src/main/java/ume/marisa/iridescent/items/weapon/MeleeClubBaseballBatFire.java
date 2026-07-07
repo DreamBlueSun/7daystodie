@@ -1,6 +1,6 @@
 package ume.marisa.iridescent.items.weapon;
 
-import iridescent.Constants;
+import ume.marisa.iridescent.constant.Constants;
 import ume.marisa.iridescent.utils.WriteToFile;
 
 /**
