@@ -67,26 +67,32 @@ public abstract class Constants {
                 String[] z = zombie.split(",");
                 ZOMBIES.add(KV.of(z[4], new Zombie(z[0], z[1], z[2], z[3], z[4], z[5])));
             }
-            ZOMBIES.add(KV.of("ResearchInstituteLeader", new Constants.Zombie("晶石系统加倍", "RANK 4","RANK 8","RANK 12","ResearchInstituteLeader","院长")));
+            ZOMBIES.add(KV.of("ResearchInstituteLeader", new Constants.Zombie("晶石系统加倍", "RANK 4", "RANK 8", "RANK 12", "ResearchInstituteLeader", "院长")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     // 虹彩技能
-    public static final Map<String, Skill> SKILLS;
-    public static final Map<String, Skill> SKILLS_LOCATION;
+    public static final Map<String, Skill> SKILL_MAP;
+    public static final Map<String, Skill> SKILL_MAP_LOCATION;
 
     public static class Skill {
 
         protected String location;
         protected String name;
         protected String maxLevel;
+        protected String maxHighLevel;
+        protected String cost;
+        protected int tire;
 
-        public Skill(String location, String name, String maxLevel) {
+        public Skill(String location, String name, String maxLevel, String maxHighLevel, String cost) {
             this.location = location;
             this.name = name;
             this.maxLevel = maxLevel;
+            this.maxHighLevel = maxHighLevel;
+            this.cost = cost;
+            this.tire = Integer.parseInt(cost) / 10;
         }
 
         public String getLocation() {
@@ -100,20 +106,28 @@ public abstract class Constants {
         public String getMaxLevel() {
             return maxLevel;
         }
+
+        public String getCost() {
+            return cost;
+        }
+
+        public int getTire() {
+            return tire;
+        }
     }
 
     static {
         try {
             String skillsTxt = Files.readString(Paths.get("D:\\workspace-idea\\7daystodie\\iridescent\\src\\main\\java\\ume\\marisa\\iridescent\\constant\\skills.txt"));
-            SKILLS_LOCATION = new HashMap<>();
+            SKILL_MAP_LOCATION = new HashMap<>();
             for (String skill : skillsTxt.split("\r\n")) {
                 String[] s = skill.split(",");
-                SKILLS_LOCATION.put(s[0], new Skill(s[0], s[1], s[2]));
+                SKILL_MAP_LOCATION.put(s[0], new Skill(s[0], s[1], s[2], s[3], s[4]));
             }
-            SKILLS = new HashMap<>();
+            SKILL_MAP = new HashMap<>();
             for (String skill : skillsTxt.split("\r\n")) {
                 String[] s = skill.split(",");
-                SKILLS.put(s[1], new Skill(s[0], s[1], s[2]));
+                SKILL_MAP.put(s[1], new Skill(s[0], s[1], s[2], s[3], s[4]));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
