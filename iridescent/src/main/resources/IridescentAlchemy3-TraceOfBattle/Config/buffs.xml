@@ -367,7 +367,7 @@
 
 		<!-- 测试打印 cvar -->
 		<effect_group>
-			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="==========================="/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="===========================任务进度"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar=".MarisaInBiome"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="IntroComplete"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClear"/>
@@ -375,6 +375,8 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteClearSuperInfested"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteDefensivePoint"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="QuestCompleteCrouchingRestorePower"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="===========================餐券进度"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" cvar="MarisaQuestCompleteCount"/>
 		</effect_group>
 
 		<effect_group>
@@ -692,6 +694,42 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteCrouchingRestorePower" operation="set" value="@QuestCompleteCrouchingRestorePowerWill">
 					<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePower" operation="LT" value="@QuestCompleteCrouchingRestorePowerWill"/>
 				</triggered_effect>
+			</effect_group>
+			<!-- * 完成任务修改餐券变量Will -->
+			<effect_group>
+				<requirement name="CVarCompare" cvar="IntroCompleteWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@IntroCompleteWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="IntroCompleteWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="QuestCompleteClearWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@QuestCompleteClearWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="QuestCompleteClearInfestedWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@QuestCompleteClearInfestedWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearInfestedWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="QuestCompleteClearSuperInfestedWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@QuestCompleteClearSuperInfestedWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteClearSuperInfestedWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="QuestCompleteDefensivePointWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@QuestCompleteDefensivePointWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteDefensivePointWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="QuestCompleteCrouchingRestorePowerWill" operation="GT" value="0"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="add" value="@QuestCompleteCrouchingRestorePowerWill"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="QuestCompleteCrouchingRestorePowerWill" operation="set" value="0"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="CVarCompare" cvar="MarisaQuestCompleteCount" operation="GTE" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="CallGameEvent" event="event_reward_food_marisas_feast_mix_ticket" allow_client_call="true"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="MarisaQuestCompleteCount" operation="subtract" value="20"/>
 			</effect_group>
 
 			<!-- * 力量护符变量 -->
