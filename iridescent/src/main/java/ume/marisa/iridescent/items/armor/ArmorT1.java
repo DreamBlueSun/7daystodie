@@ -48,12 +48,16 @@ public class ArmorT1 {
                     .replace("MarisaArmorFlag_IridescentPerks_Replace_Helmet", info.skillHelmet)
                     .replace("MarisaArmorFlag_IridescentPerks_Replace_Outfit", info.skillOutfit)
                     .replace("MarisaArmorFlag_IridescentPerks_Replace_Gloves", info.skillGloves)
-                    .replace("MarisaArmorFlag_IridescentPerks_Replace_Boots", info.skillBoots)
-                    ;
+                    .replace("MarisaArmorFlag_IridescentPerks_Replace_Boots", info.skillBoots);
             s.append(replace);
+            ArmorCheckHelper.check(zombie.getV(), info, NUM_SLOT, NUM_ONE, NUM_ALL, 1);
         }
         WriteToFile.output(s.toString());
     }
 
+    // 校验参数
+    private static final int NUM_SLOT = 4;
+    private static final int NUM_ONE = 36;
+    private static final int NUM_ALL = 144;
 
 }

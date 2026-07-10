@@ -8,7 +8,6 @@ import ume.marisa.iridescent.utils.WriteToFile;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,25 +53,8 @@ public class ArmorDescT1 {
                     .replace("FLAG_PERK_3", info.skillGlovesDesc)
                     .replace("FLAG_PERK_4", info.skillBootsDesc);
             s.append(replace).append("\n");
-
-            // 校验
-            int sum1 = (Integer.parseInt(info.slot1) * NUM_SLOT) + info.skillHelmetKV.stream().map(kv -> Constants.SKILL_MAP.get(kv.getK()).getTire() * kv.getV()).mapToInt(Integer::intValue).sum();
-            int sum2 = (Integer.parseInt(info.slot2) * NUM_SLOT) + info.skillOutfitKV.stream().map(kv -> Constants.SKILL_MAP.get(kv.getK()).getTire() * kv.getV()).mapToInt(Integer::intValue).sum();
-            int sum3 = (Integer.parseInt(info.slot3) * NUM_SLOT) + info.skillGlovesKV.stream().map(kv -> Constants.SKILL_MAP.get(kv.getK()).getTire() * kv.getV()).mapToInt(Integer::intValue).sum();
-            int sum4 = (Integer.parseInt(info.slot4) * NUM_SLOT) + info.skillBootsKV.stream().map(kv -> Constants.SKILL_MAP.get(kv.getK()).getTire() * kv.getV()).mapToInt(Integer::intValue).sum();
-            int sum = sum1 + sum2 + sum3 + sum4;
-            if (info.offset != sum) {
-                System.err.println(info.offset + " != " + (sum - NUM_ALL) + "   " + Arrays.toString(new int[]{sum1, sum2, sum3, sum4}) + "   " + zombie.getV().getLocation());
-            } else {
-                System.out.println(info.offset + " != " + (sum - NUM_ALL) + "   " + Arrays.toString(new int[]{sum1, sum2, sum3, sum4}) + "   " + zombie.getV().getLocation());
-            }
         }
         WriteToFile.output(s.toString());
     }
-
-    // 校验参数
-    private static final int NUM_SLOT = 4;
-    private static final int NUM_ONE = 36;
-    private static final int NUM_ALL = 144;
 
 }

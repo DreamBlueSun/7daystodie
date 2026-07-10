@@ -107,6 +107,10 @@ public abstract class Constants {
             return maxLevel;
         }
 
+        public String getMaxHighLevel() {
+            return maxHighLevel;
+        }
+
         public String getCost() {
             return cost;
         }
