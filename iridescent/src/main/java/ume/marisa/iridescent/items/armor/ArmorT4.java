@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 护甲ArmorT4
+ * 护甲T4
  */
 
 public class ArmorT4 {
@@ -22,9 +22,9 @@ public class ArmorT4 {
 
     static {
         try {
-            String armorArmorT4Skill = Files.readString(Paths.get("D:\\workspace-idea\\7daystodie\\iridescent\\src\\main\\java\\ume\\marisa\\iridescent\\items\\armor\\ArmorT4Skill.txt"));
+            String armorT4Skill = Files.readString(Paths.get("D:\\workspace-idea\\7daystodie\\iridescent\\src\\main\\java\\ume\\marisa\\iridescent\\items\\armor\\ArmorT4Skill.txt"));
             SKILL_INFO = new HashMap<>();
-            for (String skill : armorArmorT4Skill.split("\r\n")) {
+            for (String skill : armorT4Skill.split("\r\n")) {
                 String[] s = skill.split("\t");
                 SKILL_INFO.put(s[1], new ArmorInfo(Integer.parseInt(s[0]), s[1], s[2], s[3], s[8], s[13], s[18], new String[]{s[4], s[5], s[6], s[7]}, new String[]{s[9], s[10], s[11], s[12]}, new String[]{s[14], s[15], s[16], s[17]}, new String[]{s[19], s[20], s[21], s[22]}));
             }
@@ -42,7 +42,8 @@ public class ArmorT4 {
             ArmorInfo info = SKILL_INFO.get(name);
             if ("ResearchInstituteLeader".equals(name)) break;
             String replace = armor
-                    .replace("T1", "ArmorT4")
+                    .replace("T1", "T4")
+                    .replace("iridescentPerksGroupT4", "iridescentPerksGroupT3")
                     .replace("Arlene", name)
                     .replace("阿琳", zombie.getV().getLocation())
                     .replace("MarisaArmorFlag_ModSlots_1", info.slot1)

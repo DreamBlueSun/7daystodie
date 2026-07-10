@@ -59,14 +59,14 @@ public class ArmorInfo {
             if (!"——".equals(skill1[0])) this.skillHelmet += IRIDESCENT_PERKS_HELMET.replace("MarisaArmorFlag_IridescentPerks_Helmet", Constants.SKILL_MAP_LOCATION.get(skill1[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill1[1]);
             if (!"——".equals(skill1[2])) this.skillHelmet += IRIDESCENT_PERKS_HELMET.replace("MarisaArmorFlag_IridescentPerks_Helmet", Constants.SKILL_MAP_LOCATION.get(skill1[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill1[3]);
             this.skillOutfit = "";
-            if (!"——".equals(skill2[0])) this.skillOutfit += IRIDESCENT_PERKS_OUTFIT.replace("MarisaArmorFlag_IridescentPerks_Outfit", Constants.SKILL_MAP_LOCATION.get(skill2[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill2[1]);
-            if (!"——".equals(skill2[2])) this.skillOutfit += IRIDESCENT_PERKS_OUTFIT.replace("MarisaArmorFlag_IridescentPerks_Outfit", Constants.SKILL_MAP_LOCATION.get(skill2[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill2[3]);
+            if (!"——".equals(skill2[0])) this.skillOutfit += IRIDESCENT_PERKS_OUTFIT.replace("MarisaArmorFlag_IridescentPerks_Outfit", Constants.SKILL_MAP_LOCATION.get(skill2[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Outfit", skill2[1]);
+            if (!"——".equals(skill2[2])) this.skillOutfit += IRIDESCENT_PERKS_OUTFIT.replace("MarisaArmorFlag_IridescentPerks_Outfit", Constants.SKILL_MAP_LOCATION.get(skill2[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Outfit", skill2[3]);
             this.skillGloves = "";
-            if (!"——".equals(skill3[0])) this.skillGloves += IRIDESCENT_PERKS_GLOVES.replace("MarisaArmorFlag_IridescentPerks_Gloves", Constants.SKILL_MAP_LOCATION.get(skill3[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill3[1]);
-            if (!"——".equals(skill3[2])) this.skillGloves += IRIDESCENT_PERKS_GLOVES.replace("MarisaArmorFlag_IridescentPerks_Gloves", Constants.SKILL_MAP_LOCATION.get(skill3[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill3[3]);
+            if (!"——".equals(skill3[0])) this.skillGloves += IRIDESCENT_PERKS_GLOVES.replace("MarisaArmorFlag_IridescentPerks_Gloves", Constants.SKILL_MAP_LOCATION.get(skill3[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Gloves", skill3[1]);
+            if (!"——".equals(skill3[2])) this.skillGloves += IRIDESCENT_PERKS_GLOVES.replace("MarisaArmorFlag_IridescentPerks_Gloves", Constants.SKILL_MAP_LOCATION.get(skill3[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Gloves", skill3[3]);
             this.skillBoots = "";
-            if (!"——".equals(skill4[0])) this.skillBoots += IRIDESCENT_PERKS_BOOTS.replace("MarisaArmorFlag_IridescentPerks_Boots", Constants.SKILL_MAP_LOCATION.get(skill4[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill4[1]);
-            if (!"——".equals(skill4[2])) this.skillBoots += IRIDESCENT_PERKS_BOOTS.replace("MarisaArmorFlag_IridescentPerks_Boots", Constants.SKILL_MAP_LOCATION.get(skill4[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Helmet", skill4[3]);
+            if (!"——".equals(skill4[0])) this.skillBoots += IRIDESCENT_PERKS_BOOTS.replace("MarisaArmorFlag_IridescentPerks_Boots", Constants.SKILL_MAP_LOCATION.get(skill4[0]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Boots", skill4[1]);
+            if (!"——".equals(skill4[2])) this.skillBoots += IRIDESCENT_PERKS_BOOTS.replace("MarisaArmorFlag_IridescentPerks_Boots", Constants.SKILL_MAP_LOCATION.get(skill4[2]).getName()).replace("MarisaArmorFlag_IridescentPerks_Value_Boots", skill4[3]);
 
             this.skillHelmetDesc = "";
             if (!"——".equals(skill1[0])) this.skillHelmetDesc += IRIDESCENT_PERKS_DESC.replace("FLAG_PERK", Constants.SKILL_MAP_LOCATION.get(skill1[0]).getLocation()).replace("FLAG_COUNT_PERK", perkCount(Integer.parseInt(skill1[1])));
