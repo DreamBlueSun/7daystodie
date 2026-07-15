@@ -2787,6 +2787,7 @@
             <!-- 非头部伤害减少 -->
             <effect_group>
 				<requirement name="IsAlive" target="other"/>
+                <requirement name="!HoldingItemHasTags" tags="marisaSmg5"/>
                     <passive_effect name="DamageModifier" operation="perc_add" value="-.5"/>
                     <passive_effect name="DamageModifier" operation="perc_add" value=".5" tags="head"/>
             </effect_group>
@@ -3430,27 +3431,33 @@
             <level_requirements level="6"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
             <level_requirements level="7"><requirement name="ProgressionLevel" progression_name="attGeneralPerks" operation="GTE" value="1" desc_key="reqIridescentLevel01"/></level_requirements>
 
+            <!-- * 杠杆步枪 游龙清影 （强制0会心率，marisaLeverActionRifle） -->
             <effect_group name="Aways">
                 <requirement name="IsAlive" target="other"/>
+                <requirement name="!HoldingItemHasTags" tags="marisaLeverActionRifle"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".75" target="other"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceAways"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf"/>
-                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf" tags="head"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf"><requirement name="HoldingItemHasTags" tags="marisaSmg5"/></passive_effect>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf" tags="head"><requirement name="!HoldingItemHasTags" tags="marisaSmg5"/></passive_effect>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" target_tags="animal,zombie" buff="buffMarisaElectricFenceSparks"/>
             </effect_group>
             <effect_group name="WithChallenge">
                 <requirement name="IsAlive" target="other"/>
+                <requirement name="!HoldingItemHasTags" tags="marisaLeverActionRifle"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".75" target="other"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallenge"/>
                 <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf"/>
-                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf" tags="head"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf"><requirement name="HoldingItemHasTags" tags="marisaSmg5"/></passive_effect>
+                <passive_effect name="DamageModifier" operation="perc_add" value="@.MarisaCriticalMultiplierHalf" tags="head"><requirement name="!HoldingItemHasTags" tags="marisaSmg5"/></passive_effect>
                 <triggered_effect trigger="onSelfAttackedOther" action="PlaySound" sound="marisa_twitch_jump" play_in_head="true"/>
                 <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" target_tags="animal,zombie" buff="buffMarisaElectricFenceSparks"/>
             </effect_group>
 
             <effect_group name="Aways hit head">
                 <requirement name="IsAlive" target="other"/>
+                <requirement name="!HoldingItemHasTags" tags="marisaLeverActionRifle"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="GT" value=".75" target="other"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="@.MarisaCriticalChanceAways"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithHeadDamage"/>
@@ -3464,6 +3471,7 @@
             </effect_group>
             <effect_group name="WithChallenge hit head">
                 <requirement name="IsAlive" target="other"/>
+                <requirement name="!HoldingItemHasTags" tags="marisaLeverActionRifle"/>
                 <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value=".75" target="other"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="GT" value="@.MarisaCriticalChanceWithChallenge"/>
                 <requirement name="RandomRoll" seed_type="Random" min_max="0,100" operation="LTE" value="@.MarisaCriticalChanceWithChallengeHeadDamage"/>
@@ -3494,24 +3502,51 @@
 
             <!-- ** 会心伤害倍率 -->
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".25"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".3"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".35"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".4"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
-<!--                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="multiply" value="2"><requirement name="ItemHasTags" tags="perkArchery,perkDeadEye,perkDeepCuts,sneakMarisa"/></triggered_effect>-->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".3"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".35"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".4"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="set" value=".5"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+
+                <!-- 马格南 暴动 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value="@.buffShockedMarisaMagnum44UpAmountCriticalMultiplier"><requirement name="HoldingItemHasTags" tags="marisaMagnum44"/></triggered_effect>
+                <!-- 猎枪 朴实无华 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".5">
+                    <requirement name="HoldingItemHasTags" tags="marisaHuntingRifle"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                </triggered_effect>
 
             </effect_group>
+            <!-- ** 会心伤害倍率 一半 -->
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".125"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".15"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".175"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".2"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".15"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".175"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".2"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="set" value=".25"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+
+                <!-- 马格南 暴动 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierHalf" operation="add" value="@.buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf"><requirement name="HoldingItemHasTags" tags="marisaMagnum44"/></triggered_effect>
+                <!-- 猎枪 朴实无华 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplier" operation="add" value=".25">
+                    <requirement name="HoldingItemHasTags" tags="marisaHuntingRifle"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                </triggered_effect>
+
             </effect_group>
+            <!-- ** 会心伤害倍率 显示 -->
             <effect_group>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="125"/>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="130"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="135"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
-                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="140"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="130"/>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="135"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="1"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="140"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="2"/></triggered_effect>
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="set" value="150"><requirement name="ProgressionLevel" progression_name="perkMarisaCriticalMultiplier" operation="EQ" value="3"/></triggered_effect>
+
+                <!-- 马格南 暴动 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="add" value="@.buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow"><requirement name="HoldingItemHasTags" tags="marisaMagnum44"/></triggered_effect>
+                <!-- 猎枪 朴实无华 -->
+                <triggered_effect trigger="onSelfProgressionUpdate" action="ModifyCVar" cvar=".MarisaCriticalMultiplierShow" operation="add" value="50">
+                    <requirement name="HoldingItemHasTags" tags="marisaHuntingRifle"/>
+                    <requirement name="CVarCompare" cvar="_crouching" operation="Equals" value="1"/>
+                </triggered_effect>
+
             </effect_group>
 
             <effect_group>

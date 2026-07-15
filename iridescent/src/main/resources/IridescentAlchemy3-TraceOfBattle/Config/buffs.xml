@@ -433,6 +433,14 @@
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" buff="buffZombieSpwanMarisaTraversingSupper3"/>
 		</effect_group>
 
+		<!-- * 手枪 千锤百炼 -->
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelEntityDamageGunPistol" operation="set" value="@$LastPlayerLevel"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelEntityDamageGunPistol" operation="set" value="200">
+				<requirement name="PlayerLevel" operation="GT" value="200"/>
+			</triggered_effect>
+		</effect_group>
+
 		<!-- 添加 不屈 -->
 		<effect_group>
 			<requirement name="ProgressionLevel" progression_name="perkMarisaNirvana" operation="GTE" value="1"/>
@@ -785,6 +793,7 @@
 
 			<!-- ** 会心率 变量 -->
             <effect_group name="Critical Chance">
+				<!-- *** 基础会心率 -->
                 <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="set" value="0"/>
 				<!-- ** 装备 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="@$iridescentMarisaCriticalChanceHead"/>
@@ -882,15 +891,31 @@
                     <requirement name="NotHasBuff" buff="buffEntityDamageThreeCacheMarisaMeleeAtk"/>
                 </triggered_effect>
 
-                <!-- ** 组合会心率 -->
+                <!-- ** 沙漠秃鹰 狂热 -->
+                <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceAways" operation="add" value="@.buffIsOnFireMarisaDesertVultureUpAmountCriticalChance">
+                    <requirement name="HoldingItemHasTags" tags="marisaDesertVulture"/>
+                </triggered_effect>
+
+
+
+				<!-- *** 组合会心率 -->
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallenge" operation="set" value="@.MarisaCriticalChanceAways"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallenge" operation="add" value="@.MarisaCriticalChanceChallenge"/>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="set" value="@.MarisaCriticalChanceAways"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
+                <!-- 马格南 暴动 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithHeadDamage" operation="add" value="@.buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage">
+					<requirement name="HoldingItemHasTags" tags="marisaMagnum44"/>
+				</triggered_effect>
 
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallengeHeadDamage" operation="set" value="@.MarisaCriticalChanceWithChallenge"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallengeHeadDamage" operation="add" value="@.MarisaCriticalChanceHeadDamage"/>
+                <!-- 马格南 暴动 -->
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".MarisaCriticalChanceWithChallengeHeadDamage" operation="add" value="@.buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage">
+					<requirement name="HoldingItemHasTags" tags="marisaMagnum44"/>
+				</triggered_effect>
+
             </effect_group>
 
 
@@ -5349,6 +5374,139 @@
 	<!-- *** 武器 -->
 	<append xpath="/buffs">
 
+		<!-- 马格南 雷霆万钧 -->
+		<!-- 感电 -->
+		<buff name="buffShockedMarisaMagnum44Effect" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffShockedMarisaMagnum44Effect"/>
+			</effect_group>
+		</buff>
+		<!-- 暴动 -->
+		<buff name="buffShockedMarisaMagnum44Up" name_key="buffShockedMarisaMagnum44UpName" description_key="buffShockedMarisaMagnum44UpDesc" showonhud="true" icon="ui_game_symbol_gunslinger" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="60"/>
+			<display_value value=".buffShockedMarisaMagnum44Up"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountAtk" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountAtk" operation="divide" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountAtk" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountAtk" operation="divide" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="multiply" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="multiply" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="20"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="10"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="marisaMagnum44"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="@.buffShockedMarisaMagnum44UpAmountAtk" tags="perkGunslinger"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44Up" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountAtk" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+
+		<!-- 沙漠秃鹰 烈焰风暴 -->
+		<!-- 烈焰 -->
+		<buff name="buffIsOnFireMarisaDesertVultureEffect" hidden="true">
+			<stack_type value="ignore"/>
+			<duration value="20"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_add" value="-.5"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffIsOnFireMarisaDesertVultureEffect"/>
+			</effect_group>
+		</buff>
+		<!-- 狂热 -->
+		<buff name="buffIsOnFireMarisaDesertVultureUp" name_key="buffIsOnFireMarisaDesertVultureUpName" description_key="buffIsOnFireMarisaDesertVultureUpDesc" showonhud="true" icon="ui_game_symbol_gunslinger" icon_color="255,71,207">
+			<stack_type value="replace"/>
+			<duration value="60"/>
+			<display_value value=".buffIsOnFireMarisaDesertVultureUp"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountAtk" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountAtk" operation="divide" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountAtk" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountAtk" operation="divide" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountCriticalChance" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountCriticalChance" operation="multiply" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountCriticalChance" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountCriticalChance" operation="multiply" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier" operation="divide" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier" operation="divide" value="20"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplierShow" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplierShow" operation="multiply" value="5"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplierShow" operation="set" value="@.buffIsOnFireMarisaDesertVultureUp"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplierShow" operation="multiply" value="5"/>
+			</effect_group>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="marisaDesertVulture"/>
+				<passive_effect name="EntityDamage" operation="perc_add" value="@.buffIsOnFireMarisaDesertVultureUpAmountAtk" tags="perkGunslinger"/>
+				<passive_effect name="ReloadSpeedMultiplier" operation="perc_add" value="@.buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUp" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountAtk" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountCriticalChance" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplier" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffIsOnFireMarisaDesertVultureUpAmountReloadSpeedMultiplierShow" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+
+		<!-- 杠杆步枪 游龙清影 -->
+		<buff name="buffLeverActionRifleEntityDamage" name_key="buffLeverActionRifleEntityDamageName" description_key="buffLeverActionRifleEntityDamageDesc" showonhud="true" icon="ui_game_symbol_long_shot" icon_color="0,191,255">
+			<stack_type value="replace"/>
+			<duration value="5"/>
+			<effect_group>
+				<requirement name="HoldingItemHasTags" tags="marisaLeverActionRifle"/>
+                <passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+			</effect_group>
+		</buff>
+
+		<!-- M60 烽火连天 -->
+		<buff name="buffGunM60SRangedBurstShotCount" name_key="buffGunM60SRangedBurstShotCountName" description_key="buffGunM60SRangedBurstShotCountDesc" showonhud="true" icon="ui_game_symbol_twitch_infinite_ammo" icon_color="0,191,255">
+			<stack_type value="ignore"/>
+			<display_value value=".buffGunM60SRangedBurstShotCount"/>
+			<display_value_key value="{0}"/>
+			<effect_group>
+                <passive_effect name="EntityDamage" operation="perc_add" value="@.buffGunM60SRangedBurstShotCountEntityDamage"/>
+                <passive_effect name="RoundsPerMinute" operation="perc_add" value="@.buffGunM60SRangedBurstShotCountRoundsPerMinute"/>
+			</effect_group>
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffGunM60SRangedBurstShotCount" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffGunM60SRangedBurstShotCountEntityDamage" operation="set" value="0"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" cvar=".buffGunM60SRangedBurstShotCountRoundsPerMinute" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+
 		<!-- 冷却 火箭筒 闪击弹 -->
 		<buff name="buffAmmoRocketAtkTypeSUCD" name_key="buffAmmoRocketAtkTypeSUCDName" description_key="buffAmmoRocketAtkTypeSUCDDesc" showonhud="true" icon="ui_game_symbol_explosion" icon_color="255,0,55">
 			<stack_type value="replace"/>
@@ -7618,121 +7776,84 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="60"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="80"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="80"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="120"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="120"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="240"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="set" value="240"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT Enemy HealthChangeOT">
+				<!-- 倍数 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="add" value="1">
+					<requirement name="HasBuff" buff="buffIsOnFireMarisaDesertVultureEffect"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="add" value="1">
+					<requirement name="HasBuff" buff="buffIsOnFireMarisaDesertVultureEffect"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="add" value="2">
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmountMultiply" operation="add" value="2">
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</triggered_effect>
+				<!-- 结果 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="multiply" value="@$buffIsOnFireEnemyAmountMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffIsOnFireEnemyAmount" operation="multiply" value="@$buffIsOnFireEnemyAmountMultiply"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$buffIsOnFireEnemyAmount">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$buffIsOnFireEnemyAmount"/>
 				</passive_effect>
 			</effect_group>
 
@@ -7873,121 +7994,84 @@
 			</effect_group>
 			<effect_group name="HealthChangeOT base">
 				<requirement name="!EntityTagCompare" tags="trader,player,feral,radiated,charged,infernal,crystallization,berserk,bossMarisa"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="20">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="20"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="20"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT feral">
 				<requirement name="EntityTagCompare" tags="feral"/>
 				<requirement name="!EntityTagCompare" tags="radiated,charged,infernal,crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="30">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="30"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="90">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="90"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="30"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="30"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT radiated">
 				<requirement name="EntityTagCompare" tags="radiated"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT charged">
 				<requirement name="EntityTagCompare" tags="charged"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT infernal">
 				<requirement name="EntityTagCompare" tags="infernal"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization">
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="60">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="60"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="180">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="180"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="60"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="60"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk">
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="80">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="80"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="80"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="80"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="!EntityTagCompare" tags="crystallization,berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="40">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="40"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="40"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT crystallization bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="EntityTagCompare" tags="crystallization"/>
 				<requirement name="!EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="120">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="120"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="360">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="360"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
-				</passive_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="120"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="120"/>
 			</effect_group>
 			<effect_group name="HealthChangeOT berserk bossMarisa">
 				<requirement name="EntityTagCompare" tags="bossMarisa"/>
 				<requirement name="EntityTagCompare" tags="berserk"/>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="240">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="240"/>
-					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="LT" value="4"/>
-				</passive_effect>
-				<passive_effect name="HealthChangeOT" operation="base_subtract" value="720">
-					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="720"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="240"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="set" value="240"/>
+			</effect_group>
+			<effect_group name="HealthChangeOT Enemy HealthChangeOT">
+				<!-- 倍数 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="set" value="1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="add" value="1">
+					<requirement name="HasBuff" buff="buffShockedMarisaMagnum44Effect"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="add" value="1">
+					<requirement name="HasBuff" buff="buffShockedMarisaMagnum44Effect"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="add" value="2">
 					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmountMultiply" operation="add" value="2">
+					<requirement name="CVarCompare" cvar="marisaMeleeStunBatonAttacked" operation="GTE" value="4"/>
+				</triggered_effect>
+				<!-- 结果 -->
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="multiply" value="@$buffShockedEnemyAmountMultiply"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffShockedEnemyAmount" operation="multiply" value="@$buffShockedEnemyAmountMultiply"/>
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$buffShockedEnemyAmount">
+					<requirement name="StatCompareCurrent" stat="Health" operation="GT" value="@$buffShockedEnemyAmount"/>
 				</passive_effect>
 			</effect_group>
 
