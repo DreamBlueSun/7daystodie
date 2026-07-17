@@ -85,6 +85,12 @@ public class GunSmg5 {
     // 模型
     public static final String RANK_MARISA_CUSTOMICON_1 = "gunHandgunT3SMG5";
 
+    // 狂化Tag
+    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,marisaSmg5\"/>";
+    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,marisaSmg5,PerkT3Marisa\"/>";
+    public static final String T1_TAG_P = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,revolver,44enforcer,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,attachmentsIncluded,canHaveCosmetic,handgunSkill,enforcerReload,marisaSmg5\"/>";
+    public static final String T3_TAG_P = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,revolver,44enforcer,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,attachmentsIncluded,canHaveCosmetic,handgunSkill,enforcerReload,marisaSmg5,PerkT3Marisa\"/>";
+
     // 武器合成 星星
     public static final String STAR_DEGRADATION_A = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"450,600\" tier=\"1,6\" tags=\"perkGunslinger,9mmGun\"/>";
     public static final String STAR_DEGRADATION_B = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"1,480,510,540,570,600\" tier=\"1,2,3,4,5,6\" tags=\"perkGunslinger,9mmGun\"/>";
@@ -99,12 +105,6 @@ public class GunSmg5 {
             "                <stat name=\"RoundsPerMinute\" value=\"1,0,1,.01,.3\"/>\n" +
             "                <stat name=\"DamageFalloffRange\" value=\"1,0,1,.01,.3\"/>\n" +
             "            </stats>";
-
-    // 狂化Tag
-    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,marisaSmg5\"/>";
-    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,marisaSmg5,PerkT3Marisa\"/>";
-    public static final String T1_TAG_P = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,revolver,44enforcer,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,attachmentsIncluded,canHaveCosmetic,handgunSkill,enforcerReload,marisaSmg5\"/>";
-    public static final String T3_TAG_P = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,revolver,44enforcer,barrelAttachments,sideAttachments,smallTopAttachments,magazine,drumMagazine,firingMode,bottomAttachments,attAgility,perkGunslinger,attachmentsIncluded,canHaveCosmetic,handgunSkill,enforcerReload,marisaSmg5,PerkT3Marisa\"/>";
 
     // item
     public static final String WEAPON_XML = "        <item name=\"GunSmg5SMarisaWeaponFlag_RANK\">\n" +

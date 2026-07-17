@@ -54,6 +54,10 @@ public class GunPistol {
     // 模型
     public static final String RANK_MARISA_CUSTOMICON_1 = "gunHandgunT1Pistol";
 
+    // 狂化Tag
+    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,pistol,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,sneakMarisa\"/>";
+    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,pistol,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,sneakMarisa,PerkT3Marisa\"/>";
+
     // 武器合成 星星
     public static final String STAR_DEGRADATION_A = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"150,200\" tier=\"1,6\" tags=\"perkGunslinger,9mmGun\"/>";
     public static final String STAR_DEGRADATION_B = "<passive_effect name=\"DegradationMax\" operation=\"base_set\" value=\"1,160,170,180,190,200\" tier=\"1,2,3,4,5,6\" tags=\"perkGunslinger,9mmGun\"/>";
@@ -68,10 +72,6 @@ public class GunPistol {
             "                <stat name=\"RoundsPerMinute\" value=\"1,0,1,.01,.3\"/>\n" +
             "                <stat name=\"DamageFalloffRange\" value=\"1,0,1,.01,.3\"/>\n" +
             "            </stats>";
-
-    // 狂化Tag
-    public static final String T1_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,pistol,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,sneakMarisa\"/>";
-    public static final String T3_TAG = "\n\t        <property name=\"Tags\" value=\"weapon,ranged,holdBreathAiming,reloadPenalty,gun,shortRange,pistol,barrelAttachments,sideAttachments,smallTopAttachments,magazine,firingMode,attAgility,perkGunslinger,9mmGun,attachmentsIncluded,canHaveCosmetic,handgunSkill,sneakMarisa,PerkT3Marisa\"/>";
 
     // item
     public static final String WEAPON_XML = "        <item name=\"GunPistolSMarisaWeaponFlag_RANK\">\n" +
