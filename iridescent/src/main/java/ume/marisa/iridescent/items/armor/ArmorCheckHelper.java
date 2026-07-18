@@ -27,7 +27,7 @@ public class ArmorCheckHelper {
         if (info.offset != (sum - numAll)) error.append("总点数偏移设计值：").append(info.offset).append(" != 校验计算值为：").append(sum - numAll).append("   各部位点数：").append(Arrays.toString(new int[]{sum1, sum2, sum3, sum4}));
         if (sum1 < numOne - offsetOne || sum1 > numOne + offsetOne) error.append("   头盔点数偏移过多：").append(sum1 - numOne);
         if (sum2 < numOne - offsetOne || sum2 > numOne + offsetOne) error.append("   胸甲点数偏移过多：").append(sum2 - numOne);
-        if (sum3 < numOne - offsetOne || sum3 > numOne + offsetOne) error.append("   护腿点数偏移过多：").append(sum3 - numOne);
+        if (sum3 < numOne - offsetOne || sum3 > numOne + offsetOne) error.append("   手套点数偏移过多：").append(sum3 - numOne);
         if (sum4 < numOne - offsetOne || sum4 > numOne + offsetOne) error.append("   鞋子点数偏移过多：").append(sum4 - numOne);
         // 校验技能合计等级超默认最大等级
         Map<String, Integer> mapSkill = Stream.of(info.skillHelmetKV, info.skillOutfitKV, info.skillGlovesKV, info.skillBootsKV).flatMap(List::stream).collect(Collectors.toMap(KV::getK, KV::getV, Integer::sum));

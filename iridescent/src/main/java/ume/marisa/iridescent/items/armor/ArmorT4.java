@@ -62,9 +62,9 @@ public class ArmorT4 {
     }
 
     // 校验参数
-    private static final int NUM_SLOT = 8;
-    private static final int NUM_ONE = 75;
-    private static final int NUM_ALL = 300;
+    private static final int NUM_SLOT = 9;
+    private static final int NUM_ONE = 80;
+    private static final int NUM_ALL = 320;
 
 
 }

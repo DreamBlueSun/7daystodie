@@ -52,15 +52,15 @@ public class ArmorT2 {
                     .replace("MarisaArmorFlag_IridescentPerks_Replace_Boots", info.skillBoots)
                     ;
             s.append(replace);
-            ArmorCheckHelper.check(zombie.getV(), info, NUM_SLOT, NUM_ONE, NUM_ALL, 1);
+            ArmorCheckHelper.check(zombie.getV(), info, NUM_SLOT, NUM_ONE, NUM_ALL, 3);
         }
         WriteToFile.output(s.toString());
     }
 
     // 校验参数
     private static final int NUM_SLOT = 4;
-    private static final int NUM_ONE = 54;
-    private static final int NUM_ALL = 216;
+    private static final int NUM_ONE = 50;
+    private static final int NUM_ALL = 200;
 
 
 }

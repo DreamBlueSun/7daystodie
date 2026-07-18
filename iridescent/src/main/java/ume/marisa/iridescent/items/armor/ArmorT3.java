@@ -54,15 +54,15 @@ public class ArmorT3 {
                     .replace("MarisaArmorFlag_IridescentPerks_Replace_Boots", info.skillBoots)
                     ;
             s.append(replace);
-            ArmorCheckHelper.check(zombie.getV(), info, NUM_SLOT, NUM_ONE, NUM_ALL, "ResearchInstituteLeader".equals(name) ? 32 : 2);
+            ArmorCheckHelper.check(zombie.getV(), info, NUM_SLOT, NUM_ONE, NUM_ALL, "ResearchInstituteLeader".equals(name) ? 30 : 3);
         }
         WriteToFile.output(s.toString());
     }
 
     // 校验参数
-    private static final int NUM_SLOT = 8;
-    private static final int NUM_ONE = 72;
-    private static final int NUM_ALL = 288;
+    private static final int NUM_SLOT = 9;
+    private static final int NUM_ONE = 75;
+    private static final int NUM_ALL = 300;
 
 
 }

@@ -82,10 +82,10 @@ public class MeleeStunBatonShocked {
             "                <stat name=\"AttacksPerMinute\" value=\"0,0,1,0,0\"/>\n" +
             "                <stat name=\"StaminaLoss\" value=\"0,0,1,0,0\"/>\n" +
             "                <!-- Q1_Boosted_Rolls -->\n" +
-            "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.1\"/>\n" +
-            "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.1\"/>\n" +
-            "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.2\"/>\n" +
-            "                <stat name=\"StaminaLoss\" value=\"1,0,1,-.2,-.01\"/>\n" +
+            "                <stat name=\"EntityDamage\" value=\"1,0,1,.01,.3\"/>\n" +
+            "                <stat name=\"BlockDamage\" value=\"1,0,1,.01,.3\"/>\n" +
+            "                <stat name=\"AttacksPerMinute\" value=\"1,0,1,.01,.3\"/>\n" +
+            "                <stat name=\"StaminaLoss\" value=\"1,0,1,-.3,-.01\"/>\n" +
             "            </stats>";
 
     // 狂化Tag
