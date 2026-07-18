@@ -42,8 +42,8 @@ public class GunAK47 {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = -10;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{5, 5, 5, 5, 10, 10, 10, 10, 10, 10, 10, 10, 0};
+    public static final int RANK_ENTITY_DAMAGE_S0 = 0;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{5, 5, 5, 5, 10, 10, 10, 10, 15, 15, 15, 15, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,5";
 
     // 弹药
@@ -106,7 +106,7 @@ public class GunAK47 {
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"90\" tags=\"perkMachineGunner\"/>\n" +
             "                <passive_effect name=\"DamageFalloffRange\" operation=\"base_set\" value=\"41\" tags=\"perkMachineGunner\"/>\n" +
             "                <passive_effect name=\"EntityDamage\" operation=\"base_add\" value=\"MarisaWeaponFlag_EntityDamage\" tags=\"perkMachineGunner\"/>\n" +
-            "                <passive_effect name=\"RoundsPerMinute\" operation=\"base_set\" value=\"400\" tags=\"perkMachineGunner\"/>\n" +
+            "                <passive_effect name=\"RoundsPerMinute\" operation=\"base_set\" value=\"360\" tags=\"perkMachineGunner\"/>\n" +
             "                <passive_effect name=\"BurstRoundCount\" operation=\"base_set\" value=\"0\" tags=\"perkMachineGunner\"/>\n" +
             "                <passive_effect name=\"MagazineSize\" operation=\"base_set\" value=\"25\" tags=\"perkMachineGunner\"/>\n" +
             "                <passive_effect name=\"ReloadSpeedMultiplier\" operation=\"base_set\" value=\"1\" tags=\"perkMachineGunner\"/>\n" +

@@ -42,9 +42,9 @@ public class GunSniperRifle {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 50;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 20, 20, 20, 20, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
+    public static final int RANK_ENTITY_DAMAGE_S0 = 60;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{25, 25, 25, 40, 40, 40, 55, 55, 55, 70, 70, 70, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,25";
 
     // 弹药
     public static final String RANK_MAGAZINE_ITEMS_1 = "<property name=\"Magazine_items\" value=\"ammo762mmBulletBall,ammo762mmBulletHP,ammo762mmBulletAP,ammo762mmBulletBleed,ammo762mmBulletRadiationPool,ammo762mmBulletFire,ammo762mmBulletShocked\"/>";

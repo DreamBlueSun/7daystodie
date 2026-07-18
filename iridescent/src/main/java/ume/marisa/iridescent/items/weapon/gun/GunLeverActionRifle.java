@@ -42,9 +42,9 @@ public class GunLeverActionRifle {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 50;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,20";
+    public static final int RANK_ENTITY_DAMAGE_S0 = 60;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{25, 25, 25, 25, 45, 45, 45, 45, 65, 65, 65, 65, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,25";
 
     // 弹药
     public static final String RANK_MAGAZINE_ITEMS_1 = "<property name=\"Magazine_items\" value=\"ammo762mmBulletBall,ammo762mmBulletHP,ammo762mmBulletAP,ammo762mmBulletBleed,ammo762mmBulletRadiationPool,ammo762mmBulletFire,ammo762mmBulletShocked\"/>";
@@ -107,7 +107,7 @@ public class GunLeverActionRifle {
             "            <effect_group name=\"GunLeverActionRifleSMarisaWeaponFlag_RANK\">\n" +
             "                <passive_effect name=\"MaxRange\" operation=\"base_set\" value=\"150\" tags=\"perkDeadEye\"/>\n" +
             "                <passive_effect name=\"DamageFalloffRange\" operation=\"base_set\" value=\"69\" tags=\"perkDeadEye\"/>\n" +
-            "                <passive_effect name=\"RoundsPerMinute\" operation=\"base_set\" value=\"120\" tags=\"perkDeadEye\"/>\n" +
+            "                <passive_effect name=\"RoundsPerMinute\" operation=\"base_set\" value=\"160\" tags=\"perkDeadEye\"/>\n" +
             "                <passive_effect name=\"BurstRoundCount\" operation=\"base_set\" value=\"1\" tags=\"perkDeadEye\"/>\n" +
             "                <passive_effect name=\"MagazineSize\" operation=\"base_set\" value=\"3\" tags=\"perkDeadEye\"/>\n" +
             "                <passive_effect name=\"ReloadSpeedMultiplier\" operation=\"base_set\" value=\"1.8\" tags=\"perkDeadEye\"/>\n" +

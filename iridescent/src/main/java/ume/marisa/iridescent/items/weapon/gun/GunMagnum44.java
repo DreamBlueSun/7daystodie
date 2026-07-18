@@ -43,8 +43,8 @@ public class GunMagnum44 {
 
     // 伤害
     public static final int RANK_ENTITY_DAMAGE_S0 = 30;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,35";
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{25, 25, 25, 25, 35, 35, 35, 35, 45, 45, 45, 45, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,25";
 
     // 弹药
     public static final String RANK_MAGAZINE_ITEMS_1 = "<property name=\"Magazine_items\" value=\"ammo44MagnumBulletBall,ammo44MagnumBulletHP,ammo44MagnumBulletAP,ammo44MagnumBulletBleed,ammo44MagnumBulletRadiationPool,ammo44MagnumBulletFire,ammo44MagnumBulletShocked\"/>";

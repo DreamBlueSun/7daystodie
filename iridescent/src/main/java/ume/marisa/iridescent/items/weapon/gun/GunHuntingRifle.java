@@ -42,9 +42,9 @@ public class GunHuntingRifle {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 70;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{25, 25, 25, 25, 35, 35, 35, 35, 35, 35, 35, 35, 0};
-    public static final String RANK_ENTITY_DAMAGE_TIER = "0,25";
+    public static final int RANK_ENTITY_DAMAGE_S0 = 120;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{30, 30, 30, 30, 40, 40, 40, 40, 50, 50, 50, 50, 0};
+    public static final String RANK_ENTITY_DAMAGE_TIER = "0,30";
 
     // 弹药
     public static final String RANK_MAGAZINE_ITEMS_1 = "<property name=\"Magazine_items\" value=\"ammo762mmBulletBall,ammo762mmBulletHP,ammo762mmBulletAP,ammo762mmBulletBleed,ammo762mmBulletRadiationPool,ammo762mmBulletFire,ammo762mmBulletShocked\"/>";

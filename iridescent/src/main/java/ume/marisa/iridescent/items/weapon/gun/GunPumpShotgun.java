@@ -42,7 +42,7 @@ public class GunPumpShotgun {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 0;
+    public static final int RANK_ENTITY_DAMAGE_S0 = 5;
     public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{5, 5, 5, 5, 7, 7, 7, 7, 9, 9, 9, 9, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,5";
 

@@ -436,8 +436,8 @@
 		<!-- * 手枪 千锤百炼 -->
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelEntityDamageGunPistol" operation="set" value="@$LastPlayerLevel"/>
-			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelEntityDamageGunPistol" operation="set" value="200">
-				<requirement name="PlayerLevel" operation="GT" value="200"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$PlayerLevelEntityDamageGunPistol" operation="set" value="300">
+				<requirement name="PlayerLevel" operation="GT" value="300"/>
 			</triggered_effect>
 		</effect_group>
 
@@ -5402,19 +5402,19 @@
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalChanceWithHeadDamage" operation="multiply" value="10"/>
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="10"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="5"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplier" operation="divide" value="5"/>
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="20"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="10"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="20"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierHalf" operation="divide" value="10"/>
 
 				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="10"/>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="20"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="set" value="@.buffShockedMarisaMagnum44Up"/>
-				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="10"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffShockedMarisaMagnum44UpAmountCriticalMultiplierShow" operation="multiply" value="20"/>
 			</effect_group>
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="marisaMagnum44"/>
@@ -5487,7 +5487,7 @@
 			<duration value="5"/>
 			<effect_group>
 				<requirement name="HoldingItemHasTags" tags="marisaLeverActionRifle"/>
-                <passive_effect name="EntityDamage" operation="perc_add" value="1"/>
+                <passive_effect name="DamageModifier" operation="perc_add" value="2"/>
 			</effect_group>
 		</buff>
 
@@ -8493,11 +8493,11 @@
 
 		<!-- 蓝色电火花（只有一瞬） -->
 		<buff name="buffMarisaElectricFenceSparks" hidden="true">
-			<stack_type value="replace"/>
-			<duration value="2"/>
+			<stack_type value="ignore"/>
+			<duration value=".3"/>
 			<effect_group>
 				<triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_fence_sparks" local_offset="0,0.75,0" parent_transform=".body"/>
-				<triggered_effect trigger="onSelfBuffStack" action="AttachParticleEffectToEntity" particle="p_electric_fence_sparks" local_offset="0,0.75,0" parent_transform=".body"/>
+<!--				<triggered_effect trigger="onSelfBuffStack" action="AttachParticleEffectToEntity" particle="p_electric_fence_sparks" local_offset="0,0.75,0" parent_transform=".body"/>-->
 				<triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_fence_sparks"/>
 			</effect_group>
 		</buff>

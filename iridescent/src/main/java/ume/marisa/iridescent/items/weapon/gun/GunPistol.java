@@ -43,7 +43,7 @@ public class GunPistol {
 
     // 伤害
     public static final int RANK_ENTITY_DAMAGE_S0 = 30;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0};
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{10, 10, 10, 10, 15, 15, 15, 15, 20, 20, 20, 20, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,10";
 
     // 弹药

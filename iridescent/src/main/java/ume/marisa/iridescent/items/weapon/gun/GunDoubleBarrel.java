@@ -42,8 +42,8 @@ public class GunDoubleBarrel {
     }
 
     // 伤害
-    public static final int RANK_ENTITY_DAMAGE_S0 = 4;
-    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{6, 6, 6, 6, 9, 9, 9, 9, 12, 12, 12, 12, 0};
+    public static final int RANK_ENTITY_DAMAGE_S0 = 6;
+    public static final int[] RANK_ENTITY_DAMAGE_ARR = new int[]{6, 6, 6, 6, 8, 8, 8, 8, 10, 10, 10, 10, 0};
     public static final String RANK_ENTITY_DAMAGE_TIER = "0,6";
 
     // 弹药
