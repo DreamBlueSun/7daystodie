@@ -306,10 +306,6 @@
 		<video name="videoTexture" depth="2" anchor_left="#cam,0.5,-924" anchor_right="#cam,0.5,924" anchor_bottom="#cam,0.5,-530" anchor_top="#cam,0.5,530" uri="/Video/MenuBackground" videoaspect="FitInside" loop="true" />
 	</window>
 	
-	<window name="mainMenuLogo" anchor="Center" pos="0,0" width="1050" height="780" depth="-2">
-		<texture depth="3" color="[white]" texture="@:Textures/UI/7DTD_logo.tga" name="gameLogo" anchor_left="#cam,0.5,-20" anchor_bottom="#cam,0.5,20" anchor_right="#cam,0.5,-20" anchor_top="#cam,0.5,490" pivot="center" keep_aspect_ratio="BasedOnHeight" aspect_ratio="2.3" visible="false" />
-	</window>
-	
 	<window name="mainMenu" anchor="Top" pos="-810,-70" width="400" height="400" controller="MainMenu" cursor_area="true" windows_to_open_globally="menuBackground,mainMenuDiscordButton,-discordInteractions">
 		<texture pos="0,0" height="400" color="[white]" texture="@:Textures/UI/news_logo.png" name="gameLogo" pivot="topleft" keep_aspect_ratio="BasedOnHeight" aspect_ratio="0.608" />
 
@@ -783,16 +779,16 @@
 						<scrollview width="${parentinnerwidth-20}" clippingsoftness="0,10">
 							<grid cols="1" cell_height="50" arrangement="horizontal" >
 								<browsergameoptionstring name="LevelName" title="goGameWorld" />
-								<browsergameoptioncombined name="WorldSize" title="goGameWorldSize" value_wrap="false" values="4096,6144,8192,10240" display_names="" value_localization_prefix="" allow_custom="true" />
+								<browsergameoptioncombined name="WorldSize" title="goGameWorldSize" value_wrap="false" values="2048,3072,4096,5120,6144,7168,8192,9216,10240" display_names="" value_localization_prefix="" allow_custom="true" />
 								<browsergameoptioncombined name="CurrentServerTime" title="goServerTimeDays" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" />
 								<rect/>
 								<browsergameoptioncombined name="StockSettings" title="goStockSettings" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
 								<browsergameoptioncombined name="ModdedConfig" title="goModdedConfig" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
 								<browsergameoptioncombined name="RequiresMod" title="goRequiresMod" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
 								<rect/>
-								<browsergameoptioncombined name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue" />
-								<browsergameoptioncombined name="DayNightLength" title="goDayNightLength" value_wrap="false" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute" />
-								<browsergameoptioncombined name="DayLightLength" title="goDayLightLength" value_wrap="false" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue" />
+								<browsergameoptionsandbox name="XPMultiplier" title="goXPMultiplier" value_wrap="false" />
+								<browsergameoptionsandbox name="DayNightLength" title="goDayNightLength" value_wrap="false" />
+								<browsergameoptionsandbox name="DayLightLength" title="goDayLightLength" value_wrap="false" />
 							</grid>
 						</scrollview>
 					</rect>
@@ -801,20 +797,20 @@
 						<defaultscrollbar />
 						<scrollview width="${parentinnerwidth-20}" clippingsoftness="0,10">
 							<grid cols="1" cell_height="50" arrangement="horizontal" >
-								<browsergameoptioncombined name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 20, 30" display_names="goDisabled" value_localization_prefix="goDay" />
-								<browsergameoptioncombined name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 7, 10, 14, 20" display_names="" value_localization_prefix="goDay" />
-								<browsergameoptioncombined name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values="-1, 8, 18" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
-								<browsergameoptioncombined name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" values="4, 6, 8, 10, 12, 16, 24, 32, 64" display_names="" value_localization_prefix="goEnemie" />
-								<browsergameoptioncombined name="ZombieMove" title="goZombieMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false"  />
-								<browsergameoptioncombined name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
-								<browsergameoptioncombined name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
-								<browsergameoptioncombined name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
-								<browsergameoptioncombined name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" value_type="int" values="" display_names="goOff,goZMDay,goZMNight,goZMAll" value_localization_prefix="" allow_custom="false" />
+								<browsergameoptionsandbox name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" />
+								<browsergameoptionsandbox name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" />
+								<browsergameoptionsandbox name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="BloodMoonEnemyCount" title="goBloodMoonEnemyCount" value_wrap="false" />
+								<browsergameoptionsandbox name="ZombieMove" title="goZombieMove" value_wrap="false" />
+								<browsergameoptionsandbox name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="ZombieFeralSense" title="goZombieFeralSense" value_wrap="false" allow_custom="false" />
 								<!--<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" values="" display_names="" value_localization_prefix="" />-->
-								<browsergameoptioncombined name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" values="0, 24, 72, 168" display_names="goDisabled" value_localization_prefix="goAirDropValue" />
-								<browsergameoptioncombined name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
-								<browsergameoptioncombined name="BiomeProgression" title="goBiomeProgression" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
-								<browsergameoptioncombined name="StormFreq" title="goStormFreq" value_wrap="false" value_type="int" values="0, 50, 100, 150, 200, 300, 400, 500" display_names="" value_localization_prefix="goBlockDamageValue" />
+								<browsergameoptionsandbox name="AirDropFrequency" title="goAirDropFrequency" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="AirDropMarker" title="goMarkAirDrops" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="BiomeProgression" title="goBiomeProgression" value_wrap="false" />
+								<browsergameoptionsandbox name="StormFreq" title="goStormFreq" value_wrap="false" />
 							</grid>
 						</scrollview>
 					</rect>
@@ -823,23 +819,23 @@
 						<defaultscrollbar />
 						<scrollview width="${parentinnerwidth-20}" clippingsoftness="0,10">
 							<grid cols="1" cell_height="50" arrangement="horizontal" >
-								<browsergameoptioncombined name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
-								<browsergameoptioncombined name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
-								<browsergameoptioncombined name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 33, 50, 67, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
-								<browsergameoptioncombined name="LootAbundance" title="goLootAbundance" value_wrap="false" values="25, 33, 50, 67, 75, 100, 150, 200" display_names="" value_localization_prefix="goLootAbundanceValue" />
-								<browsergameoptioncombined name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" values="-1, 5, 7, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
+								<browsergameoptionsandbox name="BlockDamagePlayer" sandboxoption="BlockDamage" title="goBlockDamagePlayer" value_wrap="false" />
+								<browsergameoptionsandbox name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" />
+								<browsergameoptionsandbox name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" />
+								<browsergameoptionsandbox name="LootAbundance" sandboxoption="GlobalLootCount" title="goLootAbundance" value_wrap="false" />
+								<browsergameoptionsandbox name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" />
 								<browsergameoptioncombined name="MaxChunkAge" title="goMaxChunkAge" value_wrap="false" values="-1, 10, 20, 30, 40, 50, 75, 100" display_names="goDisabled" value_localization_prefix="goDay" />
-								<browsergameoptioncombined name="DeathPenalty" title="goDeathPenalty" value_wrap="false" values="" display_names="goNone,goXPOnly,goInjured,goPermaDeath" value_localization_prefix="" allow_custom="false" />
-								<browsergameoptioncombined name="DropOnDeath" title="goDropOnDeath" value_wrap="false" values="" display_names="goNone,goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" allow_custom="false" />
-								<browsergameoptioncombined name="DropOnQuit" title="goDropOnQuit" value_wrap="false" values="" display_names="goNone,goAll,goToolbelt,goBackpack" value_localization_prefix="" allow_custom="false" />
-								<browsergameoptioncombined name="EnemySpawnMode" title="goEnemySpawnMode" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
+								<browsergameoptionsandbox name="DeathPenalty" title="goDeathPenalty" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="DropOnDeath" title="goDropOnDeath" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="DropOnQuit" title="goDropOnQuit" value_wrap="false" allow_custom="false" />
+								<browsergameoptionsandbox name="EnemySpawnMode" title="goEnemySpawnMode" value_wrap="false" allow_custom="false" />
 								
 								<!--BuildCreate browsergameoptioncombineds, some are for console platforms.-->
 								<browsergameoptioncombined name="BuildCreate" title="goBuildCreate" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" platform="!PS5,!XBOX"/>
 								<browsergameoptioncombined name="BuildCreate" title="goBuildCreate" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" tooltip_key="goBuildCreateServerBrowserDescPS5" platform="PS5"/>
 								<browsergameoptioncombined name="BuildCreate" title="goBuildCreate" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" tooltip_key="goBuildCreateServerBrowserDescXBOX" platform="XBOX"/>
 								
-								<browsergameoptioncombined name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" values="-1, 1, 2, 3, 4, 5, 6, 7, 8" display_names="goUnlimited"/>
+								<browsergameoptionsandbox name="QuestProgressionDailyLimit" title="goQuestProgressionDailyLimit" value_wrap="false" />
 
 								<browsergameoptioncombined name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" />
 								<browsergameoptioncombined name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" />
@@ -1399,6 +1395,7 @@
 									</rect>
 									
 									<options_combo_bool name_localization_prefix="xuiOptionsAudio" name="DiscordDmPrivacyMode" prefname="DiscordDmPrivacyMode" localization_prefix="xuiComboOnOff" visible="{discord_is_ready}" />
+									<options_combo_bool name_localization_prefix="xuiOptionsAudio" name="DiscordMuteDmNotifications" prefname="DiscordMuteDmNotifications" localization_prefix="xuiComboOnOff" visible="{discord_is_ready}" />
 									<options_combo_intindex name_localization_prefix="xuiOptionsAudio" name="DiscordAutoJoinVoice" prefname="DiscordAutoJoinVoiceMode" type="ComboBoxEnum`1[DiscordManager+EAutoJoinVoiceMode]" value_wrap="false" localization_prefix="xuiOptionsAudioDiscordAutoJoinVoice" visible="{discord_is_ready}" />
 									<options_combo_custom name_localization_prefix="xuiOptionsAudio" name="DiscordOutputDevice" prefname="DiscordSelectedOutputDevice" type="ComboBoxList`1[Platform.IPartyVoice+VoiceAudioDevice]" value_wrap="false" visible="{discord_is_ready}" />
 									<options_combo_float name_localization_prefix="xuiOptionsAudio" name="DiscordOutputVolume" prefname="DiscordOutputVolume" value_max="2" apply_immediately="true" visible="{discord_is_ready}" />
@@ -1864,7 +1861,7 @@
 							<scrollview clippingsoftness="0,10" anchor_top="#parent,1,0" anchor_bottom="buttons,1,10">
 								<grid pos="8,-20" cols="1" cell_width="700" cell_height="45" repeat_content="false" arrangement="horizontal" >
 									<options_combo_bool name_localization_prefix="xuiOptionsControls" name="AllowController" prefname="OptionsAllowController"  localization_prefix="xuiComboYesNo" platform="STANDALONE"/>
-									<options_combo name_localization_prefix="xuiOptionsControls" name="ControllerIconStyle" type="ComboBoxList`1[System.String]" values="Automatic, Xbox, Playstation" localization_prefix="xuiControllerIconStyle" platform="STANDALONE" parse_actions="true"/>
+									<options_combo_intindex name_localization_prefix="xuiOptionsControls" name="ControllerIconStyle" prefname="OptionsControllerIconStyle" type="ComboBoxList`1[System.String]" values="Automatic, Xbox, Playstation" localization_prefix="xuiControllerIconStyle" platform="STANDALONE" parse_actions="true"/>
 									<options_combo_intindex name_localization_prefix="xuiOptionsControls" name="ControllerJoystickLayout" prefname="OptionsControllerJoystickLayout" type="ComboBoxList`1[System.String]" values="Standard, Southpaw, Legacy, LegacySouthpaw" localization_prefix="xuiControllerJoystickLayout" />
 									<options_combo_float name_localization_prefix="xuiOptionsControls" name="ControllerLookSensitivityX" prefname="OptionsControllerSensitivityX" value_min="{% controller_sensitivity_min }" value_max="{% controller_sensitivity_max }" format_string="0.00"/>
 									<options_combo_float name_localization_prefix="xuiOptionsControls" name="ControllerLookSensitivityY" prefname="OptionsControllerSensitivityY" value_min="{% controller_sensitivity_min }" value_max="{% controller_sensitivity_max }" format_string="0.00"/>
@@ -2006,7 +2003,7 @@
 
 						<pagingheader_button max_width="300" name="rwgPreviewer" text_key="xuiRwgPreviewer" />
 						<pagingheader_button max_width="300" name="poiEditor" text_key="xuiPrefabEditor" platform="!CONSOLE" />
-						<pagingheader_button max_width="300" name="worldEditor" text_key="xuiWorldEditor" />
+						<pagingheader_button max_width="300" name="worldEditor" text_key="xuiWorldEditor" platform="!CONSOLE" />
 
 						<gamepad_icon name="controllericonRight" width="60" height="60" depth="2" pivot="center" action="GUI Window Paging Down" />
 					</table>
@@ -2760,7 +2757,7 @@
 							<rect name="scrollArea" on_scroll="true" gamepad_selectable="false" snap="false">
 								<defaultscrollbar />
 								<scrollview clippingsoftness="0,10">
-									<grid rows="20" cols="2" cell_width="690" cell_height="50" repeat_content="true" arrangement="horizontal" >
+									<grid rows="30" cols="2" cell_width="690" cell_height="50" repeat_content="true" arrangement="horizontal" >
 										<sandbox_option />
 									</grid>
 								</scrollview>

@@ -1165,8 +1165,8 @@
 
 		<!-- Increases Block Damage and Reduces Degradation Per Use -->
 		<effect_group>
-			<passive_effect name="BlockDamage" operation="perc_add" value=".1,.2,.3,.4,.5,.6" tier="1,2,3,4,5,6"/>
-			<display_value name="dBlockDamage" value=".1,.2,.3,.4,.5,.6" tier="1,2,3,4,5,6"/>
+			<passive_effect name="BlockDamage" operation="perc_add" value=".05,.1,.15,.2,.25,.3" tier="1,2,3,4,5,6"/>
+			<display_value name="dBlockDamage" value=".05,.1,.15,.2,.25,.3" tier="1,2,3,4,5,6"/>
 			<passive_effect name="DegradationPerUse" operation="perc_add" value="-.04,-.06,-.08,-.1,-.12,-.15" tier="1,2,3,4,5,6" tags="perkMiner69r,perkSalvageOperations,perkElectrocutioner,perkJavelinMaster,perkPummelPete,perkSkullCrusher,perkDeepCuts,perkBrawler,admin"/>
 			<display_value name="dDegradationPerUse" value="-.04,-.06,-.08,-.1,-.12,-.15" tier="1,2,3,4,5,6"/>
 		</effect_group>
@@ -1295,7 +1295,7 @@
 		<!-- Reduces Stamina usage on melee -->
 		<effect_group>
 			<requirement name="!HoldingItemHasTags" tags="perkArchery"/>
-				<passive_effect name="StaminaLoss" operation="perc_add" value="-.1,-.2,-.3,-.4,-.5,-.6" tier="1,2,3,4,5,6" tags="primary,secondary"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="-0.05,-0.1,-0.15,-0.2,-0.25,-0.3" tier="1,2,3,4,5,6" tags="primary,secondary"/>
 		</effect_group>
 		<!-- Increases Weapon Handling on bows -->
 		<effect_group>
@@ -1303,7 +1303,7 @@
 				<passive_effect name="WeaponHandling" operation="perc_add" value=".02,.04,.06,.08,.1,.15" tier="1,2,3,4,5,6"/>
 		</effect_group>
 		<effect_group>
-			<display_value name="dStaminaLoss" value="-.1,-.2,-.299,-.4,-.5,-.599" tier="1,2,3,4,5,6"/>
+			<display_value name="dStaminaLoss" value="-0.05,-0.1,-0.149,-0.2,-0.25,-0.299" tier="1,2,3,4,5,6"/>
 			<display_value name="dWeaponHandling" value=".02,.04,.06,.08,.1,.15" tier="1,2,3,4,5,6"/>
 		</effect_group>
 	</item_modifier>
@@ -1349,6 +1349,7 @@
 		</effect_group>
 
 		<effect_group>
+			<requirement name="!HasBuff" buff="buffStatusHungry03,buffStatusThirsty03"/>
 			<requirement name="StatComparePercCurrentToModMax" stat="health" operation="LTE" value=".5"/>
 				<passive_effect name="HealthChangeOT" operation="base_add" value="@$fortifyingGrip"/>
 		</effect_group>

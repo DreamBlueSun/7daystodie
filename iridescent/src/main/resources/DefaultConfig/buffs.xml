@@ -88,7 +88,8 @@
 			<triggered_effect trigger="onSelfBuffStart" action="RemoveCVar" cvar=".BurntTrackTime,.DesertTrackTime,.SnowTrackTime,.WastelandTrackTime"/>
 
 			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffCountHits,buffFoodStaminaBonus,buffTrippy,buffInfectionImmunity,buffSpectersGrace"/>
-			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurntSmoothieRun,buffOasisSmoothieRun,buffFrostbiteSmoothieRun,buffAtomicSmoothieRun"/>
+			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffBurntSmoothieRun,buffOasisSmoothieRun,buffFrostbiteSmoothieRun,buffAtomicSmoothieRun,buffRoadrunner"/>
+			<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" buff="buffRoadrunner,buffChickenNuggets,buffChickenWings"/>
 
 			<triggered_effect trigger="onSelfBuffUpdate" action="GiveExp" exp="10000">
 				<requirement name="CVarCompare" cvar="_expdeficit" operation="GTE" value="10000"/></triggered_effect>
@@ -1654,6 +1655,35 @@
 			<!-- Remove CVars and Buff and Start next Stage -->
 			<requirement name="CVarCompare" cvar="smell" operation="LTE" value="0"/>
 				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffSmell"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffChickenStress -->
+	<!-- TRIGGERED_BY: Code: Holding a chicken and moving -->
+	<!-- Logic handled in code. 0-100% = 0-100 meters that increases by 10% every 5 seconds. Running updates faster. Standing idle reduces stress by 10%. -->
+	<buff name="buffChickenStress" name_key="buffShowChickenStressName" description_key="buffShowChickenStressDesc" icon="ui_game_symbol_chicken_stress" icon_color="255,255,255">
+		<stack_type value="ignore"/>
+		<display_value_key value="buffChickenStressNameShort"/>
+		<display_value value="%stressAmount"/>
+		<display_value_format value="Percent"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffStart" action="ShowToolbeltMessage" message_key="buffShowChickenStressTooltip"/>
+					
+		</effect_group>
+	</buff>
+	
+	<buff name="buffChickenStressChicken">
+		<stack_type value="ignore"/>
+		<duration value="120"/>
+		<update_rate value=".1"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="stressTimer" operation="subtract" value="200"/>
+			
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffChickenStressChicken">
+				<requirement name="CVarCompare" cvar="stressTimer" operation="LTE" value="0"/>
+			</triggered_effect>
 		</effect_group>
 	</buff>
 
@@ -7711,6 +7741,7 @@
 		<damage_type value="Bashing"/>
 		<stack_type value="ignore"/>
 		<duration value=".1"/>
+		<tags value="infection"/>
 
 		<effect_group>
 			<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="infectionCounter" operation="set" value="25">
@@ -9448,6 +9479,90 @@
 			<passive_effect name="AttributeLevel" tags="attFortitude" operation="base_add" value="1"/>
 			<triggered_effect trigger="onSelfBuffStart" action="RefreshPerks" attribute="Fortitude"/>
 			<triggered_effect trigger="onSelfBuffRemove" action="RefreshPerks" attribute="Fortitude"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffRoadrunner -->
+	<!-- TRIGGERED_BY: Items = foodRoadrunnerChickenJerky -->
+	<!-- Increases run speed -->
+	<buff name="buffRoadrunner" name_key="buffRoadrunnerName" description_key="buffRoadrunnerDesc" tooltip_key="buffRoadrunnerTooltip" icon="ui_game_symbol_pills">
+		<stack_type value="replace"/>
+		<duration value="0"/>
+		<display_value value=".buffRoadrunnerDisplay"/>
+		<display_value_format value="time"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffRoadrunnerDuration" operation="subtract" value="@$MetabolismDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffRoadrunnerDisplay" operation="set" value="@$buffRoadrunnerDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffRoadrunnerDisplay" operation="divide" value="@$MetabolismDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffRoadrunner">
+				<requirement name="CVarCompare" cvar="$buffRoadrunnerDuration" operation="LTE" value="0"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffRoadrunnerDisplay,$buffRoadrunnerDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<passive_effect name="RunSpeed" operation="perc_add" value=".2"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffChickenNuggets -->
+	<!-- TRIGGERED_BY: Items = foodChickenNuggets -->
+	<!-- No encumbrance -->
+	<buff name="buffChickenNuggets" name_key="buffChickenNuggetsName" description_key="buffChickenNuggetsDesc" tooltip_key="buffChickenNuggetsTooltip" icon="ui_game_symbol_pills">
+		<stack_type value="replace"/>
+		<duration value="0"/>
+		<display_value value=".buffChickenNuggetsDisplay"/>
+		<display_value_format value="time"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffChickenNuggetsDuration" operation="subtract" value="@$MetabolismDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffChickenNuggetsDisplay" operation="set" value="@$buffChickenNuggetsDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffChickenNuggetsDisplay" operation="divide" value="@$MetabolismDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffChickenNuggets">
+				<requirement name="CVarCompare" cvar="$buffChickenNuggetsDuration" operation="LTE" value="0"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffChickenNuggetsDisplay,$buffChickenNuggetsDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<passive_effect name="CarryCapacity" operation="base_add" value="27"/>
+		</effect_group>
+	</buff>
+
+	<!-- *** buffChickenWings -->
+	<!-- TRIGGERED_BY: Items = foodChickenWings -->
+	<!-- No encumbrance -->
+	<buff name="buffChickenWings" name_key="buffChickenWingsName" description_key="buffChickenWingsDesc" tooltip_key="buffChickenWingsTooltip" icon="ui_game_symbol_pills">
+		<stack_type value="replace"/>
+		<duration value="0"/>
+		<display_value value=".buffChickenWingsDisplay"/>
+		<display_value_format value="time"/>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$buffChickenWingsDuration" operation="subtract" value="@$MetabolismDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffChickenWingsDisplay" operation="set" value="@$buffChickenWingsDuration"/>
+			<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar=".buffChickenWingsDisplay" operation="divide" value="@$MetabolismDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffChickenWings">
+				<requirement name="CVarCompare" cvar="$buffChickenWingsDuration" operation="LTE" value="0"/>
+			</triggered_effect>
+			<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar=".buffChickenWingsDisplay,$buffChickenWingsDuration"/>
+		</effect_group>
+
+		<effect_group>
+			<passive_effect name="EntityDamage" operation="perc_add" value=".1">
+				<requirement name="HoldingItemHasTags" tags="melee"/>
+			</passive_effect>
+			<passive_effect name="BuffResistance" operation="base_add" value="2" tags="buffInfectionCatch"/>
 		</effect_group>
 	</buff>
 

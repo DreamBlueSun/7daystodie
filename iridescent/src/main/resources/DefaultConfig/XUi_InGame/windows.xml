@@ -933,7 +933,7 @@
 
 		<rect name="content" depth="0" pos="0,-46" height="75" disablefallthrough="true">
 
-			<grid name="inventory" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true"
+			<grid name="inventory" depth="1" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true"
 			required_tools="toolBellows,toolAnvil,toolForgeCrucible" required_tools_only="true">
 				<item_stack controller="RequiredItemStack" name="0"/>
 			</grid>
@@ -950,7 +950,7 @@
 
 		<rect name="content" depth="0" pos="0,-46" height="75" disablefallthrough="true">
 
-			<grid name="inventory" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true" required_tools="toolCookingPot,toolCookingGrill,toolBeaker" required_tools_only="true">
+			<grid name="inventory" depth="1" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationToolGrid" repeat_content="true" required_tools="toolCookingPot,toolCookingGrill,toolBeaker" required_tools_only="true">
 				<item_stack controller="RequiredItemStack" name="0"/>
 			</grid>
 		</rect>
@@ -966,24 +966,24 @@
 
 		<rect name="content" depth="0" pos="0,-46" height="79" >
 			<rect disablefallthrough="true">
-				<grid rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationFuelGrid" repeat_content="true">
+				<grid depth="1" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="WorkstationFuelGrid" repeat_content="true">
 					<item_stack name="0"/>
 				</grid>
 			</rect>
 			<grid name="slot_preview" depth="1" rows="1" cols="3" pos="3,-3" cell_width="75" cell_height="75" controller="SlotPreview">
 				<rect>
-					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true"/>
+					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true" globalopacitymod="0" />
 				</rect>
 				<rect>
-					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true"/>
+					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true" globalopacitymod="0" />
 				</rect>
 				<rect>
-					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true"/>
+					<sprite name="slot" depth="2" width="64" height="64" sprite="resourceWood" atlas="ItemIconAtlasGreyscale" pos="35,-35" pivot="center" foregroundlayer="true" globalopacitymod="0" />
 				</rect>
 			</grid>
 		</rect>
 
-		<rect name="buttonContent" depth="5" pos="0, -121" height="40">
+		<rect name="buttonContent" depth="0" pos="0, -121" height="40">
 			<sprite depth="5" name="backgroundMain" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
 			<rect depth="1" pos="3,-3" width="225" height="34">
 				<button name="button" sprite="menu_empty" defaultcolor="[mediumGrey]" disabledcolor="[mediumGrey]" hoversprite="ui_game_select_row" hovercolor="[white]" type="sliced" width="222"  hoverscale="1.0" />
@@ -1855,14 +1855,13 @@
 		<rect name="header" height="43" depth="0" anchor_left="queue,0,-3" anchor_right="queue,1,0" >
 			<sprite depth="1" name="headerbackground" sprite="ui_game_panel_header" anchor_left="queue,0,-3" anchor_right="queue,1,0" />
 			<sprite depth="3" name="windowIcon" style="icon32px" pivot="center" pos="21,-21" sprite="ui_game_symbol_loot_sack" />
-			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" anchor_left="queue,0,39" anchor_right="queue,1,-230" />
+			<label depth="2" name="lootName" pos="39,-6" width="172" height="32" text="{lootcontainer_name}" font_size="32" anchor_left="queue,0,39" anchor_right="queue,1,-180" />
 
-			<rect anchor_left="queue,1,-300" anchor_right="queue,1,0" pos="0,0" controller="ContainerStandardControls" visible="{buttons_visible}">
-				<button   depth="3" name="btnToggleLockMode"   sprite="ui_game_symbol_lock"          tooltip_key="xuiStashLockModeToggle"  pos="154, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" selected="{userlockmode}" visible="{hasslotlocks}" />
-
-				<button   depth="3" name="btnSort"             sprite="ui_game_symbol_sort"          tooltip_key="lblSortContainer"        pos="194, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
-				<button   depth="3" name="btnMoveAll"          sprite="ui_game_symbol_store_all_up"     tooltip="{take_all_tooltip}"          pos="274, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
-				<button   depth="3" name="btnMoveFillAndSmart" sprite="ui_game_symbol_store_similar_up" tooltip_key="xuiLootTakeFillAndSmart" pos="234, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
+			<rect anchor_left="queue,1,-170" anchor_right="queue,1,0" pos="0,0" controller="ContainerStandardControls" visible="{% int(windowWidth) &gt;= 300 }">
+				<button   depth="3" name="btnToggleLockMode"   sprite="ui_game_symbol_lock"          tooltip_key="xuiStashLockModeToggle"  pos="20, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" selected="{userlockmode}" visible="{hasslotlocks}" />
+				<button   depth="3" name="btnSort"             sprite="ui_game_symbol_sort"          tooltip_key="lblSortContainer"        pos="60, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
+				<button   depth="3" name="btnMoveFillAndSmart" sprite="ui_game_symbol_store_similar_up" tooltip_key="xuiLootTakeFillAndSmart" pos="100, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
+				<button   depth="3" name="btnMoveAll"          sprite="ui_game_symbol_store_all_up"     tooltip="{take_all_tooltip}"          pos="140, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
 <!--				
 				<rect pos="0,30">
 				<button   depth="3" name="btnMoveFillStacks"   sprite="ui_game_symbol_drop"          tooltip_key="xuiLootTakeFillStacks"   pos="6, -22" style="icon32px, press, hover" pivot="center" sound="[paging_click]" />
@@ -4984,10 +4983,10 @@
 				<dropdownbox name="txtPoiMarkerPartName" width="350" height="30" dropdown_size="14" dropdown_lineheight="26" allowcustomvalue="false" visible="{# markertype=='PartSpawn' }" />
 				
 				<label name="lblMarkerRotations" depth="2" text_key="Marker Rotations" height="30" width="128" visible="{# markertype!='None' }" />
-				<combobox depth="108" pos="155,0" width="350" height="32" name="txtMarkerRotations" type="ComboBoxInt" value_min="0" value_max="3" value_increment="1" value_wrap="true" visible="{# markertype!='None' }" />
+				<combobox depth="2" pos="155,0" width="350" height="32" name="txtMarkerRotations" type="ComboBoxInt" value_min="0" value_max="3" value_increment="1" value_wrap="true" visible="{# markertype!='None' }" />
 				
 				<label name="lblPartSpawnChance" depth="2" text_key="Part Spawn Chance" height="30" width="128" visible="{# markertype=='PartSpawn' }" />
-				<combobox depth="108" pos="155,0" width="350" height="32" name="cbxPartSpawnChance" type="ComboBoxFloat" value="1" value_min="0" value_max="1" value_increment="0.2" value_wrap="true" visible="{# markertype=='PartSpawn' }" />
+				<combobox depth="2" pos="155,0" width="350" height="32" name="cbxPartSpawnChance" type="ComboBoxFloat" value="1" value_min="0" value_max="1" value_increment="0.2" value_wrap="true" visible="{# markertype=='PartSpawn' }" />
 
 				<label name="lblMarkerSize" text_key="xuiPOIMarkerSize" width="128" height="30" pivot="topleft" on_hover="true" tooltip_key="xuiPOIMarkerSizeTip" visible="{# markertype=='POISpawn' or markertype=='RoadExit' }" />
 				<combobox name="cbxPOIMarkerSize" type="ComboBoxEnum`1[PrefabVolumes.Marker+MarkerSize]" localization_prefix="" width="350" height="30" visible="{# markertype=='POISpawn' or markertype=='RoadExit' }" />
@@ -5694,21 +5693,21 @@
 		</rect>
 	</window>
 
-	<window name="prefabeditorhelp" anchor="Center" pos="-550,450" width="1100" height="850" controller="PrefabEditorHelp" cursor_area="true">
+	<window name="prefabeditorhelp" anchor="Center" pos="-700,430" width="1400" height="870" controller="PrefabEditorHelp" cursor_area="true">
 		<fullscreencollider name="outclick" color="0,0,0,1" />
 
 		<rect name="noclick" depth="-5" on_press="true" snap="false" gamepad_selectable="false" />
 
-		<rect name="header" pos="0,0" height="43" width="1196" depth="10">
+		<rect name="header" pos="0,0" height="43" depth="10">
 			<headerbg />
 			<label style="header.name" name="windowheader" pos="6,-6" text_key="xuiPrefabEditorHelp" />
 		</rect>
 
-		<rect name="tabs" controller="TabSelector" pos="0,-50" height="800" >
-			<sprite depth="10" name="border" width="1196" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacitymod="0.9" />
+		<rect name="tabs" controller="TabSelector" pos="0,-50" height="720" >
+			<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacitymod="0.9" />
 
-			<rect name="tabsHeader" height="39" depth="0" >
-				<sprite depth="0" name="backgroundMainTabs" sprite="menu_empty3px" color="0,0,0,150" type="sliced" fillcenter="true" width="1196"/>
+			<rect name="tabsHeader" height="37" depth="0" >
+				<sprite depth="0" name="background" sprite="menu_empty3px" color="[lightGrey]" type="sliced" fillcenter="true" />
 
 				<grid name="tabButtons" pos="3,-2" depth="2" rows="1" cols="6" cell_width="200" cell_height="36" repeat_content="true" arrangement="horizontal">
 					<rect controller="TabSelectorButton">
@@ -5718,67 +5717,67 @@
 				</grid>
 			</rect>
 
-			<rect name="tabsContents" depth="2" pos="0,-37" height="761">
-				<sprite depth="0" pos="2,0" width="1196" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+			<rect name="tabsContents" depth="2" pos="0,-37" height="681">
+				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 
 				<rect controller="TabSelectorTab" tab_key="xuiPrefabEditorHelpMain" >
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" pivot="topleft" text_key="xuiPrefabEditorHelpFocusBlockKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" pivot="topleft" text_key="xuiPrefabEditorHelpFocusBlockText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" pivot="topleft" text_key="xuiPrefabEditorHelpFocusBlockText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDeleteBlockKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDeleteBlockText" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDeleteBlockText" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpCopyBlocksKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyBlocksText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyBlocksText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpCopyRotationBlocksKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyRotationBlocksText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyRotationBlocksText" force_input_style="keyboard" />
 					</table>
 				</rect>
 
 				<rect controller="TabSelectorTab" tab_key="xuiPrefabEditorHelpSelectionsGeneric">
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpCreateSelectionKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpCreateSelectionText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpCreateSelectionText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpUnselectBoxKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpUnselectBoxText" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpUnselectBoxText" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionPropertiesKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionPropertiesText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionPropertiesText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionAboveTerrainKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionAboveTerrainText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionAboveTerrainText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionMoveKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionMoveModeKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveModeText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveModeText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionMoveDirectKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveDirectText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMoveDirectText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionResizeKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionResizeText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionResizeText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionFaceKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionFaceText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionFaceText" force_input_style="keyboard" />
 					</table>
 				</rect>
 
 				<rect controller="TabSelectorTab" tab_key="xuiPrefabEditorHelpSelectionsEdit">
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionFillKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionFillText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionFillText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionClearKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionClearText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionClearText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionRotateKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionRotateText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionRotateText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionMirrorKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMirrorText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionMirrorText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionDensityKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionDensityText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionDensityText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSelectionRemoveKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionRemoveText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSelectionRemoveText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpCopyKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpCopyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpPasteKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpPasteText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpPasteText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpPasteAdvancedKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpPasteAdvancedText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpPasteAdvancedText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpUndoKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpUndoText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpUndoText" force_input_style="keyboard" />
 					</table>
 				</rect>
 								
@@ -5786,46 +5785,46 @@
 				
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpCreateSelectionKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpCreateSelectionText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpCreateSelectionText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensity1Key" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity1KeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity1KeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensity10Key" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity10KeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity10KeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensity50Key" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity50KeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensity50KeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensityMaxKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityMaxKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityMaxKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensityPlaceMarkerKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityPlaceMarkerKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityPlaceMarkerKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpDensityMarkerInteractKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityMarkerInteractKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpDensityMarkerInteractKeyText" force_input_style="keyboard" />
 					</table>
 				</rect>
 				
 				<rect controller="TabSelectorTab" tab_key="xuiPrefabEditorHelpSignEditorLayerControls">
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectAllKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectAllKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectAllKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCopyKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCopyKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCopyKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCutKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCutKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedCutKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedPasteKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedPasteKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedPasteKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDuplicateKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDuplicateKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDuplicateKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedGroupKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedGroupKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedGroupKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUngroupKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUngroupKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUngroupKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDeleteKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDeleteKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedDeleteKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUndoKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUndoKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedUndoKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedRedoKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedRedoKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectedRedoKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorSaveKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorSaveKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorSaveKeyText" force_input_style="keyboard" />
 						
 						
 					</table>
@@ -5833,29 +5832,29 @@
 			<rect controller="TabSelectorTab" tab_key="xuiPrefabEditorHelpSignEditorCanvasControls">
 					<table cols="2" depth="3" padding="10,10" pos="10,-20" hide_inactive="false">
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsScrollKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsScrollKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsScrollKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectSingleKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectSingleKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectSingleKeyText" force_input_style="keyboard" />
 						
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerToggleKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerToggleKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerToggleKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectMultiKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectMultiKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsLayerSelectMultiKeyText" force_input_style="keyboard" />
 						
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedLayerRotateKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleUniformKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleUniformKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleUniformKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleYKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleYKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleYKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleXKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleXKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorLayerControlsSelectedScaleXKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveKeyText" force_input_style="keyboard" />
 						<label parse_actions="true" width="300" overflow="resizeheight" justify="right" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveAxisLockKey" force_input_style="keyboard" />
-						<label width="750" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveAxisLockKeyText" force_input_style="keyboard" />
+						<label width="1040" overflow="resizeheight" text_key="xuiPrefabEditorHelpSignEditorCanvasControlsSelectedMoveAxisLockKeyText" force_input_style="keyboard" />
 						
 						
 					</table>
@@ -5946,7 +5945,7 @@
 		</rect>
 	</window>
 
-  <window name="windowCollectorCatalyst" width="228" height="241" panel="Left" cursor_area="true">
+  <window name="windowCollectorCatalyst" width="228" height="{# 46 + fuel_row_count * 75 }" panel="Left" controller="CollectorFuelWindow" cursor_area="true">
 		<rect style="header.panel">
 			<headerbg />
 			<sprite name="windowCollectorFuelSprite" sprite="" style="header.icon"/>
